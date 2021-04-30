@@ -10,6 +10,7 @@ developerOrganization: Vertex Software
 developerOrganizationUrl: https://vertexvis.com
 java8: true
 groupId: com.vertexvis
+hideGenerationTimestamp: true
 invokerPackage: com.vertexvis
 licenseName: MIT
 licenseUrl: https://opensource.org/licenses/MIT

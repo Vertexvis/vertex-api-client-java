@@ -29,7 +29,7 @@ import java.io.IOException;
  * Color properties describing how a material looks.
  */
 @ApiModel(description = "Color properties describing how a material looks.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-29T18:33:10.334418Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ColorMaterial {
   public static final String SERIALIZED_NAME_OPACITY = "opacity";
   @SerializedName(SERIALIZED_NAME_OPACITY)

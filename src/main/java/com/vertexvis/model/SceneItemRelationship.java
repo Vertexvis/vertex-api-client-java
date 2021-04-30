@@ -29,7 +29,7 @@ import java.io.IOException;
  * Relationship to a &#x60;scene-item&#x60;.
  */
 @ApiModel(description = "Relationship to a `scene-item`.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-29T18:33:10.334418Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SceneItemRelationship {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)

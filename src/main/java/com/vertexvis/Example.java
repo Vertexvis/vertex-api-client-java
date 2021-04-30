@@ -2,25 +2,43 @@ package com.vertexvis;
 
 import com.vertexvis.api.FilesApi;
 import com.vertexvis.auth.OAuth;
-import com.vertexvis.model.FileList;
+import com.vertexvis.model.CreateFileRequest;
+import com.vertexvis.model.CreateFileRequestData;
+import com.vertexvis.model.CreateFileRequestDataAttributes;
+import java.util.HashMap;
 
 public class Example {
   public static void main(String[] args) {
+    String basePath = "https://platform.platdev.vertexvis.io";
     ApiClient client = Configuration.getDefaultApiClient();
-    client.setBasePath("https://platform.vertexvis.com");
+    client.setBasePath(basePath);
 
     OAuth auth = (OAuth) client.getAuthentication("OAuth2");
-    auth.setAccessToken("YOUR ACCESS TOKEN");
-
-    FilesApi apiInstance = new FilesApi(client);
+    auth.setAccessToken("YOUR_ACCESS_TOKEN");
+    FilesApi files = new FilesApi(client);
     try {
-      FileList result = apiInstance.getFiles(null, 10, null);
-      System.out.println(result);
+      System.out.println(files.createFile(buildCreateFileReq("my-file.jt")));
+      System.out.println(files.getFiles(null, 2, null));
     } catch (ApiException e) {
-      System.err.println("Exception");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
+      Throwable cause = e.getCause();
+      System.err.printf(
+          "Exception calling Vertex API.\ncode=%d\nmessage=%s\nbody=%s%n",
+          e.getCode(),
+          cause == null ? e.getMessage() : cause.getMessage(),
+          e.getResponseBody()
+      );
     }
+  }
+
+  public static boolean isNullOrEmpty(String s) {
+    return s == null || s.trim().length() == 0;
+  }
+
+  private static CreateFileRequest buildCreateFileReq(String fileName) {
+    return new CreateFileRequest()
+        .data(new CreateFileRequestData()
+            .type("file")
+            .attributes(new CreateFileRequestDataAttributes()
+                .name(fileName)));
   }
 }

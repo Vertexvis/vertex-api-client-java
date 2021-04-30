@@ -29,7 +29,7 @@ import java.io.IOException;
  * 4x4 affine transformation matrix, see [Matrix transformations](https://developer.vertexvis.com/docs/guides/matrix-transformations) for details.
  */
 @ApiModel(description = "4x4 affine transformation matrix, see [Matrix transformations](https://developer.vertexvis.com/docs/guides/matrix-transformations) for details.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-29T18:33:10.334418Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Matrix4 {
   public static final String SERIALIZED_NAME_R0 = "r0";
   @SerializedName(SERIALIZED_NAME_R0)
