@@ -1,7 +1,6 @@
 package com.vertexvis;
 
 import com.vertexvis.api.FilesApi;
-import com.vertexvis.auth.OAuth;
 import com.vertexvis.model.CreateFileRequest;
 import com.vertexvis.model.CreateFileRequestData;
 import com.vertexvis.model.CreateFileRequestDataAttributes;
@@ -9,12 +8,15 @@ import java.util.HashMap;
 
 public class Example {
   public static void main(String[] args) {
-    String basePath = "https://platform.platdev.vertexvis.io";
-    ApiClient client = Configuration.getDefaultApiClient();
-    client.setBasePath(basePath);
+    String id = System.getenv("VERTEX_CLIENT_ID");
+    String secret = System.getenv("VERTEX_CLIENT_SECRET");
+    if (isNullOrEmpty(id) || isNullOrEmpty(secret)) {
+      throw new RuntimeException(
+          "Environment variables containing your Vertex client ID and secret are required."
+      );
+    }
 
-    OAuth auth = (OAuth) client.getAuthentication("OAuth2");
-    auth.setAccessToken("YOUR_ACCESS_TOKEN");
+    ApiClient client = new ApiClient("https://platform.vertexvis.com", id, secret, new HashMap<>());
     FilesApi files = new FilesApi(client);
     try {
       System.out.println(files.createFile(buildCreateFileReq("my-file.jt")));

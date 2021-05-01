@@ -2,7 +2,7 @@ package com.vertexvis.auth;
 
 import com.vertexvis.Pair;
 
-import com.vertexvis.RemoveContentTypeCharsetInterceptor;
+import okhttp3.Credentials;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -21,26 +21,11 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.util.Map;
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 public class RetryingOAuth extends OAuth implements Interceptor {
-  private OAuthClient oAuthClient;
-
-  private TokenRequestBuilder tokenRequestBuilder;
-
-  public RetryingOAuth(OkHttpClient client, TokenRequestBuilder tokenRequestBuilder) {
-    this.oAuthClient = new OAuthClient(new OAuthOkHttpClient(client));
-    this.tokenRequestBuilder = tokenRequestBuilder;
-  }
-
-  public RetryingOAuth(TokenRequestBuilder tokenRequestBuilder) {
-    this(RetryingOAuth.createClient(), tokenRequestBuilder);
-  }
-
-  private static OkHttpClient createClient() {
-    OkHttpClient.Builder builder = new OkHttpClient.Builder();
-    builder.addNetworkInterceptor(new RemoveContentTypeCharsetInterceptor());
-    return builder.build();
-  }
+  private final OAuthClient oAuthClient;
+  private final TokenRequestBuilder tokenRequestBuilder;
 
   /**
    * @param tokenUrl     The token URL to be used for this OAuth2 flow.
@@ -56,9 +41,11 @@ public class RetryingOAuth extends OAuth implements Interceptor {
       String clientSecret,
       Map<String, String> parameters
   ) {
-    this(OAuthClientRequest.tokenLocation(tokenUrl)
-        .setClientId(clientId)
-        .setClientSecret(clientSecret));
+    this.oAuthClient = new OAuthClient(new OAuthOkHttpClient(
+        new OkHttpClient.Builder()
+            .addInterceptor(new AuthInterceptor(clientId, clientSecret))
+            .build()));
+    this.tokenRequestBuilder = OAuthClientRequest.tokenLocation(tokenUrl);
     setFlow(flow);
     if (parameters != null) {
       for (String paramName : parameters.keySet()) {
@@ -68,24 +55,12 @@ public class RetryingOAuth extends OAuth implements Interceptor {
   }
 
   public void setFlow(OAuthFlow flow) {
-    switch (flow) {
-      case accessCode:
-        tokenRequestBuilder.setGrantType(GrantType.AUTHORIZATION_CODE);
-        break;
-      case implicit:
-        tokenRequestBuilder.setGrantType(GrantType.IMPLICIT);
-        break;
-      case password:
-        tokenRequestBuilder.setGrantType(GrantType.PASSWORD);
-        break;
-      case application:
-        tokenRequestBuilder.setGrantType(GrantType.CLIENT_CREDENTIALS);
-        break;
-      default:
-        break;
+    if (flow == OAuthFlow.application) {
+      tokenRequestBuilder.setGrantType(GrantType.CLIENT_CREDENTIALS);
     }
   }
 
+  @NotNull
   @Override
   public Response intercept(Chain chain) throws IOException {
     return retryingIntercept(chain, true);
@@ -131,9 +106,8 @@ public class RetryingOAuth extends OAuth implements Interceptor {
 
       // 401/403 response codes most likely indicate an expired access token, unless it happens two times in a row
       if (
-          response != null &&
-              (response.code() == HttpURLConnection.HTTP_UNAUTHORIZED ||
-                  response.code() == HttpURLConnection.HTTP_FORBIDDEN) &&
+          (response.code() == HttpURLConnection.HTTP_UNAUTHORIZED ||
+              response.code() == HttpURLConnection.HTTP_FORBIDDEN) &&
               updateTokenAndRetryOnAuthorizationFailure
       ) {
         try {
@@ -176,14 +150,30 @@ public class RetryingOAuth extends OAuth implements Interceptor {
     return tokenRequestBuilder;
   }
 
-  public void setTokenRequestBuilder(TokenRequestBuilder tokenRequestBuilder) {
-    this.tokenRequestBuilder = tokenRequestBuilder;
-  }
-
   // Applying authorization to parameters is performed in the retryingIntercept method
   @Override
   public void applyToParams(List<Pair> queryParams, Map<String, String> headerParams,
                             Map<String, String> cookieParams) {
     // No implementation necessary
+  }
+
+  private static class AuthInterceptor implements Interceptor {
+    private final String clientId;
+    private final String clientSecret;
+
+    public AuthInterceptor(String clientId, String clientSecret) {
+      this.clientId = clientId;
+      this.clientSecret = clientSecret;
+    }
+
+    @NotNull
+    @Override
+    public Response intercept(Chain chain) throws IOException {
+      return chain.proceed(
+          chain.request()
+              .newBuilder().addHeader("Authorization", Credentials.basic(clientId, clientSecret))
+              .build()
+      );
+    }
   }
 }
