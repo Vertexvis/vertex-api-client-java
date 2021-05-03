@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-set -o errexit -o nounset
+set -Eeuo pipefail
+scripts_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
-get_version() {
-  grep "version = " build.gradle | tr -d "version = " | tr -d "'"
-}
+# shellcheck source=./version-lib.sh
+source "$scripts_dir/version-lib.sh"
 
 main() {
   local root=(Example.java)
@@ -26,8 +26,8 @@ main() {
   for f in "${models[@]}"; do mv "$f" ./src/main/java/com/vertexvis/model; done
 
   local version
-  version=$(get_version)
+  version=$(_get_version)
   sed -i "" "s|OpenAPI-Generator/$version/java|vertex-api-client-java/$version|" src/main/java/com/vertexvis/ApiClient.java
 }
 
-main
+main "$@"

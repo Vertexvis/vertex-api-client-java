@@ -1,14 +1,16 @@
 # Vertex API Client for Java
 
-If you're ready to integrate Vertex into your application, this is the place! For more background on the Vertex platform, start with [our guides](https://developer.vertexvis.com/docs/guides).
+[![MIT License](https://img.shields.io/github/license/vertexvis/vertex-api-client-java)](https://github.com/Vertexvis/vertex-api-client-java/blob/main/LICENSE)
 
-The Vertex platform API client for Java is generated using [`openapi-generator`](https://github.com/OpenAPITools/openapi-generator), so it's always up-to-date.
+If you're ready to integrate Vertex into your application, this is the place! For more background on the Vertex platform, start with [Developer Portal](https://developer.vertexvis.com/).
+
+The Vertex REST API client for Java is generated using [`openapi-generator`](https://github.com/OpenAPITools/openapi-generator), so it's always up-to-date.
 
 The client can be used with Java 1.8+ and pulled into Maven or Gradle projects.
 
 ## Installation
 
-### Maven users
+### Maven
 
 ```xml
 <dependency>
@@ -19,10 +21,16 @@ The client can be used with Java 1.8+ and pulled into Maven or Gradle projects.
 </dependency>
 ```
 
-### Gradle users
+### Gradle
 
 ```groovy
 compile "com.vertexvis:vertex-api-client:0.1.0"
+```
+
+### Sbt
+
+```sbt
+libraryDependencies += "com.vertexvis" % "vertex-api-client" % "0.1.0"
 ```
 
 ### Others
@@ -40,4 +48,28 @@ Then manually install the following JARs.
 
 ## Usage
 
-Follow the [installation](#installation) instruction. Then, execute [Example.java](./src/main/java/com/vertexvis/Example.java).
+If you're not an existing Vertex customer, [sign up for a free account](https://aws.amazon.com/marketplace/pp/B08PP264Z1?stl=true).
+
+Export your credentials.
+
+```bash
+# Export your Vertex REST API client ID and secret
+export VERTEX_CLIENT_ID=[YOUR_CLIENT_ID]
+export VERTEX_CLIENT_SECRET=[YOUR_CLIENT_SECRET]
+```
+
+Then, see [Example.java](./src/main/java/com/vertexvis/Example.java) for a sample application.
+
+## Documentation
+
+API model POJOs are documented in the `docs` folder.
+
+## Local Development
+
+```bash
+# Version client
+./scripts/bump-version.sh [patch|minor|major]
+
+# Generate using latest OpenAPI spec
+./scripts/generate.sh
+```

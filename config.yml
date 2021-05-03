@@ -1,5 +1,5 @@
 apiPackage: com.vertexvis.api
-artifactDescription: The Vertex platform API client for Java.
+artifactDescription: The Vertex REST API client for Java.
 artifactId: vertex-api-client
 artifactUrl: https://github.com/Vertexvis/vertex-api-client-java
 artifactVersion: 0.1.0
@@ -13,7 +13,7 @@ groupId: com.vertexvis
 hideGenerationTimestamp: true
 invokerPackage: com.vertexvis
 licenseName: MIT
-licenseUrl: https://opensource.org/licenses/MIT
+licenseUrl: https://github.com/Vertexvis/vertex-api-client-java/blob/main/LICENSE
 modelPackage: com.vertexvis.model
 scmConnection: scm:git:git@github.com:vertexvis/vertex-api-client-java.git
 scmDeveloperConnection: scm:git:git@github.com:vertexvis/vertex-api-client-java.git
