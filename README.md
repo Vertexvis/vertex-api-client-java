@@ -2,7 +2,7 @@
 
 [![MIT License](https://img.shields.io/github/license/vertexvis/vertex-api-client-java)](https://github.com/Vertexvis/vertex-api-client-java/blob/main/LICENSE)
 
-If you're ready to integrate Vertex into your application, this is the place! For more background on the Vertex platform, start with [Developer Portal](https://developer.vertexvis.com/).
+If you're ready to integrate Vertex into your application, this is the place! For more background on the Vertex platform, start with our [Developer Portal](https://developer.vertexvis.com/).
 
 The Vertex REST API client for Java is generated using [`openapi-generator`](https://github.com/OpenAPITools/openapi-generator), so it's always up-to-date.
 
@@ -15,7 +15,7 @@ The client can be used with Java 1.8+ and pulled into Maven or Gradle projects.
 ```xml
 <dependency>
   <groupId>com.vertexvis</groupId>
-  <artifactId>vertex-api-client</artifactId>
+  <artifactId>api-client</artifactId>
   <version>0.1.0</version>
   <scope>compile</scope>
 </dependency>
@@ -24,13 +24,13 @@ The client can be used with Java 1.8+ and pulled into Maven or Gradle projects.
 ### Gradle
 
 ```groovy
-compile "com.vertexvis:vertex-api-client:0.1.0"
+compile "com.vertexvis:api-client:0.1.0"
 ```
 
 ### Sbt
 
 ```sbt
-libraryDependencies += "com.vertexvis" % "vertex-api-client" % "0.1.0"
+libraryDependencies += "com.vertexvis" % "api-client" % "0.1.0"
 ```
 
 ### Others
@@ -43,7 +43,7 @@ mvn clean package
 
 Then manually install the following JARs.
 
-- `target/vertex-api-client-0.1.0.jar`
+- `target/api-client-0.1.0.jar`
 - `target/lib/*.jar`
 
 ## Usage
@@ -59,10 +59,6 @@ export VERTEX_CLIENT_SECRET=[YOUR_CLIENT_SECRET]
 ```
 
 Then, see [Example.java](./src/main/java/com/vertexvis/Example.java) for a sample application.
-
-## Documentation
-
-API model POJOs are documented in the `docs` folder.
 
 ## Local Development
 

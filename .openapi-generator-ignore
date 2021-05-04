@@ -1,4 +1,8 @@
 .gitignore
 .travis.yml
+build.sbt
 git_push.sh
+gradle.properties
 README.md
+
+docs/

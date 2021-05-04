@@ -2,9 +2,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.vertexvis</groupId>
-    <artifactId>vertex-api-client</artifactId>
+    <artifactId>api-client</artifactId>
     <packaging>jar</packaging>
-    <name>vertex-api-client</name>
+    <name>api-client</name>
     <version>0.1.0</version>
     <url>https://github.com/Vertexvis/vertex-api-client-java</url>
     <description>The Vertex REST API client for Java.</description>

@@ -5,9 +5,7 @@ scripts_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 # shellcheck source=./version-lib.sh
 source "$scripts_dir/version-lib.sh"
 
-# set -x
-
-# Public: Bump API client version in config.yml.
+# Public: Bump API client version.
 #
 # $1- patch|minor|major (default: patch)
 #
@@ -18,8 +16,10 @@ main() {
   local old new
   old=$(_get_version)
   new=$(_bump_version "$old" "$@")
-  echo "Updating config.yml's artifactVersion from $old to $new"
+  echo "Updating version from $old to $new"
+
   sed -i "" "s|artifactVersion: $old|artifactVersion: $new|" config.yml
+  sed -i "" "s|$old|$new|" README.md
 }
 
 main "$@"
