@@ -15,7 +15,7 @@ The client can be used with Java 1.8+ and pulled into Maven or Gradle projects.
 ```xml
 <dependency>
   <groupId>com.vertexvis</groupId>
-  <artifactId>api-client</artifactId>
+  <artifactId>api-client-java</artifactId>
   <version>0.1.0</version>
   <scope>compile</scope>
 </dependency>
@@ -24,13 +24,13 @@ The client can be used with Java 1.8+ and pulled into Maven or Gradle projects.
 ### Gradle
 
 ```groovy
-compile "com.vertexvis:api-client:0.1.0"
+compile "com.vertexvis:api-client-java:0.1.0"
 ```
 
 ### Sbt
 
 ```sbt
-libraryDependencies += "com.vertexvis" % "api-client" % "0.1.0"
+libraryDependencies += "com.vertexvis" % "api-client-java" % "0.1.0"
 ```
 
 ### Others
@@ -43,7 +43,7 @@ mvn clean package
 
 Then manually install the following JARs.
 
-- `target/api-client-0.1.0.jar`
+- `target/api-client-java-0.1.0.jar`
 - `target/lib/*.jar`
 
 ## Usage
