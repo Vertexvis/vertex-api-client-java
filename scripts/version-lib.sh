@@ -46,8 +46,8 @@ _die() {
 #
 # Returns version.
 _get_version() {
-  local prefix="artifactVersion: "
-  grep "$prefix" config.yml | tr -d "$prefix"
+  local prefix="version = "
+  grep "$prefix" build.gradle | tr -d "$prefix" | tr -d "'"
 }
 
 # Internal: Bump API client version.

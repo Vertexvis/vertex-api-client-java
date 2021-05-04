@@ -13,7 +13,7 @@ main() {
   for f in "${auth[@]}"; do mv "src/main/java/com/vertexvis/auth/$f" . || true; done
   for f in "${models[@]}"; do mv "src/main/java/com/vertexvis/model/$f" . || true; done
 
-  rm -rf api docs gradle src
+  rm -rf api gradle src
 
   docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli:latest generate \
     --input-spec https://platform.vertexvis.com/spec \
@@ -27,7 +27,7 @@ main() {
 
   local version
   version=$(_get_version)
-  sed -i "" "s|OpenAPI-Generator/$version/java|vertex-api-client-java/$version|" src/main/java/com/vertexvis/ApiClient.java
+  sed -i "" "s|OpenAPI-Generator/1.0/java|vertex-api-client-java/$version|" src/main/java/com/vertexvis/ApiClient.java
 }
 
 main "$@"

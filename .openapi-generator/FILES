@@ -1,12 +1,9 @@
 api/openapi.yaml
-build.gradle
 gradle/wrapper/gradle-wrapper.jar
 gradle/wrapper/gradle-wrapper.properties
 gradlew
 gradlew.bat
-pom.xml
 settings.gradle
-src/main/AndroidManifest.xml
 src/main/java/com/vertexvis/ApiCallback.java
 src/main/java/com/vertexvis/ApiClient.java
 src/main/java/com/vertexvis/ApiException.java
