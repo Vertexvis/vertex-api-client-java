@@ -1,6 +1,6 @@
 apiPackage: com.vertexvis.api
 artifactDescription: The Vertex REST API client for Java.
-artifactId: api-client
+artifactId: api-client-java
 artifactUrl: https://github.com/Vertexvis/vertex-api-client-java
 artifactVersion: 0.1.0
 dateLibrary: java8
