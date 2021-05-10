@@ -1,88 +1,77 @@
-apply plugin: 'idea'
-apply plugin: 'java'
-apply plugin: 'maven'
-apply plugin: 'signing'
+plugins {
+    id "idea"
+    id "io.github.gradle-nexus.publish-plugin" version "1.1.0"
+    id "java-library"
+    id "maven-publish"
+    id "signing"
+}
+
 group = 'com.vertexvis'
 version = '0.1.2'
 
-buildscript {
-    repositories {
-        maven { url "https://repo1.maven.org/maven2" }
-        mavenCentral()
-    }
-}
 repositories {
     mavenCentral()
 }
-sourceSets {
-    main.java.srcDirs = ['src/main/java']
+
+java {
+    withJavadocJar()
+    withSourcesJar()
 }
-install {
-    repositories.mavenInstaller {
-        pom.artifactId = 'api-client-java'
-    }
-}
-javadoc {
-    options.tags = ["http.response.details:a:Http Response Details"]
-}
-task execute(type: JavaExec) {
-    main = System.getProperty('mainClass')
-    classpath = sourceSets.main.runtimeClasspath
-}
-task javadocJar(type: Jar) {
-    archiveClassifier.set("javadoc")
-    from javadoc
-}
-task sourcesJar(type: Jar) {
-    archiveClassifier.set("sources")
-    from sourceSets.main.allJava
-}
-artifacts {
-    archives javadocJar, sourcesJar
-}
-signing {
-    sign configurations.archives
-}
-def un = hasProperty('ossrhUsername') ? ossrhUsername : ''
-def pw = hasProperty('ossrhPassword') ? ossrhPassword : ''
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-            repository(url: "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: un, password: pw)
-            }
-            snapshotRepository(url: "https://s01.oss.sonatype.org/content/repositories/snapshots/") {
-                authentication(userName: un, password: pw)
-            }
-            pom.project {
-                name 'api-client-java'
-                artifactId 'api-client-java'
-                packaging 'jar'
-                description 'The Vertex REST API client for Java.'
-                url 'https://github.com/Vertexvis/vertex-api-client-java'
-                scm {
-                    connection 'scm:git:git@github.com:vertexvis/vertex-api-client-java.git'
-                    developerConnection 'scm:git:git@github.com:vertexvis/vertex-api-client-java.git'
-                    url 'https://github.com/Vertexvis/vertex-api-client-java'
-                }
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'api-client-java'
+            from components.java
+            pom {
+                name = 'com.vertexvix:api-client-java'
+                description = 'The Vertex REST API client for Java.'
+                url = 'https://github.com/Vertexvis/vertex-api-client-java'
                 licenses {
                     license {
-                        name 'MIT'
-                        url 'https://github.com/Vertexvis/vertex-api-client-java/blob/main/LICENSE'
+                        name = 'MIT'
+                        url = 'https://github.com/Vertexvis/vertex-api-client-java/blob/main/LICENSE'
                     }
                 }
                 developers {
                     developer {
-                        email 'support@vertexvis.com'
-                        name 'Vertex Developers'
-                        organizationUrl 'https://developer.vertexvis.com/'
+                        email = 'support@vertexvis.com'
+                        name = 'Vertex Developers'
+                        organizationUrl = 'https://developer.vertexvis.com/'
                     }
+                }
+                scm {
+                    connection = 'scm:git:git@github.com:vertexvis/vertex-api-client-java.git'
+                    developerConnection = 'scm:git:git@github.com:vertexvis/vertex-api-client-java.git'
+                    url = 'https://github.com/Vertexvis/vertex-api-client-java'
                 }
             }
         }
     }
 }
+
+nexusPublishing {
+    repositories {
+        sonatype {
+            nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/"))
+            snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
+        }
+    }
+}
+
+def base64Decode(prop) {
+    return new String(Base64.getDecoder().decode(project.findProperty(prop).toString())).trim()
+}
+
+signing {
+    useInMemoryPgpKeys(base64Decode("signingKey"), base64Decode("signingPassword"))
+    sign publishing.publications.mavenJava
+}
+
+javadoc {
+    options.tags = ["http.response.details:a:Http Response Details"]
+}
+
 dependencies {
     implementation 'io.swagger:swagger-annotations:1.6.2'
     implementation "com.google.code.findbugs:jsr305:3.0.2"
