@@ -55,6 +55,10 @@ public class SceneDataAttributes {
   @SerializedName(SERIALIZED_NAME_TREE_ENABLED)
   private Boolean treeEnabled;
 
+  public static final String SERIALIZED_NAME_MODIFIED = "modified";
+  @SerializedName(SERIALIZED_NAME_MODIFIED)
+  private OffsetDateTime modified;
+
 
   public SceneDataAttributes camera(Camera camera) {
     
@@ -192,6 +196,28 @@ public class SceneDataAttributes {
   }
 
 
+  public SceneDataAttributes modified(OffsetDateTime modified) {
+    
+    this.modified = modified;
+    return this;
+  }
+
+   /**
+   * Get modified
+   * @return modified
+  **/
+  @ApiModelProperty(example = "2020-01-01T12:00Z", required = true, value = "")
+
+  public OffsetDateTime getModified() {
+    return modified;
+  }
+
+
+  public void setModified(OffsetDateTime modified) {
+    this.modified = modified;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -206,12 +232,13 @@ public class SceneDataAttributes {
         Objects.equals(this.created, sceneDataAttributes.created) &&
         Objects.equals(this.suppliedId, sceneDataAttributes.suppliedId) &&
         Objects.equals(this.name, sceneDataAttributes.name) &&
-        Objects.equals(this.treeEnabled, sceneDataAttributes.treeEnabled);
+        Objects.equals(this.treeEnabled, sceneDataAttributes.treeEnabled) &&
+        Objects.equals(this.modified, sceneDataAttributes.modified);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(camera, state, created, suppliedId, name, treeEnabled);
+    return Objects.hash(camera, state, created, suppliedId, name, treeEnabled, modified);
   }
 
   @Override
@@ -224,6 +251,7 @@ public class SceneDataAttributes {
     sb.append("    suppliedId: ").append(toIndentedString(suppliedId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    treeEnabled: ").append(toIndentedString(treeEnabled)).append("\n");
+    sb.append("    modified: ").append(toIndentedString(modified)).append("\n");
     sb.append("}");
     return sb.toString();
   }
