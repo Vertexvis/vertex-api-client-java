@@ -64,9 +64,9 @@ Then, see [Example.java](./src/main/java/com/vertexvis/Example.java) for a sampl
 ## Local Development
 
 ```bash
-# Generate using latest OpenAPI spec
-./scripts/generate.sh
-
 # Version client
 ./scripts/bump-version.sh [patch|minor|major]
+
+# After bumping version, generate using latest OpenAPI spec
+./scripts/generate.sh
 ```
