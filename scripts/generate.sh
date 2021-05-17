@@ -5,9 +5,9 @@ scripts_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 source "$scripts_dir/version-lib.sh"
 
 main() {
-  local root=(Example.java JSON.java)
+  local root=(JSON.java example)
   local auth=(RetryingOAuth.java)
-  local models=(serialization AnyOfCameraCameraFit.java AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperation.java AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship.java AnyOfQueryByIdQueryByCollectionQueryAll.java OneOfHitResultDataSceneItemDataPartRevisionData.java)
+  local models=(serialization AnyOfCameraCameraFit.java AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperation.java AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship.java AnyOfQueryByIdQueryByCollectionQueryAll.java OneOfHitResultDataSceneItemDataPartRevisionData.java AnyOfGeometrySetRelationshipPartRevisionRelationship.java)
   mv "src/test" . || true
   for f in "${root[@]}"; do mv "src/main/java/com/vertexvis/$f" . || true; done
   for f in "${auth[@]}"; do mv "src/main/java/com/vertexvis/auth/$f" . || true; done

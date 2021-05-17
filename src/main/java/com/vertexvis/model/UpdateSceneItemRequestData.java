@@ -21,6 +21,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.UpdateSceneItemRequestDataAttributes;
+import com.vertexvis.model.UpdateSceneItemRequestDataRelationships;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -37,6 +38,10 @@ public class UpdateSceneItemRequestData {
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   private UpdateSceneItemRequestDataAttributes attributes;
+
+  public static final String SERIALIZED_NAME_RELATIONSHIPS = "relationships";
+  @SerializedName(SERIALIZED_NAME_RELATIONSHIPS)
+  private UpdateSceneItemRequestDataRelationships relationships;
 
 
   public UpdateSceneItemRequestData type(String type) {
@@ -83,6 +88,29 @@ public class UpdateSceneItemRequestData {
   }
 
 
+  public UpdateSceneItemRequestData relationships(UpdateSceneItemRequestDataRelationships relationships) {
+    
+    this.relationships = relationships;
+    return this;
+  }
+
+   /**
+   * Get relationships
+   * @return relationships
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public UpdateSceneItemRequestDataRelationships getRelationships() {
+    return relationships;
+  }
+
+
+  public void setRelationships(UpdateSceneItemRequestDataRelationships relationships) {
+    this.relationships = relationships;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -93,12 +121,13 @@ public class UpdateSceneItemRequestData {
     }
     UpdateSceneItemRequestData updateSceneItemRequestData = (UpdateSceneItemRequestData) o;
     return Objects.equals(this.type, updateSceneItemRequestData.type) &&
-        Objects.equals(this.attributes, updateSceneItemRequestData.attributes);
+        Objects.equals(this.attributes, updateSceneItemRequestData.attributes) &&
+        Objects.equals(this.relationships, updateSceneItemRequestData.relationships);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, attributes);
+    return Objects.hash(type, attributes, relationships);
   }
 
   @Override
@@ -107,6 +136,7 @@ public class UpdateSceneItemRequestData {
     sb.append("class UpdateSceneItemRequestData {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
+    sb.append("    relationships: ").append(toIndentedString(relationships)).append("\n");
     sb.append("}");
     return sb.toString();
   }

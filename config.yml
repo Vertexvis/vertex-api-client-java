@@ -5,3 +5,4 @@ java8: true
 hideGenerationTimestamp: true
 invokerPackage: com.vertexvis
 modelPackage: com.vertexvis.model
+useRuntimeException: true

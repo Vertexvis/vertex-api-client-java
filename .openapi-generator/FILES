@@ -203,6 +203,7 @@ src/main/java/com/vertexvis/model/UpdateSceneItemOverrideRequestDataAttributes.j
 src/main/java/com/vertexvis/model/UpdateSceneItemRequest.java
 src/main/java/com/vertexvis/model/UpdateSceneItemRequestData.java
 src/main/java/com/vertexvis/model/UpdateSceneItemRequestDataAttributes.java
+src/main/java/com/vertexvis/model/UpdateSceneItemRequestDataRelationships.java
 src/main/java/com/vertexvis/model/UpdateSceneRequest.java
 src/main/java/com/vertexvis/model/UpdateSceneRequestData.java
 src/main/java/com/vertexvis/model/UpdateSceneRequestDataAttributes.java
