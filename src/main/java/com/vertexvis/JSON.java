@@ -90,6 +90,7 @@ public class JSON {
                 .registerTypeAdapter(AnyOfCameraCameraFit.class, new AnyOfCameraCameraFitTypeAdapter(() -> gson))
                 .registerTypeAdapter(AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperation.class, new AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperationTypeAdapter(() -> gson))
                 .registerTypeAdapter(OneOfHitResultDataSceneItemDataPartRevisionData.class, new OneOfHitResultDataSceneItemDataPartRevisionDataTypeAdapter(() -> gson))
+                .registerTypeAdapter(AnyOfGeometrySetRelationshipPartRevisionRelationship.class, new AnyOfGeometrySetRelationshipPartRevisionRelationshipTypeAdapter(() -> gson))
                 .create();
     }
 
