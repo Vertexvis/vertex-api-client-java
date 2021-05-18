@@ -59,7 +59,7 @@ export VERTEX_CLIENT_ID=[YOUR_CLIENT_ID]
 export VERTEX_CLIENT_SECRET=[YOUR_CLIENT_SECRET]
 ```
 
-Then, see [examples](./src/main/java/com/vertexvis/example) for sample applications.
+Then, check out our [sample applications](./src/main/java/com/vertexvis/example).
 
 ## Local Development
 
