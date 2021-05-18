@@ -8,8 +8,9 @@ import com.vertexvis.model.*;
 import java.io.File;
 import java.util.HashMap;
 import java.util.UUID;
+import java.util.concurrent.ExecutionException;
 
-public class App {
+public class CreateSceneExample {
     public static void main(String[] args) throws InterruptedException {
         String id = System.getenv("VERTEX_CLIENT_ID");
         String secret = System.getenv("VERTEX_CLIENT_SECRET");
