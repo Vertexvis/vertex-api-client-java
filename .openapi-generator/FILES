@@ -31,6 +31,7 @@ src/main/java/com/vertexvis/api/SceneViewsApi.java
 src/main/java/com/vertexvis/api/ScenesApi.java
 src/main/java/com/vertexvis/api/StreamKeysApi.java
 src/main/java/com/vertexvis/api/TranslationInspectionsApi.java
+src/main/java/com/vertexvis/api/WebhookSubscriptionsApi.java
 src/main/java/com/vertexvis/auth/ApiKeyAuth.java
 src/main/java/com/vertexvis/auth/Authentication.java
 src/main/java/com/vertexvis/auth/HttpBasicAuth.java
@@ -92,6 +93,9 @@ src/main/java/com/vertexvis/model/CreateStreamKeyRequestData.java
 src/main/java/com/vertexvis/model/CreateStreamKeyRequestDataAttributes.java
 src/main/java/com/vertexvis/model/CreateTranslationInspectionRequest.java
 src/main/java/com/vertexvis/model/CreateTranslationInspectionRequestData.java
+src/main/java/com/vertexvis/model/CreateWebhookSubscriptionRequest.java
+src/main/java/com/vertexvis/model/CreateWebhookSubscriptionRequestData.java
+src/main/java/com/vertexvis/model/CreateWebhookSubscriptionRequestDataAttributes.java
 src/main/java/com/vertexvis/model/CrossSectioning.java
 src/main/java/com/vertexvis/model/DeselectOperation.java
 src/main/java/com/vertexvis/model/Dimensions.java
@@ -212,3 +216,15 @@ src/main/java/com/vertexvis/model/UpdateSceneViewRequestData.java
 src/main/java/com/vertexvis/model/UpdateSceneViewRequestDataAttributes.java
 src/main/java/com/vertexvis/model/Vector3.java
 src/main/java/com/vertexvis/model/Vector4.java
+src/main/java/com/vertexvis/model/WebhookEvent.java
+src/main/java/com/vertexvis/model/WebhookEventData.java
+src/main/java/com/vertexvis/model/WebhookEventDataAttributes.java
+src/main/java/com/vertexvis/model/WebhookEventDataRelationships.java
+src/main/java/com/vertexvis/model/WebhookEventDataRelationshipsOwner.java
+src/main/java/com/vertexvis/model/WebhookEventDataRelationshipsOwnerData.java
+src/main/java/com/vertexvis/model/WebhookEventDataRelationshipsOwnerLinks.java
+src/main/java/com/vertexvis/model/WebhookEventDataRelationshipsResource.java
+src/main/java/com/vertexvis/model/WebhookEventDataRelationshipsResourceData.java
+src/main/java/com/vertexvis/model/WebhookSubscription.java
+src/main/java/com/vertexvis/model/WebhookSubscriptionData.java
+src/main/java/com/vertexvis/model/WebhookSubscriptionDataAttributes.java
