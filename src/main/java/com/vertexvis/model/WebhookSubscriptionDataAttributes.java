@@ -132,7 +132,8 @@ public class WebhookSubscriptionDataAttributes {
    * Get secret
    * @return secret
   **/
-  @ApiModelProperty(example = "i3MFRDOmg1pxD36dGCTONRwOujkgV8m9LQ", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "i3MFRDOmg1pxD36dGCTONRwOujkgV8m9LQ", value = "")
 
   public String getSecret() {
     return secret;

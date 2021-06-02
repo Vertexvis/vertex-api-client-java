@@ -3006,6 +3006,74 @@ paths:
       - scene-views
       x-accepts: application/vnd.api+json
   /scenes/{id}/scene-views:
+    get:
+      description: Get `scene-view`s for a `scene`.
+      operationId: getSceneViews
+      parameters:
+      - description: The cursor for the next page of items.
+        explode: true
+        in: query
+        name: page[cursor]
+        required: false
+        schema:
+          example: cHJkMDVFR2RLag==
+          type: string
+        style: form
+      - description: The number of items to return.
+        explode: true
+        in: query
+        name: page[size]
+        required: false
+        schema:
+          example: 10
+          format: int32
+          maximum: 200
+          minimum: 1
+          type: integer
+        style: form
+      - description: The `scene` ID.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          $ref: '#/components/schemas/Uuid'
+        style: simple
+      responses:
+        "200":
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/SceneViewList'
+          description: OK
+        "401":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "401"
+                  code: Unauthorized
+                  title: Invalid or missing credentials.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unauthorized
+        "415":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "415"
+                  code: UnsupportedMediaType
+                  title: The provided media type is not supported. Update the Content-Type
+                    header to application/vnd.api+json and try again.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unsupported Media Type
+      security:
+      - OAuth2: []
+      tags:
+      - scene-views
+      x-accepts: application/vnd.api+json
     post:
       description: Create a `scene-view` of a `scene`.
       operationId: createSceneView
@@ -4196,6 +4264,66 @@ paths:
       - translation-inspections
       x-accepts: application/vnd.api+json
   /webhook-subscriptions:
+    get:
+      description: Get `webhook-subscription`s.
+      operationId: getWebhookSubscriptions
+      parameters:
+      - description: The cursor for the next page of items.
+        explode: true
+        in: query
+        name: page[cursor]
+        required: false
+        schema:
+          example: cHJkMDVFR2RLag==
+          type: string
+        style: form
+      - description: The number of items to return.
+        explode: true
+        in: query
+        name: page[size]
+        required: false
+        schema:
+          example: 10
+          format: int32
+          maximum: 200
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/WebhookSubscriptionList'
+          description: OK
+        "401":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "401"
+                  code: Unauthorized
+                  title: Invalid or missing credentials.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unauthorized
+        "415":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "415"
+                  code: UnsupportedMediaType
+                  title: The provided media type is not supported. Update the Content-Type
+                    header to application/vnd.api+json and try again.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unsupported Media Type
+      security:
+      - OAuth2: []
+      tags:
+      - webhook-subscriptions
+      x-accepts: application/vnd.api+json
     post:
       callbacks:
         queued-scene-item.completed:
@@ -4283,6 +4411,65 @@ paths:
       tags:
       - webhook-subscriptions
       x-contentType: application/vnd.api+json
+      x-accepts: application/vnd.api+json
+  /webhook-subscriptions/{id}:
+    get:
+      description: Get a `webhook-subscription`.
+      operationId: getWebhookSubscription
+      parameters:
+      - description: The `webhook-subscription` ID.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          $ref: '#/components/schemas/Uuid'
+        style: simple
+      responses:
+        "200":
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/WebhookSubscription'
+          description: OK
+        "401":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "401"
+                  code: Unauthorized
+                  title: Invalid or missing credentials.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unauthorized
+        "404":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "404"
+                  code: NotFound
+                  title: The requested resource was not found.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Not Found
+        "415":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "415"
+                  code: UnsupportedMediaType
+                  title: The provided media type is not supported. Update the Content-Type
+                    header to application/vnd.api+json and try again.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unsupported Media Type
+      security:
+      - OAuth2: []
+      tags:
+      - webhook-subscriptions
       x-accepts: application/vnd.api+json
 components:
   headers:
@@ -4774,6 +4961,10 @@ components:
         scope:
           maxLength: 1024
           type: string
+        code:
+          $ref: '#/components/schemas/NonEmptyString'
+        redirect_uri:
+          $ref: '#/components/schemas/NonEmptyString'
         grant_type:
           example: client_credentials
           maxLength: 32
@@ -5026,7 +5217,7 @@ components:
       additionalProperties: false
       properties:
         data:
-          $ref: '#/components/schemas/SceneView_data'
+          $ref: '#/components/schemas/SceneViewData'
         links:
           additionalProperties:
             $ref: '#/components/schemas/Link'
@@ -5057,6 +5248,21 @@ components:
           type: object
       required:
       - data
+      type: object
+    SceneViewList:
+      additionalProperties: false
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/SceneViewData'
+          type: array
+        links:
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+          type: object
+      required:
+      - data
+      - links
       type: object
     CreateSceneViewRequest:
       additionalProperties: false
@@ -5198,6 +5404,21 @@ components:
           type: object
       required:
       - data
+      type: object
+    WebhookSubscriptionList:
+      additionalProperties: false
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/WebhookSubscriptionData'
+          type: array
+        links:
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+          type: object
+      required:
+      - data
+      - links
       type: object
     CreateWebhookSubscriptionRequest:
       additionalProperties: false
@@ -5822,6 +6043,28 @@ components:
       required:
       - data
       type: object
+    SceneViewData:
+      additionalProperties: false
+      properties:
+        type:
+          example: scene-view
+          type: string
+        id:
+          description: ID of the resource.
+          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
+          format: uuid
+          maxLength: 36
+          type: string
+        attributes:
+          $ref: '#/components/schemas/SceneViewData_attributes'
+        relationships:
+          $ref: '#/components/schemas/SceneViewData_relationships'
+      required:
+      - attributes
+      - id
+      - relationships
+      - type
+      type: object
     Camera:
       additionalProperties: false
       description: Camera placement in 3D space.
@@ -5850,17 +6093,6 @@ components:
       - position
       - up
       type: object
-    CrossSectioning:
-      additionalProperties: false
-      nullable: true
-      properties:
-        planes:
-          items:
-            $ref: '#/components/schemas/SectionPlane'
-          type: array
-      required:
-      - planes
-      type: object
     CameraFit:
       additionalProperties: false
       description: Fit camera in 3D space based on items in scene.
@@ -5874,6 +6106,17 @@ components:
           type: string
       required:
       - type
+      type: object
+    CrossSectioning:
+      additionalProperties: false
+      nullable: true
+      properties:
+        planes:
+          items:
+            $ref: '#/components/schemas/SectionPlane'
+          type: array
+      required:
+      - planes
       type: object
     SceneViewStateRelationship:
       additionalProperties: false
@@ -5954,7 +6197,7 @@ components:
         attributes:
           $ref: '#/components/schemas/StreamKeyData_attributes'
         relationships:
-          $ref: '#/components/schemas/SceneView_data_relationships'
+          $ref: '#/components/schemas/SceneViewData_relationships'
         links:
           additionalProperties:
             $ref: '#/components/schemas/Link'
@@ -6819,48 +7062,6 @@ components:
       - relationships
       - type
       type: object
-    SceneView_data_attributes:
-      properties:
-        camera:
-          $ref: '#/components/schemas/Camera'
-        created:
-          example: 2020-01-01T12:00:00Z
-          format: date-time
-          type: string
-        crossSectioning:
-          $ref: '#/components/schemas/CrossSectioning'
-      required:
-      - camera
-      - created
-      type: object
-    SceneView_data_relationships:
-      properties:
-        scene:
-          $ref: '#/components/schemas/SceneRelationship'
-      required:
-      - scene
-      type: object
-    SceneView_data:
-      properties:
-        type:
-          example: scene-view
-          type: string
-        id:
-          description: ID of the resource.
-          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-          format: uuid
-          maxLength: 36
-          type: string
-        attributes:
-          $ref: '#/components/schemas/SceneView_data_attributes'
-        relationships:
-          $ref: '#/components/schemas/SceneView_data_relationships'
-      required:
-      - attributes
-      - id
-      - relationships
-      - type
-      type: object
     UpdateSceneViewRequest_data_attributes:
       properties:
         camera:
@@ -7371,6 +7572,27 @@ components:
       - id
       - type
       type: object
+    SceneViewData_attributes:
+      properties:
+        camera:
+          $ref: '#/components/schemas/Camera'
+        created:
+          example: 2020-01-01T12:00:00Z
+          format: date-time
+          type: string
+        crossSectioning:
+          $ref: '#/components/schemas/CrossSectioning'
+      required:
+      - camera
+      - created
+      type: object
+    SceneViewData_relationships:
+      properties:
+        scene:
+          $ref: '#/components/schemas/SceneRelationship'
+      required:
+      - scene
+      type: object
     SceneViewStateRelationship_data:
       properties:
         type:
@@ -7496,7 +7718,6 @@ components:
           type: string
       required:
       - created
-      - secret
       - status
       - topics
       - url

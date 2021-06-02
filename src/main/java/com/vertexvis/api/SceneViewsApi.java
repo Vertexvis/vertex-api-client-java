@@ -32,6 +32,7 @@ import com.vertexvis.model.Failure;
 import java.io.File;
 import com.vertexvis.model.SceneView;
 import com.vertexvis.model.SceneViewItem;
+import com.vertexvis.model.SceneViewList;
 import java.util.UUID;
 import com.vertexvis.model.UpdateSceneViewRequest;
 
@@ -438,6 +439,142 @@ public class SceneViewsApi {
 
         okhttp3.Call localVarCall = getSceneViewValidateBeforeCall(id, _callback);
         Type localVarReturnType = new TypeToken<SceneView>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for getSceneViews
+     * @param id The &#x60;scene&#x60; ID. (required)
+     * @param pageCursor The cursor for the next page of items. (optional)
+     * @param pageSize The number of items to return. (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getSceneViewsCall(UUID id, String pageCursor, Integer pageSize, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/scenes/{id}/scene-views"
+            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (pageCursor != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[cursor]", pageCursor));
+        }
+
+        if (pageSize != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[size]", pageSize));
+        }
+
+        final String[] localVarAccepts = {
+            "application/vnd.api+json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "OAuth2" };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getSceneViewsValidateBeforeCall(UUID id, String pageCursor, Integer pageSize, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling getSceneViews(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = getSceneViewsCall(id, pageCursor, pageSize, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * 
+     * Get &#x60;scene-view&#x60;s for a &#x60;scene&#x60;.
+     * @param id The &#x60;scene&#x60; ID. (required)
+     * @param pageCursor The cursor for the next page of items. (optional)
+     * @param pageSize The number of items to return. (optional)
+     * @return SceneViewList
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
+     </table>
+     */
+    public SceneViewList getSceneViews(UUID id, String pageCursor, Integer pageSize) throws ApiException {
+        ApiResponse<SceneViewList> localVarResp = getSceneViewsWithHttpInfo(id, pageCursor, pageSize);
+        return localVarResp.getData();
+    }
+
+    /**
+     * 
+     * Get &#x60;scene-view&#x60;s for a &#x60;scene&#x60;.
+     * @param id The &#x60;scene&#x60; ID. (required)
+     * @param pageCursor The cursor for the next page of items. (optional)
+     * @param pageSize The number of items to return. (optional)
+     * @return ApiResponse&lt;SceneViewList&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<SceneViewList> getSceneViewsWithHttpInfo(UUID id, String pageCursor, Integer pageSize) throws ApiException {
+        okhttp3.Call localVarCall = getSceneViewsValidateBeforeCall(id, pageCursor, pageSize, null);
+        Type localVarReturnType = new TypeToken<SceneViewList>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * Get &#x60;scene-view&#x60;s for a &#x60;scene&#x60;.
+     * @param id The &#x60;scene&#x60; ID. (required)
+     * @param pageCursor The cursor for the next page of items. (optional)
+     * @param pageSize The number of items to return. (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getSceneViewsAsync(UUID id, String pageCursor, Integer pageSize, final ApiCallback<SceneViewList> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getSceneViewsValidateBeforeCall(id, pageCursor, pageSize, _callback);
+        Type localVarReturnType = new TypeToken<SceneViewList>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
