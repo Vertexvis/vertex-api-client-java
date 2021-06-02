@@ -181,6 +181,7 @@ src/main/java/com/vertexvis/model/SceneViewData.java
 src/main/java/com/vertexvis/model/SceneViewDataAttributes.java
 src/main/java/com/vertexvis/model/SceneViewDataRelationships.java
 src/main/java/com/vertexvis/model/SceneViewItem.java
+src/main/java/com/vertexvis/model/SceneViewList.java
 src/main/java/com/vertexvis/model/SceneViewRelationship.java
 src/main/java/com/vertexvis/model/SceneViewRelationshipData.java
 src/main/java/com/vertexvis/model/SceneViewState.java
@@ -228,3 +229,4 @@ src/main/java/com/vertexvis/model/WebhookEventDataRelationshipsResourceData.java
 src/main/java/com/vertexvis/model/WebhookSubscription.java
 src/main/java/com/vertexvis/model/WebhookSubscriptionData.java
 src/main/java/com/vertexvis/model/WebhookSubscriptionDataAttributes.java
+src/main/java/com/vertexvis/model/WebhookSubscriptionList.java

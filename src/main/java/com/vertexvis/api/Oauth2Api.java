@@ -60,6 +60,8 @@ public class Oauth2Api {
      * Build call for createToken
      * @param grantType  (required)
      * @param scope  (optional)
+     * @param code  (optional)
+     * @param redirectUri  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -70,7 +72,7 @@ public class Oauth2Api {
         <tr><td> 400 </td><td> Invalid or missing request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createTokenCall(String grantType, String scope, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call createTokenCall(String grantType, String scope, String code, String redirectUri, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -84,6 +86,14 @@ public class Oauth2Api {
 
         if (scope != null) {
             localVarFormParams.put("scope", scope);
+        }
+
+        if (code != null) {
+            localVarFormParams.put("code", code);
+        }
+
+        if (redirectUri != null) {
+            localVarFormParams.put("redirect_uri", redirectUri);
         }
 
         if (grantType != null) {
@@ -109,7 +119,7 @@ public class Oauth2Api {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call createTokenValidateBeforeCall(String grantType, String scope, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call createTokenValidateBeforeCall(String grantType, String scope, String code, String redirectUri, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'grantType' is set
         if (grantType == null) {
@@ -117,7 +127,7 @@ public class Oauth2Api {
         }
         
 
-        okhttp3.Call localVarCall = createTokenCall(grantType, scope, _callback);
+        okhttp3.Call localVarCall = createTokenCall(grantType, scope, code, redirectUri, _callback);
         return localVarCall;
 
     }
@@ -127,6 +137,8 @@ public class Oauth2Api {
      * Create an OAuth2 access token. For details, see our [Authentication](https://developer.vertexvis.com/docs/guides/authentication) guide.
      * @param grantType  (required)
      * @param scope  (optional)
+     * @param code  (optional)
+     * @param redirectUri  (optional)
      * @return OAuth2Token
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -136,8 +148,8 @@ public class Oauth2Api {
         <tr><td> 400 </td><td> Invalid or missing request. </td><td>  -  </td></tr>
      </table>
      */
-    public OAuth2Token createToken(String grantType, String scope) throws ApiException {
-        ApiResponse<OAuth2Token> localVarResp = createTokenWithHttpInfo(grantType, scope);
+    public OAuth2Token createToken(String grantType, String scope, String code, String redirectUri) throws ApiException {
+        ApiResponse<OAuth2Token> localVarResp = createTokenWithHttpInfo(grantType, scope, code, redirectUri);
         return localVarResp.getData();
     }
 
@@ -146,6 +158,8 @@ public class Oauth2Api {
      * Create an OAuth2 access token. For details, see our [Authentication](https://developer.vertexvis.com/docs/guides/authentication) guide.
      * @param grantType  (required)
      * @param scope  (optional)
+     * @param code  (optional)
+     * @param redirectUri  (optional)
      * @return ApiResponse&lt;OAuth2Token&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -155,8 +169,8 @@ public class Oauth2Api {
         <tr><td> 400 </td><td> Invalid or missing request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<OAuth2Token> createTokenWithHttpInfo(String grantType, String scope) throws ApiException {
-        okhttp3.Call localVarCall = createTokenValidateBeforeCall(grantType, scope, null);
+    public ApiResponse<OAuth2Token> createTokenWithHttpInfo(String grantType, String scope, String code, String redirectUri) throws ApiException {
+        okhttp3.Call localVarCall = createTokenValidateBeforeCall(grantType, scope, code, redirectUri, null);
         Type localVarReturnType = new TypeToken<OAuth2Token>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -166,6 +180,8 @@ public class Oauth2Api {
      * Create an OAuth2 access token. For details, see our [Authentication](https://developer.vertexvis.com/docs/guides/authentication) guide.
      * @param grantType  (required)
      * @param scope  (optional)
+     * @param code  (optional)
+     * @param redirectUri  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -176,9 +192,9 @@ public class Oauth2Api {
         <tr><td> 400 </td><td> Invalid or missing request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createTokenAsync(String grantType, String scope, final ApiCallback<OAuth2Token> _callback) throws ApiException {
+    public okhttp3.Call createTokenAsync(String grantType, String scope, String code, String redirectUri, final ApiCallback<OAuth2Token> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = createTokenValidateBeforeCall(grantType, scope, _callback);
+        okhttp3.Call localVarCall = createTokenValidateBeforeCall(grantType, scope, code, redirectUri, _callback);
         Type localVarReturnType = new TypeToken<OAuth2Token>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
