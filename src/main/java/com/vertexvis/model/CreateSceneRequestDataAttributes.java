@@ -21,6 +21,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.Camera;
+import com.vertexvis.model.Vector3;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -45,6 +46,10 @@ public class CreateSceneRequestDataAttributes {
   public static final String SERIALIZED_NAME_TREE_ENABLED = "treeEnabled";
   @SerializedName(SERIALIZED_NAME_TREE_ENABLED)
   private Boolean treeEnabled;
+
+  public static final String SERIALIZED_NAME_UP = "up";
+  @SerializedName(SERIALIZED_NAME_UP)
+  private Vector3 up;
 
 
   public CreateSceneRequestDataAttributes camera(Camera camera) {
@@ -139,6 +144,29 @@ public class CreateSceneRequestDataAttributes {
   }
 
 
+  public CreateSceneRequestDataAttributes up(Vector3 up) {
+    
+    this.up = up;
+    return this;
+  }
+
+   /**
+   * Get up
+   * @return up
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Vector3 getUp() {
+    return up;
+  }
+
+
+  public void setUp(Vector3 up) {
+    this.up = up;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -151,12 +179,13 @@ public class CreateSceneRequestDataAttributes {
     return Objects.equals(this.camera, createSceneRequestDataAttributes.camera) &&
         Objects.equals(this.suppliedId, createSceneRequestDataAttributes.suppliedId) &&
         Objects.equals(this.name, createSceneRequestDataAttributes.name) &&
-        Objects.equals(this.treeEnabled, createSceneRequestDataAttributes.treeEnabled);
+        Objects.equals(this.treeEnabled, createSceneRequestDataAttributes.treeEnabled) &&
+        Objects.equals(this.up, createSceneRequestDataAttributes.up);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(camera, suppliedId, name, treeEnabled);
+    return Objects.hash(camera, suppliedId, name, treeEnabled, up);
   }
 
   @Override
@@ -167,6 +196,7 @@ public class CreateSceneRequestDataAttributes {
     sb.append("    suppliedId: ").append(toIndentedString(suppliedId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    treeEnabled: ").append(toIndentedString(treeEnabled)).append("\n");
+    sb.append("    up: ").append(toIndentedString(up)).append("\n");
     sb.append("}");
     return sb.toString();
   }

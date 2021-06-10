@@ -51,6 +51,10 @@ public class OAuth2Token {
   @SerializedName(SERIALIZED_NAME_SCOPES)
   private List<String> scopes = new ArrayList<>();
 
+  public static final String SERIALIZED_NAME_REFRESH_TOKEN = "refresh_token";
+  @SerializedName(SERIALIZED_NAME_REFRESH_TOKEN)
+  private String refreshToken;
+
 
   public OAuth2Token accessToken(String accessToken) {
     
@@ -167,6 +171,29 @@ public class OAuth2Token {
   }
 
 
+  public OAuth2Token refreshToken(String refreshToken) {
+    
+    this.refreshToken = refreshToken;
+    return this;
+  }
+
+   /**
+   * Get refreshToken
+   * @return refreshToken
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "HnkQzHpk4iTaPfssu3zpI.PTbAxKdDIfrNcgrmsxQqg", value = "")
+
+  public String getRefreshToken() {
+    return refreshToken;
+  }
+
+
+  public void setRefreshToken(String refreshToken) {
+    this.refreshToken = refreshToken;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -180,12 +207,13 @@ public class OAuth2Token {
         Objects.equals(this.tokenType, oauth2Token.tokenType) &&
         Objects.equals(this.accountId, oauth2Token.accountId) &&
         Objects.equals(this.expiresIn, oauth2Token.expiresIn) &&
-        Objects.equals(this.scopes, oauth2Token.scopes);
+        Objects.equals(this.scopes, oauth2Token.scopes) &&
+        Objects.equals(this.refreshToken, oauth2Token.refreshToken);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accessToken, tokenType, accountId, expiresIn, scopes);
+    return Objects.hash(accessToken, tokenType, accountId, expiresIn, scopes, refreshToken);
   }
 
   @Override
@@ -197,6 +225,7 @@ public class OAuth2Token {
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    expiresIn: ").append(toIndentedString(expiresIn)).append("\n");
     sb.append("    scopes: ").append(toIndentedString(scopes)).append("\n");
+    sb.append("    refreshToken: ").append(toIndentedString(refreshToken)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -435,6 +435,7 @@ public class ScenesApi {
     /**
      * Build call for getScene
      * @param id The &#x60;scene&#x60; ID. (required)
+     * @param fieldsScene Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;sceneItemCount&#x60; is only returned if explicitly requested. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -447,7 +448,7 @@ public class ScenesApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSceneCall(UUID id, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getSceneCall(UUID id, String fieldsScene, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -459,6 +460,10 @@ public class ScenesApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (fieldsScene != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("fields[scene]", fieldsScene));
+        }
 
         final String[] localVarAccepts = {
             "application/vnd.api+json"
@@ -479,7 +484,7 @@ public class ScenesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getSceneValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getSceneValidateBeforeCall(UUID id, String fieldsScene, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -487,7 +492,7 @@ public class ScenesApi {
         }
         
 
-        okhttp3.Call localVarCall = getSceneCall(id, _callback);
+        okhttp3.Call localVarCall = getSceneCall(id, fieldsScene, _callback);
         return localVarCall;
 
     }
@@ -496,6 +501,7 @@ public class ScenesApi {
      * 
      * Get a &#x60;scene&#x60; by ID.
      * @param id The &#x60;scene&#x60; ID. (required)
+     * @param fieldsScene Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;sceneItemCount&#x60; is only returned if explicitly requested. (optional)
      * @return Scene
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -507,8 +513,8 @@ public class ScenesApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public Scene getScene(UUID id) throws ApiException {
-        ApiResponse<Scene> localVarResp = getSceneWithHttpInfo(id);
+    public Scene getScene(UUID id, String fieldsScene) throws ApiException {
+        ApiResponse<Scene> localVarResp = getSceneWithHttpInfo(id, fieldsScene);
         return localVarResp.getData();
     }
 
@@ -516,6 +522,7 @@ public class ScenesApi {
      * 
      * Get a &#x60;scene&#x60; by ID.
      * @param id The &#x60;scene&#x60; ID. (required)
+     * @param fieldsScene Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;sceneItemCount&#x60; is only returned if explicitly requested. (optional)
      * @return ApiResponse&lt;Scene&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -527,8 +534,8 @@ public class ScenesApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Scene> getSceneWithHttpInfo(UUID id) throws ApiException {
-        okhttp3.Call localVarCall = getSceneValidateBeforeCall(id, null);
+    public ApiResponse<Scene> getSceneWithHttpInfo(UUID id, String fieldsScene) throws ApiException {
+        okhttp3.Call localVarCall = getSceneValidateBeforeCall(id, fieldsScene, null);
         Type localVarReturnType = new TypeToken<Scene>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -537,6 +544,7 @@ public class ScenesApi {
      *  (asynchronously)
      * Get a &#x60;scene&#x60; by ID.
      * @param id The &#x60;scene&#x60; ID. (required)
+     * @param fieldsScene Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;sceneItemCount&#x60; is only returned if explicitly requested. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -549,9 +557,9 @@ public class ScenesApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSceneAsync(UUID id, final ApiCallback<Scene> _callback) throws ApiException {
+    public okhttp3.Call getSceneAsync(UUID id, String fieldsScene, final ApiCallback<Scene> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getSceneValidateBeforeCall(id, _callback);
+        okhttp3.Call localVarCall = getSceneValidateBeforeCall(id, fieldsScene, _callback);
         Type localVarReturnType = new TypeToken<Scene>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

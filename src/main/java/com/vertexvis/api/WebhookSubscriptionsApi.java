@@ -30,6 +30,7 @@ import java.io.IOException;
 import com.vertexvis.model.CreateWebhookSubscriptionRequest;
 import com.vertexvis.model.Failure;
 import java.util.UUID;
+import com.vertexvis.model.UpdateWebhookSubscriptionRequest;
 import com.vertexvis.model.WebhookSubscription;
 import com.vertexvis.model.WebhookSubscriptionList;
 
@@ -424,6 +425,143 @@ public class WebhookSubscriptionsApi {
 
         okhttp3.Call localVarCall = getWebhookSubscriptionsValidateBeforeCall(pageCursor, pageSize, _callback);
         Type localVarReturnType = new TypeToken<WebhookSubscriptionList>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for updateWebhookSubscription
+     * @param id The &#x60;webhook-subscription&#x60; ID. (required)
+     * @param updateWebhookSubscriptionRequest  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateWebhookSubscriptionCall(UUID id, UpdateWebhookSubscriptionRequest updateWebhookSubscriptionRequest, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = updateWebhookSubscriptionRequest;
+
+        // create path and map variables
+        String localVarPath = "/webhook-subscriptions/{id}"
+            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/vnd.api+json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/vnd.api+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "OAuth2" };
+        return localVarApiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call updateWebhookSubscriptionValidateBeforeCall(UUID id, UpdateWebhookSubscriptionRequest updateWebhookSubscriptionRequest, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling updateWebhookSubscription(Async)");
+        }
+        
+        // verify the required parameter 'updateWebhookSubscriptionRequest' is set
+        if (updateWebhookSubscriptionRequest == null) {
+            throw new ApiException("Missing the required parameter 'updateWebhookSubscriptionRequest' when calling updateWebhookSubscription(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = updateWebhookSubscriptionCall(id, updateWebhookSubscriptionRequest, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * 
+     * Update a &#x60;webhook-subscription&#x60;.
+     * @param id The &#x60;webhook-subscription&#x60; ID. (required)
+     * @param updateWebhookSubscriptionRequest  (required)
+     * @return WebhookSubscription
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
+     </table>
+     */
+    public WebhookSubscription updateWebhookSubscription(UUID id, UpdateWebhookSubscriptionRequest updateWebhookSubscriptionRequest) throws ApiException {
+        ApiResponse<WebhookSubscription> localVarResp = updateWebhookSubscriptionWithHttpInfo(id, updateWebhookSubscriptionRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * 
+     * Update a &#x60;webhook-subscription&#x60;.
+     * @param id The &#x60;webhook-subscription&#x60; ID. (required)
+     * @param updateWebhookSubscriptionRequest  (required)
+     * @return ApiResponse&lt;WebhookSubscription&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<WebhookSubscription> updateWebhookSubscriptionWithHttpInfo(UUID id, UpdateWebhookSubscriptionRequest updateWebhookSubscriptionRequest) throws ApiException {
+        okhttp3.Call localVarCall = updateWebhookSubscriptionValidateBeforeCall(id, updateWebhookSubscriptionRequest, null);
+        Type localVarReturnType = new TypeToken<WebhookSubscription>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * Update a &#x60;webhook-subscription&#x60;.
+     * @param id The &#x60;webhook-subscription&#x60; ID. (required)
+     * @param updateWebhookSubscriptionRequest  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateWebhookSubscriptionAsync(UUID id, UpdateWebhookSubscriptionRequest updateWebhookSubscriptionRequest, final ApiCallback<WebhookSubscription> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = updateWebhookSubscriptionValidateBeforeCall(id, updateWebhookSubscriptionRequest, _callback);
+        Type localVarReturnType = new TypeToken<WebhookSubscription>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

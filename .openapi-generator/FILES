@@ -151,6 +151,7 @@ src/main/java/com/vertexvis/model/QueuedJob.java
 src/main/java/com/vertexvis/model/QueuedJobData.java
 src/main/java/com/vertexvis/model/QueuedJobDataAttributes.java
 src/main/java/com/vertexvis/model/RelationshipData.java
+src/main/java/com/vertexvis/model/RelationshipLinks.java
 src/main/java/com/vertexvis/model/RevokeOAuth2TokenRequest.java
 src/main/java/com/vertexvis/model/RevokeOAuth2TokenRequestData.java
 src/main/java/com/vertexvis/model/RevokeOAuth2TokenRequestDataAttributes.java
@@ -215,6 +216,9 @@ src/main/java/com/vertexvis/model/UpdateSceneRequestDataAttributes.java
 src/main/java/com/vertexvis/model/UpdateSceneViewRequest.java
 src/main/java/com/vertexvis/model/UpdateSceneViewRequestData.java
 src/main/java/com/vertexvis/model/UpdateSceneViewRequestDataAttributes.java
+src/main/java/com/vertexvis/model/UpdateWebhookSubscriptionRequest.java
+src/main/java/com/vertexvis/model/UpdateWebhookSubscriptionRequestData.java
+src/main/java/com/vertexvis/model/UpdateWebhookSubscriptionRequestDataAttributes.java
 src/main/java/com/vertexvis/model/Vector3.java
 src/main/java/com/vertexvis/model/Vector4.java
 src/main/java/com/vertexvis/model/WebhookEvent.java
@@ -223,7 +227,6 @@ src/main/java/com/vertexvis/model/WebhookEventDataAttributes.java
 src/main/java/com/vertexvis/model/WebhookEventDataRelationships.java
 src/main/java/com/vertexvis/model/WebhookEventDataRelationshipsOwner.java
 src/main/java/com/vertexvis/model/WebhookEventDataRelationshipsOwnerData.java
-src/main/java/com/vertexvis/model/WebhookEventDataRelationshipsOwnerLinks.java
 src/main/java/com/vertexvis/model/WebhookEventDataRelationshipsResource.java
 src/main/java/com/vertexvis/model/WebhookEventDataRelationshipsResourceData.java
 src/main/java/com/vertexvis/model/WebhookSubscription.java

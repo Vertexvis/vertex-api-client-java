@@ -20,14 +20,11 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.vertexvis.model.RelationshipLinks;
 import com.vertexvis.model.WebhookEventDataRelationshipsOwnerData;
-import com.vertexvis.model.WebhookEventDataRelationshipsOwnerLinks;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Relationship to an &#x60;owner&#x60;.
@@ -41,7 +38,7 @@ public class WebhookEventDataRelationshipsOwner {
 
   public static final String SERIALIZED_NAME_LINKS = "links";
   @SerializedName(SERIALIZED_NAME_LINKS)
-  private Map<String, WebhookEventDataRelationshipsOwnerLinks> links = null;
+  private RelationshipLinks links;
 
 
   public WebhookEventDataRelationshipsOwner data(WebhookEventDataRelationshipsOwnerData data) {
@@ -66,17 +63,9 @@ public class WebhookEventDataRelationshipsOwner {
   }
 
 
-  public WebhookEventDataRelationshipsOwner links(Map<String, WebhookEventDataRelationshipsOwnerLinks> links) {
+  public WebhookEventDataRelationshipsOwner links(RelationshipLinks links) {
     
     this.links = links;
-    return this;
-  }
-
-  public WebhookEventDataRelationshipsOwner putLinksItem(String key, WebhookEventDataRelationshipsOwnerLinks linksItem) {
-    if (this.links == null) {
-      this.links = new HashMap<>();
-    }
-    this.links.put(key, linksItem);
     return this;
   }
 
@@ -87,12 +76,12 @@ public class WebhookEventDataRelationshipsOwner {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public Map<String, WebhookEventDataRelationshipsOwnerLinks> getLinks() {
+  public RelationshipLinks getLinks() {
     return links;
   }
 
 
-  public void setLinks(Map<String, WebhookEventDataRelationshipsOwnerLinks> links) {
+  public void setLinks(RelationshipLinks links) {
     this.links = links;
   }
 

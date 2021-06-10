@@ -20,14 +20,11 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.WebhookEventDataRelationshipsOwnerLinks;
+import com.vertexvis.model.RelationshipLinks;
 import com.vertexvis.model.WebhookEventDataRelationshipsResourceData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Relationship to a &#x60;resource&#x60;.
@@ -41,7 +38,7 @@ public class WebhookEventDataRelationshipsResource {
 
   public static final String SERIALIZED_NAME_LINKS = "links";
   @SerializedName(SERIALIZED_NAME_LINKS)
-  private Map<String, WebhookEventDataRelationshipsOwnerLinks> links = null;
+  private RelationshipLinks links;
 
 
   public WebhookEventDataRelationshipsResource data(WebhookEventDataRelationshipsResourceData data) {
@@ -66,17 +63,9 @@ public class WebhookEventDataRelationshipsResource {
   }
 
 
-  public WebhookEventDataRelationshipsResource links(Map<String, WebhookEventDataRelationshipsOwnerLinks> links) {
+  public WebhookEventDataRelationshipsResource links(RelationshipLinks links) {
     
     this.links = links;
-    return this;
-  }
-
-  public WebhookEventDataRelationshipsResource putLinksItem(String key, WebhookEventDataRelationshipsOwnerLinks linksItem) {
-    if (this.links == null) {
-      this.links = new HashMap<>();
-    }
-    this.links.put(key, linksItem);
     return this;
   }
 
@@ -87,12 +76,12 @@ public class WebhookEventDataRelationshipsResource {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public Map<String, WebhookEventDataRelationshipsOwnerLinks> getLinks() {
+  public RelationshipLinks getLinks() {
     return links;
   }
 
 
-  public void setLinks(Map<String, WebhookEventDataRelationshipsOwnerLinks> links) {
+  public void setLinks(RelationshipLinks links) {
     this.links = links;
   }
 
