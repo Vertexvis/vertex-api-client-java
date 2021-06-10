@@ -20,69 +20,66 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.RelationshipLinks;
-import com.vertexvis.model.WebhookEventDataRelationshipsOwnerData;
+import com.vertexvis.model.UpdateWebhookSubscriptionRequestDataAttributes;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Relationship to an &#x60;owner&#x60;.
+ * UpdateWebhookSubscriptionRequestData
  */
-@ApiModel(description = "Relationship to an `owner`.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class WebhookEventDataRelationshipsOwner {
-  public static final String SERIALIZED_NAME_DATA = "data";
-  @SerializedName(SERIALIZED_NAME_DATA)
-  private WebhookEventDataRelationshipsOwnerData data;
+public class UpdateWebhookSubscriptionRequestData {
+  public static final String SERIALIZED_NAME_TYPE = "type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
+  private String type;
 
-  public static final String SERIALIZED_NAME_LINKS = "links";
-  @SerializedName(SERIALIZED_NAME_LINKS)
-  private RelationshipLinks links;
+  public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
+  @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
+  private UpdateWebhookSubscriptionRequestDataAttributes attributes;
 
 
-  public WebhookEventDataRelationshipsOwner data(WebhookEventDataRelationshipsOwnerData data) {
+  public UpdateWebhookSubscriptionRequestData type(String type) {
     
-    this.data = data;
+    this.type = type;
     return this;
   }
 
    /**
-   * Get data
-   * @return data
+   * Resource object type.
+   * @return type
+  **/
+  @ApiModelProperty(example = "webhook-subscription", required = true, value = "Resource object type.")
+
+  public String getType() {
+    return type;
+  }
+
+
+  public void setType(String type) {
+    this.type = type;
+  }
+
+
+  public UpdateWebhookSubscriptionRequestData attributes(UpdateWebhookSubscriptionRequestDataAttributes attributes) {
+    
+    this.attributes = attributes;
+    return this;
+  }
+
+   /**
+   * Get attributes
+   * @return attributes
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public WebhookEventDataRelationshipsOwnerData getData() {
-    return data;
+  public UpdateWebhookSubscriptionRequestDataAttributes getAttributes() {
+    return attributes;
   }
 
 
-  public void setData(WebhookEventDataRelationshipsOwnerData data) {
-    this.data = data;
-  }
-
-
-  public WebhookEventDataRelationshipsOwner links(RelationshipLinks links) {
-    
-    this.links = links;
-    return this;
-  }
-
-   /**
-   * Get links
-   * @return links
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public RelationshipLinks getLinks() {
-    return links;
-  }
-
-
-  public void setLinks(RelationshipLinks links) {
-    this.links = links;
+  public void setAttributes(UpdateWebhookSubscriptionRequestDataAttributes attributes) {
+    this.attributes = attributes;
   }
 
 
@@ -94,22 +91,22 @@ public class WebhookEventDataRelationshipsOwner {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WebhookEventDataRelationshipsOwner webhookEventDataRelationshipsOwner = (WebhookEventDataRelationshipsOwner) o;
-    return Objects.equals(this.data, webhookEventDataRelationshipsOwner.data) &&
-        Objects.equals(this.links, webhookEventDataRelationshipsOwner.links);
+    UpdateWebhookSubscriptionRequestData updateWebhookSubscriptionRequestData = (UpdateWebhookSubscriptionRequestData) o;
+    return Objects.equals(this.type, updateWebhookSubscriptionRequestData.type) &&
+        Objects.equals(this.attributes, updateWebhookSubscriptionRequestData.attributes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, links);
+    return Objects.hash(type, attributes);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class WebhookEventDataRelationshipsOwner {\n");
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
-    sb.append("    links: ").append(toIndentedString(links)).append("\n");
+    sb.append("class UpdateWebhookSubscriptionRequestData {\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("}");
     return sb.toString();
   }

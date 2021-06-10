@@ -21,6 +21,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.Camera;
+import com.vertexvis.model.Vector3;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -59,6 +60,14 @@ public class SceneDataAttributes {
   @SerializedName(SERIALIZED_NAME_MODIFIED)
   private OffsetDateTime modified;
 
+  public static final String SERIALIZED_NAME_UP = "up";
+  @SerializedName(SERIALIZED_NAME_UP)
+  private Vector3 up;
+
+  public static final String SERIALIZED_NAME_SCENE_ITEM_COUNT = "sceneItemCount";
+  @SerializedName(SERIALIZED_NAME_SCENE_ITEM_COUNT)
+  private Integer sceneItemCount;
+
 
   public SceneDataAttributes camera(Camera camera) {
     
@@ -93,7 +102,8 @@ public class SceneDataAttributes {
    * Get state
    * @return state
   **/
-  @ApiModelProperty(example = "draft", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "draft", value = "")
 
   public String getState() {
     return state;
@@ -115,7 +125,8 @@ public class SceneDataAttributes {
    * Get created
    * @return created
   **/
-  @ApiModelProperty(example = "2020-01-01T12:00Z", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "2020-01-01T12:00Z", value = "")
 
   public OffsetDateTime getCreated() {
     return created;
@@ -206,7 +217,8 @@ public class SceneDataAttributes {
    * Get modified
    * @return modified
   **/
-  @ApiModelProperty(example = "2020-01-01T12:00Z", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "2020-01-01T12:00Z", value = "")
 
   public OffsetDateTime getModified() {
     return modified;
@@ -215,6 +227,52 @@ public class SceneDataAttributes {
 
   public void setModified(OffsetDateTime modified) {
     this.modified = modified;
+  }
+
+
+  public SceneDataAttributes up(Vector3 up) {
+    
+    this.up = up;
+    return this;
+  }
+
+   /**
+   * Get up
+   * @return up
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Vector3 getUp() {
+    return up;
+  }
+
+
+  public void setUp(Vector3 up) {
+    this.up = up;
+  }
+
+
+  public SceneDataAttributes sceneItemCount(Integer sceneItemCount) {
+    
+    this.sceneItemCount = sceneItemCount;
+    return this;
+  }
+
+   /**
+   * The number of scene items in this scene. (This field needs to be explicitly requested)
+   * @return sceneItemCount
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "100", value = "The number of scene items in this scene. (This field needs to be explicitly requested)")
+
+  public Integer getSceneItemCount() {
+    return sceneItemCount;
+  }
+
+
+  public void setSceneItemCount(Integer sceneItemCount) {
+    this.sceneItemCount = sceneItemCount;
   }
 
 
@@ -233,12 +291,14 @@ public class SceneDataAttributes {
         Objects.equals(this.suppliedId, sceneDataAttributes.suppliedId) &&
         Objects.equals(this.name, sceneDataAttributes.name) &&
         Objects.equals(this.treeEnabled, sceneDataAttributes.treeEnabled) &&
-        Objects.equals(this.modified, sceneDataAttributes.modified);
+        Objects.equals(this.modified, sceneDataAttributes.modified) &&
+        Objects.equals(this.up, sceneDataAttributes.up) &&
+        Objects.equals(this.sceneItemCount, sceneDataAttributes.sceneItemCount);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(camera, state, created, suppliedId, name, treeEnabled, modified);
+    return Objects.hash(camera, state, created, suppliedId, name, treeEnabled, modified, up, sceneItemCount);
   }
 
   @Override
@@ -252,6 +312,8 @@ public class SceneDataAttributes {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    treeEnabled: ").append(toIndentedString(treeEnabled)).append("\n");
     sb.append("    modified: ").append(toIndentedString(modified)).append("\n");
+    sb.append("    up: ").append(toIndentedString(up)).append("\n");
+    sb.append("    sceneItemCount: ").append(toIndentedString(sceneItemCount)).append("\n");
     sb.append("}");
     return sb.toString();
   }

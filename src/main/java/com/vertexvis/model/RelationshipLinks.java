@@ -25,16 +25,16 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * WebhookEventDataRelationshipsOwnerLinks
+ * RelationshipLinks
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class WebhookEventDataRelationshipsOwnerLinks {
+public class RelationshipLinks {
   public static final String SERIALIZED_NAME_RELATED = "related";
   @SerializedName(SERIALIZED_NAME_RELATED)
   private String related;
 
 
-  public WebhookEventDataRelationshipsOwnerLinks related(String related) {
+  public RelationshipLinks related(String related) {
     
     this.related = related;
     return this;
@@ -64,8 +64,8 @@ public class WebhookEventDataRelationshipsOwnerLinks {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WebhookEventDataRelationshipsOwnerLinks webhookEventDataRelationshipsOwnerLinks = (WebhookEventDataRelationshipsOwnerLinks) o;
-    return Objects.equals(this.related, webhookEventDataRelationshipsOwnerLinks.related);
+    RelationshipLinks relationshipLinks = (RelationshipLinks) o;
+    return Objects.equals(this.related, relationshipLinks.related);
   }
 
   @Override
@@ -76,7 +76,7 @@ public class WebhookEventDataRelationshipsOwnerLinks {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class WebhookEventDataRelationshipsOwnerLinks {\n");
+    sb.append("class RelationshipLinks {\n");
     sb.append("    related: ").append(toIndentedString(related)).append("\n");
     sb.append("}");
     return sb.toString();

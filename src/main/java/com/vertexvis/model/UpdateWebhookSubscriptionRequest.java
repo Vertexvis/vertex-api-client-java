@@ -20,28 +20,22 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.RelationshipLinks;
-import com.vertexvis.model.WebhookEventDataRelationshipsOwnerData;
+import com.vertexvis.model.UpdateWebhookSubscriptionRequestData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Relationship to an &#x60;owner&#x60;.
+ * UpdateWebhookSubscriptionRequest
  */
-@ApiModel(description = "Relationship to an `owner`.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class WebhookEventDataRelationshipsOwner {
+public class UpdateWebhookSubscriptionRequest {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
-  private WebhookEventDataRelationshipsOwnerData data;
-
-  public static final String SERIALIZED_NAME_LINKS = "links";
-  @SerializedName(SERIALIZED_NAME_LINKS)
-  private RelationshipLinks links;
+  private UpdateWebhookSubscriptionRequestData data;
 
 
-  public WebhookEventDataRelationshipsOwner data(WebhookEventDataRelationshipsOwnerData data) {
+  public UpdateWebhookSubscriptionRequest data(UpdateWebhookSubscriptionRequestData data) {
     
     this.data = data;
     return this;
@@ -53,36 +47,13 @@ public class WebhookEventDataRelationshipsOwner {
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public WebhookEventDataRelationshipsOwnerData getData() {
+  public UpdateWebhookSubscriptionRequestData getData() {
     return data;
   }
 
 
-  public void setData(WebhookEventDataRelationshipsOwnerData data) {
+  public void setData(UpdateWebhookSubscriptionRequestData data) {
     this.data = data;
-  }
-
-
-  public WebhookEventDataRelationshipsOwner links(RelationshipLinks links) {
-    
-    this.links = links;
-    return this;
-  }
-
-   /**
-   * Get links
-   * @return links
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public RelationshipLinks getLinks() {
-    return links;
-  }
-
-
-  public void setLinks(RelationshipLinks links) {
-    this.links = links;
   }
 
 
@@ -94,22 +65,20 @@ public class WebhookEventDataRelationshipsOwner {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WebhookEventDataRelationshipsOwner webhookEventDataRelationshipsOwner = (WebhookEventDataRelationshipsOwner) o;
-    return Objects.equals(this.data, webhookEventDataRelationshipsOwner.data) &&
-        Objects.equals(this.links, webhookEventDataRelationshipsOwner.links);
+    UpdateWebhookSubscriptionRequest updateWebhookSubscriptionRequest = (UpdateWebhookSubscriptionRequest) o;
+    return Objects.equals(this.data, updateWebhookSubscriptionRequest.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, links);
+    return Objects.hash(data);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class WebhookEventDataRelationshipsOwner {\n");
+    sb.append("class UpdateWebhookSubscriptionRequest {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
-    sb.append("    links: ").append(toIndentedString(links)).append("\n");
     sb.append("}");
     return sb.toString();
   }

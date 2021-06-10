@@ -22,6 +22,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.Camera;
 import com.vertexvis.model.CrossSectioning;
+import com.vertexvis.model.Vector3;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -43,6 +44,10 @@ public class SceneViewDataAttributes {
   public static final String SERIALIZED_NAME_CROSS_SECTIONING = "crossSectioning";
   @SerializedName(SERIALIZED_NAME_CROSS_SECTIONING)
   private CrossSectioning crossSectioning;
+
+  public static final String SERIALIZED_NAME_UP = "up";
+  @SerializedName(SERIALIZED_NAME_UP)
+  private Vector3 up;
 
 
   public SceneViewDataAttributes camera(Camera camera) {
@@ -112,6 +117,29 @@ public class SceneViewDataAttributes {
   }
 
 
+  public SceneViewDataAttributes up(Vector3 up) {
+    
+    this.up = up;
+    return this;
+  }
+
+   /**
+   * Get up
+   * @return up
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Vector3 getUp() {
+    return up;
+  }
+
+
+  public void setUp(Vector3 up) {
+    this.up = up;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -123,12 +151,13 @@ public class SceneViewDataAttributes {
     SceneViewDataAttributes sceneViewDataAttributes = (SceneViewDataAttributes) o;
     return Objects.equals(this.camera, sceneViewDataAttributes.camera) &&
         Objects.equals(this.created, sceneViewDataAttributes.created) &&
-        Objects.equals(this.crossSectioning, sceneViewDataAttributes.crossSectioning);
+        Objects.equals(this.crossSectioning, sceneViewDataAttributes.crossSectioning) &&
+        Objects.equals(this.up, sceneViewDataAttributes.up);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(camera, created, crossSectioning);
+    return Objects.hash(camera, created, crossSectioning, up);
   }
 
   @Override
@@ -138,6 +167,7 @@ public class SceneViewDataAttributes {
     sb.append("    camera: ").append(toIndentedString(camera)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    crossSectioning: ").append(toIndentedString(crossSectioning)).append("\n");
+    sb.append("    up: ").append(toIndentedString(up)).append("\n");
     sb.append("}");
     return sb.toString();
   }
