@@ -12,13 +12,16 @@ public class OneOfSceneViewRelationshipSceneViewStateRelationshipTest {
   @Test
   void serializesHitResultData() {
     UUID id = UUID.randomUUID();
-    OneOfSceneViewRelationshipSceneViewStateRelationship d =
+    OneOfSceneViewRelationshipSceneViewStateRelationship rel =
         new OneOfSceneViewRelationshipSceneViewStateRelationship(new SceneViewRelationship()
             .data(
                 new SceneViewRelationshipData().type(SceneViewRelationshipData.TypeEnum.SCENE_VIEW)
                     .id(id)));
 
-    String expected = "{\"sceneViewRelationship\":{\"data\":{\"type\":\"scene-view\",\"id\":\"" + id + "\"}}}";
+    CreateSceneViewRequestData reqData = new CreateSceneViewRequestData()
+        .relationships(new CreateSceneViewRequestDataRelationships().source(rel));
+
+    String expected = "{\"data\":{\"type\":\"scene-view\",\"id\":\"" + id + "\"}}";
 
     assertEquals(expected, new JSON().serialize(d));
   }
@@ -33,7 +36,7 @@ public class OneOfSceneViewRelationshipSceneViewStateRelationshipTest {
                     new SceneViewStateRelationshipData().type(SceneViewStateRelationshipData.TypeEnum.SCENE_VIEW_STATE)
                         .id(id)));
 
-    String expected = "{\"sceneViewStateRelationship\":{\"data\":{\"type\":\"scene-view-state\",\"id\":\"" + id + "\"}}}";
+    String expected = "{\"data\":{\"type\":\"scene-view-state\",\"id\":\"" + id + "\"}}";
 
     assertEquals(expected, new JSON().serialize(d));
   }
