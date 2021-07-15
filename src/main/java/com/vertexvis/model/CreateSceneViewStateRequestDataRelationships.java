@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.SceneViewRelationship;
+import com.vertexvis.model.OneOfSceneViewRelationshipSceneViewStateRelationship;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -30,30 +30,30 @@ import java.io.IOException;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CreateSceneViewStateRequestDataRelationships {
-  public static final String SERIALIZED_NAME_SCENE_VIEW = "sceneView";
-  @SerializedName(SERIALIZED_NAME_SCENE_VIEW)
-  private SceneViewRelationship sceneView;
+  public static final String SERIALIZED_NAME_SOURCE = "source";
+  @SerializedName(SERIALIZED_NAME_SOURCE)
+  private OneOfSceneViewRelationshipSceneViewStateRelationship source;
 
 
-  public CreateSceneViewStateRequestDataRelationships sceneView(SceneViewRelationship sceneView) {
+  public CreateSceneViewStateRequestDataRelationships source(OneOfSceneViewRelationshipSceneViewStateRelationship source) {
     
-    this.sceneView = sceneView;
+    this.source = source;
     return this;
   }
 
    /**
-   * Get sceneView
-   * @return sceneView
+   * Get source
+   * @return source
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public SceneViewRelationship getSceneView() {
-    return sceneView;
+  public OneOfSceneViewRelationshipSceneViewStateRelationship getSource() {
+    return source;
   }
 
 
-  public void setSceneView(SceneViewRelationship sceneView) {
-    this.sceneView = sceneView;
+  public void setSource(OneOfSceneViewRelationshipSceneViewStateRelationship source) {
+    this.source = source;
   }
 
 
@@ -66,19 +66,19 @@ public class CreateSceneViewStateRequestDataRelationships {
       return false;
     }
     CreateSceneViewStateRequestDataRelationships createSceneViewStateRequestDataRelationships = (CreateSceneViewStateRequestDataRelationships) o;
-    return Objects.equals(this.sceneView, createSceneViewStateRequestDataRelationships.sceneView);
+    return Objects.equals(this.source, createSceneViewStateRequestDataRelationships.source);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(sceneView);
+    return Objects.hash(source);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateSceneViewStateRequestDataRelationships {\n");
-    sb.append("    sceneView: ").append(toIndentedString(sceneView)).append("\n");
+    sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("}");
     return sb.toString();
   }

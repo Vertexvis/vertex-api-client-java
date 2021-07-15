@@ -20,87 +20,67 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.vertexvis.model.Vector3;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Fit camera in 3D space based on items in scene.
+ * Normals describing up &amp; front directions
  */
-@ApiModel(description = "Fit camera in 3D space based on items in scene.")
+@ApiModel(description = "Normals describing up & front directions")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CameraFit {
-  /**
-   * Resource object type.
-   */
-  @JsonAdapter(TypeEnum.Adapter.class)
-  public enum TypeEnum {
-    FIT_VISIBLE_SCENE_ITEMS("fit-visible-scene-items"),
+public class Orientation {
+  public static final String SERIALIZED_NAME_UP = "up";
+  @SerializedName(SERIALIZED_NAME_UP)
+  private Vector3 up;
+
+  public static final String SERIALIZED_NAME_FRONT = "front";
+  @SerializedName(SERIALIZED_NAME_FRONT)
+  private Vector3 front;
+
+
+  public Orientation up(Vector3 up) {
     
-    RESET("reset");
-
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static TypeEnum fromValue(String value) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<TypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public TypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return TypeEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_TYPE = "type";
-  @SerializedName(SERIALIZED_NAME_TYPE)
-  private TypeEnum type;
-
-
-  public CameraFit type(TypeEnum type) {
-    
-    this.type = type;
+    this.up = up;
     return this;
   }
 
    /**
-   * Resource object type.
-   * @return type
+   * Get up
+   * @return up
   **/
-  @ApiModelProperty(example = "fit-visible-scene-items", required = true, value = "Resource object type.")
+  @ApiModelProperty(required = true, value = "")
 
-  public TypeEnum getType() {
-    return type;
+  public Vector3 getUp() {
+    return up;
   }
 
 
-  public void setType(TypeEnum type) {
-    this.type = type;
+  public void setUp(Vector3 up) {
+    this.up = up;
+  }
+
+
+  public Orientation front(Vector3 front) {
+    
+    this.front = front;
+    return this;
+  }
+
+   /**
+   * Get front
+   * @return front
+  **/
+  @ApiModelProperty(required = true, value = "")
+
+  public Vector3 getFront() {
+    return front;
+  }
+
+
+  public void setFront(Vector3 front) {
+    this.front = front;
   }
 
 
@@ -112,20 +92,22 @@ public class CameraFit {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CameraFit cameraFit = (CameraFit) o;
-    return Objects.equals(this.type, cameraFit.type);
+    Orientation orientation = (Orientation) o;
+    return Objects.equals(this.up, orientation.up) &&
+        Objects.equals(this.front, orientation.front);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type);
+    return Objects.hash(up, front);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CameraFit {\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("class Orientation {\n");
+    sb.append("    up: ").append(toIndentedString(up)).append("\n");
+    sb.append("    front: ").append(toIndentedString(front)).append("\n");
     sb.append("}");
     return sb.toString();
   }

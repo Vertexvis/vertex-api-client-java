@@ -22,7 +22,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.Camera;
 import com.vertexvis.model.CrossSectioning;
-import com.vertexvis.model.Vector3;
+import com.vertexvis.model.Orientation;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -45,9 +45,9 @@ public class SceneViewDataAttributes {
   @SerializedName(SERIALIZED_NAME_CROSS_SECTIONING)
   private CrossSectioning crossSectioning;
 
-  public static final String SERIALIZED_NAME_UP = "up";
-  @SerializedName(SERIALIZED_NAME_UP)
-  private Vector3 up;
+  public static final String SERIALIZED_NAME_WORLD_ORIENTATION = "worldOrientation";
+  @SerializedName(SERIALIZED_NAME_WORLD_ORIENTATION)
+  private Orientation worldOrientation;
 
 
   public SceneViewDataAttributes camera(Camera camera) {
@@ -117,26 +117,26 @@ public class SceneViewDataAttributes {
   }
 
 
-  public SceneViewDataAttributes up(Vector3 up) {
+  public SceneViewDataAttributes worldOrientation(Orientation worldOrientation) {
     
-    this.up = up;
+    this.worldOrientation = worldOrientation;
     return this;
   }
 
    /**
-   * Get up
-   * @return up
+   * Get worldOrientation
+   * @return worldOrientation
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public Vector3 getUp() {
-    return up;
+  public Orientation getWorldOrientation() {
+    return worldOrientation;
   }
 
 
-  public void setUp(Vector3 up) {
-    this.up = up;
+  public void setWorldOrientation(Orientation worldOrientation) {
+    this.worldOrientation = worldOrientation;
   }
 
 
@@ -152,12 +152,12 @@ public class SceneViewDataAttributes {
     return Objects.equals(this.camera, sceneViewDataAttributes.camera) &&
         Objects.equals(this.created, sceneViewDataAttributes.created) &&
         Objects.equals(this.crossSectioning, sceneViewDataAttributes.crossSectioning) &&
-        Objects.equals(this.up, sceneViewDataAttributes.up);
+        Objects.equals(this.worldOrientation, sceneViewDataAttributes.worldOrientation);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(camera, created, crossSectioning, up);
+    return Objects.hash(camera, created, crossSectioning, worldOrientation);
   }
 
   @Override
@@ -167,7 +167,7 @@ public class SceneViewDataAttributes {
     sb.append("    camera: ").append(toIndentedString(camera)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    crossSectioning: ").append(toIndentedString(crossSectioning)).append("\n");
-    sb.append("    up: ").append(toIndentedString(up)).append("\n");
+    sb.append("    worldOrientation: ").append(toIndentedString(worldOrientation)).append("\n");
     sb.append("}");
     return sb.toString();
   }

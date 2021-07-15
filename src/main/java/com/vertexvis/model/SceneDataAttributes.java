@@ -21,7 +21,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.Camera;
-import com.vertexvis.model.Vector3;
+import com.vertexvis.model.Orientation;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -60,9 +60,9 @@ public class SceneDataAttributes {
   @SerializedName(SERIALIZED_NAME_MODIFIED)
   private OffsetDateTime modified;
 
-  public static final String SERIALIZED_NAME_UP = "up";
-  @SerializedName(SERIALIZED_NAME_UP)
-  private Vector3 up;
+  public static final String SERIALIZED_NAME_WORLD_ORIENTATION = "worldOrientation";
+  @SerializedName(SERIALIZED_NAME_WORLD_ORIENTATION)
+  private Orientation worldOrientation;
 
   public static final String SERIALIZED_NAME_SCENE_ITEM_COUNT = "sceneItemCount";
   @SerializedName(SERIALIZED_NAME_SCENE_ITEM_COUNT)
@@ -230,26 +230,26 @@ public class SceneDataAttributes {
   }
 
 
-  public SceneDataAttributes up(Vector3 up) {
+  public SceneDataAttributes worldOrientation(Orientation worldOrientation) {
     
-    this.up = up;
+    this.worldOrientation = worldOrientation;
     return this;
   }
 
    /**
-   * Get up
-   * @return up
+   * Get worldOrientation
+   * @return worldOrientation
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public Vector3 getUp() {
-    return up;
+  public Orientation getWorldOrientation() {
+    return worldOrientation;
   }
 
 
-  public void setUp(Vector3 up) {
-    this.up = up;
+  public void setWorldOrientation(Orientation worldOrientation) {
+    this.worldOrientation = worldOrientation;
   }
 
 
@@ -292,13 +292,13 @@ public class SceneDataAttributes {
         Objects.equals(this.name, sceneDataAttributes.name) &&
         Objects.equals(this.treeEnabled, sceneDataAttributes.treeEnabled) &&
         Objects.equals(this.modified, sceneDataAttributes.modified) &&
-        Objects.equals(this.up, sceneDataAttributes.up) &&
+        Objects.equals(this.worldOrientation, sceneDataAttributes.worldOrientation) &&
         Objects.equals(this.sceneItemCount, sceneDataAttributes.sceneItemCount);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(camera, state, created, suppliedId, name, treeEnabled, modified, up, sceneItemCount);
+    return Objects.hash(camera, state, created, suppliedId, name, treeEnabled, modified, worldOrientation, sceneItemCount);
   }
 
   @Override
@@ -312,7 +312,7 @@ public class SceneDataAttributes {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    treeEnabled: ").append(toIndentedString(treeEnabled)).append("\n");
     sb.append("    modified: ").append(toIndentedString(modified)).append("\n");
-    sb.append("    up: ").append(toIndentedString(up)).append("\n");
+    sb.append("    worldOrientation: ").append(toIndentedString(worldOrientation)).append("\n");
     sb.append("    sceneItemCount: ").append(toIndentedString(sceneItemCount)).append("\n");
     sb.append("}");
     return sb.toString();

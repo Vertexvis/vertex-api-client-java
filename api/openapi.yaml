@@ -1046,10 +1046,38 @@ paths:
           minimum: 1
           type: integer
         style: form
+      - description: The `camera` position vector.
+        explode: true
+        in: query
+        name: camera[position]
+        required: false
+        schema:
+          $ref: '#/components/schemas/Vector3'
+        style: deepObject
+      - description: The `camera` up vector.
+        explode: true
+        in: query
+        name: camera[up]
+        required: false
+        schema:
+          $ref: '#/components/schemas/Vector3'
+        style: deepObject
+      - description: The `camera` lookAt vector.
+        explode: true
+        in: query
+        name: camera[lookAt]
+        required: false
+        schema:
+          $ref: '#/components/schemas/Vector3'
+        style: deepObject
       responses:
         "200":
           content:
             image/jpeg:
+              schema:
+                format: binary
+                type: string
+            image/png:
               schema:
                 format: binary
                 type: string
@@ -1103,7 +1131,7 @@ paths:
       - OAuth2: []
       tags:
       - part-revisions
-      x-accepts: application/vnd.api+json,image/jpeg
+      x-accepts: application/vnd.api+json,image/jpeg,image/png
   /parts/{id}/part-revisions:
     get:
       description: Get `part-revisions` for a `part`.
@@ -2867,6 +2895,10 @@ paths:
               schema:
                 format: binary
                 type: string
+            image/png:
+              schema:
+                format: binary
+                type: string
           description: OK
         "401":
           content:
@@ -2917,7 +2949,7 @@ paths:
       - OAuth2: []
       tags:
       - scene-views
-      x-accepts: application/vnd.api+json,image/jpeg
+      x-accepts: application/vnd.api+json,image/jpeg,image/png
   /scene-views/{id}/scene-items/{itemId}:
     get:
       description: Get a `scene-item` within a view by ID.
@@ -3178,6 +3210,16 @@ paths:
           maximum: 200
           minimum: 1
           type: integer
+        style: form
+      - description: Comma-separated list of supplied IDs to filter on.
+        explode: true
+        in: query
+        name: filter[suppliedId]
+        required: false
+        schema:
+          example: some-id-1,some-id-2
+          maxLength: 1024
+          type: string
         style: form
       responses:
         "200":
@@ -3523,6 +3565,10 @@ paths:
               schema:
                 format: binary
                 type: string
+            image/png:
+              schema:
+                format: binary
+                type: string
           description: OK
         "401":
           content:
@@ -3573,7 +3619,7 @@ paths:
       - OAuth2: []
       tags:
       - scenes
-      x-accepts: application/vnd.api+json,image/jpeg
+      x-accepts: application/vnd.api+json,image/jpeg,image/png
   /queued-scenes/{id}:
     get:
       description: Get a `queued-scene`.
@@ -3896,6 +3942,82 @@ paths:
       tags:
       - scene-view-states
       x-accepts: application/vnd.api+json
+    patch:
+      description: Update a `scene-view-state`.
+      operationId: updateSceneViewState
+      parameters:
+      - description: The `scene-view-state` ID.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          $ref: '#/components/schemas/Uuid'
+        style: simple
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/UpdateSceneViewStateRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/SceneViewState'
+          description: OK
+        "400":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "400"
+                  code: BadRequest
+                  title: Invalid, missing, or out-of-range request parameters.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Bad Request
+        "401":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "401"
+                  code: Unauthorized
+                  title: Invalid or missing credentials.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unauthorized
+        "404":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "404"
+                  code: NotFound
+                  title: The requested resource was not found.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Not Found
+        "415":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "415"
+                  code: UnsupportedMediaType
+                  title: The provided media type is not supported. Update the Content-Type
+                    header to application/vnd.api+json and try again.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unsupported Media Type
+      security:
+      - OAuth2: []
+      tags:
+      - scene-view-states
+      x-contentType: application/vnd.api+json
+      x-accepts: application/vnd.api+json
   /scenes/{id}/stream-keys:
     post:
       description: Create a `stream-key` for a `scene`.
@@ -4169,6 +4291,88 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/TranslationInspectionJob'
+          description: OK
+        "401":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "401"
+                  code: Unauthorized
+                  title: Invalid or missing credentials.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unauthorized
+        "404":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "404"
+                  code: NotFound
+                  title: The requested resource was not found.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Not Found
+        "415":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "415"
+                  code: UnsupportedMediaType
+                  title: The provided media type is not supported. Update the Content-Type
+                    header to application/vnd.api+json and try again.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unsupported Media Type
+      security:
+      - OAuth2: []
+      tags:
+      - translation-inspections
+      x-accepts: application/vnd.api+json
+  /queued-translations:
+    get:
+      description: Get `queued-translation`s.
+      operationId: getQueuedTranslations
+      parameters:
+      - description: The cursor for the next page of items.
+        explode: true
+        in: query
+        name: page[cursor]
+        required: false
+        schema:
+          example: cHJkMDVFR2RLag==
+          type: string
+        style: form
+      - description: The number of items to return.
+        explode: true
+        in: query
+        name: page[size]
+        required: false
+        schema:
+          example: 10
+          format: int32
+          maximum: 200
+          minimum: 1
+          type: integer
+        style: form
+      - description: Status to filter on.
+        explode: true
+        in: query
+        name: filter[status]
+        required: false
+        schema:
+          example: running
+          maxLength: 1024
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/QueuedJobList'
           description: OK
         "401":
           content:
@@ -4593,6 +4797,33 @@ components:
       schema:
         $ref: '#/components/schemas/Uuid'
       style: simple
+    CameraUp:
+      description: The `camera` up vector.
+      explode: true
+      in: query
+      name: camera[up]
+      required: false
+      schema:
+        $ref: '#/components/schemas/Vector3'
+      style: deepObject
+    CameraPosition:
+      description: The `camera` position vector.
+      explode: true
+      in: query
+      name: camera[position]
+      required: false
+      schema:
+        $ref: '#/components/schemas/Vector3'
+      style: deepObject
+    CameraLookAt:
+      description: The `camera` lookAt vector.
+      explode: true
+      in: query
+      name: camera[lookAt]
+      required: false
+      schema:
+        $ref: '#/components/schemas/Vector3'
+      style: deepObject
     FileId:
       description: The `file` ID.
       explode: false
@@ -4786,6 +5017,17 @@ components:
       required: false
       schema:
         example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
+        maxLength: 1024
+        type: string
+      style: form
+    StatusFilter:
+      description: Status to filter on.
+      explode: true
+      in: query
+      name: filter[status]
+      required: false
+      schema:
+        example: running
         maxLength: 1024
         type: string
       style: form
@@ -5014,7 +5256,7 @@ components:
       additionalProperties: false
       properties:
         data:
-          $ref: '#/components/schemas/QueuedJob_data'
+          $ref: '#/components/schemas/QueuedJobData'
         links:
           additionalProperties:
             $ref: '#/components/schemas/Link'
@@ -5149,6 +5391,27 @@ components:
           $ref: '#/components/schemas/UpdatePartRevisionRequest_data'
       required:
       - data
+      type: object
+    Vector3:
+      additionalProperties: false
+      description: 3D vector.
+      properties:
+        x:
+          description: x-axis coordinate.
+          example: 1.0
+          type: number
+        y:
+          description: y-axis coordinate.
+          example: 0.0
+          type: number
+        z:
+          description: z-axis coordinate.
+          example: 0.0
+          type: number
+      required:
+      - x
+      - "y"
+      - z
       type: object
     PartRevisionList:
       additionalProperties: false
@@ -5462,6 +5725,14 @@ components:
       required:
       - data
       type: object
+    UpdateSceneViewStateRequest:
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/UpdateSceneViewStateRequest_data'
+      required:
+      - data
+      type: object
     CreateStreamKeyRequest:
       additionalProperties: false
       properties:
@@ -5516,6 +5787,21 @@ components:
           type: object
       required:
       - data
+      type: object
+    QueuedJobList:
+      additionalProperties: false
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/QueuedJobData'
+          type: array
+        links:
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+          type: object
+      required:
+      - data
+      - links
       type: object
     WebhookSubscriptionList:
       additionalProperties: false
@@ -5690,11 +5976,31 @@ components:
       required:
       - data
       type: object
-    NonEmptyString:
-      example: some-string
-      maxLength: 1024
-      minLength: 1
-      type: string
+    QueuedJobData:
+      additionalProperties: false
+      properties:
+        type:
+          example: some-string
+          maxLength: 1024
+          minLength: 1
+          type: string
+        id:
+          description: ID of the resource.
+          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
+          format: uuid
+          maxLength: 36
+          type: string
+        attributes:
+          $ref: '#/components/schemas/QueuedJobData_attributes'
+        links:
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+          type: object
+      required:
+      - attributes
+      - id
+      - type
+      type: object
     Point:
       additionalProperties: false
       description: 2D point.
@@ -5827,6 +6133,11 @@ components:
       - relationships
       - type
       type: object
+    NonEmptyString:
+      example: some-string
+      maxLength: 1024
+      minLength: 1
+      type: string
     MetadataValue:
       properties:
         value:
@@ -5888,7 +6199,7 @@ components:
         attributes:
           $ref: '#/components/schemas/Hit_data_attributes'
         relationships:
-          $ref: '#/components/schemas/CreateSceneViewStateRequest_data_relationships'
+          $ref: '#/components/schemas/SceneAlterationData_relationships'
         links:
           additionalProperties:
             $ref: '#/components/schemas/Link'
@@ -6221,6 +6532,7 @@ components:
           description: Resource object type.
           enum:
           - fit-visible-scene-items
+          - reset
           example: fit-visible-scene-items
           maxLength: 32
           type: string
@@ -6270,26 +6582,17 @@ components:
       - id
       - type
       type: object
-    Vector3:
+    Orientation:
       additionalProperties: false
-      description: 3D vector.
+      description: Normals describing up & front directions
       properties:
-        x:
-          description: x-axis coordinate.
-          example: 1.0
-          type: number
-        y:
-          description: y-axis coordinate.
-          example: 0.0
-          type: number
-        z:
-          description: z-axis coordinate.
-          example: 0.0
-          type: number
+        up:
+          $ref: '#/components/schemas/Vector3'
+        front:
+          $ref: '#/components/schemas/Vector3'
       required:
-      - x
-      - "y"
-      - z
+      - front
+      - up
       type: object
     SceneViewStateData:
       additionalProperties: false
@@ -6778,40 +7081,6 @@ components:
       - relationships
       - type
       type: object
-    QueuedJob_data_attributes:
-      properties:
-        status:
-          example: running
-          type: string
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiError'
-          maxItems: 20
-          type: array
-          uniqueItems: true
-      required:
-      - status
-      type: object
-    QueuedJob_data:
-      properties:
-        type:
-          example: some-string
-          maxLength: 1024
-          minLength: 1
-          type: string
-        id:
-          description: ID of the resource.
-          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-          format: uuid
-          maxLength: 36
-          type: string
-        attributes:
-          $ref: '#/components/schemas/QueuedJob_data_attributes'
-      required:
-      - attributes
-      - id
-      - type
-      type: object
     CreateHitRequest_data_attributes:
       properties:
         point:
@@ -7249,8 +7518,8 @@ components:
         treeEnabled:
           example: false
           type: boolean
-        up:
-          $ref: '#/components/schemas/Vector3'
+        worldOrientation:
+          $ref: '#/components/schemas/Orientation'
       type: object
     CreateSceneRequest_data_relationships:
       properties:
@@ -7302,8 +7571,8 @@ components:
         treeEnabled:
           description: Whether or not scene trees can be viewed for this scene.
           type: boolean
-        up:
-          $ref: '#/components/schemas/Vector3'
+        worldOrientation:
+          $ref: '#/components/schemas/Orientation'
       type: object
     UpdateSceneRequest_data:
       properties:
@@ -7328,10 +7597,12 @@ components:
       type: object
     CreateSceneViewStateRequest_data_relationships:
       properties:
-        sceneView:
-          $ref: '#/components/schemas/SceneViewRelationship'
+        source:
+          oneOf:
+          - $ref: '#/components/schemas/SceneViewRelationship'
+          - $ref: '#/components/schemas/SceneViewStateRelationship'
       required:
-      - sceneView
+      - source
       type: object
     CreateSceneViewStateRequest_data:
       properties:
@@ -7347,6 +7618,19 @@ components:
       required:
       - attributes
       - relationships
+      - type
+      type: object
+    UpdateSceneViewStateRequest_data:
+      properties:
+        type:
+          description: Resource object type.
+          example: scene-view-state
+          maxLength: 32
+          type: string
+        attributes:
+          $ref: '#/components/schemas/CreateSceneViewStateRequest_data_attributes'
+      required:
+      - attributes
       - type
       type: object
     CreateStreamKeyRequest_data_attributes:
@@ -7532,6 +7816,25 @@ components:
       - id
       - type
       type: object
+    QueuedJobData_attributes:
+      properties:
+        status:
+          example: running
+          type: string
+        created:
+          example: 2020-01-01T12:00:00Z
+          format: date-time
+          type: string
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiError'
+          maxItems: 20
+          type: array
+          uniqueItems: true
+      required:
+      - created
+      - status
+      type: object
     HitResultData_attributes:
       properties:
         point:
@@ -7657,6 +7960,13 @@ components:
       required:
       - partRevisions
       type: object
+    SceneAlterationData_relationships:
+      properties:
+        sceneView:
+          $ref: '#/components/schemas/SceneViewRelationship'
+      required:
+      - sceneView
+      type: object
     SceneItemOverrideData_attributes:
       properties:
         created:
@@ -7733,8 +8043,8 @@ components:
           type: string
         crossSectioning:
           $ref: '#/components/schemas/CrossSectioning'
-        up:
-          $ref: '#/components/schemas/Vector3'
+        worldOrientation:
+          $ref: '#/components/schemas/Orientation'
       required:
       - camera
       - created
@@ -7792,8 +8102,8 @@ components:
           example: 2020-01-01T12:00:00Z
           format: date-time
           type: string
-        up:
-          $ref: '#/components/schemas/Vector3'
+        worldOrientation:
+          $ref: '#/components/schemas/Orientation'
         sceneItemCount:
           description: The number of scene items in this scene. (This field needs
             to be explicitly requested)

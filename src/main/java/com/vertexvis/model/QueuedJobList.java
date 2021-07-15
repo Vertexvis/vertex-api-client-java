@@ -21,113 +21,63 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.Link;
-import com.vertexvis.model.QueuedJobDataAttributes;
+import com.vertexvis.model.QueuedJobData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 /**
- * QueuedJobData
+ * QueuedJobList
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class QueuedJobData {
-  public static final String SERIALIZED_NAME_TYPE = "type";
-  @SerializedName(SERIALIZED_NAME_TYPE)
-  private String type;
-
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private UUID id;
-
-  public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
-  @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
-  private QueuedJobDataAttributes attributes;
+public class QueuedJobList {
+  public static final String SERIALIZED_NAME_DATA = "data";
+  @SerializedName(SERIALIZED_NAME_DATA)
+  private List<QueuedJobData> data = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_LINKS = "links";
   @SerializedName(SERIALIZED_NAME_LINKS)
-  private Map<String, Link> links = null;
+  private Map<String, Link> links = new HashMap<>();
 
 
-  public QueuedJobData type(String type) {
+  public QueuedJobList data(List<QueuedJobData> data) {
     
-    this.type = type;
+    this.data = data;
+    return this;
+  }
+
+  public QueuedJobList addDataItem(QueuedJobData dataItem) {
+    this.data.add(dataItem);
     return this;
   }
 
    /**
-   * Get type
-   * @return type
-  **/
-  @ApiModelProperty(example = "some-string", required = true, value = "")
-
-  public String getType() {
-    return type;
-  }
-
-
-  public void setType(String type) {
-    this.type = type;
-  }
-
-
-  public QueuedJobData id(UUID id) {
-    
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * ID of the resource.
-   * @return id
-  **/
-  @ApiModelProperty(example = "f79d4760-0b71-44e4-ad0b-22743fdd4ca3", required = true, value = "ID of the resource.")
-
-  public UUID getId() {
-    return id;
-  }
-
-
-  public void setId(UUID id) {
-    this.id = id;
-  }
-
-
-  public QueuedJobData attributes(QueuedJobDataAttributes attributes) {
-    
-    this.attributes = attributes;
-    return this;
-  }
-
-   /**
-   * Get attributes
-   * @return attributes
+   * Get data
+   * @return data
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public QueuedJobDataAttributes getAttributes() {
-    return attributes;
+  public List<QueuedJobData> getData() {
+    return data;
   }
 
 
-  public void setAttributes(QueuedJobDataAttributes attributes) {
-    this.attributes = attributes;
+  public void setData(List<QueuedJobData> data) {
+    this.data = data;
   }
 
 
-  public QueuedJobData links(Map<String, Link> links) {
+  public QueuedJobList links(Map<String, Link> links) {
     
     this.links = links;
     return this;
   }
 
-  public QueuedJobData putLinksItem(String key, Link linksItem) {
-    if (this.links == null) {
-      this.links = new HashMap<>();
-    }
+  public QueuedJobList putLinksItem(String key, Link linksItem) {
     this.links.put(key, linksItem);
     return this;
   }
@@ -136,8 +86,7 @@ public class QueuedJobData {
    * Get links
    * @return links
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
 
   public Map<String, Link> getLinks() {
     return links;
@@ -157,25 +106,21 @@ public class QueuedJobData {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    QueuedJobData queuedJobData = (QueuedJobData) o;
-    return Objects.equals(this.type, queuedJobData.type) &&
-        Objects.equals(this.id, queuedJobData.id) &&
-        Objects.equals(this.attributes, queuedJobData.attributes) &&
-        Objects.equals(this.links, queuedJobData.links);
+    QueuedJobList queuedJobList = (QueuedJobList) o;
+    return Objects.equals(this.data, queuedJobList.data) &&
+        Objects.equals(this.links, queuedJobList.links);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, attributes, links);
+    return Objects.hash(data, links);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class QueuedJobData {\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
+    sb.append("class QueuedJobList {\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("    links: ").append(toIndentedString(links)).append("\n");
     sb.append("}");
     return sb.toString();
