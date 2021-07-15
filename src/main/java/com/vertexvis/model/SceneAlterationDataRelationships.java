@@ -20,87 +20,40 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.vertexvis.model.SceneViewRelationship;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Fit camera in 3D space based on items in scene.
+ * SceneAlterationDataRelationships
  */
-@ApiModel(description = "Fit camera in 3D space based on items in scene.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CameraFit {
-  /**
-   * Resource object type.
-   */
-  @JsonAdapter(TypeEnum.Adapter.class)
-  public enum TypeEnum {
-    FIT_VISIBLE_SCENE_ITEMS("fit-visible-scene-items"),
+public class SceneAlterationDataRelationships {
+  public static final String SERIALIZED_NAME_SCENE_VIEW = "sceneView";
+  @SerializedName(SERIALIZED_NAME_SCENE_VIEW)
+  private SceneViewRelationship sceneView;
+
+
+  public SceneAlterationDataRelationships sceneView(SceneViewRelationship sceneView) {
     
-    RESET("reset");
-
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static TypeEnum fromValue(String value) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<TypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public TypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return TypeEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_TYPE = "type";
-  @SerializedName(SERIALIZED_NAME_TYPE)
-  private TypeEnum type;
-
-
-  public CameraFit type(TypeEnum type) {
-    
-    this.type = type;
+    this.sceneView = sceneView;
     return this;
   }
 
    /**
-   * Resource object type.
-   * @return type
+   * Get sceneView
+   * @return sceneView
   **/
-  @ApiModelProperty(example = "fit-visible-scene-items", required = true, value = "Resource object type.")
+  @ApiModelProperty(required = true, value = "")
 
-  public TypeEnum getType() {
-    return type;
+  public SceneViewRelationship getSceneView() {
+    return sceneView;
   }
 
 
-  public void setType(TypeEnum type) {
-    this.type = type;
+  public void setSceneView(SceneViewRelationship sceneView) {
+    this.sceneView = sceneView;
   }
 
 
@@ -112,20 +65,20 @@ public class CameraFit {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CameraFit cameraFit = (CameraFit) o;
-    return Objects.equals(this.type, cameraFit.type);
+    SceneAlterationDataRelationships sceneAlterationDataRelationships = (SceneAlterationDataRelationships) o;
+    return Objects.equals(this.sceneView, sceneAlterationDataRelationships.sceneView);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type);
+    return Objects.hash(sceneView);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CameraFit {\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("class SceneAlterationDataRelationships {\n");
+    sb.append("    sceneView: ").append(toIndentedString(sceneView)).append("\n");
     sb.append("}");
     return sb.toString();
   }

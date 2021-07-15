@@ -34,6 +34,7 @@ import com.vertexvis.model.PartRevisionList;
 import com.vertexvis.model.QueuedJob;
 import java.util.UUID;
 import com.vertexvis.model.UpdatePartRevisionRequest;
+import com.vertexvis.model.Vector3;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -593,6 +594,9 @@ public class PartRevisionsApi {
      * @param id The &#x60;part-revision&#x60; ID. (required)
      * @param height The height of the image to render. (optional)
      * @param width The width of the image to render. (optional)
+     * @param cameraPosition The &#x60;camera&#x60; position vector. (optional)
+     * @param cameraUp The &#x60;camera&#x60; up vector. (optional)
+     * @param cameraLookAt The &#x60;camera&#x60; lookAt vector. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -606,7 +610,7 @@ public class PartRevisionsApi {
         <tr><td> 504 </td><td> GatewayTimeout </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call renderPartRevisionCall(UUID id, Integer height, Integer width, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call renderPartRevisionCall(UUID id, Integer height, Integer width, Vector3 cameraPosition, Vector3 cameraUp, Vector3 cameraLookAt, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -627,8 +631,20 @@ public class PartRevisionsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("width", width));
         }
 
+        if (cameraPosition != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("camera[position]", cameraPosition));
+        }
+
+        if (cameraUp != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("camera[up]", cameraUp));
+        }
+
+        if (cameraLookAt != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("camera[lookAt]", cameraLookAt));
+        }
+
         final String[] localVarAccepts = {
-            "image/jpeg", "application/vnd.api+json"
+            "image/jpeg", "image/png", "application/vnd.api+json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -646,7 +662,7 @@ public class PartRevisionsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call renderPartRevisionValidateBeforeCall(UUID id, Integer height, Integer width, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call renderPartRevisionValidateBeforeCall(UUID id, Integer height, Integer width, Vector3 cameraPosition, Vector3 cameraUp, Vector3 cameraLookAt, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -654,7 +670,7 @@ public class PartRevisionsApi {
         }
         
 
-        okhttp3.Call localVarCall = renderPartRevisionCall(id, height, width, _callback);
+        okhttp3.Call localVarCall = renderPartRevisionCall(id, height, width, cameraPosition, cameraUp, cameraLookAt, _callback);
         return localVarCall;
 
     }
@@ -665,6 +681,9 @@ public class PartRevisionsApi {
      * @param id The &#x60;part-revision&#x60; ID. (required)
      * @param height The height of the image to render. (optional)
      * @param width The width of the image to render. (optional)
+     * @param cameraPosition The &#x60;camera&#x60; position vector. (optional)
+     * @param cameraUp The &#x60;camera&#x60; up vector. (optional)
+     * @param cameraLookAt The &#x60;camera&#x60; lookAt vector. (optional)
      * @return File
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -677,8 +696,8 @@ public class PartRevisionsApi {
         <tr><td> 504 </td><td> GatewayTimeout </td><td>  -  </td></tr>
      </table>
      */
-    public File renderPartRevision(UUID id, Integer height, Integer width) throws ApiException {
-        ApiResponse<File> localVarResp = renderPartRevisionWithHttpInfo(id, height, width);
+    public File renderPartRevision(UUID id, Integer height, Integer width, Vector3 cameraPosition, Vector3 cameraUp, Vector3 cameraLookAt) throws ApiException {
+        ApiResponse<File> localVarResp = renderPartRevisionWithHttpInfo(id, height, width, cameraPosition, cameraUp, cameraLookAt);
         return localVarResp.getData();
     }
 
@@ -688,6 +707,9 @@ public class PartRevisionsApi {
      * @param id The &#x60;part-revision&#x60; ID. (required)
      * @param height The height of the image to render. (optional)
      * @param width The width of the image to render. (optional)
+     * @param cameraPosition The &#x60;camera&#x60; position vector. (optional)
+     * @param cameraUp The &#x60;camera&#x60; up vector. (optional)
+     * @param cameraLookAt The &#x60;camera&#x60; lookAt vector. (optional)
      * @return ApiResponse&lt;File&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -700,8 +722,8 @@ public class PartRevisionsApi {
         <tr><td> 504 </td><td> GatewayTimeout </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<File> renderPartRevisionWithHttpInfo(UUID id, Integer height, Integer width) throws ApiException {
-        okhttp3.Call localVarCall = renderPartRevisionValidateBeforeCall(id, height, width, null);
+    public ApiResponse<File> renderPartRevisionWithHttpInfo(UUID id, Integer height, Integer width, Vector3 cameraPosition, Vector3 cameraUp, Vector3 cameraLookAt) throws ApiException {
+        okhttp3.Call localVarCall = renderPartRevisionValidateBeforeCall(id, height, width, cameraPosition, cameraUp, cameraLookAt, null);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -712,6 +734,9 @@ public class PartRevisionsApi {
      * @param id The &#x60;part-revision&#x60; ID. (required)
      * @param height The height of the image to render. (optional)
      * @param width The width of the image to render. (optional)
+     * @param cameraPosition The &#x60;camera&#x60; position vector. (optional)
+     * @param cameraUp The &#x60;camera&#x60; up vector. (optional)
+     * @param cameraLookAt The &#x60;camera&#x60; lookAt vector. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -725,9 +750,9 @@ public class PartRevisionsApi {
         <tr><td> 504 </td><td> GatewayTimeout </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call renderPartRevisionAsync(UUID id, Integer height, Integer width, final ApiCallback<File> _callback) throws ApiException {
+    public okhttp3.Call renderPartRevisionAsync(UUID id, Integer height, Integer width, Vector3 cameraPosition, Vector3 cameraUp, Vector3 cameraLookAt, final ApiCallback<File> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = renderPartRevisionValidateBeforeCall(id, height, width, _callback);
+        okhttp3.Call localVarCall = renderPartRevisionValidateBeforeCall(id, height, width, cameraPosition, cameraUp, cameraLookAt, _callback);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

@@ -768,7 +768,7 @@ public class SceneViewsApi {
         }
 
         final String[] localVarAccepts = {
-            "image/jpeg", "application/vnd.api+json"
+            "image/jpeg", "image/png", "application/vnd.api+json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {

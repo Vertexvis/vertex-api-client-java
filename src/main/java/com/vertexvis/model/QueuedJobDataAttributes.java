@@ -24,6 +24,7 @@ import com.vertexvis.model.ApiError;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.time.OffsetDateTime;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -36,6 +37,10 @@ public class QueuedJobDataAttributes {
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
   private String status;
+
+  public static final String SERIALIZED_NAME_CREATED = "created";
+  @SerializedName(SERIALIZED_NAME_CREATED)
+  private OffsetDateTime created;
 
   public static final String SERIALIZED_NAME_ERRORS = "errors";
   @SerializedName(SERIALIZED_NAME_ERRORS)
@@ -61,6 +66,28 @@ public class QueuedJobDataAttributes {
 
   public void setStatus(String status) {
     this.status = status;
+  }
+
+
+  public QueuedJobDataAttributes created(OffsetDateTime created) {
+    
+    this.created = created;
+    return this;
+  }
+
+   /**
+   * Get created
+   * @return created
+  **/
+  @ApiModelProperty(example = "2020-01-01T12:00Z", required = true, value = "")
+
+  public OffsetDateTime getCreated() {
+    return created;
+  }
+
+
+  public void setCreated(OffsetDateTime created) {
+    this.created = created;
   }
 
 
@@ -105,12 +132,13 @@ public class QueuedJobDataAttributes {
     }
     QueuedJobDataAttributes queuedJobDataAttributes = (QueuedJobDataAttributes) o;
     return Objects.equals(this.status, queuedJobDataAttributes.status) &&
+        Objects.equals(this.created, queuedJobDataAttributes.created) &&
         Objects.equals(this.errors, queuedJobDataAttributes.errors);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, errors);
+    return Objects.hash(status, created, errors);
   }
 
   @Override
@@ -118,6 +146,7 @@ public class QueuedJobDataAttributes {
     StringBuilder sb = new StringBuilder();
     sb.append("class QueuedJobDataAttributes {\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -32,6 +32,7 @@ import com.vertexvis.model.Failure;
 import com.vertexvis.model.SceneViewState;
 import com.vertexvis.model.SceneViewStateList;
 import java.util.UUID;
+import com.vertexvis.model.UpdateSceneViewStateRequest;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -572,6 +573,143 @@ public class SceneViewStatesApi {
 
         okhttp3.Call localVarCall = getSceneViewStatesValidateBeforeCall(id, pageCursor, pageSize, _callback);
         Type localVarReturnType = new TypeToken<SceneViewStateList>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for updateSceneViewState
+     * @param id The &#x60;scene-view-state&#x60; ID. (required)
+     * @param updateSceneViewStateRequest  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateSceneViewStateCall(UUID id, UpdateSceneViewStateRequest updateSceneViewStateRequest, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = updateSceneViewStateRequest;
+
+        // create path and map variables
+        String localVarPath = "/scene-view-states/{id}"
+            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/vnd.api+json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/vnd.api+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "OAuth2" };
+        return localVarApiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call updateSceneViewStateValidateBeforeCall(UUID id, UpdateSceneViewStateRequest updateSceneViewStateRequest, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling updateSceneViewState(Async)");
+        }
+        
+        // verify the required parameter 'updateSceneViewStateRequest' is set
+        if (updateSceneViewStateRequest == null) {
+            throw new ApiException("Missing the required parameter 'updateSceneViewStateRequest' when calling updateSceneViewState(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = updateSceneViewStateCall(id, updateSceneViewStateRequest, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * 
+     * Update a &#x60;scene-view-state&#x60;.
+     * @param id The &#x60;scene-view-state&#x60; ID. (required)
+     * @param updateSceneViewStateRequest  (required)
+     * @return SceneViewState
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
+     </table>
+     */
+    public SceneViewState updateSceneViewState(UUID id, UpdateSceneViewStateRequest updateSceneViewStateRequest) throws ApiException {
+        ApiResponse<SceneViewState> localVarResp = updateSceneViewStateWithHttpInfo(id, updateSceneViewStateRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * 
+     * Update a &#x60;scene-view-state&#x60;.
+     * @param id The &#x60;scene-view-state&#x60; ID. (required)
+     * @param updateSceneViewStateRequest  (required)
+     * @return ApiResponse&lt;SceneViewState&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<SceneViewState> updateSceneViewStateWithHttpInfo(UUID id, UpdateSceneViewStateRequest updateSceneViewStateRequest) throws ApiException {
+        okhttp3.Call localVarCall = updateSceneViewStateValidateBeforeCall(id, updateSceneViewStateRequest, null);
+        Type localVarReturnType = new TypeToken<SceneViewState>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * Update a &#x60;scene-view-state&#x60;.
+     * @param id The &#x60;scene-view-state&#x60; ID. (required)
+     * @param updateSceneViewStateRequest  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateSceneViewStateAsync(UUID id, UpdateSceneViewStateRequest updateSceneViewStateRequest, final ApiCallback<SceneViewState> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = updateSceneViewStateValidateBeforeCall(id, updateSceneViewStateRequest, _callback);
+        Type localVarReturnType = new TypeToken<SceneViewState>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

@@ -20,9 +20,9 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.CreateSceneViewStateRequestDataRelationships;
 import com.vertexvis.model.HitDataAttributes;
 import com.vertexvis.model.Link;
+import com.vertexvis.model.SceneAlterationDataRelationships;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -50,7 +50,7 @@ public class SceneAlterationData {
 
   public static final String SERIALIZED_NAME_RELATIONSHIPS = "relationships";
   @SerializedName(SERIALIZED_NAME_RELATIONSHIPS)
-  private CreateSceneViewStateRequestDataRelationships relationships;
+  private SceneAlterationDataRelationships relationships;
 
   public static final String SERIALIZED_NAME_LINKS = "links";
   @SerializedName(SERIALIZED_NAME_LINKS)
@@ -123,7 +123,7 @@ public class SceneAlterationData {
   }
 
 
-  public SceneAlterationData relationships(CreateSceneViewStateRequestDataRelationships relationships) {
+  public SceneAlterationData relationships(SceneAlterationDataRelationships relationships) {
     
     this.relationships = relationships;
     return this;
@@ -135,12 +135,12 @@ public class SceneAlterationData {
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public CreateSceneViewStateRequestDataRelationships getRelationships() {
+  public SceneAlterationDataRelationships getRelationships() {
     return relationships;
   }
 
 
-  public void setRelationships(CreateSceneViewStateRequestDataRelationships relationships) {
+  public void setRelationships(SceneAlterationDataRelationships relationships) {
     this.relationships = relationships;
   }
 
