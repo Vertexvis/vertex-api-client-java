@@ -25,7 +25,7 @@ public class OneOfSceneViewRelationshipSceneViewStateRelationshipTypeAdapter
   @Override
   public void write(JsonWriter out, OneOfSceneViewRelationshipSceneViewStateRelationship value)
       throws IOException {
-    out.jsonValue(gsonSupplier.get().toJson(value.getData()));
+    out.jsonValue(gsonSupplier.get().toJson(value.getRel()));
   }
 
   @Override
@@ -53,12 +53,12 @@ public class OneOfSceneViewRelationshipSceneViewStateRelationshipTypeAdapter
     in.endObject();
 
     switch (type) {
-      case "geometry-set":
+      case "scene-view":
         return new OneOfSceneViewRelationshipSceneViewStateRelationship(new SceneViewRelationship()
             .data(
                 new SceneViewRelationshipData().type(SceneViewRelationshipData.TypeEnum.SCENE_VIEW)
                     .id(UUID.fromString(id))));
-      case "scene":
+      case "scene-view-state":
         return new OneOfSceneViewRelationshipSceneViewStateRelationship(
             new SceneViewStateRelationship().data(new SceneViewStateRelationshipData()
                 .type(SceneViewStateRelationshipData.TypeEnum.SCENE_VIEW_STATE)

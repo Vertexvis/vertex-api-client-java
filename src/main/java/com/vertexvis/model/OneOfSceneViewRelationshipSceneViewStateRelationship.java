@@ -3,37 +3,43 @@ package com.vertexvis.model;
 import javax.annotation.Nullable;
 
 public class OneOfSceneViewRelationshipSceneViewStateRelationship {
-  private SceneViewRelationship sceneViewRelationship;
-  private SceneViewStateRelationship sceneViewStateRelationship;
+  private SceneViewRelationship svRel;
+  private SceneViewStateRelationship svsRel;
 
-  public OneOfSceneViewRelationshipSceneViewStateRelationship(
-      SceneViewRelationship sceneViewRelationship) {
-    this.sceneViewRelationship = sceneViewRelationship;
+  public OneOfSceneViewRelationshipSceneViewStateRelationship(SceneViewRelationship svRel) {
+    this.svRel = svRel;
   }
 
-  public OneOfSceneViewRelationshipSceneViewStateRelationship(
-      SceneViewStateRelationship sceneViewStateRelationship) {
-    this.sceneViewStateRelationship = sceneViewStateRelationship;
+  public OneOfSceneViewRelationshipSceneViewStateRelationship(SceneViewStateRelationship svsRel) {
+    this.svsRel = svsRel;
   }
 
-  public Object getData() {
-    if (this.sceneViewRelationship != null) {
-      return this.sceneViewRelationship;
+  public Object getRel() {
+    if (this.svRel != null) {
+      return this.svRel;
     }
-    if (this.sceneViewStateRelationship != null) {
-      return this.sceneViewStateRelationship;
+    if (this.svsRel != null) {
+      return this.svsRel;
     }
 
     return null;
   }
 
-  @Nullable
-  public SceneViewRelationship getSceneViewRelationship() {
-    return this.sceneViewRelationship;
+  public boolean isSceneViewRel() {
+    return this.svRel != null;
+  }
+
+  public boolean isSceneViewStateRel() {
+    return this.svsRel != null;
   }
 
   @Nullable
-  public SceneViewStateRelationship getSceneViewStateRelationship() {
-    return this.sceneViewStateRelationship;
+  public SceneViewRelationship getSceneViewRel() {
+    return this.svRel;
+  }
+
+  @Nullable
+  public SceneViewStateRelationship getSceneViewStateRel() {
+    return this.svsRel;
   }
 }

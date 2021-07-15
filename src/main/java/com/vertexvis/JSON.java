@@ -91,6 +91,7 @@ public class JSON {
                 .registerTypeAdapter(AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperation.class, new AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperationTypeAdapter(() -> gson))
                 .registerTypeAdapter(OneOfHitResultDataSceneItemDataPartRevisionData.class, new OneOfHitResultDataSceneItemDataPartRevisionDataTypeAdapter(() -> gson))
                 .registerTypeAdapter(AnyOfGeometrySetRelationshipPartRevisionRelationship.class, new AnyOfGeometrySetRelationshipPartRevisionRelationshipTypeAdapter(() -> gson))
+                .registerTypeAdapter(OneOfSceneViewRelationshipSceneViewStateRelationship.class, new OneOfSceneViewRelationshipSceneViewStateRelationshipTypeAdapter(() -> gson))
                 .create();
     }
 
