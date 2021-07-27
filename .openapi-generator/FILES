@@ -200,6 +200,7 @@ src/main/java/com/vertexvis/model/StreamKey.java
 src/main/java/com/vertexvis/model/StreamKeyData.java
 src/main/java/com/vertexvis/model/StreamKeyDataAttributes.java
 src/main/java/com/vertexvis/model/StreamKeyList.java
+src/main/java/com/vertexvis/model/ThumbnailData.java
 src/main/java/com/vertexvis/model/TranslationInspectionJob.java
 src/main/java/com/vertexvis/model/TranslationInspectionJobData.java
 src/main/java/com/vertexvis/model/TranslationInspectionJobDataAttributes.java

@@ -20,10 +20,13 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.vertexvis.model.ThumbnailData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * SceneViewStateDataAttributes
@@ -38,6 +41,10 @@ public class SceneViewStateDataAttributes {
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
 
+  public static final String SERIALIZED_NAME_THUMBNAILS = "thumbnails";
+  @SerializedName(SERIALIZED_NAME_THUMBNAILS)
+  private List<ThumbnailData> thumbnails = null;
+
 
   public SceneViewStateDataAttributes created(OffsetDateTime created) {
     
@@ -49,7 +56,8 @@ public class SceneViewStateDataAttributes {
    * Get created
    * @return created
   **/
-  @ApiModelProperty(example = "2020-01-01T12:00Z", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "2020-01-01T12:00Z", value = "")
 
   public OffsetDateTime getCreated() {
     return created;
@@ -84,6 +92,37 @@ public class SceneViewStateDataAttributes {
   }
 
 
+  public SceneViewStateDataAttributes thumbnails(List<ThumbnailData> thumbnails) {
+    
+    this.thumbnails = thumbnails;
+    return this;
+  }
+
+  public SceneViewStateDataAttributes addThumbnailsItem(ThumbnailData thumbnailsItem) {
+    if (this.thumbnails == null) {
+      this.thumbnails = new ArrayList<>();
+    }
+    this.thumbnails.add(thumbnailsItem);
+    return this;
+  }
+
+   /**
+   * Get thumbnails
+   * @return thumbnails
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public List<ThumbnailData> getThumbnails() {
+    return thumbnails;
+  }
+
+
+  public void setThumbnails(List<ThumbnailData> thumbnails) {
+    this.thumbnails = thumbnails;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -94,12 +133,13 @@ public class SceneViewStateDataAttributes {
     }
     SceneViewStateDataAttributes sceneViewStateDataAttributes = (SceneViewStateDataAttributes) o;
     return Objects.equals(this.created, sceneViewStateDataAttributes.created) &&
-        Objects.equals(this.name, sceneViewStateDataAttributes.name);
+        Objects.equals(this.name, sceneViewStateDataAttributes.name) &&
+        Objects.equals(this.thumbnails, sceneViewStateDataAttributes.thumbnails);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(created, name);
+    return Objects.hash(created, name, thumbnails);
   }
 
   @Override
@@ -108,6 +148,7 @@ public class SceneViewStateDataAttributes {
     sb.append("class SceneViewStateDataAttributes {\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    thumbnails: ").append(toIndentedString(thumbnails)).append("\n");
     sb.append("}");
     return sb.toString();
   }

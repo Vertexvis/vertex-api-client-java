@@ -319,6 +319,7 @@ public class SceneViewStatesApi {
     /**
      * Build call for getSceneViewState
      * @param id The &#x60;scene-view-state&#x60; ID. (required)
+     * @param fieldsSceneViewState Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;thumbnails&#x60; is only returned if explicitly requested. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -331,7 +332,7 @@ public class SceneViewStatesApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSceneViewStateCall(UUID id, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getSceneViewStateCall(UUID id, String fieldsSceneViewState, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -343,6 +344,10 @@ public class SceneViewStatesApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (fieldsSceneViewState != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("fields[scene-view-state]", fieldsSceneViewState));
+        }
 
         final String[] localVarAccepts = {
             "application/vnd.api+json"
@@ -363,7 +368,7 @@ public class SceneViewStatesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getSceneViewStateValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getSceneViewStateValidateBeforeCall(UUID id, String fieldsSceneViewState, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -371,7 +376,7 @@ public class SceneViewStatesApi {
         }
         
 
-        okhttp3.Call localVarCall = getSceneViewStateCall(id, _callback);
+        okhttp3.Call localVarCall = getSceneViewStateCall(id, fieldsSceneViewState, _callback);
         return localVarCall;
 
     }
@@ -380,6 +385,7 @@ public class SceneViewStatesApi {
      * 
      * Get a &#x60;scene-view-state&#x60; by ID.
      * @param id The &#x60;scene-view-state&#x60; ID. (required)
+     * @param fieldsSceneViewState Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;thumbnails&#x60; is only returned if explicitly requested. (optional)
      * @return SceneViewState
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -391,8 +397,8 @@ public class SceneViewStatesApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public SceneViewState getSceneViewState(UUID id) throws ApiException {
-        ApiResponse<SceneViewState> localVarResp = getSceneViewStateWithHttpInfo(id);
+    public SceneViewState getSceneViewState(UUID id, String fieldsSceneViewState) throws ApiException {
+        ApiResponse<SceneViewState> localVarResp = getSceneViewStateWithHttpInfo(id, fieldsSceneViewState);
         return localVarResp.getData();
     }
 
@@ -400,6 +406,7 @@ public class SceneViewStatesApi {
      * 
      * Get a &#x60;scene-view-state&#x60; by ID.
      * @param id The &#x60;scene-view-state&#x60; ID. (required)
+     * @param fieldsSceneViewState Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;thumbnails&#x60; is only returned if explicitly requested. (optional)
      * @return ApiResponse&lt;SceneViewState&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -411,8 +418,8 @@ public class SceneViewStatesApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SceneViewState> getSceneViewStateWithHttpInfo(UUID id) throws ApiException {
-        okhttp3.Call localVarCall = getSceneViewStateValidateBeforeCall(id, null);
+    public ApiResponse<SceneViewState> getSceneViewStateWithHttpInfo(UUID id, String fieldsSceneViewState) throws ApiException {
+        okhttp3.Call localVarCall = getSceneViewStateValidateBeforeCall(id, fieldsSceneViewState, null);
         Type localVarReturnType = new TypeToken<SceneViewState>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -421,6 +428,7 @@ public class SceneViewStatesApi {
      *  (asynchronously)
      * Get a &#x60;scene-view-state&#x60; by ID.
      * @param id The &#x60;scene-view-state&#x60; ID. (required)
+     * @param fieldsSceneViewState Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;thumbnails&#x60; is only returned if explicitly requested. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -433,9 +441,9 @@ public class SceneViewStatesApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSceneViewStateAsync(UUID id, final ApiCallback<SceneViewState> _callback) throws ApiException {
+    public okhttp3.Call getSceneViewStateAsync(UUID id, String fieldsSceneViewState, final ApiCallback<SceneViewState> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getSceneViewStateValidateBeforeCall(id, _callback);
+        okhttp3.Call localVarCall = getSceneViewStateValidateBeforeCall(id, fieldsSceneViewState, _callback);
         Type localVarReturnType = new TypeToken<SceneViewState>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -445,6 +453,7 @@ public class SceneViewStatesApi {
      * @param id The &#x60;scene&#x60; ID. (required)
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
+     * @param fieldsSceneViewState Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;thumbnails&#x60; is only returned if explicitly requested. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -456,7 +465,7 @@ public class SceneViewStatesApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSceneViewStatesCall(UUID id, String pageCursor, Integer pageSize, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getSceneViewStatesCall(UUID id, String pageCursor, Integer pageSize, String fieldsSceneViewState, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -477,6 +486,10 @@ public class SceneViewStatesApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[size]", pageSize));
         }
 
+        if (fieldsSceneViewState != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("fields[scene-view-state]", fieldsSceneViewState));
+        }
+
         final String[] localVarAccepts = {
             "application/vnd.api+json"
         };
@@ -496,7 +509,7 @@ public class SceneViewStatesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getSceneViewStatesValidateBeforeCall(UUID id, String pageCursor, Integer pageSize, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getSceneViewStatesValidateBeforeCall(UUID id, String pageCursor, Integer pageSize, String fieldsSceneViewState, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -504,7 +517,7 @@ public class SceneViewStatesApi {
         }
         
 
-        okhttp3.Call localVarCall = getSceneViewStatesCall(id, pageCursor, pageSize, _callback);
+        okhttp3.Call localVarCall = getSceneViewStatesCall(id, pageCursor, pageSize, fieldsSceneViewState, _callback);
         return localVarCall;
 
     }
@@ -515,6 +528,7 @@ public class SceneViewStatesApi {
      * @param id The &#x60;scene&#x60; ID. (required)
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
+     * @param fieldsSceneViewState Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;thumbnails&#x60; is only returned if explicitly requested. (optional)
      * @return SceneViewStateList
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -525,8 +539,8 @@ public class SceneViewStatesApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public SceneViewStateList getSceneViewStates(UUID id, String pageCursor, Integer pageSize) throws ApiException {
-        ApiResponse<SceneViewStateList> localVarResp = getSceneViewStatesWithHttpInfo(id, pageCursor, pageSize);
+    public SceneViewStateList getSceneViewStates(UUID id, String pageCursor, Integer pageSize, String fieldsSceneViewState) throws ApiException {
+        ApiResponse<SceneViewStateList> localVarResp = getSceneViewStatesWithHttpInfo(id, pageCursor, pageSize, fieldsSceneViewState);
         return localVarResp.getData();
     }
 
@@ -536,6 +550,7 @@ public class SceneViewStatesApi {
      * @param id The &#x60;scene&#x60; ID. (required)
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
+     * @param fieldsSceneViewState Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;thumbnails&#x60; is only returned if explicitly requested. (optional)
      * @return ApiResponse&lt;SceneViewStateList&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -546,8 +561,8 @@ public class SceneViewStatesApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SceneViewStateList> getSceneViewStatesWithHttpInfo(UUID id, String pageCursor, Integer pageSize) throws ApiException {
-        okhttp3.Call localVarCall = getSceneViewStatesValidateBeforeCall(id, pageCursor, pageSize, null);
+    public ApiResponse<SceneViewStateList> getSceneViewStatesWithHttpInfo(UUID id, String pageCursor, Integer pageSize, String fieldsSceneViewState) throws ApiException {
+        okhttp3.Call localVarCall = getSceneViewStatesValidateBeforeCall(id, pageCursor, pageSize, fieldsSceneViewState, null);
         Type localVarReturnType = new TypeToken<SceneViewStateList>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -558,6 +573,7 @@ public class SceneViewStatesApi {
      * @param id The &#x60;scene&#x60; ID. (required)
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
+     * @param fieldsSceneViewState Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;thumbnails&#x60; is only returned if explicitly requested. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -569,9 +585,9 @@ public class SceneViewStatesApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSceneViewStatesAsync(UUID id, String pageCursor, Integer pageSize, final ApiCallback<SceneViewStateList> _callback) throws ApiException {
+    public okhttp3.Call getSceneViewStatesAsync(UUID id, String pageCursor, Integer pageSize, String fieldsSceneViewState, final ApiCallback<SceneViewStateList> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getSceneViewStatesValidateBeforeCall(id, pageCursor, pageSize, _callback);
+        okhttp3.Call localVarCall = getSceneViewStatesValidateBeforeCall(id, pageCursor, pageSize, fieldsSceneViewState, _callback);
         Type localVarReturnType = new TypeToken<SceneViewStateList>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

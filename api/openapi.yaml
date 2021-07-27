@@ -3715,6 +3715,16 @@ paths:
           minimum: 1
           type: integer
         style: form
+      - description: Comma-separated list of fields to return in response. An empty
+          value returns no fields. `thumbnails` is only returned if explicitly requested.
+        explode: true
+        in: query
+        name: fields[scene-view-state]
+        required: false
+        schema:
+          example: thumbnails
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -3896,6 +3906,16 @@ paths:
         schema:
           $ref: '#/components/schemas/Uuid'
         style: simple
+      - description: Comma-separated list of fields to return in response. An empty
+          value returns no fields. `thumbnails` is only returned if explicitly requested.
+        explode: true
+        in: query
+        name: fields[scene-view-state]
+        required: false
+        schema:
+          example: thumbnails
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -4951,6 +4971,17 @@ components:
       required: false
       schema:
         example: camera,state,created,suppliedId,name,treeEnabled,modified,up,sceneItemCount
+        type: string
+      style: form
+    SceneViewStateFields:
+      description: Comma-separated list of fields to return in response. An empty
+        value returns no fields. `thumbnails` is only returned if explicitly requested.
+      explode: true
+      in: query
+      name: fields[scene-view-state]
+      required: false
+      schema:
+        example: thumbnails
         type: string
       style: form
     SceneItemId:
@@ -7006,6 +7037,20 @@ components:
       - normal
       - offset
       type: object
+    ThumbnailData:
+      additionalProperties: false
+      properties:
+        uri:
+          type: string
+        height:
+          type: integer
+        width:
+          type: integer
+      required:
+      - height
+      - uri
+      - width
+      type: object
     RelationshipLinks:
       additionalProperties: false
       example:
@@ -8121,8 +8166,10 @@ components:
           maxLength: 1024
           minLength: 1
           type: string
-      required:
-      - created
+        thumbnails:
+          items:
+            $ref: '#/components/schemas/ThumbnailData'
+          type: array
       type: object
     SceneViewRelationship_data:
       properties:
