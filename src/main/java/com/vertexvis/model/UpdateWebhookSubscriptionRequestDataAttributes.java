@@ -86,6 +86,10 @@ public class UpdateWebhookSubscriptionRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_TOPICS)
   private List<String> topics = null;
 
+  public static final String SERIALIZED_NAME_URL = "url";
+  @SerializedName(SERIALIZED_NAME_URL)
+  private String url;
+
 
   public UpdateWebhookSubscriptionRequestDataAttributes status(StatusEnum status) {
     
@@ -141,6 +145,29 @@ public class UpdateWebhookSubscriptionRequestDataAttributes {
   }
 
 
+  public UpdateWebhookSubscriptionRequestDataAttributes url(String url) {
+    
+    this.url = url;
+    return this;
+  }
+
+   /**
+   * Get url
+   * @return url
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "some-string", value = "")
+
+  public String getUrl() {
+    return url;
+  }
+
+
+  public void setUrl(String url) {
+    this.url = url;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -151,12 +178,13 @@ public class UpdateWebhookSubscriptionRequestDataAttributes {
     }
     UpdateWebhookSubscriptionRequestDataAttributes updateWebhookSubscriptionRequestDataAttributes = (UpdateWebhookSubscriptionRequestDataAttributes) o;
     return Objects.equals(this.status, updateWebhookSubscriptionRequestDataAttributes.status) &&
-        Objects.equals(this.topics, updateWebhookSubscriptionRequestDataAttributes.topics);
+        Objects.equals(this.topics, updateWebhookSubscriptionRequestDataAttributes.topics) &&
+        Objects.equals(this.url, updateWebhookSubscriptionRequestDataAttributes.url);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, topics);
+    return Objects.hash(status, topics, url);
   }
 
   @Override
@@ -165,6 +193,7 @@ public class UpdateWebhookSubscriptionRequestDataAttributes {
     sb.append("class UpdateWebhookSubscriptionRequestDataAttributes {\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    topics: ").append(toIndentedString(topics)).append("\n");
+    sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("}");
     return sb.toString();
   }
