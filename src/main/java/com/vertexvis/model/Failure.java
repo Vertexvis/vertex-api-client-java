@@ -64,6 +64,7 @@ public class Failure {
    * Get errors
    * @return errors
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Set<ApiError> getErrors() {

@@ -58,6 +58,7 @@ public class Matrix4 {
    * Get r0
    * @return r0
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Vector4 getR0() {
@@ -80,6 +81,7 @@ public class Matrix4 {
    * Get r1
    * @return r1
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Vector4 getR1() {
@@ -102,6 +104,7 @@ public class Matrix4 {
    * Get r2
    * @return r2
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Vector4 getR2() {
@@ -124,6 +127,7 @@ public class Matrix4 {
    * Get r3
    * @return r3
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Vector4 getR3() {

@@ -45,6 +45,7 @@ public class QueryByCollection {
    * Get data
    * @return data
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public QueryByCollectionData getData() {

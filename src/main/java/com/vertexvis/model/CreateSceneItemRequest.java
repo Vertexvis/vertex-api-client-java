@@ -45,6 +45,7 @@ public class CreateSceneItemRequest {
    * Get data
    * @return data
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public CreateSceneItemRequestData getData() {

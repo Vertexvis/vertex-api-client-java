@@ -95,6 +95,7 @@ public class QueryByIdDataAttributes {
    * Resource object type.
    * @return type
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "suppliedId", required = true, value = "Resource object type.")
 
   public TypeEnum getType() {
@@ -117,6 +118,7 @@ public class QueryByIdDataAttributes {
    * ID of the resource.
    * @return value
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "ID of the resource.")
 
   public String getValue() {

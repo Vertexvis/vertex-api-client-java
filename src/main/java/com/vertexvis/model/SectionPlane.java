@@ -50,6 +50,7 @@ public class SectionPlane {
    * Get normal
    * @return normal
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Vector3 getNormal() {
@@ -72,6 +73,7 @@ public class SectionPlane {
    * Distance from the center point to move the plane.
    * @return offset
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "0.0", required = true, value = "Distance from the center point to move the plane.")
 
   public BigDecimal getOffset() {

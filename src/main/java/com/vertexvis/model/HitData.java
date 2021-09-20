@@ -59,6 +59,7 @@ public class HitData {
    * Get type
    * @return type
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "hit", required = true, value = "")
 
   public String getType() {
@@ -81,6 +82,7 @@ public class HitData {
    * ID of the resource.
    * @return id
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "f79d4760-0b71-44e4-ad0b-22743fdd4ca3", required = true, value = "ID of the resource.")
 
   public UUID getId() {
@@ -103,6 +105,7 @@ public class HitData {
    * Get attributes
    * @return attributes
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public HitDataAttributes getAttributes() {
@@ -125,6 +128,7 @@ public class HitData {
    * Get relationships
    * @return relationships
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public HitDataRelationships getRelationships() {

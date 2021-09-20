@@ -52,6 +52,7 @@ public class CrossSectioning {
    * Get planes
    * @return planes
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public List<SectionPlane> getPlanes() {

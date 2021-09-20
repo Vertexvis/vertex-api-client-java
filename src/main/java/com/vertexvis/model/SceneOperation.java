@@ -52,6 +52,7 @@ public class SceneOperation {
    * Query &#x60;scene-items&#x60;. Use &#x60;query-by-collection&#x60; to combine multiple queries.
    * @return query
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Query `scene-items`. Use `query-by-collection` to combine multiple queries.")
 
   public AnyOfQueryByIdQueryByCollectionQueryAll getQuery() {
@@ -79,6 +80,7 @@ public class SceneOperation {
    * List of operations to perform on &#x60;scene-items&#x60; matching the query.
    * @return operations
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "List of operations to perform on `scene-items` matching the query.")
 
   public List<AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperation> getOperations() {

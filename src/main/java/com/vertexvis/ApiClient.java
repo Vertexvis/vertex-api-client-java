@@ -92,6 +92,7 @@ public class ApiClient {
 
         // Setup authentications (key: authentication name, value: authentication).
         authentications.put("OAuth2", new OAuth());
+        authentications.put("OAuth2Internal", new OAuth());
         authentications.put("basicAuth", new HttpBasicAuth());
         // Prevent the authentications from being modified.
         authentications = Collections.unmodifiableMap(authentications);
@@ -107,6 +108,7 @@ public class ApiClient {
 
         // Setup authentications (key: authentication name, value: authentication).
         authentications.put("OAuth2", new OAuth());
+        authentications.put("OAuth2Internal", new OAuth());
         authentications.put("basicAuth", new HttpBasicAuth());
         // Prevent the authentications from being modified.
         authentications = Collections.unmodifiableMap(authentications);
@@ -185,7 +187,7 @@ public class ApiClient {
         json = new JSON();
 
         // Set default User-Agent.
-        setUserAgent("vertex-api-client-java/0.2.6");
+        setUserAgent("vertex-api-client-java/0.2.7");
 
         authentications = new HashMap<String, Authentication>();
     }
@@ -507,7 +509,7 @@ public class ApiClient {
     /**
      * The path of temporary folder used to store downloaded files from endpoints
      * with file response. The default value is <code>null</code>, i.e. using
-     * the system's default tempopary folder.
+     * the system's default temporary folder.
      *
      * @see <a href="https://docs.oracle.com/javase/7/docs/api/java/nio/file/Files.html#createTempFile(java.lang.String,%20java.lang.String,%20java.nio.file.attribute.FileAttribute...)">createTempFile</a>
      * @return Temporary folder path

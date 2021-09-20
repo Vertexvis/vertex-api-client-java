@@ -59,6 +59,7 @@ public class Hit {
    * Get data
    * @return data
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public HitData getData() {
@@ -86,6 +87,7 @@ public class Hit {
    * Get included
    * @return included
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public List<OneOfHitResultDataSceneItemDataPartRevisionData> getIncluded() {

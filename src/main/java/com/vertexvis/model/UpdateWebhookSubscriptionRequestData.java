@@ -49,6 +49,7 @@ public class UpdateWebhookSubscriptionRequestData {
    * Resource object type.
    * @return type
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "webhook-subscription", required = true, value = "Resource object type.")
 
   public String getType() {
@@ -71,6 +72,7 @@ public class UpdateWebhookSubscriptionRequestData {
    * Get attributes
    * @return attributes
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public UpdateWebhookSubscriptionRequestDataAttributes getAttributes() {

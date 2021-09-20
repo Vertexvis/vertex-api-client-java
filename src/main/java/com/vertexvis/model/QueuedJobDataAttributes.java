@@ -57,6 +57,7 @@ public class QueuedJobDataAttributes {
    * Get status
    * @return status
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "running", required = true, value = "")
 
   public String getStatus() {
@@ -79,6 +80,7 @@ public class QueuedJobDataAttributes {
    * Get created
    * @return created
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "2020-01-01T12:00Z", required = true, value = "")
 
   public OffsetDateTime getCreated() {

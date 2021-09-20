@@ -52,6 +52,7 @@ public class ThumbnailData {
    * Get uri
    * @return uri
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public String getUri() {
@@ -74,6 +75,7 @@ public class ThumbnailData {
    * Get height
    * @return height
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Integer getHeight() {
@@ -96,6 +98,7 @@ public class ThumbnailData {
    * Get width
    * @return width
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Integer getWidth() {

@@ -98,6 +98,7 @@ public class QueryByCollectionDataAttributes {
    * Resource object type.
    * @return type
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "and", required = true, value = "Resource object type.")
 
   public TypeEnum getType() {
@@ -125,6 +126,7 @@ public class QueryByCollectionDataAttributes {
    * Query &#x60;scene-items&#x60;.
    * @return values
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Query `scene-items`.")
 
   public List<QueryById> getValues() {

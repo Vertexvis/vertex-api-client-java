@@ -5,7 +5,6 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.AnyOfCameraCameraFit;
-import com.vertexvis.model.AnyOfQueryByIdQueryByCollectionQueryAll;
 
 import java.io.IOException;
 import java.util.function.Supplier;

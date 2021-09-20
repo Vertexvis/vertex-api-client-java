@@ -20,9 +20,15 @@ public class OneOfHitResultDataSceneItemDataPartRevisionData {
   }
 
   public Object getData() {
-    if (this.hitResultData != null) return this.hitResultData;
-    if (this.partRevisionData != null) return this.partRevisionData;
-    if (this.sceneItemData != null) return this.sceneItemData;
+    if (this.hitResultData != null) {
+      return this.hitResultData;
+    }
+    if (this.partRevisionData != null) {
+      return this.partRevisionData;
+    }
+    if (this.sceneItemData != null) {
+      return this.sceneItemData;
+    }
 
     return null;
   }

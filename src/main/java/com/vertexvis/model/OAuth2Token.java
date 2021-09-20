@@ -66,6 +66,7 @@ public class OAuth2Token {
    * Get accessToken
    * @return accessToken
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "HnkQzHpk4iTaPfssu3zpI.PTbAxKdDIfrNcgrmsxQqg", required = true, value = "")
 
   public String getAccessToken() {
@@ -88,6 +89,7 @@ public class OAuth2Token {
    * Get tokenType
    * @return tokenType
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "bearer", required = true, value = "")
 
   public String getTokenType() {
@@ -110,6 +112,7 @@ public class OAuth2Token {
    * Get accountId
    * @return accountId
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "7b3f55e2-60f3-4bf3-82bc-f8afbce843b0", required = true, value = "")
 
   public String getAccountId() {
@@ -132,6 +135,7 @@ public class OAuth2Token {
    * Get expiresIn
    * @return expiresIn
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "3600", required = true, value = "")
 
   public Integer getExpiresIn() {
@@ -159,6 +163,7 @@ public class OAuth2Token {
    * Get scopes
    * @return scopes
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public List<String> getScopes() {

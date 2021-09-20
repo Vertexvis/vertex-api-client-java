@@ -27,6 +27,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * SceneViewDataAttributes
@@ -60,6 +61,7 @@ public class SceneViewDataAttributes {
    * Get camera
    * @return camera
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Camera getCamera() {
@@ -82,6 +84,7 @@ public class SceneViewDataAttributes {
    * Get created
    * @return created
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "2020-01-01T12:00Z", required = true, value = "")
 
   public OffsetDateTime getCreated() {
@@ -155,9 +158,20 @@ public class SceneViewDataAttributes {
         Objects.equals(this.worldOrientation, sceneViewDataAttributes.worldOrientation);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
     return Objects.hash(camera, created, crossSectioning, worldOrientation);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

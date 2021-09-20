@@ -59,6 +59,7 @@ public class FileList {
    * Get data
    * @return data
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public List<FileMetadataData> getData() {
@@ -86,6 +87,7 @@ public class FileList {
    * Get links
    * @return links
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Map<String, Link> getLinks() {

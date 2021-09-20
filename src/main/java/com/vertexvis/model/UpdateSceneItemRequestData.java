@@ -54,6 +54,7 @@ public class UpdateSceneItemRequestData {
    * Resource object type.
    * @return type
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "scene-item", required = true, value = "Resource object type.")
 
   public String getType() {
@@ -76,6 +77,7 @@ public class UpdateSceneItemRequestData {
    * Get attributes
    * @return attributes
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public UpdateSceneItemRequestDataAttributes getAttributes() {

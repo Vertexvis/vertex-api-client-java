@@ -45,6 +45,7 @@ public class UpdateSceneRequest {
    * Get data
    * @return data
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public UpdateSceneRequestData getData() {

@@ -59,6 +59,7 @@ public class SceneViewList {
    * Get data
    * @return data
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public List<SceneViewData> getData() {
@@ -86,6 +87,7 @@ public class SceneViewList {
    * Get links
    * @return links
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Map<String, Link> getLinks() {

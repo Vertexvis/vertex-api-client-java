@@ -50,6 +50,7 @@ public class CreateWebhookSubscriptionRequestDataAttributes {
    * Get url
    * @return url
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "some-string", required = true, value = "")
 
   public String getUrl() {
@@ -77,6 +78,7 @@ public class CreateWebhookSubscriptionRequestDataAttributes {
    * Get topics
    * @return topics
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public List<String> getTopics() {

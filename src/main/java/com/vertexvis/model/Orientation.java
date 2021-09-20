@@ -50,6 +50,7 @@ public class Orientation {
    * Get up
    * @return up
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Vector3 getUp() {
@@ -72,6 +73,7 @@ public class Orientation {
    * Get front
    * @return front
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Vector3 getFront() {

@@ -54,6 +54,7 @@ public class CreatePartRequestData {
    * Resource object type. Specify one and only one of suppliedId or suppliedIdKey and one and only one of suppliedRevisionId or suppliedRevisionIdKey.
    * @return type
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "part", required = true, value = "Resource object type. Specify one and only one of suppliedId or suppliedIdKey and one and only one of suppliedRevisionId or suppliedRevisionIdKey.")
 
   public String getType() {
@@ -76,6 +77,7 @@ public class CreatePartRequestData {
    * Get attributes
    * @return attributes
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public CreatePartRequestDataAttributes getAttributes() {
@@ -98,6 +100,7 @@ public class CreatePartRequestData {
    * Get relationships
    * @return relationships
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public CreateGeometrySetRequestDataRelationships getRelationships() {

@@ -46,6 +46,7 @@ public class SceneViewRelationship {
    * Get data
    * @return data
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public SceneViewRelationshipData getData() {

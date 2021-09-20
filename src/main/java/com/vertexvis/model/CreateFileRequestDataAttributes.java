@@ -52,6 +52,7 @@ public class CreateFileRequestDataAttributes {
    * Name matching that of the file you are uploading, including file extension.
    * @return name
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "model.zip", required = true, value = "Name matching that of the file you are uploading, including file extension.")
 
   public String getName() {

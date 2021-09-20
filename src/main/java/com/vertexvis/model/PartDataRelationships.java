@@ -52,6 +52,7 @@ public class PartDataRelationships {
    * Get partRevisions
    * @return partRevisions
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public List<PartDataRelationshipsPartRevisions> getPartRevisions() {

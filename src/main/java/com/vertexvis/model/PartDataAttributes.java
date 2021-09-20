@@ -53,6 +53,7 @@ public class PartDataAttributes {
    * Get name
    * @return name
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "some-string", required = true, value = "")
 
   public String getName() {
@@ -75,6 +76,7 @@ public class PartDataAttributes {
    * Get suppliedId
    * @return suppliedId
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "some-string", required = true, value = "")
 
   public String getSuppliedId() {
@@ -97,6 +99,7 @@ public class PartDataAttributes {
    * Get created
    * @return created
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "2020-01-01T12:00Z", required = true, value = "")
 
   public OffsetDateTime getCreated() {

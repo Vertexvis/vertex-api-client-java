@@ -93,6 +93,7 @@ public class ChangeVisibilityOperation {
    * Resource object type.
    * @return type
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "change-visibility", required = true, value = "Resource object type.")
 
   public TypeEnum getType() {
@@ -115,6 +116,7 @@ public class ChangeVisibilityOperation {
    * Item visibility.
    * @return visible
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "true", required = true, value = "Item visibility.")
 
   public Boolean getVisible() {

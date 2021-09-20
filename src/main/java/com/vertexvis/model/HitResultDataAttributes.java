@@ -49,6 +49,7 @@ public class HitResultDataAttributes {
    * Get point
    * @return point
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Vector3 getPoint() {
@@ -71,6 +72,7 @@ public class HitResultDataAttributes {
    * Get normal
    * @return normal
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Vector3 getNormal() {

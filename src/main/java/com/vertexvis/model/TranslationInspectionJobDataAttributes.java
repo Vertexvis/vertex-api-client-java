@@ -50,6 +50,7 @@ public class TranslationInspectionJobDataAttributes {
    * Get status
    * @return status
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "running", required = true, value = "")
 
   public String getStatus() {
@@ -77,6 +78,7 @@ public class TranslationInspectionJobDataAttributes {
    * Get missing
    * @return missing
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public List<String> getMissing() {

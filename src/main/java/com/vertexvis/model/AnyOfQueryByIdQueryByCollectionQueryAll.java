@@ -20,9 +20,15 @@ public class AnyOfQueryByIdQueryByCollectionQueryAll {
   }
 
   public Object getQuery() {
-    if (queryById != null) return this.queryById;
-    if (queryByCollection != null) return this.queryByCollection;
-    if (queryAll != null) return this.queryAll;
+    if (queryById != null) {
+      return this.queryById;
+    }
+    if (queryByCollection != null) {
+      return this.queryByCollection;
+    }
+    if (queryAll != null) {
+      return this.queryAll;
+    }
 
     return null;
   }
@@ -38,7 +44,7 @@ public class AnyOfQueryByIdQueryByCollectionQueryAll {
   }
 
   @Nullable
-    public QueryAll getQueryAll() {
+  public QueryAll getQueryAll() {
     return this.queryAll;
   }
 }

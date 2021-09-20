@@ -67,6 +67,7 @@ public class PartData {
    * Get type
    * @return type
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "part", required = true, value = "")
 
   public String getType() {
@@ -89,6 +90,7 @@ public class PartData {
    * ID of the resource.
    * @return id
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "f79d4760-0b71-44e4-ad0b-22743fdd4ca3", required = true, value = "ID of the resource.")
 
   public UUID getId() {
@@ -111,6 +113,7 @@ public class PartData {
    * Get attributes
    * @return attributes
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public PartDataAttributes getAttributes() {

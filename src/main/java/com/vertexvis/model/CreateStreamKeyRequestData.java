@@ -49,6 +49,7 @@ public class CreateStreamKeyRequestData {
    * Resource object type.
    * @return type
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "stream-key", required = true, value = "Resource object type.")
 
   public String getType() {
@@ -71,6 +72,7 @@ public class CreateStreamKeyRequestData {
    * Get attributes
    * @return attributes
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public CreateStreamKeyRequestDataAttributes getAttributes() {

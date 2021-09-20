@@ -45,6 +45,7 @@ public class RevokeOAuth2TokenRequest {
    * Get data
    * @return data
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public RevokeOAuth2TokenRequestData getData() {

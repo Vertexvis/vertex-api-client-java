@@ -45,6 +45,7 @@ public class CreateFileRequest {
    * Get data
    * @return data
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public CreateFileRequestData getData() {

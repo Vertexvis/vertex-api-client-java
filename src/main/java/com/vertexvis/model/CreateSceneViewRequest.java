@@ -45,6 +45,7 @@ public class CreateSceneViewRequest {
    * Get data
    * @return data
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public CreateSceneViewRequestData getData() {
