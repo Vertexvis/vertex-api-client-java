@@ -62,6 +62,7 @@ public class SceneData {
    * Get type
    * @return type
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "scene", required = true, value = "")
 
   public String getType() {
@@ -84,6 +85,7 @@ public class SceneData {
    * ID of the resource.
    * @return id
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "f79d4760-0b71-44e4-ad0b-22743fdd4ca3", required = true, value = "ID of the resource.")
 
   public UUID getId() {
@@ -106,6 +108,7 @@ public class SceneData {
    * Get attributes
    * @return attributes
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public SceneDataAttributes getAttributes() {

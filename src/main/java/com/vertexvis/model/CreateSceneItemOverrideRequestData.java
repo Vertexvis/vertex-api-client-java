@@ -54,6 +54,7 @@ public class CreateSceneItemOverrideRequestData {
    * Resource object type.
    * @return type
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "scene-item-override", required = true, value = "Resource object type.")
 
   public String getType() {
@@ -76,6 +77,7 @@ public class CreateSceneItemOverrideRequestData {
    * Get attributes
    * @return attributes
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public CreateSceneItemOverrideRequestDataAttributes getAttributes() {
@@ -98,6 +100,7 @@ public class CreateSceneItemOverrideRequestData {
    * Get relationships
    * @return relationships
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public CreateSceneItemOverrideRequestDataRelationships getRelationships() {

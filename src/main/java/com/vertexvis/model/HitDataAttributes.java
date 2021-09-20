@@ -45,6 +45,7 @@ public class HitDataAttributes {
    * Get created
    * @return created
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "2020-01-01T12:00Z", required = true, value = "")
 
   public OffsetDateTime getCreated() {

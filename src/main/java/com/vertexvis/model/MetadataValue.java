@@ -124,6 +124,7 @@ public class MetadataValue {
    * Type of metadata value.
    * @return type
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "string", required = true, value = "Type of metadata value.")
 
   public TypeEnum getType() {

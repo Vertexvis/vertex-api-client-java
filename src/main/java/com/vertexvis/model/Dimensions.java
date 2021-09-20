@@ -49,6 +49,7 @@ public class Dimensions {
    * Item&#39;s height.
    * @return height
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "10", required = true, value = "Item's height.")
 
   public Integer getHeight() {
@@ -71,6 +72,7 @@ public class Dimensions {
    * Item&#39;s width.
    * @return width
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "10", required = true, value = "Item's width.")
 
   public Integer getWidth() {

@@ -46,6 +46,7 @@ public class FileRelationship {
    * Get data
    * @return data
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public FileRelationshipData getData() {

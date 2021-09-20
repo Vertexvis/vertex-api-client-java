@@ -67,6 +67,7 @@ public class PartRevisionData {
    * Get type
    * @return type
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "part-revision", required = true, value = "")
 
   public String getType() {
@@ -89,6 +90,7 @@ public class PartRevisionData {
    * ID of the resource.
    * @return id
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "f79d4760-0b71-44e4-ad0b-22743fdd4ca3", required = true, value = "ID of the resource.")
 
   public UUID getId() {
@@ -111,6 +113,7 @@ public class PartRevisionData {
    * Get attributes
    * @return attributes
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public PartRevisionDataAttributes getAttributes() {
@@ -133,6 +136,7 @@ public class PartRevisionData {
    * Get relationships
    * @return relationships
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public PartRevisionDataRelationships getRelationships() {

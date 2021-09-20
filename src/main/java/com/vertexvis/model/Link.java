@@ -44,6 +44,7 @@ public class Link {
    * Get href
    * @return href
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "/some-resource/d98d621a-23da-49fe-af96-6be709abb718", required = true, value = "")
 
   public String getHref() {

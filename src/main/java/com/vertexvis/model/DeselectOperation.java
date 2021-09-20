@@ -89,6 +89,7 @@ public class DeselectOperation {
    * Resource object type.
    * @return type
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "deselect", required = true, value = "Resource object type.")
 
   public TypeEnum getType() {

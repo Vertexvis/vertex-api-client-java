@@ -59,6 +59,7 @@ public class SceneAlterationList {
    * Get data
    * @return data
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public List<SceneAlterationData> getData() {
@@ -86,6 +87,7 @@ public class SceneAlterationList {
    * Get links
    * @return links
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Map<String, Link> getLinks() {

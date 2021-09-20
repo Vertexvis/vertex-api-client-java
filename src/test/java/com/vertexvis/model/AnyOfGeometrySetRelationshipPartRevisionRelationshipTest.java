@@ -1,13 +1,14 @@
 package com.vertexvis.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+
 import com.google.gson.reflect.TypeToken;
 import com.vertexvis.JSON;
-import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
 
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 public class AnyOfGeometrySetRelationshipPartRevisionRelationshipTest {
   @Test

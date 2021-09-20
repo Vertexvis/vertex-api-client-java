@@ -53,6 +53,7 @@ public class SceneAlteration {
    * Get data
    * @return data
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public SceneAlterationData getData() {

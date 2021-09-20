@@ -45,6 +45,7 @@ public class CreateGeometrySetRequestDataRelationships {
    * Get source
    * @return source
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public FileRelationship getSource() {

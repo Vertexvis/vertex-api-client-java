@@ -68,6 +68,7 @@ public class ColorMaterialNullable {
    * maximum: 100
    * @return opacity
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "0", required = true, value = "Opacity from 0 to 100.")
 
   public Integer getOpacity() {
@@ -92,6 +93,7 @@ public class ColorMaterialNullable {
    * maximum: 128
    * @return glossiness
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "0", required = true, value = "Glossiness from 0 to 128.")
 
   public Integer getGlossiness() {
@@ -114,6 +116,7 @@ public class ColorMaterialNullable {
    * Get ambient
    * @return ambient
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Color3 getAmbient() {
@@ -136,6 +139,7 @@ public class ColorMaterialNullable {
    * Get diffuse
    * @return diffuse
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Color3 getDiffuse() {
@@ -158,6 +162,7 @@ public class ColorMaterialNullable {
    * Get specular
    * @return specular
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Color3 getSpecular() {
@@ -180,6 +185,7 @@ public class ColorMaterialNullable {
    * Get emissive
    * @return emissive
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Color3 getEmissive() {

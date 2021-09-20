@@ -52,6 +52,7 @@ public class HitDataRelationships {
    * Get results
    * @return results
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public List<RelationshipData> getResults() {

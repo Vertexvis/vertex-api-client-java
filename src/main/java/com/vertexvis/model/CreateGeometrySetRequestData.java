@@ -49,6 +49,7 @@ public class CreateGeometrySetRequestData {
    * Resource object type.
    * @return type
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "geometry-set", required = true, value = "Resource object type.")
 
   public String getType() {
@@ -71,6 +72,7 @@ public class CreateGeometrySetRequestData {
    * Get relationships
    * @return relationships
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public CreateGeometrySetRequestDataRelationships getRelationships() {

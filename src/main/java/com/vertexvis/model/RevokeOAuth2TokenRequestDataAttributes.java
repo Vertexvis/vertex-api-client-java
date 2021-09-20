@@ -44,6 +44,7 @@ public class RevokeOAuth2TokenRequestDataAttributes {
    * Token to revoke.
    * @return token
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "yj4oeKWCib6JlLsN64Ns.9CyY4gvhueXfCw6wPBJ6", required = true, value = "Token to revoke.")
 
   public String getToken() {

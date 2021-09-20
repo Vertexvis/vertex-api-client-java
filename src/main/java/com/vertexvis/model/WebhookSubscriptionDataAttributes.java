@@ -110,6 +110,7 @@ public class WebhookSubscriptionDataAttributes {
    * Get url
    * @return url
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public String getUrl() {
@@ -160,6 +161,7 @@ public class WebhookSubscriptionDataAttributes {
    * Get topics
    * @return topics
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public List<String> getTopics() {
@@ -182,6 +184,7 @@ public class WebhookSubscriptionDataAttributes {
    * Get status
    * @return status
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "active", required = true, value = "")
 
   public StatusEnum getStatus() {
@@ -204,6 +207,7 @@ public class WebhookSubscriptionDataAttributes {
    * Get created
    * @return created
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "2020-01-01T12:00Z", required = true, value = "")
 
   public OffsetDateTime getCreated() {

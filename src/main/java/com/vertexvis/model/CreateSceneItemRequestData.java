@@ -54,6 +54,7 @@ public class CreateSceneItemRequestData {
    * Resource object type.
    * @return type
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "scene-item", required = true, value = "Resource object type.")
 
   public String getType() {
@@ -76,6 +77,7 @@ public class CreateSceneItemRequestData {
    * Get attributes
    * @return attributes
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public CreateSceneItemRequestDataAttributes getAttributes() {
@@ -98,6 +100,7 @@ public class CreateSceneItemRequestData {
    * Get relationships
    * @return relationships
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public CreateSceneItemRequestDataRelationships getRelationships() {

@@ -25,6 +25,7 @@ import com.vertexvis.model.Matrix4Nullable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * UpdateSceneItemOverrideRequestDataAttributes
@@ -155,9 +156,20 @@ public class UpdateSceneItemOverrideRequestDataAttributes {
         Objects.equals(this.selected, updateSceneItemOverrideRequestDataAttributes.selected);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
     return Objects.hash(visible, transform, material, selected);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

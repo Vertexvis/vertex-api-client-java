@@ -45,6 +45,7 @@ public class HitResultDataRelationships {
    * Get sceneItem
    * @return sceneItem
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public RelationshipData getSceneItem() {

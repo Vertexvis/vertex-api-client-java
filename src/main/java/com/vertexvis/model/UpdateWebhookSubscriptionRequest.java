@@ -45,6 +45,7 @@ public class UpdateWebhookSubscriptionRequest {
    * Get data
    * @return data
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public UpdateWebhookSubscriptionRequestData getData() {

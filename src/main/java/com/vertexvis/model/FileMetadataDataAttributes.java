@@ -65,6 +65,7 @@ public class FileMetadataDataAttributes {
    * Get name
    * @return name
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "some-string", required = true, value = "")
 
   public String getName() {
@@ -87,6 +88,7 @@ public class FileMetadataDataAttributes {
    * Get status
    * @return status
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "complete", required = true, value = "")
 
   public String getStatus() {
@@ -155,6 +157,7 @@ public class FileMetadataDataAttributes {
    * Get created
    * @return created
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "2020-01-01T12:00Z", required = true, value = "")
 
   public OffsetDateTime getCreated() {

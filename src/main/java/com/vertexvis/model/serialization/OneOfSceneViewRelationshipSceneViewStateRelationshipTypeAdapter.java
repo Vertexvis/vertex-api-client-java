@@ -9,6 +9,7 @@ import com.vertexvis.model.SceneViewRelationship;
 import com.vertexvis.model.SceneViewRelationshipData;
 import com.vertexvis.model.SceneViewStateRelationship;
 import com.vertexvis.model.SceneViewStateRelationshipData;
+
 import java.io.IOException;
 import java.util.UUID;
 import java.util.function.Supplier;
@@ -35,7 +36,6 @@ public class OneOfSceneViewRelationshipSceneViewStateRelationshipTypeAdapter
     String id = "";
 
     in.beginObject();
-
     while (in.hasNext()) {
       switch (in.nextName()) {
         case "data":

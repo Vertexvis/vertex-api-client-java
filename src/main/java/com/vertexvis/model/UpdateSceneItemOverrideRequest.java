@@ -45,6 +45,7 @@ public class UpdateSceneItemOverrideRequest {
    * Get data
    * @return data
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public UpdateSceneItemOverrideRequestData getData() {

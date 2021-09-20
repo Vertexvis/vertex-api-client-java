@@ -45,6 +45,7 @@ public class QueryById {
    * Get data
    * @return data
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public QueryByIdData getData() {

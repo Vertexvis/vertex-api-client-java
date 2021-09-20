@@ -48,6 +48,7 @@ public class PartRevisionSuppliedId {
    * ID provided for correlation. For example, an existing ID from a PLM system.
    * @return suppliedPartId
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "ID provided for correlation. For example, an existing ID from a PLM system.")
 
   public String getSuppliedPartId() {
@@ -70,6 +71,7 @@ public class PartRevisionSuppliedId {
    * ID provided for correlation. For example, an existing ID from a PLM system.
    * @return suppliedRevisionId
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "ID provided for correlation. For example, an existing ID from a PLM system.")
 
   public String getSuppliedRevisionId() {

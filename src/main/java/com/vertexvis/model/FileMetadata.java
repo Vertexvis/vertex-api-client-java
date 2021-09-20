@@ -53,6 +53,7 @@ public class FileMetadata {
    * Get data
    * @return data
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public FileMetadataData getData() {

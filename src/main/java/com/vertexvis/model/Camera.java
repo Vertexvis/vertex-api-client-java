@@ -54,6 +54,7 @@ public class Camera {
    * Get position
    * @return position
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Vector3 getPosition() {
@@ -76,6 +77,7 @@ public class Camera {
    * Get lookAt
    * @return lookAt
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Vector3 getLookAt() {
@@ -98,6 +100,7 @@ public class Camera {
    * Get up
    * @return up
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Vector3 getUp() {

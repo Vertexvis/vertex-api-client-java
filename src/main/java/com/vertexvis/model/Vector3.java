@@ -54,6 +54,7 @@ public class Vector3 {
    * x-axis coordinate.
    * @return x
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "1.0", required = true, value = "x-axis coordinate.")
 
   public BigDecimal getX() {
@@ -76,6 +77,7 @@ public class Vector3 {
    * y-axis coordinate.
    * @return y
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "0.0", required = true, value = "y-axis coordinate.")
 
   public BigDecimal getY() {
@@ -98,6 +100,7 @@ public class Vector3 {
    * z-axis coordinate.
    * @return z
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "0.0", required = true, value = "z-axis coordinate.")
 
   public BigDecimal getZ() {

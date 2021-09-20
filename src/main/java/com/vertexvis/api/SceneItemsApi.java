@@ -576,7 +576,7 @@ public class SceneItemsApi {
     /**
      * Build call for getSceneItem
      * @param id The &#x60;scene-item&#x60; ID. (required)
-     * @param fieldsSceneItem Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;boundingBox&#x60; is only returned if explicitly requested. (optional)
+     * @param fieldsSceneItem Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;boundingBox&#x60; and &#x60;metadata&#x60; are only returned if explicitly requested. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -642,7 +642,7 @@ public class SceneItemsApi {
      * 
      * Get a &#x60;scene-item&#x60; by ID.
      * @param id The &#x60;scene-item&#x60; ID. (required)
-     * @param fieldsSceneItem Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;boundingBox&#x60; is only returned if explicitly requested. (optional)
+     * @param fieldsSceneItem Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;boundingBox&#x60; and &#x60;metadata&#x60; are only returned if explicitly requested. (optional)
      * @return SceneItem
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -663,7 +663,7 @@ public class SceneItemsApi {
      * 
      * Get a &#x60;scene-item&#x60; by ID.
      * @param id The &#x60;scene-item&#x60; ID. (required)
-     * @param fieldsSceneItem Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;boundingBox&#x60; is only returned if explicitly requested. (optional)
+     * @param fieldsSceneItem Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;boundingBox&#x60; and &#x60;metadata&#x60; are only returned if explicitly requested. (optional)
      * @return ApiResponse&lt;SceneItem&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -685,7 +685,7 @@ public class SceneItemsApi {
      *  (asynchronously)
      * Get a &#x60;scene-item&#x60; by ID.
      * @param id The &#x60;scene-item&#x60; ID. (required)
-     * @param fieldsSceneItem Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;boundingBox&#x60; is only returned if explicitly requested. (optional)
+     * @param fieldsSceneItem Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;boundingBox&#x60; and &#x60;metadata&#x60; are only returned if explicitly requested. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object

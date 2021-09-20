@@ -55,6 +55,7 @@ public class Color3 {
    * maximum: 255
    * @return r
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "255", required = true, value = "Color value from 0 to 255.")
 
   public Integer getR() {
@@ -79,6 +80,7 @@ public class Color3 {
    * maximum: 255
    * @return g
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "255", required = true, value = "Color value from 0 to 255.")
 
   public Integer getG() {
@@ -103,6 +105,7 @@ public class Color3 {
    * maximum: 255
    * @return b
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "255", required = true, value = "Color value from 0 to 255.")
 
   public Integer getB() {

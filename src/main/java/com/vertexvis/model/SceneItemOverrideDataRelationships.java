@@ -50,6 +50,7 @@ public class SceneItemOverrideDataRelationships {
    * Get sceneItem
    * @return sceneItem
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public SceneItemRelationship getSceneItem() {
@@ -72,6 +73,7 @@ public class SceneItemOverrideDataRelationships {
    * Get sceneView
    * @return sceneView
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public SceneViewRelationship getSceneView() {

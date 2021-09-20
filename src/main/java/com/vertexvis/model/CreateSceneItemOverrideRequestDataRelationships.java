@@ -45,6 +45,7 @@ public class CreateSceneItemOverrideRequestDataRelationships {
    * Get sceneItem
    * @return sceneItem
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public SceneItemRelationship getSceneItem() {

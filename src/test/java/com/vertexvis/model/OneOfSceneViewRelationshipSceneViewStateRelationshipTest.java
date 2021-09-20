@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.google.gson.reflect.TypeToken;
 import com.vertexvis.JSON;
+
 import java.util.UUID;
+
 import org.junit.jupiter.api.Test;
 
 public class OneOfSceneViewRelationshipSceneViewStateRelationshipTest {
@@ -32,7 +34,8 @@ public class OneOfSceneViewRelationshipSceneViewStateRelationshipTest {
     String input = "{\"source\":{\"data\":{\"type\":\"scene-view\",\"id\":\"" + id + "\"}}}";
 
     CreateSceneViewStateRequestDataRelationships result = new JSON()
-        .deserialize(input, TypeToken.get(CreateSceneViewStateRequestDataRelationships.class).getType());
+        .deserialize(input,
+            TypeToken.get(CreateSceneViewStateRequestDataRelationships.class).getType());
     SceneViewRelationship expected =
         new SceneViewRelationship()
             .data(new SceneViewRelationshipData().id(id)
@@ -68,7 +71,8 @@ public class OneOfSceneViewRelationshipSceneViewStateRelationshipTest {
     String input = "{\"source\":{\"data\":{\"type\":\"scene-view-state\",\"id\":\"" + id + "\"}}}";
 
     CreateSceneViewStateRequestDataRelationships result = new JSON()
-        .deserialize(input, TypeToken.get(CreateSceneViewStateRequestDataRelationships.class).getType());
+        .deserialize(input,
+            TypeToken.get(CreateSceneViewStateRequestDataRelationships.class).getType());
     SceneViewStateRelationship expected =
         new SceneViewStateRelationship()
             .data(new SceneViewStateRelationshipData().id(id)

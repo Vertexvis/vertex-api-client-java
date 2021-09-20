@@ -89,6 +89,7 @@ public class ClearMaterialOperation {
    * Resource object type.
    * @return type
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "clear-material", required = true, value = "Resource object type.")
 
   public TypeEnum getType() {

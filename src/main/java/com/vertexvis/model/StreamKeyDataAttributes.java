@@ -76,6 +76,7 @@ public class StreamKeyDataAttributes {
    * Get expiry
    * @return expiry
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "600", required = true, value = "")
 
   public Integer getExpiry() {
@@ -98,6 +99,7 @@ public class StreamKeyDataAttributes {
    * Get created
    * @return created
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "2020-01-01T12:00Z", required = true, value = "")
 
   public OffsetDateTime getCreated() {

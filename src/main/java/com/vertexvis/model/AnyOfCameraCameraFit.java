@@ -15,8 +15,12 @@ public class AnyOfCameraCameraFit {
   }
 
   public Object getCam() {
-    if (this.camera != null) return this.camera;
-    if (this.cameraFit != null) return this.cameraFit;
+    if (this.camera != null) {
+      return this.camera;
+    }
+    if (this.cameraFit != null) {
+      return this.cameraFit;
+    }
 
     return null;
   }

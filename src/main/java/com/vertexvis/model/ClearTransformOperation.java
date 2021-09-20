@@ -89,6 +89,7 @@ public class ClearTransformOperation {
    * Resource object type.
    * @return type
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "clear-transform", required = true, value = "Resource object type.")
 
   public TypeEnum getType() {

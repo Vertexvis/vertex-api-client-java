@@ -27,6 +27,10 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import com.vertexvis.model.AdminConsentAcceptRequest;
+import com.vertexvis.model.AdminLoginAcceptRequest;
+import com.vertexvis.model.AdminRedirectTo;
+import com.vertexvis.model.Failure;
 import com.vertexvis.model.OAuth2BadRequest;
 import com.vertexvis.model.OAuth2Token;
 import com.vertexvis.model.RevokeOAuth2TokenRequest;
@@ -56,6 +60,265 @@ public class Oauth2Api {
         this.localVarApiClient = apiClient;
     }
 
+    /**
+     * Build call for adminAcceptConsent
+     * @param challenge Challenge ID from oauth2 flow (required)
+     * @param adminConsentAcceptRequest  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call adminAcceptConsentCall(String challenge, AdminConsentAcceptRequest adminConsentAcceptRequest, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = adminConsentAcceptRequest;
+
+        // create path and map variables
+        String localVarPath = "/oauth2/auth/requests/consent/accept";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (challenge != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("challenge", challenge));
+        }
+
+        final String[] localVarAccepts = {
+            "application/vnd.api+json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/vnd.api+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "OAuth2Internal" };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call adminAcceptConsentValidateBeforeCall(String challenge, AdminConsentAcceptRequest adminConsentAcceptRequest, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'challenge' is set
+        if (challenge == null) {
+            throw new ApiException("Missing the required parameter 'challenge' when calling adminAcceptConsent(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = adminAcceptConsentCall(challenge, adminConsentAcceptRequest, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * 
+     * Accept Consent Challenge to login.
+     * @param challenge Challenge ID from oauth2 flow (required)
+     * @param adminConsentAcceptRequest  (optional)
+     * @return AdminRedirectTo
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+     </table>
+     */
+    public AdminRedirectTo adminAcceptConsent(String challenge, AdminConsentAcceptRequest adminConsentAcceptRequest) throws ApiException {
+        ApiResponse<AdminRedirectTo> localVarResp = adminAcceptConsentWithHttpInfo(challenge, adminConsentAcceptRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * 
+     * Accept Consent Challenge to login.
+     * @param challenge Challenge ID from oauth2 flow (required)
+     * @param adminConsentAcceptRequest  (optional)
+     * @return ApiResponse&lt;AdminRedirectTo&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<AdminRedirectTo> adminAcceptConsentWithHttpInfo(String challenge, AdminConsentAcceptRequest adminConsentAcceptRequest) throws ApiException {
+        okhttp3.Call localVarCall = adminAcceptConsentValidateBeforeCall(challenge, adminConsentAcceptRequest, null);
+        Type localVarReturnType = new TypeToken<AdminRedirectTo>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * Accept Consent Challenge to login.
+     * @param challenge Challenge ID from oauth2 flow (required)
+     * @param adminConsentAcceptRequest  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call adminAcceptConsentAsync(String challenge, AdminConsentAcceptRequest adminConsentAcceptRequest, final ApiCallback<AdminRedirectTo> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = adminAcceptConsentValidateBeforeCall(challenge, adminConsentAcceptRequest, _callback);
+        Type localVarReturnType = new TypeToken<AdminRedirectTo>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for adminAcceptLogin
+     * @param loginChallenge Login Challenge ID from oauth2 flow (required)
+     * @param adminLoginAcceptRequest  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call adminAcceptLoginCall(String loginChallenge, AdminLoginAcceptRequest adminLoginAcceptRequest, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = adminLoginAcceptRequest;
+
+        // create path and map variables
+        String localVarPath = "/oauth2/auth/requests/login/accept";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (loginChallenge != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("login_challenge", loginChallenge));
+        }
+
+        final String[] localVarAccepts = {
+            "application/vnd.api+json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/vnd.api+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "OAuth2Internal" };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call adminAcceptLoginValidateBeforeCall(String loginChallenge, AdminLoginAcceptRequest adminLoginAcceptRequest, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'loginChallenge' is set
+        if (loginChallenge == null) {
+            throw new ApiException("Missing the required parameter 'loginChallenge' when calling adminAcceptLogin(Async)");
+        }
+        
+        // verify the required parameter 'adminLoginAcceptRequest' is set
+        if (adminLoginAcceptRequest == null) {
+            throw new ApiException("Missing the required parameter 'adminLoginAcceptRequest' when calling adminAcceptLogin(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = adminAcceptLoginCall(loginChallenge, adminLoginAcceptRequest, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * 
+     * Accept Login Challenge with subject &amp; login challenge
+     * @param loginChallenge Login Challenge ID from oauth2 flow (required)
+     * @param adminLoginAcceptRequest  (required)
+     * @return AdminRedirectTo
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+     </table>
+     */
+    public AdminRedirectTo adminAcceptLogin(String loginChallenge, AdminLoginAcceptRequest adminLoginAcceptRequest) throws ApiException {
+        ApiResponse<AdminRedirectTo> localVarResp = adminAcceptLoginWithHttpInfo(loginChallenge, adminLoginAcceptRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * 
+     * Accept Login Challenge with subject &amp; login challenge
+     * @param loginChallenge Login Challenge ID from oauth2 flow (required)
+     * @param adminLoginAcceptRequest  (required)
+     * @return ApiResponse&lt;AdminRedirectTo&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<AdminRedirectTo> adminAcceptLoginWithHttpInfo(String loginChallenge, AdminLoginAcceptRequest adminLoginAcceptRequest) throws ApiException {
+        okhttp3.Call localVarCall = adminAcceptLoginValidateBeforeCall(loginChallenge, adminLoginAcceptRequest, null);
+        Type localVarReturnType = new TypeToken<AdminRedirectTo>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * Accept Login Challenge with subject &amp; login challenge
+     * @param loginChallenge Login Challenge ID from oauth2 flow (required)
+     * @param adminLoginAcceptRequest  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call adminAcceptLoginAsync(String loginChallenge, AdminLoginAcceptRequest adminLoginAcceptRequest, final ApiCallback<AdminRedirectTo> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = adminAcceptLoginValidateBeforeCall(loginChallenge, adminLoginAcceptRequest, _callback);
+        Type localVarReturnType = new TypeToken<AdminRedirectTo>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
     /**
      * Build call for createToken
      * @param grantType  (required)

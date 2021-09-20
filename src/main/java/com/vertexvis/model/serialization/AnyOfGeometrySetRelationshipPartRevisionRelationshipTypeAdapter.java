@@ -4,7 +4,11 @@ import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.*;
+import com.vertexvis.model.AnyOfGeometrySetRelationshipPartRevisionRelationship;
+import com.vertexvis.model.GeometrySetRelationship;
+import com.vertexvis.model.GeometrySetRelationshipData;
+import com.vertexvis.model.PartDataRelationshipsPartRevisions;
+import com.vertexvis.model.PartRevisionRelationship;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -32,7 +36,6 @@ public class AnyOfGeometrySetRelationshipPartRevisionRelationshipTypeAdapter
     String id = "";
 
     in.beginObject();
-
     while (in.hasNext()) {
       switch (in.nextName()) {
         case "data":

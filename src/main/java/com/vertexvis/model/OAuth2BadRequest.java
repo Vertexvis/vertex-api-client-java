@@ -44,6 +44,7 @@ public class OAuth2BadRequest {
    * Get error
    * @return error
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "some-string", required = true, value = "")
 
   public String getError() {

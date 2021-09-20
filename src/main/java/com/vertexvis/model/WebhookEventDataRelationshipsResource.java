@@ -51,6 +51,7 @@ public class WebhookEventDataRelationshipsResource {
    * Get data
    * @return data
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public WebhookEventDataRelationshipsResourceData getData() {

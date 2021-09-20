@@ -50,6 +50,7 @@ public class CreateHitRequestDataAttributes {
    * Get point
    * @return point
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Point getPoint() {
@@ -72,6 +73,7 @@ public class CreateHitRequestDataAttributes {
    * Get viewport
    * @return viewport
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Dimensions getViewport() {

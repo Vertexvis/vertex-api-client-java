@@ -94,6 +94,7 @@ public class ChangeMaterialOperation {
    * Resource object type.
    * @return type
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "change-material", required = true, value = "Resource object type.")
 
   public TypeEnum getType() {
@@ -116,6 +117,7 @@ public class ChangeMaterialOperation {
    * Get material
    * @return material
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public ColorMaterial getMaterial() {

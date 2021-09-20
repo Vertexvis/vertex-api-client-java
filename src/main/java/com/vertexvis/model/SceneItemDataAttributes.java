@@ -23,134 +23,77 @@ import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.BoundingBox;
 import com.vertexvis.model.ColorMaterial;
 import com.vertexvis.model.Matrix4;
+import com.vertexvis.model.MetadataValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * SceneItemDataAttributes
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SceneItemDataAttributes {
-  public static final String SERIALIZED_NAME_SUPPLIED_ID = "suppliedId";
-  @SerializedName(SERIALIZED_NAME_SUPPLIED_ID)
-  private String suppliedId;
-
-  public static final String SERIALIZED_NAME_VISIBLE = "visible";
-  @SerializedName(SERIALIZED_NAME_VISIBLE)
-  private Boolean visible;
-
-  public static final String SERIALIZED_NAME_TRANSFORM = "transform";
-  @SerializedName(SERIALIZED_NAME_TRANSFORM)
-  private Matrix4 transform;
-
-  public static final String SERIALIZED_NAME_MATERIAL_OVERRIDE = "materialOverride";
-  @SerializedName(SERIALIZED_NAME_MATERIAL_OVERRIDE)
-  private ColorMaterial materialOverride;
+  public static final String SERIALIZED_NAME_BOUNDING_BOX = "boundingBox";
+  @SerializedName(SERIALIZED_NAME_BOUNDING_BOX)
+  private BoundingBox boundingBox;
 
   public static final String SERIALIZED_NAME_CREATED = "created";
   @SerializedName(SERIALIZED_NAME_CREATED)
   private OffsetDateTime created;
 
-  public static final String SERIALIZED_NAME_BOUNDING_BOX = "boundingBox";
-  @SerializedName(SERIALIZED_NAME_BOUNDING_BOX)
-  private BoundingBox boundingBox;
+  public static final String SERIALIZED_NAME_MATERIAL_OVERRIDE = "materialOverride";
+  @SerializedName(SERIALIZED_NAME_MATERIAL_OVERRIDE)
+  private ColorMaterial materialOverride;
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  private Map<String, MetadataValue> metadata = null;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
 
+  public static final String SERIALIZED_NAME_SUPPLIED_ID = "suppliedId";
+  @SerializedName(SERIALIZED_NAME_SUPPLIED_ID)
+  private String suppliedId;
 
-  public SceneItemDataAttributes suppliedId(String suppliedId) {
+  public static final String SERIALIZED_NAME_TRANSFORM = "transform";
+  @SerializedName(SERIALIZED_NAME_TRANSFORM)
+  private Matrix4 transform;
+
+  public static final String SERIALIZED_NAME_VISIBLE = "visible";
+  @SerializedName(SERIALIZED_NAME_VISIBLE)
+  private Boolean visible;
+
+  public static final String SERIALIZED_NAME_WORLD_TRANSFORM = "worldTransform";
+  @SerializedName(SERIALIZED_NAME_WORLD_TRANSFORM)
+  private Matrix4 worldTransform;
+
+
+  public SceneItemDataAttributes boundingBox(BoundingBox boundingBox) {
     
-    this.suppliedId = suppliedId;
+    this.boundingBox = boundingBox;
     return this;
   }
 
    /**
-   * Get suppliedId
-   * @return suppliedId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "some-string", value = "")
-
-  public String getSuppliedId() {
-    return suppliedId;
-  }
-
-
-  public void setSuppliedId(String suppliedId) {
-    this.suppliedId = suppliedId;
-  }
-
-
-  public SceneItemDataAttributes visible(Boolean visible) {
-    
-    this.visible = visible;
-    return this;
-  }
-
-   /**
-   * Get visible
-   * @return visible
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "")
-
-  public Boolean getVisible() {
-    return visible;
-  }
-
-
-  public void setVisible(Boolean visible) {
-    this.visible = visible;
-  }
-
-
-  public SceneItemDataAttributes transform(Matrix4 transform) {
-    
-    this.transform = transform;
-    return this;
-  }
-
-   /**
-   * Get transform
-   * @return transform
+   * Get boundingBox
+   * @return boundingBox
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public Matrix4 getTransform() {
-    return transform;
+  public BoundingBox getBoundingBox() {
+    return boundingBox;
   }
 
 
-  public void setTransform(Matrix4 transform) {
-    this.transform = transform;
-  }
-
-
-  public SceneItemDataAttributes materialOverride(ColorMaterial materialOverride) {
-    
-    this.materialOverride = materialOverride;
-    return this;
-  }
-
-   /**
-   * Get materialOverride
-   * @return materialOverride
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public ColorMaterial getMaterialOverride() {
-    return materialOverride;
-  }
-
-
-  public void setMaterialOverride(ColorMaterial materialOverride) {
-    this.materialOverride = materialOverride;
+  public void setBoundingBox(BoundingBox boundingBox) {
+    this.boundingBox = boundingBox;
   }
 
 
@@ -177,26 +120,57 @@ public class SceneItemDataAttributes {
   }
 
 
-  public SceneItemDataAttributes boundingBox(BoundingBox boundingBox) {
+  public SceneItemDataAttributes materialOverride(ColorMaterial materialOverride) {
     
-    this.boundingBox = boundingBox;
+    this.materialOverride = materialOverride;
     return this;
   }
 
    /**
-   * Get boundingBox
-   * @return boundingBox
+   * Get materialOverride
+   * @return materialOverride
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public BoundingBox getBoundingBox() {
-    return boundingBox;
+  public ColorMaterial getMaterialOverride() {
+    return materialOverride;
   }
 
 
-  public void setBoundingBox(BoundingBox boundingBox) {
-    this.boundingBox = boundingBox;
+  public void setMaterialOverride(ColorMaterial materialOverride) {
+    this.materialOverride = materialOverride;
+  }
+
+
+  public SceneItemDataAttributes metadata(Map<String, MetadataValue> metadata) {
+    
+    this.metadata = metadata;
+    return this;
+  }
+
+  public SceneItemDataAttributes putMetadataItem(String key, MetadataValue metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+   /**
+   * Get metadata
+   * @return metadata
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Map<String, MetadataValue> getMetadata() {
+    return metadata;
+  }
+
+
+  public void setMetadata(Map<String, MetadataValue> metadata) {
+    this.metadata = metadata;
   }
 
 
@@ -223,6 +197,98 @@ public class SceneItemDataAttributes {
   }
 
 
+  public SceneItemDataAttributes suppliedId(String suppliedId) {
+    
+    this.suppliedId = suppliedId;
+    return this;
+  }
+
+   /**
+   * Get suppliedId
+   * @return suppliedId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "some-string", value = "")
+
+  public String getSuppliedId() {
+    return suppliedId;
+  }
+
+
+  public void setSuppliedId(String suppliedId) {
+    this.suppliedId = suppliedId;
+  }
+
+
+  public SceneItemDataAttributes transform(Matrix4 transform) {
+    
+    this.transform = transform;
+    return this;
+  }
+
+   /**
+   * Get transform
+   * @return transform
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Matrix4 getTransform() {
+    return transform;
+  }
+
+
+  public void setTransform(Matrix4 transform) {
+    this.transform = transform;
+  }
+
+
+  public SceneItemDataAttributes visible(Boolean visible) {
+    
+    this.visible = visible;
+    return this;
+  }
+
+   /**
+   * Get visible
+   * @return visible
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "")
+
+  public Boolean getVisible() {
+    return visible;
+  }
+
+
+  public void setVisible(Boolean visible) {
+    this.visible = visible;
+  }
+
+
+  public SceneItemDataAttributes worldTransform(Matrix4 worldTransform) {
+    
+    this.worldTransform = worldTransform;
+    return this;
+  }
+
+   /**
+   * Get worldTransform
+   * @return worldTransform
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Matrix4 getWorldTransform() {
+    return worldTransform;
+  }
+
+
+  public void setWorldTransform(Matrix4 worldTransform) {
+    this.worldTransform = worldTransform;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -232,31 +298,35 @@ public class SceneItemDataAttributes {
       return false;
     }
     SceneItemDataAttributes sceneItemDataAttributes = (SceneItemDataAttributes) o;
-    return Objects.equals(this.suppliedId, sceneItemDataAttributes.suppliedId) &&
-        Objects.equals(this.visible, sceneItemDataAttributes.visible) &&
-        Objects.equals(this.transform, sceneItemDataAttributes.transform) &&
-        Objects.equals(this.materialOverride, sceneItemDataAttributes.materialOverride) &&
+    return Objects.equals(this.boundingBox, sceneItemDataAttributes.boundingBox) &&
         Objects.equals(this.created, sceneItemDataAttributes.created) &&
-        Objects.equals(this.boundingBox, sceneItemDataAttributes.boundingBox) &&
-        Objects.equals(this.name, sceneItemDataAttributes.name);
+        Objects.equals(this.materialOverride, sceneItemDataAttributes.materialOverride) &&
+        Objects.equals(this.metadata, sceneItemDataAttributes.metadata) &&
+        Objects.equals(this.name, sceneItemDataAttributes.name) &&
+        Objects.equals(this.suppliedId, sceneItemDataAttributes.suppliedId) &&
+        Objects.equals(this.transform, sceneItemDataAttributes.transform) &&
+        Objects.equals(this.visible, sceneItemDataAttributes.visible) &&
+        Objects.equals(this.worldTransform, sceneItemDataAttributes.worldTransform);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(suppliedId, visible, transform, materialOverride, created, boundingBox, name);
+    return Objects.hash(boundingBox, created, materialOverride, metadata, name, suppliedId, transform, visible, worldTransform);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SceneItemDataAttributes {\n");
-    sb.append("    suppliedId: ").append(toIndentedString(suppliedId)).append("\n");
-    sb.append("    visible: ").append(toIndentedString(visible)).append("\n");
-    sb.append("    transform: ").append(toIndentedString(transform)).append("\n");
-    sb.append("    materialOverride: ").append(toIndentedString(materialOverride)).append("\n");
-    sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    boundingBox: ").append(toIndentedString(boundingBox)).append("\n");
+    sb.append("    created: ").append(toIndentedString(created)).append("\n");
+    sb.append("    materialOverride: ").append(toIndentedString(materialOverride)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    suppliedId: ").append(toIndentedString(suppliedId)).append("\n");
+    sb.append("    transform: ").append(toIndentedString(transform)).append("\n");
+    sb.append("    visible: ").append(toIndentedString(visible)).append("\n");
+    sb.append("    worldTransform: ").append(toIndentedString(worldTransform)).append("\n");
     sb.append("}");
     return sb.toString();
   }

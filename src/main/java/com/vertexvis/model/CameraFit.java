@@ -92,6 +92,7 @@ public class CameraFit {
    * Resource object type.
    * @return type
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "fit-visible-scene-items", required = true, value = "Resource object type.")
 
   public TypeEnum getType() {

@@ -50,6 +50,7 @@ public class BoundingBox {
    * Get min
    * @return min
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Vector3 getMin() {
@@ -72,6 +73,7 @@ public class BoundingBox {
    * Get max
    * @return max
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Vector3 getMax() {

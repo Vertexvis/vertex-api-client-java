@@ -45,6 +45,7 @@ public class CreateSceneRequestDataRelationships {
    * Get source
    * @return source
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public SceneRelationship getSource() {

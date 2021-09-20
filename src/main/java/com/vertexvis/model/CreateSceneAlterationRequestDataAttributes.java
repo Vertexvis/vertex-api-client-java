@@ -52,6 +52,7 @@ public class CreateSceneAlterationRequestDataAttributes {
    * List of alterations to apply.
    * @return alterations
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "List of alterations to apply.")
 
   public List<SceneOperation> getAlterations() {

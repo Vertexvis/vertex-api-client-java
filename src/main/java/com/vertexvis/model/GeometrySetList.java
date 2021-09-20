@@ -59,6 +59,7 @@ public class GeometrySetList {
    * Get data
    * @return data
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public List<GeometrySetData> getData() {
@@ -86,6 +87,7 @@ public class GeometrySetList {
    * Get links
    * @return links
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Map<String, Link> getLinks() {

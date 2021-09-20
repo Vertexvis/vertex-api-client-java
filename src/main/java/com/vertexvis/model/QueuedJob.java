@@ -53,6 +53,7 @@ public class QueuedJob {
    * Get data
    * @return data
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public QueuedJobData getData() {

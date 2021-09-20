@@ -50,6 +50,7 @@ public class WebhookEventDataRelationships {
    * Get owner
    * @return owner
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public WebhookEventDataRelationshipsOwner getOwner() {
@@ -72,6 +73,7 @@ public class WebhookEventDataRelationships {
    * Get resource
    * @return resource
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public WebhookEventDataRelationshipsResource getResource() {

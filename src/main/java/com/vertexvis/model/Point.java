@@ -49,6 +49,7 @@ public class Point {
    * x-axis coordinate.
    * @return dx
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "0", required = true, value = "x-axis coordinate.")
 
   public Integer getDx() {
@@ -71,6 +72,7 @@ public class Point {
    * y-axis coordinate.
    * @return dy
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "0", required = true, value = "y-axis coordinate.")
 
   public Integer getDy() {

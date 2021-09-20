@@ -94,6 +94,7 @@ public class ChangeTransformOperation {
    * Resource object type.
    * @return type
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "change-transform", required = true, value = "Resource object type.")
 
   public TypeEnum getType() {
@@ -116,6 +117,7 @@ public class ChangeTransformOperation {
    * Get transform
    * @return transform
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public Matrix4 getTransform() {
