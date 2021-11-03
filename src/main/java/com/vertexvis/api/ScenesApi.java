@@ -568,6 +568,7 @@ public class ScenesApi {
      * Build call for getScenes
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
+     * @param filterName Comma-separated list of names to filter on. (optional)
      * @param filterSuppliedId Comma-separated list of supplied IDs to filter on. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -580,7 +581,7 @@ public class ScenesApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getScenesCall(String pageCursor, Integer pageSize, String filterSuppliedId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getScenesCall(String pageCursor, Integer pageSize, String filterName, String filterSuppliedId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -598,6 +599,10 @@ public class ScenesApi {
 
         if (pageSize != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[size]", pageSize));
+        }
+
+        if (filterName != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("filter[name]", filterName));
         }
 
         if (filterSuppliedId != null) {
@@ -623,10 +628,10 @@ public class ScenesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getScenesValidateBeforeCall(String pageCursor, Integer pageSize, String filterSuppliedId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getScenesValidateBeforeCall(String pageCursor, Integer pageSize, String filterName, String filterSuppliedId, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = getScenesCall(pageCursor, pageSize, filterSuppliedId, _callback);
+        okhttp3.Call localVarCall = getScenesCall(pageCursor, pageSize, filterName, filterSuppliedId, _callback);
         return localVarCall;
 
     }
@@ -636,6 +641,7 @@ public class ScenesApi {
      * Get &#x60;scenes&#x60;.
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
+     * @param filterName Comma-separated list of names to filter on. (optional)
      * @param filterSuppliedId Comma-separated list of supplied IDs to filter on. (optional)
      * @return SceneList
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -647,8 +653,8 @@ public class ScenesApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public SceneList getScenes(String pageCursor, Integer pageSize, String filterSuppliedId) throws ApiException {
-        ApiResponse<SceneList> localVarResp = getScenesWithHttpInfo(pageCursor, pageSize, filterSuppliedId);
+    public SceneList getScenes(String pageCursor, Integer pageSize, String filterName, String filterSuppliedId) throws ApiException {
+        ApiResponse<SceneList> localVarResp = getScenesWithHttpInfo(pageCursor, pageSize, filterName, filterSuppliedId);
         return localVarResp.getData();
     }
 
@@ -657,6 +663,7 @@ public class ScenesApi {
      * Get &#x60;scenes&#x60;.
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
+     * @param filterName Comma-separated list of names to filter on. (optional)
      * @param filterSuppliedId Comma-separated list of supplied IDs to filter on. (optional)
      * @return ApiResponse&lt;SceneList&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -668,8 +675,8 @@ public class ScenesApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SceneList> getScenesWithHttpInfo(String pageCursor, Integer pageSize, String filterSuppliedId) throws ApiException {
-        okhttp3.Call localVarCall = getScenesValidateBeforeCall(pageCursor, pageSize, filterSuppliedId, null);
+    public ApiResponse<SceneList> getScenesWithHttpInfo(String pageCursor, Integer pageSize, String filterName, String filterSuppliedId) throws ApiException {
+        okhttp3.Call localVarCall = getScenesValidateBeforeCall(pageCursor, pageSize, filterName, filterSuppliedId, null);
         Type localVarReturnType = new TypeToken<SceneList>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -679,6 +686,7 @@ public class ScenesApi {
      * Get &#x60;scenes&#x60;.
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
+     * @param filterName Comma-separated list of names to filter on. (optional)
      * @param filterSuppliedId Comma-separated list of supplied IDs to filter on. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -691,9 +699,9 @@ public class ScenesApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getScenesAsync(String pageCursor, Integer pageSize, String filterSuppliedId, final ApiCallback<SceneList> _callback) throws ApiException {
+    public okhttp3.Call getScenesAsync(String pageCursor, Integer pageSize, String filterName, String filterSuppliedId, final ApiCallback<SceneList> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getScenesValidateBeforeCall(pageCursor, pageSize, filterSuppliedId, _callback);
+        okhttp3.Call localVarCall = getScenesValidateBeforeCall(pageCursor, pageSize, filterName, filterSuppliedId, _callback);
         Type localVarReturnType = new TypeToken<SceneList>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
