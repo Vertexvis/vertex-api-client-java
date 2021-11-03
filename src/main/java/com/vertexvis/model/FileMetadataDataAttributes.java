@@ -54,6 +54,10 @@ public class FileMetadataDataAttributes {
   @SerializedName(SERIALIZED_NAME_UPLOADED)
   private OffsetDateTime uploaded;
 
+  public static final String SERIALIZED_NAME_SIZE = "size";
+  @SerializedName(SERIALIZED_NAME_SIZE)
+  private Long size;
+
 
   public FileMetadataDataAttributes name(String name) {
     
@@ -193,6 +197,29 @@ public class FileMetadataDataAttributes {
   }
 
 
+  public FileMetadataDataAttributes size(Long size) {
+    
+    this.size = size;
+    return this;
+  }
+
+   /**
+   * Get size
+   * @return size
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Long getSize() {
+    return size;
+  }
+
+
+  public void setSize(Long size) {
+    this.size = size;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -207,12 +234,13 @@ public class FileMetadataDataAttributes {
         Objects.equals(this.suppliedId, fileMetadataDataAttributes.suppliedId) &&
         Objects.equals(this.rootFileName, fileMetadataDataAttributes.rootFileName) &&
         Objects.equals(this.created, fileMetadataDataAttributes.created) &&
-        Objects.equals(this.uploaded, fileMetadataDataAttributes.uploaded);
+        Objects.equals(this.uploaded, fileMetadataDataAttributes.uploaded) &&
+        Objects.equals(this.size, fileMetadataDataAttributes.size);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, status, suppliedId, rootFileName, created, uploaded);
+    return Objects.hash(name, status, suppliedId, rootFileName, created, uploaded, size);
   }
 
   @Override
@@ -225,6 +253,7 @@ public class FileMetadataDataAttributes {
     sb.append("    rootFileName: ").append(toIndentedString(rootFileName)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    uploaded: ").append(toIndentedString(uploaded)).append("\n");
+    sb.append("    size: ").append(toIndentedString(size)).append("\n");
     sb.append("}");
     return sb.toString();
   }

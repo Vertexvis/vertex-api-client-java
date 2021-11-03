@@ -15,7 +15,7 @@ main() {
 
   rm -rf api gradle src
 
-  docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli:latest generate \
+  docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli:v5.2.1 generate \
     --input-spec https://platform.vertexvis.com/spec \
     --generator-name java \
     --config /local/config.yml \
