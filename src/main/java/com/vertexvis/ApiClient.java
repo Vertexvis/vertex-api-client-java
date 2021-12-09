@@ -187,7 +187,7 @@ public class ApiClient {
         json = new JSON();
 
         // Set default User-Agent.
-        setUserAgent("vertex-api-client-java/0.2.8");
+        setUserAgent("vertex-api-client-java/0.2.9");
 
         authentications = new HashMap<String, Authentication>();
     }
