@@ -9573,6 +9573,8 @@ components:
           - $ref: '#/components/schemas/PartRevisionRelationship'
           - $ref: '#/components/schemas/SceneRelationship'
           description: Relationship to a `geometry-set`, `part-revision`, or `scene`.
+        referenceTree:
+          $ref: '#/components/schemas/SceneItemRelationship'
       type: object
     SceneViewData_attributes:
       properties:

@@ -39,6 +39,10 @@ public class CreateSceneItemRequestDataRelationships {
   @SerializedName(SERIALIZED_NAME_SOURCE)
   private AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship source;
 
+  public static final String SERIALIZED_NAME_REFERENCE_TREE = "referenceTree";
+  @SerializedName(SERIALIZED_NAME_REFERENCE_TREE)
+  private SceneItemRelationship referenceTree;
+
 
   public CreateSceneItemRequestDataRelationships parent(SceneItemRelationship parent) {
     
@@ -86,6 +90,29 @@ public class CreateSceneItemRequestDataRelationships {
   }
 
 
+  public CreateSceneItemRequestDataRelationships referenceTree(SceneItemRelationship referenceTree) {
+    
+    this.referenceTree = referenceTree;
+    return this;
+  }
+
+   /**
+   * Get referenceTree
+   * @return referenceTree
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public SceneItemRelationship getReferenceTree() {
+    return referenceTree;
+  }
+
+
+  public void setReferenceTree(SceneItemRelationship referenceTree) {
+    this.referenceTree = referenceTree;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -96,12 +123,13 @@ public class CreateSceneItemRequestDataRelationships {
     }
     CreateSceneItemRequestDataRelationships createSceneItemRequestDataRelationships = (CreateSceneItemRequestDataRelationships) o;
     return Objects.equals(this.parent, createSceneItemRequestDataRelationships.parent) &&
-        Objects.equals(this.source, createSceneItemRequestDataRelationships.source);
+        Objects.equals(this.source, createSceneItemRequestDataRelationships.source) &&
+        Objects.equals(this.referenceTree, createSceneItemRequestDataRelationships.referenceTree);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(parent, source);
+    return Objects.hash(parent, source, referenceTree);
   }
 
   @Override
@@ -110,6 +138,7 @@ public class CreateSceneItemRequestDataRelationships {
     sb.append("class CreateSceneItemRequestDataRelationships {\n");
     sb.append("    parent: ").append(toIndentedString(parent)).append("\n");
     sb.append("    source: ").append(toIndentedString(source)).append("\n");
+    sb.append("    referenceTree: ").append(toIndentedString(referenceTree)).append("\n");
     sb.append("}");
     return sb.toString();
   }
