@@ -24,16 +24,21 @@ import com.vertexvis.model.Vector3;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.math.BigDecimal;
 
 /**
- * Camera placement in 3D space.
+ * A camera type where an object&#39;s size stays consistent regardless of its distance to the camera.
  */
-@ApiModel(description = "Camera placement in 3D space.")
+@ApiModel(description = "A camera type where an object's size stays consistent regardless of its distance to the camera.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class Camera {
-  public static final String SERIALIZED_NAME_POSITION = "position";
-  @SerializedName(SERIALIZED_NAME_POSITION)
-  private Vector3 position;
+public class OrthographicCamera {
+  public static final String SERIALIZED_NAME_TYPE = "type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
+  private String type;
+
+  public static final String SERIALIZED_NAME_VIEW_VECTOR = "viewVector";
+  @SerializedName(SERIALIZED_NAME_VIEW_VECTOR)
+  private Vector3 viewVector;
 
   public static final String SERIALIZED_NAME_LOOK_AT = "lookAt";
   @SerializedName(SERIALIZED_NAME_LOOK_AT)
@@ -43,31 +48,58 @@ public class Camera {
   @SerializedName(SERIALIZED_NAME_UP)
   private Vector3 up;
 
+  public static final String SERIALIZED_NAME_FOV_HEIGHT = "fovHeight";
+  @SerializedName(SERIALIZED_NAME_FOV_HEIGHT)
+  private BigDecimal fovHeight;
 
-  public Camera position(Vector3 position) {
+
+  public OrthographicCamera type(String type) {
     
-    this.position = position;
+    this.type = type;
     return this;
   }
 
    /**
-   * Get position
-   * @return position
+   * Get type
+   * @return type
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "orthographic", value = "")
+
+  public String getType() {
+    return type;
+  }
+
+
+  public void setType(String type) {
+    this.type = type;
+  }
+
+
+  public OrthographicCamera viewVector(Vector3 viewVector) {
+    
+    this.viewVector = viewVector;
+    return this;
+  }
+
+   /**
+   * Get viewVector
+   * @return viewVector
   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public Vector3 getPosition() {
-    return position;
+  public Vector3 getViewVector() {
+    return viewVector;
   }
 
 
-  public void setPosition(Vector3 position) {
-    this.position = position;
+  public void setViewVector(Vector3 viewVector) {
+    this.viewVector = viewVector;
   }
 
 
-  public Camera lookAt(Vector3 lookAt) {
+  public OrthographicCamera lookAt(Vector3 lookAt) {
     
     this.lookAt = lookAt;
     return this;
@@ -90,7 +122,7 @@ public class Camera {
   }
 
 
-  public Camera up(Vector3 up) {
+  public OrthographicCamera up(Vector3 up) {
     
     this.up = up;
     return this;
@@ -113,6 +145,29 @@ public class Camera {
   }
 
 
+  public OrthographicCamera fovHeight(BigDecimal fovHeight) {
+    
+    this.fovHeight = fovHeight;
+    return this;
+  }
+
+   /**
+   * Get fovHeight
+   * @return fovHeight
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public BigDecimal getFovHeight() {
+    return fovHeight;
+  }
+
+
+  public void setFovHeight(BigDecimal fovHeight) {
+    this.fovHeight = fovHeight;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -121,24 +176,28 @@ public class Camera {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Camera camera = (Camera) o;
-    return Objects.equals(this.position, camera.position) &&
-        Objects.equals(this.lookAt, camera.lookAt) &&
-        Objects.equals(this.up, camera.up);
+    OrthographicCamera orthographicCamera = (OrthographicCamera) o;
+    return Objects.equals(this.type, orthographicCamera.type) &&
+        Objects.equals(this.viewVector, orthographicCamera.viewVector) &&
+        Objects.equals(this.lookAt, orthographicCamera.lookAt) &&
+        Objects.equals(this.up, orthographicCamera.up) &&
+        Objects.equals(this.fovHeight, orthographicCamera.fovHeight);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(position, lookAt, up);
+    return Objects.hash(type, viewVector, lookAt, up, fovHeight);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Camera {\n");
-    sb.append("    position: ").append(toIndentedString(position)).append("\n");
+    sb.append("class OrthographicCamera {\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    viewVector: ").append(toIndentedString(viewVector)).append("\n");
     sb.append("    lookAt: ").append(toIndentedString(lookAt)).append("\n");
     sb.append("    up: ").append(toIndentedString(up)).append("\n");
+    sb.append("    fovHeight: ").append(toIndentedString(fovHeight)).append("\n");
     sb.append("}");
     return sb.toString();
   }

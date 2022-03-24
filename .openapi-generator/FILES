@@ -66,7 +66,6 @@ src/main/java/com/vertexvis/model/Batch.java
 src/main/java/com/vertexvis/model/BatchOperation.java
 src/main/java/com/vertexvis/model/BatchOperationRef.java
 src/main/java/com/vertexvis/model/BoundingBox.java
-src/main/java/com/vertexvis/model/Camera.java
 src/main/java/com/vertexvis/model/CameraFit.java
 src/main/java/com/vertexvis/model/ChangeMaterialOperation.java
 src/main/java/com/vertexvis/model/ChangeTransformOperation.java
@@ -157,6 +156,7 @@ src/main/java/com/vertexvis/model/MetadataValue.java
 src/main/java/com/vertexvis/model/OAuth2BadRequest.java
 src/main/java/com/vertexvis/model/OAuth2Token.java
 src/main/java/com/vertexvis/model/Orientation.java
+src/main/java/com/vertexvis/model/OrthographicCamera.java
 src/main/java/com/vertexvis/model/Part.java
 src/main/java/com/vertexvis/model/PartData.java
 src/main/java/com/vertexvis/model/PartDataAttributes.java
@@ -171,6 +171,7 @@ src/main/java/com/vertexvis/model/PartRevisionDataRelationships.java
 src/main/java/com/vertexvis/model/PartRevisionList.java
 src/main/java/com/vertexvis/model/PartRevisionRelationship.java
 src/main/java/com/vertexvis/model/PartRevisionSuppliedId.java
+src/main/java/com/vertexvis/model/PerspectiveCamera.java
 src/main/java/com/vertexvis/model/Point.java
 src/main/java/com/vertexvis/model/QueryAll.java
 src/main/java/com/vertexvis/model/QueryByCollection.java

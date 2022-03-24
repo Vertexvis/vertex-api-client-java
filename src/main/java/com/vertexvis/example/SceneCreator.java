@@ -6,7 +6,6 @@ import static com.vertexvis.model.CameraFit.TypeEnum.FIT_VISIBLE_SCENE_ITEMS;
 import com.vertexvis.ApiClient;
 import com.vertexvis.api.SceneItemsApi;
 import com.vertexvis.api.ScenesApi;
-import com.vertexvis.model.AnyOfCameraCameraFit;
 import com.vertexvis.model.AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship;
 import com.vertexvis.model.CameraFit;
 import com.vertexvis.model.CreateSceneItemRequest;
@@ -78,10 +77,10 @@ class SceneCreator {
                     .type("scene")
                     .attributes(
                         new UpdateSceneRequestDataAttributes()
-                            .state(UpdateSceneRequestDataAttributes.StateEnum.COMMIT)
-                            .camera(
-                                new AnyOfCameraCameraFit(
-                                    new CameraFit().type(FIT_VISIBLE_SCENE_ITEMS))))));
+                            .state(UpdateSceneRequestDataAttributes.StateEnum.COMMIT))));
+                            // .camera(
+                            //     new AnyOfCameraCameraFit(
+                            //         new CameraFit().type(FIT_VISIBLE_SCENE_ITEMS))))));
 
     return scene;
   }
