@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.AnyOfCameraCameraFit;
+import com.vertexvis.model.AnyOfPerspectiveCameraOrthographicCameraCameraFit;
 import com.vertexvis.model.CrossSectioning;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -34,14 +34,14 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class UpdateSceneViewRequestDataAttributes {
   public static final String SERIALIZED_NAME_CAMERA = "camera";
   @SerializedName(SERIALIZED_NAME_CAMERA)
-  private AnyOfCameraCameraFit camera;
+  private AnyOfPerspectiveCameraOrthographicCameraCameraFit camera;
 
   public static final String SERIALIZED_NAME_CROSS_SECTIONING = "crossSectioning";
   @SerializedName(SERIALIZED_NAME_CROSS_SECTIONING)
   private CrossSectioning crossSectioning;
 
 
-  public UpdateSceneViewRequestDataAttributes camera(AnyOfCameraCameraFit camera) {
+  public UpdateSceneViewRequestDataAttributes camera(AnyOfPerspectiveCameraOrthographicCameraCameraFit camera) {
     
     this.camera = camera;
     return this;
@@ -54,12 +54,12 @@ public class UpdateSceneViewRequestDataAttributes {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public AnyOfCameraCameraFit getCamera() {
+  public AnyOfPerspectiveCameraOrthographicCameraCameraFit getCamera() {
     return camera;
   }
 
 
-  public void setCamera(AnyOfCameraCameraFit camera) {
+  public void setCamera(AnyOfPerspectiveCameraOrthographicCameraCameraFit camera) {
     this.camera = camera;
   }
 

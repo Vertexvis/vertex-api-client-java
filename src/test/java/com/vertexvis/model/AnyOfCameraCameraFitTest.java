@@ -11,12 +11,13 @@ import java.math.BigDecimal;
 import org.junit.jupiter.api.Test;
 
 public class AnyOfCameraCameraFitTest {
-
   @Test
   void serializesCamera() {
     AnyOfCameraCameraFit c =
-        new AnyOfCameraCameraFit(new Camera().lookAt(
-            new Vector3().x(new BigDecimal(2)).y(new BigDecimal(4)).z(new BigDecimal(6))));
+        new AnyOfCameraCameraFit(new OneOfPerspectiveCameraOrthographicCamera(
+          new PerspectiveCamera().lookAt(
+            new Vector3().x(new BigDecimal(2)).y(new BigDecimal(4)).z(new BigDecimal(6)))
+        ));
 
     String expected = "{\"lookAt\":{\"x\":2,\"y\":4,\"z\":6}}";
 

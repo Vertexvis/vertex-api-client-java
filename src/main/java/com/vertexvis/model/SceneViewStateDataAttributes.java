@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.Camera;
+import com.vertexvis.model.OneOfPerspectiveCameraOrthographicCamera;
 import com.vertexvis.model.ThumbnailData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -36,7 +36,7 @@ import java.util.List;
 public class SceneViewStateDataAttributes {
   public static final String SERIALIZED_NAME_CAMERA = "camera";
   @SerializedName(SERIALIZED_NAME_CAMERA)
-  private Camera camera;
+  private OneOfPerspectiveCameraOrthographicCamera camera;
 
   public static final String SERIALIZED_NAME_CREATED = "created";
   @SerializedName(SERIALIZED_NAME_CREATED)
@@ -51,7 +51,7 @@ public class SceneViewStateDataAttributes {
   private List<ThumbnailData> thumbnails = null;
 
 
-  public SceneViewStateDataAttributes camera(Camera camera) {
+  public SceneViewStateDataAttributes camera(OneOfPerspectiveCameraOrthographicCamera camera) {
     
     this.camera = camera;
     return this;
@@ -64,12 +64,12 @@ public class SceneViewStateDataAttributes {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public Camera getCamera() {
+  public OneOfPerspectiveCameraOrthographicCamera getCamera() {
     return camera;
   }
 
 
-  public void setCamera(Camera camera) {
+  public void setCamera(OneOfPerspectiveCameraOrthographicCamera camera) {
     this.camera = camera;
   }
 

@@ -2014,6 +2014,64 @@ paths:
         schema:
           $ref: '#/components/schemas/Vector3'
         style: deepObject
+      - description: The perspective camera position.
+        explode: true
+        in: query
+        name: camera[perspective][position]
+        required: false
+        schema:
+          $ref: '#/components/schemas/Vector3'
+        style: deepObject
+      - description: The perspective camera look at position.
+        explode: true
+        in: query
+        name: camera[perspective][lookAt]
+        required: false
+        schema:
+          $ref: '#/components/schemas/Vector3'
+        style: deepObject
+      - description: The perspective camera up vector.
+        explode: true
+        in: query
+        name: camera[perspective][up]
+        required: false
+        schema:
+          $ref: '#/components/schemas/Vector3'
+        style: deepObject
+      - description: The orthographic camera view vector.
+        explode: true
+        in: query
+        name: camera[orthographic][viewVector]
+        required: false
+        schema:
+          $ref: '#/components/schemas/Vector3'
+        style: deepObject
+      - description: The orthographic camera look at position.
+        explode: true
+        in: query
+        name: camera[orthographic][lookAt]
+        required: false
+        schema:
+          $ref: '#/components/schemas/Vector3'
+        style: deepObject
+      - description: The orthographic camera up vector.
+        explode: true
+        in: query
+        name: camera[orthographic][up]
+        required: false
+        schema:
+          $ref: '#/components/schemas/Vector3'
+        style: deepObject
+      - description: The orthographic field-of-view height.
+        explode: true
+        in: query
+        name: camera[orthographic][fovHeight]
+        required: false
+        schema:
+          exclusiveMinimum: true
+          minimum: 0
+          type: number
+        style: form
       responses:
         "200":
           content:
@@ -5836,6 +5894,80 @@ components:
       schema:
         $ref: '#/components/schemas/Uuid'
       style: simple
+    PerspectiveCamera:
+      description: A perspective camera that mimics the way the human eye sees.
+      explode: true
+      in: query
+      name: camera[perspective]
+      required: false
+      schema:
+        $ref: '#/components/schemas/PerspectiveCamera'
+      style: deepObject
+    PerspectiveCameraPosition:
+      description: The perspective camera position.
+      explode: true
+      in: query
+      name: camera[perspective][position]
+      required: false
+      schema:
+        $ref: '#/components/schemas/Vector3'
+      style: deepObject
+    PerspectiveCameraLookAt:
+      description: The perspective camera look at position.
+      explode: true
+      in: query
+      name: camera[perspective][lookAt]
+      required: false
+      schema:
+        $ref: '#/components/schemas/Vector3'
+      style: deepObject
+    PerspectiveCameraUp:
+      description: The perspective camera up vector.
+      explode: true
+      in: query
+      name: camera[perspective][up]
+      required: false
+      schema:
+        $ref: '#/components/schemas/Vector3'
+      style: deepObject
+    OrthographicCameraViewVector:
+      description: The orthographic camera view vector.
+      explode: true
+      in: query
+      name: camera[orthographic][viewVector]
+      required: false
+      schema:
+        $ref: '#/components/schemas/Vector3'
+      style: deepObject
+    OrthographicCameraLookAt:
+      description: The orthographic camera look at position.
+      explode: true
+      in: query
+      name: camera[orthographic][lookAt]
+      required: false
+      schema:
+        $ref: '#/components/schemas/Vector3'
+      style: deepObject
+    OrthographicCameraUp:
+      description: The orthographic camera up vector.
+      explode: true
+      in: query
+      name: camera[orthographic][up]
+      required: false
+      schema:
+        $ref: '#/components/schemas/Vector3'
+      style: deepObject
+    OrthographicCameraFovHeight:
+      description: The orthographic field-of-view height.
+      explode: true
+      in: query
+      name: camera[orthographic][fovHeight]
+      required: false
+      schema:
+        exclusiveMinimum: true
+        minimum: 0
+        type: number
+      style: form
     CameraUp:
       description: The `camera` up vector.
       explode: true
@@ -7095,6 +7227,37 @@ components:
       required:
       - data
       type: object
+    PerspectiveCamera:
+      description: A camera type that mimics the way the human eye sees.
+      example:
+        type: perspective
+        position:
+          x: 0.0
+          y: 0.0
+          z: -100.0
+        lookAt:
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        up:
+          x: 0.0
+          y: 1.0
+          z: 0.0
+      properties:
+        type:
+          example: perspective
+          type: string
+        position:
+          $ref: '#/components/schemas/Vector3'
+        lookAt:
+          $ref: '#/components/schemas/Vector3'
+        up:
+          $ref: '#/components/schemas/Vector3'
+      required:
+      - lookAt
+      - position
+      - up
+      type: object
     NonEmptyString:
       example: some-string
       maxLength: 1024
@@ -7742,14 +7905,15 @@ components:
       - relationships
       - type
       type: object
-    Camera:
-      additionalProperties: false
-      description: Camera placement in 3D space.
+    OrthographicCamera:
+      description: A camera type where an object's size stays consistent regardless
+        of its distance to the camera.
       example:
-        position:
+        type: orthographic
+        viewVector:
           x: 0.0
           y: 0.0
-          z: -100.0
+          z: 1.0
         lookAt:
           x: 0.0
           y: 0.0
@@ -7758,17 +7922,24 @@ components:
           x: 0.0
           y: 1.0
           z: 0.0
+        fovHeight: 1.0
       properties:
-        position:
+        type:
+          example: orthographic
+          type: string
+        viewVector:
           $ref: '#/components/schemas/Vector3'
         lookAt:
           $ref: '#/components/schemas/Vector3'
         up:
           $ref: '#/components/schemas/Vector3'
+        fovHeight:
+          type: number
       required:
+      - fovHeight
       - lookAt
-      - position
       - up
+      - viewVector
       type: object
     CameraFit:
       additionalProperties: false
@@ -8909,7 +9080,8 @@ components:
       properties:
         camera:
           anyOf:
-          - $ref: '#/components/schemas/Camera'
+          - $ref: '#/components/schemas/PerspectiveCamera'
+          - $ref: '#/components/schemas/OrthographicCamera'
           - $ref: '#/components/schemas/CameraFit'
         crossSectioning:
           $ref: '#/components/schemas/CrossSectioning'
@@ -8930,7 +9102,9 @@ components:
     CreateSceneViewRequest_data_attributes:
       properties:
         camera:
-          $ref: '#/components/schemas/Camera'
+          oneOf:
+          - $ref: '#/components/schemas/PerspectiveCamera'
+          - $ref: '#/components/schemas/OrthographicCamera'
         crossSectioning:
           $ref: '#/components/schemas/CrossSectioning'
       type: object
@@ -8957,7 +9131,9 @@ components:
     CreateSceneRequest_data_attributes:
       properties:
         camera:
-          $ref: '#/components/schemas/Camera'
+          oneOf:
+          - $ref: '#/components/schemas/PerspectiveCamera'
+          - $ref: '#/components/schemas/OrthographicCamera'
         suppliedId:
           description: ID provided for correlation. For example, an existing ID from
             a PLM system.
@@ -9001,7 +9177,8 @@ components:
       properties:
         camera:
           anyOf:
-          - $ref: '#/components/schemas/Camera'
+          - $ref: '#/components/schemas/PerspectiveCamera'
+          - $ref: '#/components/schemas/OrthographicCamera'
           - $ref: '#/components/schemas/CameraFit'
         state:
           description: State of the scene.
@@ -9579,7 +9756,9 @@ components:
     SceneViewData_attributes:
       properties:
         camera:
-          $ref: '#/components/schemas/Camera'
+          oneOf:
+          - $ref: '#/components/schemas/PerspectiveCamera'
+          - $ref: '#/components/schemas/OrthographicCamera'
         created:
           example: 2020-01-01T12:00:00Z
           format: date-time
@@ -9621,7 +9800,9 @@ components:
     SceneData_attributes:
       properties:
         camera:
-          $ref: '#/components/schemas/Camera'
+          oneOf:
+          - $ref: '#/components/schemas/PerspectiveCamera'
+          - $ref: '#/components/schemas/OrthographicCamera'
         state:
           example: draft
           type: string
@@ -9675,7 +9856,9 @@ components:
     SceneViewStateData_attributes:
       properties:
         camera:
-          $ref: '#/components/schemas/Camera'
+          oneOf:
+          - $ref: '#/components/schemas/PerspectiveCamera'
+          - $ref: '#/components/schemas/OrthographicCamera'
         created:
           example: 2020-01-01T12:00:00Z
           format: date-time

@@ -27,6 +27,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import java.math.BigDecimal;
 import com.vertexvis.model.Failure;
 import java.io.File;
 import com.vertexvis.model.PartRevision;
@@ -597,6 +598,13 @@ public class PartRevisionsApi {
      * @param cameraPosition The &#x60;camera&#x60; position vector. (optional)
      * @param cameraUp The &#x60;camera&#x60; up vector. (optional)
      * @param cameraLookAt The &#x60;camera&#x60; lookAt vector. (optional)
+     * @param cameraPerspectivePosition The perspective camera position. (optional)
+     * @param cameraPerspectiveLookAt The perspective camera look at position. (optional)
+     * @param cameraPerspectiveUp The perspective camera up vector. (optional)
+     * @param cameraOrthographicViewVector The orthographic camera view vector. (optional)
+     * @param cameraOrthographicLookAt The orthographic camera look at position. (optional)
+     * @param cameraOrthographicUp The orthographic camera up vector. (optional)
+     * @param cameraOrthographicFovHeight The orthographic field-of-view height. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -610,7 +618,7 @@ public class PartRevisionsApi {
         <tr><td> 504 </td><td> GatewayTimeout </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call renderPartRevisionCall(UUID id, Integer height, Integer width, Vector3 cameraPosition, Vector3 cameraUp, Vector3 cameraLookAt, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call renderPartRevisionCall(UUID id, Integer height, Integer width, Vector3 cameraPosition, Vector3 cameraUp, Vector3 cameraLookAt, Vector3 cameraPerspectivePosition, Vector3 cameraPerspectiveLookAt, Vector3 cameraPerspectiveUp, Vector3 cameraOrthographicViewVector, Vector3 cameraOrthographicLookAt, Vector3 cameraOrthographicUp, BigDecimal cameraOrthographicFovHeight, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -643,6 +651,34 @@ public class PartRevisionsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("camera[lookAt]", cameraLookAt));
         }
 
+        if (cameraPerspectivePosition != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("camera[perspective][position]", cameraPerspectivePosition));
+        }
+
+        if (cameraPerspectiveLookAt != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("camera[perspective][lookAt]", cameraPerspectiveLookAt));
+        }
+
+        if (cameraPerspectiveUp != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("camera[perspective][up]", cameraPerspectiveUp));
+        }
+
+        if (cameraOrthographicViewVector != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("camera[orthographic][viewVector]", cameraOrthographicViewVector));
+        }
+
+        if (cameraOrthographicLookAt != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("camera[orthographic][lookAt]", cameraOrthographicLookAt));
+        }
+
+        if (cameraOrthographicUp != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("camera[orthographic][up]", cameraOrthographicUp));
+        }
+
+        if (cameraOrthographicFovHeight != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("camera[orthographic][fovHeight]", cameraOrthographicFovHeight));
+        }
+
         final String[] localVarAccepts = {
             "image/jpeg", "image/png", "application/vnd.api+json"
         };
@@ -662,7 +698,7 @@ public class PartRevisionsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call renderPartRevisionValidateBeforeCall(UUID id, Integer height, Integer width, Vector3 cameraPosition, Vector3 cameraUp, Vector3 cameraLookAt, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call renderPartRevisionValidateBeforeCall(UUID id, Integer height, Integer width, Vector3 cameraPosition, Vector3 cameraUp, Vector3 cameraLookAt, Vector3 cameraPerspectivePosition, Vector3 cameraPerspectiveLookAt, Vector3 cameraPerspectiveUp, Vector3 cameraOrthographicViewVector, Vector3 cameraOrthographicLookAt, Vector3 cameraOrthographicUp, BigDecimal cameraOrthographicFovHeight, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -670,7 +706,7 @@ public class PartRevisionsApi {
         }
         
 
-        okhttp3.Call localVarCall = renderPartRevisionCall(id, height, width, cameraPosition, cameraUp, cameraLookAt, _callback);
+        okhttp3.Call localVarCall = renderPartRevisionCall(id, height, width, cameraPosition, cameraUp, cameraLookAt, cameraPerspectivePosition, cameraPerspectiveLookAt, cameraPerspectiveUp, cameraOrthographicViewVector, cameraOrthographicLookAt, cameraOrthographicUp, cameraOrthographicFovHeight, _callback);
         return localVarCall;
 
     }
@@ -684,6 +720,13 @@ public class PartRevisionsApi {
      * @param cameraPosition The &#x60;camera&#x60; position vector. (optional)
      * @param cameraUp The &#x60;camera&#x60; up vector. (optional)
      * @param cameraLookAt The &#x60;camera&#x60; lookAt vector. (optional)
+     * @param cameraPerspectivePosition The perspective camera position. (optional)
+     * @param cameraPerspectiveLookAt The perspective camera look at position. (optional)
+     * @param cameraPerspectiveUp The perspective camera up vector. (optional)
+     * @param cameraOrthographicViewVector The orthographic camera view vector. (optional)
+     * @param cameraOrthographicLookAt The orthographic camera look at position. (optional)
+     * @param cameraOrthographicUp The orthographic camera up vector. (optional)
+     * @param cameraOrthographicFovHeight The orthographic field-of-view height. (optional)
      * @return File
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -696,8 +739,8 @@ public class PartRevisionsApi {
         <tr><td> 504 </td><td> GatewayTimeout </td><td>  -  </td></tr>
      </table>
      */
-    public File renderPartRevision(UUID id, Integer height, Integer width, Vector3 cameraPosition, Vector3 cameraUp, Vector3 cameraLookAt) throws ApiException {
-        ApiResponse<File> localVarResp = renderPartRevisionWithHttpInfo(id, height, width, cameraPosition, cameraUp, cameraLookAt);
+    public File renderPartRevision(UUID id, Integer height, Integer width, Vector3 cameraPosition, Vector3 cameraUp, Vector3 cameraLookAt, Vector3 cameraPerspectivePosition, Vector3 cameraPerspectiveLookAt, Vector3 cameraPerspectiveUp, Vector3 cameraOrthographicViewVector, Vector3 cameraOrthographicLookAt, Vector3 cameraOrthographicUp, BigDecimal cameraOrthographicFovHeight) throws ApiException {
+        ApiResponse<File> localVarResp = renderPartRevisionWithHttpInfo(id, height, width, cameraPosition, cameraUp, cameraLookAt, cameraPerspectivePosition, cameraPerspectiveLookAt, cameraPerspectiveUp, cameraOrthographicViewVector, cameraOrthographicLookAt, cameraOrthographicUp, cameraOrthographicFovHeight);
         return localVarResp.getData();
     }
 
@@ -710,6 +753,13 @@ public class PartRevisionsApi {
      * @param cameraPosition The &#x60;camera&#x60; position vector. (optional)
      * @param cameraUp The &#x60;camera&#x60; up vector. (optional)
      * @param cameraLookAt The &#x60;camera&#x60; lookAt vector. (optional)
+     * @param cameraPerspectivePosition The perspective camera position. (optional)
+     * @param cameraPerspectiveLookAt The perspective camera look at position. (optional)
+     * @param cameraPerspectiveUp The perspective camera up vector. (optional)
+     * @param cameraOrthographicViewVector The orthographic camera view vector. (optional)
+     * @param cameraOrthographicLookAt The orthographic camera look at position. (optional)
+     * @param cameraOrthographicUp The orthographic camera up vector. (optional)
+     * @param cameraOrthographicFovHeight The orthographic field-of-view height. (optional)
      * @return ApiResponse&lt;File&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -722,8 +772,8 @@ public class PartRevisionsApi {
         <tr><td> 504 </td><td> GatewayTimeout </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<File> renderPartRevisionWithHttpInfo(UUID id, Integer height, Integer width, Vector3 cameraPosition, Vector3 cameraUp, Vector3 cameraLookAt) throws ApiException {
-        okhttp3.Call localVarCall = renderPartRevisionValidateBeforeCall(id, height, width, cameraPosition, cameraUp, cameraLookAt, null);
+    public ApiResponse<File> renderPartRevisionWithHttpInfo(UUID id, Integer height, Integer width, Vector3 cameraPosition, Vector3 cameraUp, Vector3 cameraLookAt, Vector3 cameraPerspectivePosition, Vector3 cameraPerspectiveLookAt, Vector3 cameraPerspectiveUp, Vector3 cameraOrthographicViewVector, Vector3 cameraOrthographicLookAt, Vector3 cameraOrthographicUp, BigDecimal cameraOrthographicFovHeight) throws ApiException {
+        okhttp3.Call localVarCall = renderPartRevisionValidateBeforeCall(id, height, width, cameraPosition, cameraUp, cameraLookAt, cameraPerspectivePosition, cameraPerspectiveLookAt, cameraPerspectiveUp, cameraOrthographicViewVector, cameraOrthographicLookAt, cameraOrthographicUp, cameraOrthographicFovHeight, null);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -737,6 +787,13 @@ public class PartRevisionsApi {
      * @param cameraPosition The &#x60;camera&#x60; position vector. (optional)
      * @param cameraUp The &#x60;camera&#x60; up vector. (optional)
      * @param cameraLookAt The &#x60;camera&#x60; lookAt vector. (optional)
+     * @param cameraPerspectivePosition The perspective camera position. (optional)
+     * @param cameraPerspectiveLookAt The perspective camera look at position. (optional)
+     * @param cameraPerspectiveUp The perspective camera up vector. (optional)
+     * @param cameraOrthographicViewVector The orthographic camera view vector. (optional)
+     * @param cameraOrthographicLookAt The orthographic camera look at position. (optional)
+     * @param cameraOrthographicUp The orthographic camera up vector. (optional)
+     * @param cameraOrthographicFovHeight The orthographic field-of-view height. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -750,9 +807,9 @@ public class PartRevisionsApi {
         <tr><td> 504 </td><td> GatewayTimeout </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call renderPartRevisionAsync(UUID id, Integer height, Integer width, Vector3 cameraPosition, Vector3 cameraUp, Vector3 cameraLookAt, final ApiCallback<File> _callback) throws ApiException {
+    public okhttp3.Call renderPartRevisionAsync(UUID id, Integer height, Integer width, Vector3 cameraPosition, Vector3 cameraUp, Vector3 cameraLookAt, Vector3 cameraPerspectivePosition, Vector3 cameraPerspectiveLookAt, Vector3 cameraPerspectiveUp, Vector3 cameraOrthographicViewVector, Vector3 cameraOrthographicLookAt, Vector3 cameraOrthographicUp, BigDecimal cameraOrthographicFovHeight, final ApiCallback<File> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = renderPartRevisionValidateBeforeCall(id, height, width, cameraPosition, cameraUp, cameraLookAt, _callback);
+        okhttp3.Call localVarCall = renderPartRevisionValidateBeforeCall(id, height, width, cameraPosition, cameraUp, cameraLookAt, cameraPerspectivePosition, cameraPerspectiveLookAt, cameraPerspectiveUp, cameraOrthographicViewVector, cameraOrthographicLookAt, cameraOrthographicUp, cameraOrthographicFovHeight, _callback);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

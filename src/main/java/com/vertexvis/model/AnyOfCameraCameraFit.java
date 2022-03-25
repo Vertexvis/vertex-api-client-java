@@ -3,10 +3,10 @@ package com.vertexvis.model;
 import javax.annotation.Nullable;
 
 public class AnyOfCameraCameraFit {
-  private Camera camera;
+  private OneOfPerspectiveCameraOrthographicCamera camera;
   private CameraFit cameraFit;
 
-  public AnyOfCameraCameraFit(Camera camera) {
+  public AnyOfCameraCameraFit(OneOfPerspectiveCameraOrthographicCamera camera) {
     this.camera = camera;
   }
 
@@ -26,7 +26,7 @@ public class AnyOfCameraCameraFit {
   }
 
   @Nullable
-  public Camera getCamera() {
+  public OneOfPerspectiveCameraOrthographicCamera getCamera() {
     return this.camera;
   }
 

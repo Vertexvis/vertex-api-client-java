@@ -21,24 +21,8 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.internal.bind.util.ISO8601Utils;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.AnyOfCameraCameraFit;
-import com.vertexvis.model.AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperation;
-import com.vertexvis.model.AnyOfCreateSceneItemRequestData;
-import com.vertexvis.model.AnyOfGeometrySetRelationshipPartRevisionRelationship;
-import com.vertexvis.model.AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship;
-import com.vertexvis.model.AnyOfQueryByIdQueryByCollectionQueryAll;
-import com.vertexvis.model.AnyOfRelationshipDataApiError;
-import com.vertexvis.model.OneOfHitResultDataSceneItemDataPartRevisionData;
-import com.vertexvis.model.OneOfSceneViewRelationshipSceneViewStateRelationship;
-import com.vertexvis.model.serialization.AnyOfCameraCameraFitTypeAdapter;
-import com.vertexvis.model.serialization.AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperationTypeAdapter;
-import com.vertexvis.model.serialization.AnyOfCreateSceneItemRequestDataAdapter;
-import com.vertexvis.model.serialization.AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationshipTypeAdapter;
-import com.vertexvis.model.serialization.AnyOfGeometrySetRelationshipPartRevisionRelationshipTypeAdapter;
-import com.vertexvis.model.serialization.AnyOfQueryByIdQueryByCollectionQueryAllTypeAdapter;
-import com.vertexvis.model.serialization.AnyOfRelationshipDataApiErrorAdapter;
-import com.vertexvis.model.serialization.OneOfHitResultDataSceneItemDataPartRevisionDataTypeAdapter;
-import com.vertexvis.model.serialization.OneOfSceneViewRelationshipSceneViewStateRelationshipTypeAdapter;
+import com.vertexvis.model.*;
+import com.vertexvis.model.serialization.*;
 import io.gsonfire.GsonFireBuilder;
 
 import java.io.IOException;
@@ -127,6 +111,10 @@ public class JSON {
             new AnyOfRelationshipDataApiErrorAdapter(() -> gson))
         .registerTypeAdapter(AnyOfCreateSceneItemRequestData.class,
             new AnyOfCreateSceneItemRequestDataAdapter(() -> gson))
+        .registerTypeAdapter(OneOfPerspectiveCameraOrthographicCamera.class,
+            new OneOfPerspectiveCameraOrthographicCameraTypeAdapter(() -> gson))
+         .registerTypeAdapter(AnyOfPerspectiveCameraOrthographicCameraCameraFit.class,
+            new AnyOfPerspectiveCameraOrthographicCameraCameraFitTypeAdapter(() -> gson))
         .create();
   }
 
