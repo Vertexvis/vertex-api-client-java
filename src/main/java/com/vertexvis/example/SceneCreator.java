@@ -78,9 +78,9 @@ class SceneCreator {
                     .attributes(
                         new UpdateSceneRequestDataAttributes()
                             .state(UpdateSceneRequestDataAttributes.StateEnum.COMMIT))));
-                            // .camera(
-                            //     new AnyOfCameraCameraFit(
-                            //         new CameraFit().type(FIT_VISIBLE_SCENE_ITEMS))))));
+                            .camera(
+                                new AnyOfCameraCameraFit(
+                                    new CameraFit().type(FIT_VISIBLE_SCENE_ITEMS))))));
 
     return scene;
   }
