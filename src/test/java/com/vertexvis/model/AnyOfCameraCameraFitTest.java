@@ -19,7 +19,7 @@ public class AnyOfCameraCameraFitTest {
             new Vector3().x(new BigDecimal(2)).y(new BigDecimal(4)).z(new BigDecimal(6)))
         ));
 
-    String expected = "{\"perspectiveCamera\":{\"lookAt\":{\"x\":2,\"y\":4,\"z\":6}}}";
+    String expected = "{\"lookAt\":{\"x\":2,\"y\":4,\"z\":6}}";
 
     assertEquals(expected, new JSON().serialize(c));
   }
