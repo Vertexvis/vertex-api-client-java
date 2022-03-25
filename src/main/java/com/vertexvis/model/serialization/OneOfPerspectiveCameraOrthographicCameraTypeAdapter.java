@@ -2,9 +2,10 @@ package com.vertexvis.model.serialization;
 
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.OneOfPerspectiveCameraOrthographicCamera;
+import com.vertexvis.model.*;
 
 import java.io.IOException;
 import java.util.function.Supplier;
@@ -23,6 +24,30 @@ public class OneOfPerspectiveCameraOrthographicCameraTypeAdapter  extends TypeAd
 
   @Override
   public OneOfPerspectiveCameraOrthographicCamera read(JsonReader in) throws IOException {
-    throw new UnsupportedOperationException("Deserializing this is currently not supported.");
+    Camera camera = gsonSupplier.get().fromJson(in, TypeToken.get(Camera.class).getType());
+
+    OneOfPerspectiveCameraOrthographicCamera oneOfCamera = null;
+    switch (camera.getType()) {
+      case "perspective":
+        oneOfCamera = new OneOfPerspectiveCameraOrthographicCamera(
+          new PerspectiveCamera()
+                  .type(camera.getType())
+                  .position(camera.getPosition())
+                  .lookAt(camera.getLookAt())
+                  .up(camera.getUp())
+        );
+        break;
+      case "orthographic":
+        oneOfCamera = new OneOfPerspectiveCameraOrthographicCamera(
+          new OrthographicCamera()
+            .type(camera.getType())
+            .viewVector(camera.getViewVector())
+            .lookAt(camera.getLookAt())
+            .up(camera.getUp())
+            .fovHeight(camera.getFovHeight())
+        );
+        break;
+    }
+    return oneOfCamera;
   }
 }

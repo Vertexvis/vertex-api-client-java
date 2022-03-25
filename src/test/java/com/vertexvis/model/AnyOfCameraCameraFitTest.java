@@ -11,8 +11,6 @@ import java.math.BigDecimal;
 import org.junit.jupiter.api.Test;
 
 public class AnyOfCameraCameraFitTest {
-  
-
   @Test
   void serializesCamera() {
     AnyOfCameraCameraFit c =
