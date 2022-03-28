@@ -7,7 +7,7 @@ plugins {
 }
 
 group = 'com.vertexvis'
-version = '0.3.0'
+version = '0.3.1'
 
 repositories {
     mavenCentral()
@@ -20,33 +20,33 @@ java {
 
 publishing {
     publications {
-        mavenJava(MavenPublication) {
-            artifactId = 'api-client-java'
-            from components.java
-            pom {
-                name = 'com.vertexvix:api-client-java'
-                description = 'The Vertex REST API client for Java.'
-                url = 'https://github.com/Vertexvis/vertex-api-client-java'
-                licenses {
-                    license {
-                        name = 'MIT'
-                        url = 'https://github.com/Vertexvis/vertex-api-client-java/blob/main/LICENSE'
-                    }
-                }
-                developers {
-                    developer {
-                        email = 'support@vertexvis.com'
-                        name = 'Vertex Developers'
-                        organizationUrl = 'https://developer.vertexvis.com/'
-                    }
-                }
-                scm {
-                    connection = 'scm:git:git@github.com:vertexvis/vertex-api-client-java.git'
-                    developerConnection = 'scm:git:git@github.com:vertexvis/vertex-api-client-java.git'
-                    url = 'https://github.com/Vertexvis/vertex-api-client-java'
-                }
-            }
-        }
+//        mavenJava(MavenPublication) {
+//            artifactId = 'api-client-java'
+//            from components.java
+//            pom {
+//                name = 'com.vertexvix:api-client-java'
+//                description = 'The Vertex REST API client for Java.'
+//                url = 'https://github.com/Vertexvis/vertex-api-client-java'
+//                licenses {
+//                    license {
+//                        name = 'MIT'
+//                        url = 'https://github.com/Vertexvis/vertex-api-client-java/blob/main/LICENSE'
+//                    }
+//                }
+//                developers {
+//                    developer {
+//                        email = 'support@vertexvis.com'
+//                        name = 'Vertex Developers'
+//                        organizationUrl = 'https://developer.vertexvis.com/'
+//                    }
+//                }
+//                scm {
+//                    connection = 'scm:git:git@github.com:vertexvis/vertex-api-client-java.git'
+//                    developerConnection = 'scm:git:git@github.com:vertexvis/vertex-api-client-java.git'
+//                    url = 'https://github.com/Vertexvis/vertex-api-client-java'
+//                }
+//            }
+//        }
     }
 }
 
@@ -63,10 +63,10 @@ def base64Decode(prop) {
     return new String(Base64.getDecoder().decode(project.findProperty(prop).toString())).trim()
 }
 
-signing {
-    useInMemoryPgpKeys(base64Decode("signingKey"), base64Decode("signingPassword"))
-    sign publishing.publications.mavenJava
-}
+//signing {
+//    useInMemoryPgpKeys(base64Decode("signingKey"), base64Decode("signingPassword"))
+//    sign publishing.publications.mavenJava
+//}
 
 javadoc {
     options.tags = ["http.response.details:a:Http Response Details"]

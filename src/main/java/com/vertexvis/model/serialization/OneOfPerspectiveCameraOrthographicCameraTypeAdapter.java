@@ -19,7 +19,9 @@ public class OneOfPerspectiveCameraOrthographicCameraTypeAdapter  extends TypeAd
   @Override
   public void write(JsonWriter out, OneOfPerspectiveCameraOrthographicCamera value)
       throws IOException {
-    out.jsonValue(gsonSupplier.get().toJson(value.getData()));
+    if (value != null && value.getData() != null) {
+      out.jsonValue(gsonSupplier.get().toJson(value.getData()));
+    }
   }
 
   @Override

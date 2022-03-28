@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.vertexvis.JSON;
 
+import java.math.BigDecimal;
+
 public class OneOfPerspectiveCameraOrthographicCameraTest {
 
     @Test
@@ -35,5 +37,34 @@ public class OneOfPerspectiveCameraOrthographicCameraTest {
         assertNotNull(dataAttributes.getCamera().getPerspectiveCamera().getPosition());
         assertNotNull(dataAttributes.getCamera().getPerspectiveCamera().getUp());
         assertNotNull(dataAttributes.getCamera().getPerspectiveCamera().getLookAt());
+    }
+
+    @Test
+    void serializePerspectiveCamera() {
+        PerspectiveCamera perspectiveCamera = new PerspectiveCamera()
+            .lookAt(
+                new Vector3().x(BigDecimal.valueOf(1)).y(BigDecimal.valueOf(1)).z(BigDecimal.valueOf(1))
+            )
+            .up(
+                new Vector3().x(BigDecimal.valueOf(2)).y(BigDecimal.valueOf(2)).z(BigDecimal.valueOf(2))
+            )
+            .position(
+                new Vector3().x(BigDecimal.valueOf(3)).y(BigDecimal.valueOf(3)).z(BigDecimal.valueOf(3))
+            );
+
+        perspectiveCamera.setType("perspective");
+        OneOfPerspectiveCameraOrthographicCamera oneOfPerspectiveCameraOrthographicCamera = new OneOfPerspectiveCameraOrthographicCamera(perspectiveCamera);
+
+        String expected =
+                "{\"type\":\"perspective\",\"position\":{\"x\":3,\"y\":3,\"z\":3},\"lookAt\":{\"x\":1,\"y\":1,\"z\":1},\"up\":{\"x\":2,\"y\":2,\"z\":2}}";
+
+        assertEquals(expected, new JSON().serialize(oneOfPerspectiveCameraOrthographicCamera));
+    }
+
+    @Test
+    void serializeWithNoCameraShouldNotThrow() {
+        OneOfPerspectiveCameraOrthographicCamera oneOfPerspectiveCameraOrthographicCamera = new OneOfPerspectiveCameraOrthographicCamera();
+
+        assertEquals("", new JSON().serialize(oneOfPerspectiveCameraOrthographicCamera));
     }
 }
