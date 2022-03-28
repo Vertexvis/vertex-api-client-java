@@ -63,6 +63,6 @@ public class OneOfPerspectiveCameraOrthographicCameraTest {
 
     @Test
     void serializeWithNoCameraShouldNotThrow() {
-        assertEquals("{\"camera\":null}", new JSON().serialize(new SceneViewStateDataAttributes().camera(new OneOfPerspectiveCameraOrthographicCamera()).created(null)));
+        assertEquals("{}", new JSON().serialize(new SceneViewStateDataAttributes().created(null)));
     }
 }
