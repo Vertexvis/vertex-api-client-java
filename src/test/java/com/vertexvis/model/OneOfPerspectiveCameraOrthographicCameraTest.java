@@ -56,15 +56,13 @@ public class OneOfPerspectiveCameraOrthographicCameraTest {
         OneOfPerspectiveCameraOrthographicCamera oneOfPerspectiveCameraOrthographicCamera = new OneOfPerspectiveCameraOrthographicCamera(perspectiveCamera);
 
         String expected =
-                "{\"type\":\"perspective\",\"position\":{\"x\":3,\"y\":3,\"z\":3},\"lookAt\":{\"x\":1,\"y\":1,\"z\":1},\"up\":{\"x\":2,\"y\":2,\"z\":2}}";
+            "{\"camera\":{\"type\":\"perspective\",\"position\":{\"x\":3,\"y\":3,\"z\":3},\"lookAt\":{\"x\":1,\"y\":1,\"z\":1},\"up\":{\"x\":2,\"y\":2,\"z\":2}}}";
 
-        assertEquals(expected, new JSON().serialize(oneOfPerspectiveCameraOrthographicCamera));
+        assertEquals(expected, new JSON().serialize(new SceneViewStateDataAttributes().camera(oneOfPerspectiveCameraOrthographicCamera)));
     }
 
     @Test
     void serializeWithNoCameraShouldNotThrow() {
-        OneOfPerspectiveCameraOrthographicCamera oneOfPerspectiveCameraOrthographicCamera = new OneOfPerspectiveCameraOrthographicCamera();
-
-        assertEquals("", new JSON().serialize(oneOfPerspectiveCameraOrthographicCamera));
+        assertEquals("{\"camera\":null}", new JSON().serialize(new SceneViewStateDataAttributes().camera(new OneOfPerspectiveCameraOrthographicCamera()).created(null)));
     }
 }

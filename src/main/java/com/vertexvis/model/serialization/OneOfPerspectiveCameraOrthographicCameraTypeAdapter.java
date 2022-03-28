@@ -22,6 +22,9 @@ public class OneOfPerspectiveCameraOrthographicCameraTypeAdapter  extends TypeAd
     if (value != null && value.getData() != null) {
       out.jsonValue(gsonSupplier.get().toJson(value.getData()));
     }
+    else {
+      out.jsonValue(gsonSupplier.get().toJson(null));
+    }
   }
 
   @Override
