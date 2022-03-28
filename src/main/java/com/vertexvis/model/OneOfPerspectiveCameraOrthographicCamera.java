@@ -10,8 +10,6 @@ public class OneOfPerspectiveCameraOrthographicCamera {
     this.perspectiveCamera = perspectiveCamera;
   }
 
-  public OneOfPerspectiveCameraOrthographicCamera() {}
-
   public OneOfPerspectiveCameraOrthographicCamera(OrthographicCamera orthographicCamera) {
     this.orthographicCamera = orthographicCamera;
   }
