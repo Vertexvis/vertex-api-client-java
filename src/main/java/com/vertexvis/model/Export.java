@@ -20,41 +20,80 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.CreateSceneViewStateRequestDataRelationshipsSource;
+import com.vertexvis.model.ExportData;
+import com.vertexvis.model.Link;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
- * CreateSceneViewStateRequestDataRelationships
+ * Export
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneViewStateRequestDataRelationships {
-  public static final String SERIALIZED_NAME_SOURCE = "source";
-  @SerializedName(SERIALIZED_NAME_SOURCE)
-  private CreateSceneViewStateRequestDataRelationshipsSource source;
+public class Export {
+  public static final String SERIALIZED_NAME_DATA = "data";
+  @SerializedName(SERIALIZED_NAME_DATA)
+  private ExportData data;
+
+  public static final String SERIALIZED_NAME_LINKS = "links";
+  @SerializedName(SERIALIZED_NAME_LINKS)
+  private Map<String, Link> links = null;
 
 
-  public CreateSceneViewStateRequestDataRelationships source(CreateSceneViewStateRequestDataRelationshipsSource source) {
+  public Export data(ExportData data) {
     
-    this.source = source;
+    this.data = data;
     return this;
   }
 
    /**
-   * Get source
-   * @return source
+   * Get data
+   * @return data
   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public CreateSceneViewStateRequestDataRelationshipsSource getSource() {
-    return source;
+  public ExportData getData() {
+    return data;
   }
 
 
-  public void setSource(CreateSceneViewStateRequestDataRelationshipsSource source) {
-    this.source = source;
+  public void setData(ExportData data) {
+    this.data = data;
+  }
+
+
+  public Export links(Map<String, Link> links) {
+    
+    this.links = links;
+    return this;
+  }
+
+  public Export putLinksItem(String key, Link linksItem) {
+    if (this.links == null) {
+      this.links = new HashMap<>();
+    }
+    this.links.put(key, linksItem);
+    return this;
+  }
+
+   /**
+   * Get links
+   * @return links
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Map<String, Link> getLinks() {
+    return links;
+  }
+
+
+  public void setLinks(Map<String, Link> links) {
+    this.links = links;
   }
 
 
@@ -66,20 +105,22 @@ public class CreateSceneViewStateRequestDataRelationships {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneViewStateRequestDataRelationships createSceneViewStateRequestDataRelationships = (CreateSceneViewStateRequestDataRelationships) o;
-    return Objects.equals(this.source, createSceneViewStateRequestDataRelationships.source);
+    Export export = (Export) o;
+    return Objects.equals(this.data, export.data) &&
+        Objects.equals(this.links, export.links);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(source);
+    return Objects.hash(data, links);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneViewStateRequestDataRelationships {\n");
-    sb.append("    source: ").append(toIndentedString(source)).append("\n");
+    sb.append("class Export {\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    links: ").append(toIndentedString(links)).append("\n");
     sb.append("}");
     return sb.toString();
   }

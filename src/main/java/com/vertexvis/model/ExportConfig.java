@@ -20,41 +20,45 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.CreateSceneViewStateRequestDataRelationshipsSource;
+import com.vertexvis.model.CADExportConfig;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * CreateSceneViewStateRequestDataRelationships
+ * Describes the options for configuring a file export.
  */
+@ApiModel(description = "Describes the options for configuring a file export.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneViewStateRequestDataRelationships {
-  public static final String SERIALIZED_NAME_SOURCE = "source";
-  @SerializedName(SERIALIZED_NAME_SOURCE)
-  private CreateSceneViewStateRequestDataRelationshipsSource source;
+public class ExportConfig {
+  public static final String SERIALIZED_NAME_FORMAT = "format";
+  @SerializedName(SERIALIZED_NAME_FORMAT)
+  protected String format;
 
+  public ExportConfig() {
+    this.format = this.getClass().getSimpleName();
+  }
 
-  public CreateSceneViewStateRequestDataRelationships source(CreateSceneViewStateRequestDataRelationshipsSource source) {
+  public ExportConfig format(String format) {
     
-    this.source = source;
+    this.format = format;
     return this;
   }
 
    /**
-   * Get source
-   * @return source
+   * Get format
+   * @return format
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "jt", required = true, value = "")
 
-  public CreateSceneViewStateRequestDataRelationshipsSource getSource() {
-    return source;
+  public String getFormat() {
+    return format;
   }
 
 
-  public void setSource(CreateSceneViewStateRequestDataRelationshipsSource source) {
-    this.source = source;
+  public void setFormat(String format) {
+    this.format = format;
   }
 
 
@@ -66,20 +70,20 @@ public class CreateSceneViewStateRequestDataRelationships {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneViewStateRequestDataRelationships createSceneViewStateRequestDataRelationships = (CreateSceneViewStateRequestDataRelationships) o;
-    return Objects.equals(this.source, createSceneViewStateRequestDataRelationships.source);
+    ExportConfig exportConfig = (ExportConfig) o;
+    return Objects.equals(this.format, exportConfig.format);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(source);
+    return Objects.hash(format);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneViewStateRequestDataRelationships {\n");
-    sb.append("    source: ").append(toIndentedString(source)).append("\n");
+    sb.append("class ExportConfig {\n");
+    sb.append("    format: ").append(toIndentedString(format)).append("\n");
     sb.append("}");
     return sb.toString();
   }

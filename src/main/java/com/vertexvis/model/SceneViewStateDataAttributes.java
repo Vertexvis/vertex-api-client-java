@@ -20,7 +20,8 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.OneOfPerspectiveCameraOrthographicCamera;
+import com.vertexvis.model.CreateSceneViewRequestDataAttributesCamera;
+import com.vertexvis.model.FeatureLines;
 import com.vertexvis.model.ThumbnailData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -36,7 +37,7 @@ import java.util.List;
 public class SceneViewStateDataAttributes {
   public static final String SERIALIZED_NAME_CAMERA = "camera";
   @SerializedName(SERIALIZED_NAME_CAMERA)
-  private OneOfPerspectiveCameraOrthographicCamera camera;
+  private CreateSceneViewRequestDataAttributesCamera camera;
 
   public static final String SERIALIZED_NAME_CREATED = "created";
   @SerializedName(SERIALIZED_NAME_CREATED)
@@ -50,8 +51,12 @@ public class SceneViewStateDataAttributes {
   @SerializedName(SERIALIZED_NAME_THUMBNAILS)
   private List<ThumbnailData> thumbnails = null;
 
+  public static final String SERIALIZED_NAME_FEATURE_LINES = "featureLines";
+  @SerializedName(SERIALIZED_NAME_FEATURE_LINES)
+  private FeatureLines featureLines;
 
-  public SceneViewStateDataAttributes camera(OneOfPerspectiveCameraOrthographicCamera camera) {
+
+  public SceneViewStateDataAttributes camera(CreateSceneViewRequestDataAttributesCamera camera) {
     
     this.camera = camera;
     return this;
@@ -64,12 +69,12 @@ public class SceneViewStateDataAttributes {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public OneOfPerspectiveCameraOrthographicCamera getCamera() {
+  public CreateSceneViewRequestDataAttributesCamera getCamera() {
     return camera;
   }
 
 
-  public void setCamera(OneOfPerspectiveCameraOrthographicCamera camera) {
+  public void setCamera(CreateSceneViewRequestDataAttributesCamera camera) {
     this.camera = camera;
   }
 
@@ -151,6 +156,29 @@ public class SceneViewStateDataAttributes {
   }
 
 
+  public SceneViewStateDataAttributes featureLines(FeatureLines featureLines) {
+    
+    this.featureLines = featureLines;
+    return this;
+  }
+
+   /**
+   * Get featureLines
+   * @return featureLines
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public FeatureLines getFeatureLines() {
+    return featureLines;
+  }
+
+
+  public void setFeatureLines(FeatureLines featureLines) {
+    this.featureLines = featureLines;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -163,12 +191,13 @@ public class SceneViewStateDataAttributes {
     return Objects.equals(this.camera, sceneViewStateDataAttributes.camera) &&
         Objects.equals(this.created, sceneViewStateDataAttributes.created) &&
         Objects.equals(this.name, sceneViewStateDataAttributes.name) &&
-        Objects.equals(this.thumbnails, sceneViewStateDataAttributes.thumbnails);
+        Objects.equals(this.thumbnails, sceneViewStateDataAttributes.thumbnails) &&
+        Objects.equals(this.featureLines, sceneViewStateDataAttributes.featureLines);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(camera, created, name, thumbnails);
+    return Objects.hash(camera, created, name, thumbnails, featureLines);
   }
 
   @Override
@@ -179,6 +208,7 @@ public class SceneViewStateDataAttributes {
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    thumbnails: ").append(toIndentedString(thumbnails)).append("\n");
+    sb.append("    featureLines: ").append(toIndentedString(featureLines)).append("\n");
     sb.append("}");
     return sb.toString();
   }

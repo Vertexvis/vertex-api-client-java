@@ -20,41 +20,69 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.CreateSceneViewStateRequestDataRelationshipsSource;
+import com.vertexvis.model.Color3;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.math.BigDecimal;
 
 /**
- * CreateSceneViewStateRequestDataRelationships
+ * FeatureLines
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneViewStateRequestDataRelationships {
-  public static final String SERIALIZED_NAME_SOURCE = "source";
-  @SerializedName(SERIALIZED_NAME_SOURCE)
-  private CreateSceneViewStateRequestDataRelationshipsSource source;
+public class FeatureLines {
+  public static final String SERIALIZED_NAME_COLOR = "color";
+  @SerializedName(SERIALIZED_NAME_COLOR)
+  private Color3 color;
+
+  public static final String SERIALIZED_NAME_WIDTH = "width";
+  @SerializedName(SERIALIZED_NAME_WIDTH)
+  private BigDecimal width;
 
 
-  public CreateSceneViewStateRequestDataRelationships source(CreateSceneViewStateRequestDataRelationshipsSource source) {
+  public FeatureLines color(Color3 color) {
     
-    this.source = source;
+    this.color = color;
     return this;
   }
 
    /**
-   * Get source
-   * @return source
+   * Get color
+   * @return color
   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public CreateSceneViewStateRequestDataRelationshipsSource getSource() {
-    return source;
+  public Color3 getColor() {
+    return color;
   }
 
 
-  public void setSource(CreateSceneViewStateRequestDataRelationshipsSource source) {
-    this.source = source;
+  public void setColor(Color3 color) {
+    this.color = color;
+  }
+
+
+  public FeatureLines width(BigDecimal width) {
+    
+    this.width = width;
+    return this;
+  }
+
+   /**
+   * Get width
+   * @return width
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public BigDecimal getWidth() {
+    return width;
+  }
+
+
+  public void setWidth(BigDecimal width) {
+    this.width = width;
   }
 
 
@@ -66,20 +94,22 @@ public class CreateSceneViewStateRequestDataRelationships {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneViewStateRequestDataRelationships createSceneViewStateRequestDataRelationships = (CreateSceneViewStateRequestDataRelationships) o;
-    return Objects.equals(this.source, createSceneViewStateRequestDataRelationships.source);
+    FeatureLines featureLines = (FeatureLines) o;
+    return Objects.equals(this.color, featureLines.color) &&
+        Objects.equals(this.width, featureLines.width);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(source);
+    return Objects.hash(color, width);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneViewStateRequestDataRelationships {\n");
-    sb.append("    source: ").append(toIndentedString(source)).append("\n");
+    sb.append("class FeatureLines {\n");
+    sb.append("    color: ").append(toIndentedString(color)).append("\n");
+    sb.append("    width: ").append(toIndentedString(width)).append("\n");
     sb.append("}");
     return sb.toString();
   }

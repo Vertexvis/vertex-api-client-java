@@ -20,41 +20,43 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.CreateSceneViewStateRequestDataRelationshipsSource;
+import com.vertexvis.model.SceneViewRelationship;
+import com.vertexvis.model.SceneViewStateRelationship;
+import com.vertexvis.model.SceneViewStateRelationshipData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * CreateSceneViewStateRequestDataRelationships
+ * CreateSceneViewStateRequestDataRelationshipsSource
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneViewStateRequestDataRelationships {
-  public static final String SERIALIZED_NAME_SOURCE = "source";
-  @SerializedName(SERIALIZED_NAME_SOURCE)
-  private CreateSceneViewStateRequestDataRelationshipsSource source;
+public class CreateSceneViewStateRequestDataRelationshipsSource {
+  public static final String SERIALIZED_NAME_DATA = "data";
+  @SerializedName(SERIALIZED_NAME_DATA)
+  private SceneViewStateRelationshipData data;
 
 
-  public CreateSceneViewStateRequestDataRelationships source(CreateSceneViewStateRequestDataRelationshipsSource source) {
+  public CreateSceneViewStateRequestDataRelationshipsSource data(SceneViewStateRelationshipData data) {
     
-    this.source = source;
+    this.data = data;
     return this;
   }
 
    /**
-   * Get source
-   * @return source
+   * Get data
+   * @return data
   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public CreateSceneViewStateRequestDataRelationshipsSource getSource() {
-    return source;
+  public SceneViewStateRelationshipData getData() {
+    return data;
   }
 
 
-  public void setSource(CreateSceneViewStateRequestDataRelationshipsSource source) {
-    this.source = source;
+  public void setData(SceneViewStateRelationshipData data) {
+    this.data = data;
   }
 
 
@@ -66,20 +68,20 @@ public class CreateSceneViewStateRequestDataRelationships {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneViewStateRequestDataRelationships createSceneViewStateRequestDataRelationships = (CreateSceneViewStateRequestDataRelationships) o;
-    return Objects.equals(this.source, createSceneViewStateRequestDataRelationships.source);
+    CreateSceneViewStateRequestDataRelationshipsSource createSceneViewStateRequestDataRelationshipsSource = (CreateSceneViewStateRequestDataRelationshipsSource) o;
+    return Objects.equals(this.data, createSceneViewStateRequestDataRelationshipsSource.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(source);
+    return Objects.hash(data);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneViewStateRequestDataRelationships {\n");
-    sb.append("    source: ").append(toIndentedString(source)).append("\n");
+    sb.append("class CreateSceneViewStateRequestDataRelationshipsSource {\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");
     return sb.toString();
   }

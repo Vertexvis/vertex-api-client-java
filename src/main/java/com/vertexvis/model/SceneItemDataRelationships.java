@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship;
+import com.vertexvis.model.SceneItemDataRelationshipsSource;
 import com.vertexvis.model.SceneItemRelationship;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -33,14 +33,14 @@ import java.io.IOException;
 public class SceneItemDataRelationships {
   public static final String SERIALIZED_NAME_SOURCE = "source";
   @SerializedName(SERIALIZED_NAME_SOURCE)
-  private AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship source;
+  private SceneItemDataRelationshipsSource source;
 
   public static final String SERIALIZED_NAME_PARENT = "parent";
   @SerializedName(SERIALIZED_NAME_PARENT)
   private SceneItemRelationship parent;
 
 
-  public SceneItemDataRelationships source(AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship source) {
+  public SceneItemDataRelationships source(SceneItemDataRelationshipsSource source) {
     
     this.source = source;
     return this;
@@ -53,12 +53,12 @@ public class SceneItemDataRelationships {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship getSource() {
+  public SceneItemDataRelationshipsSource getSource() {
     return source;
   }
 
 
-  public void setSource(AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship source) {
+  public void setSource(SceneItemDataRelationshipsSource source) {
     this.source = source;
   }
 

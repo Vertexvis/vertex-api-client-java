@@ -20,71 +20,31 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.vertexvis.model.CreateExportRequestDataAttributes;
+import com.vertexvis.model.CreateExportRequestDataRelationships;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.UUID;
 
 /**
- * PartDataRelationshipsPartRevisions
+ * CreateExportRequestData
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class PartDataRelationshipsPartRevisions {
-  /**
-   * Resource object type.
-   */
-  @JsonAdapter(TypeEnum.Adapter.class)
-  public enum TypeEnum {
-    PART_REVISION("part-revision");
-
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static TypeEnum fromValue(String value) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<TypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public TypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return TypeEnum.fromValue(value);
-      }
-    }
-  }
-
+public class CreateExportRequestData {
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
-  private TypeEnum type;
+  private String type;
 
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private UUID id;
+  public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
+  @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
+  private CreateExportRequestDataAttributes attributes;
+
+  public static final String SERIALIZED_NAME_RELATIONSHIPS = "relationships";
+  @SerializedName(SERIALIZED_NAME_RELATIONSHIPS)
+  private CreateExportRequestDataRelationships relationships;
 
 
-  public PartDataRelationshipsPartRevisions type(TypeEnum type) {
+  public CreateExportRequestData type(String type) {
     
     this.type = type;
     return this;
@@ -95,38 +55,61 @@ public class PartDataRelationshipsPartRevisions {
    * @return type
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "part-revision", required = true, value = "Resource object type.")
+  @ApiModelProperty(example = "export", required = true, value = "Resource object type.")
 
-  public TypeEnum getType() {
+  public String getType() {
     return type;
   }
 
 
-  public void setType(TypeEnum type) {
+  public void setType(String type) {
     this.type = type;
   }
 
 
-  public PartDataRelationshipsPartRevisions id(UUID id) {
+  public CreateExportRequestData attributes(CreateExportRequestDataAttributes attributes) {
     
-    this.id = id;
+    this.attributes = attributes;
     return this;
   }
 
    /**
-   * ID of the resource.
-   * @return id
+   * Get attributes
+   * @return attributes
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "f79d4760-0b71-44e4-ad0b-22743fdd4ca3", required = true, value = "ID of the resource.")
+  @ApiModelProperty(required = true, value = "")
 
-  public UUID getId() {
-    return id;
+  public CreateExportRequestDataAttributes getAttributes() {
+    return attributes;
   }
 
 
-  public void setId(UUID id) {
-    this.id = id;
+  public void setAttributes(CreateExportRequestDataAttributes attributes) {
+    this.attributes = attributes;
+  }
+
+
+  public CreateExportRequestData relationships(CreateExportRequestDataRelationships relationships) {
+    
+    this.relationships = relationships;
+    return this;
+  }
+
+   /**
+   * Get relationships
+   * @return relationships
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public CreateExportRequestDataRelationships getRelationships() {
+    return relationships;
+  }
+
+
+  public void setRelationships(CreateExportRequestDataRelationships relationships) {
+    this.relationships = relationships;
   }
 
 
@@ -138,22 +121,24 @@ public class PartDataRelationshipsPartRevisions {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PartDataRelationshipsPartRevisions partDataRelationshipsPartRevisions = (PartDataRelationshipsPartRevisions) o;
-    return Objects.equals(this.type, partDataRelationshipsPartRevisions.type) &&
-        Objects.equals(this.id, partDataRelationshipsPartRevisions.id);
+    CreateExportRequestData createExportRequestData = (CreateExportRequestData) o;
+    return Objects.equals(this.type, createExportRequestData.type) &&
+        Objects.equals(this.attributes, createExportRequestData.attributes) &&
+        Objects.equals(this.relationships, createExportRequestData.relationships);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id);
+    return Objects.hash(type, attributes, relationships);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PartDataRelationshipsPartRevisions {\n");
+    sb.append("class CreateExportRequestData {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
+    sb.append("    relationships: ").append(toIndentedString(relationships)).append("\n");
     sb.append("}");
     return sb.toString();
   }

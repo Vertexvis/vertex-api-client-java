@@ -20,22 +20,22 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.CreateSceneViewStateRequestDataRelationshipsSource;
+import com.vertexvis.model.ExportRelationship;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * CreateSceneViewStateRequestDataRelationships
+ * CreateExportRequestDataRelationships
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneViewStateRequestDataRelationships {
+public class CreateExportRequestDataRelationships {
   public static final String SERIALIZED_NAME_SOURCE = "source";
   @SerializedName(SERIALIZED_NAME_SOURCE)
-  private CreateSceneViewStateRequestDataRelationshipsSource source;
+  private ExportRelationship source;
 
 
-  public CreateSceneViewStateRequestDataRelationships source(CreateSceneViewStateRequestDataRelationshipsSource source) {
+  public CreateExportRequestDataRelationships source(ExportRelationship source) {
     
     this.source = source;
     return this;
@@ -48,12 +48,12 @@ public class CreateSceneViewStateRequestDataRelationships {
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public CreateSceneViewStateRequestDataRelationshipsSource getSource() {
+  public ExportRelationship getSource() {
     return source;
   }
 
 
-  public void setSource(CreateSceneViewStateRequestDataRelationshipsSource source) {
+  public void setSource(ExportRelationship source) {
     this.source = source;
   }
 
@@ -66,8 +66,8 @@ public class CreateSceneViewStateRequestDataRelationships {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneViewStateRequestDataRelationships createSceneViewStateRequestDataRelationships = (CreateSceneViewStateRequestDataRelationships) o;
-    return Objects.equals(this.source, createSceneViewStateRequestDataRelationships.source);
+    CreateExportRequestDataRelationships createExportRequestDataRelationships = (CreateExportRequestDataRelationships) o;
+    return Objects.equals(this.source, createExportRequestDataRelationships.source);
   }
 
   @Override
@@ -78,7 +78,7 @@ public class CreateSceneViewStateRequestDataRelationships {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneViewStateRequestDataRelationships {\n");
+    sb.append("class CreateExportRequestDataRelationships {\n");
     sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("}");
     return sb.toString();

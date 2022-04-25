@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.AnyOfGeometrySetRelationshipPartRevisionRelationship;
+import com.vertexvis.model.UpdateSceneItemRequestDataRelationshipsSource;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -32,28 +32,28 @@ import java.io.IOException;
 public class UpdateSceneItemRequestDataRelationships {
   public static final String SERIALIZED_NAME_SOURCE = "source";
   @SerializedName(SERIALIZED_NAME_SOURCE)
-  private AnyOfGeometrySetRelationshipPartRevisionRelationship source;
+  private UpdateSceneItemRequestDataRelationshipsSource source;
 
 
-  public UpdateSceneItemRequestDataRelationships source(AnyOfGeometrySetRelationshipPartRevisionRelationship source) {
+  public UpdateSceneItemRequestDataRelationships source(UpdateSceneItemRequestDataRelationshipsSource source) {
     
     this.source = source;
     return this;
   }
 
    /**
-   * Relationship to a &#x60;geometry-set&#x60; or &#x60;part-revision&#x60;.
+   * Get source
    * @return source
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Relationship to a `geometry-set` or `part-revision`.")
+  @ApiModelProperty(value = "")
 
-  public AnyOfGeometrySetRelationshipPartRevisionRelationship getSource() {
+  public UpdateSceneItemRequestDataRelationshipsSource getSource() {
     return source;
   }
 
 
-  public void setSource(AnyOfGeometrySetRelationshipPartRevisionRelationship source) {
+  public void setSource(UpdateSceneItemRequestDataRelationshipsSource source) {
     this.source = source;
   }
 

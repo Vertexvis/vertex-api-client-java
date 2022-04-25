@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.OneOfPerspectiveCameraOrthographicCamera;
+import com.vertexvis.model.CreateSceneViewRequestDataAttributesCamera;
 import com.vertexvis.model.Orientation;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -33,7 +33,7 @@ import java.io.IOException;
 public class CreateSceneRequestDataAttributes {
   public static final String SERIALIZED_NAME_CAMERA = "camera";
   @SerializedName(SERIALIZED_NAME_CAMERA)
-  private OneOfPerspectiveCameraOrthographicCamera camera;
+  private CreateSceneViewRequestDataAttributesCamera camera;
 
   public static final String SERIALIZED_NAME_SUPPLIED_ID = "suppliedId";
   @SerializedName(SERIALIZED_NAME_SUPPLIED_ID)
@@ -52,7 +52,7 @@ public class CreateSceneRequestDataAttributes {
   private Orientation worldOrientation;
 
 
-  public CreateSceneRequestDataAttributes camera(OneOfPerspectiveCameraOrthographicCamera camera) {
+  public CreateSceneRequestDataAttributes camera(CreateSceneViewRequestDataAttributesCamera camera) {
     
     this.camera = camera;
     return this;
@@ -65,12 +65,12 @@ public class CreateSceneRequestDataAttributes {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public OneOfPerspectiveCameraOrthographicCamera getCamera() {
+  public CreateSceneViewRequestDataAttributesCamera getCamera() {
     return camera;
   }
 
 
-  public void setCamera(OneOfPerspectiveCameraOrthographicCamera camera) {
+  public void setCamera(CreateSceneViewRequestDataAttributesCamera camera) {
     this.camera = camera;
   }
 

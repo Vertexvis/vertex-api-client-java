@@ -20,8 +20,8 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperation;
-import com.vertexvis.model.AnyOfQueryByIdQueryByCollectionQueryAll;
+import com.vertexvis.model.SceneOperationOperationsInner;
+import com.vertexvis.model.SceneOperationQuery;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -35,43 +35,43 @@ import java.util.List;
 public class SceneOperation {
   public static final String SERIALIZED_NAME_QUERY = "query";
   @SerializedName(SERIALIZED_NAME_QUERY)
-  private AnyOfQueryByIdQueryByCollectionQueryAll query;
+  private SceneOperationQuery query;
 
   public static final String SERIALIZED_NAME_OPERATIONS = "operations";
   @SerializedName(SERIALIZED_NAME_OPERATIONS)
-  private List<AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperation> operations = new ArrayList<>();
+  private List<SceneOperationOperationsInner> operations = new ArrayList<>();
 
 
-  public SceneOperation query(AnyOfQueryByIdQueryByCollectionQueryAll query) {
+  public SceneOperation query(SceneOperationQuery query) {
     
     this.query = query;
     return this;
   }
 
    /**
-   * Query &#x60;scene-items&#x60;. Use &#x60;query-by-collection&#x60; to combine multiple queries.
+   * Get query
    * @return query
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Query `scene-items`. Use `query-by-collection` to combine multiple queries.")
+  @ApiModelProperty(required = true, value = "")
 
-  public AnyOfQueryByIdQueryByCollectionQueryAll getQuery() {
+  public SceneOperationQuery getQuery() {
     return query;
   }
 
 
-  public void setQuery(AnyOfQueryByIdQueryByCollectionQueryAll query) {
+  public void setQuery(SceneOperationQuery query) {
     this.query = query;
   }
 
 
-  public SceneOperation operations(List<AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperation> operations) {
+  public SceneOperation operations(List<SceneOperationOperationsInner> operations) {
     
     this.operations = operations;
     return this;
   }
 
-  public SceneOperation addOperationsItem(AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperation operationsItem) {
+  public SceneOperation addOperationsItem(SceneOperationOperationsInner operationsItem) {
     this.operations.add(operationsItem);
     return this;
   }
@@ -83,12 +83,12 @@ public class SceneOperation {
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "List of operations to perform on `scene-items` matching the query.")
 
-  public List<AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperation> getOperations() {
+  public List<SceneOperationOperationsInner> getOperations() {
     return operations;
   }
 
 
-  public void setOperations(List<AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperation> operations) {
+  public void setOperations(List<SceneOperationOperationsInner> operations) {
     this.operations = operations;
   }
 

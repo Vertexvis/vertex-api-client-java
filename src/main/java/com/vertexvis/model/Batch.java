@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.AnyOfRelationshipDataApiError;
+import com.vertexvis.model.BatchVertexvisBatchResultsInner;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -34,16 +34,16 @@ import java.util.List;
 public class Batch {
   public static final String SERIALIZED_NAME_VERTEXVIS_BATCH_COLON_RESULTS = "vertexvis/batch:results";
   @SerializedName(SERIALIZED_NAME_VERTEXVIS_BATCH_COLON_RESULTS)
-  private List<AnyOfRelationshipDataApiError> vertexvisBatchColonResults = new ArrayList<>();
+  private List<BatchVertexvisBatchResultsInner> vertexvisBatchColonResults = new ArrayList<>();
 
 
-  public Batch vertexvisBatchColonResults(List<AnyOfRelationshipDataApiError> vertexvisBatchColonResults) {
+  public Batch vertexvisBatchColonResults(List<BatchVertexvisBatchResultsInner> vertexvisBatchColonResults) {
     
     this.vertexvisBatchColonResults = vertexvisBatchColonResults;
     return this;
   }
 
-  public Batch addVertexvisBatchColonResultsItem(AnyOfRelationshipDataApiError vertexvisBatchColonResultsItem) {
+  public Batch addVertexvisBatchColonResultsItem(BatchVertexvisBatchResultsInner vertexvisBatchColonResultsItem) {
     this.vertexvisBatchColonResults.add(vertexvisBatchColonResultsItem);
     return this;
   }
@@ -55,12 +55,12 @@ public class Batch {
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "List of operation results.")
 
-  public List<AnyOfRelationshipDataApiError> getVertexvisBatchColonResults() {
+  public List<BatchVertexvisBatchResultsInner> getVertexvisBatchColonResults() {
     return vertexvisBatchColonResults;
   }
 
 
-  public void setVertexvisBatchColonResults(List<AnyOfRelationshipDataApiError> vertexvisBatchColonResults) {
+  public void setVertexvisBatchColonResults(List<BatchVertexvisBatchResultsInner> vertexvisBatchColonResults) {
     this.vertexvisBatchColonResults = vertexvisBatchColonResults;
   }
 

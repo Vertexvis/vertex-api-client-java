@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.PartDataRelationshipsPartRevisions;
+import com.vertexvis.model.PartDataRelationshipsPartRevisionsInner;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -34,16 +34,16 @@ import java.util.List;
 public class PartDataRelationships {
   public static final String SERIALIZED_NAME_PART_REVISIONS = "partRevisions";
   @SerializedName(SERIALIZED_NAME_PART_REVISIONS)
-  private List<PartDataRelationshipsPartRevisions> partRevisions = new ArrayList<>();
+  private List<PartDataRelationshipsPartRevisionsInner> partRevisions = new ArrayList<>();
 
 
-  public PartDataRelationships partRevisions(List<PartDataRelationshipsPartRevisions> partRevisions) {
+  public PartDataRelationships partRevisions(List<PartDataRelationshipsPartRevisionsInner> partRevisions) {
     
     this.partRevisions = partRevisions;
     return this;
   }
 
-  public PartDataRelationships addPartRevisionsItem(PartDataRelationshipsPartRevisions partRevisionsItem) {
+  public PartDataRelationships addPartRevisionsItem(PartDataRelationshipsPartRevisionsInner partRevisionsItem) {
     this.partRevisions.add(partRevisionsItem);
     return this;
   }
@@ -55,12 +55,12 @@ public class PartDataRelationships {
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public List<PartDataRelationshipsPartRevisions> getPartRevisions() {
+  public List<PartDataRelationshipsPartRevisionsInner> getPartRevisions() {
     return partRevisions;
   }
 
 
-  public void setPartRevisions(List<PartDataRelationshipsPartRevisions> partRevisions) {
+  public void setPartRevisions(List<PartDataRelationshipsPartRevisionsInner> partRevisions) {
     this.partRevisions = partRevisions;
   }
 

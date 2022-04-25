@@ -20,41 +20,68 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.CreateSceneViewStateRequestDataRelationshipsSource;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.time.OffsetDateTime;
 
 /**
- * CreateSceneViewStateRequestDataRelationships
+ * ExportDataAttributes
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneViewStateRequestDataRelationships {
-  public static final String SERIALIZED_NAME_SOURCE = "source";
-  @SerializedName(SERIALIZED_NAME_SOURCE)
-  private CreateSceneViewStateRequestDataRelationshipsSource source;
+public class ExportDataAttributes {
+  public static final String SERIALIZED_NAME_CREATED = "created";
+  @SerializedName(SERIALIZED_NAME_CREATED)
+  private OffsetDateTime created;
+
+  public static final String SERIALIZED_NAME_DOWNLOAD_URL = "downloadUrl";
+  @SerializedName(SERIALIZED_NAME_DOWNLOAD_URL)
+  private String downloadUrl;
 
 
-  public CreateSceneViewStateRequestDataRelationships source(CreateSceneViewStateRequestDataRelationshipsSource source) {
+  public ExportDataAttributes created(OffsetDateTime created) {
     
-    this.source = source;
+    this.created = created;
     return this;
   }
 
    /**
-   * Get source
-   * @return source
+   * Get created
+   * @return created
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "2020-01-01T12:00Z", required = true, value = "")
 
-  public CreateSceneViewStateRequestDataRelationshipsSource getSource() {
-    return source;
+  public OffsetDateTime getCreated() {
+    return created;
   }
 
 
-  public void setSource(CreateSceneViewStateRequestDataRelationshipsSource source) {
-    this.source = source;
+  public void setCreated(OffsetDateTime created) {
+    this.created = created;
+  }
+
+
+  public ExportDataAttributes downloadUrl(String downloadUrl) {
+    
+    this.downloadUrl = downloadUrl;
+    return this;
+  }
+
+   /**
+   * Get downloadUrl
+   * @return downloadUrl
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "https://example.com/path/to/file.jt", required = true, value = "")
+
+  public String getDownloadUrl() {
+    return downloadUrl;
+  }
+
+
+  public void setDownloadUrl(String downloadUrl) {
+    this.downloadUrl = downloadUrl;
   }
 
 
@@ -66,20 +93,22 @@ public class CreateSceneViewStateRequestDataRelationships {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneViewStateRequestDataRelationships createSceneViewStateRequestDataRelationships = (CreateSceneViewStateRequestDataRelationships) o;
-    return Objects.equals(this.source, createSceneViewStateRequestDataRelationships.source);
+    ExportDataAttributes exportDataAttributes = (ExportDataAttributes) o;
+    return Objects.equals(this.created, exportDataAttributes.created) &&
+        Objects.equals(this.downloadUrl, exportDataAttributes.downloadUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(source);
+    return Objects.hash(created, downloadUrl);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneViewStateRequestDataRelationships {\n");
-    sb.append("    source: ").append(toIndentedString(source)).append("\n");
+    sb.append("class ExportDataAttributes {\n");
+    sb.append("    created: ").append(toIndentedString(created)).append("\n");
+    sb.append("    downloadUrl: ").append(toIndentedString(downloadUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }

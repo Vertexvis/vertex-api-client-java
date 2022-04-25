@@ -20,41 +20,44 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.CreateSceneViewStateRequestDataRelationshipsSource;
+import com.vertexvis.model.GeometrySetRelationship;
+import com.vertexvis.model.PartDataRelationshipsPartRevisionsInner;
+import com.vertexvis.model.PartRevisionRelationship;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * CreateSceneViewStateRequestDataRelationships
+ * Relationship to a &#x60;geometry-set&#x60; or &#x60;part-revision&#x60;.
  */
+@ApiModel(description = "Relationship to a `geometry-set` or `part-revision`.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneViewStateRequestDataRelationships {
-  public static final String SERIALIZED_NAME_SOURCE = "source";
-  @SerializedName(SERIALIZED_NAME_SOURCE)
-  private CreateSceneViewStateRequestDataRelationshipsSource source;
+public class UpdateSceneItemRequestDataRelationshipsSource {
+  public static final String SERIALIZED_NAME_DATA = "data";
+  @SerializedName(SERIALIZED_NAME_DATA)
+  private PartDataRelationshipsPartRevisionsInner data;
 
 
-  public CreateSceneViewStateRequestDataRelationships source(CreateSceneViewStateRequestDataRelationshipsSource source) {
+  public UpdateSceneItemRequestDataRelationshipsSource data(PartDataRelationshipsPartRevisionsInner data) {
     
-    this.source = source;
+    this.data = data;
     return this;
   }
 
    /**
-   * Get source
-   * @return source
+   * Get data
+   * @return data
   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public CreateSceneViewStateRequestDataRelationshipsSource getSource() {
-    return source;
+  public PartDataRelationshipsPartRevisionsInner getData() {
+    return data;
   }
 
 
-  public void setSource(CreateSceneViewStateRequestDataRelationshipsSource source) {
-    this.source = source;
+  public void setData(PartDataRelationshipsPartRevisionsInner data) {
+    this.data = data;
   }
 
 
@@ -66,20 +69,20 @@ public class CreateSceneViewStateRequestDataRelationships {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneViewStateRequestDataRelationships createSceneViewStateRequestDataRelationships = (CreateSceneViewStateRequestDataRelationships) o;
-    return Objects.equals(this.source, createSceneViewStateRequestDataRelationships.source);
+    UpdateSceneItemRequestDataRelationshipsSource updateSceneItemRequestDataRelationshipsSource = (UpdateSceneItemRequestDataRelationshipsSource) o;
+    return Objects.equals(this.data, updateSceneItemRequestDataRelationshipsSource.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(source);
+    return Objects.hash(data);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneViewStateRequestDataRelationships {\n");
-    sb.append("    source: ").append(toIndentedString(source)).append("\n");
+    sb.append("class UpdateSceneItemRequestDataRelationshipsSource {\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");
     return sb.toString();
   }

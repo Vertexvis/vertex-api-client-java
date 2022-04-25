@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship;
+import com.vertexvis.model.CreateSceneItemRequestDataRelationshipsSource;
 import com.vertexvis.model.SceneItemRelationship;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -37,7 +37,7 @@ public class CreateSceneItemRequestDataRelationships {
 
   public static final String SERIALIZED_NAME_SOURCE = "source";
   @SerializedName(SERIALIZED_NAME_SOURCE)
-  private AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship source;
+  private CreateSceneItemRequestDataRelationshipsSource source;
 
   public static final String SERIALIZED_NAME_REFERENCE_TREE = "referenceTree";
   @SerializedName(SERIALIZED_NAME_REFERENCE_TREE)
@@ -67,25 +67,25 @@ public class CreateSceneItemRequestDataRelationships {
   }
 
 
-  public CreateSceneItemRequestDataRelationships source(AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship source) {
+  public CreateSceneItemRequestDataRelationships source(CreateSceneItemRequestDataRelationshipsSource source) {
     
     this.source = source;
     return this;
   }
 
    /**
-   * Relationship to a &#x60;geometry-set&#x60;, &#x60;part-revision&#x60;, or &#x60;scene&#x60;.
+   * Get source
    * @return source
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Relationship to a `geometry-set`, `part-revision`, or `scene`.")
+  @ApiModelProperty(value = "")
 
-  public AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship getSource() {
+  public CreateSceneItemRequestDataRelationshipsSource getSource() {
     return source;
   }
 
 
-  public void setSource(AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship source) {
+  public void setSource(CreateSceneItemRequestDataRelationshipsSource source) {
     this.source = source;
   }
 

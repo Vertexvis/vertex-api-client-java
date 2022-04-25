@@ -20,93 +20,114 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.HitData;
-import com.vertexvis.model.HitIncludedInner;
+import com.vertexvis.model.ExportDataAttributes;
 import com.vertexvis.model.Link;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
- * Hit
+ * ExportData
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class Hit {
-  public static final String SERIALIZED_NAME_DATA = "data";
-  @SerializedName(SERIALIZED_NAME_DATA)
-  private HitData data;
+public class ExportData {
+  public static final String SERIALIZED_NAME_TYPE = "type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
+  private String type;
 
-  public static final String SERIALIZED_NAME_INCLUDED = "included";
-  @SerializedName(SERIALIZED_NAME_INCLUDED)
-  private List<HitIncludedInner> included = new ArrayList<>();
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private UUID id;
+
+  public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
+  @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
+  private ExportDataAttributes attributes;
 
   public static final String SERIALIZED_NAME_LINKS = "links";
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = null;
 
 
-  public Hit data(HitData data) {
+  public ExportData type(String type) {
     
-    this.data = data;
+    this.type = type;
     return this;
   }
 
    /**
-   * Get data
-   * @return data
+   * Get type
+   * @return type
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "export", required = true, value = "")
 
-  public HitData getData() {
-    return data;
+  public String getType() {
+    return type;
   }
 
 
-  public void setData(HitData data) {
-    this.data = data;
+  public void setType(String type) {
+    this.type = type;
   }
 
 
-  public Hit included(List<HitIncludedInner> included) {
+  public ExportData id(UUID id) {
     
-    this.included = included;
-    return this;
-  }
-
-  public Hit addIncludedItem(HitIncludedInner includedItem) {
-    this.included.add(includedItem);
+    this.id = id;
     return this;
   }
 
    /**
-   * Get included
-   * @return included
+   * ID of the resource.
+   * @return id
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "f79d4760-0b71-44e4-ad0b-22743fdd4ca3", required = true, value = "ID of the resource.")
+
+  public UUID getId() {
+    return id;
+  }
+
+
+  public void setId(UUID id) {
+    this.id = id;
+  }
+
+
+  public ExportData attributes(ExportDataAttributes attributes) {
+    
+    this.attributes = attributes;
+    return this;
+  }
+
+   /**
+   * Get attributes
+   * @return attributes
   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public List<HitIncludedInner> getIncluded() {
-    return included;
+  public ExportDataAttributes getAttributes() {
+    return attributes;
   }
 
 
-  public void setIncluded(List<HitIncludedInner> included) {
-    this.included = included;
+  public void setAttributes(ExportDataAttributes attributes) {
+    this.attributes = attributes;
   }
 
 
-  public Hit links(Map<String, Link> links) {
+  public ExportData links(Map<String, Link> links) {
     
     this.links = links;
     return this;
   }
 
-  public Hit putLinksItem(String key, Link linksItem) {
+  public ExportData putLinksItem(String key, Link linksItem) {
     if (this.links == null) {
       this.links = new HashMap<>();
     }
@@ -139,23 +160,25 @@ public class Hit {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Hit hit = (Hit) o;
-    return Objects.equals(this.data, hit.data) &&
-        Objects.equals(this.included, hit.included) &&
-        Objects.equals(this.links, hit.links);
+    ExportData exportData = (ExportData) o;
+    return Objects.equals(this.type, exportData.type) &&
+        Objects.equals(this.id, exportData.id) &&
+        Objects.equals(this.attributes, exportData.attributes) &&
+        Objects.equals(this.links, exportData.links);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, included, links);
+    return Objects.hash(type, id, attributes, links);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Hit {\n");
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
-    sb.append("    included: ").append(toIndentedString(included)).append("\n");
+    sb.append("class ExportData {\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("    links: ").append(toIndentedString(links)).append("\n");
     sb.append("}");
     return sb.toString();

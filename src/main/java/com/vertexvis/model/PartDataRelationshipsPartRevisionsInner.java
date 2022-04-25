@@ -20,31 +20,26 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.BatchOperationData;
-import com.vertexvis.model.BatchOperationRef;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.UUID;
 
 /**
- * BatchOperation
+ * PartDataRelationshipsPartRevisionsInner
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class BatchOperation {
-  public static final String SERIALIZED_NAME_DATA = "data";
-  @SerializedName(SERIALIZED_NAME_DATA)
-  private BatchOperationData data;
-
+public class PartDataRelationshipsPartRevisionsInner {
   /**
-   * Batch operation type type.
+   * Resource object type.
    */
-  @JsonAdapter(OpEnum.Adapter.class)
-  public enum OpEnum {
-    ADD("add");
+  @JsonAdapter(TypeEnum.Adapter.class)
+  public enum TypeEnum {
+    PART_REVISION("part-revision");
 
     private String value;
 
-    OpEnum(String value) {
+    TypeEnum(String value) {
       this.value = value;
     }
 
@@ -57,8 +52,8 @@ public class BatchOperation {
       return String.valueOf(value);
     }
 
-    public static OpEnum fromValue(String value) {
-      for (OpEnum b : OpEnum.values()) {
+    public static TypeEnum fromValue(String value) {
+      for (TypeEnum b : TypeEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -66,95 +61,72 @@ public class BatchOperation {
       throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
 
-    public static class Adapter extends TypeAdapter<OpEnum> {
+    public static class Adapter extends TypeAdapter<TypeEnum> {
       @Override
-      public void write(final JsonWriter jsonWriter, final OpEnum enumeration) throws IOException {
+      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
         jsonWriter.value(enumeration.getValue());
       }
 
       @Override
-      public OpEnum read(final JsonReader jsonReader) throws IOException {
+      public TypeEnum read(final JsonReader jsonReader) throws IOException {
         String value =  jsonReader.nextString();
-        return OpEnum.fromValue(value);
+        return TypeEnum.fromValue(value);
       }
     }
   }
 
-  public static final String SERIALIZED_NAME_OP = "op";
-  @SerializedName(SERIALIZED_NAME_OP)
-  private OpEnum op;
+  public static final String SERIALIZED_NAME_TYPE = "type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
+  private TypeEnum type;
 
-  public static final String SERIALIZED_NAME_REF = "ref";
-  @SerializedName(SERIALIZED_NAME_REF)
-  private BatchOperationRef ref;
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private UUID id;
 
 
-  public BatchOperation data(BatchOperationData data) {
+  public PartDataRelationshipsPartRevisionsInner type(TypeEnum type) {
     
-    this.data = data;
+    this.type = type;
     return this;
   }
 
    /**
-   * Get data
-   * @return data
+   * Resource object type.
+   * @return type
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "part-revision", required = true, value = "Resource object type.")
 
-  public BatchOperationData getData() {
-    return data;
+  public TypeEnum getType() {
+    return type;
   }
 
 
-  public void setData(BatchOperationData data) {
-    this.data = data;
+  public void setType(TypeEnum type) {
+    this.type = type;
   }
 
 
-  public BatchOperation op(OpEnum op) {
+  public PartDataRelationshipsPartRevisionsInner id(UUID id) {
     
-    this.op = op;
+    this.id = id;
     return this;
   }
 
    /**
-   * Batch operation type type.
-   * @return op
+   * ID of the resource.
+   * @return id
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "add", required = true, value = "Batch operation type type.")
+  @ApiModelProperty(example = "f79d4760-0b71-44e4-ad0b-22743fdd4ca3", required = true, value = "ID of the resource.")
 
-  public OpEnum getOp() {
-    return op;
+  public UUID getId() {
+    return id;
   }
 
 
-  public void setOp(OpEnum op) {
-    this.op = op;
-  }
-
-
-  public BatchOperation ref(BatchOperationRef ref) {
-    
-    this.ref = ref;
-    return this;
-  }
-
-   /**
-   * Get ref
-   * @return ref
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public BatchOperationRef getRef() {
-    return ref;
-  }
-
-
-  public void setRef(BatchOperationRef ref) {
-    this.ref = ref;
+  public void setId(UUID id) {
+    this.id = id;
   }
 
 
@@ -166,24 +138,22 @@ public class BatchOperation {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    BatchOperation batchOperation = (BatchOperation) o;
-    return Objects.equals(this.data, batchOperation.data) &&
-        Objects.equals(this.op, batchOperation.op) &&
-        Objects.equals(this.ref, batchOperation.ref);
+    PartDataRelationshipsPartRevisionsInner partDataRelationshipsPartRevisionsInner = (PartDataRelationshipsPartRevisionsInner) o;
+    return Objects.equals(this.type, partDataRelationshipsPartRevisionsInner.type) &&
+        Objects.equals(this.id, partDataRelationshipsPartRevisionsInner.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, op, ref);
+    return Objects.hash(type, id);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class BatchOperation {\n");
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
-    sb.append("    op: ").append(toIndentedString(op)).append("\n");
-    sb.append("    ref: ").append(toIndentedString(ref)).append("\n");
+    sb.append("class PartDataRelationshipsPartRevisionsInner {\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }
