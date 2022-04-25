@@ -5521,6 +5521,188 @@ paths:
       tags:
       - translation-inspections
       x-accepts: application/vnd.api+json
+  /exports:
+    post:
+      description: Create an `export`. This API is asynchronous, returning the location
+        of a `queued-export`. Check the status via the getQueuedExport API.
+      operationId: createExport
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/CreateExportRequest'
+        required: true
+      responses:
+        "202":
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/QueuedJob'
+          description: Accepted
+          headers:
+            content-location:
+              $ref: '#/components/headers/ContentLocation'
+        "400":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "400"
+                  code: BadRequest
+                  title: Invalid, missing, or out-of-range request parameters.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Bad Request
+        "401":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "401"
+                  code: Unauthorized
+                  title: Invalid or missing credentials.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unauthorized
+        "415":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "415"
+                  code: UnsupportedMediaType
+                  title: The provided media type is not supported. Update the Content-Type
+                    header to application/vnd.api+json and try again.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unsupported Media Type
+      security:
+      - OAuth2: []
+      tags:
+      - exports
+      x-contentType: application/vnd.api+json
+      x-accepts: application/vnd.api+json
+  /exports/{id}:
+    get:
+      description: Get an `export` by ID.
+      operationId: getExport
+      parameters:
+      - description: The `export` ID.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          $ref: '#/components/schemas/Uuid'
+        style: simple
+      responses:
+        "200":
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Export'
+          description: OK
+        "401":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "401"
+                  code: Unauthorized
+                  title: Invalid or missing credentials.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unauthorized
+        "404":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "404"
+                  code: NotFound
+                  title: The requested resource was not found.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Not Found
+        "415":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "415"
+                  code: UnsupportedMediaType
+                  title: The provided media type is not supported. Update the Content-Type
+                    header to application/vnd.api+json and try again.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unsupported Media Type
+      security:
+      - OAuth2: []
+      tags:
+      - exports
+      x-accepts: application/vnd.api+json
+  /queued-exports/{id}:
+    get:
+      description: Get a `queued-export`. The response is either the status if `running`
+        or `error` or, upon completion, redirects to the created `export`.
+      operationId: getQueuedExport
+      parameters:
+      - description: The `queued-export` ID.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          $ref: '#/components/schemas/Uuid'
+        style: simple
+      responses:
+        "200":
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/QueuedJob'
+          description: OK
+        "301":
+          description: Moved Permanently
+        "401":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "401"
+                  code: Unauthorized
+                  title: Invalid or missing credentials.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unauthorized
+        "404":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "404"
+                  code: NotFound
+                  title: The requested resource was not found.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Not Found
+        "415":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "415"
+                  code: UnsupportedMediaType
+                  title: The provided media type is not supported. Update the Content-Type
+                    header to application/vnd.api+json and try again.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unsupported Media Type
+      security:
+      - OAuth2: []
+      tags:
+      - exports
+      x-accepts: application/vnd.api+json
   /webhook-subscriptions:
     get:
       description: Get `webhook-subscription`s.
@@ -5995,6 +6177,15 @@ components:
       schema:
         $ref: '#/components/schemas/Vector3'
       style: deepObject
+    ExportId:
+      description: The `export` ID.
+      explode: false
+      in: path
+      name: id
+      required: true
+      schema:
+        $ref: '#/components/schemas/Uuid'
+      style: simple
     FileId:
       description: The `file` ID.
       explode: false
@@ -6515,9 +6706,7 @@ components:
         vertexvis/batch:results:
           description: List of operation results.
           items:
-            anyOf:
-            - $ref: '#/components/schemas/RelationshipData'
-            - $ref: '#/components/schemas/ApiError'
+            $ref: '#/components/schemas/Batch_vertexvis_batch_results_inner'
           type: array
       required:
       - vertexvis/batch:results
@@ -6607,10 +6796,7 @@ components:
           $ref: '#/components/schemas/Hit_data'
         included:
           items:
-            oneOf:
-            - $ref: '#/components/schemas/HitResultData'
-            - $ref: '#/components/schemas/SceneItemData'
-            - $ref: '#/components/schemas/PartRevisionData'
+            $ref: '#/components/schemas/Hit_included_inner'
           type: array
         links:
           additionalProperties:
@@ -7146,6 +7332,26 @@ components:
       - data
       - links
       type: object
+    CreateExportRequest:
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/CreateExportRequest_data'
+      required:
+      - data
+      type: object
+    Export:
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/ExportData'
+        links:
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+          type: object
+      required:
+      - data
+      type: object
     WebhookSubscriptionList:
       additionalProperties: false
       properties:
@@ -7331,9 +7537,7 @@ components:
       additionalProperties: false
       properties:
         data:
-          anyOf:
-          - $ref: '#/components/schemas/CreateSceneItemRequestData'
-          description: Operation's primary data.
+          $ref: '#/components/schemas/BatchOperation_data'
         op:
           description: Batch operation type type.
           enum:
@@ -7632,24 +7836,12 @@ components:
       additionalProperties: false
       properties:
         query:
-          anyOf:
-          - $ref: '#/components/schemas/QueryById'
-          - $ref: '#/components/schemas/QueryByCollection'
-          - $ref: '#/components/schemas/QueryAll'
-          description: Query `scene-items`. Use `query-by-collection` to combine multiple
-            queries.
+          $ref: '#/components/schemas/SceneOperation_query'
         operations:
           description: List of operations to perform on `scene-items` matching the
             query.
           items:
-            anyOf:
-            - $ref: '#/components/schemas/ChangeVisibilityOperation'
-            - $ref: '#/components/schemas/ChangeMaterialOperation'
-            - $ref: '#/components/schemas/ClearMaterialOperation'
-            - $ref: '#/components/schemas/ChangeTransformOperation'
-            - $ref: '#/components/schemas/ClearTransformOperation'
-            - $ref: '#/components/schemas/SelectOperation'
-            - $ref: '#/components/schemas/DeselectOperation'
+            $ref: '#/components/schemas/SceneOperation_operations_inner'
           maxItems: 1024
           type: array
       required:
@@ -7862,7 +8054,7 @@ components:
       description: Relationship to a `part-revision`.
       properties:
         data:
-          $ref: '#/components/schemas/PartData_relationships_partRevisions'
+          $ref: '#/components/schemas/PartData_relationships_partRevisions_inner'
       required:
       - data
       type: object
@@ -8076,6 +8268,44 @@ components:
       - attributes
       - id
       - relationships
+      - type
+      type: object
+    CADExportConfig:
+      allOf:
+      - $ref: '#/components/schemas/ExportConfig'
+      description: Describes the options for configuring a CAD file export.
+      example:
+        format: jt
+    ExportRelationship:
+      additionalProperties: false
+      description: Relationship to an `export`.
+      properties:
+        data:
+          $ref: '#/components/schemas/ExportRelationshipData'
+      required:
+      - data
+      type: object
+    ExportData:
+      additionalProperties: false
+      properties:
+        type:
+          example: export
+          type: string
+        id:
+          description: ID of the resource.
+          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
+          format: uuid
+          maxLength: 36
+          type: string
+        attributes:
+          $ref: '#/components/schemas/ExportData_attributes'
+        links:
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+          type: object
+      required:
+      - attributes
+      - id
       - type
       type: object
     WebhookSubscriptionData:
@@ -8463,6 +8693,50 @@ components:
       - uri
       - width
       type: object
+    FeatureLines:
+      additionalProperties: false
+      properties:
+        color:
+          $ref: '#/components/schemas/Color3'
+        width:
+          type: number
+      required:
+      - color
+      - width
+      type: object
+    ExportConfig:
+      description: Describes the options for configuring a file export.
+      discriminator:
+        propertyName: format
+      example:
+        format: jt
+      properties:
+        format:
+          example: jt
+          type: string
+      required:
+      - format
+      type: object
+    ExportRelationshipData:
+      additionalProperties: false
+      properties:
+        type:
+          description: Resource object type.
+          enum:
+          - scene
+          example: scene
+          maxLength: 32
+          type: string
+        id:
+          description: ID of the resource.
+          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
+          format: uuid
+          maxLength: 36
+          type: string
+      required:
+      - id
+      - type
+      type: object
     RelationshipLinks:
       additionalProperties: false
       example:
@@ -8492,6 +8766,7 @@ components:
       - name
       type: object
     CreateAccountRequest_data:
+      additionalProperties: false
       properties:
         type:
           example: some-string
@@ -8505,6 +8780,7 @@ components:
       - type
       type: object
     Account_data_attributes:
+      additionalProperties: false
       properties:
         name:
           example: some-string
@@ -8523,6 +8799,7 @@ components:
       - name
       type: object
     Account_data:
+      additionalProperties: false
       properties:
         type:
           example: account
@@ -8561,6 +8838,7 @@ components:
           type: string
       type: object
     UpdateAccountRequest_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -8592,6 +8870,7 @@ components:
       - name
       type: object
     AdminCreateApplicationRequest_data:
+      additionalProperties: false
       properties:
         type:
           example: some-string
@@ -8605,6 +8884,7 @@ components:
       - type
       type: object
     CreatedApplication_data_attributes:
+      additionalProperties: false
       properties:
         name:
           example: some-string
@@ -8642,6 +8922,7 @@ components:
       - secret
       type: object
     CreatedApplication_data:
+      additionalProperties: false
       properties:
         type:
           example: application
@@ -8660,6 +8941,7 @@ components:
       - type
       type: object
     UpdateApplicationRequest_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -8672,6 +8954,10 @@ components:
       - attributes
       - type
       type: object
+    Batch_vertexvis_batch_results_inner:
+      anyOf:
+      - $ref: '#/components/schemas/RelationshipData'
+      - $ref: '#/components/schemas/ApiError'
     CreateFileRequest_data_attributes:
       properties:
         name:
@@ -8697,6 +8983,7 @@ components:
       - name
       type: object
     CreateFileRequest_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -8710,6 +8997,7 @@ components:
       - type
       type: object
     CreateGeometrySetRequest_data_relationships:
+      additionalProperties: false
       properties:
         source:
           $ref: '#/components/schemas/FileRelationship'
@@ -8717,6 +9005,7 @@ components:
       - source
       type: object
     CreateGeometrySetRequest_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -8740,6 +9029,7 @@ components:
       - viewport
       type: object
     CreateHitRequest_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -8753,6 +9043,7 @@ components:
       - type
       type: object
     Hit_data_attributes:
+      additionalProperties: false
       properties:
         created:
           example: 2020-01-01T12:00:00Z
@@ -8762,6 +9053,7 @@ components:
       - created
       type: object
     Hit_data_relationships:
+      additionalProperties: false
       properties:
         results:
           items:
@@ -8771,6 +9063,7 @@ components:
       - results
       type: object
     Hit_data:
+      additionalProperties: false
       properties:
         type:
           example: hit
@@ -8791,6 +9084,11 @@ components:
       - relationships
       - type
       type: object
+    Hit_included_inner:
+      oneOf:
+      - $ref: '#/components/schemas/HitResultData'
+      - $ref: '#/components/schemas/SceneItemData'
+      - $ref: '#/components/schemas/PartRevisionData'
     RevokeOAuth2TokenRequest_data_attributes:
       properties:
         token:
@@ -8802,6 +9100,7 @@ components:
       - token
       type: object
     RevokeOAuth2TokenRequest_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -8825,6 +9124,7 @@ components:
       - subject
       type: object
     AdminLoginAcceptRequest_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -8843,6 +9143,7 @@ components:
       - session
       type: object
     AdminConsentAcceptRequest_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -8862,6 +9163,7 @@ components:
           type: object
       type: object
     UpdatePartRevisionRequest_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -8921,6 +9223,7 @@ components:
           type: string
       type: object
     CreatePartRequest_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type. Specify one and only one of suppliedId
@@ -8949,6 +9252,7 @@ components:
       - alterations
       type: object
     CreateSceneAlterationRequest_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -8976,6 +9280,7 @@ components:
           $ref: '#/components/schemas/ColorMaterialNullable'
       type: object
     UpdateSceneItemOverrideRequest_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -9009,6 +9314,7 @@ components:
           $ref: '#/components/schemas/ColorMaterial'
       type: object
     CreateSceneItemOverrideRequest_data_relationships:
+      additionalProperties: false
       properties:
         sceneItem:
           $ref: '#/components/schemas/SceneItemRelationship'
@@ -9016,6 +9322,7 @@ components:
       - sceneItem
       type: object
     CreateSceneItemOverrideRequest_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -9053,15 +9360,19 @@ components:
           maxLength: 1024
           type: string
       type: object
+    UpdateSceneItemRequest_data_relationships_source:
+      anyOf:
+      - $ref: '#/components/schemas/GeometrySetRelationship'
+      - $ref: '#/components/schemas/PartRevisionRelationship'
+      description: Relationship to a `geometry-set` or `part-revision`.
     UpdateSceneItemRequest_data_relationships:
+      additionalProperties: false
       properties:
         source:
-          anyOf:
-          - $ref: '#/components/schemas/GeometrySetRelationship'
-          - $ref: '#/components/schemas/PartRevisionRelationship'
-          description: Relationship to a `geometry-set` or `part-revision`.
+          $ref: '#/components/schemas/UpdateSceneItemRequest_data_relationships_source'
       type: object
     UpdateSceneItemRequest_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -9076,17 +9387,20 @@ components:
       - attributes
       - type
       type: object
+    UpdateSceneViewRequest_data_attributes_camera:
+      anyOf:
+      - $ref: '#/components/schemas/PerspectiveCamera'
+      - $ref: '#/components/schemas/OrthographicCamera'
+      - $ref: '#/components/schemas/CameraFit'
     UpdateSceneViewRequest_data_attributes:
       properties:
         camera:
-          anyOf:
-          - $ref: '#/components/schemas/PerspectiveCamera'
-          - $ref: '#/components/schemas/OrthographicCamera'
-          - $ref: '#/components/schemas/CameraFit'
+          $ref: '#/components/schemas/UpdateSceneViewRequest_data_attributes_camera'
         crossSectioning:
           $ref: '#/components/schemas/CrossSectioning'
       type: object
     UpdateSceneViewRequest_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -9099,21 +9413,25 @@ components:
       - attributes
       - type
       type: object
+    CreateSceneViewRequest_data_attributes_camera:
+      oneOf:
+      - $ref: '#/components/schemas/PerspectiveCamera'
+      - $ref: '#/components/schemas/OrthographicCamera'
     CreateSceneViewRequest_data_attributes:
       properties:
         camera:
-          oneOf:
-          - $ref: '#/components/schemas/PerspectiveCamera'
-          - $ref: '#/components/schemas/OrthographicCamera'
+          $ref: '#/components/schemas/CreateSceneViewRequest_data_attributes_camera'
         crossSectioning:
           $ref: '#/components/schemas/CrossSectioning'
       type: object
     CreateSceneViewRequest_data_relationships:
+      additionalProperties: false
       properties:
         sceneViewState:
           $ref: '#/components/schemas/SceneViewStateRelationship'
       type: object
     CreateSceneViewRequest_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -9131,9 +9449,7 @@ components:
     CreateSceneRequest_data_attributes:
       properties:
         camera:
-          oneOf:
-          - $ref: '#/components/schemas/PerspectiveCamera'
-          - $ref: '#/components/schemas/OrthographicCamera'
+          $ref: '#/components/schemas/CreateSceneViewRequest_data_attributes_camera'
         suppliedId:
           description: ID provided for correlation. For example, an existing ID from
             a PLM system.
@@ -9152,6 +9468,7 @@ components:
           $ref: '#/components/schemas/Orientation'
       type: object
     CreateSceneRequest_data_relationships:
+      additionalProperties: false
       properties:
         source:
           $ref: '#/components/schemas/SceneRelationship'
@@ -9159,6 +9476,7 @@ components:
       - source
       type: object
     CreateSceneRequest_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -9176,10 +9494,7 @@ components:
     UpdateSceneRequest_data_attributes:
       properties:
         camera:
-          anyOf:
-          - $ref: '#/components/schemas/PerspectiveCamera'
-          - $ref: '#/components/schemas/OrthographicCamera'
-          - $ref: '#/components/schemas/CameraFit'
+          $ref: '#/components/schemas/UpdateSceneViewRequest_data_attributes_camera'
         state:
           description: State of the scene.
           enum:
@@ -9206,6 +9521,7 @@ components:
           $ref: '#/components/schemas/Orientation'
       type: object
     UpdateSceneRequest_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -9226,16 +9542,20 @@ components:
           minLength: 1
           type: string
       type: object
+    CreateSceneViewStateRequest_data_relationships_source:
+      oneOf:
+      - $ref: '#/components/schemas/SceneViewRelationship'
+      - $ref: '#/components/schemas/SceneViewStateRelationship'
     CreateSceneViewStateRequest_data_relationships:
+      additionalProperties: false
       properties:
         source:
-          oneOf:
-          - $ref: '#/components/schemas/SceneViewRelationship'
-          - $ref: '#/components/schemas/SceneViewStateRelationship'
+          $ref: '#/components/schemas/CreateSceneViewStateRequest_data_relationships_source'
       required:
       - source
       type: object
     CreateSceneViewStateRequest_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -9252,6 +9572,7 @@ components:
       - type
       type: object
     UpdateSceneViewStateRequest_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -9275,6 +9596,7 @@ components:
           type: integer
       type: object
     CreateStreamKeyRequest_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -9288,6 +9610,7 @@ components:
       - type
       type: object
     CreateTranslationInspectionRequest_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -9301,6 +9624,7 @@ components:
       - type
       type: object
     TranslationInspectionJob_data_attributes:
+      additionalProperties: false
       properties:
         status:
           example: running
@@ -9314,6 +9638,7 @@ components:
       - status
       type: object
     TranslationInspectionJob_data:
+      additionalProperties: false
       properties:
         type:
           example: translation-inspection
@@ -9329,6 +9654,47 @@ components:
       required:
       - attributes
       - id
+      - type
+      type: object
+    CreateExportRequest_data_attributes_config:
+      description: Specifies the export format and options to configure the export.
+      discriminator:
+        mapping:
+          jt: '#/components/schemas/CADExportConfig'
+          step: '#/components/schemas/CADExportConfig'
+        propertyName: format
+      oneOf:
+      - $ref: '#/components/schemas/CADExportConfig'
+    CreateExportRequest_data_attributes:
+      properties:
+        config:
+          $ref: '#/components/schemas/CreateExportRequest_data_attributes_config'
+      required:
+      - config
+      type: object
+    CreateExportRequest_data_relationships:
+      additionalProperties: false
+      properties:
+        source:
+          $ref: '#/components/schemas/ExportRelationship'
+      required:
+      - source
+      type: object
+    CreateExportRequest_data:
+      additionalProperties: false
+      properties:
+        type:
+          description: Resource object type.
+          example: export
+          maxLength: 32
+          type: string
+        attributes:
+          $ref: '#/components/schemas/CreateExportRequest_data_attributes'
+        relationships:
+          $ref: '#/components/schemas/CreateExportRequest_data_relationships'
+      required:
+      - attributes
+      - relationships
       - type
       type: object
     CreateWebhookSubscriptionRequest_data_attributes:
@@ -9347,6 +9713,7 @@ components:
       - url
       type: object
     CreateWebhookSubscriptionRequest_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -9379,6 +9746,7 @@ components:
           type: string
       type: object
     UpdateWebhookSubscriptionRequest_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -9392,6 +9760,7 @@ components:
       - type
       type: object
     ApiError_source:
+      additionalProperties: false
       properties:
         pointer:
           example: /body/data/attributes
@@ -9401,6 +9770,7 @@ components:
           type: string
       type: object
     ApplicationData_attributes:
+      additionalProperties: false
       properties:
         name:
           example: some-string
@@ -9426,7 +9796,12 @@ components:
       - name
       - scopes
       type: object
+    BatchOperation_data:
+      anyOf:
+      - $ref: '#/components/schemas/CreateSceneItemRequestData'
+      description: Operation's primary data.
     BatchOperation_ref:
+      additionalProperties: false
       description: Target of batch operation.
       properties:
         type:
@@ -9466,6 +9841,7 @@ components:
       - status
       type: object
     FileMetadataData_attributes:
+      additionalProperties: false
       properties:
         name:
           example: some-string
@@ -9502,6 +9878,7 @@ components:
       - status
       type: object
     FileRelationship_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -9531,6 +9908,7 @@ components:
       - point
       type: object
     HitResultData_relationships:
+      additionalProperties: false
       properties:
         sceneItem:
           $ref: '#/components/schemas/RelationshipData'
@@ -9538,6 +9916,7 @@ components:
       - sceneItem
       type: object
     SceneItemData_attributes:
+      additionalProperties: false
       properties:
         boundingBox:
           $ref: '#/components/schemas/BoundingBox'
@@ -9569,17 +9948,21 @@ components:
         worldTransform:
           $ref: '#/components/schemas/Matrix4'
       type: object
+    SceneItemData_relationships_source:
+      anyOf:
+      - $ref: '#/components/schemas/GeometrySetRelationship'
+      - $ref: '#/components/schemas/PartRevisionRelationship'
+      - $ref: '#/components/schemas/SceneRelationship'
     SceneItemData_relationships:
+      additionalProperties: false
       properties:
         source:
-          anyOf:
-          - $ref: '#/components/schemas/GeometrySetRelationship'
-          - $ref: '#/components/schemas/PartRevisionRelationship'
-          - $ref: '#/components/schemas/SceneRelationship'
+          $ref: '#/components/schemas/SceneItemData_relationships_source'
         parent:
           $ref: '#/components/schemas/SceneItemRelationship'
       type: object
     PartRevisionData_attributes:
+      additionalProperties: false
       properties:
         created:
           example: 2020-01-01T12:00:00Z
@@ -9596,6 +9979,7 @@ components:
           type: string
       type: object
     PartRevisionData_relationships:
+      additionalProperties: false
       properties:
         geometrySet:
           $ref: '#/components/schemas/GeometrySetRelationshipData'
@@ -9603,6 +9987,7 @@ components:
           $ref: '#/components/schemas/PartRelationshipData'
       type: object
     PartData_attributes:
+      additionalProperties: false
       properties:
         name:
           example: some-string
@@ -9623,7 +10008,8 @@ components:
       - name
       - suppliedId
       type: object
-    PartData_relationships_partRevisions:
+    PartData_relationships_partRevisions_inner:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -9643,22 +10029,41 @@ components:
       - type
       type: object
     PartData_relationships:
+      additionalProperties: false
       properties:
         partRevisions:
           items:
-            $ref: '#/components/schemas/PartData_relationships_partRevisions'
+            $ref: '#/components/schemas/PartData_relationships_partRevisions_inner'
           type: array
       required:
       - partRevisions
       type: object
     SceneAlterationData_relationships:
+      additionalProperties: false
       properties:
         sceneView:
           $ref: '#/components/schemas/SceneViewRelationship'
       required:
       - sceneView
       type: object
+    SceneOperation_query:
+      anyOf:
+      - $ref: '#/components/schemas/QueryById'
+      - $ref: '#/components/schemas/QueryByCollection'
+      - $ref: '#/components/schemas/QueryAll'
+      description: Query `scene-items`. Use `query-by-collection` to combine multiple
+        queries.
+    SceneOperation_operations_inner:
+      anyOf:
+      - $ref: '#/components/schemas/ChangeVisibilityOperation'
+      - $ref: '#/components/schemas/ChangeMaterialOperation'
+      - $ref: '#/components/schemas/ClearMaterialOperation'
+      - $ref: '#/components/schemas/ChangeTransformOperation'
+      - $ref: '#/components/schemas/ClearTransformOperation'
+      - $ref: '#/components/schemas/SelectOperation'
+      - $ref: '#/components/schemas/DeselectOperation'
     SceneItemOverrideData_attributes:
+      additionalProperties: false
       properties:
         created:
           example: 2020-01-01T12:00:00Z
@@ -9677,6 +10082,7 @@ components:
       - created
       type: object
     SceneItemOverrideData_relationships:
+      additionalProperties: false
       properties:
         sceneItem:
           $ref: '#/components/schemas/SceneItemRelationship'
@@ -9687,6 +10093,7 @@ components:
       - sceneView
       type: object
     SceneItemRelationship_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -9740,25 +10147,27 @@ components:
           example: true
           type: boolean
       type: object
+    CreateSceneItemRequestData_relationships_source:
+      anyOf:
+      - $ref: '#/components/schemas/GeometrySetRelationship'
+      - $ref: '#/components/schemas/PartRevisionRelationship'
+      - $ref: '#/components/schemas/SceneRelationship'
+      description: Relationship to a `geometry-set`, `part-revision`, or `scene`.
     CreateSceneItemRequestData_relationships:
+      additionalProperties: false
       properties:
         parent:
           $ref: '#/components/schemas/SceneItemRelationship'
         source:
-          anyOf:
-          - $ref: '#/components/schemas/GeometrySetRelationship'
-          - $ref: '#/components/schemas/PartRevisionRelationship'
-          - $ref: '#/components/schemas/SceneRelationship'
-          description: Relationship to a `geometry-set`, `part-revision`, or `scene`.
+          $ref: '#/components/schemas/CreateSceneItemRequestData_relationships_source'
         referenceTree:
           $ref: '#/components/schemas/SceneItemRelationship'
       type: object
     SceneViewData_attributes:
+      additionalProperties: false
       properties:
         camera:
-          oneOf:
-          - $ref: '#/components/schemas/PerspectiveCamera'
-          - $ref: '#/components/schemas/OrthographicCamera'
+          $ref: '#/components/schemas/CreateSceneViewRequest_data_attributes_camera'
         created:
           example: 2020-01-01T12:00:00Z
           format: date-time
@@ -9772,6 +10181,7 @@ components:
       - created
       type: object
     SceneViewData_relationships:
+      additionalProperties: false
       properties:
         scene:
           $ref: '#/components/schemas/SceneRelationship'
@@ -9779,6 +10189,7 @@ components:
       - scene
       type: object
     SceneViewStateRelationship_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -9798,11 +10209,10 @@ components:
       - type
       type: object
     SceneData_attributes:
+      additionalProperties: false
       properties:
         camera:
-          oneOf:
-          - $ref: '#/components/schemas/PerspectiveCamera'
-          - $ref: '#/components/schemas/OrthographicCamera'
+          $ref: '#/components/schemas/CreateSceneViewRequest_data_attributes_camera'
         state:
           example: draft
           type: string
@@ -9835,6 +10245,7 @@ components:
           type: integer
       type: object
     SceneRelationship_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -9854,11 +10265,10 @@ components:
       - type
       type: object
     SceneViewStateData_attributes:
+      additionalProperties: false
       properties:
         camera:
-          oneOf:
-          - $ref: '#/components/schemas/PerspectiveCamera'
-          - $ref: '#/components/schemas/OrthographicCamera'
+          $ref: '#/components/schemas/CreateSceneViewRequest_data_attributes_camera'
         created:
           example: 2020-01-01T12:00:00Z
           format: date-time
@@ -9872,8 +10282,11 @@ components:
           items:
             $ref: '#/components/schemas/ThumbnailData'
           type: array
+        featureLines:
+          $ref: '#/components/schemas/FeatureLines'
       type: object
     SceneViewRelationship_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -9893,6 +10306,7 @@ components:
       - type
       type: object
     StreamKeyData_attributes:
+      additionalProperties: false
       properties:
         key:
           example: i3MFRDOmg1pxD36dGCTONRwOujkgV8m9LQ
@@ -9909,7 +10323,22 @@ components:
       - created
       - expiry
       type: object
+    ExportData_attributes:
+      additionalProperties: false
+      properties:
+        created:
+          example: 2020-01-01T12:00:00Z
+          format: date-time
+          type: string
+        downloadUrl:
+          example: https://example.com/path/to/file.jt
+          type: string
+      required:
+      - created
+      - downloadUrl
+      type: object
     WebhookSubscriptionData_attributes:
+      additionalProperties: false
       properties:
         url:
           type: string
@@ -9938,6 +10367,7 @@ components:
       - url
       type: object
     WebhookEventData_attributes:
+      additionalProperties: false
       example:
         created: 2020-01-01T12:00:00Z
         topic: some-string
@@ -9956,6 +10386,7 @@ components:
       - topic
       type: object
     WebhookEventData_relationships_owner_data:
+      additionalProperties: false
       example:
         id: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
         type: account
@@ -9978,6 +10409,7 @@ components:
       - type
       type: object
     WebhookEventData_relationships_owner:
+      additionalProperties: false
       description: Relationship to an `owner`.
       example:
         data:
@@ -9994,6 +10426,7 @@ components:
       - data
       type: object
     WebhookEventData_relationships_resource_data:
+      additionalProperties: false
       example:
         id: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
         type: queued-scene-item
@@ -10014,6 +10447,7 @@ components:
       - type
       type: object
     WebhookEventData_relationships_resource:
+      additionalProperties: false
       description: Relationship to a `resource`.
       example:
         data:
@@ -10030,6 +10464,7 @@ components:
       - data
       type: object
     WebhookEventData_relationships:
+      additionalProperties: false
       example:
         owner:
           data:
@@ -10053,6 +10488,7 @@ components:
       - resource
       type: object
     QueryById_data_attributes:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -10071,6 +10507,7 @@ components:
       - value
       type: object
     QueryById_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -10086,6 +10523,7 @@ components:
       - type
       type: object
     QueryByCollection_data_attributes:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
@@ -10106,6 +10544,7 @@ components:
       - values
       type: object
     QueryByCollection_data:
+      additionalProperties: false
       properties:
         type:
           description: Resource object type.
