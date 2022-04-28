@@ -20,6 +20,7 @@ src/main/java/com/vertexvis/StringUtil.java
 src/main/java/com/vertexvis/api/AccountsApi.java
 src/main/java/com/vertexvis/api/ApplicationsApi.java
 src/main/java/com/vertexvis/api/BatchesApi.java
+src/main/java/com/vertexvis/api/ExportsApi.java
 src/main/java/com/vertexvis/api/FilesApi.java
 src/main/java/com/vertexvis/api/GeometrySetsApi.java
 src/main/java/com/vertexvis/api/HitsApi.java
@@ -66,6 +67,7 @@ src/main/java/com/vertexvis/model/Batch.java
 src/main/java/com/vertexvis/model/BatchOperation.java
 src/main/java/com/vertexvis/model/BatchOperationRef.java
 src/main/java/com/vertexvis/model/BoundingBox.java
+src/main/java/com/vertexvis/model/CADExportConfig.java
 src/main/java/com/vertexvis/model/CameraFit.java
 src/main/java/com/vertexvis/model/ChangeMaterialOperation.java
 src/main/java/com/vertexvis/model/ChangeTransformOperation.java
@@ -80,6 +82,10 @@ src/main/java/com/vertexvis/model/CreateAccountRequestData.java
 src/main/java/com/vertexvis/model/CreateAccountRequestDataAttributes.java
 src/main/java/com/vertexvis/model/CreateApplicationRequest.java
 src/main/java/com/vertexvis/model/CreateBatchRequest.java
+src/main/java/com/vertexvis/model/CreateExportRequest.java
+src/main/java/com/vertexvis/model/CreateExportRequestData.java
+src/main/java/com/vertexvis/model/CreateExportRequestDataAttributes.java
+src/main/java/com/vertexvis/model/CreateExportRequestDataRelationships.java
 src/main/java/com/vertexvis/model/CreateFileRequest.java
 src/main/java/com/vertexvis/model/CreateFileRequestData.java
 src/main/java/com/vertexvis/model/CreateFileRequestDataAttributes.java
@@ -129,7 +135,16 @@ src/main/java/com/vertexvis/model/CreatedApplicationDataAttributes.java
 src/main/java/com/vertexvis/model/CrossSectioning.java
 src/main/java/com/vertexvis/model/DeselectOperation.java
 src/main/java/com/vertexvis/model/Dimensions.java
+src/main/java/com/vertexvis/model/Export.java
+src/main/java/com/vertexvis/model/ExportConfig.java
+src/main/java/com/vertexvis/model/ExportData.java
+src/main/java/com/vertexvis/model/ExportDataAttributes.java
+src/main/java/com/vertexvis/model/ExportRelationship.java
+src/main/java/com/vertexvis/model/ExportRelationshipData.java
+src/main/java/com/vertexvis/model/ExportStateRelationship.java
+src/main/java/com/vertexvis/model/ExportStateRelationshipData.java
 src/main/java/com/vertexvis/model/Failure.java
+src/main/java/com/vertexvis/model/FeatureLines.java
 src/main/java/com/vertexvis/model/FileList.java
 src/main/java/com/vertexvis/model/FileMetadata.java
 src/main/java/com/vertexvis/model/FileMetadataData.java
