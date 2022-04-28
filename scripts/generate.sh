@@ -7,7 +7,18 @@ source "$scripts_dir/version-lib.sh"
 main() {
   local root=(JSON.java example)
   local auth=(RetryingOAuth.java)
-  local models=(serialization Camera.java AnyOfCameraCameraFit.java OneOfPerspectiveCameraOrthographicCamera.java AnyOfPerspectiveCameraOrthographicCameraCameraFit.java AnyOfCreateSceneItemRequestData.java AnyOfRelationshipDataApiError.java AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperation.java AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship.java AnyOfQueryByIdQueryByCollectionQueryAll.java OneOfHitResultDataSceneItemDataPartRevisionData.java OneOfSceneViewRelationshipSceneViewStateRelationship.java AnyOfGeometrySetRelationshipPartRevisionRelationship.java)
+  local models=(serialization \
+                Camera.java \
+                AnyOfCameraCameraFit.java \
+                OneOfPerspectiveCameraOrthographicCamera.java \
+                OneOfCADExportConfig.java \
+                AnyOfPerspectiveCameraOrthographicCameraCameraFit.java \
+                AnyOfCreateSceneItemRequestData.java \
+                AnyOfRelationshipDataApiError.java \
+                AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperation.java \
+                AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship.java AnyOfQueryByIdQueryByCollectionQueryAll.java OneOfHitResultDataSceneItemDataPartRevisionData.java \
+                OneOfSceneViewRelationshipSceneViewStateRelationship.java \
+                AnyOfGeometrySetRelationshipPartRevisionRelationship.java)
   mv "src/test" . || true
   for f in "${root[@]}"; do mv "src/main/java/com/vertexvis/$f" . || true; done
   for f in "${auth[@]}"; do mv "src/main/java/com/vertexvis/auth/$f" . || true; done
