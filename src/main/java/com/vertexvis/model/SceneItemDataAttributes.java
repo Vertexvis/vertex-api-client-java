@@ -20,10 +20,10 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.vertexvis.model.AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType;
 import com.vertexvis.model.BoundingBox;
 import com.vertexvis.model.ColorMaterial;
 import com.vertexvis.model.Matrix4;
-import com.vertexvis.model.MetadataValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -51,7 +51,7 @@ public class SceneItemDataAttributes {
 
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
-  private Map<String, MetadataValue> metadata = null;
+  private Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata = null;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -143,13 +143,13 @@ public class SceneItemDataAttributes {
   }
 
 
-  public SceneItemDataAttributes metadata(Map<String, MetadataValue> metadata) {
+  public SceneItemDataAttributes metadata(Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata) {
     
     this.metadata = metadata;
     return this;
   }
 
-  public SceneItemDataAttributes putMetadataItem(String key, MetadataValue metadataItem) {
+  public SceneItemDataAttributes putMetadataItem(String key, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType metadataItem) {
     if (this.metadata == null) {
       this.metadata = new HashMap<>();
     }
@@ -164,12 +164,12 @@ public class SceneItemDataAttributes {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public Map<String, MetadataValue> getMetadata() {
+  public Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> getMetadata() {
     return metadata;
   }
 
 
-  public void setMetadata(Map<String, MetadataValue> metadata) {
+  public void setMetadata(Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata) {
     this.metadata = metadata;
   }
 

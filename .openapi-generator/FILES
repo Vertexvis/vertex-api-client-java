@@ -167,7 +167,9 @@ src/main/java/com/vertexvis/model/Link.java
 src/main/java/com/vertexvis/model/MaterialOverride.java
 src/main/java/com/vertexvis/model/Matrix4.java
 src/main/java/com/vertexvis/model/Matrix4Nullable.java
-src/main/java/com/vertexvis/model/MetadataValue.java
+src/main/java/com/vertexvis/model/MetadataFloatType.java
+src/main/java/com/vertexvis/model/MetadataNullType.java
+src/main/java/com/vertexvis/model/MetadataStringType.java
 src/main/java/com/vertexvis/model/OAuth2BadRequest.java
 src/main/java/com/vertexvis/model/OAuth2Token.java
 src/main/java/com/vertexvis/model/Orientation.java

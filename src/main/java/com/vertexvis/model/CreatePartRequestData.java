@@ -100,8 +100,8 @@ public class CreatePartRequestData {
    * Get relationships
    * @return relationships
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public CreateGeometrySetRequestDataRelationships getRelationships() {
     return relationships;

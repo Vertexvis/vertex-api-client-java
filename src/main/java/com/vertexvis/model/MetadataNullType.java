@@ -25,62 +25,35 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * CreateSceneViewStateRequestDataAttributes
+ * MetadataNullType
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneViewStateRequestDataAttributes {
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
-
-  public static final String SERIALIZED_NAME_SUPPLIED_ID = "suppliedId";
-  @SerializedName(SERIALIZED_NAME_SUPPLIED_ID)
-  private String suppliedId;
+public class MetadataNullType {
+  public static final String SERIALIZED_NAME_TYPE = "type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
+  private String type;
 
 
-  public CreateSceneViewStateRequestDataAttributes name(String name) {
+  public MetadataNullType type(String type) {
     
-    this.name = name;
+    this.type = type;
     return this;
   }
 
    /**
-   * Get name
-   * @return name
+   * Type of metadata value.
+   * @return type
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "some-string", value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "null", required = true, value = "Type of metadata value.")
 
-  public String getName() {
-    return name;
+  public String getType() {
+    return type;
   }
 
 
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public CreateSceneViewStateRequestDataAttributes suppliedId(String suppliedId) {
-    
-    this.suppliedId = suppliedId;
-    return this;
-  }
-
-   /**
-   * ID provided for correlation. For example, an existing ID from a PLM system.
-   * @return suppliedId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "PN12345", value = "ID provided for correlation. For example, an existing ID from a PLM system.")
-
-  public String getSuppliedId() {
-    return suppliedId;
-  }
-
-
-  public void setSuppliedId(String suppliedId) {
-    this.suppliedId = suppliedId;
+  public void setType(String type) {
+    this.type = type;
   }
 
 
@@ -92,22 +65,20 @@ public class CreateSceneViewStateRequestDataAttributes {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneViewStateRequestDataAttributes createSceneViewStateRequestDataAttributes = (CreateSceneViewStateRequestDataAttributes) o;
-    return Objects.equals(this.name, createSceneViewStateRequestDataAttributes.name) &&
-        Objects.equals(this.suppliedId, createSceneViewStateRequestDataAttributes.suppliedId);
+    MetadataNullType metadataNullType = (MetadataNullType) o;
+    return Objects.equals(this.type, metadataNullType.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, suppliedId);
+    return Objects.hash(type);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneViewStateRequestDataAttributes {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    suppliedId: ").append(toIndentedString(suppliedId)).append("\n");
+    sb.append("class MetadataNullType {\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }
