@@ -29,14 +29,14 @@ class PartCreator {
   }
 
   public Part createPartFromFile(UUID id) throws InterruptedException {
-    QueuedJob qp = parts.createPart(getCreatePartRequest(id));
+    Part qp = parts.createPart(getCreatePartRequest(id));
     UUID partId =
         JobPoller.pollUntilJobDone("part", () -> tiApi.getQueuedTranslation(qp.getData().getId()));
     return parts.getPart(partId, null);
   }
 
   public CompletableFuture<Part> createPartFromFileAsync(UUID id) {
-    CompletableFuture<QueuedJob> p =
+    CompletableFuture<Part> p =
         execute(cb -> parts.createPartAsync(getCreatePartRequest(id), cb));
     CompletableFuture<UUID> partId = p.thenCompose(qj ->
         JobPoller.pollUntilJobDoneAsync("part", () ->

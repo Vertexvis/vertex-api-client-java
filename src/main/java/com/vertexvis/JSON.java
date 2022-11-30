@@ -115,6 +115,7 @@ public class JSON {
             new OneOfPerspectiveCameraOrthographicCameraTypeAdapter(() -> gson))
          .registerTypeAdapter(AnyOfPerspectiveCameraOrthographicCameraCameraFit.class,
             new AnyOfPerspectiveCameraOrthographicCameraCameraFitTypeAdapter(() -> gson))
+            .registerTypeAdapter(AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType.class, new AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullTypeAdapter(() -> gson))
         .create();
   }
 
