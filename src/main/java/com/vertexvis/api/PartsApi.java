@@ -68,6 +68,7 @@ public class PartsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Created Part </td><td>  -  </td></tr>
         <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -120,48 +121,50 @@ public class PartsApi {
 
     /**
      * 
-     * Create a &#x60;part&#x60;. This API is asynchronous, returning the location of a &#x60;queued-translation&#x60;. Check the status via the getQueuedTranslation API. For details, see our [Import data](https://developer.vertexvis.com/docs/guides/import-data-with-api) guide.
+     * Create a &#x60;part&#x60;.  This endpoint includes multiple successful response codes: [&#x60;201&#x60;, &#x60;202&#x60;].  When not given a relationship, this endpoint will create a part with an empty part revision and return a &#x60;201&#x60;  status code of the part.  When given a relationship to translate, this endpoint will return a &#x60;202&#x60; status code with the location of a &#x60;queued-translation&#x60;. The status of the translation can be queried via &#x60;getQueuedTranslation&#x60;. After the translation is complete, a &#x60;part&#x60; and &#x60;part-revision&#x60; that references the translated geometry.  A unique suppliedId/suppliedRevisionId combination will create a new part and new part revision. For instance, sending my-part-id/my-revision-id will create a new part and new revision with those corresponding supplied ids. To create a new revision for &#x60;my-part-id&#x60;, likewise you can invoke this endpoint with a new revision id: &#x60;my-part-id/my-new-revision-id&#x60; and a new revision will be created for the existing part.  See our [Import Data](https://developer.vertexvis.com/docs/guides/import-data-with-api) guides for more information. 
      * @param createPartRequest  (required)
-     * @return QueuedJob
+     * @return Part
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Created Part </td><td>  -  </td></tr>
         <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public QueuedJob createPart(CreatePartRequest createPartRequest) throws ApiException {
-        ApiResponse<QueuedJob> localVarResp = createPartWithHttpInfo(createPartRequest);
+    public Part createPart(CreatePartRequest createPartRequest) throws ApiException {
+        ApiResponse<Part> localVarResp = createPartWithHttpInfo(createPartRequest);
         return localVarResp.getData();
     }
 
     /**
      * 
-     * Create a &#x60;part&#x60;. This API is asynchronous, returning the location of a &#x60;queued-translation&#x60;. Check the status via the getQueuedTranslation API. For details, see our [Import data](https://developer.vertexvis.com/docs/guides/import-data-with-api) guide.
+     * Create a &#x60;part&#x60;.  This endpoint includes multiple successful response codes: [&#x60;201&#x60;, &#x60;202&#x60;].  When not given a relationship, this endpoint will create a part with an empty part revision and return a &#x60;201&#x60;  status code of the part.  When given a relationship to translate, this endpoint will return a &#x60;202&#x60; status code with the location of a &#x60;queued-translation&#x60;. The status of the translation can be queried via &#x60;getQueuedTranslation&#x60;. After the translation is complete, a &#x60;part&#x60; and &#x60;part-revision&#x60; that references the translated geometry.  A unique suppliedId/suppliedRevisionId combination will create a new part and new part revision. For instance, sending my-part-id/my-revision-id will create a new part and new revision with those corresponding supplied ids. To create a new revision for &#x60;my-part-id&#x60;, likewise you can invoke this endpoint with a new revision id: &#x60;my-part-id/my-new-revision-id&#x60; and a new revision will be created for the existing part.  See our [Import Data](https://developer.vertexvis.com/docs/guides/import-data-with-api) guides for more information. 
      * @param createPartRequest  (required)
-     * @return ApiResponse&lt;QueuedJob&gt;
+     * @return ApiResponse&lt;Part&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Created Part </td><td>  -  </td></tr>
         <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<QueuedJob> createPartWithHttpInfo(CreatePartRequest createPartRequest) throws ApiException {
+    public ApiResponse<Part> createPartWithHttpInfo(CreatePartRequest createPartRequest) throws ApiException {
         okhttp3.Call localVarCall = createPartValidateBeforeCall(createPartRequest, null);
-        Type localVarReturnType = new TypeToken<QueuedJob>(){}.getType();
+        Type localVarReturnType = new TypeToken<Part>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      *  (asynchronously)
-     * Create a &#x60;part&#x60;. This API is asynchronous, returning the location of a &#x60;queued-translation&#x60;. Check the status via the getQueuedTranslation API. For details, see our [Import data](https://developer.vertexvis.com/docs/guides/import-data-with-api) guide.
+     * Create a &#x60;part&#x60;.  This endpoint includes multiple successful response codes: [&#x60;201&#x60;, &#x60;202&#x60;].  When not given a relationship, this endpoint will create a part with an empty part revision and return a &#x60;201&#x60;  status code of the part.  When given a relationship to translate, this endpoint will return a &#x60;202&#x60; status code with the location of a &#x60;queued-translation&#x60;. The status of the translation can be queried via &#x60;getQueuedTranslation&#x60;. After the translation is complete, a &#x60;part&#x60; and &#x60;part-revision&#x60; that references the translated geometry.  A unique suppliedId/suppliedRevisionId combination will create a new part and new part revision. For instance, sending my-part-id/my-revision-id will create a new part and new revision with those corresponding supplied ids. To create a new revision for &#x60;my-part-id&#x60;, likewise you can invoke this endpoint with a new revision id: &#x60;my-part-id/my-new-revision-id&#x60; and a new revision will be created for the existing part.  See our [Import Data](https://developer.vertexvis.com/docs/guides/import-data-with-api) guides for more information. 
      * @param createPartRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -169,16 +172,17 @@ public class PartsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Created Part </td><td>  -  </td></tr>
         <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createPartAsync(CreatePartRequest createPartRequest, final ApiCallback<QueuedJob> _callback) throws ApiException {
+    public okhttp3.Call createPartAsync(CreatePartRequest createPartRequest, final ApiCallback<Part> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = createPartValidateBeforeCall(createPartRequest, _callback);
-        Type localVarReturnType = new TypeToken<QueuedJob>(){}.getType();
+        Type localVarReturnType = new TypeToken<Part>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

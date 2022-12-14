@@ -18,7 +18,8 @@ main() {
                 AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperation.java \
                 AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship.java AnyOfQueryByIdQueryByCollectionQueryAll.java OneOfHitResultDataSceneItemDataPartRevisionData.java \
                 OneOfSceneViewRelationshipSceneViewStateRelationship.java \
-                AnyOfGeometrySetRelationshipPartRevisionRelationship.java)
+                AnyOfGeometrySetRelationshipPartRevisionRelationship.java \
+                AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType.java)
   mv "src/test" . || true
   for f in "${root[@]}"; do mv "src/main/java/com/vertexvis/$f" . || true; done
   for f in "${auth[@]}"; do mv "src/main/java/com/vertexvis/auth/$f" . || true; done

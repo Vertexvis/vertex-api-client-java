@@ -20,9 +20,13 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.vertexvis.model.AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * CreatePartRequestDataAttributes
@@ -40,6 +44,10 @@ public class CreatePartRequestDataAttributes {
   public static final String SERIALIZED_NAME_INDEX_METADATA = "indexMetadata";
   @SerializedName(SERIALIZED_NAME_INDEX_METADATA)
   private Boolean indexMetadata;
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  private Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata = null;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -65,11 +73,11 @@ public class CreatePartRequestDataAttributes {
   }
 
    /**
-   * ID provided for correlation. For example, an existing ID from a PLM system.
+   * ID provided for correlation. For example, an existing ID from a PLM system. 
    * @return suppliedId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "PN12345", value = "ID provided for correlation. For example, an existing ID from a PLM system.")
+  @ApiModelProperty(example = "PN12345", value = "ID provided for correlation. For example, an existing ID from a PLM system. ")
 
   public String getSuppliedId() {
     return suppliedId;
@@ -88,11 +96,11 @@ public class CreatePartRequestDataAttributes {
   }
 
    /**
-   * ID provided for correlation. For example, an existing ID from a PLM system.
+   * ID provided for correlation. For example, an existing ID from a PLM system. Sending a new suppliedRevisionId combined with an existing suppliedId will create a new part revision for an existing part. 
    * @return suppliedRevisionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "RevA", value = "ID provided for correlation. For example, an existing ID from a PLM system.")
+  @ApiModelProperty(example = "RevA", value = "ID provided for correlation. For example, an existing ID from a PLM system. Sending a new suppliedRevisionId combined with an existing suppliedId will create a new part revision for an existing part. ")
 
   public String getSuppliedRevisionId() {
     return suppliedRevisionId;
@@ -111,11 +119,11 @@ public class CreatePartRequestDataAttributes {
   }
 
    /**
-   * Whether or not to index metadata in the part file.
+   * Whether or not to index metadata in the part file. To ignore metadata from the part file and add your own, pass &#x60;false&#x60; for &#x60;indexMetadata&#x60; and supply custom metadata using the &#x60;metadata&#x60; field. 
    * @return indexMetadata
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "false", value = "Whether or not to index metadata in the part file.")
+  @ApiModelProperty(example = "false", value = "Whether or not to index metadata in the part file. To ignore metadata from the part file and add your own, pass `false` for `indexMetadata` and supply custom metadata using the `metadata` field. ")
 
   public Boolean getIndexMetadata() {
     return indexMetadata;
@@ -124,6 +132,37 @@ public class CreatePartRequestDataAttributes {
 
   public void setIndexMetadata(Boolean indexMetadata) {
     this.indexMetadata = indexMetadata;
+  }
+
+
+  public CreatePartRequestDataAttributes metadata(Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata) {
+    
+    this.metadata = metadata;
+    return this;
+  }
+
+  public CreatePartRequestDataAttributes putMetadataItem(String key, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+   /**
+   * Additional metadata about the &#x60;part&#x60; and/or &#x60;part-revision&#x60;. This metadata will take precedence over any metadata that belongs to the part file if &#x60;indexMetadata&#x60; is specified. 
+   * @return metadata
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Additional metadata about the `part` and/or `part-revision`. This metadata will take precedence over any metadata that belongs to the part file if `indexMetadata` is specified. ")
+
+  public Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> getMetadata() {
+    return metadata;
+  }
+
+
+  public void setMetadata(Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata) {
+    this.metadata = metadata;
   }
 
 
@@ -231,6 +270,7 @@ public class CreatePartRequestDataAttributes {
     return Objects.equals(this.suppliedId, createPartRequestDataAttributes.suppliedId) &&
         Objects.equals(this.suppliedRevisionId, createPartRequestDataAttributes.suppliedRevisionId) &&
         Objects.equals(this.indexMetadata, createPartRequestDataAttributes.indexMetadata) &&
+        Objects.equals(this.metadata, createPartRequestDataAttributes.metadata) &&
         Objects.equals(this.name, createPartRequestDataAttributes.name) &&
         Objects.equals(this.suppliedIdKey, createPartRequestDataAttributes.suppliedIdKey) &&
         Objects.equals(this.suppliedRevisionIdKey, createPartRequestDataAttributes.suppliedRevisionIdKey) &&
@@ -239,7 +279,7 @@ public class CreatePartRequestDataAttributes {
 
   @Override
   public int hashCode() {
-    return Objects.hash(suppliedId, suppliedRevisionId, indexMetadata, name, suppliedIdKey, suppliedRevisionIdKey, suppliedInstanceIdKey);
+    return Objects.hash(suppliedId, suppliedRevisionId, indexMetadata, metadata, name, suppliedIdKey, suppliedRevisionIdKey, suppliedInstanceIdKey);
   }
 
   @Override
@@ -249,6 +289,7 @@ public class CreatePartRequestDataAttributes {
     sb.append("    suppliedId: ").append(toIndentedString(suppliedId)).append("\n");
     sb.append("    suppliedRevisionId: ").append(toIndentedString(suppliedRevisionId)).append("\n");
     sb.append("    indexMetadata: ").append(toIndentedString(indexMetadata)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    suppliedIdKey: ").append(toIndentedString(suppliedIdKey)).append("\n");
     sb.append("    suppliedRevisionIdKey: ").append(toIndentedString(suppliedRevisionIdKey)).append("\n");

@@ -825,6 +825,7 @@ public class PartRevisionsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
@@ -883,7 +884,7 @@ public class PartRevisionsApi {
 
     /**
      * 
-     * Update a &#x60;part-revision&#x60;. Note that metadata updates are eventually consistent.
+     * Update a &#x60;part-revision&#x60;. When given a &#x60;file&#x60; relationship as a payload, this will invoke a translation job, similar to the POST /parts endpoint. The response code will be a 202 and will respond with an async workflow, and return an Accepted[QueuedJob]. The geometry of the part and all of its children will be replaced with the geometry specified within the translated file given from this relationship. Some of the properties given here are only used for the translation of the file. Namely, &#x60;indexMetadata&#x60;, &#x60;name&#x60;, &#x60;suppliedIdKey&#x60;, &#x60;suppliedRevisionIdKey&#x60;, and &#x60;suppliedInstanceIdKey&#x60;. Note that geometry updates are eventually consistent and will not update existing scenes.   For updates to the revision when the file relationship is not present will respond with a standard 200 ok code when successful. Note that metadata updates are eventually consistent and will not update existing scenes.   To view updated metadata within a scene, a new scene must be created or the updated part-revision must be removed and re-added to an existing scene. 
      * @param id The &#x60;part-revision&#x60; ID. (required)
      * @param updatePartRevisionRequest  (required)
      * @return PartRevision
@@ -892,6 +893,7 @@ public class PartRevisionsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
@@ -905,7 +907,7 @@ public class PartRevisionsApi {
 
     /**
      * 
-     * Update a &#x60;part-revision&#x60;. Note that metadata updates are eventually consistent.
+     * Update a &#x60;part-revision&#x60;. When given a &#x60;file&#x60; relationship as a payload, this will invoke a translation job, similar to the POST /parts endpoint. The response code will be a 202 and will respond with an async workflow, and return an Accepted[QueuedJob]. The geometry of the part and all of its children will be replaced with the geometry specified within the translated file given from this relationship. Some of the properties given here are only used for the translation of the file. Namely, &#x60;indexMetadata&#x60;, &#x60;name&#x60;, &#x60;suppliedIdKey&#x60;, &#x60;suppliedRevisionIdKey&#x60;, and &#x60;suppliedInstanceIdKey&#x60;. Note that geometry updates are eventually consistent and will not update existing scenes.   For updates to the revision when the file relationship is not present will respond with a standard 200 ok code when successful. Note that metadata updates are eventually consistent and will not update existing scenes.   To view updated metadata within a scene, a new scene must be created or the updated part-revision must be removed and re-added to an existing scene. 
      * @param id The &#x60;part-revision&#x60; ID. (required)
      * @param updatePartRevisionRequest  (required)
      * @return ApiResponse&lt;PartRevision&gt;
@@ -914,6 +916,7 @@ public class PartRevisionsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
@@ -928,7 +931,7 @@ public class PartRevisionsApi {
 
     /**
      *  (asynchronously)
-     * Update a &#x60;part-revision&#x60;. Note that metadata updates are eventually consistent.
+     * Update a &#x60;part-revision&#x60;. When given a &#x60;file&#x60; relationship as a payload, this will invoke a translation job, similar to the POST /parts endpoint. The response code will be a 202 and will respond with an async workflow, and return an Accepted[QueuedJob]. The geometry of the part and all of its children will be replaced with the geometry specified within the translated file given from this relationship. Some of the properties given here are only used for the translation of the file. Namely, &#x60;indexMetadata&#x60;, &#x60;name&#x60;, &#x60;suppliedIdKey&#x60;, &#x60;suppliedRevisionIdKey&#x60;, and &#x60;suppliedInstanceIdKey&#x60;. Note that geometry updates are eventually consistent and will not update existing scenes.   For updates to the revision when the file relationship is not present will respond with a standard 200 ok code when successful. Note that metadata updates are eventually consistent and will not update existing scenes.   To view updated metadata within a scene, a new scene must be created or the updated part-revision must be removed and re-added to an existing scene. 
      * @param id The &#x60;part-revision&#x60; ID. (required)
      * @param updatePartRevisionRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -938,6 +941,7 @@ public class PartRevisionsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>

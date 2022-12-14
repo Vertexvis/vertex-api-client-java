@@ -20,12 +20,16 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.vertexvis.model.AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType;
 import com.vertexvis.model.ColorMaterial;
 import com.vertexvis.model.Matrix4;
 import com.vertexvis.model.PartRevisionSuppliedId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * CreateSceneItemRequestDataAttributes
@@ -63,6 +67,10 @@ public class CreateSceneItemRequestDataAttributes {
   public static final String SERIALIZED_NAME_VISIBLE = "visible";
   @SerializedName(SERIALIZED_NAME_VISIBLE)
   private Boolean visible;
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  private Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata = null;
 
 
   public CreateSceneItemRequestDataAttributes materialOverride(ColorMaterial materialOverride) {
@@ -249,6 +257,37 @@ public class CreateSceneItemRequestDataAttributes {
   }
 
 
+  public CreateSceneItemRequestDataAttributes metadata(Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata) {
+    
+    this.metadata = metadata;
+    return this;
+  }
+
+  public CreateSceneItemRequestDataAttributes putMetadataItem(String key, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+   /**
+   * Additional metadata for the scene-item. This metadata will take precedence over any metadata that belongs to the part file. 
+   * @return metadata
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Additional metadata for the scene-item. This metadata will take precedence over any metadata that belongs to the part file. ")
+
+  public Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> getMetadata() {
+    return metadata;
+  }
+
+
+  public void setMetadata(Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata) {
+    this.metadata = metadata;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -265,12 +304,13 @@ public class CreateSceneItemRequestDataAttributes {
         Objects.equals(this.source, createSceneItemRequestDataAttributes.source) &&
         Objects.equals(this.suppliedId, createSceneItemRequestDataAttributes.suppliedId) &&
         Objects.equals(this.transform, createSceneItemRequestDataAttributes.transform) &&
-        Objects.equals(this.visible, createSceneItemRequestDataAttributes.visible);
+        Objects.equals(this.visible, createSceneItemRequestDataAttributes.visible) &&
+        Objects.equals(this.metadata, createSceneItemRequestDataAttributes.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(materialOverride, name, parent, partInstanceSuppliedIdsAsSuppliedIds, source, suppliedId, transform, visible);
+    return Objects.hash(materialOverride, name, parent, partInstanceSuppliedIdsAsSuppliedIds, source, suppliedId, transform, visible, metadata);
   }
 
   @Override
@@ -285,6 +325,7 @@ public class CreateSceneItemRequestDataAttributes {
     sb.append("    suppliedId: ").append(toIndentedString(suppliedId)).append("\n");
     sb.append("    transform: ").append(toIndentedString(transform)).append("\n");
     sb.append("    visible: ").append(toIndentedString(visible)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
   }

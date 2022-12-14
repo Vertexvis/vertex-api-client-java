@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.MetadataValue;
+import com.vertexvis.model.AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -40,7 +40,7 @@ public class PartRevisionDataAttributes {
 
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
-  private Map<String, MetadataValue> metadata = null;
+  private Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata = null;
 
   public static final String SERIALIZED_NAME_SUPPLIED_ID = "suppliedId";
   @SerializedName(SERIALIZED_NAME_SUPPLIED_ID)
@@ -70,13 +70,13 @@ public class PartRevisionDataAttributes {
   }
 
 
-  public PartRevisionDataAttributes metadata(Map<String, MetadataValue> metadata) {
+  public PartRevisionDataAttributes metadata(Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata) {
     
     this.metadata = metadata;
     return this;
   }
 
-  public PartRevisionDataAttributes putMetadataItem(String key, MetadataValue metadataItem) {
+  public PartRevisionDataAttributes putMetadataItem(String key, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType metadataItem) {
     if (this.metadata == null) {
       this.metadata = new HashMap<>();
     }
@@ -91,12 +91,12 @@ public class PartRevisionDataAttributes {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public Map<String, MetadataValue> getMetadata() {
+  public Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> getMetadata() {
     return metadata;
   }
 
 
-  public void setMetadata(Map<String, MetadataValue> metadata) {
+  public void setMetadata(Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata) {
     this.metadata = metadata;
   }
 

@@ -63,13 +63,13 @@ public class ColorMaterialNullable {
   }
 
    /**
-   * Opacity from 0 to 100.
+   * An opacity value from 0 to 255.
    * minimum: 0
-   * maximum: 100
+   * maximum: 255
    * @return opacity
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "0", required = true, value = "Opacity from 0 to 100.")
+  @ApiModelProperty(example = "255", required = true, value = "An opacity value from 0 to 255.")
 
   public Integer getOpacity() {
     return opacity;

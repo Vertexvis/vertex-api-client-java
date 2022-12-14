@@ -25,96 +25,20 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * MetadataValue
+ * MetadataStringType
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class MetadataValue {
+public class MetadataStringType {
+  public static final String SERIALIZED_NAME_TYPE = "type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
+  private String type;
+
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)
   private String value;
 
-  /**
-   * Type of metadata value.
-   */
-  @JsonAdapter(TypeEnum.Adapter.class)
-  public enum TypeEnum {
-    STRING("string"),
-    
-    LONG("long"),
-    
-    FLOAT("float"),
-    
-    DATE("date"),
-    
-    NULL("null");
 
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static TypeEnum fromValue(String value) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<TypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public TypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return TypeEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_TYPE = "type";
-  @SerializedName(SERIALIZED_NAME_TYPE)
-  private TypeEnum type;
-
-
-  public MetadataValue value(String value) {
-    
-    this.value = value;
-    return this;
-  }
-
-   /**
-   * Metadata value.
-   * @return value
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "Rev A", value = "Metadata value.")
-
-  public String getValue() {
-    return value;
-  }
-
-
-  public void setValue(String value) {
-    this.value = value;
-  }
-
-
-  public MetadataValue type(TypeEnum type) {
+  public MetadataStringType type(String type) {
     
     this.type = type;
     return this;
@@ -127,13 +51,36 @@ public class MetadataValue {
   @javax.annotation.Nonnull
   @ApiModelProperty(example = "string", required = true, value = "Type of metadata value.")
 
-  public TypeEnum getType() {
+  public String getType() {
     return type;
   }
 
 
-  public void setType(TypeEnum type) {
+  public void setType(String type) {
     this.type = type;
+  }
+
+
+  public MetadataStringType value(String value) {
+    
+    this.value = value;
+    return this;
+  }
+
+   /**
+   * A string value.
+   * @return value
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "Some value", required = true, value = "A string value.")
+
+  public String getValue() {
+    return value;
+  }
+
+
+  public void setValue(String value) {
+    this.value = value;
   }
 
 
@@ -145,22 +92,22 @@ public class MetadataValue {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    MetadataValue metadataValue = (MetadataValue) o;
-    return Objects.equals(this.value, metadataValue.value) &&
-        Objects.equals(this.type, metadataValue.type);
+    MetadataStringType metadataStringType = (MetadataStringType) o;
+    return Objects.equals(this.type, metadataStringType.type) &&
+        Objects.equals(this.value, metadataStringType.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value, type);
+    return Objects.hash(type, value);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class MetadataValue {\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("class MetadataStringType {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }

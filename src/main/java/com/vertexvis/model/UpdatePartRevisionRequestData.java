@@ -20,6 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.vertexvis.model.CreateGeometrySetRequestDataRelationships;
 import com.vertexvis.model.UpdatePartRevisionRequestDataAttributes;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -27,8 +28,9 @@ import java.io.IOException;
 import java.util.UUID;
 
 /**
- * UpdatePartRevisionRequestData
+ * Modify existing part revisions using this endpoint. When specifying a &#x60;relationship&#x60;, the generated output from that relationship will be used to replace any relationship that is present on the revision prior to the update. For example, sending a file relationship that has geometry will replace the existing geometry on the revision with the new geometry in the given file. 
  */
+@ApiModel(description = "Modify existing part revisions using this endpoint. When specifying a `relationship`, the generated output from that relationship will be used to replace any relationship that is present on the revision prior to the update. For example, sending a file relationship that has geometry will replace the existing geometry on the revision with the new geometry in the given file. ")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UpdatePartRevisionRequestData {
   public static final String SERIALIZED_NAME_TYPE = "type";
@@ -42,6 +44,10 @@ public class UpdatePartRevisionRequestData {
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   private UpdatePartRevisionRequestDataAttributes attributes;
+
+  public static final String SERIALIZED_NAME_RELATIONSHIPS = "relationships";
+  @SerializedName(SERIALIZED_NAME_RELATIONSHIPS)
+  private CreateGeometrySetRequestDataRelationships relationships;
 
 
   public UpdatePartRevisionRequestData type(String type) {
@@ -113,6 +119,29 @@ public class UpdatePartRevisionRequestData {
   }
 
 
+  public UpdatePartRevisionRequestData relationships(CreateGeometrySetRequestDataRelationships relationships) {
+    
+    this.relationships = relationships;
+    return this;
+  }
+
+   /**
+   * Get relationships
+   * @return relationships
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public CreateGeometrySetRequestDataRelationships getRelationships() {
+    return relationships;
+  }
+
+
+  public void setRelationships(CreateGeometrySetRequestDataRelationships relationships) {
+    this.relationships = relationships;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -124,12 +153,13 @@ public class UpdatePartRevisionRequestData {
     UpdatePartRevisionRequestData updatePartRevisionRequestData = (UpdatePartRevisionRequestData) o;
     return Objects.equals(this.type, updatePartRevisionRequestData.type) &&
         Objects.equals(this.id, updatePartRevisionRequestData.id) &&
-        Objects.equals(this.attributes, updatePartRevisionRequestData.attributes);
+        Objects.equals(this.attributes, updatePartRevisionRequestData.attributes) &&
+        Objects.equals(this.relationships, updatePartRevisionRequestData.relationships);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, attributes);
+    return Objects.hash(type, id, attributes, relationships);
   }
 
   @Override
@@ -139,6 +169,7 @@ public class UpdatePartRevisionRequestData {
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
+    sb.append("    relationships: ").append(toIndentedString(relationships)).append("\n");
     sb.append("}");
     return sb.toString();
   }

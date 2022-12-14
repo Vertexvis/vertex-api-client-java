@@ -55,6 +55,14 @@ public class SceneViewStateDataAttributes {
   @SerializedName(SERIALIZED_NAME_FEATURE_LINES)
   private FeatureLines featureLines;
 
+  public static final String SERIALIZED_NAME_NO_DEFAULT_LIGHTS = "noDefaultLights";
+  @SerializedName(SERIALIZED_NAME_NO_DEFAULT_LIGHTS)
+  private Boolean noDefaultLights;
+
+  public static final String SERIALIZED_NAME_SUPPLIED_ID = "suppliedId";
+  @SerializedName(SERIALIZED_NAME_SUPPLIED_ID)
+  private String suppliedId;
+
 
   public SceneViewStateDataAttributes camera(OneOfPerspectiveCameraOrthographicCamera camera) {
     
@@ -179,6 +187,52 @@ public class SceneViewStateDataAttributes {
   }
 
 
+  public SceneViewStateDataAttributes noDefaultLights(Boolean noDefaultLights) {
+    
+    this.noDefaultLights = noDefaultLights;
+    return this;
+  }
+
+   /**
+   * Get noDefaultLights
+   * @return noDefaultLights
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Boolean getNoDefaultLights() {
+    return noDefaultLights;
+  }
+
+
+  public void setNoDefaultLights(Boolean noDefaultLights) {
+    this.noDefaultLights = noDefaultLights;
+  }
+
+
+  public SceneViewStateDataAttributes suppliedId(String suppliedId) {
+    
+    this.suppliedId = suppliedId;
+    return this;
+  }
+
+   /**
+   * Get suppliedId
+   * @return suppliedId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "some-string", value = "")
+
+  public String getSuppliedId() {
+    return suppliedId;
+  }
+
+
+  public void setSuppliedId(String suppliedId) {
+    this.suppliedId = suppliedId;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -192,12 +246,14 @@ public class SceneViewStateDataAttributes {
         Objects.equals(this.created, sceneViewStateDataAttributes.created) &&
         Objects.equals(this.name, sceneViewStateDataAttributes.name) &&
         Objects.equals(this.thumbnails, sceneViewStateDataAttributes.thumbnails) &&
-        Objects.equals(this.featureLines, sceneViewStateDataAttributes.featureLines);
+        Objects.equals(this.featureLines, sceneViewStateDataAttributes.featureLines) &&
+        Objects.equals(this.noDefaultLights, sceneViewStateDataAttributes.noDefaultLights) &&
+        Objects.equals(this.suppliedId, sceneViewStateDataAttributes.suppliedId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(camera, created, name, thumbnails, featureLines);
+    return Objects.hash(camera, created, name, thumbnails, featureLines, noDefaultLights, suppliedId);
   }
 
   @Override
@@ -209,6 +265,8 @@ public class SceneViewStateDataAttributes {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    thumbnails: ").append(toIndentedString(thumbnails)).append("\n");
     sb.append("    featureLines: ").append(toIndentedString(featureLines)).append("\n");
+    sb.append("    noDefaultLights: ").append(toIndentedString(noDefaultLights)).append("\n");
+    sb.append("    suppliedId: ").append(toIndentedString(suppliedId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

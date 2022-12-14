@@ -319,6 +319,8 @@ public class SceneItemOverridesApi {
     /**
      * Build call for getSceneItemOverrides
      * @param id The &#x60;scene-view&#x60; ID. (required)
+     * @param pageCursor The cursor for the next page of items. (optional)
+     * @param pageSize The number of items to return. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -331,7 +333,7 @@ public class SceneItemOverridesApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSceneItemOverridesCall(UUID id, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getSceneItemOverridesCall(UUID id, String pageCursor, Integer pageSize, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -343,6 +345,14 @@ public class SceneItemOverridesApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (pageCursor != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[cursor]", pageCursor));
+        }
+
+        if (pageSize != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[size]", pageSize));
+        }
 
         final String[] localVarAccepts = {
             "application/vnd.api+json"
@@ -363,7 +373,7 @@ public class SceneItemOverridesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getSceneItemOverridesValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getSceneItemOverridesValidateBeforeCall(UUID id, String pageCursor, Integer pageSize, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -371,7 +381,7 @@ public class SceneItemOverridesApi {
         }
         
 
-        okhttp3.Call localVarCall = getSceneItemOverridesCall(id, _callback);
+        okhttp3.Call localVarCall = getSceneItemOverridesCall(id, pageCursor, pageSize, _callback);
         return localVarCall;
 
     }
@@ -380,6 +390,8 @@ public class SceneItemOverridesApi {
      * 
      * Get &#x60;scene-item-overrides&#x60; for a &#x60;scene-view&#x60;.
      * @param id The &#x60;scene-view&#x60; ID. (required)
+     * @param pageCursor The cursor for the next page of items. (optional)
+     * @param pageSize The number of items to return. (optional)
      * @return SceneItemOverrideList
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -391,8 +403,8 @@ public class SceneItemOverridesApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public SceneItemOverrideList getSceneItemOverrides(UUID id) throws ApiException {
-        ApiResponse<SceneItemOverrideList> localVarResp = getSceneItemOverridesWithHttpInfo(id);
+    public SceneItemOverrideList getSceneItemOverrides(UUID id, String pageCursor, Integer pageSize) throws ApiException {
+        ApiResponse<SceneItemOverrideList> localVarResp = getSceneItemOverridesWithHttpInfo(id, pageCursor, pageSize);
         return localVarResp.getData();
     }
 
@@ -400,6 +412,8 @@ public class SceneItemOverridesApi {
      * 
      * Get &#x60;scene-item-overrides&#x60; for a &#x60;scene-view&#x60;.
      * @param id The &#x60;scene-view&#x60; ID. (required)
+     * @param pageCursor The cursor for the next page of items. (optional)
+     * @param pageSize The number of items to return. (optional)
      * @return ApiResponse&lt;SceneItemOverrideList&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -411,8 +425,8 @@ public class SceneItemOverridesApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SceneItemOverrideList> getSceneItemOverridesWithHttpInfo(UUID id) throws ApiException {
-        okhttp3.Call localVarCall = getSceneItemOverridesValidateBeforeCall(id, null);
+    public ApiResponse<SceneItemOverrideList> getSceneItemOverridesWithHttpInfo(UUID id, String pageCursor, Integer pageSize) throws ApiException {
+        okhttp3.Call localVarCall = getSceneItemOverridesValidateBeforeCall(id, pageCursor, pageSize, null);
         Type localVarReturnType = new TypeToken<SceneItemOverrideList>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -421,6 +435,8 @@ public class SceneItemOverridesApi {
      *  (asynchronously)
      * Get &#x60;scene-item-overrides&#x60; for a &#x60;scene-view&#x60;.
      * @param id The &#x60;scene-view&#x60; ID. (required)
+     * @param pageCursor The cursor for the next page of items. (optional)
+     * @param pageSize The number of items to return. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -433,9 +449,9 @@ public class SceneItemOverridesApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSceneItemOverridesAsync(UUID id, final ApiCallback<SceneItemOverrideList> _callback) throws ApiException {
+    public okhttp3.Call getSceneItemOverridesAsync(UUID id, String pageCursor, Integer pageSize, final ApiCallback<SceneItemOverrideList> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getSceneItemOverridesValidateBeforeCall(id, _callback);
+        okhttp3.Call localVarCall = getSceneItemOverridesValidateBeforeCall(id, pageCursor, pageSize, _callback);
         Type localVarReturnType = new TypeToken<SceneItemOverrideList>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

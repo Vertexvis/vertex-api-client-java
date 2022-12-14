@@ -25,62 +25,62 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * CreateSceneViewStateRequestDataAttributes
+ * MetadataFloatType
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneViewStateRequestDataAttributes {
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
+public class MetadataFloatType {
+  public static final String SERIALIZED_NAME_TYPE = "type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
+  private String type;
 
-  public static final String SERIALIZED_NAME_SUPPLIED_ID = "suppliedId";
-  @SerializedName(SERIALIZED_NAME_SUPPLIED_ID)
-  private String suppliedId;
+  public static final String SERIALIZED_NAME_VALUE = "value";
+  @SerializedName(SERIALIZED_NAME_VALUE)
+  private Float value;
 
 
-  public CreateSceneViewStateRequestDataAttributes name(String name) {
+  public MetadataFloatType type(String type) {
     
-    this.name = name;
+    this.type = type;
     return this;
   }
 
    /**
-   * Get name
-   * @return name
+   * Type of metadata value.
+   * @return type
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "some-string", value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "float", required = true, value = "Type of metadata value.")
 
-  public String getName() {
-    return name;
+  public String getType() {
+    return type;
   }
 
 
-  public void setName(String name) {
-    this.name = name;
+  public void setType(String type) {
+    this.type = type;
   }
 
 
-  public CreateSceneViewStateRequestDataAttributes suppliedId(String suppliedId) {
+  public MetadataFloatType value(Float value) {
     
-    this.suppliedId = suppliedId;
+    this.value = value;
     return this;
   }
 
    /**
-   * ID provided for correlation. For example, an existing ID from a PLM system.
-   * @return suppliedId
+   * A numerical floating-point value.
+   * @return value
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "PN12345", value = "ID provided for correlation. For example, an existing ID from a PLM system.")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "A numerical floating-point value.")
 
-  public String getSuppliedId() {
-    return suppliedId;
+  public Float getValue() {
+    return value;
   }
 
 
-  public void setSuppliedId(String suppliedId) {
-    this.suppliedId = suppliedId;
+  public void setValue(Float value) {
+    this.value = value;
   }
 
 
@@ -92,22 +92,22 @@ public class CreateSceneViewStateRequestDataAttributes {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneViewStateRequestDataAttributes createSceneViewStateRequestDataAttributes = (CreateSceneViewStateRequestDataAttributes) o;
-    return Objects.equals(this.name, createSceneViewStateRequestDataAttributes.name) &&
-        Objects.equals(this.suppliedId, createSceneViewStateRequestDataAttributes.suppliedId);
+    MetadataFloatType metadataFloatType = (MetadataFloatType) o;
+    return Objects.equals(this.type, metadataFloatType.type) &&
+        Objects.equals(this.value, metadataFloatType.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, suppliedId);
+    return Objects.hash(type, value);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneViewStateRequestDataAttributes {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    suppliedId: ").append(toIndentedString(suppliedId)).append("\n");
+    sb.append("class MetadataFloatType {\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }
