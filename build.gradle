@@ -70,6 +70,9 @@ signing {
 
 javadoc {
     options.tags = ["http.response.details:a:Http Response Details"]
+    if(JavaVersion.current().isJava8Compatible()) {
+        options.addStringOption('Xdoclint:none', '-quiet')
+    }
 }
 
 dependencies {
