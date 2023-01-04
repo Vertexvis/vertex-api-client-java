@@ -19,16 +19,17 @@ main() {
                 AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship.java AnyOfQueryByIdQueryByCollectionQueryAll.java OneOfHitResultDataSceneItemDataPartRevisionData.java \
                 OneOfSceneViewRelationshipSceneViewStateRelationship.java \
                 AnyOfGeometrySetRelationshipPartRevisionRelationship.java \
-                AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType.java)
+                AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType.java \
+                AnyOfFileRelationshipPartAssemblyRelationship.java )
   mv "src/test" . || true
   for f in "${root[@]}"; do mv "src/main/java/com/vertexvis/$f" . || true; done
   for f in "${auth[@]}"; do mv "src/main/java/com/vertexvis/auth/$f" . || true; done
   for f in "${models[@]}"; do mv "src/main/java/com/vertexvis/model/$f" . || true; done
 
-  rm -rf api gradle src
+  rm -rf gradle src
   
   docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli:v5.2.1 generate \
-    --input-spec https://platform.vertexvis.com/spec \
+    --input-spec /local/api/openapi.yaml \
     --generator-name java \
     --config /local/config.yml \
     --output /local
