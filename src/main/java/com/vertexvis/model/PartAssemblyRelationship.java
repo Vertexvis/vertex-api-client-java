@@ -20,41 +20,42 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.vertexvis.model.PartAssemblyRelationshipData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.time.OffsetDateTime;
 
 /**
- * HitDataAttributes
+ * Create Part Assembly
  */
+@ApiModel(description = "Create Part Assembly")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class HitDataAttributes {
-  public static final String SERIALIZED_NAME_CREATED = "created";
-  @SerializedName(SERIALIZED_NAME_CREATED)
-  private OffsetDateTime created;
+public class PartAssemblyRelationship {
+  public static final String SERIALIZED_NAME_DATA = "data";
+  @SerializedName(SERIALIZED_NAME_DATA)
+  private PartAssemblyRelationshipData data;
 
 
-  public HitDataAttributes created(OffsetDateTime created) {
+  public PartAssemblyRelationship data(PartAssemblyRelationshipData data) {
     
-    this.created = created;
+    this.data = data;
     return this;
   }
 
    /**
-   * Get created
-   * @return created
+   * Get data
+   * @return data
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2020-01-01T12:00Z", required = true, value = "")
+  @ApiModelProperty(required = true, value = "")
 
-  public OffsetDateTime getCreated() {
-    return created;
+  public PartAssemblyRelationshipData getData() {
+    return data;
   }
 
 
-  public void setCreated(OffsetDateTime created) {
-    this.created = created;
+  public void setData(PartAssemblyRelationshipData data) {
+    this.data = data;
   }
 
 
@@ -66,20 +67,20 @@ public class HitDataAttributes {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    HitDataAttributes hitDataAttributes = (HitDataAttributes) o;
-    return Objects.equals(this.created, hitDataAttributes.created);
+    PartAssemblyRelationship partAssemblyRelationship = (PartAssemblyRelationship) o;
+    return Objects.equals(this.data, partAssemblyRelationship.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(created);
+    return Objects.hash(data);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class HitDataAttributes {\n");
-    sb.append("    created: ").append(toIndentedString(created)).append("\n");
+    sb.append("class PartAssemblyRelationship {\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");
     return sb.toString();
   }
