@@ -38,7 +38,7 @@ public class CreatePartsAsyncExample {
 
     List<CompletableFuture<Part>> futureParts = Stream.of("file-1.jt", "file-2.jt", "file-3.jt")
         .map(CreatePartsAsyncExample::buildCreateFileReq)
-        .map(req -> createAndUploadFile(files, req).thenCompose(pc::createPartFromFileAsync))
+        .map(req -> createAndUploadFile(files, req).thenCompose(partId -> pc.createPartFromFileAsync(partId, req)))
         .collect(Collectors.toList());
 
     CompletableFuture.allOf(futureParts.toArray(new CompletableFuture[0])).join();
