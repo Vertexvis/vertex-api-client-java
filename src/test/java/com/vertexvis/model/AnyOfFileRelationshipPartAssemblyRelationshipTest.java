@@ -18,7 +18,7 @@ public class AnyOfFileRelationshipPartAssemblyRelationshipTest {
         return IntStream.range(0, num)
                 .mapToObj(ordinal -> new PartRevisionInstance().
                         ordinal(ordinal)
-                        .referenceId(ids.get(ordinal))
+                        .revisionId(ids.get(ordinal))
                         .transform(new Matrix4()))
                 .collect(Collectors.toList());
     }
@@ -30,7 +30,7 @@ public class AnyOfFileRelationshipPartAssemblyRelationshipTest {
                 new AnyOfFileRelationshipPartAssemblyRelationship(
                         new PartAssemblyRelationship()
                                 .data(new PartAssemblyRelationshipData()
-                                        .metadata(Collections.emptyList())
+                                        .metadata(Collections.emptyMap())
                                         .children(createPartRevisionInstances(Collections.singletonList(id)))
                                 ));
 
@@ -60,7 +60,7 @@ public class AnyOfFileRelationshipPartAssemblyRelationshipTest {
         CreatePartRequest request = new JSON().deserialize(requestWithAssemblyRelationshipPayload, TypeToken.get(CreatePartRequest.class).getType());
         PartAssemblyRelationshipData expected =
                 new PartAssemblyRelationshipData()
-                        .metadata(Collections.emptyList())
+                        .metadata(Collections.emptyMap())
                         .children(createPartRevisionInstances(Collections.singletonList(id)));
 
         assertEquals(requestDataRelationships.getSource().getPartAssemblyRelationship().getData().getChildren().size(), 1);
