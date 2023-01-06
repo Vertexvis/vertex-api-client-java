@@ -17,7 +17,9 @@ import com.vertexvis.model.PartRevisionInstance;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Supplier;
@@ -43,7 +45,7 @@ public class AnyOfFileRelationshipPartAssemblyRelationshipTypeAdapter extends Ty
     public AnyOfFileRelationshipPartAssemblyRelationship read(JsonReader in) throws IOException {
         Optional<AnyOfFileRelationshipPartAssemblyRelationship> anyof = Optional.empty();
         List<PartRevisionInstance> partRevisionInstances = new ArrayList<>();
-        List<AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadataStringTypeMetadataFloatTypeMetadataNullTypes = new ArrayList<>();
+        Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadataStringTypeMetadataFloatTypeMetadataNullTypes = new HashMap<>();
         PartAssemblyRelationship partAssemblyRelationship;
         FileRelationship fileRelationship;
         FileRelationshipData.TypeEnum typeEnum = null;
@@ -69,7 +71,7 @@ public class AnyOfFileRelationshipPartAssemblyRelationshipTypeAdapter extends Ty
                     fileId = UUID.fromString(in.nextString());
                     break;
                 case "metadata":
-                    Type goingToFail = new TypeToken<List<AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType>>() {
+                    Type goingToFail = new TypeToken<Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType>>() {
                     }.getType();
                     try {
                         metadataStringTypeMetadataFloatTypeMetadataNullTypes = gsonSupplier.get().fromJson(in, goingToFail);

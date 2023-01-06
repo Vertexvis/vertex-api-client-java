@@ -27,30 +27,26 @@ import java.io.IOException;
 import java.util.UUID;
 
 /**
- * PartRevisionInstance
+ * A reference to an existing PartRevision. Specify one and only one of referenceId or suppliedReferenceId to refer to a revision.
  */
-@ApiModel(description = "PartRevisionInstance")
+@ApiModel(description = "A reference to an existing PartRevision. Specify one and only one of referenceId or suppliedReferenceId to refer to a revision.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PartRevisionInstance {
   public static final String SERIALIZED_NAME_ORDINAL = "ordinal";
   @SerializedName(SERIALIZED_NAME_ORDINAL)
   private Integer ordinal;
 
-  public static final String SERIALIZED_NAME_REFERENCE_ID = "referenceId";
-  @SerializedName(SERIALIZED_NAME_REFERENCE_ID)
-  private UUID referenceId;
+  public static final String SERIALIZED_NAME_REVISION_ID = "revisionId";
+  @SerializedName(SERIALIZED_NAME_REVISION_ID)
+  private UUID revisionId;
 
-  public static final String SERIALIZED_NAME_SUPPLIED_REFERENCE_ID = "suppliedReferenceId";
-  @SerializedName(SERIALIZED_NAME_SUPPLIED_REFERENCE_ID)
-  private String suppliedReferenceId;
+  public static final String SERIALIZED_NAME_SUPPLIED_REVISION_ID = "suppliedRevisionId";
+  @SerializedName(SERIALIZED_NAME_SUPPLIED_REVISION_ID)
+  private String suppliedRevisionId;
 
   public static final String SERIALIZED_NAME_TRANSFORM = "transform";
   @SerializedName(SERIALIZED_NAME_TRANSFORM)
   private Matrix4 transform;
-
-  public static final String SERIALIZED_NAME_INSTANCE_ID = "instanceId";
-  @SerializedName(SERIALIZED_NAME_INSTANCE_ID)
-  private String instanceId;
 
 
   public PartRevisionInstance ordinal(Integer ordinal) {
@@ -60,12 +56,12 @@ public class PartRevisionInstance {
   }
 
    /**
-   * Get ordinal
+   * A 0-based index used for defining a consistent ordering for children of an assembly
    * minimum: 0
    * @return ordinal
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "A 0-based index used for defining a consistent ordering for children of an assembly")
 
   public Integer getOrdinal() {
     return ordinal;
@@ -77,49 +73,49 @@ public class PartRevisionInstance {
   }
 
 
-  public PartRevisionInstance referenceId(UUID referenceId) {
+  public PartRevisionInstance revisionId(UUID revisionId) {
     
-    this.referenceId = referenceId;
+    this.revisionId = revisionId;
     return this;
   }
 
    /**
    * ID of the resource.
-   * @return referenceId
+   * @return revisionId
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "f79d4760-0b71-44e4-ad0b-22743fdd4ca3", value = "ID of the resource.")
 
-  public UUID getReferenceId() {
-    return referenceId;
+  public UUID getRevisionId() {
+    return revisionId;
   }
 
 
-  public void setReferenceId(UUID referenceId) {
-    this.referenceId = referenceId;
+  public void setRevisionId(UUID revisionId) {
+    this.revisionId = revisionId;
   }
 
 
-  public PartRevisionInstance suppliedReferenceId(String suppliedReferenceId) {
+  public PartRevisionInstance suppliedRevisionId(String suppliedRevisionId) {
     
-    this.suppliedReferenceId = suppliedReferenceId;
+    this.suppliedRevisionId = suppliedRevisionId;
     return this;
   }
 
    /**
-   * Get suppliedReferenceId
-   * @return suppliedReferenceId
+   * Get suppliedRevisionId
+   * @return suppliedRevisionId
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "some-string", value = "")
 
-  public String getSuppliedReferenceId() {
-    return suppliedReferenceId;
+  public String getSuppliedRevisionId() {
+    return suppliedRevisionId;
   }
 
 
-  public void setSuppliedReferenceId(String suppliedReferenceId) {
-    this.suppliedReferenceId = suppliedReferenceId;
+  public void setSuppliedRevisionId(String suppliedRevisionId) {
+    this.suppliedRevisionId = suppliedRevisionId;
   }
 
 
@@ -146,29 +142,6 @@ public class PartRevisionInstance {
   }
 
 
-  public PartRevisionInstance instanceId(String instanceId) {
-    
-    this.instanceId = instanceId;
-    return this;
-  }
-
-   /**
-   * Get instanceId
-   * @return instanceId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "some-string", value = "")
-
-  public String getInstanceId() {
-    return instanceId;
-  }
-
-
-  public void setInstanceId(String instanceId) {
-    this.instanceId = instanceId;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -179,15 +152,14 @@ public class PartRevisionInstance {
     }
     PartRevisionInstance partRevisionInstance = (PartRevisionInstance) o;
     return Objects.equals(this.ordinal, partRevisionInstance.ordinal) &&
-        Objects.equals(this.referenceId, partRevisionInstance.referenceId) &&
-        Objects.equals(this.suppliedReferenceId, partRevisionInstance.suppliedReferenceId) &&
-        Objects.equals(this.transform, partRevisionInstance.transform) &&
-        Objects.equals(this.instanceId, partRevisionInstance.instanceId);
+        Objects.equals(this.revisionId, partRevisionInstance.revisionId) &&
+        Objects.equals(this.suppliedRevisionId, partRevisionInstance.suppliedRevisionId) &&
+        Objects.equals(this.transform, partRevisionInstance.transform);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(ordinal, referenceId, suppliedReferenceId, transform, instanceId);
+    return Objects.hash(ordinal, revisionId, suppliedRevisionId, transform);
   }
 
   @Override
@@ -195,10 +167,9 @@ public class PartRevisionInstance {
     StringBuilder sb = new StringBuilder();
     sb.append("class PartRevisionInstance {\n");
     sb.append("    ordinal: ").append(toIndentedString(ordinal)).append("\n");
-    sb.append("    referenceId: ").append(toIndentedString(referenceId)).append("\n");
-    sb.append("    suppliedReferenceId: ").append(toIndentedString(suppliedReferenceId)).append("\n");
+    sb.append("    revisionId: ").append(toIndentedString(revisionId)).append("\n");
+    sb.append("    suppliedRevisionId: ").append(toIndentedString(suppliedRevisionId)).append("\n");
     sb.append("    transform: ").append(toIndentedString(transform)).append("\n");
-    sb.append("    instanceId: ").append(toIndentedString(instanceId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

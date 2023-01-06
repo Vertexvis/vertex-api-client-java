@@ -26,7 +26,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * PartAssemblyRelationshipData
@@ -39,7 +41,7 @@ public class PartAssemblyRelationshipData {
 
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
-  private List<AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata = new ArrayList<>();
+  private Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata = null;
 
 
   public PartAssemblyRelationshipData children(List<PartRevisionInstance> children) {
@@ -70,30 +72,33 @@ public class PartAssemblyRelationshipData {
   }
 
 
-  public PartAssemblyRelationshipData metadata(List<AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata) {
+  public PartAssemblyRelationshipData metadata(Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata) {
     
     this.metadata = metadata;
     return this;
   }
 
-  public PartAssemblyRelationshipData addMetadataItem(AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType metadataItem) {
-    this.metadata.add(metadataItem);
+  public PartAssemblyRelationshipData putMetadataItem(String key, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
     return this;
   }
 
    /**
-   * Get metadata
+   * Additional metadata about the &#x60;part&#x60; and/or &#x60;part-revision&#x60;. 
    * @return metadata
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Additional metadata about the `part` and/or `part-revision`. ")
 
-  public List<AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> getMetadata() {
+  public Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> getMetadata() {
     return metadata;
   }
 
 
-  public void setMetadata(List<AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata) {
+  public void setMetadata(Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata) {
     this.metadata = metadata;
   }
 

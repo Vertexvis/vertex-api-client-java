@@ -1,11 +1,7 @@
 package com.vertexvis.example;
 
-import static com.vertexvis.example.CallbackUtil.execute;
-
-
 import com.vertexvis.ApiCallback;
 import com.vertexvis.ApiClient;
-import com.vertexvis.api.PartRevisionsApi;
 import com.vertexvis.api.PartsApi;
 import com.vertexvis.api.TranslationInspectionsApi;
 import com.vertexvis.model.*;
@@ -18,14 +14,14 @@ import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static com.vertexvis.example.CallbackUtil.execute;
+
 class PartCreator {
     private final TranslationInspectionsApi tiApi;
     private final PartsApi parts;
-    private final PartRevisionsApi revisions;
 
     public PartCreator(ApiClient client) {
         this.parts = new PartsApi(client);
-        this.revisions = new PartRevisionsApi(client);
         this.tiApi = new TranslationInspectionsApi(client);
     }
 
@@ -78,7 +74,7 @@ class PartCreator {
 
         PartAssemblyRelationship partAssemblyRelationship = new PartAssemblyRelationship()
                 .data(new PartAssemblyRelationshipData()
-                        .metadata(Collections.emptyList())
+                        .metadata(Collections.emptyMap())
                         .children(createPartRevisionInstances(revisionIds))
                 );
         var uuid = UUID.randomUUID();
@@ -100,7 +96,7 @@ class PartCreator {
         return IntStream.range(0, num)
                 .mapToObj(ordinal -> new PartRevisionInstance().
                         ordinal(ordinal)
-                        .referenceId(ids.get(ordinal))
+                        .revisionId(ids.get(ordinal))
                         .transform(new Matrix4()
                                 .r0(createVector4(BigDecimal.ONE, BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ONE))
                                 .r1(createVector4(BigDecimal.ZERO, BigDecimal.ONE, BigDecimal.ZERO, BigDecimal.ONE))
