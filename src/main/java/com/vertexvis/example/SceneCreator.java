@@ -26,46 +26,6 @@ class SceneCreator {
         this.sceneItems = new SceneItemsApi(apiClient);
     }
 
-    public List<UUID> createSceneItemForPartRevisions(UUID sceneId, List<PartDataRelationshipsPartRevisions> children) {
-        return children.parallelStream()
-                .map(revision -> sceneItems.createSceneItem(
-                        sceneId,
-                        new CreateSceneItemRequest()
-                                .data(
-                                        new CreateSceneItemRequestData()
-                                                .type("scene-item")
-                                                .attributes(
-                                                        new CreateSceneItemRequestDataAttributes().suppliedId(revision.getId().toString()))
-                                                .relationships(
-                                                        new CreateSceneItemRequestDataRelationships()
-                                                                .source(
-                                                                        new AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship(
-                                                                                new PartRevisionRelationship()
-                                                                                        .data(
-                                                                                                new PartDataRelationshipsPartRevisions()
-                                                                                                        .type(
-                                                                                                                PartDataRelationshipsPartRevisions.TypeEnum
-                                                                                                                        .PART_REVISION)
-                                                                                                        .id(revision.getId()))))))))
-                .map(job -> {
-                    try {
-                        return JobPoller.pollUntilJobDone(
-                                "scene-item", () -> sceneItems.getQueuedSceneItem(job.getData().getId()));
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-                })
-                .collect(Collectors.toList());
-
-    }
-
-    public Scene createSceneFromAssembly(Part assembly, List<PartDataRelationshipsPartRevisions> childPartRevisions) throws InterruptedException {
-        var scene = createSceneFromPart(assembly, false);
-        var childSceneItems = createSceneItemForPartRevisions(scene.getData().getId(), childPartRevisions);
-        childSceneItems.forEach(c -> logger.info("Create scene item [{}]", c));
-        return commitSceneChanges(scene.getData().getId());
-    }
-
     Scene commitSceneChanges(UUID sceneId) {
         return scenes.updateScene(
                 sceneId,
