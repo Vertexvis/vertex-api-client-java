@@ -91,6 +91,8 @@ public class CreateAssemblyFromRevisionsExample extends CommandLineOptions {
             logger.log(Level.SEVERE, "Error Code [" + e.getCode() + "], Response body " + e.getResponseBody(), e);
         } catch (InterruptedException e) {
             logger.severe(e.getMessage());
+            // Restore interrupted state...
+            Thread.currentThread().interrupt();
         }
     }
 
