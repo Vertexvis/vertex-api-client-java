@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.GeometrySetDataAttributes;
+import com.vertexvis.model.HitDataAttributes;
 import com.vertexvis.model.Link;
 import com.vertexvis.model.SceneAlterationDataRelationships;
 import io.swagger.annotations.ApiModel;
@@ -46,7 +46,7 @@ public class SceneAlterationData {
 
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
-  private GeometrySetDataAttributes attributes;
+  private HitDataAttributes attributes;
 
   public static final String SERIALIZED_NAME_RELATIONSHIPS = "relationships";
   @SerializedName(SERIALIZED_NAME_RELATIONSHIPS)
@@ -103,7 +103,7 @@ public class SceneAlterationData {
   }
 
 
-  public SceneAlterationData attributes(GeometrySetDataAttributes attributes) {
+  public SceneAlterationData attributes(HitDataAttributes attributes) {
     
     this.attributes = attributes;
     return this;
@@ -116,12 +116,12 @@ public class SceneAlterationData {
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public GeometrySetDataAttributes getAttributes() {
+  public HitDataAttributes getAttributes() {
     return attributes;
   }
 
 
-  public void setAttributes(GeometrySetDataAttributes attributes) {
+  public void setAttributes(HitDataAttributes attributes) {
     this.attributes = attributes;
   }
 

@@ -154,12 +154,12 @@ src/main/java/com/vertexvis/model/FileRelationship.java
 src/main/java/com/vertexvis/model/FileRelationshipData.java
 src/main/java/com/vertexvis/model/GeometrySet.java
 src/main/java/com/vertexvis/model/GeometrySetData.java
-src/main/java/com/vertexvis/model/GeometrySetDataAttributes.java
 src/main/java/com/vertexvis/model/GeometrySetList.java
 src/main/java/com/vertexvis/model/GeometrySetRelationship.java
 src/main/java/com/vertexvis/model/GeometrySetRelationshipData.java
 src/main/java/com/vertexvis/model/Hit.java
 src/main/java/com/vertexvis/model/HitData.java
+src/main/java/com/vertexvis/model/HitDataAttributes.java
 src/main/java/com/vertexvis/model/HitDataRelationships.java
 src/main/java/com/vertexvis/model/HitResultData.java
 src/main/java/com/vertexvis/model/HitResultDataAttributes.java

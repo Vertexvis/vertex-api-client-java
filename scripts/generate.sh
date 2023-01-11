@@ -26,10 +26,10 @@ main() {
   for f in "${auth[@]}"; do mv "src/main/java/com/vertexvis/auth/$f" . || true; done
   for f in "${models[@]}"; do mv "src/main/java/com/vertexvis/model/$f" . || true; done
 
-  rm -rf gradle src
+  rm -rf api gradle src
   
   docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli:v5.2.1 generate \
-    --input-spec /local/api/openapi.yaml \
+    --input-spec https://platform.vertexvis.com/spec \
     --generator-name java \
     --config /local/config.yml \
     --output /local
