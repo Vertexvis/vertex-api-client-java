@@ -40,7 +40,7 @@ public class CreateSceneExample {
       UUID fileId = file.getData().getId();
       files.uploadFile(fileId, new File("/path/to/my-file.jt"));
 
-      Part part = partCreator.createPartFromFile(fileId);
+      Part part = partCreator.createPartFromFile(file);
       Scene scene = sceneCreator.createSceneFromPart(part);
 
       StreamKey sceneStreamKey =

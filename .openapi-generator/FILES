@@ -98,6 +98,7 @@ src/main/java/com/vertexvis/model/CreateHitRequestDataAttributes.java
 src/main/java/com/vertexvis/model/CreatePartRequest.java
 src/main/java/com/vertexvis/model/CreatePartRequestData.java
 src/main/java/com/vertexvis/model/CreatePartRequestDataAttributes.java
+src/main/java/com/vertexvis/model/CreatePartRequestDataRelationships.java
 src/main/java/com/vertexvis/model/CreateSceneAlterationRequest.java
 src/main/java/com/vertexvis/model/CreateSceneAlterationRequestData.java
 src/main/java/com/vertexvis/model/CreateSceneAlterationRequestDataAttributes.java
@@ -175,6 +176,8 @@ src/main/java/com/vertexvis/model/OAuth2Token.java
 src/main/java/com/vertexvis/model/Orientation.java
 src/main/java/com/vertexvis/model/OrthographicCamera.java
 src/main/java/com/vertexvis/model/Part.java
+src/main/java/com/vertexvis/model/PartAssemblyRelationship.java
+src/main/java/com/vertexvis/model/PartAssemblyRelationshipData.java
 src/main/java/com/vertexvis/model/PartData.java
 src/main/java/com/vertexvis/model/PartDataAttributes.java
 src/main/java/com/vertexvis/model/PartDataRelationships.java
@@ -185,6 +188,7 @@ src/main/java/com/vertexvis/model/PartRevision.java
 src/main/java/com/vertexvis/model/PartRevisionData.java
 src/main/java/com/vertexvis/model/PartRevisionDataAttributes.java
 src/main/java/com/vertexvis/model/PartRevisionDataRelationships.java
+src/main/java/com/vertexvis/model/PartRevisionInstance.java
 src/main/java/com/vertexvis/model/PartRevisionList.java
 src/main/java/com/vertexvis/model/PartRevisionRelationship.java
 src/main/java/com/vertexvis/model/PartRevisionSuppliedId.java
