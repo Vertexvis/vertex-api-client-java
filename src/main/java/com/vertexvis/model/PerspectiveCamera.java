@@ -47,6 +47,10 @@ public class PerspectiveCamera {
   @SerializedName(SERIALIZED_NAME_UP)
   private Vector3 up;
 
+  public static final String SERIALIZED_NAME_FOV_Y = "fovY";
+  @SerializedName(SERIALIZED_NAME_FOV_Y)
+  private Float fovY;
+
 
   public PerspectiveCamera type(String type) {
     
@@ -140,6 +144,31 @@ public class PerspectiveCamera {
   }
 
 
+  public PerspectiveCamera fovY(Float fovY) {
+    
+    this.fovY = fovY;
+    return this;
+  }
+
+   /**
+   * A numerical floating-point value representing the field of view
+   * minimum: 1
+   * maximum: 180
+   * @return fovY
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "A numerical floating-point value representing the field of view")
+
+  public Float getFovY() {
+    return fovY;
+  }
+
+
+  public void setFovY(Float fovY) {
+    this.fovY = fovY;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -152,12 +181,13 @@ public class PerspectiveCamera {
     return Objects.equals(this.type, perspectiveCamera.type) &&
         Objects.equals(this.position, perspectiveCamera.position) &&
         Objects.equals(this.lookAt, perspectiveCamera.lookAt) &&
-        Objects.equals(this.up, perspectiveCamera.up);
+        Objects.equals(this.up, perspectiveCamera.up) &&
+        Objects.equals(this.fovY, perspectiveCamera.fovY);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, position, lookAt, up);
+    return Objects.hash(type, position, lookAt, up, fovY);
   }
 
   @Override
@@ -168,6 +198,7 @@ public class PerspectiveCamera {
     sb.append("    position: ").append(toIndentedString(position)).append("\n");
     sb.append("    lookAt: ").append(toIndentedString(lookAt)).append("\n");
     sb.append("    up: ").append(toIndentedString(up)).append("\n");
+    sb.append("    fovY: ").append(toIndentedString(fovY)).append("\n");
     sb.append("}");
     return sb.toString();
   }
