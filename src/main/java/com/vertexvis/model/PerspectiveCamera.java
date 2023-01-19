@@ -153,7 +153,7 @@ public class PerspectiveCamera {
    /**
    * A numerical floating-point value representing the field of view
    * minimum: 1
-   * maximum: 180
+   * maximum: 179
    * @return fovY
   **/
   @javax.annotation.Nullable
