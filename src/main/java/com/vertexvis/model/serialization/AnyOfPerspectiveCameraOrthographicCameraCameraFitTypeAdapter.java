@@ -18,7 +18,11 @@ public class AnyOfPerspectiveCameraOrthographicCameraCameraFitTypeAdapter extend
 
   @Override
   public void write(JsonWriter out, AnyOfPerspectiveCameraOrthographicCameraCameraFit value) throws IOException {
-    out.jsonValue(gsonSupplier.get().toJson(value.getAnyOfCameraFit()));
+    if (value != null) {
+      out.jsonValue(gsonSupplier.get().toJson(value.getAnyOfCameraFit()));
+    } else {
+      out.nullValue();
+    }
   }
 
   @Override

@@ -4,6 +4,7 @@ import com.vertexvis.JSON;
 
 import java.math.BigDecimal;
 
+import static com.vertexvis.model.CameraFit.TypeEnum.FIT_VISIBLE_SCENE_ITEMS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
@@ -32,6 +33,22 @@ public class AnyOfPerspectiveCameraOrthographicCameraTest {
 
 
         String expected = "{\"data\":{\"type\":\"scene\",\"attributes\":{\"name\":\"My name\",\"treeEnabled\":true,\"worldOrientation\":{\"up\":{\"x\":1,\"y\":0,\"z\":0},\"front\":{\"x\":2,\"y\":1,\"z\":0}}}}}";
+        assertEquals(expected, new JSON().serialize(request));
+    }
+
+    @Test
+    void testingUpdateSceneRequestShouldAllowNotSpecifyingTheCamera() {
+        String name = "Updated Name";
+
+        UpdateSceneRequest request = new UpdateSceneRequest().data(new UpdateSceneRequestData()
+            .type("scene")
+            .attributes(
+                new UpdateSceneRequestDataAttributes()
+                    .name(name)
+            )
+        );
+
+        String expected = String.format("{\"data\":{\"type\":\"scene\",\"attributes\":{\"name\":\"%s\"}}}", name);
         assertEquals(expected, new JSON().serialize(request));
     }
 }
