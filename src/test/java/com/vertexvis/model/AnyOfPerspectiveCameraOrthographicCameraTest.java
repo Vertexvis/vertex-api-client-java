@@ -4,7 +4,6 @@ import com.vertexvis.JSON;
 
 import java.math.BigDecimal;
 
-import static com.vertexvis.model.CameraFit.TypeEnum.FIT_VISIBLE_SCENE_ITEMS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
