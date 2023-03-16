@@ -20,7 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.ColorMaterial;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -79,10 +78,6 @@ public class SelectOperation {
   @SerializedName(SERIALIZED_NAME_TYPE)
   private TypeEnum type;
 
-  public static final String SERIALIZED_NAME_MATERIAL = "material";
-  @SerializedName(SERIALIZED_NAME_MATERIAL)
-  private ColorMaterial material;
-
 
   public SelectOperation type(TypeEnum type) {
     
@@ -107,29 +102,6 @@ public class SelectOperation {
   }
 
 
-  public SelectOperation material(ColorMaterial material) {
-    
-    this.material = material;
-    return this;
-  }
-
-   /**
-   * Get material
-   * @return material
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public ColorMaterial getMaterial() {
-    return material;
-  }
-
-
-  public void setMaterial(ColorMaterial material) {
-    this.material = material;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -139,13 +111,12 @@ public class SelectOperation {
       return false;
     }
     SelectOperation selectOperation = (SelectOperation) o;
-    return Objects.equals(this.type, selectOperation.type) &&
-        Objects.equals(this.material, selectOperation.material);
+    return Objects.equals(this.type, selectOperation.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, material);
+    return Objects.hash(type);
   }
 
   @Override
@@ -153,7 +124,6 @@ public class SelectOperation {
     StringBuilder sb = new StringBuilder();
     sb.append("class SelectOperation {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    material: ").append(toIndentedString(material)).append("\n");
     sb.append("}");
     return sb.toString();
   }

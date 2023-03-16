@@ -50,6 +50,10 @@ public class SceneViewDataAttributes {
   @SerializedName(SERIALIZED_NAME_WORLD_ORIENTATION)
   private Orientation worldOrientation;
 
+  public static final String SERIALIZED_NAME_EXCLUDE_PRUNED_ITEMS = "excludePrunedItems";
+  @SerializedName(SERIALIZED_NAME_EXCLUDE_PRUNED_ITEMS)
+  private Boolean excludePrunedItems;
+
 
   public SceneViewDataAttributes camera(OneOfPerspectiveCameraOrthographicCamera camera) {
     
@@ -143,6 +147,29 @@ public class SceneViewDataAttributes {
   }
 
 
+  public SceneViewDataAttributes excludePrunedItems(Boolean excludePrunedItems) {
+    
+    this.excludePrunedItems = excludePrunedItems;
+    return this;
+  }
+
+   /**
+   * Whether to exclude non-visible items in the view
+   * @return excludePrunedItems
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Whether to exclude non-visible items in the view")
+
+  public Boolean getExcludePrunedItems() {
+    return excludePrunedItems;
+  }
+
+
+  public void setExcludePrunedItems(Boolean excludePrunedItems) {
+    this.excludePrunedItems = excludePrunedItems;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -155,7 +182,8 @@ public class SceneViewDataAttributes {
     return Objects.equals(this.camera, sceneViewDataAttributes.camera) &&
         Objects.equals(this.created, sceneViewDataAttributes.created) &&
         Objects.equals(this.crossSectioning, sceneViewDataAttributes.crossSectioning) &&
-        Objects.equals(this.worldOrientation, sceneViewDataAttributes.worldOrientation);
+        Objects.equals(this.worldOrientation, sceneViewDataAttributes.worldOrientation) &&
+        Objects.equals(this.excludePrunedItems, sceneViewDataAttributes.excludePrunedItems);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -164,7 +192,7 @@ public class SceneViewDataAttributes {
 
   @Override
   public int hashCode() {
-    return Objects.hash(camera, created, crossSectioning, worldOrientation);
+    return Objects.hash(camera, created, crossSectioning, worldOrientation, excludePrunedItems);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -184,6 +212,7 @@ public class SceneViewDataAttributes {
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    crossSectioning: ").append(toIndentedString(crossSectioning)).append("\n");
     sb.append("    worldOrientation: ").append(toIndentedString(worldOrientation)).append("\n");
+    sb.append("    excludePrunedItems: ").append(toIndentedString(excludePrunedItems)).append("\n");
     sb.append("}");
     return sb.toString();
   }

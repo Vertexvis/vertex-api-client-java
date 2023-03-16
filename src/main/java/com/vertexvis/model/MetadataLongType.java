@@ -25,64 +25,62 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * CreateStreamKeyRequestDataAttributes
+ * MetadataLongType
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateStreamKeyRequestDataAttributes {
-  public static final String SERIALIZED_NAME_EXPIRY = "expiry";
-  @SerializedName(SERIALIZED_NAME_EXPIRY)
-  private Integer expiry;
+public class MetadataLongType {
+  public static final String SERIALIZED_NAME_TYPE = "type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
+  private String type;
 
-  public static final String SERIALIZED_NAME_EXCLUDE_PRUNED_ITEMS = "excludePrunedItems";
-  @SerializedName(SERIALIZED_NAME_EXCLUDE_PRUNED_ITEMS)
-  private Boolean excludePrunedItems;
+  public static final String SERIALIZED_NAME_VALUE = "value";
+  @SerializedName(SERIALIZED_NAME_VALUE)
+  private Long value;
 
 
-  public CreateStreamKeyRequestDataAttributes expiry(Integer expiry) {
+  public MetadataLongType type(String type) {
     
-    this.expiry = expiry;
+    this.type = type;
     return this;
   }
 
    /**
-   * Number of seconds before the &#x60;stream-key&#x60; expires.
-   * minimum: 1
-   * maximum: 31557600
-   * @return expiry
+   * Type of metadata value.
+   * @return type
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "600", value = "Number of seconds before the `stream-key` expires.")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "long", required = true, value = "Type of metadata value.")
 
-  public Integer getExpiry() {
-    return expiry;
+  public String getType() {
+    return type;
   }
 
 
-  public void setExpiry(Integer expiry) {
-    this.expiry = expiry;
+  public void setType(String type) {
+    this.type = type;
   }
 
 
-  public CreateStreamKeyRequestDataAttributes excludePrunedItems(Boolean excludePrunedItems) {
+  public MetadataLongType value(Long value) {
     
-    this.excludePrunedItems = excludePrunedItems;
+    this.value = value;
     return this;
   }
 
    /**
-   * Whether to exclude non-visible items in the view
-   * @return excludePrunedItems
+   * A numerical long value.
+   * @return value
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Whether to exclude non-visible items in the view")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "A numerical long value.")
 
-  public Boolean getExcludePrunedItems() {
-    return excludePrunedItems;
+  public Long getValue() {
+    return value;
   }
 
 
-  public void setExcludePrunedItems(Boolean excludePrunedItems) {
-    this.excludePrunedItems = excludePrunedItems;
+  public void setValue(Long value) {
+    this.value = value;
   }
 
 
@@ -94,22 +92,22 @@ public class CreateStreamKeyRequestDataAttributes {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateStreamKeyRequestDataAttributes createStreamKeyRequestDataAttributes = (CreateStreamKeyRequestDataAttributes) o;
-    return Objects.equals(this.expiry, createStreamKeyRequestDataAttributes.expiry) &&
-        Objects.equals(this.excludePrunedItems, createStreamKeyRequestDataAttributes.excludePrunedItems);
+    MetadataLongType metadataLongType = (MetadataLongType) o;
+    return Objects.equals(this.type, metadataLongType.type) &&
+        Objects.equals(this.value, metadataLongType.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(expiry, excludePrunedItems);
+    return Objects.hash(type, value);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateStreamKeyRequestDataAttributes {\n");
-    sb.append("    expiry: ").append(toIndentedString(expiry)).append("\n");
-    sb.append("    excludePrunedItems: ").append(toIndentedString(excludePrunedItems)).append("\n");
+    sb.append("class MetadataLongType {\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -20,69 +20,69 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.vertexvis.model.GeometrySetRelationship;
+import com.vertexvis.model.PartRevisionRelationship;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * CreateStreamKeyRequestDataAttributes
+ * QueuedTranslationJobDataRelationships
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateStreamKeyRequestDataAttributes {
-  public static final String SERIALIZED_NAME_EXPIRY = "expiry";
-  @SerializedName(SERIALIZED_NAME_EXPIRY)
-  private Integer expiry;
+public class QueuedTranslationJobDataRelationships {
+  public static final String SERIALIZED_NAME_GEOMETRY_SET = "geometrySet";
+  @SerializedName(SERIALIZED_NAME_GEOMETRY_SET)
+  private GeometrySetRelationship geometrySet;
 
-  public static final String SERIALIZED_NAME_EXCLUDE_PRUNED_ITEMS = "excludePrunedItems";
-  @SerializedName(SERIALIZED_NAME_EXCLUDE_PRUNED_ITEMS)
-  private Boolean excludePrunedItems;
+  public static final String SERIALIZED_NAME_PART_REVISION = "partRevision";
+  @SerializedName(SERIALIZED_NAME_PART_REVISION)
+  private PartRevisionRelationship partRevision;
 
 
-  public CreateStreamKeyRequestDataAttributes expiry(Integer expiry) {
+  public QueuedTranslationJobDataRelationships geometrySet(GeometrySetRelationship geometrySet) {
     
-    this.expiry = expiry;
+    this.geometrySet = geometrySet;
     return this;
   }
 
    /**
-   * Number of seconds before the &#x60;stream-key&#x60; expires.
-   * minimum: 1
-   * maximum: 31557600
-   * @return expiry
+   * Get geometrySet
+   * @return geometrySet
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "600", value = "Number of seconds before the `stream-key` expires.")
+  @ApiModelProperty(value = "")
 
-  public Integer getExpiry() {
-    return expiry;
+  public GeometrySetRelationship getGeometrySet() {
+    return geometrySet;
   }
 
 
-  public void setExpiry(Integer expiry) {
-    this.expiry = expiry;
+  public void setGeometrySet(GeometrySetRelationship geometrySet) {
+    this.geometrySet = geometrySet;
   }
 
 
-  public CreateStreamKeyRequestDataAttributes excludePrunedItems(Boolean excludePrunedItems) {
+  public QueuedTranslationJobDataRelationships partRevision(PartRevisionRelationship partRevision) {
     
-    this.excludePrunedItems = excludePrunedItems;
+    this.partRevision = partRevision;
     return this;
   }
 
    /**
-   * Whether to exclude non-visible items in the view
-   * @return excludePrunedItems
+   * Get partRevision
+   * @return partRevision
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Whether to exclude non-visible items in the view")
+  @ApiModelProperty(value = "")
 
-  public Boolean getExcludePrunedItems() {
-    return excludePrunedItems;
+  public PartRevisionRelationship getPartRevision() {
+    return partRevision;
   }
 
 
-  public void setExcludePrunedItems(Boolean excludePrunedItems) {
-    this.excludePrunedItems = excludePrunedItems;
+  public void setPartRevision(PartRevisionRelationship partRevision) {
+    this.partRevision = partRevision;
   }
 
 
@@ -94,22 +94,22 @@ public class CreateStreamKeyRequestDataAttributes {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateStreamKeyRequestDataAttributes createStreamKeyRequestDataAttributes = (CreateStreamKeyRequestDataAttributes) o;
-    return Objects.equals(this.expiry, createStreamKeyRequestDataAttributes.expiry) &&
-        Objects.equals(this.excludePrunedItems, createStreamKeyRequestDataAttributes.excludePrunedItems);
+    QueuedTranslationJobDataRelationships queuedTranslationJobDataRelationships = (QueuedTranslationJobDataRelationships) o;
+    return Objects.equals(this.geometrySet, queuedTranslationJobDataRelationships.geometrySet) &&
+        Objects.equals(this.partRevision, queuedTranslationJobDataRelationships.partRevision);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(expiry, excludePrunedItems);
+    return Objects.hash(geometrySet, partRevision);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateStreamKeyRequestDataAttributes {\n");
-    sb.append("    expiry: ").append(toIndentedString(expiry)).append("\n");
-    sb.append("    excludePrunedItems: ").append(toIndentedString(excludePrunedItems)).append("\n");
+    sb.append("class QueuedTranslationJobDataRelationships {\n");
+    sb.append("    geometrySet: ").append(toIndentedString(geometrySet)).append("\n");
+    sb.append("    partRevision: ").append(toIndentedString(partRevision)).append("\n");
     sb.append("}");
     return sb.toString();
   }

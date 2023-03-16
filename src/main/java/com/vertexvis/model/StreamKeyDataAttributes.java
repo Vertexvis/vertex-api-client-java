@@ -42,6 +42,10 @@ public class StreamKeyDataAttributes {
   @SerializedName(SERIALIZED_NAME_CREATED)
   private OffsetDateTime created;
 
+  public static final String SERIALIZED_NAME_EXCLUDE_PRUNED_ITEMS = "excludePrunedItems";
+  @SerializedName(SERIALIZED_NAME_EXCLUDE_PRUNED_ITEMS)
+  private Boolean excludePrunedItems;
+
 
   public StreamKeyDataAttributes key(String key) {
     
@@ -112,6 +116,29 @@ public class StreamKeyDataAttributes {
   }
 
 
+  public StreamKeyDataAttributes excludePrunedItems(Boolean excludePrunedItems) {
+    
+    this.excludePrunedItems = excludePrunedItems;
+    return this;
+  }
+
+   /**
+   * Get excludePrunedItems
+   * @return excludePrunedItems
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "")
+
+  public Boolean getExcludePrunedItems() {
+    return excludePrunedItems;
+  }
+
+
+  public void setExcludePrunedItems(Boolean excludePrunedItems) {
+    this.excludePrunedItems = excludePrunedItems;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -123,12 +150,13 @@ public class StreamKeyDataAttributes {
     StreamKeyDataAttributes streamKeyDataAttributes = (StreamKeyDataAttributes) o;
     return Objects.equals(this.key, streamKeyDataAttributes.key) &&
         Objects.equals(this.expiry, streamKeyDataAttributes.expiry) &&
-        Objects.equals(this.created, streamKeyDataAttributes.created);
+        Objects.equals(this.created, streamKeyDataAttributes.created) &&
+        Objects.equals(this.excludePrunedItems, streamKeyDataAttributes.excludePrunedItems);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(key, expiry, created);
+    return Objects.hash(key, expiry, created, excludePrunedItems);
   }
 
   @Override
@@ -138,6 +166,7 @@ public class StreamKeyDataAttributes {
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    expiry: ").append(toIndentedString(expiry)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
+    sb.append("    excludePrunedItems: ").append(toIndentedString(excludePrunedItems)).append("\n");
     sb.append("}");
     return sb.toString();
   }

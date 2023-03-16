@@ -40,6 +40,10 @@ public class UpdateSceneViewRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_CROSS_SECTIONING)
   private CrossSectioning crossSectioning;
 
+  public static final String SERIALIZED_NAME_NO_DEFAULT_LIGHTS = "noDefaultLights";
+  @SerializedName(SERIALIZED_NAME_NO_DEFAULT_LIGHTS)
+  private Boolean noDefaultLights;
+
 
   public UpdateSceneViewRequestDataAttributes camera(AnyOfPerspectiveCameraOrthographicCameraCameraFit camera) {
     
@@ -87,6 +91,29 @@ public class UpdateSceneViewRequestDataAttributes {
   }
 
 
+  public UpdateSceneViewRequestDataAttributes noDefaultLights(Boolean noDefaultLights) {
+    
+    this.noDefaultLights = noDefaultLights;
+    return this;
+  }
+
+   /**
+   * Whether or not to turn off default lighting
+   * @return noDefaultLights
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Whether or not to turn off default lighting")
+
+  public Boolean getNoDefaultLights() {
+    return noDefaultLights;
+  }
+
+
+  public void setNoDefaultLights(Boolean noDefaultLights) {
+    this.noDefaultLights = noDefaultLights;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -97,7 +124,8 @@ public class UpdateSceneViewRequestDataAttributes {
     }
     UpdateSceneViewRequestDataAttributes updateSceneViewRequestDataAttributes = (UpdateSceneViewRequestDataAttributes) o;
     return Objects.equals(this.camera, updateSceneViewRequestDataAttributes.camera) &&
-        Objects.equals(this.crossSectioning, updateSceneViewRequestDataAttributes.crossSectioning);
+        Objects.equals(this.crossSectioning, updateSceneViewRequestDataAttributes.crossSectioning) &&
+        Objects.equals(this.noDefaultLights, updateSceneViewRequestDataAttributes.noDefaultLights);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -106,7 +134,7 @@ public class UpdateSceneViewRequestDataAttributes {
 
   @Override
   public int hashCode() {
-    return Objects.hash(camera, crossSectioning);
+    return Objects.hash(camera, crossSectioning, noDefaultLights);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -124,6 +152,7 @@ public class UpdateSceneViewRequestDataAttributes {
     sb.append("class UpdateSceneViewRequestDataAttributes {\n");
     sb.append("    camera: ").append(toIndentedString(camera)).append("\n");
     sb.append("    crossSectioning: ").append(toIndentedString(crossSectioning)).append("\n");
+    sb.append("    noDefaultLights: ").append(toIndentedString(noDefaultLights)).append("\n");
     sb.append("}");
     return sb.toString();
   }
