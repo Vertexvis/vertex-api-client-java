@@ -21,14 +21,32 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.Color3;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * Color properties describing how a material looks.
  */
-@ApiModel(description = "Color properties describing how a material looks.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ColorMaterialNullable {
   public static final String SERIALIZED_NAME_OPACITY = "opacity";
@@ -55,6 +73,8 @@ public class ColorMaterialNullable {
   @SerializedName(SERIALIZED_NAME_EMISSIVE)
   private Color3 emissive;
 
+  public ColorMaterialNullable() {
+  }
 
   public ColorMaterialNullable opacity(Integer opacity) {
     
@@ -69,7 +89,6 @@ public class ColorMaterialNullable {
    * @return opacity
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "255", required = true, value = "An opacity value from 0 to 255.")
 
   public Integer getOpacity() {
     return opacity;
@@ -94,7 +113,6 @@ public class ColorMaterialNullable {
    * @return glossiness
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "0", required = true, value = "Glossiness from 0 to 128.")
 
   public Integer getGlossiness() {
     return glossiness;
@@ -117,7 +135,6 @@ public class ColorMaterialNullable {
    * @return ambient
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public Color3 getAmbient() {
     return ambient;
@@ -140,7 +157,6 @@ public class ColorMaterialNullable {
    * @return diffuse
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public Color3 getDiffuse() {
     return diffuse;
@@ -163,7 +179,6 @@ public class ColorMaterialNullable {
    * @return specular
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public Color3 getSpecular() {
     return specular;
@@ -186,7 +201,6 @@ public class ColorMaterialNullable {
    * @return emissive
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public Color3 getEmissive() {
     return emissive;
@@ -196,6 +210,7 @@ public class ColorMaterialNullable {
   public void setEmissive(Color3 emissive) {
     this.emissive = emissive;
   }
+
 
 
   @Override
@@ -245,5 +260,114 @@ public class ColorMaterialNullable {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("opacity");
+    openapiFields.add("glossiness");
+    openapiFields.add("ambient");
+    openapiFields.add("diffuse");
+    openapiFields.add("specular");
+    openapiFields.add("emissive");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("opacity");
+    openapiRequiredFields.add("glossiness");
+    openapiRequiredFields.add("ambient");
+    openapiRequiredFields.add("diffuse");
+    openapiRequiredFields.add("specular");
+    openapiRequiredFields.add("emissive");
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to ColorMaterialNullable
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!ColorMaterialNullable.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ColorMaterialNullable is not found in the empty JSON string", ColorMaterialNullable.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!ColorMaterialNullable.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ColorMaterialNullable` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : ColorMaterialNullable.openapiRequiredFields) {
+        if (jsonObj.get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        }
+      }
+      // validate the required field `ambient`
+      Color3.validateJsonObject(jsonObj.getAsJsonObject("ambient"));
+      // validate the required field `diffuse`
+      Color3.validateJsonObject(jsonObj.getAsJsonObject("diffuse"));
+      // validate the required field `specular`
+      Color3.validateJsonObject(jsonObj.getAsJsonObject("specular"));
+      // validate the required field `emissive`
+      Color3.validateJsonObject(jsonObj.getAsJsonObject("emissive"));
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!ColorMaterialNullable.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ColorMaterialNullable' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<ColorMaterialNullable> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ColorMaterialNullable.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<ColorMaterialNullable>() {
+           @Override
+           public void write(JsonWriter out, ColorMaterialNullable value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public ColorMaterialNullable read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of ColorMaterialNullable given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of ColorMaterialNullable
+  * @throws IOException if the JSON string is invalid with respect to ColorMaterialNullable
+  */
+  public static ColorMaterialNullable fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ColorMaterialNullable.class);
+  }
+
+ /**
+  * Convert an instance of ColorMaterialNullable to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

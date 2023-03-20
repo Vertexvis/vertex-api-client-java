@@ -20,11 +20,30 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship;
+import com.vertexvis.model.SceneItemDataRelationshipsSource;
 import com.vertexvis.model.SceneItemRelationship;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * SceneItemDataRelationships
@@ -33,14 +52,16 @@ import java.io.IOException;
 public class SceneItemDataRelationships {
   public static final String SERIALIZED_NAME_SOURCE = "source";
   @SerializedName(SERIALIZED_NAME_SOURCE)
-  private AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship source;
+  private SceneItemDataRelationshipsSource source;
 
   public static final String SERIALIZED_NAME_PARENT = "parent";
   @SerializedName(SERIALIZED_NAME_PARENT)
   private SceneItemRelationship parent;
 
+  public SceneItemDataRelationships() {
+  }
 
-  public SceneItemDataRelationships source(AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship source) {
+  public SceneItemDataRelationships source(SceneItemDataRelationshipsSource source) {
     
     this.source = source;
     return this;
@@ -51,14 +72,13 @@ public class SceneItemDataRelationships {
    * @return source
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
-  public AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship getSource() {
+  public SceneItemDataRelationshipsSource getSource() {
     return source;
   }
 
 
-  public void setSource(AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship source) {
+  public void setSource(SceneItemDataRelationshipsSource source) {
     this.source = source;
   }
 
@@ -74,7 +94,6 @@ public class SceneItemDataRelationships {
    * @return parent
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public SceneItemRelationship getParent() {
     return parent;
@@ -84,6 +103,7 @@ public class SceneItemDataRelationships {
   public void setParent(SceneItemRelationship parent) {
     this.parent = parent;
   }
+
 
 
   @Override
@@ -125,5 +145,97 @@ public class SceneItemDataRelationships {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("source");
+    openapiFields.add("parent");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to SceneItemDataRelationships
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!SceneItemDataRelationships.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in SceneItemDataRelationships is not found in the empty JSON string", SceneItemDataRelationships.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!SceneItemDataRelationships.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SceneItemDataRelationships` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+      // validate the optional field `source`
+      if (jsonObj.get("source") != null && !jsonObj.get("source").isJsonNull()) {
+        SceneItemDataRelationshipsSource.validateJsonObject(jsonObj.getAsJsonObject("source"));
+      }
+      // validate the optional field `parent`
+      if (jsonObj.get("parent") != null && !jsonObj.get("parent").isJsonNull()) {
+        SceneItemRelationship.validateJsonObject(jsonObj.getAsJsonObject("parent"));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!SceneItemDataRelationships.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'SceneItemDataRelationships' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<SceneItemDataRelationships> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(SceneItemDataRelationships.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<SceneItemDataRelationships>() {
+           @Override
+           public void write(JsonWriter out, SceneItemDataRelationships value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public SceneItemDataRelationships read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of SceneItemDataRelationships given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of SceneItemDataRelationships
+  * @throws IOException if the JSON string is invalid with respect to SceneItemDataRelationships
+  */
+  public static SceneItemDataRelationships fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, SceneItemDataRelationships.class);
+  }
+
+ /**
+  * Convert an instance of SceneItemDataRelationships to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

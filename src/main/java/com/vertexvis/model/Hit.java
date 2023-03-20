@@ -21,15 +21,34 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.HitData;
+import com.vertexvis.model.HitIncludedInner;
 import com.vertexvis.model.Link;
-import com.vertexvis.model.OneOfHitResultDataSceneItemDataPartRevisionData;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * Hit
@@ -42,12 +61,14 @@ public class Hit {
 
   public static final String SERIALIZED_NAME_INCLUDED = "included";
   @SerializedName(SERIALIZED_NAME_INCLUDED)
-  private List<OneOfHitResultDataSceneItemDataPartRevisionData> included = new ArrayList<>();
+  private List<HitIncludedInner> included = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_LINKS = "links";
   @SerializedName(SERIALIZED_NAME_LINKS)
-  private Map<String, Link> links = null;
+  private Map<String, Link> links = new HashMap<>();
 
+  public Hit() {
+  }
 
   public Hit data(HitData data) {
     
@@ -60,7 +81,6 @@ public class Hit {
    * @return data
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public HitData getData() {
     return data;
@@ -72,13 +92,13 @@ public class Hit {
   }
 
 
-  public Hit included(List<OneOfHitResultDataSceneItemDataPartRevisionData> included) {
+  public Hit included(List<HitIncludedInner> included) {
     
     this.included = included;
     return this;
   }
 
-  public Hit addIncludedItem(OneOfHitResultDataSceneItemDataPartRevisionData includedItem) {
+  public Hit addIncludedItem(HitIncludedInner includedItem) {
     this.included.add(includedItem);
     return this;
   }
@@ -88,14 +108,13 @@ public class Hit {
    * @return included
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
-  public List<OneOfHitResultDataSceneItemDataPartRevisionData> getIncluded() {
+  public List<HitIncludedInner> getIncluded() {
     return included;
   }
 
 
-  public void setIncluded(List<OneOfHitResultDataSceneItemDataPartRevisionData> included) {
+  public void setIncluded(List<HitIncludedInner> included) {
     this.included = included;
   }
 
@@ -119,7 +138,6 @@ public class Hit {
    * @return links
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public Map<String, Link> getLinks() {
     return links;
@@ -129,6 +147,7 @@ public class Hit {
   public void setLinks(Map<String, Link> links) {
     this.links = links;
   }
+
 
 
   @Override
@@ -172,5 +191,111 @@ public class Hit {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("data");
+    openapiFields.add("included");
+    openapiFields.add("links");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("data");
+    openapiRequiredFields.add("included");
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to Hit
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!Hit.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in Hit is not found in the empty JSON string", Hit.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!Hit.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Hit` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : Hit.openapiRequiredFields) {
+        if (jsonObj.get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        }
+      }
+      // validate the required field `data`
+      HitData.validateJsonObject(jsonObj.getAsJsonObject("data"));
+      // ensure the json data is an array
+      if (!jsonObj.get("included").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `included` to be an array in the JSON string but got `%s`", jsonObj.get("included").toString()));
+      }
+
+      JsonArray jsonArrayincluded = jsonObj.getAsJsonArray("included");
+      // validate the required field `included` (array)
+      for (int i = 0; i < jsonArrayincluded.size(); i++) {
+        HitIncludedInner.validateJsonObject(jsonArrayincluded.get(i).getAsJsonObject());
+      };
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!Hit.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'Hit' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<Hit> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(Hit.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<Hit>() {
+           @Override
+           public void write(JsonWriter out, Hit value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public Hit read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of Hit given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of Hit
+  * @throws IOException if the JSON string is invalid with respect to Hit
+  */
+  public static Hit fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, Hit.class);
+  }
+
+ /**
+  * Convert an instance of Hit to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

@@ -20,9 +20,28 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * UpdateAccountRequestDataAttributes
@@ -88,6 +107,8 @@ public class UpdateAccountRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_OWNER)
   private String owner;
 
+  public UpdateAccountRequestDataAttributes() {
+  }
 
   public UpdateAccountRequestDataAttributes status(StatusEnum status) {
     
@@ -100,7 +121,6 @@ public class UpdateAccountRequestDataAttributes {
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "active", value = "")
 
   public StatusEnum getStatus() {
     return status;
@@ -123,7 +143,6 @@ public class UpdateAccountRequestDataAttributes {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "some-string", value = "")
 
   public String getName() {
     return name;
@@ -146,7 +165,6 @@ public class UpdateAccountRequestDataAttributes {
    * @return owner
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "some-string", value = "")
 
   public String getOwner() {
     return owner;
@@ -156,6 +174,7 @@ public class UpdateAccountRequestDataAttributes {
   public void setOwner(String owner) {
     this.owner = owner;
   }
+
 
 
   @Override
@@ -199,5 +218,99 @@ public class UpdateAccountRequestDataAttributes {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("status");
+    openapiFields.add("name");
+    openapiFields.add("owner");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to UpdateAccountRequestDataAttributes
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!UpdateAccountRequestDataAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in UpdateAccountRequestDataAttributes is not found in the empty JSON string", UpdateAccountRequestDataAttributes.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!UpdateAccountRequestDataAttributes.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateAccountRequestDataAttributes` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+      if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) && !jsonObj.get("status").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
+      }
+      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if ((jsonObj.get("owner") != null && !jsonObj.get("owner").isJsonNull()) && !jsonObj.get("owner").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `owner` to be a primitive type in the JSON string but got `%s`", jsonObj.get("owner").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!UpdateAccountRequestDataAttributes.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'UpdateAccountRequestDataAttributes' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<UpdateAccountRequestDataAttributes> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(UpdateAccountRequestDataAttributes.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<UpdateAccountRequestDataAttributes>() {
+           @Override
+           public void write(JsonWriter out, UpdateAccountRequestDataAttributes value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public UpdateAccountRequestDataAttributes read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of UpdateAccountRequestDataAttributes given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of UpdateAccountRequestDataAttributes
+  * @throws IOException if the JSON string is invalid with respect to UpdateAccountRequestDataAttributes
+  */
+  public static UpdateAccountRequestDataAttributes fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, UpdateAccountRequestDataAttributes.class);
+  }
+
+ /**
+  * Convert an instance of UpdateAccountRequestDataAttributes to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

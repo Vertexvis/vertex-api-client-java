@@ -20,12 +20,31 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.OneOfPerspectiveCameraOrthographicCamera;
+import com.vertexvis.model.CreateSceneViewRequestDataAttributesCamera;
 import com.vertexvis.model.Orientation;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * SceneDataAttributes
@@ -34,7 +53,7 @@ import java.time.OffsetDateTime;
 public class SceneDataAttributes {
   public static final String SERIALIZED_NAME_CAMERA = "camera";
   @SerializedName(SERIALIZED_NAME_CAMERA)
-  private OneOfPerspectiveCameraOrthographicCamera camera;
+  private CreateSceneViewRequestDataAttributesCamera camera;
 
   public static final String SERIALIZED_NAME_STATE = "state";
   @SerializedName(SERIALIZED_NAME_STATE)
@@ -68,8 +87,10 @@ public class SceneDataAttributes {
   @SerializedName(SERIALIZED_NAME_SCENE_ITEM_COUNT)
   private Integer sceneItemCount;
 
+  public SceneDataAttributes() {
+  }
 
-  public SceneDataAttributes camera(OneOfPerspectiveCameraOrthographicCamera camera) {
+  public SceneDataAttributes camera(CreateSceneViewRequestDataAttributesCamera camera) {
     
     this.camera = camera;
     return this;
@@ -80,14 +101,13 @@ public class SceneDataAttributes {
    * @return camera
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
-  public OneOfPerspectiveCameraOrthographicCamera getCamera() {
+  public CreateSceneViewRequestDataAttributesCamera getCamera() {
     return camera;
   }
 
 
-  public void setCamera(OneOfPerspectiveCameraOrthographicCamera camera) {
+  public void setCamera(CreateSceneViewRequestDataAttributesCamera camera) {
     this.camera = camera;
   }
 
@@ -103,7 +123,6 @@ public class SceneDataAttributes {
    * @return state
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "draft", value = "")
 
   public String getState() {
     return state;
@@ -126,7 +145,6 @@ public class SceneDataAttributes {
    * @return created
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2020-01-01T12:00Z", value = "")
 
   public OffsetDateTime getCreated() {
     return created;
@@ -149,7 +167,6 @@ public class SceneDataAttributes {
    * @return suppliedId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "some-string", value = "")
 
   public String getSuppliedId() {
     return suppliedId;
@@ -172,7 +189,6 @@ public class SceneDataAttributes {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "some-string", value = "")
 
   public String getName() {
     return name;
@@ -195,7 +211,6 @@ public class SceneDataAttributes {
    * @return treeEnabled
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public Boolean getTreeEnabled() {
     return treeEnabled;
@@ -218,7 +233,6 @@ public class SceneDataAttributes {
    * @return modified
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2020-01-01T12:00Z", value = "")
 
   public OffsetDateTime getModified() {
     return modified;
@@ -241,7 +255,6 @@ public class SceneDataAttributes {
    * @return worldOrientation
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public Orientation getWorldOrientation() {
     return worldOrientation;
@@ -264,7 +277,6 @@ public class SceneDataAttributes {
    * @return sceneItemCount
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "100", value = "The number of scene items in this scene. (This field needs to be explicitly requested)")
 
   public Integer getSceneItemCount() {
     return sceneItemCount;
@@ -274,6 +286,7 @@ public class SceneDataAttributes {
   public void setSceneItemCount(Integer sceneItemCount) {
     this.sceneItemCount = sceneItemCount;
   }
+
 
 
   @Override
@@ -329,5 +342,113 @@ public class SceneDataAttributes {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("camera");
+    openapiFields.add("state");
+    openapiFields.add("created");
+    openapiFields.add("suppliedId");
+    openapiFields.add("name");
+    openapiFields.add("treeEnabled");
+    openapiFields.add("modified");
+    openapiFields.add("worldOrientation");
+    openapiFields.add("sceneItemCount");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to SceneDataAttributes
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!SceneDataAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in SceneDataAttributes is not found in the empty JSON string", SceneDataAttributes.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!SceneDataAttributes.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SceneDataAttributes` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+      // validate the optional field `camera`
+      if (jsonObj.get("camera") != null && !jsonObj.get("camera").isJsonNull()) {
+        CreateSceneViewRequestDataAttributesCamera.validateJsonObject(jsonObj.getAsJsonObject("camera"));
+      }
+      if ((jsonObj.get("state") != null && !jsonObj.get("state").isJsonNull()) && !jsonObj.get("state").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `state` to be a primitive type in the JSON string but got `%s`", jsonObj.get("state").toString()));
+      }
+      if ((jsonObj.get("suppliedId") != null && !jsonObj.get("suppliedId").isJsonNull()) && !jsonObj.get("suppliedId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `suppliedId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("suppliedId").toString()));
+      }
+      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      // validate the optional field `worldOrientation`
+      if (jsonObj.get("worldOrientation") != null && !jsonObj.get("worldOrientation").isJsonNull()) {
+        Orientation.validateJsonObject(jsonObj.getAsJsonObject("worldOrientation"));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!SceneDataAttributes.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'SceneDataAttributes' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<SceneDataAttributes> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(SceneDataAttributes.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<SceneDataAttributes>() {
+           @Override
+           public void write(JsonWriter out, SceneDataAttributes value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public SceneDataAttributes read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of SceneDataAttributes given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of SceneDataAttributes
+  * @throws IOException if the JSON string is invalid with respect to SceneDataAttributes
+  */
+  public static SceneDataAttributes fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, SceneDataAttributes.class);
+  }
+
+ /**
+  * Convert an instance of SceneDataAttributes to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

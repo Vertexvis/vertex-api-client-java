@@ -20,9 +20,28 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * AdminConsentAcceptRequestDataAttributes
@@ -33,6 +52,8 @@ public class AdminConsentAcceptRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_SESSION)
   private Object session;
 
+  public AdminConsentAcceptRequestDataAttributes() {
+  }
 
   public AdminConsentAcceptRequestDataAttributes session(Object session) {
     
@@ -45,7 +66,6 @@ public class AdminConsentAcceptRequestDataAttributes {
    * @return session
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public Object getSession() {
     return session;
@@ -55,6 +75,7 @@ public class AdminConsentAcceptRequestDataAttributes {
   public void setSession(Object session) {
     this.session = session;
   }
+
 
 
   @Override
@@ -94,5 +115,96 @@ public class AdminConsentAcceptRequestDataAttributes {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("session");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("session");
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to AdminConsentAcceptRequestDataAttributes
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!AdminConsentAcceptRequestDataAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in AdminConsentAcceptRequestDataAttributes is not found in the empty JSON string", AdminConsentAcceptRequestDataAttributes.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!AdminConsentAcceptRequestDataAttributes.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AdminConsentAcceptRequestDataAttributes` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : AdminConsentAcceptRequestDataAttributes.openapiRequiredFields) {
+        if (jsonObj.get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        }
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!AdminConsentAcceptRequestDataAttributes.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'AdminConsentAcceptRequestDataAttributes' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<AdminConsentAcceptRequestDataAttributes> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(AdminConsentAcceptRequestDataAttributes.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<AdminConsentAcceptRequestDataAttributes>() {
+           @Override
+           public void write(JsonWriter out, AdminConsentAcceptRequestDataAttributes value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public AdminConsentAcceptRequestDataAttributes read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of AdminConsentAcceptRequestDataAttributes given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of AdminConsentAcceptRequestDataAttributes
+  * @throws IOException if the JSON string is invalid with respect to AdminConsentAcceptRequestDataAttributes
+  */
+  public static AdminConsentAcceptRequestDataAttributes fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, AdminConsentAcceptRequestDataAttributes.class);
+  }
+
+ /**
+  * Convert an instance of AdminConsentAcceptRequestDataAttributes to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

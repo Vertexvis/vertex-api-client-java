@@ -20,15 +20,34 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType;
 import com.vertexvis.model.PartRevisionInstance;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import com.vertexvis.model.UpdatePartRevisionRequestDataAttributesMetadataValue;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * PartAssemblyRelationshipData
@@ -41,8 +60,10 @@ public class PartAssemblyRelationshipData {
 
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
-  private Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> metadata = null;
+  private Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> metadata = new HashMap<>();
 
+  public PartAssemblyRelationshipData() {
+  }
 
   public PartAssemblyRelationshipData children(List<PartRevisionInstance> children) {
     
@@ -60,7 +81,6 @@ public class PartAssemblyRelationshipData {
    * @return children
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public List<PartRevisionInstance> getChildren() {
     return children;
@@ -72,13 +92,13 @@ public class PartAssemblyRelationshipData {
   }
 
 
-  public PartAssemblyRelationshipData metadata(Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> metadata) {
+  public PartAssemblyRelationshipData metadata(Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> metadata) {
     
     this.metadata = metadata;
     return this;
   }
 
-  public PartAssemblyRelationshipData putMetadataItem(String key, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType metadataItem) {
+  public PartAssemblyRelationshipData putMetadataItem(String key, UpdatePartRevisionRequestDataAttributesMetadataValue metadataItem) {
     if (this.metadata == null) {
       this.metadata = new HashMap<>();
     }
@@ -91,16 +111,16 @@ public class PartAssemblyRelationshipData {
    * @return metadata
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Additional metadata about the `part` and/or `part-revision`. ")
 
-  public Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> getMetadata() {
+  public Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> getMetadata() {
     return metadata;
   }
 
 
-  public void setMetadata(Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> metadata) {
+  public void setMetadata(Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> metadata) {
     this.metadata = metadata;
   }
+
 
 
   @Override
@@ -142,5 +162,107 @@ public class PartAssemblyRelationshipData {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("children");
+    openapiFields.add("metadata");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("children");
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to PartAssemblyRelationshipData
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!PartAssemblyRelationshipData.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in PartAssemblyRelationshipData is not found in the empty JSON string", PartAssemblyRelationshipData.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!PartAssemblyRelationshipData.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PartAssemblyRelationshipData` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : PartAssemblyRelationshipData.openapiRequiredFields) {
+        if (jsonObj.get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        }
+      }
+      // ensure the json data is an array
+      if (!jsonObj.get("children").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `children` to be an array in the JSON string but got `%s`", jsonObj.get("children").toString()));
+      }
+
+      JsonArray jsonArraychildren = jsonObj.getAsJsonArray("children");
+      // validate the required field `children` (array)
+      for (int i = 0; i < jsonArraychildren.size(); i++) {
+        PartRevisionInstance.validateJsonObject(jsonArraychildren.get(i).getAsJsonObject());
+      };
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!PartAssemblyRelationshipData.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'PartAssemblyRelationshipData' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<PartAssemblyRelationshipData> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(PartAssemblyRelationshipData.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<PartAssemblyRelationshipData>() {
+           @Override
+           public void write(JsonWriter out, PartAssemblyRelationshipData value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public PartAssemblyRelationshipData read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of PartAssemblyRelationshipData given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of PartAssemblyRelationshipData
+  * @throws IOException if the JSON string is invalid with respect to PartAssemblyRelationshipData
+  */
+  public static PartAssemblyRelationshipData fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, PartAssemblyRelationshipData.class);
+  }
+
+ /**
+  * Convert an instance of PartAssemblyRelationshipData to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

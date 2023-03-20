@@ -40,9 +40,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.ws.rs.core.GenericType;
 
 public class Oauth2Api {
     private ApiClient localVarApiClient;
+    private int localHostIndex;
+    private String localCustomBaseUrl;
 
     public Oauth2Api() {
         this(Configuration.getDefaultApiClient());
@@ -58,6 +61,22 @@ public class Oauth2Api {
 
     public void setApiClient(ApiClient apiClient) {
         this.localVarApiClient = apiClient;
+    }
+
+    public int getHostIndex() {
+        return localHostIndex;
+    }
+
+    public void setHostIndex(int hostIndex) {
+        this.localHostIndex = hostIndex;
+    }
+
+    public String getCustomBaseUrl() {
+        return localCustomBaseUrl;
+    }
+
+    public void setCustomBaseUrl(String customBaseUrl) {
+        this.localCustomBaseUrl = customBaseUrl;
     }
 
     /**
@@ -76,6 +95,19 @@ public class Oauth2Api {
      </table>
      */
     public okhttp3.Call adminAcceptConsentCall(String challenge, AdminConsentAcceptRequest adminConsentAcceptRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = adminConsentAcceptRequest;
 
         // create path and map variables
@@ -103,23 +135,22 @@ public class Oauth2Api {
             "application/vnd.api+json"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "OAuth2Internal" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call adminAcceptConsentValidateBeforeCall(String challenge, AdminConsentAcceptRequest adminConsentAcceptRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'challenge' is set
         if (challenge == null) {
             throw new ApiException("Missing the required parameter 'challenge' when calling adminAcceptConsent(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = adminAcceptConsentCall(challenge, adminConsentAcceptRequest, _callback);
-        return localVarCall;
+        return adminAcceptConsentCall(challenge, adminConsentAcceptRequest, _callback);
 
     }
 
@@ -203,6 +234,19 @@ public class Oauth2Api {
      </table>
      */
     public okhttp3.Call adminAcceptLoginCall(String loginChallenge, AdminLoginAcceptRequest adminLoginAcceptRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = adminLoginAcceptRequest;
 
         // create path and map variables
@@ -230,28 +274,27 @@ public class Oauth2Api {
             "application/vnd.api+json"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "OAuth2Internal" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call adminAcceptLoginValidateBeforeCall(String loginChallenge, AdminLoginAcceptRequest adminLoginAcceptRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'loginChallenge' is set
         if (loginChallenge == null) {
             throw new ApiException("Missing the required parameter 'loginChallenge' when calling adminAcceptLogin(Async)");
         }
-        
+
         // verify the required parameter 'adminLoginAcceptRequest' is set
         if (adminLoginAcceptRequest == null) {
             throw new ApiException("Missing the required parameter 'adminLoginAcceptRequest' when calling adminAcceptLogin(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = adminAcceptLoginCall(loginChallenge, adminLoginAcceptRequest, _callback);
-        return localVarCall;
+        return adminAcceptLoginCall(loginChallenge, adminLoginAcceptRequest, _callback);
 
     }
 
@@ -337,6 +380,19 @@ public class Oauth2Api {
      </table>
      */
     public okhttp3.Call createTokenCall(String grantType, String scope, String code, String redirectUri, String refreshToken, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -380,23 +436,22 @@ public class Oauth2Api {
             "application/x-www-form-urlencoded"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "basicAuth" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call createTokenValidateBeforeCall(String grantType, String scope, String code, String redirectUri, String refreshToken, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'grantType' is set
         if (grantType == null) {
             throw new ApiException("Missing the required parameter 'grantType' when calling createToken(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = createTokenCall(grantType, scope, code, redirectUri, refreshToken, _callback);
-        return localVarCall;
+        return createTokenCall(grantType, scope, code, redirectUri, refreshToken, _callback);
 
     }
 
@@ -483,6 +538,19 @@ public class Oauth2Api {
      </table>
      */
     public okhttp3.Call revokeTokenCall(RevokeOAuth2TokenRequest revokeOAuth2TokenRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = revokeOAuth2TokenRequest;
 
         // create path and map variables
@@ -495,7 +563,6 @@ public class Oauth2Api {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -506,23 +573,22 @@ public class Oauth2Api {
             "application/vnd.api+json"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "basicAuth" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call revokeTokenValidateBeforeCall(RevokeOAuth2TokenRequest revokeOAuth2TokenRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'revokeOAuth2TokenRequest' is set
         if (revokeOAuth2TokenRequest == null) {
             throw new ApiException("Missing the required parameter 'revokeOAuth2TokenRequest' when calling revokeToken(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = revokeTokenCall(revokeOAuth2TokenRequest, _callback);
-        return localVarCall;
+        return revokeTokenCall(revokeOAuth2TokenRequest, _callback);
 
     }
 

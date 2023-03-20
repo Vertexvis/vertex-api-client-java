@@ -22,10 +22,29 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.SceneViewDataAttributes;
 import com.vertexvis.model.SceneViewDataRelationships;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.UUID;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * SceneViewData
@@ -48,6 +67,8 @@ public class SceneViewData {
   @SerializedName(SERIALIZED_NAME_RELATIONSHIPS)
   private SceneViewDataRelationships relationships;
 
+  public SceneViewData() {
+  }
 
   public SceneViewData type(String type) {
     
@@ -60,7 +81,6 @@ public class SceneViewData {
    * @return type
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "scene-view", required = true, value = "")
 
   public String getType() {
     return type;
@@ -83,7 +103,6 @@ public class SceneViewData {
    * @return id
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "f79d4760-0b71-44e4-ad0b-22743fdd4ca3", required = true, value = "ID of the resource.")
 
   public UUID getId() {
     return id;
@@ -106,7 +125,6 @@ public class SceneViewData {
    * @return attributes
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public SceneViewDataAttributes getAttributes() {
     return attributes;
@@ -129,7 +147,6 @@ public class SceneViewData {
    * @return relationships
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public SceneViewDataRelationships getRelationships() {
     return relationships;
@@ -139,6 +156,7 @@ public class SceneViewData {
   public void setRelationships(SceneViewDataRelationships relationships) {
     this.relationships = relationships;
   }
+
 
 
   @Override
@@ -184,5 +202,112 @@ public class SceneViewData {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("type");
+    openapiFields.add("id");
+    openapiFields.add("attributes");
+    openapiFields.add("relationships");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("type");
+    openapiRequiredFields.add("id");
+    openapiRequiredFields.add("attributes");
+    openapiRequiredFields.add("relationships");
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to SceneViewData
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!SceneViewData.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in SceneViewData is not found in the empty JSON string", SceneViewData.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!SceneViewData.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SceneViewData` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : SceneViewData.openapiRequiredFields) {
+        if (jsonObj.get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        }
+      }
+      if (!jsonObj.get("type").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
+      }
+      if (!jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+      }
+      // validate the required field `attributes`
+      SceneViewDataAttributes.validateJsonObject(jsonObj.getAsJsonObject("attributes"));
+      // validate the required field `relationships`
+      SceneViewDataRelationships.validateJsonObject(jsonObj.getAsJsonObject("relationships"));
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!SceneViewData.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'SceneViewData' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<SceneViewData> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(SceneViewData.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<SceneViewData>() {
+           @Override
+           public void write(JsonWriter out, SceneViewData value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public SceneViewData read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of SceneViewData given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of SceneViewData
+  * @throws IOException if the JSON string is invalid with respect to SceneViewData
+  */
+  public static SceneViewData fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, SceneViewData.class);
+  }
+
+ /**
+  * Convert an instance of SceneViewData to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

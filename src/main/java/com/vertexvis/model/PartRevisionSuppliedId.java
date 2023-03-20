@@ -20,9 +20,28 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * PartRevisionSuppliedId
@@ -37,6 +56,8 @@ public class PartRevisionSuppliedId {
   @SerializedName(SERIALIZED_NAME_SUPPLIED_REVISION_ID)
   private String suppliedRevisionId;
 
+  public PartRevisionSuppliedId() {
+  }
 
   public PartRevisionSuppliedId suppliedPartId(String suppliedPartId) {
     
@@ -49,7 +70,6 @@ public class PartRevisionSuppliedId {
    * @return suppliedPartId
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "ID provided for correlation. For example, an existing ID from a PLM system.")
 
   public String getSuppliedPartId() {
     return suppliedPartId;
@@ -72,7 +92,6 @@ public class PartRevisionSuppliedId {
    * @return suppliedRevisionId
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "ID provided for correlation. For example, an existing ID from a PLM system.")
 
   public String getSuppliedRevisionId() {
     return suppliedRevisionId;
@@ -82,6 +101,7 @@ public class PartRevisionSuppliedId {
   public void setSuppliedRevisionId(String suppliedRevisionId) {
     this.suppliedRevisionId = suppliedRevisionId;
   }
+
 
 
   @Override
@@ -123,5 +143,104 @@ public class PartRevisionSuppliedId {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("suppliedPartId");
+    openapiFields.add("suppliedRevisionId");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("suppliedPartId");
+    openapiRequiredFields.add("suppliedRevisionId");
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to PartRevisionSuppliedId
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!PartRevisionSuppliedId.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in PartRevisionSuppliedId is not found in the empty JSON string", PartRevisionSuppliedId.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!PartRevisionSuppliedId.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PartRevisionSuppliedId` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : PartRevisionSuppliedId.openapiRequiredFields) {
+        if (jsonObj.get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        }
+      }
+      if (!jsonObj.get("suppliedPartId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `suppliedPartId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("suppliedPartId").toString()));
+      }
+      if (!jsonObj.get("suppliedRevisionId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `suppliedRevisionId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("suppliedRevisionId").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!PartRevisionSuppliedId.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'PartRevisionSuppliedId' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<PartRevisionSuppliedId> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(PartRevisionSuppliedId.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<PartRevisionSuppliedId>() {
+           @Override
+           public void write(JsonWriter out, PartRevisionSuppliedId value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public PartRevisionSuppliedId read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of PartRevisionSuppliedId given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of PartRevisionSuppliedId
+  * @throws IOException if the JSON string is invalid with respect to PartRevisionSuppliedId
+  */
+  public static PartRevisionSuppliedId fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, PartRevisionSuppliedId.class);
+  }
+
+ /**
+  * Convert an instance of PartRevisionSuppliedId to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

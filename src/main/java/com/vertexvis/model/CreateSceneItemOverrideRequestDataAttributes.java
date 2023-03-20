@@ -22,9 +22,28 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.ColorMaterial;
 import com.vertexvis.model.Matrix4;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * CreateSceneItemOverrideRequestDataAttributes
@@ -47,6 +66,8 @@ public class CreateSceneItemOverrideRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_SELECTED)
   private ColorMaterial selected;
 
+  public CreateSceneItemOverrideRequestDataAttributes() {
+  }
 
   public CreateSceneItemOverrideRequestDataAttributes visible(Boolean visible) {
     
@@ -59,7 +80,6 @@ public class CreateSceneItemOverrideRequestDataAttributes {
    * @return visible
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Item visibility.")
 
   public Boolean getVisible() {
     return visible;
@@ -82,7 +102,6 @@ public class CreateSceneItemOverrideRequestDataAttributes {
    * @return transform
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public Matrix4 getTransform() {
     return transform;
@@ -105,7 +124,6 @@ public class CreateSceneItemOverrideRequestDataAttributes {
    * @return material
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public ColorMaterial getMaterial() {
     return material;
@@ -128,7 +146,6 @@ public class CreateSceneItemOverrideRequestDataAttributes {
    * @return selected
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public ColorMaterial getSelected() {
     return selected;
@@ -138,6 +155,7 @@ public class CreateSceneItemOverrideRequestDataAttributes {
   public void setSelected(ColorMaterial selected) {
     this.selected = selected;
   }
+
 
 
   @Override
@@ -183,5 +201,103 @@ public class CreateSceneItemOverrideRequestDataAttributes {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("visible");
+    openapiFields.add("transform");
+    openapiFields.add("material");
+    openapiFields.add("selected");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to CreateSceneItemOverrideRequestDataAttributes
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!CreateSceneItemOverrideRequestDataAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in CreateSceneItemOverrideRequestDataAttributes is not found in the empty JSON string", CreateSceneItemOverrideRequestDataAttributes.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!CreateSceneItemOverrideRequestDataAttributes.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateSceneItemOverrideRequestDataAttributes` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+      // validate the optional field `transform`
+      if (jsonObj.get("transform") != null && !jsonObj.get("transform").isJsonNull()) {
+        Matrix4.validateJsonObject(jsonObj.getAsJsonObject("transform"));
+      }
+      // validate the optional field `material`
+      if (jsonObj.get("material") != null && !jsonObj.get("material").isJsonNull()) {
+        ColorMaterial.validateJsonObject(jsonObj.getAsJsonObject("material"));
+      }
+      // validate the optional field `selected`
+      if (jsonObj.get("selected") != null && !jsonObj.get("selected").isJsonNull()) {
+        ColorMaterial.validateJsonObject(jsonObj.getAsJsonObject("selected"));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!CreateSceneItemOverrideRequestDataAttributes.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'CreateSceneItemOverrideRequestDataAttributes' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<CreateSceneItemOverrideRequestDataAttributes> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(CreateSceneItemOverrideRequestDataAttributes.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<CreateSceneItemOverrideRequestDataAttributes>() {
+           @Override
+           public void write(JsonWriter out, CreateSceneItemOverrideRequestDataAttributes value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public CreateSceneItemOverrideRequestDataAttributes read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of CreateSceneItemOverrideRequestDataAttributes given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of CreateSceneItemOverrideRequestDataAttributes
+  * @throws IOException if the JSON string is invalid with respect to CreateSceneItemOverrideRequestDataAttributes
+  */
+  public static CreateSceneItemOverrideRequestDataAttributes fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, CreateSceneItemOverrideRequestDataAttributes.class);
+  }
+
+ /**
+  * Convert an instance of CreateSceneItemOverrideRequestDataAttributes to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

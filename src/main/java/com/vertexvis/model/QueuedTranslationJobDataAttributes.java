@@ -21,13 +21,31 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.ApiError;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * QueuedTranslationJobDataAttributes
@@ -48,8 +66,10 @@ public class QueuedTranslationJobDataAttributes {
 
   public static final String SERIALIZED_NAME_ERRORS = "errors";
   @SerializedName(SERIALIZED_NAME_ERRORS)
-  private Set<ApiError> errors = null;
+  private Set<ApiError> errors = new LinkedHashSet<>();
 
+  public QueuedTranslationJobDataAttributes() {
+  }
 
   public QueuedTranslationJobDataAttributes status(String status) {
     
@@ -62,7 +82,6 @@ public class QueuedTranslationJobDataAttributes {
    * @return status
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "running", required = true, value = "")
 
   public String getStatus() {
     return status;
@@ -85,7 +104,6 @@ public class QueuedTranslationJobDataAttributes {
    * @return created
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2020-01-01T12:00Z", required = true, value = "")
 
   public OffsetDateTime getCreated() {
     return created;
@@ -108,7 +126,6 @@ public class QueuedTranslationJobDataAttributes {
    * @return completed
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2020-01-01T12:00Z", value = "")
 
   public OffsetDateTime getCompleted() {
     return completed;
@@ -139,7 +156,6 @@ public class QueuedTranslationJobDataAttributes {
    * @return errors
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public Set<ApiError> getErrors() {
     return errors;
@@ -149,6 +165,7 @@ public class QueuedTranslationJobDataAttributes {
   public void setErrors(Set<ApiError> errors) {
     this.errors = errors;
   }
+
 
 
   @Override
@@ -194,5 +211,117 @@ public class QueuedTranslationJobDataAttributes {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("status");
+    openapiFields.add("created");
+    openapiFields.add("completed");
+    openapiFields.add("errors");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("status");
+    openapiRequiredFields.add("created");
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to QueuedTranslationJobDataAttributes
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!QueuedTranslationJobDataAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in QueuedTranslationJobDataAttributes is not found in the empty JSON string", QueuedTranslationJobDataAttributes.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!QueuedTranslationJobDataAttributes.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `QueuedTranslationJobDataAttributes` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : QueuedTranslationJobDataAttributes.openapiRequiredFields) {
+        if (jsonObj.get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        }
+      }
+      if (!jsonObj.get("status").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
+      }
+      if (jsonObj.get("errors") != null && !jsonObj.get("errors").isJsonNull()) {
+        JsonArray jsonArrayerrors = jsonObj.getAsJsonArray("errors");
+        if (jsonArrayerrors != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("errors").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `errors` to be an array in the JSON string but got `%s`", jsonObj.get("errors").toString()));
+          }
+
+          // validate the optional field `errors` (array)
+          for (int i = 0; i < jsonArrayerrors.size(); i++) {
+            ApiError.validateJsonObject(jsonArrayerrors.get(i).getAsJsonObject());
+          };
+        }
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!QueuedTranslationJobDataAttributes.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'QueuedTranslationJobDataAttributes' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<QueuedTranslationJobDataAttributes> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(QueuedTranslationJobDataAttributes.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<QueuedTranslationJobDataAttributes>() {
+           @Override
+           public void write(JsonWriter out, QueuedTranslationJobDataAttributes value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public QueuedTranslationJobDataAttributes read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of QueuedTranslationJobDataAttributes given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of QueuedTranslationJobDataAttributes
+  * @throws IOException if the JSON string is invalid with respect to QueuedTranslationJobDataAttributes
+  */
+  public static QueuedTranslationJobDataAttributes fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, QueuedTranslationJobDataAttributes.class);
+  }
+
+ /**
+  * Convert an instance of QueuedTranslationJobDataAttributes to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

@@ -37,9 +37,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.ws.rs.core.GenericType;
 
 public class HitsApi {
     private ApiClient localVarApiClient;
+    private int localHostIndex;
+    private String localCustomBaseUrl;
 
     public HitsApi() {
         this(Configuration.getDefaultApiClient());
@@ -55,6 +58,22 @@ public class HitsApi {
 
     public void setApiClient(ApiClient apiClient) {
         this.localVarApiClient = apiClient;
+    }
+
+    public int getHostIndex() {
+        return localHostIndex;
+    }
+
+    public void setHostIndex(int hostIndex) {
+        this.localHostIndex = hostIndex;
+    }
+
+    public String getCustomBaseUrl() {
+        return localCustomBaseUrl;
+    }
+
+    public void setCustomBaseUrl(String customBaseUrl) {
+        this.localCustomBaseUrl = customBaseUrl;
     }
 
     /**
@@ -77,11 +96,24 @@ public class HitsApi {
      </table>
      */
     public okhttp3.Call createSceneHitCall(UUID id, CreateHitRequest createHitRequest, String include, String fieldsPartRevision, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = createHitRequest;
 
         // create path and map variables
         String localVarPath = "/scenes/{id}/hits"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -109,28 +141,27 @@ public class HitsApi {
             "application/vnd.api+json"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "OAuth2" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call createSceneHitValidateBeforeCall(UUID id, CreateHitRequest createHitRequest, String include, String fieldsPartRevision, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling createSceneHit(Async)");
         }
-        
+
         // verify the required parameter 'createHitRequest' is set
         if (createHitRequest == null) {
             throw new ApiException("Missing the required parameter 'createHitRequest' when calling createSceneHit(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = createSceneHitCall(id, createHitRequest, include, fieldsPartRevision, _callback);
-        return localVarCall;
+        return createSceneHitCall(id, createHitRequest, include, fieldsPartRevision, _callback);
 
     }
 
@@ -230,11 +261,24 @@ public class HitsApi {
      </table>
      */
     public okhttp3.Call createSceneViewHitCall(UUID id, CreateHitRequest createHitRequest, String include, String fieldsPartRevision, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = createHitRequest;
 
         // create path and map variables
         String localVarPath = "/scene-views/{id}/hits"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -262,28 +306,27 @@ public class HitsApi {
             "application/vnd.api+json"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "OAuth2" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call createSceneViewHitValidateBeforeCall(UUID id, CreateHitRequest createHitRequest, String include, String fieldsPartRevision, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling createSceneViewHit(Async)");
         }
-        
+
         // verify the required parameter 'createHitRequest' is set
         if (createHitRequest == null) {
             throw new ApiException("Missing the required parameter 'createHitRequest' when calling createSceneViewHit(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = createSceneViewHitCall(id, createHitRequest, include, fieldsPartRevision, _callback);
-        return localVarCall;
+        return createSceneViewHitCall(id, createHitRequest, include, fieldsPartRevision, _callback);
 
     }
 

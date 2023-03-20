@@ -23,13 +23,31 @@ import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.Link;
 import com.vertexvis.model.SceneItemOverrideDataAttributes;
 import com.vertexvis.model.SceneItemOverrideDataRelationships;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * SceneItemOverrideData
@@ -54,8 +72,10 @@ public class SceneItemOverrideData {
 
   public static final String SERIALIZED_NAME_LINKS = "links";
   @SerializedName(SERIALIZED_NAME_LINKS)
-  private Map<String, Link> links = null;
+  private Map<String, Link> links = new HashMap<>();
 
+  public SceneItemOverrideData() {
+  }
 
   public SceneItemOverrideData type(String type) {
     
@@ -68,7 +88,6 @@ public class SceneItemOverrideData {
    * @return type
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "scene-item-override", required = true, value = "")
 
   public String getType() {
     return type;
@@ -91,7 +110,6 @@ public class SceneItemOverrideData {
    * @return id
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "f79d4760-0b71-44e4-ad0b-22743fdd4ca3", required = true, value = "ID of the resource.")
 
   public UUID getId() {
     return id;
@@ -114,7 +132,6 @@ public class SceneItemOverrideData {
    * @return attributes
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public SceneItemOverrideDataAttributes getAttributes() {
     return attributes;
@@ -137,7 +154,6 @@ public class SceneItemOverrideData {
    * @return relationships
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public SceneItemOverrideDataRelationships getRelationships() {
     return relationships;
@@ -168,7 +184,6 @@ public class SceneItemOverrideData {
    * @return links
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public Map<String, Link> getLinks() {
     return links;
@@ -178,6 +193,7 @@ public class SceneItemOverrideData {
   public void setLinks(Map<String, Link> links) {
     this.links = links;
   }
+
 
 
   @Override
@@ -225,5 +241,113 @@ public class SceneItemOverrideData {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("type");
+    openapiFields.add("id");
+    openapiFields.add("attributes");
+    openapiFields.add("relationships");
+    openapiFields.add("links");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("type");
+    openapiRequiredFields.add("id");
+    openapiRequiredFields.add("attributes");
+    openapiRequiredFields.add("relationships");
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to SceneItemOverrideData
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!SceneItemOverrideData.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in SceneItemOverrideData is not found in the empty JSON string", SceneItemOverrideData.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!SceneItemOverrideData.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SceneItemOverrideData` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : SceneItemOverrideData.openapiRequiredFields) {
+        if (jsonObj.get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        }
+      }
+      if (!jsonObj.get("type").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
+      }
+      if (!jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+      }
+      // validate the required field `attributes`
+      SceneItemOverrideDataAttributes.validateJsonObject(jsonObj.getAsJsonObject("attributes"));
+      // validate the required field `relationships`
+      SceneItemOverrideDataRelationships.validateJsonObject(jsonObj.getAsJsonObject("relationships"));
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!SceneItemOverrideData.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'SceneItemOverrideData' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<SceneItemOverrideData> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(SceneItemOverrideData.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<SceneItemOverrideData>() {
+           @Override
+           public void write(JsonWriter out, SceneItemOverrideData value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public SceneItemOverrideData read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of SceneItemOverrideData given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of SceneItemOverrideData
+  * @throws IOException if the JSON string is invalid with respect to SceneItemOverrideData
+  */
+  public static SceneItemOverrideData fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, SceneItemOverrideData.class);
+  }
+
+ /**
+  * Convert an instance of SceneItemOverrideData to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 
