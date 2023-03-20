@@ -21,9 +21,28 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.UpdateSceneItemOverrideRequestData;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * UpdateSceneItemOverrideRequest
@@ -34,6 +53,8 @@ public class UpdateSceneItemOverrideRequest {
   @SerializedName(SERIALIZED_NAME_DATA)
   private UpdateSceneItemOverrideRequestData data;
 
+  public UpdateSceneItemOverrideRequest() {
+  }
 
   public UpdateSceneItemOverrideRequest data(UpdateSceneItemOverrideRequestData data) {
     
@@ -46,7 +67,6 @@ public class UpdateSceneItemOverrideRequest {
    * @return data
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public UpdateSceneItemOverrideRequestData getData() {
     return data;
@@ -56,6 +76,7 @@ public class UpdateSceneItemOverrideRequest {
   public void setData(UpdateSceneItemOverrideRequestData data) {
     this.data = data;
   }
+
 
 
   @Override
@@ -95,5 +116,98 @@ public class UpdateSceneItemOverrideRequest {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("data");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("data");
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to UpdateSceneItemOverrideRequest
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!UpdateSceneItemOverrideRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in UpdateSceneItemOverrideRequest is not found in the empty JSON string", UpdateSceneItemOverrideRequest.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!UpdateSceneItemOverrideRequest.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateSceneItemOverrideRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : UpdateSceneItemOverrideRequest.openapiRequiredFields) {
+        if (jsonObj.get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        }
+      }
+      // validate the required field `data`
+      UpdateSceneItemOverrideRequestData.validateJsonObject(jsonObj.getAsJsonObject("data"));
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!UpdateSceneItemOverrideRequest.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'UpdateSceneItemOverrideRequest' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<UpdateSceneItemOverrideRequest> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(UpdateSceneItemOverrideRequest.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<UpdateSceneItemOverrideRequest>() {
+           @Override
+           public void write(JsonWriter out, UpdateSceneItemOverrideRequest value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public UpdateSceneItemOverrideRequest read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of UpdateSceneItemOverrideRequest given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of UpdateSceneItemOverrideRequest
+  * @throws IOException if the JSON string is invalid with respect to UpdateSceneItemOverrideRequest
+  */
+  public static UpdateSceneItemOverrideRequest fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, UpdateSceneItemOverrideRequest.class);
+  }
+
+ /**
+  * Convert an instance of UpdateSceneItemOverrideRequest to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

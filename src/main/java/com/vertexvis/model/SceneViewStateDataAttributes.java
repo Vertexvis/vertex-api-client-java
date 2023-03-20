@@ -20,15 +20,34 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.vertexvis.model.CreateSceneViewRequestDataAttributesCamera;
 import com.vertexvis.model.FeatureLines;
-import com.vertexvis.model.OneOfPerspectiveCameraOrthographicCamera;
 import com.vertexvis.model.ThumbnailData;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * SceneViewStateDataAttributes
@@ -37,7 +56,7 @@ import java.util.List;
 public class SceneViewStateDataAttributes {
   public static final String SERIALIZED_NAME_CAMERA = "camera";
   @SerializedName(SERIALIZED_NAME_CAMERA)
-  private OneOfPerspectiveCameraOrthographicCamera camera;
+  private CreateSceneViewRequestDataAttributesCamera camera;
 
   public static final String SERIALIZED_NAME_CREATED = "created";
   @SerializedName(SERIALIZED_NAME_CREATED)
@@ -49,7 +68,7 @@ public class SceneViewStateDataAttributes {
 
   public static final String SERIALIZED_NAME_THUMBNAILS = "thumbnails";
   @SerializedName(SERIALIZED_NAME_THUMBNAILS)
-  private List<ThumbnailData> thumbnails = null;
+  private List<ThumbnailData> thumbnails = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_FEATURE_LINES = "featureLines";
   @SerializedName(SERIALIZED_NAME_FEATURE_LINES)
@@ -63,8 +82,10 @@ public class SceneViewStateDataAttributes {
   @SerializedName(SERIALIZED_NAME_SUPPLIED_ID)
   private String suppliedId;
 
+  public SceneViewStateDataAttributes() {
+  }
 
-  public SceneViewStateDataAttributes camera(OneOfPerspectiveCameraOrthographicCamera camera) {
+  public SceneViewStateDataAttributes camera(CreateSceneViewRequestDataAttributesCamera camera) {
     
     this.camera = camera;
     return this;
@@ -75,14 +96,13 @@ public class SceneViewStateDataAttributes {
    * @return camera
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
-  public OneOfPerspectiveCameraOrthographicCamera getCamera() {
+  public CreateSceneViewRequestDataAttributesCamera getCamera() {
     return camera;
   }
 
 
-  public void setCamera(OneOfPerspectiveCameraOrthographicCamera camera) {
+  public void setCamera(CreateSceneViewRequestDataAttributesCamera camera) {
     this.camera = camera;
   }
 
@@ -98,7 +118,6 @@ public class SceneViewStateDataAttributes {
    * @return created
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2020-01-01T12:00Z", value = "")
 
   public OffsetDateTime getCreated() {
     return created;
@@ -121,7 +140,6 @@ public class SceneViewStateDataAttributes {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "some-string", value = "")
 
   public String getName() {
     return name;
@@ -152,7 +170,6 @@ public class SceneViewStateDataAttributes {
    * @return thumbnails
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public List<ThumbnailData> getThumbnails() {
     return thumbnails;
@@ -175,7 +192,6 @@ public class SceneViewStateDataAttributes {
    * @return featureLines
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public FeatureLines getFeatureLines() {
     return featureLines;
@@ -198,7 +214,6 @@ public class SceneViewStateDataAttributes {
    * @return noDefaultLights
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public Boolean getNoDefaultLights() {
     return noDefaultLights;
@@ -221,7 +236,6 @@ public class SceneViewStateDataAttributes {
    * @return suppliedId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "some-string", value = "")
 
   public String getSuppliedId() {
     return suppliedId;
@@ -231,6 +245,7 @@ public class SceneViewStateDataAttributes {
   public void setSuppliedId(String suppliedId) {
     this.suppliedId = suppliedId;
   }
+
 
 
   @Override
@@ -282,5 +297,122 @@ public class SceneViewStateDataAttributes {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("camera");
+    openapiFields.add("created");
+    openapiFields.add("name");
+    openapiFields.add("thumbnails");
+    openapiFields.add("featureLines");
+    openapiFields.add("noDefaultLights");
+    openapiFields.add("suppliedId");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to SceneViewStateDataAttributes
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!SceneViewStateDataAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in SceneViewStateDataAttributes is not found in the empty JSON string", SceneViewStateDataAttributes.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!SceneViewStateDataAttributes.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SceneViewStateDataAttributes` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+      // validate the optional field `camera`
+      if (jsonObj.get("camera") != null && !jsonObj.get("camera").isJsonNull()) {
+        CreateSceneViewRequestDataAttributesCamera.validateJsonObject(jsonObj.getAsJsonObject("camera"));
+      }
+      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if (jsonObj.get("thumbnails") != null && !jsonObj.get("thumbnails").isJsonNull()) {
+        JsonArray jsonArraythumbnails = jsonObj.getAsJsonArray("thumbnails");
+        if (jsonArraythumbnails != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("thumbnails").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `thumbnails` to be an array in the JSON string but got `%s`", jsonObj.get("thumbnails").toString()));
+          }
+
+          // validate the optional field `thumbnails` (array)
+          for (int i = 0; i < jsonArraythumbnails.size(); i++) {
+            ThumbnailData.validateJsonObject(jsonArraythumbnails.get(i).getAsJsonObject());
+          };
+        }
+      }
+      // validate the optional field `featureLines`
+      if (jsonObj.get("featureLines") != null && !jsonObj.get("featureLines").isJsonNull()) {
+        FeatureLines.validateJsonObject(jsonObj.getAsJsonObject("featureLines"));
+      }
+      if ((jsonObj.get("suppliedId") != null && !jsonObj.get("suppliedId").isJsonNull()) && !jsonObj.get("suppliedId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `suppliedId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("suppliedId").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!SceneViewStateDataAttributes.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'SceneViewStateDataAttributes' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<SceneViewStateDataAttributes> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(SceneViewStateDataAttributes.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<SceneViewStateDataAttributes>() {
+           @Override
+           public void write(JsonWriter out, SceneViewStateDataAttributes value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public SceneViewStateDataAttributes read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of SceneViewStateDataAttributes given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of SceneViewStateDataAttributes
+  * @throws IOException if the JSON string is invalid with respect to SceneViewStateDataAttributes
+  */
+  public static SceneViewStateDataAttributes fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, SceneViewStateDataAttributes.class);
+  }
+
+ /**
+  * Convert an instance of SceneViewStateDataAttributes to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

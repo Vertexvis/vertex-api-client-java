@@ -23,13 +23,32 @@ import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.Link;
 import com.vertexvis.model.PartData;
 import com.vertexvis.model.PartRevisionData;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * Part
@@ -42,12 +61,14 @@ public class Part {
 
   public static final String SERIALIZED_NAME_INCLUDED = "included";
   @SerializedName(SERIALIZED_NAME_INCLUDED)
-  private List<PartRevisionData> included = null;
+  private List<PartRevisionData> included = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_LINKS = "links";
   @SerializedName(SERIALIZED_NAME_LINKS)
-  private Map<String, Link> links = null;
+  private Map<String, Link> links = new HashMap<>();
 
+  public Part() {
+  }
 
   public Part data(PartData data) {
     
@@ -60,7 +81,6 @@ public class Part {
    * @return data
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public PartData getData() {
     return data;
@@ -91,7 +111,6 @@ public class Part {
    * @return included
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public List<PartRevisionData> getIncluded() {
     return included;
@@ -122,7 +141,6 @@ public class Part {
    * @return links
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public Map<String, Link> getLinks() {
     return links;
@@ -132,6 +150,7 @@ public class Part {
   public void setLinks(Map<String, Link> links) {
     this.links = links;
   }
+
 
 
   @Override
@@ -175,5 +194,114 @@ public class Part {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("data");
+    openapiFields.add("included");
+    openapiFields.add("links");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("data");
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to Part
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!Part.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in Part is not found in the empty JSON string", Part.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!Part.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Part` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : Part.openapiRequiredFields) {
+        if (jsonObj.get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        }
+      }
+      // validate the required field `data`
+      PartData.validateJsonObject(jsonObj.getAsJsonObject("data"));
+      if (jsonObj.get("included") != null && !jsonObj.get("included").isJsonNull()) {
+        JsonArray jsonArrayincluded = jsonObj.getAsJsonArray("included");
+        if (jsonArrayincluded != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("included").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `included` to be an array in the JSON string but got `%s`", jsonObj.get("included").toString()));
+          }
+
+          // validate the optional field `included` (array)
+          for (int i = 0; i < jsonArrayincluded.size(); i++) {
+            PartRevisionData.validateJsonObject(jsonArrayincluded.get(i).getAsJsonObject());
+          };
+        }
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!Part.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'Part' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<Part> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(Part.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<Part>() {
+           @Override
+           public void write(JsonWriter out, Part value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public Part read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of Part given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of Part
+  * @throws IOException if the JSON string is invalid with respect to Part
+  */
+  public static Part fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, Part.class);
+  }
+
+ /**
+  * Convert an instance of Part to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

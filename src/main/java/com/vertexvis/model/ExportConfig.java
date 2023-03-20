@@ -21,14 +21,32 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.CADExportConfig;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * Describes the options for configuring a file export.
  */
-@ApiModel(description = "Describes the options for configuring a file export.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ExportConfig {
   public static final String SERIALIZED_NAME_FORMAT = "format";
@@ -50,7 +68,6 @@ public class ExportConfig {
    * @return format
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "jt", required = true, value = "")
 
   public String getFormat() {
     return format;
@@ -60,6 +77,7 @@ public class ExportConfig {
   public void setFormat(String format) {
     this.format = format;
   }
+
 
 
   @Override
@@ -99,5 +117,62 @@ public class ExportConfig {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("format");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("format");
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to ExportConfig
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!ExportConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ExportConfig is not found in the empty JSON string", ExportConfig.openapiRequiredFields.toString()));
+        }
+      }
+
+      String discriminatorValue = jsonObj.get("format").getAsString();
+      switch (discriminatorValue) {
+        case "CADExportConfig":
+          CADExportConfig.validateJsonObject(jsonObj);
+          break;
+        default: 
+          throw new IllegalArgumentException(String.format("The value of the `format` field `%s` does not match any key defined in the discriminator's mapping.", discriminatorValue));
+      }
+  }
+
+
+ /**
+  * Create an instance of ExportConfig given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of ExportConfig
+  * @throws IOException if the JSON string is invalid with respect to ExportConfig
+  */
+  public static ExportConfig fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ExportConfig.class);
+  }
+
+ /**
+  * Convert an instance of ExportConfig to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

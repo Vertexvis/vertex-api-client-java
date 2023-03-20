@@ -20,10 +20,29 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * StreamKeyDataAttributes
@@ -42,6 +61,12 @@ public class StreamKeyDataAttributes {
   @SerializedName(SERIALIZED_NAME_CREATED)
   private OffsetDateTime created;
 
+  public static final String SERIALIZED_NAME_EXCLUDE_PRUNED_ITEMS = "excludePrunedItems";
+  @SerializedName(SERIALIZED_NAME_EXCLUDE_PRUNED_ITEMS)
+  private Boolean excludePrunedItems;
+
+  public StreamKeyDataAttributes() {
+  }
 
   public StreamKeyDataAttributes key(String key) {
     
@@ -54,7 +79,6 @@ public class StreamKeyDataAttributes {
    * @return key
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "i3MFRDOmg1pxD36dGCTONRwOujkgV8m9LQ", value = "")
 
   public String getKey() {
     return key;
@@ -77,7 +101,6 @@ public class StreamKeyDataAttributes {
    * @return expiry
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "600", required = true, value = "")
 
   public Integer getExpiry() {
     return expiry;
@@ -100,7 +123,6 @@ public class StreamKeyDataAttributes {
    * @return created
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2020-01-01T12:00Z", required = true, value = "")
 
   public OffsetDateTime getCreated() {
     return created;
@@ -110,6 +132,29 @@ public class StreamKeyDataAttributes {
   public void setCreated(OffsetDateTime created) {
     this.created = created;
   }
+
+
+  public StreamKeyDataAttributes excludePrunedItems(Boolean excludePrunedItems) {
+    
+    this.excludePrunedItems = excludePrunedItems;
+    return this;
+  }
+
+   /**
+   * Get excludePrunedItems
+   * @return excludePrunedItems
+  **/
+  @javax.annotation.Nullable
+
+  public Boolean getExcludePrunedItems() {
+    return excludePrunedItems;
+  }
+
+
+  public void setExcludePrunedItems(Boolean excludePrunedItems) {
+    this.excludePrunedItems = excludePrunedItems;
+  }
+
 
 
   @Override
@@ -123,12 +168,13 @@ public class StreamKeyDataAttributes {
     StreamKeyDataAttributes streamKeyDataAttributes = (StreamKeyDataAttributes) o;
     return Objects.equals(this.key, streamKeyDataAttributes.key) &&
         Objects.equals(this.expiry, streamKeyDataAttributes.expiry) &&
-        Objects.equals(this.created, streamKeyDataAttributes.created);
+        Objects.equals(this.created, streamKeyDataAttributes.created) &&
+        Objects.equals(this.excludePrunedItems, streamKeyDataAttributes.excludePrunedItems);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(key, expiry, created);
+    return Objects.hash(key, expiry, created, excludePrunedItems);
   }
 
   @Override
@@ -138,6 +184,7 @@ public class StreamKeyDataAttributes {
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    expiry: ").append(toIndentedString(expiry)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
+    sb.append("    excludePrunedItems: ").append(toIndentedString(excludePrunedItems)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -153,5 +200,103 @@ public class StreamKeyDataAttributes {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("key");
+    openapiFields.add("expiry");
+    openapiFields.add("created");
+    openapiFields.add("excludePrunedItems");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("expiry");
+    openapiRequiredFields.add("created");
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to StreamKeyDataAttributes
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!StreamKeyDataAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in StreamKeyDataAttributes is not found in the empty JSON string", StreamKeyDataAttributes.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!StreamKeyDataAttributes.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `StreamKeyDataAttributes` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : StreamKeyDataAttributes.openapiRequiredFields) {
+        if (jsonObj.get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        }
+      }
+      if ((jsonObj.get("key") != null && !jsonObj.get("key").isJsonNull()) && !jsonObj.get("key").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `key` to be a primitive type in the JSON string but got `%s`", jsonObj.get("key").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!StreamKeyDataAttributes.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'StreamKeyDataAttributes' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<StreamKeyDataAttributes> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(StreamKeyDataAttributes.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<StreamKeyDataAttributes>() {
+           @Override
+           public void write(JsonWriter out, StreamKeyDataAttributes value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public StreamKeyDataAttributes read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of StreamKeyDataAttributes given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of StreamKeyDataAttributes
+  * @throws IOException if the JSON string is invalid with respect to StreamKeyDataAttributes
+  */
+  public static StreamKeyDataAttributes fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, StreamKeyDataAttributes.class);
+  }
+
+ /**
+  * Convert an instance of StreamKeyDataAttributes to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

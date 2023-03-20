@@ -22,12 +22,30 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.ApiErrorSource;
 import com.vertexvis.model.Link;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * ApiError
@@ -40,7 +58,7 @@ public class ApiError {
 
   public static final String SERIALIZED_NAME_LINKS = "links";
   @SerializedName(SERIALIZED_NAME_LINKS)
-  private Map<String, Link> links = null;
+  private Map<String, Link> links = new HashMap<>();
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
@@ -64,8 +82,10 @@ public class ApiError {
 
   public static final String SERIALIZED_NAME_META = "meta";
   @SerializedName(SERIALIZED_NAME_META)
-  private Map<String, String> meta = null;
+  private Map<String, String> meta = new HashMap<>();
 
+  public ApiError() {
+  }
 
   public ApiError id(String id) {
     
@@ -78,7 +98,6 @@ public class ApiError {
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "7c46d4c3-e065-4eae-87ec-08233cf8743b", value = "")
 
   public String getId() {
     return id;
@@ -109,7 +128,6 @@ public class ApiError {
    * @return links
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public Map<String, Link> getLinks() {
     return links;
@@ -132,7 +150,6 @@ public class ApiError {
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "400", value = "")
 
   public String getStatus() {
     return status;
@@ -155,7 +172,6 @@ public class ApiError {
    * @return code
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "ValidationError", value = "")
 
   public String getCode() {
     return code;
@@ -178,7 +194,6 @@ public class ApiError {
    * @return title
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "A validation error occurred.", value = "")
 
   public String getTitle() {
     return title;
@@ -201,7 +216,6 @@ public class ApiError {
    * @return detail
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "$.data.attributes.suppliedId: is missing but it is required", value = "")
 
   public String getDetail() {
     return detail;
@@ -224,7 +238,6 @@ public class ApiError {
    * @return source
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public ApiErrorSource getSource() {
     return source;
@@ -255,7 +268,6 @@ public class ApiError {
    * @return meta
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public Map<String, String> getMeta() {
     return meta;
@@ -265,6 +277,7 @@ public class ApiError {
   public void setMeta(Map<String, String> meta) {
     this.meta = meta;
   }
+
 
 
   @Override
@@ -318,5 +331,114 @@ public class ApiError {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("id");
+    openapiFields.add("links");
+    openapiFields.add("status");
+    openapiFields.add("code");
+    openapiFields.add("title");
+    openapiFields.add("detail");
+    openapiFields.add("source");
+    openapiFields.add("meta");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to ApiError
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!ApiError.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ApiError is not found in the empty JSON string", ApiError.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!ApiError.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ApiError` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+      }
+      if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) && !jsonObj.get("status").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
+      }
+      if ((jsonObj.get("code") != null && !jsonObj.get("code").isJsonNull()) && !jsonObj.get("code").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `code` to be a primitive type in the JSON string but got `%s`", jsonObj.get("code").toString()));
+      }
+      if ((jsonObj.get("title") != null && !jsonObj.get("title").isJsonNull()) && !jsonObj.get("title").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `title` to be a primitive type in the JSON string but got `%s`", jsonObj.get("title").toString()));
+      }
+      if ((jsonObj.get("detail") != null && !jsonObj.get("detail").isJsonNull()) && !jsonObj.get("detail").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `detail` to be a primitive type in the JSON string but got `%s`", jsonObj.get("detail").toString()));
+      }
+      // validate the optional field `source`
+      if (jsonObj.get("source") != null && !jsonObj.get("source").isJsonNull()) {
+        ApiErrorSource.validateJsonObject(jsonObj.getAsJsonObject("source"));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!ApiError.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ApiError' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<ApiError> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ApiError.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<ApiError>() {
+           @Override
+           public void write(JsonWriter out, ApiError value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public ApiError read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of ApiError given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of ApiError
+  * @throws IOException if the JSON string is invalid with respect to ApiError
+  */
+  public static ApiError fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ApiError.class);
+  }
+
+ /**
+  * Convert an instance of ApiError to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

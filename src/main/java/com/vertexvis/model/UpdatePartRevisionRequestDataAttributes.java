@@ -20,13 +20,31 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import com.vertexvis.model.UpdatePartRevisionRequestDataAttributesMetadataValue;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * UpdatePartRevisionRequestDataAttributes
@@ -35,7 +53,7 @@ import java.util.Map;
 public class UpdatePartRevisionRequestDataAttributes {
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
-  private Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata = null;
+  private Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> metadata = new HashMap<>();
 
   public static final String SERIALIZED_NAME_INDEX_METADATA = "indexMetadata";
   @SerializedName(SERIALIZED_NAME_INDEX_METADATA)
@@ -57,14 +75,16 @@ public class UpdatePartRevisionRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_SUPPLIED_INSTANCE_ID_KEY)
   private String suppliedInstanceIdKey;
 
+  public UpdatePartRevisionRequestDataAttributes() {
+  }
 
-  public UpdatePartRevisionRequestDataAttributes metadata(Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata) {
+  public UpdatePartRevisionRequestDataAttributes metadata(Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> metadata) {
     
     this.metadata = metadata;
     return this;
   }
 
-  public UpdatePartRevisionRequestDataAttributes putMetadataItem(String key, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType metadataItem) {
+  public UpdatePartRevisionRequestDataAttributes putMetadataItem(String key, UpdatePartRevisionRequestDataAttributesMetadataValue metadataItem) {
     if (this.metadata == null) {
       this.metadata = new HashMap<>();
     }
@@ -77,14 +97,13 @@ public class UpdatePartRevisionRequestDataAttributes {
    * @return metadata
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Metadata about the `part` and/or `part-revision`. This metadata will take precedence over any metadata that belongs to the part file if `indexMetadata` is specified. ")
 
-  public Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> getMetadata() {
+  public Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> getMetadata() {
     return metadata;
   }
 
 
-  public void setMetadata(Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata) {
+  public void setMetadata(Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> metadata) {
     this.metadata = metadata;
   }
 
@@ -100,7 +119,6 @@ public class UpdatePartRevisionRequestDataAttributes {
    * @return indexMetadata
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "false", value = "Whether or not to index metadata in the part file when sending a file relationship - not used otherwise. To ignore metadata from the part file and add your own, pass `false` for `indexMetadata` and supply custom metadata using the `metadata` field. ")
 
   public Boolean getIndexMetadata() {
     return indexMetadata;
@@ -123,7 +141,6 @@ public class UpdatePartRevisionRequestDataAttributes {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "1/2in. Flat Washer", value = "Name to be used for the root part. This will be used when given a file relationship - not used otherwise.")
 
   public String getName() {
     return name;
@@ -146,7 +163,6 @@ public class UpdatePartRevisionRequestDataAttributes {
    * @return suppliedIdKey
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "ProductNumber", value = "Metadata key used to extract an ID used for correlation. This will be used when given a file relationship - not used otherwise.")
 
   public String getSuppliedIdKey() {
     return suppliedIdKey;
@@ -169,7 +185,6 @@ public class UpdatePartRevisionRequestDataAttributes {
    * @return suppliedRevisionIdKey
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "RevisionId", value = "Metadata key used to extract an ID used for correlation. This will be used when given a file relationship - not used otherwise.")
 
   public String getSuppliedRevisionIdKey() {
     return suppliedRevisionIdKey;
@@ -192,7 +207,6 @@ public class UpdatePartRevisionRequestDataAttributes {
    * @return suppliedInstanceIdKey
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "InstanceId", value = "Metadata key used to extract an ID used for correlation. This will be used when given a file relationship - not used otherwise.")
 
   public String getSuppliedInstanceIdKey() {
     return suppliedInstanceIdKey;
@@ -202,6 +216,7 @@ public class UpdatePartRevisionRequestDataAttributes {
   public void setSuppliedInstanceIdKey(String suppliedInstanceIdKey) {
     this.suppliedInstanceIdKey = suppliedInstanceIdKey;
   }
+
 
 
   @Override
@@ -251,5 +266,105 @@ public class UpdatePartRevisionRequestDataAttributes {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("metadata");
+    openapiFields.add("indexMetadata");
+    openapiFields.add("name");
+    openapiFields.add("suppliedIdKey");
+    openapiFields.add("suppliedRevisionIdKey");
+    openapiFields.add("suppliedInstanceIdKey");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to UpdatePartRevisionRequestDataAttributes
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!UpdatePartRevisionRequestDataAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in UpdatePartRevisionRequestDataAttributes is not found in the empty JSON string", UpdatePartRevisionRequestDataAttributes.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!UpdatePartRevisionRequestDataAttributes.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdatePartRevisionRequestDataAttributes` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if ((jsonObj.get("suppliedIdKey") != null && !jsonObj.get("suppliedIdKey").isJsonNull()) && !jsonObj.get("suppliedIdKey").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `suppliedIdKey` to be a primitive type in the JSON string but got `%s`", jsonObj.get("suppliedIdKey").toString()));
+      }
+      if ((jsonObj.get("suppliedRevisionIdKey") != null && !jsonObj.get("suppliedRevisionIdKey").isJsonNull()) && !jsonObj.get("suppliedRevisionIdKey").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `suppliedRevisionIdKey` to be a primitive type in the JSON string but got `%s`", jsonObj.get("suppliedRevisionIdKey").toString()));
+      }
+      if ((jsonObj.get("suppliedInstanceIdKey") != null && !jsonObj.get("suppliedInstanceIdKey").isJsonNull()) && !jsonObj.get("suppliedInstanceIdKey").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `suppliedInstanceIdKey` to be a primitive type in the JSON string but got `%s`", jsonObj.get("suppliedInstanceIdKey").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!UpdatePartRevisionRequestDataAttributes.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'UpdatePartRevisionRequestDataAttributes' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<UpdatePartRevisionRequestDataAttributes> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(UpdatePartRevisionRequestDataAttributes.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<UpdatePartRevisionRequestDataAttributes>() {
+           @Override
+           public void write(JsonWriter out, UpdatePartRevisionRequestDataAttributes value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public UpdatePartRevisionRequestDataAttributes read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of UpdatePartRevisionRequestDataAttributes given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of UpdatePartRevisionRequestDataAttributes
+  * @throws IOException if the JSON string is invalid with respect to UpdatePartRevisionRequestDataAttributes
+  */
+  public static UpdatePartRevisionRequestDataAttributes fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, UpdatePartRevisionRequestDataAttributes.class);
+  }
+
+ /**
+  * Convert an instance of UpdatePartRevisionRequestDataAttributes to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

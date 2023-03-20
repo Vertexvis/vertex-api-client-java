@@ -1,3 +1,4 @@
+.github/workflows/maven.yml
 api/openapi.yaml
 gradle/wrapper/gradle-wrapper.jar
 gradle/wrapper/gradle-wrapper.properties
@@ -44,6 +45,7 @@ src/main/java/com/vertexvis/auth/OAuth.java
 src/main/java/com/vertexvis/auth/OAuthFlow.java
 src/main/java/com/vertexvis/auth/OAuthOkHttpClient.java
 src/main/java/com/vertexvis/auth/RetryingOAuth.java
+src/main/java/com/vertexvis/model/AbstractOpenApiSchema.java
 src/main/java/com/vertexvis/model/Account.java
 src/main/java/com/vertexvis/model/AccountData.java
 src/main/java/com/vertexvis/model/AccountDataAttributes.java
@@ -65,7 +67,9 @@ src/main/java/com/vertexvis/model/ApplicationDataAttributes.java
 src/main/java/com/vertexvis/model/ApplicationList.java
 src/main/java/com/vertexvis/model/Batch.java
 src/main/java/com/vertexvis/model/BatchOperation.java
+src/main/java/com/vertexvis/model/BatchOperationData.java
 src/main/java/com/vertexvis/model/BatchOperationRef.java
+src/main/java/com/vertexvis/model/BatchVertexvisBatchResultsInner.java
 src/main/java/com/vertexvis/model/BoundingBox.java
 src/main/java/com/vertexvis/model/CADExportConfig.java
 src/main/java/com/vertexvis/model/CameraFit.java
@@ -85,6 +89,7 @@ src/main/java/com/vertexvis/model/CreateBatchRequest.java
 src/main/java/com/vertexvis/model/CreateExportRequest.java
 src/main/java/com/vertexvis/model/CreateExportRequestData.java
 src/main/java/com/vertexvis/model/CreateExportRequestDataAttributes.java
+src/main/java/com/vertexvis/model/CreateExportRequestDataAttributesConfig.java
 src/main/java/com/vertexvis/model/CreateExportRequestDataRelationships.java
 src/main/java/com/vertexvis/model/CreateFileRequest.java
 src/main/java/com/vertexvis/model/CreateFileRequestData.java
@@ -99,6 +104,7 @@ src/main/java/com/vertexvis/model/CreatePartRequest.java
 src/main/java/com/vertexvis/model/CreatePartRequestData.java
 src/main/java/com/vertexvis/model/CreatePartRequestDataAttributes.java
 src/main/java/com/vertexvis/model/CreatePartRequestDataRelationships.java
+src/main/java/com/vertexvis/model/CreatePartRequestDataRelationshipsSource.java
 src/main/java/com/vertexvis/model/CreateSceneAlterationRequest.java
 src/main/java/com/vertexvis/model/CreateSceneAlterationRequestData.java
 src/main/java/com/vertexvis/model/CreateSceneAlterationRequestDataAttributes.java
@@ -110,6 +116,7 @@ src/main/java/com/vertexvis/model/CreateSceneItemRequest.java
 src/main/java/com/vertexvis/model/CreateSceneItemRequestData.java
 src/main/java/com/vertexvis/model/CreateSceneItemRequestDataAttributes.java
 src/main/java/com/vertexvis/model/CreateSceneItemRequestDataRelationships.java
+src/main/java/com/vertexvis/model/CreateSceneItemRequestDataRelationshipsSource.java
 src/main/java/com/vertexvis/model/CreateSceneRequest.java
 src/main/java/com/vertexvis/model/CreateSceneRequestData.java
 src/main/java/com/vertexvis/model/CreateSceneRequestDataAttributes.java
@@ -117,11 +124,13 @@ src/main/java/com/vertexvis/model/CreateSceneRequestDataRelationships.java
 src/main/java/com/vertexvis/model/CreateSceneViewRequest.java
 src/main/java/com/vertexvis/model/CreateSceneViewRequestData.java
 src/main/java/com/vertexvis/model/CreateSceneViewRequestDataAttributes.java
+src/main/java/com/vertexvis/model/CreateSceneViewRequestDataAttributesCamera.java
 src/main/java/com/vertexvis/model/CreateSceneViewRequestDataRelationships.java
 src/main/java/com/vertexvis/model/CreateSceneViewStateRequest.java
 src/main/java/com/vertexvis/model/CreateSceneViewStateRequestData.java
 src/main/java/com/vertexvis/model/CreateSceneViewStateRequestDataAttributes.java
 src/main/java/com/vertexvis/model/CreateSceneViewStateRequestDataRelationships.java
+src/main/java/com/vertexvis/model/CreateSceneViewStateRequestDataRelationshipsSource.java
 src/main/java/com/vertexvis/model/CreateStreamKeyRequest.java
 src/main/java/com/vertexvis/model/CreateStreamKeyRequestData.java
 src/main/java/com/vertexvis/model/CreateStreamKeyRequestDataAttributes.java
@@ -161,6 +170,7 @@ src/main/java/com/vertexvis/model/Hit.java
 src/main/java/com/vertexvis/model/HitData.java
 src/main/java/com/vertexvis/model/HitDataAttributes.java
 src/main/java/com/vertexvis/model/HitDataRelationships.java
+src/main/java/com/vertexvis/model/HitIncludedInner.java
 src/main/java/com/vertexvis/model/HitResultData.java
 src/main/java/com/vertexvis/model/HitResultDataAttributes.java
 src/main/java/com/vertexvis/model/HitResultDataRelationships.java
@@ -168,7 +178,9 @@ src/main/java/com/vertexvis/model/Link.java
 src/main/java/com/vertexvis/model/MaterialOverride.java
 src/main/java/com/vertexvis/model/Matrix4.java
 src/main/java/com/vertexvis/model/Matrix4Nullable.java
+src/main/java/com/vertexvis/model/MetadataDateType.java
 src/main/java/com/vertexvis/model/MetadataFloatType.java
+src/main/java/com/vertexvis/model/MetadataLongType.java
 src/main/java/com/vertexvis/model/MetadataNullType.java
 src/main/java/com/vertexvis/model/MetadataStringType.java
 src/main/java/com/vertexvis/model/OAuth2BadRequest.java
@@ -205,6 +217,11 @@ src/main/java/com/vertexvis/model/QueuedJob.java
 src/main/java/com/vertexvis/model/QueuedJobData.java
 src/main/java/com/vertexvis/model/QueuedJobDataAttributes.java
 src/main/java/com/vertexvis/model/QueuedJobList.java
+src/main/java/com/vertexvis/model/QueuedTranslationJob.java
+src/main/java/com/vertexvis/model/QueuedTranslationJobData.java
+src/main/java/com/vertexvis/model/QueuedTranslationJobDataAttributes.java
+src/main/java/com/vertexvis/model/QueuedTranslationJobDataRelationships.java
+src/main/java/com/vertexvis/model/QueuedTranslationJobIncludedInner.java
 src/main/java/com/vertexvis/model/RelationshipData.java
 src/main/java/com/vertexvis/model/RelationshipLinks.java
 src/main/java/com/vertexvis/model/RevokeOAuth2TokenRequest.java
@@ -221,6 +238,7 @@ src/main/java/com/vertexvis/model/SceneItem.java
 src/main/java/com/vertexvis/model/SceneItemData.java
 src/main/java/com/vertexvis/model/SceneItemDataAttributes.java
 src/main/java/com/vertexvis/model/SceneItemDataRelationships.java
+src/main/java/com/vertexvis/model/SceneItemDataRelationshipsSource.java
 src/main/java/com/vertexvis/model/SceneItemList.java
 src/main/java/com/vertexvis/model/SceneItemOverride.java
 src/main/java/com/vertexvis/model/SceneItemOverrideData.java
@@ -231,6 +249,8 @@ src/main/java/com/vertexvis/model/SceneItemRelationship.java
 src/main/java/com/vertexvis/model/SceneItemRelationshipData.java
 src/main/java/com/vertexvis/model/SceneList.java
 src/main/java/com/vertexvis/model/SceneOperation.java
+src/main/java/com/vertexvis/model/SceneOperationOperationsInner.java
+src/main/java/com/vertexvis/model/SceneOperationQuery.java
 src/main/java/com/vertexvis/model/SceneRelationship.java
 src/main/java/com/vertexvis/model/SceneRelationshipData.java
 src/main/java/com/vertexvis/model/SceneView.java
@@ -265,6 +285,7 @@ src/main/java/com/vertexvis/model/UpdateApplicationRequestData.java
 src/main/java/com/vertexvis/model/UpdatePartRevisionRequest.java
 src/main/java/com/vertexvis/model/UpdatePartRevisionRequestData.java
 src/main/java/com/vertexvis/model/UpdatePartRevisionRequestDataAttributes.java
+src/main/java/com/vertexvis/model/UpdatePartRevisionRequestDataAttributesMetadataValue.java
 src/main/java/com/vertexvis/model/UpdateSceneItemOverrideRequest.java
 src/main/java/com/vertexvis/model/UpdateSceneItemOverrideRequestData.java
 src/main/java/com/vertexvis/model/UpdateSceneItemOverrideRequestDataAttributes.java
@@ -272,12 +293,14 @@ src/main/java/com/vertexvis/model/UpdateSceneItemRequest.java
 src/main/java/com/vertexvis/model/UpdateSceneItemRequestData.java
 src/main/java/com/vertexvis/model/UpdateSceneItemRequestDataAttributes.java
 src/main/java/com/vertexvis/model/UpdateSceneItemRequestDataRelationships.java
+src/main/java/com/vertexvis/model/UpdateSceneItemRequestDataRelationshipsSource.java
 src/main/java/com/vertexvis/model/UpdateSceneRequest.java
 src/main/java/com/vertexvis/model/UpdateSceneRequestData.java
 src/main/java/com/vertexvis/model/UpdateSceneRequestDataAttributes.java
 src/main/java/com/vertexvis/model/UpdateSceneViewRequest.java
 src/main/java/com/vertexvis/model/UpdateSceneViewRequestData.java
 src/main/java/com/vertexvis/model/UpdateSceneViewRequestDataAttributes.java
+src/main/java/com/vertexvis/model/UpdateSceneViewRequestDataAttributesCamera.java
 src/main/java/com/vertexvis/model/UpdateSceneViewStateRequest.java
 src/main/java/com/vertexvis/model/UpdateSceneViewStateRequestData.java
 src/main/java/com/vertexvis/model/UpdateWebhookSubscriptionRequest.java

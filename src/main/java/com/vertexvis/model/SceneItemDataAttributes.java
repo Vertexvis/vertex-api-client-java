@@ -20,17 +20,35 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType;
 import com.vertexvis.model.BoundingBox;
 import com.vertexvis.model.ColorMaterial;
 import com.vertexvis.model.Matrix4;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import com.vertexvis.model.UpdatePartRevisionRequestDataAttributesMetadataValue;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
+import java.util.Map;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * SceneItemDataAttributes
@@ -51,7 +69,7 @@ public class SceneItemDataAttributes {
 
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
-  private Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata = null;
+  private Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> metadata = new HashMap<>();
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -73,6 +91,8 @@ public class SceneItemDataAttributes {
   @SerializedName(SERIALIZED_NAME_WORLD_TRANSFORM)
   private Matrix4 worldTransform;
 
+  public SceneItemDataAttributes() {
+  }
 
   public SceneItemDataAttributes boundingBox(BoundingBox boundingBox) {
     
@@ -85,7 +105,6 @@ public class SceneItemDataAttributes {
    * @return boundingBox
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public BoundingBox getBoundingBox() {
     return boundingBox;
@@ -108,7 +127,6 @@ public class SceneItemDataAttributes {
    * @return created
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2020-01-01T12:00Z", value = "")
 
   public OffsetDateTime getCreated() {
     return created;
@@ -131,7 +149,6 @@ public class SceneItemDataAttributes {
    * @return materialOverride
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public ColorMaterial getMaterialOverride() {
     return materialOverride;
@@ -143,13 +160,13 @@ public class SceneItemDataAttributes {
   }
 
 
-  public SceneItemDataAttributes metadata(Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata) {
+  public SceneItemDataAttributes metadata(Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> metadata) {
     
     this.metadata = metadata;
     return this;
   }
 
-  public SceneItemDataAttributes putMetadataItem(String key, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType metadataItem) {
+  public SceneItemDataAttributes putMetadataItem(String key, UpdatePartRevisionRequestDataAttributesMetadataValue metadataItem) {
     if (this.metadata == null) {
       this.metadata = new HashMap<>();
     }
@@ -162,14 +179,13 @@ public class SceneItemDataAttributes {
    * @return metadata
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
-  public Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> getMetadata() {
+  public Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> getMetadata() {
     return metadata;
   }
 
 
-  public void setMetadata(Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata) {
+  public void setMetadata(Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> metadata) {
     this.metadata = metadata;
   }
 
@@ -185,7 +201,6 @@ public class SceneItemDataAttributes {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "some-string", value = "")
 
   public String getName() {
     return name;
@@ -208,7 +223,6 @@ public class SceneItemDataAttributes {
    * @return suppliedId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "some-string", value = "")
 
   public String getSuppliedId() {
     return suppliedId;
@@ -231,7 +245,6 @@ public class SceneItemDataAttributes {
    * @return transform
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public Matrix4 getTransform() {
     return transform;
@@ -254,7 +267,6 @@ public class SceneItemDataAttributes {
    * @return visible
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "")
 
   public Boolean getVisible() {
     return visible;
@@ -277,7 +289,6 @@ public class SceneItemDataAttributes {
    * @return worldTransform
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public Matrix4 getWorldTransform() {
     return worldTransform;
@@ -287,6 +298,7 @@ public class SceneItemDataAttributes {
   public void setWorldTransform(Matrix4 worldTransform) {
     this.worldTransform = worldTransform;
   }
+
 
 
   @Override
@@ -342,5 +354,118 @@ public class SceneItemDataAttributes {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("boundingBox");
+    openapiFields.add("created");
+    openapiFields.add("materialOverride");
+    openapiFields.add("metadata");
+    openapiFields.add("name");
+    openapiFields.add("suppliedId");
+    openapiFields.add("transform");
+    openapiFields.add("visible");
+    openapiFields.add("worldTransform");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to SceneItemDataAttributes
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!SceneItemDataAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in SceneItemDataAttributes is not found in the empty JSON string", SceneItemDataAttributes.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!SceneItemDataAttributes.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SceneItemDataAttributes` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+      // validate the optional field `boundingBox`
+      if (jsonObj.get("boundingBox") != null && !jsonObj.get("boundingBox").isJsonNull()) {
+        BoundingBox.validateJsonObject(jsonObj.getAsJsonObject("boundingBox"));
+      }
+      // validate the optional field `materialOverride`
+      if (jsonObj.get("materialOverride") != null && !jsonObj.get("materialOverride").isJsonNull()) {
+        ColorMaterial.validateJsonObject(jsonObj.getAsJsonObject("materialOverride"));
+      }
+      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if ((jsonObj.get("suppliedId") != null && !jsonObj.get("suppliedId").isJsonNull()) && !jsonObj.get("suppliedId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `suppliedId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("suppliedId").toString()));
+      }
+      // validate the optional field `transform`
+      if (jsonObj.get("transform") != null && !jsonObj.get("transform").isJsonNull()) {
+        Matrix4.validateJsonObject(jsonObj.getAsJsonObject("transform"));
+      }
+      // validate the optional field `worldTransform`
+      if (jsonObj.get("worldTransform") != null && !jsonObj.get("worldTransform").isJsonNull()) {
+        Matrix4.validateJsonObject(jsonObj.getAsJsonObject("worldTransform"));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!SceneItemDataAttributes.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'SceneItemDataAttributes' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<SceneItemDataAttributes> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(SceneItemDataAttributes.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<SceneItemDataAttributes>() {
+           @Override
+           public void write(JsonWriter out, SceneItemDataAttributes value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public SceneItemDataAttributes read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of SceneItemDataAttributes given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of SceneItemDataAttributes
+  * @throws IOException if the JSON string is invalid with respect to SceneItemDataAttributes
+  */
+  public static SceneItemDataAttributes fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, SceneItemDataAttributes.class);
+  }
+
+ /**
+  * Convert an instance of SceneItemDataAttributes to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

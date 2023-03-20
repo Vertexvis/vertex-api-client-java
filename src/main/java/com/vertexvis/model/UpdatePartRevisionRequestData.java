@@ -22,15 +22,33 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.CreateGeometrySetRequestDataRelationships;
 import com.vertexvis.model.UpdatePartRevisionRequestDataAttributes;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.UUID;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * Modify existing part revisions using this endpoint. When specifying a &#x60;relationship&#x60;, the generated output from that relationship will be used to replace any relationship that is present on the revision prior to the update. For example, sending a file relationship that has geometry will replace the existing geometry on the revision with the new geometry in the given file. 
  */
-@ApiModel(description = "Modify existing part revisions using this endpoint. When specifying a `relationship`, the generated output from that relationship will be used to replace any relationship that is present on the revision prior to the update. For example, sending a file relationship that has geometry will replace the existing geometry on the revision with the new geometry in the given file. ")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UpdatePartRevisionRequestData {
   public static final String SERIALIZED_NAME_TYPE = "type";
@@ -49,6 +67,8 @@ public class UpdatePartRevisionRequestData {
   @SerializedName(SERIALIZED_NAME_RELATIONSHIPS)
   private CreateGeometrySetRequestDataRelationships relationships;
 
+  public UpdatePartRevisionRequestData() {
+  }
 
   public UpdatePartRevisionRequestData type(String type) {
     
@@ -61,7 +81,6 @@ public class UpdatePartRevisionRequestData {
    * @return type
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "part-revision", required = true, value = "Resource object type.")
 
   public String getType() {
     return type;
@@ -84,7 +103,6 @@ public class UpdatePartRevisionRequestData {
    * @return id
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "f79d4760-0b71-44e4-ad0b-22743fdd4ca3", required = true, value = "ID of the resource.")
 
   public UUID getId() {
     return id;
@@ -107,7 +125,6 @@ public class UpdatePartRevisionRequestData {
    * @return attributes
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public UpdatePartRevisionRequestDataAttributes getAttributes() {
     return attributes;
@@ -130,7 +147,6 @@ public class UpdatePartRevisionRequestData {
    * @return relationships
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public CreateGeometrySetRequestDataRelationships getRelationships() {
     return relationships;
@@ -140,6 +156,7 @@ public class UpdatePartRevisionRequestData {
   public void setRelationships(CreateGeometrySetRequestDataRelationships relationships) {
     this.relationships = relationships;
   }
+
 
 
   @Override
@@ -185,5 +202,113 @@ public class UpdatePartRevisionRequestData {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("type");
+    openapiFields.add("id");
+    openapiFields.add("attributes");
+    openapiFields.add("relationships");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("type");
+    openapiRequiredFields.add("id");
+    openapiRequiredFields.add("attributes");
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to UpdatePartRevisionRequestData
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!UpdatePartRevisionRequestData.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in UpdatePartRevisionRequestData is not found in the empty JSON string", UpdatePartRevisionRequestData.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!UpdatePartRevisionRequestData.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdatePartRevisionRequestData` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : UpdatePartRevisionRequestData.openapiRequiredFields) {
+        if (jsonObj.get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        }
+      }
+      if (!jsonObj.get("type").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
+      }
+      if (!jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+      }
+      // validate the required field `attributes`
+      UpdatePartRevisionRequestDataAttributes.validateJsonObject(jsonObj.getAsJsonObject("attributes"));
+      // validate the optional field `relationships`
+      if (jsonObj.get("relationships") != null && !jsonObj.get("relationships").isJsonNull()) {
+        CreateGeometrySetRequestDataRelationships.validateJsonObject(jsonObj.getAsJsonObject("relationships"));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!UpdatePartRevisionRequestData.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'UpdatePartRevisionRequestData' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<UpdatePartRevisionRequestData> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(UpdatePartRevisionRequestData.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<UpdatePartRevisionRequestData>() {
+           @Override
+           public void write(JsonWriter out, UpdatePartRevisionRequestData value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public UpdatePartRevisionRequestData read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of UpdatePartRevisionRequestData given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of UpdatePartRevisionRequestData
+  * @throws IOException if the JSON string is invalid with respect to UpdatePartRevisionRequestData
+  */
+  public static UpdatePartRevisionRequestData fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, UpdatePartRevisionRequestData.class);
+  }
+
+ /**
+  * Convert an instance of UpdatePartRevisionRequestData to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

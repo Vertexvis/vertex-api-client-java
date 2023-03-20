@@ -20,13 +20,31 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import com.vertexvis.model.UpdatePartRevisionRequestDataAttributesMetadataValue;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * CreatePartRequestDataAttributes
@@ -47,7 +65,7 @@ public class CreatePartRequestDataAttributes {
 
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
-  private Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata = null;
+  private Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> metadata = new HashMap<>();
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -65,6 +83,8 @@ public class CreatePartRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_SUPPLIED_INSTANCE_ID_KEY)
   private String suppliedInstanceIdKey;
 
+  public CreatePartRequestDataAttributes() {
+  }
 
   public CreatePartRequestDataAttributes suppliedId(String suppliedId) {
     
@@ -77,7 +97,6 @@ public class CreatePartRequestDataAttributes {
    * @return suppliedId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "PN12345", value = "ID provided for correlation. For example, an existing ID from a PLM system. ")
 
   public String getSuppliedId() {
     return suppliedId;
@@ -100,7 +119,6 @@ public class CreatePartRequestDataAttributes {
    * @return suppliedRevisionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "RevA", value = "ID provided for correlation. For example, an existing ID from a PLM system. Sending a new suppliedRevisionId combined with an existing suppliedId will create a new part revision for an existing part. ")
 
   public String getSuppliedRevisionId() {
     return suppliedRevisionId;
@@ -123,7 +141,6 @@ public class CreatePartRequestDataAttributes {
    * @return indexMetadata
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "false", value = "Whether or not to index metadata in the part file. To ignore metadata from the part file and add your own, pass `false` for `indexMetadata` and supply custom metadata using the `metadata` field. ")
 
   public Boolean getIndexMetadata() {
     return indexMetadata;
@@ -135,13 +152,13 @@ public class CreatePartRequestDataAttributes {
   }
 
 
-  public CreatePartRequestDataAttributes metadata(Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata) {
+  public CreatePartRequestDataAttributes metadata(Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> metadata) {
     
     this.metadata = metadata;
     return this;
   }
 
-  public CreatePartRequestDataAttributes putMetadataItem(String key, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType metadataItem) {
+  public CreatePartRequestDataAttributes putMetadataItem(String key, UpdatePartRevisionRequestDataAttributesMetadataValue metadataItem) {
     if (this.metadata == null) {
       this.metadata = new HashMap<>();
     }
@@ -154,14 +171,13 @@ public class CreatePartRequestDataAttributes {
    * @return metadata
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Additional metadata about the `part` and/or `part-revision`. This metadata will take precedence over any metadata that belongs to the part file if `indexMetadata` is specified. ")
 
-  public Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> getMetadata() {
+  public Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> getMetadata() {
     return metadata;
   }
 
 
-  public void setMetadata(Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata) {
+  public void setMetadata(Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> metadata) {
     this.metadata = metadata;
   }
 
@@ -177,7 +193,6 @@ public class CreatePartRequestDataAttributes {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "1/2in. Flat Washer", value = "Name to be used for the root part.")
 
   public String getName() {
     return name;
@@ -200,7 +215,6 @@ public class CreatePartRequestDataAttributes {
    * @return suppliedIdKey
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "ProductNumber", value = "Metadata key used to extract an ID used for correlation.")
 
   public String getSuppliedIdKey() {
     return suppliedIdKey;
@@ -223,7 +237,6 @@ public class CreatePartRequestDataAttributes {
    * @return suppliedRevisionIdKey
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "RevisionId", value = "Metadata key used to extract an ID used for correlation.")
 
   public String getSuppliedRevisionIdKey() {
     return suppliedRevisionIdKey;
@@ -246,7 +259,6 @@ public class CreatePartRequestDataAttributes {
    * @return suppliedInstanceIdKey
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "InstanceId", value = "Metadata key used to extract an ID used for correlation.")
 
   public String getSuppliedInstanceIdKey() {
     return suppliedInstanceIdKey;
@@ -256,6 +268,7 @@ public class CreatePartRequestDataAttributes {
   public void setSuppliedInstanceIdKey(String suppliedInstanceIdKey) {
     this.suppliedInstanceIdKey = suppliedInstanceIdKey;
   }
+
 
 
   @Override
@@ -309,5 +322,113 @@ public class CreatePartRequestDataAttributes {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("suppliedId");
+    openapiFields.add("suppliedRevisionId");
+    openapiFields.add("indexMetadata");
+    openapiFields.add("metadata");
+    openapiFields.add("name");
+    openapiFields.add("suppliedIdKey");
+    openapiFields.add("suppliedRevisionIdKey");
+    openapiFields.add("suppliedInstanceIdKey");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to CreatePartRequestDataAttributes
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!CreatePartRequestDataAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in CreatePartRequestDataAttributes is not found in the empty JSON string", CreatePartRequestDataAttributes.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!CreatePartRequestDataAttributes.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreatePartRequestDataAttributes` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+      if ((jsonObj.get("suppliedId") != null && !jsonObj.get("suppliedId").isJsonNull()) && !jsonObj.get("suppliedId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `suppliedId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("suppliedId").toString()));
+      }
+      if ((jsonObj.get("suppliedRevisionId") != null && !jsonObj.get("suppliedRevisionId").isJsonNull()) && !jsonObj.get("suppliedRevisionId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `suppliedRevisionId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("suppliedRevisionId").toString()));
+      }
+      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if ((jsonObj.get("suppliedIdKey") != null && !jsonObj.get("suppliedIdKey").isJsonNull()) && !jsonObj.get("suppliedIdKey").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `suppliedIdKey` to be a primitive type in the JSON string but got `%s`", jsonObj.get("suppliedIdKey").toString()));
+      }
+      if ((jsonObj.get("suppliedRevisionIdKey") != null && !jsonObj.get("suppliedRevisionIdKey").isJsonNull()) && !jsonObj.get("suppliedRevisionIdKey").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `suppliedRevisionIdKey` to be a primitive type in the JSON string but got `%s`", jsonObj.get("suppliedRevisionIdKey").toString()));
+      }
+      if ((jsonObj.get("suppliedInstanceIdKey") != null && !jsonObj.get("suppliedInstanceIdKey").isJsonNull()) && !jsonObj.get("suppliedInstanceIdKey").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `suppliedInstanceIdKey` to be a primitive type in the JSON string but got `%s`", jsonObj.get("suppliedInstanceIdKey").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!CreatePartRequestDataAttributes.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'CreatePartRequestDataAttributes' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<CreatePartRequestDataAttributes> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(CreatePartRequestDataAttributes.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<CreatePartRequestDataAttributes>() {
+           @Override
+           public void write(JsonWriter out, CreatePartRequestDataAttributes value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public CreatePartRequestDataAttributes read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of CreatePartRequestDataAttributes given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of CreatePartRequestDataAttributes
+  * @throws IOException if the JSON string is invalid with respect to CreatePartRequestDataAttributes
+  */
+  public static CreatePartRequestDataAttributes fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, CreatePartRequestDataAttributes.class);
+  }
+
+ /**
+  * Convert an instance of CreatePartRequestDataAttributes to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

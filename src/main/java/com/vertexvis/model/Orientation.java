@@ -21,14 +21,32 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.Vector3;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * Normals describing up &amp; front directions
  */
-@ApiModel(description = "Normals describing up & front directions")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Orientation {
   public static final String SERIALIZED_NAME_UP = "up";
@@ -39,6 +57,8 @@ public class Orientation {
   @SerializedName(SERIALIZED_NAME_FRONT)
   private Vector3 front;
 
+  public Orientation() {
+  }
 
   public Orientation up(Vector3 up) {
     
@@ -51,7 +71,6 @@ public class Orientation {
    * @return up
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public Vector3 getUp() {
     return up;
@@ -74,7 +93,6 @@ public class Orientation {
    * @return front
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public Vector3 getFront() {
     return front;
@@ -84,6 +102,7 @@ public class Orientation {
   public void setFront(Vector3 front) {
     this.front = front;
   }
+
 
 
   @Override
@@ -125,5 +144,102 @@ public class Orientation {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("up");
+    openapiFields.add("front");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("up");
+    openapiRequiredFields.add("front");
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to Orientation
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!Orientation.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in Orientation is not found in the empty JSON string", Orientation.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!Orientation.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Orientation` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : Orientation.openapiRequiredFields) {
+        if (jsonObj.get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        }
+      }
+      // validate the required field `up`
+      Vector3.validateJsonObject(jsonObj.getAsJsonObject("up"));
+      // validate the required field `front`
+      Vector3.validateJsonObject(jsonObj.getAsJsonObject("front"));
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!Orientation.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'Orientation' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<Orientation> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(Orientation.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<Orientation>() {
+           @Override
+           public void write(JsonWriter out, Orientation value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public Orientation read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of Orientation given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of Orientation
+  * @throws IOException if the JSON string is invalid with respect to Orientation
+  */
+  public static Orientation fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, Orientation.class);
+  }
+
+ /**
+  * Convert an instance of Orientation to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

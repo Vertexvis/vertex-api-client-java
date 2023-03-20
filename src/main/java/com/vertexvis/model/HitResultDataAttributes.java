@@ -21,9 +21,28 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.Vector3;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * HitResultDataAttributes
@@ -38,6 +57,8 @@ public class HitResultDataAttributes {
   @SerializedName(SERIALIZED_NAME_NORMAL)
   private Vector3 normal;
 
+  public HitResultDataAttributes() {
+  }
 
   public HitResultDataAttributes point(Vector3 point) {
     
@@ -50,7 +71,6 @@ public class HitResultDataAttributes {
    * @return point
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public Vector3 getPoint() {
     return point;
@@ -73,7 +93,6 @@ public class HitResultDataAttributes {
    * @return normal
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public Vector3 getNormal() {
     return normal;
@@ -83,6 +102,7 @@ public class HitResultDataAttributes {
   public void setNormal(Vector3 normal) {
     this.normal = normal;
   }
+
 
 
   @Override
@@ -124,5 +144,102 @@ public class HitResultDataAttributes {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("point");
+    openapiFields.add("normal");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("point");
+    openapiRequiredFields.add("normal");
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to HitResultDataAttributes
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!HitResultDataAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in HitResultDataAttributes is not found in the empty JSON string", HitResultDataAttributes.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!HitResultDataAttributes.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `HitResultDataAttributes` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : HitResultDataAttributes.openapiRequiredFields) {
+        if (jsonObj.get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        }
+      }
+      // validate the required field `point`
+      Vector3.validateJsonObject(jsonObj.getAsJsonObject("point"));
+      // validate the required field `normal`
+      Vector3.validateJsonObject(jsonObj.getAsJsonObject("normal"));
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!HitResultDataAttributes.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'HitResultDataAttributes' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<HitResultDataAttributes> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(HitResultDataAttributes.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<HitResultDataAttributes>() {
+           @Override
+           public void write(JsonWriter out, HitResultDataAttributes value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public HitResultDataAttributes read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of HitResultDataAttributes given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of HitResultDataAttributes
+  * @throws IOException if the JSON string is invalid with respect to HitResultDataAttributes
+  */
+  public static HitResultDataAttributes fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, HitResultDataAttributes.class);
+  }
+
+ /**
+  * Convert an instance of HitResultDataAttributes to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

@@ -20,10 +20,29 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.OneOfCADExportConfig;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import com.vertexvis.model.CreateExportRequestDataAttributesConfig;
 import java.io.IOException;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * CreateExportRequestDataAttributes
@@ -32,32 +51,33 @@ import java.io.IOException;
 public class CreateExportRequestDataAttributes {
   public static final String SERIALIZED_NAME_CONFIG = "config";
   @SerializedName(SERIALIZED_NAME_CONFIG)
-  private OneOfCADExportConfig config;
+  private CreateExportRequestDataAttributesConfig config;
 
   public static final String SERIALIZED_NAME_FILE_NAME = "fileName";
   @SerializedName(SERIALIZED_NAME_FILE_NAME)
   private String fileName;
 
+  public CreateExportRequestDataAttributes() {
+  }
 
-  public CreateExportRequestDataAttributes config(OneOfCADExportConfig config) {
+  public CreateExportRequestDataAttributes config(CreateExportRequestDataAttributesConfig config) {
     
     this.config = config;
     return this;
   }
 
    /**
-   * Specifies the export format and options to configure the export.
+   * Get config
    * @return config
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Specifies the export format and options to configure the export.")
 
-  public OneOfCADExportConfig getConfig() {
+  public CreateExportRequestDataAttributesConfig getConfig() {
     return config;
   }
 
 
-  public void setConfig(OneOfCADExportConfig config) {
+  public void setConfig(CreateExportRequestDataAttributesConfig config) {
     this.config = config;
   }
 
@@ -73,7 +93,6 @@ public class CreateExportRequestDataAttributes {
    * @return fileName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "exportedScene", value = "Optional file name to use for the resulting export")
 
   public String getFileName() {
     return fileName;
@@ -83,6 +102,7 @@ public class CreateExportRequestDataAttributes {
   public void setFileName(String fileName) {
     this.fileName = fileName;
   }
+
 
 
   @Override
@@ -124,5 +144,102 @@ public class CreateExportRequestDataAttributes {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("config");
+    openapiFields.add("fileName");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("config");
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to CreateExportRequestDataAttributes
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!CreateExportRequestDataAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in CreateExportRequestDataAttributes is not found in the empty JSON string", CreateExportRequestDataAttributes.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!CreateExportRequestDataAttributes.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateExportRequestDataAttributes` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : CreateExportRequestDataAttributes.openapiRequiredFields) {
+        if (jsonObj.get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        }
+      }
+      // validate the required field `config`
+      CreateExportRequestDataAttributesConfig.validateJsonObject(jsonObj.getAsJsonObject("config"));
+      if ((jsonObj.get("fileName") != null && !jsonObj.get("fileName").isJsonNull()) && !jsonObj.get("fileName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `fileName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fileName").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!CreateExportRequestDataAttributes.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'CreateExportRequestDataAttributes' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<CreateExportRequestDataAttributes> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(CreateExportRequestDataAttributes.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<CreateExportRequestDataAttributes>() {
+           @Override
+           public void write(JsonWriter out, CreateExportRequestDataAttributes value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public CreateExportRequestDataAttributes read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of CreateExportRequestDataAttributes given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of CreateExportRequestDataAttributes
+  * @throws IOException if the JSON string is invalid with respect to CreateExportRequestDataAttributes
+  */
+  public static CreateExportRequestDataAttributes fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, CreateExportRequestDataAttributes.class);
+  }
+
+ /**
+  * Convert an instance of CreateExportRequestDataAttributes to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 
