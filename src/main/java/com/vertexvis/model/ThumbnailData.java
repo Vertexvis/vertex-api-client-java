@@ -41,6 +41,8 @@ public class ThumbnailData {
   @SerializedName(SERIALIZED_NAME_WIDTH)
   private Integer width;
 
+  public ThumbnailData() { 
+  }
 
   public ThumbnailData uri(String uri) {
     

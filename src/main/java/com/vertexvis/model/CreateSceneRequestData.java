@@ -43,6 +43,8 @@ public class CreateSceneRequestData {
   @SerializedName(SERIALIZED_NAME_RELATIONSHIPS)
   private CreateSceneRequestDataRelationships relationships;
 
+  public CreateSceneRequestData() { 
+  }
 
   public CreateSceneRequestData type(String type) {
     

@@ -43,6 +43,8 @@ public class TranslationInspectionJobData {
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   private TranslationInspectionJobDataAttributes attributes;
 
+  public TranslationInspectionJobData() { 
+  }
 
   public TranslationInspectionJobData type(String type) {
     

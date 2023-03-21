@@ -33,6 +33,8 @@ public class OAuth2BadRequest {
   @SerializedName(SERIALIZED_NAME_ERROR)
   private String error;
 
+  public OAuth2BadRequest() { 
+  }
 
   public OAuth2BadRequest error(String error) {
     

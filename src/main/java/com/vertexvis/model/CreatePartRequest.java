@@ -34,6 +34,8 @@ public class CreatePartRequest {
   @SerializedName(SERIALIZED_NAME_DATA)
   private CreatePartRequestData data;
 
+  public CreatePartRequest() { 
+  }
 
   public CreatePartRequest data(CreatePartRequestData data) {
     

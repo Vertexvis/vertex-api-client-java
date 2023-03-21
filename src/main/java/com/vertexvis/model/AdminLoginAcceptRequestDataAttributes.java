@@ -33,6 +33,8 @@ public class AdminLoginAcceptRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_SUBJECT)
   private String subject;
 
+  public AdminLoginAcceptRequestDataAttributes() { 
+  }
 
   public AdminLoginAcceptRequestDataAttributes subject(String subject) {
     

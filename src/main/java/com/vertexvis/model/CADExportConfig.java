@@ -31,7 +31,7 @@ import java.io.IOException;
 @ApiModel(description = "Describes the options for configuring a CAD file export.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CADExportConfig extends ExportConfig {
-  public CADExportConfig() {
+  public CADExportConfig() { 
     this.format = this.getClass().getSimpleName();
   }
 

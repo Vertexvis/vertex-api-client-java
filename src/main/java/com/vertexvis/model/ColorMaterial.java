@@ -55,6 +55,8 @@ public class ColorMaterial {
   @SerializedName(SERIALIZED_NAME_EMISSIVE)
   private Color3 emissive;
 
+  public ColorMaterial() { 
+  }
 
   public ColorMaterial opacity(Integer opacity) {
     

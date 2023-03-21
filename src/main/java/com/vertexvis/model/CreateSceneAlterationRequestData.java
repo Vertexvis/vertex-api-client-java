@@ -38,6 +38,8 @@ public class CreateSceneAlterationRequestData {
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   private CreateSceneAlterationRequestDataAttributes attributes;
 
+  public CreateSceneAlterationRequestData() { 
+  }
 
   public CreateSceneAlterationRequestData type(String type) {
     

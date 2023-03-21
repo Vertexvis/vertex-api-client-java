@@ -42,6 +42,8 @@ public class WebhookEvent {
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = null;
 
+  public WebhookEvent() { 
+  }
 
   public WebhookEvent data(WebhookEventData data) {
     

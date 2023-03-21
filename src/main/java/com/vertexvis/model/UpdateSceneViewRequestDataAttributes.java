@@ -20,7 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.AnyOfPerspectiveCameraOrthographicCameraCameraFit;
 import com.vertexvis.model.CrossSectioning;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -40,6 +39,12 @@ public class UpdateSceneViewRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_CROSS_SECTIONING)
   private CrossSectioning crossSectioning;
 
+  public static final String SERIALIZED_NAME_NO_DEFAULT_LIGHTS = "noDefaultLights";
+  @SerializedName(SERIALIZED_NAME_NO_DEFAULT_LIGHTS)
+  private Boolean noDefaultLights;
+
+  public UpdateSceneViewRequestDataAttributes() { 
+  }
 
   public UpdateSceneViewRequestDataAttributes camera(AnyOfPerspectiveCameraOrthographicCameraCameraFit camera) {
     
@@ -87,6 +92,29 @@ public class UpdateSceneViewRequestDataAttributes {
   }
 
 
+  public UpdateSceneViewRequestDataAttributes noDefaultLights(Boolean noDefaultLights) {
+    
+    this.noDefaultLights = noDefaultLights;
+    return this;
+  }
+
+   /**
+   * Whether or not to turn off default lighting
+   * @return noDefaultLights
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Whether or not to turn off default lighting")
+
+  public Boolean getNoDefaultLights() {
+    return noDefaultLights;
+  }
+
+
+  public void setNoDefaultLights(Boolean noDefaultLights) {
+    this.noDefaultLights = noDefaultLights;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -97,25 +125,24 @@ public class UpdateSceneViewRequestDataAttributes {
     }
     UpdateSceneViewRequestDataAttributes updateSceneViewRequestDataAttributes = (UpdateSceneViewRequestDataAttributes) o;
     return Objects.equals(this.camera, updateSceneViewRequestDataAttributes.camera) &&
-        Objects.equals(this.crossSectioning, updateSceneViewRequestDataAttributes.crossSectioning);
+        Objects.equals(this.crossSectioning, updateSceneViewRequestDataAttributes.crossSectioning) &&
+        Objects.equals(this.noDefaultLights, updateSceneViewRequestDataAttributes.noDefaultLights);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && a.get().getClass().isArray() ? Arrays.equals((T[])a.get(), (T[])b.get()) : Objects.equals(a.get(), b.get()));
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(camera, crossSectioning);
+    return Objects.hash(camera, crossSectioning, noDefaultLights);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
     if (a == null) {
       return 1;
     }
-    return a.isPresent()
-      ? (a.get().getClass().isArray() ? Arrays.hashCode((T[])a.get()) : Objects.hashCode(a.get()))
-      : 31;
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -124,6 +151,7 @@ public class UpdateSceneViewRequestDataAttributes {
     sb.append("class UpdateSceneViewRequestDataAttributes {\n");
     sb.append("    camera: ").append(toIndentedString(camera)).append("\n");
     sb.append("    crossSectioning: ").append(toIndentedString(crossSectioning)).append("\n");
+    sb.append("    noDefaultLights: ").append(toIndentedString(noDefaultLights)).append("\n");
     sb.append("}");
     return sb.toString();
   }

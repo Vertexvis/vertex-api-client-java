@@ -35,7 +35,7 @@ public class ExportConfig {
   @SerializedName(SERIALIZED_NAME_FORMAT)
   protected String format;
 
-  public ExportConfig() {
+  public ExportConfig() { 
     this.format = this.getClass().getSimpleName();
   }
 

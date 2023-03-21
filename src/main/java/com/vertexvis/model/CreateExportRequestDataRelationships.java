@@ -39,6 +39,8 @@ public class CreateExportRequestDataRelationships {
   @SerializedName(SERIALIZED_NAME_STATE)
   private ExportStateRelationship state;
 
+  public CreateExportRequestDataRelationships() { 
+  }
 
   public CreateExportRequestDataRelationships source(ExportRelationship source) {
     

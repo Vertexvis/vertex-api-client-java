@@ -43,6 +43,8 @@ public class SceneAlterationList {
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = new HashMap<>();
 
+  public SceneAlterationList() { 
+  }
 
   public SceneAlterationList data(List<SceneAlterationData> data) {
     

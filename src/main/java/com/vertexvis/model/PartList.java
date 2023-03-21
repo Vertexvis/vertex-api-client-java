@@ -43,6 +43,8 @@ public class PartList {
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = new HashMap<>();
 
+  public PartList() { 
+  }
 
   public PartList data(List<PartData> data) {
     

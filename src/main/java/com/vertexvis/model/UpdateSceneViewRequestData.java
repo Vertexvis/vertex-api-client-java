@@ -38,6 +38,8 @@ public class UpdateSceneViewRequestData {
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   private UpdateSceneViewRequestDataAttributes attributes;
 
+  public UpdateSceneViewRequestData() { 
+  }
 
   public UpdateSceneViewRequestData type(String type) {
     

@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType;
+import com.vertexvis.model.AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType;
 import com.vertexvis.model.BoundingBox;
 import com.vertexvis.model.ColorMaterial;
 import com.vertexvis.model.Matrix4;
@@ -51,7 +51,7 @@ public class SceneItemDataAttributes {
 
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
-  private Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata = null;
+  private Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> metadata = null;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -73,6 +73,8 @@ public class SceneItemDataAttributes {
   @SerializedName(SERIALIZED_NAME_WORLD_TRANSFORM)
   private Matrix4 worldTransform;
 
+  public SceneItemDataAttributes() { 
+  }
 
   public SceneItemDataAttributes boundingBox(BoundingBox boundingBox) {
     
@@ -143,13 +145,13 @@ public class SceneItemDataAttributes {
   }
 
 
-  public SceneItemDataAttributes metadata(Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata) {
+  public SceneItemDataAttributes metadata(Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> metadata) {
     
     this.metadata = metadata;
     return this;
   }
 
-  public SceneItemDataAttributes putMetadataItem(String key, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType metadataItem) {
+  public SceneItemDataAttributes putMetadataItem(String key, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType metadataItem) {
     if (this.metadata == null) {
       this.metadata = new HashMap<>();
     }
@@ -164,12 +166,12 @@ public class SceneItemDataAttributes {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> getMetadata() {
+  public Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> getMetadata() {
     return metadata;
   }
 
 
-  public void setMetadata(Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata) {
+  public void setMetadata(Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> metadata) {
     this.metadata = metadata;
   }
 

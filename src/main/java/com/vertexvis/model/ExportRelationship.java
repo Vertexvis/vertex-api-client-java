@@ -35,6 +35,8 @@ public class ExportRelationship {
   @SerializedName(SERIALIZED_NAME_DATA)
   private ExportRelationshipData data;
 
+  public ExportRelationship() { 
+  }
 
   public ExportRelationship data(ExportRelationshipData data) {
     

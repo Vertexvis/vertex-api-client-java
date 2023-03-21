@@ -38,6 +38,8 @@ public class CreateWebhookSubscriptionRequestData {
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   private CreateWebhookSubscriptionRequestDataAttributes attributes;
 
+  public CreateWebhookSubscriptionRequestData() { 
+  }
 
   public CreateWebhookSubscriptionRequestData type(String type) {
     

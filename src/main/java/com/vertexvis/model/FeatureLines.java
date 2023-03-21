@@ -39,6 +39,8 @@ public class FeatureLines {
   @SerializedName(SERIALIZED_NAME_WIDTH)
   private BigDecimal width;
 
+  public FeatureLines() { 
+  }
 
   public FeatureLines color(Color3 color) {
     

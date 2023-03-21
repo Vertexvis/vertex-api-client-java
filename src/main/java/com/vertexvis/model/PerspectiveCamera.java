@@ -51,6 +51,8 @@ public class PerspectiveCamera {
   @SerializedName(SERIALIZED_NAME_FOV_Y)
   private Float fovY;
 
+  public PerspectiveCamera() { 
+  }
 
   public PerspectiveCamera type(String type) {
     

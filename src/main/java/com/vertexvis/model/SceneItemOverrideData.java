@@ -56,6 +56,8 @@ public class SceneItemOverrideData {
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = null;
 
+  public SceneItemOverrideData() { 
+  }
 
   public SceneItemOverrideData type(String type) {
     

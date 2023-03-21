@@ -43,6 +43,8 @@ public class SceneItemOverrideList {
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = new HashMap<>();
 
+  public SceneItemOverrideList() { 
+  }
 
   public SceneItemOverrideList data(List<SceneItemOverrideData> data) {
     

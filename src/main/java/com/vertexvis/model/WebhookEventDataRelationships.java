@@ -39,6 +39,8 @@ public class WebhookEventDataRelationships {
   @SerializedName(SERIALIZED_NAME_RESOURCE)
   private WebhookEventDataRelationshipsResource resource;
 
+  public WebhookEventDataRelationships() { 
+  }
 
   public WebhookEventDataRelationships owner(WebhookEventDataRelationshipsOwner owner) {
     

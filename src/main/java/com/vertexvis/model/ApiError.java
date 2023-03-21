@@ -66,6 +66,8 @@ public class ApiError {
   @SerializedName(SERIALIZED_NAME_META)
   private Map<String, String> meta = null;
 
+  public ApiError() { 
+  }
 
   public ApiError id(String id) {
     

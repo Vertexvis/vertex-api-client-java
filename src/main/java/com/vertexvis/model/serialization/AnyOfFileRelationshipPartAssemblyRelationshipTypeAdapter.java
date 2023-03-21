@@ -7,6 +7,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.AnyOfFileRelationshipPartAssemblyRelationship;
+import com.vertexvis.model.AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType;
 import com.vertexvis.model.AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType;
 import com.vertexvis.model.FileRelationship;
 import com.vertexvis.model.FileRelationshipData;
@@ -45,7 +46,7 @@ public class AnyOfFileRelationshipPartAssemblyRelationshipTypeAdapter extends Ty
     public AnyOfFileRelationshipPartAssemblyRelationship read(JsonReader in) throws IOException {
         Optional<AnyOfFileRelationshipPartAssemblyRelationship> anyof = Optional.empty();
         List<PartRevisionInstance> partRevisionInstances = new ArrayList<>();
-        Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadataStringTypeMetadataFloatTypeMetadataNullTypes = new HashMap<>();
+        Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> metadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullTypeHashMap = new HashMap<>();
         PartAssemblyRelationship partAssemblyRelationship;
         FileRelationship fileRelationship;
         FileRelationshipData.TypeEnum typeEnum = null;
@@ -64,8 +65,7 @@ public class AnyOfFileRelationshipPartAssemblyRelationshipTypeAdapter extends Ty
                     partRevisionInstances = gsonSupplier.get().fromJson(in, listOfMyClassObject);
                     break;
                 case "type":
-                    var type = in.nextString();
-                    typeEnum = FileRelationshipData.TypeEnum.fromValue(type);
+                    typeEnum = FileRelationshipData.TypeEnum.fromValue(in.nextString());
                     break;
                 case "id":
                     fileId = UUID.fromString(in.nextString());
@@ -74,7 +74,7 @@ public class AnyOfFileRelationshipPartAssemblyRelationshipTypeAdapter extends Ty
                     Type goingToFail = new TypeToken<Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType>>() {
                     }.getType();
                     try {
-                        metadataStringTypeMetadataFloatTypeMetadataNullTypes = gsonSupplier.get().fromJson(in, goingToFail);
+                        metadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullTypeHashMap = gsonSupplier.get().fromJson(in, goingToFail);
                     } catch (Exception e) {
                         if (in.peek() != JsonToken.END_ARRAY) {
                             in.endArray();
@@ -89,7 +89,7 @@ public class AnyOfFileRelationshipPartAssemblyRelationshipTypeAdapter extends Ty
         if (isPartAssemblyRelationship) {
             return new AnyOfFileRelationshipPartAssemblyRelationship(new PartAssemblyRelationship()
                     .data(new PartAssemblyRelationshipData()
-                            .children(partRevisionInstances).metadata(metadataStringTypeMetadataFloatTypeMetadataNullTypes)));
+                            .children(partRevisionInstances).metadata(metadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullTypeHashMap)));
         } else {
             return new AnyOfFileRelationshipPartAssemblyRelationship(new FileRelationship()
                     .data(new FileRelationshipData()

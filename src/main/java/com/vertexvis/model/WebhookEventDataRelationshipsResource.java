@@ -40,6 +40,8 @@ public class WebhookEventDataRelationshipsResource {
   @SerializedName(SERIALIZED_NAME_LINKS)
   private RelationshipLinks links;
 
+  public WebhookEventDataRelationshipsResource() { 
+  }
 
   public WebhookEventDataRelationshipsResource data(WebhookEventDataRelationshipsResourceData data) {
     

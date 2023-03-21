@@ -21,7 +21,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperation;
-import com.vertexvis.model.AnyOfQueryByIdQueryByCollectionQueryAll;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -41,6 +40,8 @@ public class SceneOperation {
   @SerializedName(SERIALIZED_NAME_OPERATIONS)
   private List<AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperation> operations = new ArrayList<>();
 
+  public SceneOperation() { 
+  }
 
   public SceneOperation query(AnyOfQueryByIdQueryByCollectionQueryAll query) {
     
@@ -52,7 +53,7 @@ public class SceneOperation {
    * Query &#x60;scene-items&#x60;. Use &#x60;query-by-collection&#x60; to combine multiple queries.
    * @return query
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @ApiModelProperty(required = true, value = "Query `scene-items`. Use `query-by-collection` to combine multiple queries.")
 
   public AnyOfQueryByIdQueryByCollectionQueryAll getQuery() {

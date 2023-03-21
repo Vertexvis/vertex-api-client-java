@@ -88,6 +88,8 @@ public class UpdateAccountRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_OWNER)
   private String owner;
 
+  public UpdateAccountRequestDataAttributes() { 
+  }
 
   public UpdateAccountRequestDataAttributes status(StatusEnum status) {
     

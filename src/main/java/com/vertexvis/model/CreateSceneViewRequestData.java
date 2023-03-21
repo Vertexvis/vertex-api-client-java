@@ -43,6 +43,8 @@ public class CreateSceneViewRequestData {
   @SerializedName(SERIALIZED_NAME_RELATIONSHIPS)
   private CreateSceneViewRequestDataRelationships relationships;
 
+  public CreateSceneViewRequestData() { 
+  }
 
   public CreateSceneViewRequestData type(String type) {
     

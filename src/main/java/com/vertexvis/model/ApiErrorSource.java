@@ -37,6 +37,8 @@ public class ApiErrorSource {
   @SerializedName(SERIALIZED_NAME_PARAMETER)
   private String parameter;
 
+  public ApiErrorSource() { 
+  }
 
   public ApiErrorSource pointer(String pointer) {
     

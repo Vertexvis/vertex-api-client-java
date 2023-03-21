@@ -83,6 +83,8 @@ public class FileRelationshipData {
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
 
+  public FileRelationshipData() { 
+  }
 
   public FileRelationshipData type(TypeEnum type) {
     

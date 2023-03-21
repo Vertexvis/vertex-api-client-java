@@ -78,6 +78,8 @@ public class ClearMaterialOperation {
   @SerializedName(SERIALIZED_NAME_TYPE)
   private TypeEnum type;
 
+  public ClearMaterialOperation() { 
+  }
 
   public ClearMaterialOperation type(TypeEnum type) {
     

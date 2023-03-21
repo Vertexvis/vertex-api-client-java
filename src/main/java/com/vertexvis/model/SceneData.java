@@ -51,6 +51,8 @@ public class SceneData {
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = null;
 
+  public SceneData() { 
+  }
 
   public SceneData type(String type) {
     

@@ -43,6 +43,8 @@ public class CreatePartRequestData {
   @SerializedName(SERIALIZED_NAME_RELATIONSHIPS)
   private CreatePartRequestDataRelationships relationships;
 
+  public CreatePartRequestData() { 
+  }
 
   public CreatePartRequestData type(String type) {
     

@@ -43,6 +43,8 @@ public class UpdateSceneItemRequestData {
   @SerializedName(SERIALIZED_NAME_RELATIONSHIPS)
   private UpdateSceneItemRequestDataRelationships relationships;
 
+  public UpdateSceneItemRequestData() { 
+  }
 
   public UpdateSceneItemRequestData type(String type) {
     

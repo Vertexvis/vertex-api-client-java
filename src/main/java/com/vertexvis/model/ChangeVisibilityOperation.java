@@ -82,6 +82,8 @@ public class ChangeVisibilityOperation {
   @SerializedName(SERIALIZED_NAME_VISIBLE)
   private Boolean visible;
 
+  public ChangeVisibilityOperation() { 
+  }
 
   public ChangeVisibilityOperation type(TypeEnum type) {
     

@@ -42,6 +42,8 @@ public class SceneViewState {
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = null;
 
+  public SceneViewState() { 
+  }
 
   public SceneViewState data(SceneViewStateData data) {
     

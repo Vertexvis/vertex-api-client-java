@@ -41,6 +41,8 @@ public class CreateFileRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_ROOT_FILE_NAME)
   private String rootFileName;
 
+  public CreateFileRequestDataAttributes() { 
+  }
 
   public CreateFileRequestDataAttributes name(String name) {
     

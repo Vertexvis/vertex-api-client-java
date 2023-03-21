@@ -4,6 +4,7 @@ import com.vertexvis.Pair;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.util.List;
 import java.util.Map;
 
@@ -144,8 +145,8 @@ public class RetryingOAuth extends OAuth implements Interceptor {
 
   // Applying authorization to parameters is performed in the retryingIntercept method
   @Override
-  public void applyToParams(List<Pair> queryParams, Map<String, String> headerParams,
-                            Map<String, String> cookieParams) {
+  public void applyToParams(List<Pair> queryParams, Map<String, String> headerParams, Map<String, String> cookieParams,
+                            String payload, String method, URI uri) {
     // No implementation necessary
   }
 

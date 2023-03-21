@@ -43,6 +43,8 @@ public class Vector3 {
   @SerializedName(SERIALIZED_NAME_Z)
   private BigDecimal z;
 
+  public Vector3() { 
+  }
 
   public Vector3 x(BigDecimal x) {
     

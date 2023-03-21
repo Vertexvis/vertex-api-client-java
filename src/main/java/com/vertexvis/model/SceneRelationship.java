@@ -35,6 +35,8 @@ public class SceneRelationship {
   @SerializedName(SERIALIZED_NAME_DATA)
   private SceneRelationshipData data;
 
+  public SceneRelationship() { 
+  }
 
   public SceneRelationship data(SceneRelationshipData data) {
     

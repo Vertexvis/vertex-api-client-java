@@ -33,6 +33,8 @@ public class RelationshipLinks {
   @SerializedName(SERIALIZED_NAME_RELATED)
   private String related;
 
+  public RelationshipLinks() { 
+  }
 
   public RelationshipLinks related(String related) {
     

@@ -38,6 +38,8 @@ public class AdminLoginAcceptRequestData {
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   private AdminLoginAcceptRequestDataAttributes attributes;
 
+  public AdminLoginAcceptRequestData() { 
+  }
 
   public AdminLoginAcceptRequestData type(String type) {
     

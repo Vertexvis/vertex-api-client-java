@@ -56,6 +56,8 @@ public class StreamKeyData {
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = null;
 
+  public StreamKeyData() { 
+  }
 
   public StreamKeyData type(String type) {
     

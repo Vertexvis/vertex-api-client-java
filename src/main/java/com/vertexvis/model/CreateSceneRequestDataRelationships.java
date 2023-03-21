@@ -34,6 +34,8 @@ public class CreateSceneRequestDataRelationships {
   @SerializedName(SERIALIZED_NAME_SOURCE)
   private SceneRelationship source;
 
+  public CreateSceneRequestDataRelationships() { 
+  }
 
   public CreateSceneRequestDataRelationships source(SceneRelationship source) {
     

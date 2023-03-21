@@ -36,6 +36,8 @@ public class CrossSectioning {
   @SerializedName(SERIALIZED_NAME_PLANES)
   private List<SectionPlane> planes = new ArrayList<>();
 
+  public CrossSectioning() { 
+  }
 
   public CrossSectioning planes(List<SectionPlane> planes) {
     

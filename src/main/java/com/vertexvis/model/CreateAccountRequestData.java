@@ -38,6 +38,8 @@ public class CreateAccountRequestData {
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   private CreateAccountRequestDataAttributes attributes;
 
+  public CreateAccountRequestData() { 
+  }
 
   public CreateAccountRequestData type(String type) {
     

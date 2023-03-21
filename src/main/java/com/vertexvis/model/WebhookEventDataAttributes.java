@@ -38,6 +38,8 @@ public class WebhookEventDataAttributes {
   @SerializedName(SERIALIZED_NAME_TOPIC)
   private String topic;
 
+  public WebhookEventDataAttributes() { 
+  }
 
   public WebhookEventDataAttributes created(OffsetDateTime created) {
     

@@ -58,6 +58,8 @@ public class FileMetadataDataAttributes {
   @SerializedName(SERIALIZED_NAME_SIZE)
   private Long size;
 
+  public FileMetadataDataAttributes() { 
+  }
 
   public FileMetadataDataAttributes name(String name) {
     

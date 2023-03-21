@@ -20,7 +20,8 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.OneOfSceneViewRelationshipSceneViewStateRelationship;
+import com.vertexvis.model.SceneViewRelationship;
+import com.vertexvis.model.SceneViewStateRelationship;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -34,6 +35,8 @@ public class CreateSceneViewStateRequestDataRelationships {
   @SerializedName(SERIALIZED_NAME_SOURCE)
   private OneOfSceneViewRelationshipSceneViewStateRelationship source;
 
+  public CreateSceneViewStateRequestDataRelationships() { 
+  }
 
   public CreateSceneViewStateRequestDataRelationships source(OneOfSceneViewRelationshipSceneViewStateRelationship source) {
     
@@ -45,7 +48,7 @@ public class CreateSceneViewStateRequestDataRelationships {
    * Get source
    * @return source
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @ApiModelProperty(required = true, value = "")
 
   public OneOfSceneViewRelationshipSceneViewStateRelationship getSource() {

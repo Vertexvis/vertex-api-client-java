@@ -34,6 +34,8 @@ public class HitResultDataRelationships {
   @SerializedName(SERIALIZED_NAME_SCENE_ITEM)
   private RelationshipData sceneItem;
 
+  public HitResultDataRelationships() { 
+  }
 
   public HitResultDataRelationships sceneItem(RelationshipData sceneItem) {
     

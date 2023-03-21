@@ -34,6 +34,8 @@ public class CreateStreamKeyRequest {
   @SerializedName(SERIALIZED_NAME_DATA)
   private CreateStreamKeyRequestData data;
 
+  public CreateStreamKeyRequest() { 
+  }
 
   public CreateStreamKeyRequest data(CreateStreamKeyRequestData data) {
     

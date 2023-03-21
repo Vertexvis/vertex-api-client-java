@@ -34,6 +34,8 @@ public class CreateFileRequest {
   @SerializedName(SERIALIZED_NAME_DATA)
   private CreateFileRequestData data;
 
+  public CreateFileRequest() { 
+  }
 
   public CreateFileRequest data(CreateFileRequestData data) {
     

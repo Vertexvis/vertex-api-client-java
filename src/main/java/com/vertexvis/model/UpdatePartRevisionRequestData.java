@@ -49,6 +49,8 @@ public class UpdatePartRevisionRequestData {
   @SerializedName(SERIALIZED_NAME_RELATIONSHIPS)
   private CreateGeometrySetRequestDataRelationships relationships;
 
+  public UpdatePartRevisionRequestData() { 
+  }
 
   public UpdatePartRevisionRequestData type(String type) {
     

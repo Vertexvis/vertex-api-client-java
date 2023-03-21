@@ -36,6 +36,8 @@ public class CreateBatchRequest {
   @SerializedName(SERIALIZED_NAME_VERTEXVIS_BATCH_COLON_OPERATIONS)
   private List<BatchOperation> vertexvisBatchColonOperations = new ArrayList<>();
 
+  public CreateBatchRequest() { 
+  }
 
   public CreateBatchRequest vertexvisBatchColonOperations(List<BatchOperation> vertexvisBatchColonOperations) {
     

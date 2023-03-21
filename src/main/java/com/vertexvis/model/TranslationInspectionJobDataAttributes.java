@@ -39,6 +39,8 @@ public class TranslationInspectionJobDataAttributes {
   @SerializedName(SERIALIZED_NAME_MISSING)
   private List<String> missing = new ArrayList<>();
 
+  public TranslationInspectionJobDataAttributes() { 
+  }
 
   public TranslationInspectionJobDataAttributes status(String status) {
     

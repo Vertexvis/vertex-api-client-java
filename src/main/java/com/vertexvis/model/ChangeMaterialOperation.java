@@ -83,6 +83,8 @@ public class ChangeMaterialOperation {
   @SerializedName(SERIALIZED_NAME_MATERIAL)
   private ColorMaterial material;
 
+  public ChangeMaterialOperation() { 
+  }
 
   public ChangeMaterialOperation type(TypeEnum type) {
     

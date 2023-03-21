@@ -83,6 +83,8 @@ public class WebhookEventDataRelationshipsOwnerData {
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
 
+  public WebhookEventDataRelationshipsOwnerData() { 
+  }
 
   public WebhookEventDataRelationshipsOwnerData type(TypeEnum type) {
     

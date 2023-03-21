@@ -20,11 +20,13 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.OneOfPerspectiveCameraOrthographicCamera;
 import com.vertexvis.model.Orientation;
+import com.vertexvis.model.OrthographicCamera;
+import com.vertexvis.model.PerspectiveCamera;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * CreateSceneRequestDataAttributes
@@ -51,6 +53,8 @@ public class CreateSceneRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_WORLD_ORIENTATION)
   private Orientation worldOrientation;
 
+  public CreateSceneRequestDataAttributes() { 
+  }
 
   public CreateSceneRequestDataAttributes camera(OneOfPerspectiveCameraOrthographicCamera camera) {
     
@@ -183,9 +187,20 @@ public class CreateSceneRequestDataAttributes {
         Objects.equals(this.worldOrientation, createSceneRequestDataAttributes.worldOrientation);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
     return Objects.hash(camera, suppliedId, name, treeEnabled, worldOrientation);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

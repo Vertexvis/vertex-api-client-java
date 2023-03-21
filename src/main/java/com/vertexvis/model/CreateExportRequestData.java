@@ -43,6 +43,8 @@ public class CreateExportRequestData {
   @SerializedName(SERIALIZED_NAME_RELATIONSHIPS)
   private CreateExportRequestDataRelationships relationships;
 
+  public CreateExportRequestData() { 
+  }
 
   public CreateExportRequestData type(String type) {
     

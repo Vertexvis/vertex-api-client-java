@@ -33,6 +33,8 @@ public class CreateAccountRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
 
+  public CreateAccountRequestDataAttributes() { 
+  }
 
   public CreateAccountRequestDataAttributes name(String name) {
     

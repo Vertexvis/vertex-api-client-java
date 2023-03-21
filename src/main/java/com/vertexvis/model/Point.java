@@ -38,6 +38,8 @@ public class Point {
   @SerializedName(SERIALIZED_NAME_DY)
   private Integer dy;
 
+  public Point() { 
+  }
 
   public Point dx(Integer dx) {
     

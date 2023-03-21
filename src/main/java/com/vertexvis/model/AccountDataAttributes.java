@@ -42,6 +42,8 @@ public class AccountDataAttributes {
   @SerializedName(SERIALIZED_NAME_CREATED)
   private OffsetDateTime created;
 
+  public AccountDataAttributes() { 
+  }
 
   public AccountDataAttributes name(String name) {
     

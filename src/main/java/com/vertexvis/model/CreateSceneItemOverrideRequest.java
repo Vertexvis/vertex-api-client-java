@@ -34,6 +34,8 @@ public class CreateSceneItemOverrideRequest {
   @SerializedName(SERIALIZED_NAME_DATA)
   private CreateSceneItemOverrideRequestData data;
 
+  public CreateSceneItemOverrideRequest() { 
+  }
 
   public CreateSceneItemOverrideRequest data(CreateSceneItemOverrideRequestData data) {
     

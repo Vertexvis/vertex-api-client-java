@@ -36,6 +36,8 @@ public class CreateSceneAlterationRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_ALTERATIONS)
   private List<SceneOperation> alterations = new ArrayList<>();
 
+  public CreateSceneAlterationRequestDataAttributes() { 
+  }
 
   public CreateSceneAlterationRequestDataAttributes alterations(List<SceneOperation> alterations) {
     

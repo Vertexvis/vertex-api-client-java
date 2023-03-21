@@ -52,6 +52,8 @@ public class OrthographicCamera {
   @SerializedName(SERIALIZED_NAME_FOV_HEIGHT)
   private BigDecimal fovHeight;
 
+  public OrthographicCamera() { 
+  }
 
   public OrthographicCamera type(String type) {
     

@@ -34,6 +34,8 @@ public class CreateTranslationInspectionRequest {
   @SerializedName(SERIALIZED_NAME_DATA)
   private CreateTranslationInspectionRequestData data;
 
+  public CreateTranslationInspectionRequest() { 
+  }
 
   public CreateTranslationInspectionRequest data(CreateTranslationInspectionRequestData data) {
     

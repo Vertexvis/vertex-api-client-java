@@ -39,6 +39,8 @@ public class SceneItemOverrideDataRelationships {
   @SerializedName(SERIALIZED_NAME_SCENE_VIEW)
   private SceneViewRelationship sceneView;
 
+  public SceneItemOverrideDataRelationships() { 
+  }
 
   public SceneItemOverrideDataRelationships sceneItem(SceneItemRelationship sceneItem) {
     

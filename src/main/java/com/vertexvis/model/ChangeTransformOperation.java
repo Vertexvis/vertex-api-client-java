@@ -83,6 +83,8 @@ public class ChangeTransformOperation {
   @SerializedName(SERIALIZED_NAME_TRANSFORM)
   private Matrix4 transform;
 
+  public ChangeTransformOperation() { 
+  }
 
   public ChangeTransformOperation type(TypeEnum type) {
     

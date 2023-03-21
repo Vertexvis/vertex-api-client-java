@@ -34,6 +34,8 @@ public class CreateGeometrySetRequestDataRelationships {
   @SerializedName(SERIALIZED_NAME_SOURCE)
   private FileRelationship source;
 
+  public CreateGeometrySetRequestDataRelationships() { 
+  }
 
   public CreateGeometrySetRequestDataRelationships source(FileRelationship source) {
     

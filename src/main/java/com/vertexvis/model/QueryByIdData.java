@@ -83,6 +83,8 @@ public class QueryByIdData {
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   private QueryByIdDataAttributes attributes;
 
+  public QueryByIdData() { 
+  }
 
   public QueryByIdData type(TypeEnum type) {
     

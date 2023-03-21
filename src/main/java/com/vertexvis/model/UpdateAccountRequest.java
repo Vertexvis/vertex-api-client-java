@@ -34,6 +34,8 @@ public class UpdateAccountRequest {
   @SerializedName(SERIALIZED_NAME_DATA)
   private UpdateAccountRequestData data;
 
+  public UpdateAccountRequest() { 
+  }
 
   public UpdateAccountRequest data(UpdateAccountRequestData data) {
     

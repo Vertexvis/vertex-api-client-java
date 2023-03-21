@@ -48,6 +48,8 @@ public class HitResultData {
   @SerializedName(SERIALIZED_NAME_RELATIONSHIPS)
   private HitResultDataRelationships relationships;
 
+  public HitResultData() { 
+  }
 
   public HitResultData type(String type) {
     

@@ -48,6 +48,8 @@ public class ApplicationDataAttributes {
   @SerializedName(SERIALIZED_NAME_SCOPES)
   private List<String> scopes = new ArrayList<>();
 
+  public ApplicationDataAttributes() { 
+  }
 
   public ApplicationDataAttributes name(String name) {
     

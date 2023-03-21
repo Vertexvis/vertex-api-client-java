@@ -37,6 +37,8 @@ public class MetadataFloatType {
   @SerializedName(SERIALIZED_NAME_VALUE)
   private Float value;
 
+  public MetadataFloatType() { 
+  }
 
   public MetadataFloatType type(String type) {
     

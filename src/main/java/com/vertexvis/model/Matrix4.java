@@ -47,6 +47,8 @@ public class Matrix4 {
   @SerializedName(SERIALIZED_NAME_R3)
   private Vector4 r3;
 
+  public Matrix4() { 
+  }
 
   public Matrix4 r0(Vector4 r0) {
     

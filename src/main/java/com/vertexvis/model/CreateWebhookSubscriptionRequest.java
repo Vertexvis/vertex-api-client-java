@@ -34,6 +34,8 @@ public class CreateWebhookSubscriptionRequest {
   @SerializedName(SERIALIZED_NAME_DATA)
   private CreateWebhookSubscriptionRequestData data;
 
+  public CreateWebhookSubscriptionRequest() { 
+  }
 
   public CreateWebhookSubscriptionRequest data(CreateWebhookSubscriptionRequestData data) {
     

@@ -42,6 +42,8 @@ public class PartRevision {
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = null;
 
+  public PartRevision() { 
+  }
 
   public PartRevision data(PartRevisionData data) {
     

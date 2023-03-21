@@ -38,6 +38,8 @@ public class CreateGeometrySetRequestData {
   @SerializedName(SERIALIZED_NAME_RELATIONSHIPS)
   private CreateGeometrySetRequestDataRelationships relationships;
 
+  public CreateGeometrySetRequestData() { 
+  }
 
   public CreateGeometrySetRequestData type(String type) {
     

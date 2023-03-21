@@ -78,6 +78,8 @@ public class DeselectOperation {
   @SerializedName(SERIALIZED_NAME_TYPE)
   private TypeEnum type;
 
+  public DeselectOperation() { 
+  }
 
   public DeselectOperation type(TypeEnum type) {
     

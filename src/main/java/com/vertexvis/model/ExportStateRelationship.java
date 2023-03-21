@@ -35,6 +35,8 @@ public class ExportStateRelationship {
   @SerializedName(SERIALIZED_NAME_DATA)
   private ExportStateRelationshipData data;
 
+  public ExportStateRelationship() { 
+  }
 
   public ExportStateRelationship data(ExportStateRelationshipData data) {
     

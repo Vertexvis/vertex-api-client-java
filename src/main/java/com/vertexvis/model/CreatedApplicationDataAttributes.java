@@ -56,6 +56,8 @@ public class CreatedApplicationDataAttributes {
   @SerializedName(SERIALIZED_NAME_REDIRECT_URIS)
   private List<String> redirectUris = new ArrayList<>();
 
+  public CreatedApplicationDataAttributes() { 
+  }
 
   public CreatedApplicationDataAttributes name(String name) {
     

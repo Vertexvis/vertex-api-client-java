@@ -38,6 +38,8 @@ public class ExportDataAttributes {
   @SerializedName(SERIALIZED_NAME_DOWNLOAD_URL)
   private String downloadUrl;
 
+  public ExportDataAttributes() { 
+  }
 
   public ExportDataAttributes created(OffsetDateTime created) {
     

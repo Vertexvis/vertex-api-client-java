@@ -34,6 +34,8 @@ public class CreateSceneViewRequestDataRelationships {
   @SerializedName(SERIALIZED_NAME_SCENE_VIEW_STATE)
   private SceneViewStateRelationship sceneViewState;
 
+  public CreateSceneViewRequestDataRelationships() { 
+  }
 
   public CreateSceneViewRequestDataRelationships sceneViewState(SceneViewStateRelationship sceneViewState) {
     

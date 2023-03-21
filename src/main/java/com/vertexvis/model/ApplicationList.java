@@ -43,6 +43,8 @@ public class ApplicationList {
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = new HashMap<>();
 
+  public ApplicationList() { 
+  }
 
   public ApplicationList data(List<ApplicationData> data) {
     
