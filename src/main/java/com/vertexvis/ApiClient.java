@@ -67,8 +67,8 @@ public class ApiClient {
 
     private String basePath = "https://platform.vertexvis.com";
     private boolean debugging = false;
-    private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
-    private Map<String, String> defaultCookieMap = new HashMap<String, String>();
+    private final Map<String, String> defaultHeaderMap = new HashMap<String, String>();
+    private final Map<String, String> defaultCookieMap = new HashMap<String, String>();
     private String tempFolderPath = null;
 
     private Map<String, Authentication> authentications;
@@ -353,7 +353,7 @@ public class ApiClient {
      * <p>Setter for the field <code>dateFormat</code>.</p>
      *
      * @param dateFormat a {@link java.text.DateFormat} object
-     * @return a {@link org.openapitools.client.ApiClient} object
+     * @return a {@link com.vertexvis.ApiClient} object
      */
     public ApiClient setDateFormat(DateFormat dateFormat) {
         this.json.setDateFormat(dateFormat);
@@ -364,7 +364,7 @@ public class ApiClient {
      * <p>Set SqlDateFormat.</p>
      *
      * @param dateFormat a {@link java.text.DateFormat} object
-     * @return a {@link org.openapitools.client.ApiClient} object
+     * @return a {@link com.vertexvis.ApiClient} object
      */
     public ApiClient setSqlDateFormat(DateFormat dateFormat) {
         this.json.setSqlDateFormat(dateFormat);
@@ -374,8 +374,8 @@ public class ApiClient {
     /**
      * <p>Set OffsetDateTimeFormat.</p>
      *
-     * @param dateFormat a {@link org.threeten.bp.format.DateTimeFormatter} object
-     * @return a {@link org.openapitools.client.ApiClient} object
+     * @param dateFormat a {@link java.time.format.DateTimeFormatter} object
+     * @return a {@link com.vertexvis.ApiClient} object
      */
     public ApiClient setOffsetDateTimeFormat(DateTimeFormatter dateFormat) {
         this.json.setOffsetDateTimeFormat(dateFormat);
@@ -385,8 +385,8 @@ public class ApiClient {
     /**
      * <p>Set LocalDateFormat.</p>
      *
-     * @param dateFormat a {@link org.threeten.bp.format.DateTimeFormatter} object
-     * @return a {@link org.openapitools.client.ApiClient} object
+     * @param dateFormat a {@link java.time.format.DateTimeFormatter} object
+     * @return a {@link com.vertexvis.ApiClient} object
      */
     public ApiClient setLocalDateFormat(DateTimeFormatter dateFormat) {
         this.json.setLocalDateFormat(dateFormat);
@@ -397,7 +397,7 @@ public class ApiClient {
      * <p>Set LenientOnJson.</p>
      *
      * @param lenientOnJson a boolean
-     * @return a {@link org.openapitools.client.ApiClient} object
+     * @return a {@link com.vertexvis.ApiClient} object
      */
     public ApiClient setLenientOnJson(boolean lenientOnJson) {
         this.json.setLenientOnJson(lenientOnJson);

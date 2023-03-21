@@ -84,7 +84,7 @@ public class AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialO
         new AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperation(
             new SelectOperation().type(SelectOperation.TypeEnum.SELECT));
 
-    String expected = "{\"type\":\"select\",\"material\":{}}";
+    String expected = "{\"type\":\"select\"}";
 
     assertEquals(expected, new JSON().serialize(op));
   }
