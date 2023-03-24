@@ -20,7 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.AnyOfCreateSceneItemRequestData;
 import com.vertexvis.model.BatchOperationRef;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -88,6 +87,8 @@ public class BatchOperation {
   @SerializedName(SERIALIZED_NAME_REF)
   private BatchOperationRef ref;
 
+  public BatchOperation() { 
+  }
 
   public BatchOperation data(AnyOfCreateSceneItemRequestData data) {
     
@@ -99,7 +100,7 @@ public class BatchOperation {
    * Operation&#39;s primary data.
    * @return data
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @ApiModelProperty(required = true, value = "Operation's primary data.")
 
   public AnyOfCreateSceneItemRequestData getData() {

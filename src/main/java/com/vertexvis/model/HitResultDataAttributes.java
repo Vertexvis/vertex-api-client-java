@@ -38,6 +38,8 @@ public class HitResultDataAttributes {
   @SerializedName(SERIALIZED_NAME_NORMAL)
   private Vector3 normal;
 
+  public HitResultDataAttributes() { 
+  }
 
   public HitResultDataAttributes point(Vector3 point) {
     

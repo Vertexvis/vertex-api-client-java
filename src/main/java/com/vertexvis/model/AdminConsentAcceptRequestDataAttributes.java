@@ -33,6 +33,8 @@ public class AdminConsentAcceptRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_SESSION)
   private Object session;
 
+  public AdminConsentAcceptRequestDataAttributes() { 
+  }
 
   public AdminConsentAcceptRequestDataAttributes session(Object session) {
     

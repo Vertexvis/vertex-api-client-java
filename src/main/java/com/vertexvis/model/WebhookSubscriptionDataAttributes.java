@@ -99,6 +99,8 @@ public class WebhookSubscriptionDataAttributes {
   @SerializedName(SERIALIZED_NAME_CREATED)
   private OffsetDateTime created;
 
+  public WebhookSubscriptionDataAttributes() { 
+  }
 
   public WebhookSubscriptionDataAttributes url(String url) {
     

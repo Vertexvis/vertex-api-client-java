@@ -38,6 +38,8 @@ public class UpdateWebhookSubscriptionRequestData {
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   private UpdateWebhookSubscriptionRequestDataAttributes attributes;
 
+  public UpdateWebhookSubscriptionRequestData() { 
+  }
 
   public UpdateWebhookSubscriptionRequestData type(String type) {
     

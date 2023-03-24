@@ -20,10 +20,10 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.AnyOfGeometrySetRelationshipPartRevisionRelationship;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * UpdateSceneItemRequestDataRelationships
@@ -34,6 +34,8 @@ public class UpdateSceneItemRequestDataRelationships {
   @SerializedName(SERIALIZED_NAME_SOURCE)
   private AnyOfGeometrySetRelationshipPartRevisionRelationship source;
 
+  public UpdateSceneItemRequestDataRelationships() { 
+  }
 
   public UpdateSceneItemRequestDataRelationships source(AnyOfGeometrySetRelationshipPartRevisionRelationship source) {
     
@@ -70,9 +72,20 @@ public class UpdateSceneItemRequestDataRelationships {
     return Objects.equals(this.source, updateSceneItemRequestDataRelationships.source);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
     return Objects.hash(source);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

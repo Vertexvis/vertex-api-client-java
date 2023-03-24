@@ -43,6 +43,8 @@ public class CreatedApplicationData {
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   private CreatedApplicationDataAttributes attributes;
 
+  public CreatedApplicationData() { 
+  }
 
   public CreatedApplicationData type(String type) {
     

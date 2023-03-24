@@ -34,6 +34,8 @@ public class CreateGeometrySetRequest {
   @SerializedName(SERIALIZED_NAME_DATA)
   private CreateGeometrySetRequestData data;
 
+  public CreateGeometrySetRequest() { 
+  }
 
   public CreateGeometrySetRequest data(CreateGeometrySetRequestData data) {
     

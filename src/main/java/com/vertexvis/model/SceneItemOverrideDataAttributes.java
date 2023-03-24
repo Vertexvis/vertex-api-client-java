@@ -52,6 +52,8 @@ public class SceneItemOverrideDataAttributes {
   @SerializedName(SERIALIZED_NAME_SELECTED)
   private ColorMaterial selected;
 
+  public SceneItemOverrideDataAttributes() { 
+  }
 
   public SceneItemOverrideDataAttributes created(OffsetDateTime created) {
     

@@ -42,6 +42,8 @@ public class FileMetadata {
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = null;
 
+  public FileMetadata() { 
+  }
 
   public FileMetadata data(FileMetadataData data) {
     

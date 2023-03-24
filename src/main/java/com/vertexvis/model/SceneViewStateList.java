@@ -43,6 +43,8 @@ public class SceneViewStateList {
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = new HashMap<>();
 
+  public SceneViewStateList() { 
+  }
 
   public SceneViewStateList data(List<SceneViewStateData> data) {
     

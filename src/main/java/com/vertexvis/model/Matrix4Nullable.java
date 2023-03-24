@@ -47,6 +47,8 @@ public class Matrix4Nullable {
   @SerializedName(SERIALIZED_NAME_R3)
   private Vector4 r3;
 
+  public Matrix4Nullable() { 
+  }
 
   public Matrix4Nullable r0(Vector4 r0) {
     

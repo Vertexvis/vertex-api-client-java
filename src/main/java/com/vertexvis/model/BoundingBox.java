@@ -39,6 +39,8 @@ public class BoundingBox {
   @SerializedName(SERIALIZED_NAME_MAX)
   private Vector3 max;
 
+  public BoundingBox() { 
+  }
 
   public BoundingBox min(Vector3 min) {
     

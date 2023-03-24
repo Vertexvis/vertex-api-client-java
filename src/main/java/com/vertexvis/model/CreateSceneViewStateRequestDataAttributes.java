@@ -37,6 +37,8 @@ public class CreateSceneViewStateRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_SUPPLIED_ID)
   private String suppliedId;
 
+  public CreateSceneViewStateRequestDataAttributes() { 
+  }
 
   public CreateSceneViewStateRequestDataAttributes name(String name) {
     

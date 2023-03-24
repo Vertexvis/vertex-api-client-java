@@ -48,6 +48,8 @@ public class HitData {
   @SerializedName(SERIALIZED_NAME_RELATIONSHIPS)
   private HitDataRelationships relationships;
 
+  public HitData() { 
+  }
 
   public HitData type(String type) {
     

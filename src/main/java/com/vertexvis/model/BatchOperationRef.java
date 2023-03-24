@@ -84,6 +84,8 @@ public class BatchOperationRef {
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
 
+  public BatchOperationRef() { 
+  }
 
   public BatchOperationRef type(TypeEnum type) {
     

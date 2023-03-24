@@ -101,6 +101,10 @@ public class JSON {
             AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperation.class,
             new AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperationTypeAdapter(
                 () -> gson))
+        .registerTypeAdapter(
+                AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType.class,
+                new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullTypeAdapter(
+                        () -> gson))
         .registerTypeAdapter(OneOfHitResultDataSceneItemDataPartRevisionData.class,
             new OneOfHitResultDataSceneItemDataPartRevisionDataTypeAdapter(() -> gson))
         .registerTypeAdapter(AnyOfGeometrySetRelationshipPartRevisionRelationship.class,

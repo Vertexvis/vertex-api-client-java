@@ -83,6 +83,8 @@ public class PartDataRelationshipsPartRevisions {
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
 
+  public PartDataRelationshipsPartRevisions() { 
+  }
 
   public PartDataRelationshipsPartRevisions type(TypeEnum type) {
     

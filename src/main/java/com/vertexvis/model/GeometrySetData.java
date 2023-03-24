@@ -51,6 +51,8 @@ public class GeometrySetData {
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = null;
 
+  public GeometrySetData() { 
+  }
 
   public GeometrySetData type(String type) {
     

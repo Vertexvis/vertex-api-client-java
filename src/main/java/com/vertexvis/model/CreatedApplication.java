@@ -34,6 +34,8 @@ public class CreatedApplication {
   @SerializedName(SERIALIZED_NAME_DATA)
   private CreatedApplicationData data;
 
+  public CreatedApplication() { 
+  }
 
   public CreatedApplication data(CreatedApplicationData data) {
     

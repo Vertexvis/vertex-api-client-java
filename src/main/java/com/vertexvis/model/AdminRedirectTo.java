@@ -33,6 +33,8 @@ public class AdminRedirectTo {
   @SerializedName(SERIALIZED_NAME_REDIRECT_TO)
   private String redirectTo;
 
+  public AdminRedirectTo() { 
+  }
 
   public AdminRedirectTo redirectTo(String redirectTo) {
     

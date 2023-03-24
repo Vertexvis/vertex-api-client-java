@@ -38,6 +38,8 @@ public class CreateFileRequestData {
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   private CreateFileRequestDataAttributes attributes;
 
+  public CreateFileRequestData() { 
+  }
 
   public CreateFileRequestData type(String type) {
     

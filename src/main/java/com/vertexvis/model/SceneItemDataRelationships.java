@@ -20,11 +20,11 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship;
 import com.vertexvis.model.SceneItemRelationship;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * SceneItemDataRelationships
@@ -39,6 +39,8 @@ public class SceneItemDataRelationships {
   @SerializedName(SERIALIZED_NAME_PARENT)
   private SceneItemRelationship parent;
 
+  public SceneItemDataRelationships() { 
+  }
 
   public SceneItemDataRelationships source(AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship source) {
     
@@ -99,9 +101,20 @@ public class SceneItemDataRelationships {
         Objects.equals(this.parent, sceneItemDataRelationships.parent);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
     return Objects.hash(source, parent);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -90,6 +90,8 @@ public class UpdateWebhookSubscriptionRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_URL)
   private String url;
 
+  public UpdateWebhookSubscriptionRequestDataAttributes() { 
+  }
 
   public UpdateWebhookSubscriptionRequestDataAttributes status(StatusEnum status) {
     

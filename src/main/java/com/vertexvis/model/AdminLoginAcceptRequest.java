@@ -34,6 +34,8 @@ public class AdminLoginAcceptRequest {
   @SerializedName(SERIALIZED_NAME_DATA)
   private AdminLoginAcceptRequestData data;
 
+  public AdminLoginAcceptRequest() { 
+  }
 
   public AdminLoginAcceptRequest data(AdminLoginAcceptRequestData data) {
     

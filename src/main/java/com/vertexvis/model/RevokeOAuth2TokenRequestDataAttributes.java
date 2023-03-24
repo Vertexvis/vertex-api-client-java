@@ -33,6 +33,8 @@ public class RevokeOAuth2TokenRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_TOKEN)
   private String token;
 
+  public RevokeOAuth2TokenRequestDataAttributes() { 
+  }
 
   public RevokeOAuth2TokenRequestDataAttributes token(String token) {
     

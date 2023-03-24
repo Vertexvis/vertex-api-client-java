@@ -42,6 +42,8 @@ public class WebhookSubscription {
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = null;
 
+  public WebhookSubscription() { 
+  }
 
   public WebhookSubscription data(WebhookSubscriptionData data) {
     

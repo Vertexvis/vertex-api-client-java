@@ -36,6 +36,8 @@ public class PartDataRelationships {
   @SerializedName(SERIALIZED_NAME_PART_REVISIONS)
   private List<PartDataRelationshipsPartRevisions> partRevisions = new ArrayList<>();
 
+  public PartDataRelationships() { 
+  }
 
   public PartDataRelationships partRevisions(List<PartDataRelationshipsPartRevisions> partRevisions) {
     

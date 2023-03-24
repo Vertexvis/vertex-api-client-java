@@ -34,6 +34,8 @@ public class CreateHitRequest {
   @SerializedName(SERIALIZED_NAME_DATA)
   private CreateHitRequestData data;
 
+  public CreateHitRequest() { 
+  }
 
   public CreateHitRequest data(CreateHitRequestData data) {
     

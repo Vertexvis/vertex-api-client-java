@@ -51,6 +51,8 @@ public class ApplicationData {
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = null;
 
+  public ApplicationData() { 
+  }
 
   public ApplicationData type(String type) {
     

@@ -43,6 +43,8 @@ public class AdminCreateApplicationRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_REDIRECT_URIS)
   private List<String> redirectUris = null;
 
+  public AdminCreateApplicationRequestDataAttributes() { 
+  }
 
   public AdminCreateApplicationRequestDataAttributes name(String name) {
     

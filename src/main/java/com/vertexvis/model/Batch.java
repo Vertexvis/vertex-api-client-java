@@ -36,6 +36,8 @@ public class Batch {
   @SerializedName(SERIALIZED_NAME_VERTEXVIS_BATCH_COLON_RESULTS)
   private List<AnyOfRelationshipDataApiError> vertexvisBatchColonResults = new ArrayList<>();
 
+  public Batch() { 
+  }
 
   public Batch vertexvisBatchColonResults(List<AnyOfRelationshipDataApiError> vertexvisBatchColonResults) {
     

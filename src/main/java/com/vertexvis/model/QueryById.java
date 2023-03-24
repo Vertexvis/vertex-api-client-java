@@ -34,6 +34,8 @@ public class QueryById {
   @SerializedName(SERIALIZED_NAME_DATA)
   private QueryByIdData data;
 
+  public QueryById() { 
+  }
 
   public QueryById data(QueryByIdData data) {
     

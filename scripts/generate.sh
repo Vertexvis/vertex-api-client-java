@@ -16,7 +16,11 @@ main() {
                 AnyOfCreateSceneItemRequestData.java \
                 AnyOfRelationshipDataApiError.java \
                 AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperation.java \
-                AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship.java AnyOfQueryByIdQueryByCollectionQueryAll.java OneOfHitResultDataSceneItemDataPartRevisionData.java \
+                AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship.java \
+                AnyOfGeometrySetDataPartRevisionData.java \
+                AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType.java \
+                AnyOfQueryByIdQueryByCollectionQueryAll.java \
+                OneOfHitResultDataSceneItemDataPartRevisionData.java \
                 OneOfSceneViewRelationshipSceneViewStateRelationship.java \
                 AnyOfGeometrySetRelationshipPartRevisionRelationship.java \
                 AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType.java \
@@ -27,8 +31,8 @@ main() {
   for f in "${models[@]}"; do mv "src/main/java/com/vertexvis/model/$f" . || true; done
 
   rm -rf api gradle src
-  
-  docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli:v5.2.1 generate \
+
+  docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli:v5.4.0 generate \
     --input-spec https://platform.vertexvis.com/spec \
     --generator-name java \
     --config /local/config.yml \

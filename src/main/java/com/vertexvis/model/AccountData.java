@@ -43,6 +43,8 @@ public class AccountData {
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   private AccountDataAttributes attributes;
 
+  public AccountData() { 
+  }
 
   public AccountData type(String type) {
     

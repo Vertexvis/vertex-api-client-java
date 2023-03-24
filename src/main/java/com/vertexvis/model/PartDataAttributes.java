@@ -42,6 +42,8 @@ public class PartDataAttributes {
   @SerializedName(SERIALIZED_NAME_CREATED)
   private OffsetDateTime created;
 
+  public PartDataAttributes() { 
+  }
 
   public PartDataAttributes name(String name) {
     

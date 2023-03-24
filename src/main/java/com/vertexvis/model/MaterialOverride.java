@@ -35,6 +35,8 @@ public class MaterialOverride {
   @SerializedName(SERIALIZED_NAME_VALUE)
   private ColorMaterial value;
 
+  public MaterialOverride() { 
+  }
 
   public MaterialOverride value(ColorMaterial value) {
     

@@ -34,6 +34,8 @@ public class UpdateApplicationRequest {
   @SerializedName(SERIALIZED_NAME_DATA)
   private UpdateApplicationRequestData data;
 
+  public UpdateApplicationRequest() { 
+  }
 
   public UpdateApplicationRequest data(UpdateApplicationRequestData data) {
     

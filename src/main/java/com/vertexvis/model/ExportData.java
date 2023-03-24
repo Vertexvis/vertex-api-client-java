@@ -51,6 +51,8 @@ public class ExportData {
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = null;
 
+  public ExportData() { 
+  }
 
   public ExportData type(String type) {
     

@@ -35,6 +35,8 @@ public class PartRevisionRelationship {
   @SerializedName(SERIALIZED_NAME_DATA)
   private PartDataRelationshipsPartRevisions data;
 
+  public PartRevisionRelationship() { 
+  }
 
   public PartRevisionRelationship data(PartDataRelationshipsPartRevisions data) {
     

@@ -21,8 +21,11 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.HitData;
+import com.vertexvis.model.HitResultData;
 import com.vertexvis.model.Link;
 import com.vertexvis.model.OneOfHitResultDataSceneItemDataPartRevisionData;
+import com.vertexvis.model.PartRevisionData;
+import com.vertexvis.model.SceneItemData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -48,6 +51,8 @@ public class Hit {
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = null;
 
+  public Hit() { 
+  }
 
   public Hit data(HitData data) {
     

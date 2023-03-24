@@ -33,6 +33,8 @@ public class MetadataNullType {
   @SerializedName(SERIALIZED_NAME_TYPE)
   private String type;
 
+  public MetadataNullType() { 
+  }
 
   public MetadataNullType type(String type) {
     

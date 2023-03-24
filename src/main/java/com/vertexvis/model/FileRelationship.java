@@ -35,6 +35,8 @@ public class FileRelationship {
   @SerializedName(SERIALIZED_NAME_DATA)
   private FileRelationshipData data;
 
+  public FileRelationship() { 
+  }
 
   public FileRelationship data(FileRelationshipData data) {
     

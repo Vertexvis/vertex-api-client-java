@@ -33,6 +33,8 @@ public class Link {
   @SerializedName(SERIALIZED_NAME_HREF)
   private String href;
 
+  public Link() { 
+  }
 
   public Link href(String href) {
     

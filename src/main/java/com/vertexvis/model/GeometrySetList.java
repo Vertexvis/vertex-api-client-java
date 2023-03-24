@@ -43,6 +43,8 @@ public class GeometrySetList {
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = new HashMap<>();
 
+  public GeometrySetList() { 
+  }
 
   public GeometrySetList data(List<GeometrySetData> data) {
     

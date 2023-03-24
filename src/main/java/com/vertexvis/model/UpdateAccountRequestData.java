@@ -38,6 +38,8 @@ public class UpdateAccountRequestData {
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   private UpdateAccountRequestDataAttributes attributes;
 
+  public UpdateAccountRequestData() { 
+  }
 
   public UpdateAccountRequestData type(String type) {
     

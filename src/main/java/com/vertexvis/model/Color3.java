@@ -42,6 +42,8 @@ public class Color3 {
   @SerializedName(SERIALIZED_NAME_B)
   private Integer b;
 
+  public Color3() { 
+  }
 
   public Color3 r(Integer r) {
     

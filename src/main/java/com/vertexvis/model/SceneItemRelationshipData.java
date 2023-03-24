@@ -83,6 +83,8 @@ public class SceneItemRelationshipData {
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
 
+  public SceneItemRelationshipData() { 
+  }
 
   public SceneItemRelationshipData type(TypeEnum type) {
     

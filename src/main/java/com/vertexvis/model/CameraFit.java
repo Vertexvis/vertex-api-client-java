@@ -81,6 +81,8 @@ public class CameraFit {
   @SerializedName(SERIALIZED_NAME_TYPE)
   private TypeEnum type;
 
+  public CameraFit() { 
+  }
 
   public CameraFit type(TypeEnum type) {
     

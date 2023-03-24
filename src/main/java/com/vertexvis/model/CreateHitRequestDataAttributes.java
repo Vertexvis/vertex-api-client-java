@@ -39,6 +39,8 @@ public class CreateHitRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_VIEWPORT)
   private Dimensions viewport;
 
+  public CreateHitRequestDataAttributes() { 
+  }
 
   public CreateHitRequestDataAttributes point(Point point) {
     

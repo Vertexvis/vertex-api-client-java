@@ -35,6 +35,8 @@ public class GeometrySetRelationship {
   @SerializedName(SERIALIZED_NAME_DATA)
   private GeometrySetRelationshipData data;
 
+  public GeometrySetRelationship() { 
+  }
 
   public GeometrySetRelationship data(GeometrySetRelationshipData data) {
     

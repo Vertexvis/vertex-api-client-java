@@ -43,6 +43,8 @@ public class StreamKeyList {
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = new HashMap<>();
 
+  public StreamKeyList() { 
+  }
 
   public StreamKeyList data(List<StreamKeyData> data) {
     

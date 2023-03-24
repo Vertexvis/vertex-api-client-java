@@ -34,6 +34,8 @@ public class CreateExportRequest {
   @SerializedName(SERIALIZED_NAME_DATA)
   private CreateExportRequestData data;
 
+  public CreateExportRequest() { 
+  }
 
   public CreateExportRequest data(CreateExportRequestData data) {
     

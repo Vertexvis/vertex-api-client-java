@@ -36,6 +36,8 @@ public class HitDataRelationships {
   @SerializedName(SERIALIZED_NAME_RESULTS)
   private List<RelationshipData> results = new ArrayList<>();
 
+  public HitDataRelationships() { 
+  }
 
   public HitDataRelationships results(List<RelationshipData> results) {
     

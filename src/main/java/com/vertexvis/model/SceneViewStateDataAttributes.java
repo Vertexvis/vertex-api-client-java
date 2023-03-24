@@ -21,7 +21,8 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.FeatureLines;
-import com.vertexvis.model.OneOfPerspectiveCameraOrthographicCamera;
+import com.vertexvis.model.OrthographicCamera;
+import com.vertexvis.model.PerspectiveCamera;
 import com.vertexvis.model.ThumbnailData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -29,6 +30,7 @@ import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * SceneViewStateDataAttributes
@@ -63,6 +65,8 @@ public class SceneViewStateDataAttributes {
   @SerializedName(SERIALIZED_NAME_SUPPLIED_ID)
   private String suppliedId;
 
+  public SceneViewStateDataAttributes() { 
+  }
 
   public SceneViewStateDataAttributes camera(OneOfPerspectiveCameraOrthographicCamera camera) {
     
@@ -251,9 +255,20 @@ public class SceneViewStateDataAttributes {
         Objects.equals(this.suppliedId, sceneViewStateDataAttributes.suppliedId);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
     return Objects.hash(camera, created, name, thumbnails, featureLines, noDefaultLights, suppliedId);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

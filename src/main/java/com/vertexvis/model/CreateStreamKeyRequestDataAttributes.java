@@ -33,6 +33,12 @@ public class CreateStreamKeyRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_EXPIRY)
   private Integer expiry;
 
+  public static final String SERIALIZED_NAME_EXCLUDE_PRUNED_ITEMS = "excludePrunedItems";
+  @SerializedName(SERIALIZED_NAME_EXCLUDE_PRUNED_ITEMS)
+  private Boolean excludePrunedItems;
+
+  public CreateStreamKeyRequestDataAttributes() { 
+  }
 
   public CreateStreamKeyRequestDataAttributes expiry(Integer expiry) {
     
@@ -59,6 +65,29 @@ public class CreateStreamKeyRequestDataAttributes {
   }
 
 
+  public CreateStreamKeyRequestDataAttributes excludePrunedItems(Boolean excludePrunedItems) {
+    
+    this.excludePrunedItems = excludePrunedItems;
+    return this;
+  }
+
+   /**
+   * Whether to exclude non-visible items in the view
+   * @return excludePrunedItems
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Whether to exclude non-visible items in the view")
+
+  public Boolean getExcludePrunedItems() {
+    return excludePrunedItems;
+  }
+
+
+  public void setExcludePrunedItems(Boolean excludePrunedItems) {
+    this.excludePrunedItems = excludePrunedItems;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -68,12 +97,13 @@ public class CreateStreamKeyRequestDataAttributes {
       return false;
     }
     CreateStreamKeyRequestDataAttributes createStreamKeyRequestDataAttributes = (CreateStreamKeyRequestDataAttributes) o;
-    return Objects.equals(this.expiry, createStreamKeyRequestDataAttributes.expiry);
+    return Objects.equals(this.expiry, createStreamKeyRequestDataAttributes.expiry) &&
+        Objects.equals(this.excludePrunedItems, createStreamKeyRequestDataAttributes.excludePrunedItems);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(expiry);
+    return Objects.hash(expiry, excludePrunedItems);
   }
 
   @Override
@@ -81,6 +111,7 @@ public class CreateStreamKeyRequestDataAttributes {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateStreamKeyRequestDataAttributes {\n");
     sb.append("    expiry: ").append(toIndentedString(expiry)).append("\n");
+    sb.append("    excludePrunedItems: ").append(toIndentedString(excludePrunedItems)).append("\n");
     sb.append("}");
     return sb.toString();
   }

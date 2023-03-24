@@ -34,6 +34,8 @@ public class CreateSceneRequest {
   @SerializedName(SERIALIZED_NAME_DATA)
   private CreateSceneRequestData data;
 
+  public CreateSceneRequest() { 
+  }
 
   public CreateSceneRequest data(CreateSceneRequestData data) {
     

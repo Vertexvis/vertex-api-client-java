@@ -34,6 +34,8 @@ public class UpdatePartRevisionRequest {
   @SerializedName(SERIALIZED_NAME_DATA)
   private UpdatePartRevisionRequestData data;
 
+  public UpdatePartRevisionRequest() { 
+  }
 
   public UpdatePartRevisionRequest data(UpdatePartRevisionRequestData data) {
     

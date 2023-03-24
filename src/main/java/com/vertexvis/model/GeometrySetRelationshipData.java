@@ -83,6 +83,8 @@ public class GeometrySetRelationshipData {
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
 
+  public GeometrySetRelationshipData() { 
+  }
 
   public GeometrySetRelationshipData type(TypeEnum type) {
     

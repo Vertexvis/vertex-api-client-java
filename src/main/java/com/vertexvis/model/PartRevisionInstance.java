@@ -48,6 +48,8 @@ public class PartRevisionInstance {
   @SerializedName(SERIALIZED_NAME_TRANSFORM)
   private Matrix4 transform;
 
+  public PartRevisionInstance() { 
+  }
 
   public PartRevisionInstance ordinal(Integer ordinal) {
     

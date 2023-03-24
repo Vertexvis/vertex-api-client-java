@@ -42,6 +42,8 @@ public class Export {
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = null;
 
+  public Export() { 
+  }
 
   public Export data(ExportData data) {
     

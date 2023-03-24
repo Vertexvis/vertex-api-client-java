@@ -39,6 +39,8 @@ public class Orientation {
   @SerializedName(SERIALIZED_NAME_FRONT)
   private Vector3 front;
 
+  public Orientation() { 
+  }
 
   public Orientation up(Vector3 up) {
     

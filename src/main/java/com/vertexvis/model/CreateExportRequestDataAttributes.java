@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.OneOfCADExportConfig;
+import com.vertexvis.model.CADExportConfig;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -38,6 +38,8 @@ public class CreateExportRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_FILE_NAME)
   private String fileName;
 
+  public CreateExportRequestDataAttributes() { 
+  }
 
   public CreateExportRequestDataAttributes config(OneOfCADExportConfig config) {
     
@@ -49,7 +51,7 @@ public class CreateExportRequestDataAttributes {
    * Specifies the export format and options to configure the export.
    * @return config
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @ApiModelProperty(required = true, value = "Specifies the export format and options to configure the export.")
 
   public OneOfCADExportConfig getConfig() {

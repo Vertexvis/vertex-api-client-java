@@ -83,6 +83,8 @@ public class ExportRelationshipData {
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
 
+  public ExportRelationshipData() { 
+  }
 
   public ExportRelationshipData type(TypeEnum type) {
     

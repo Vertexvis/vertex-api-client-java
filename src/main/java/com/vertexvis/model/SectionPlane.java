@@ -39,6 +39,8 @@ public class SectionPlane {
   @SerializedName(SERIALIZED_NAME_OFFSET)
   private BigDecimal offset;
 
+  public SectionPlane() { 
+  }
 
   public SectionPlane normal(Vector3 normal) {
     

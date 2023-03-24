@@ -78,6 +78,8 @@ public class ClearTransformOperation {
   @SerializedName(SERIALIZED_NAME_TYPE)
   private TypeEnum type;
 
+  public ClearTransformOperation() { 
+  }
 
   public ClearTransformOperation type(TypeEnum type) {
     

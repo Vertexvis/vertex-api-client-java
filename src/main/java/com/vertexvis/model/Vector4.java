@@ -47,6 +47,8 @@ public class Vector4 {
   @SerializedName(SERIALIZED_NAME_W)
   private BigDecimal w;
 
+  public Vector4() { 
+  }
 
   public Vector4 x(BigDecimal x) {
     

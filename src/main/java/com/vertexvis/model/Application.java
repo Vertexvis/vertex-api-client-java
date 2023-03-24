@@ -42,6 +42,8 @@ public class Application {
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = null;
 
+  public Application() { 
+  }
 
   public Application data(ApplicationData data) {
     

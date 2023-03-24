@@ -38,6 +38,8 @@ public class AdminConsentAcceptRequestData {
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   private AdminConsentAcceptRequestDataAttributes attributes;
 
+  public AdminConsentAcceptRequestData() { 
+  }
 
   public AdminConsentAcceptRequestData type(String type) {
     

@@ -82,10 +82,9 @@ public class AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialO
         op
         =
         new AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperation(
-            new SelectOperation().type(SelectOperation.TypeEnum.SELECT)
-                .material(new ColorMaterial()));
+            new SelectOperation().type(SelectOperation.TypeEnum.SELECT));
 
-    String expected = "{\"type\":\"select\",\"material\":{}}";
+    String expected = "{\"type\":\"select\"}";
 
     assertEquals(expected, new JSON().serialize(op));
   }

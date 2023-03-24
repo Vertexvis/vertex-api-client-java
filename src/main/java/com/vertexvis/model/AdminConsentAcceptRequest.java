@@ -34,6 +34,8 @@ public class AdminConsentAcceptRequest {
   @SerializedName(SERIALIZED_NAME_DATA)
   private AdminConsentAcceptRequestData data;
 
+  public AdminConsentAcceptRequest() { 
+  }
 
   public AdminConsentAcceptRequest data(AdminConsentAcceptRequestData data) {
     

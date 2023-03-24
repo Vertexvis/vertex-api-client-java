@@ -38,6 +38,8 @@ public class RelationshipData {
   @SerializedName(SERIALIZED_NAME_TYPE)
   private String type;
 
+  public RelationshipData() { 
+  }
 
   public RelationshipData id(UUID id) {
     

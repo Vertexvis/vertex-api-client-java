@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType;
+import com.vertexvis.model.AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType;
 import com.vertexvis.model.PartRevisionInstance;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -41,8 +41,10 @@ public class PartAssemblyRelationshipData {
 
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
-  private Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata = null;
+  private Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> metadata = null;
 
+  public PartAssemblyRelationshipData() { 
+  }
 
   public PartAssemblyRelationshipData children(List<PartRevisionInstance> children) {
     
@@ -72,13 +74,13 @@ public class PartAssemblyRelationshipData {
   }
 
 
-  public PartAssemblyRelationshipData metadata(Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata) {
+  public PartAssemblyRelationshipData metadata(Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> metadata) {
     
     this.metadata = metadata;
     return this;
   }
 
-  public PartAssemblyRelationshipData putMetadataItem(String key, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType metadataItem) {
+  public PartAssemblyRelationshipData putMetadataItem(String key, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType metadataItem) {
     if (this.metadata == null) {
       this.metadata = new HashMap<>();
     }
@@ -93,12 +95,12 @@ public class PartAssemblyRelationshipData {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Additional metadata about the `part` and/or `part-revision`. ")
 
-  public Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> getMetadata() {
+  public Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> getMetadata() {
     return metadata;
   }
 
 
-  public void setMetadata(Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata) {
+  public void setMetadata(Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> metadata) {
     this.metadata = metadata;
   }
 

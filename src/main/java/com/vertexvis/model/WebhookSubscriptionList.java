@@ -43,6 +43,8 @@ public class WebhookSubscriptionList {
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = new HashMap<>();
 
+  public WebhookSubscriptionList() { 
+  }
 
   public WebhookSubscriptionList data(List<WebhookSubscriptionData> data) {
     

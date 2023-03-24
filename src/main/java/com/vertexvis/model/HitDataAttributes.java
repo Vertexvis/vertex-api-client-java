@@ -34,6 +34,8 @@ public class HitDataAttributes {
   @SerializedName(SERIALIZED_NAME_CREATED)
   private OffsetDateTime created;
 
+  public HitDataAttributes() { 
+  }
 
   public HitDataAttributes created(OffsetDateTime created) {
     

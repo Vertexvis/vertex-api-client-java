@@ -34,6 +34,8 @@ public class CreateSceneItemOverrideRequestDataRelationships {
   @SerializedName(SERIALIZED_NAME_SCENE_ITEM)
   private SceneItemRelationship sceneItem;
 
+  public CreateSceneItemOverrideRequestDataRelationships() { 
+  }
 
   public CreateSceneItemOverrideRequestDataRelationships sceneItem(SceneItemRelationship sceneItem) {
     

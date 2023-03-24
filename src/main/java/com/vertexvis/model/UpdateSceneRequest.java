@@ -34,6 +34,8 @@ public class UpdateSceneRequest {
   @SerializedName(SERIALIZED_NAME_DATA)
   private UpdateSceneRequestData data;
 
+  public UpdateSceneRequest() { 
+  }
 
   public UpdateSceneRequest data(UpdateSceneRequestData data) {
     

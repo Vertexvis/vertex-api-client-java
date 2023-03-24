@@ -51,6 +51,8 @@ public class QueuedJobData {
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = null;
 
+  public QueuedJobData() { 
+  }
 
   public QueuedJobData type(String type) {
     

@@ -38,6 +38,8 @@ public class CreateStreamKeyRequestData {
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   private CreateStreamKeyRequestDataAttributes attributes;
 
+  public CreateStreamKeyRequestData() { 
+  }
 
   public CreateStreamKeyRequestData type(String type) {
     

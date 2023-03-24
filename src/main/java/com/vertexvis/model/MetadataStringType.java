@@ -37,6 +37,8 @@ public class MetadataStringType {
   @SerializedName(SERIALIZED_NAME_VALUE)
   private String value;
 
+  public MetadataStringType() { 
+  }
 
   public MetadataStringType type(String type) {
     

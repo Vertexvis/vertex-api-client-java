@@ -39,6 +39,8 @@ public class CreateWebhookSubscriptionRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_TOPICS)
   private List<String> topics = new ArrayList<>();
 
+  public CreateWebhookSubscriptionRequestDataAttributes() { 
+  }
 
   public CreateWebhookSubscriptionRequestDataAttributes url(String url) {
     

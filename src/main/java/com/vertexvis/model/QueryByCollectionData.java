@@ -83,6 +83,8 @@ public class QueryByCollectionData {
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   private QueryByCollectionDataAttributes attributes;
 
+  public QueryByCollectionData() { 
+  }
 
   public QueryByCollectionData type(TypeEnum type) {
     

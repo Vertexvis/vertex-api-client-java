@@ -38,6 +38,8 @@ public class CreateTranslationInspectionRequestData {
   @SerializedName(SERIALIZED_NAME_RELATIONSHIPS)
   private CreateGeometrySetRequestDataRelationships relationships;
 
+  public CreateTranslationInspectionRequestData() { 
+  }
 
   public CreateTranslationInspectionRequestData type(String type) {
     

@@ -48,6 +48,8 @@ public class SceneViewItem {
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = null;
 
+  public SceneViewItem() { 
+  }
 
   public SceneViewItem data(SceneItemData data) {
     

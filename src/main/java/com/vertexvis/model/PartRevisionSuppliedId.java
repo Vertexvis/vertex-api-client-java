@@ -37,6 +37,8 @@ public class PartRevisionSuppliedId {
   @SerializedName(SERIALIZED_NAME_SUPPLIED_REVISION_ID)
   private String suppliedRevisionId;
 
+  public PartRevisionSuppliedId() { 
+  }
 
   public PartRevisionSuppliedId suppliedPartId(String suppliedPartId) {
     

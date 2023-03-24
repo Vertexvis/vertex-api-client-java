@@ -38,6 +38,8 @@ public class WebhookEventDataRelationshipsResourceData {
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
 
+  public WebhookEventDataRelationshipsResourceData() { 
+  }
 
   public WebhookEventDataRelationshipsResourceData type(String type) {
     

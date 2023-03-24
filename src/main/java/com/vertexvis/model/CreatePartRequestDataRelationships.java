@@ -20,7 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.AnyOfFileRelationshipPartAssemblyRelationship;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -34,6 +33,8 @@ public class CreatePartRequestDataRelationships {
   @SerializedName(SERIALIZED_NAME_SOURCE)
   private AnyOfFileRelationshipPartAssemblyRelationship source;
 
+  public CreatePartRequestDataRelationships() { 
+  }
 
   public CreatePartRequestDataRelationships source(AnyOfFileRelationshipPartAssemblyRelationship source) {
     
@@ -45,7 +46,7 @@ public class CreatePartRequestDataRelationships {
    * Get source
    * @return source
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @ApiModelProperty(required = true, value = "")
 
   public AnyOfFileRelationshipPartAssemblyRelationship getSource() {

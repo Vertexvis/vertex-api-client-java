@@ -43,6 +43,8 @@ public class UpdateSceneItemOverrideRequestData {
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   private UpdateSceneItemOverrideRequestDataAttributes attributes;
 
+  public UpdateSceneItemOverrideRequestData() { 
+  }
 
   public UpdateSceneItemOverrideRequestData type(String type) {
     

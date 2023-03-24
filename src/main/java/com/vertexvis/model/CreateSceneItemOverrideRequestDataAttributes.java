@@ -47,6 +47,8 @@ public class CreateSceneItemOverrideRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_SELECTED)
   private ColorMaterial selected;
 
+  public CreateSceneItemOverrideRequestDataAttributes() { 
+  }
 
   public CreateSceneItemOverrideRequestDataAttributes visible(Boolean visible) {
     

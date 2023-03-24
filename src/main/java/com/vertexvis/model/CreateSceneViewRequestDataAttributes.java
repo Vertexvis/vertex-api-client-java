@@ -21,7 +21,8 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.CrossSectioning;
-import com.vertexvis.model.OneOfPerspectiveCameraOrthographicCamera;
+import com.vertexvis.model.OrthographicCamera;
+import com.vertexvis.model.PerspectiveCamera;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -40,6 +41,12 @@ public class CreateSceneViewRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_CROSS_SECTIONING)
   private CrossSectioning crossSectioning;
 
+  public static final String SERIALIZED_NAME_EXCLUDE_PRUNED_ITEMS = "excludePrunedItems";
+  @SerializedName(SERIALIZED_NAME_EXCLUDE_PRUNED_ITEMS)
+  private Boolean excludePrunedItems;
+
+  public CreateSceneViewRequestDataAttributes() { 
+  }
 
   public CreateSceneViewRequestDataAttributes camera(OneOfPerspectiveCameraOrthographicCamera camera) {
     
@@ -87,6 +94,29 @@ public class CreateSceneViewRequestDataAttributes {
   }
 
 
+  public CreateSceneViewRequestDataAttributes excludePrunedItems(Boolean excludePrunedItems) {
+    
+    this.excludePrunedItems = excludePrunedItems;
+    return this;
+  }
+
+   /**
+   * Whether to exclude non-visible items in the view
+   * @return excludePrunedItems
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Whether to exclude non-visible items in the view")
+
+  public Boolean getExcludePrunedItems() {
+    return excludePrunedItems;
+  }
+
+
+  public void setExcludePrunedItems(Boolean excludePrunedItems) {
+    this.excludePrunedItems = excludePrunedItems;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -97,25 +127,24 @@ public class CreateSceneViewRequestDataAttributes {
     }
     CreateSceneViewRequestDataAttributes createSceneViewRequestDataAttributes = (CreateSceneViewRequestDataAttributes) o;
     return Objects.equals(this.camera, createSceneViewRequestDataAttributes.camera) &&
-        Objects.equals(this.crossSectioning, createSceneViewRequestDataAttributes.crossSectioning);
+        Objects.equals(this.crossSectioning, createSceneViewRequestDataAttributes.crossSectioning) &&
+        Objects.equals(this.excludePrunedItems, createSceneViewRequestDataAttributes.excludePrunedItems);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && a.get().getClass().isArray() ? Arrays.equals((T[])a.get(), (T[])b.get()) : Objects.equals(a.get(), b.get()));
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(camera, crossSectioning);
+    return Objects.hash(camera, crossSectioning, excludePrunedItems);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
     if (a == null) {
       return 1;
     }
-    return a.isPresent()
-      ? (a.get().getClass().isArray() ? Arrays.hashCode((T[])a.get()) : Objects.hashCode(a.get()))
-      : 31;
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -124,6 +153,7 @@ public class CreateSceneViewRequestDataAttributes {
     sb.append("class CreateSceneViewRequestDataAttributes {\n");
     sb.append("    camera: ").append(toIndentedString(camera)).append("\n");
     sb.append("    crossSectioning: ").append(toIndentedString(crossSectioning)).append("\n");
+    sb.append("    excludePrunedItems: ").append(toIndentedString(excludePrunedItems)).append("\n");
     sb.append("}");
     return sb.toString();
   }

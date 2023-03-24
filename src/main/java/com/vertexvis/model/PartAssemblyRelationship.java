@@ -35,6 +35,8 @@ public class PartAssemblyRelationship {
   @SerializedName(SERIALIZED_NAME_DATA)
   private PartAssemblyRelationshipData data;
 
+  public PartAssemblyRelationship() { 
+  }
 
   public PartAssemblyRelationship data(PartAssemblyRelationshipData data) {
     

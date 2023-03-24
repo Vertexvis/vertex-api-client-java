@@ -34,6 +34,8 @@ public class RevokeOAuth2TokenRequest {
   @SerializedName(SERIALIZED_NAME_DATA)
   private RevokeOAuth2TokenRequestData data;
 
+  public RevokeOAuth2TokenRequest() { 
+  }
 
   public RevokeOAuth2TokenRequest data(RevokeOAuth2TokenRequestData data) {
     

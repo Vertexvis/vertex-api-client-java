@@ -38,6 +38,8 @@ public class AdminCreateApplicationRequestData {
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   private AdminCreateApplicationRequestDataAttributes attributes;
 
+  public AdminCreateApplicationRequestData() { 
+  }
 
   public AdminCreateApplicationRequestData type(String type) {
     

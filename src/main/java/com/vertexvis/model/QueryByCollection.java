@@ -34,6 +34,8 @@ public class QueryByCollection {
   @SerializedName(SERIALIZED_NAME_DATA)
   private QueryByCollectionData data;
 
+  public QueryByCollection() { 
+  }
 
   public QueryByCollection data(QueryByCollectionData data) {
     

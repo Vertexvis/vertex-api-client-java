@@ -38,6 +38,8 @@ public class CreateHitRequestData {
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   private CreateHitRequestDataAttributes attributes;
 
+  public CreateHitRequestData() { 
+  }
 
   public CreateHitRequestData type(String type) {
     

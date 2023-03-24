@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType;
+import com.vertexvis.model.AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType;
 import com.vertexvis.model.ColorMaterial;
 import com.vertexvis.model.Matrix4;
 import com.vertexvis.model.PartRevisionSuppliedId;
@@ -70,8 +70,10 @@ public class CreateSceneItemRequestDataAttributes {
 
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
-  private Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata = null;
+  private Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> metadata = null;
 
+  public CreateSceneItemRequestDataAttributes() { 
+  }
 
   public CreateSceneItemRequestDataAttributes materialOverride(ColorMaterial materialOverride) {
     
@@ -257,13 +259,13 @@ public class CreateSceneItemRequestDataAttributes {
   }
 
 
-  public CreateSceneItemRequestDataAttributes metadata(Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata) {
+  public CreateSceneItemRequestDataAttributes metadata(Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> metadata) {
     
     this.metadata = metadata;
     return this;
   }
 
-  public CreateSceneItemRequestDataAttributes putMetadataItem(String key, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType metadataItem) {
+  public CreateSceneItemRequestDataAttributes putMetadataItem(String key, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType metadataItem) {
     if (this.metadata == null) {
       this.metadata = new HashMap<>();
     }
@@ -278,12 +280,12 @@ public class CreateSceneItemRequestDataAttributes {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Additional metadata for the scene-item. This metadata will take precedence over any metadata that belongs to the part file. ")
 
-  public Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> getMetadata() {
+  public Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> getMetadata() {
     return metadata;
   }
 
 
-  public void setMetadata(Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType> metadata) {
+  public void setMetadata(Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> metadata) {
     this.metadata = metadata;
   }
 

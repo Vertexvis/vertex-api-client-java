@@ -34,6 +34,8 @@ public class CreateApplicationRequest {
   @SerializedName(SERIALIZED_NAME_DATA)
   private CreateAccountRequestData data;
 
+  public CreateApplicationRequest() { 
+  }
 
   public CreateApplicationRequest data(CreateAccountRequestData data) {
     

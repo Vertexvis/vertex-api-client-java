@@ -39,6 +39,8 @@ public class PartRevisionDataRelationships {
   @SerializedName(SERIALIZED_NAME_PART)
   private PartRelationshipData part;
 
+  public PartRevisionDataRelationships() { 
+  }
 
   public PartRevisionDataRelationships geometrySet(GeometrySetRelationshipData geometrySet) {
     

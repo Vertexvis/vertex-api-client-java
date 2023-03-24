@@ -46,6 +46,8 @@ public class QueuedJobDataAttributes {
   @SerializedName(SERIALIZED_NAME_ERRORS)
   private Set<ApiError> errors = null;
 
+  public QueuedJobDataAttributes() { 
+  }
 
   public QueuedJobDataAttributes status(String status) {
     

@@ -38,6 +38,8 @@ public class Dimensions {
   @SerializedName(SERIALIZED_NAME_WIDTH)
   private Integer width;
 
+  public Dimensions() { 
+  }
 
   public Dimensions height(Integer height) {
     

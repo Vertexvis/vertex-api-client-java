@@ -46,8 +46,9 @@ class SceneCreator {
     }
 
     public Scene createSceneFromPart(Part p, boolean commitChanges) throws InterruptedException {
+        assert p.getData().getRelationships() != null;
         UUID revisionId = p.getData().getRelationships().getPartRevisions().get(0).getId();
-        var name = Optional.ofNullable(p.getData().getAttributes()).map(PartDataAttributes::getName).orElse("ACube");
+        var name = Optional.of(p.getData().getAttributes()).map(PartDataAttributes::getName).orElse("ACube");
         Scene scene =
                 scenes.createScene(
                         new CreateSceneRequest()

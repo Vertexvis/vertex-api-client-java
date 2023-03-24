@@ -48,6 +48,8 @@ public class SceneViewData {
   @SerializedName(SERIALIZED_NAME_RELATIONSHIPS)
   private SceneViewDataRelationships relationships;
 
+  public SceneViewData() { 
+  }
 
   public SceneViewData type(String type) {
     
