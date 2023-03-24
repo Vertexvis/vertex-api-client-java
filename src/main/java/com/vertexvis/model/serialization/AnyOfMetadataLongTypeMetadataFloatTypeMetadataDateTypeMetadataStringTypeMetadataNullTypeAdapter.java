@@ -37,66 +37,121 @@ public class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStrin
     @Override
     public AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType read(
             JsonReader in) throws IOException {
+        in.beginObject();
+
+        String stringValue = null;
+        Double doubleValue = null;
+        String typeValue = null;
+        while (in.hasNext() && (stringValue == null || typeValue == null)) {
+            var name = in.nextName();
+            if (name.equals("type")) {
+                typeValue = in.nextString();
+            }
+            else if (name.equals("value")) {
+                var token = in.peek();
+                switch (token) {
+                    case NUMBER:
+                        doubleValue = in.nextDouble();
+                        break;
+                    case STRING:
+                        stringValue = in.nextString();
+                        break;
+                    default:
+                        throw new UnsupportedOperationException("Unexpected token");
+                }
+            }
+            else {
+                in.skipValue();
+            }
+        }
+
+        if (typeValue == null || (stringValue == null && doubleValue == null && !typeValue.equals("null"))) {
+            throw new UnsupportedOperationException("Missing fields");
+        }
+
         AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType
                 retval = null;
 
-        in.beginObject();
+        // The type field always wins in case of ambiguity.
+        switch (typeValue) {
+            case "null":
+                if ( !(stringValue == null && doubleValue == null) ) {
+                    throw new UnsupportedOperationException("Value type mismatch");
+                }
 
-        if (!in.hasNext()) {
-            retval =
-                    new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType(
-                            new MetadataNullType());
-        }
+                retval =
+                        new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType(
+                                new MetadataNullType());
+                break;
+            case "long":
+                Long longValue = null;
+                if (doubleValue != null) {
+                    var casted = doubleValue.longValue();
+                    if (((double) casted) != doubleValue) {
+                        throw new UnsupportedOperationException("Value type mismatch");
+                    }
+                    longValue = casted;
+                }
+                else {
+                    try {
+                        longValue = Long.parseLong(stringValue);
+                    }
+                    catch (Exception ignored) {
+                        throw new UnsupportedOperationException("Value type mismatch");
+                    }
+                }
 
-        if (retval == null) {
-            if (!Objects.equals(in.nextName(), "value")) {
-                throw new UnsupportedOperationException("Missing 'value' field");
-            }
-        }
-
-        if (retval == null) {
-            try {
-                var longValue = in.nextLong();
                 retval =
                         new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType(
                                 new MetadataLongType().value(longValue));
-            }
-            catch (Exception ignored) {
-            }
-        }
+                break;
+            case "float":
+                Float floatValue = null;
+                if (doubleValue != null) {
+                    floatValue = doubleValue.floatValue();
+                }
+                else {
+                    try {
+                        floatValue = Float.parseFloat(stringValue);
+                    }
+                    catch (Exception ignored) {
+                        throw new UnsupportedOperationException("Value type mismatch");
+                    }
+                }
 
-        if (retval == null) {
-            try {
-                var floatValue = in.nextDouble();
                 retval =
                         new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType(
-                                new MetadataFloatType().value((float)floatValue));
-            }
-            catch (Exception ignored) {
-            }
-        }
-
-        if (retval == null) {
-            final var stringValue = in.nextString();
-            if (retval == null) {
-                try {
-                    var dateTimeValue = OffsetDateTime.parse(stringValue);
-                    retval =
-                            new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType(
-                                    new MetadataDateType().value(dateTimeValue));
+                                new MetadataFloatType().value(floatValue));
+                break;
+            case "date":
+                OffsetDateTime dateTimeValue = null;
+                if (stringValue != null) {
+                    try {
+                        dateTimeValue = OffsetDateTime.parse(stringValue);
+                    }
+                    catch (Exception ignored) {
+                        throw new UnsupportedOperationException("Value type mismatch");
+                    }
                 }
-                catch (Exception ignored) {
+                else {
+                    throw new UnsupportedOperationException("Value type mismatch");
                 }
-            }
 
-            if (retval == null) {
+                retval =
+                        new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType(
+                                new MetadataDateType().value(dateTimeValue));
+                break;
+            case "string":
                 retval =
                         new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType(
                                 new MetadataStringType().value(stringValue));
-            }
+                break;
+            default:
+                throw new UnsupportedOperationException("Unknown metadata type");
         }
 
         in.endObject();
+
         return retval;
     }
 }

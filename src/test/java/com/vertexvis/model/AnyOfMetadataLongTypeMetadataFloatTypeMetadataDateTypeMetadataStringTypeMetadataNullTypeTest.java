@@ -15,16 +15,16 @@ class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMe
     void serializeMetadataFloatType() {
         var md =
                 new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType(
-                        new MetadataFloatType().value(123.456f));
+                        new MetadataFloatType().type("float").value(123.456f));
 
-        String expected = "{\"value\":123.456}";
+        String expected = "{\"type\":\"float\",\"value\":123.456}";
         String observed = new JSON().serialize(md);
         assertEquals(expected, observed);
     }
 
     @Test
     void deserializeMetadataFloatType() {
-        String json = "{\"value\":123.456}";
+        String json = "{\"type\":\"float\",\"value\":123.456}";
         var out = deserializeAnyOf(json);
 
         assertTrue(
@@ -39,16 +39,16 @@ class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMe
     void serializeMetadataLongType() {
         var md =
                 new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType(
-                        new MetadataLongType().value(1234567890L));
+                        new MetadataLongType().type("long").value(1234567890L));
 
-        String expected = "{\"value\":1234567890}";
+        String expected = "{\"type\":\"long\",\"value\":1234567890}";
         String observed = new JSON().serialize(md);
         assertEquals(expected, observed);
     }
 
     @Test
     void deserializeMetadataLongType() {
-        String json = "{\"value\":1234567890}";
+        String json = "{\"type\":\"long\",\"value\":1234567890}";
         var out = deserializeAnyOf(json);
 
         assertTrue(
@@ -64,16 +64,16 @@ class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMe
         var expectedDate = OffsetDateTime.of(2023, 1, 2, 3, 4, 5, 6, ZoneOffset.ofHours(7));
         var md =
                 new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType(
-                        new MetadataDateType().value(expectedDate));
+                        new MetadataDateType().type("date").value(expectedDate));
 
-        String expected = "{\"value\":\"2023-01-02T03:04:05.000000006+07:00\"}";
+        String expected = "{\"type\":\"date\",\"value\":\"2023-01-02T03:04:05.000000006+07:00\"}";
         String observed = new JSON().serialize(md);
         assertEquals(expected, observed);
     }
 
     @Test
     void deserializeMetadataDateType() {
-        String json = "{\"value\":\"2023-01-02T03:04:05.000000006+07:00\"}";
+        String json = "{\"type\":\"date\",\"value\":\"2023-01-02T03:04:05.000000006+07:00\"}";
         var expectedDate = OffsetDateTime.of(2023, 1, 2, 3, 4, 5, 6, ZoneOffset.ofHours(7));
         var out = deserializeAnyOf(json);
 
@@ -89,16 +89,16 @@ class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMe
     void serializeMetadataStringType() {
         var md =
                 new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType(
-                        new MetadataStringType().value("Hello world"));
+                        new MetadataStringType().type("string").value("Hello world"));
 
-        String expected = "{\"value\":\"Hello world\"}";
+        String expected = "{\"type\":\"string\",\"value\":\"Hello world\"}";
         String observed = new JSON().serialize(md);
         assertEquals(expected, observed);
     }
 
     @Test
     void deserializeMetadataStringType() {
-        String json = "{\"value\":\"Hello world\"}";
+        String json = "{\"type\":\"string\",\"value\":\"Hello world\"}";
         var out = deserializeAnyOf(json);
 
         assertTrue(
@@ -114,16 +114,16 @@ class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMe
     void serializeMetadataNullType() {
         var md =
                 new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType(
-                        new MetadataNullType());
+                        new MetadataNullType().type("null"));
 
-        String expected = "{}";
+        String expected = "{\"type\":\"null\"}";
         String observed = new JSON().serialize(md);
         assertEquals(expected, observed);
     }
 
     @Test
     void deserializeMetadataNullType() {
-        String json = "{}";
+        String json = "{\"type\":\"null\"}";
         var out = deserializeAnyOf(json);
 
         assertTrue(
@@ -135,8 +135,12 @@ class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMe
 
     @Test
     void deserializeFails() {
-        String json = "{ number: 1 }";
+        String json = "{\"type\":\"long\",\"value\":1234.567890}";
         assertThrows(UnsupportedOperationException.class, () -> deserializeAnyOf(json));
+        String json2 = "{\"type\":\"date\",\"value\":1234.567890}";
+        assertThrows(UnsupportedOperationException.class, () -> deserializeAnyOf(json2));
+        String json3 = "{\"type\":\"null\",\"value\":1234.567890}";
+        assertThrows(UnsupportedOperationException.class, () -> deserializeAnyOf(json3));
     }
 
     private static Object deserializeAnyOf(String json) {
