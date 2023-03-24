@@ -13,7 +13,6 @@ import com.vertexvis.model.MetadataStringType;
 
 import java.io.IOException;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.function.Supplier;
 
 public class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullTypeAdapter
@@ -42,7 +41,8 @@ public class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStrin
         String stringValue = null;
         Double doubleValue = null;
         String typeValue = null;
-        while (in.hasNext() && (stringValue == null || typeValue == null)) {
+        while (in.hasNext() && ((stringValue == null && doubleValue == null)
+                || typeValue == null)) {
             var name = in.nextName();
             if (name.equals("type")) {
                 typeValue = in.nextString();
@@ -65,7 +65,8 @@ public class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStrin
             }
         }
 
-        if (typeValue == null || (stringValue == null && doubleValue == null && !typeValue.equals("null"))) {
+        if (typeValue == null || (stringValue == null && doubleValue == null && !typeValue.equals(
+                "null"))) {
             throw new UnsupportedOperationException("Missing fields");
         }
 
@@ -75,7 +76,7 @@ public class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStrin
         // The type field always wins in case of ambiguity.
         switch (typeValue) {
             case "null":
-                if ( !(stringValue == null && doubleValue == null) ) {
+                if (!(stringValue == null && doubleValue == null)) {
                     throw new UnsupportedOperationException("Value type mismatch");
                 }
 
