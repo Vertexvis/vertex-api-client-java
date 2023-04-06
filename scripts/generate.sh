@@ -23,7 +23,6 @@ main() {
                 OneOfHitResultDataSceneItemDataPartRevisionData.java \
                 OneOfSceneViewRelationshipSceneViewStateRelationship.java \
                 AnyOfGeometrySetRelationshipPartRevisionRelationship.java \
-                AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType.java \
                 AnyOfFileRelationshipPartAssemblyRelationship.java )
   mv "src/test" . || true
   for f in "${root[@]}"; do mv "src/main/java/com/vertexvis/$f" . || true; done

@@ -33,6 +33,8 @@ class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMe
                 (AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType) out;
         assertTrue(anyOf.isMetadataFloatType());
         assertEquals(123.456f, Objects.requireNonNull(anyOf.getMetadataFloatType()).getValue());
+        assertEquals("float",
+                Objects.requireNonNull(anyOf.getMetadataFloatType()).getType());
     }
 
     @Test
@@ -57,6 +59,8 @@ class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMe
                 (AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType) out;
         assertTrue(anyOf.isMetadataLongType());
         assertEquals(1234567890, Objects.requireNonNull(anyOf.getMetadataLongType()).getValue());
+        assertEquals("long",
+                Objects.requireNonNull(anyOf.getMetadataLongType()).getType());
     }
 
     @Test
@@ -83,6 +87,8 @@ class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMe
                 (AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType) out;
         assertTrue(anyOf.isMetadataDateType());
         assertEquals(expectedDate, Objects.requireNonNull(anyOf.getMetadataDateType()).getValue());
+        assertEquals("date",
+                Objects.requireNonNull(anyOf.getMetadataDateType()).getType());
     }
 
     @Test
@@ -108,6 +114,8 @@ class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMe
         assertTrue(anyOf.isMetadataStringType());
         assertEquals("Hello world",
                 Objects.requireNonNull(anyOf.getMetadataStringType()).getValue());
+        assertEquals("string",
+                Objects.requireNonNull(anyOf.getMetadataStringType()).getType());
     }
 
     @Test
@@ -142,6 +150,18 @@ class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMe
         String json3 = "{\"type\":\"null\",\"value\":1234.567890}";
         assertThrows(UnsupportedOperationException.class, () -> deserializeAnyOf(json3));
     }
+
+    @Test
+    void serializeUpdateSceneItemRequestDataAttributes() {
+        var md =
+                new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType(
+                        new MetadataStringType().type("string").value("Hello world"));
+        var map = new UpdateSceneItemRequestDataAttributes().putMetadataItem("key", md);
+        String observed = new JSON().serialize(map);
+        String expected = "{\"metadata\":{\"key\":{\"type\":\"string\",\"value\":\"Hello world\"}}}";
+        assertEquals(expected, observed);
+    }
+
 
     private static Object deserializeAnyOf(String json) {
         return new JSON().deserialize(json,

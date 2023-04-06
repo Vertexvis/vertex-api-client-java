@@ -8,7 +8,6 @@ import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.AnyOfFileRelationshipPartAssemblyRelationship;
 import com.vertexvis.model.AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType;
-import com.vertexvis.model.AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType;
 import com.vertexvis.model.FileRelationship;
 import com.vertexvis.model.FileRelationshipData;
 import com.vertexvis.model.PartAssemblyRelationship;
@@ -21,7 +20,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Supplier;
 
@@ -44,11 +42,8 @@ public class AnyOfFileRelationshipPartAssemblyRelationshipTypeAdapter extends Ty
 
     @Override
     public AnyOfFileRelationshipPartAssemblyRelationship read(JsonReader in) throws IOException {
-        Optional<AnyOfFileRelationshipPartAssemblyRelationship> anyof = Optional.empty();
         List<PartRevisionInstance> partRevisionInstances = new ArrayList<>();
         Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> metadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullTypeHashMap = new HashMap<>();
-        PartAssemblyRelationship partAssemblyRelationship;
-        FileRelationship fileRelationship;
         FileRelationshipData.TypeEnum typeEnum = null;
         UUID fileId = null;
         boolean isPartAssemblyRelationship = false;
@@ -71,7 +66,7 @@ public class AnyOfFileRelationshipPartAssemblyRelationshipTypeAdapter extends Ty
                     fileId = UUID.fromString(in.nextString());
                     break;
                 case "metadata":
-                    Type goingToFail = new TypeToken<Map<String, AnyOfMetadataStringTypeMetadataFloatTypeMetadataNullType>>() {
+                    Type goingToFail = new TypeToken<Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType>>() {
                     }.getType();
                     try {
                         metadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullTypeHashMap = gsonSupplier.get().fromJson(in, goingToFail);

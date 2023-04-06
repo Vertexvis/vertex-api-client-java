@@ -82,7 +82,7 @@ public class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStrin
 
                 retval =
                         new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType(
-                                new MetadataNullType());
+                                new MetadataNullType().type(typeValue));
                 break;
             case "long":
                 Long longValue = null;
@@ -104,7 +104,7 @@ public class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStrin
 
                 retval =
                         new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType(
-                                new MetadataLongType().value(longValue));
+                                new MetadataLongType().value(longValue).type(typeValue));
                 break;
             case "float":
                 Float floatValue = null;
@@ -122,7 +122,7 @@ public class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStrin
 
                 retval =
                         new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType(
-                                new MetadataFloatType().value(floatValue));
+                                new MetadataFloatType().value(floatValue).type(typeValue));
                 break;
             case "date":
                 OffsetDateTime dateTimeValue = null;
@@ -140,12 +140,12 @@ public class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStrin
 
                 retval =
                         new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType(
-                                new MetadataDateType().value(dateTimeValue));
+                                new MetadataDateType().value(dateTimeValue).type(typeValue));
                 break;
             case "string":
                 retval =
                         new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType(
-                                new MetadataStringType().value(stringValue));
+                                new MetadataStringType().value(stringValue).type(typeValue));
                 break;
             default:
                 throw new UnsupportedOperationException("Unknown metadata type");
