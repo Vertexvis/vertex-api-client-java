@@ -3260,14 +3260,14 @@ paths:
           $ref: '#/components/schemas/Uuid'
         style: simple
       - description: Comma-separated list of fields to return in response. An empty
-          value returns no fields. `boundingBox` and `metadata` are only returned
-          if explicitly requested.
+          value returns no fields. `boundingBox`, `worldTransform` and `metadata`
+          are only returned if explicitly requested.
         explode: true
         in: query
         name: fields[scene-item]
         required: false
         schema:
-          example: created,suppliedId,visible,transform,materialOverride,boundingBox,metadata
+          example: created,suppliedId,visible,transform,worldTransform,materialOverride,boundingBox,metadata
           type: string
         style: form
       responses:
@@ -4035,14 +4035,14 @@ paths:
           $ref: '#/components/schemas/Uuid'
         style: simple
       - description: Comma-separated list of fields to return in response. An empty
-          value returns no fields. `boundingBox` and `metadata` are only returned
-          if explicitly requested.
+          value returns no fields. `boundingBox`, `worldTransform` and `metadata`
+          are only returned if explicitly requested.
         explode: true
         in: query
         name: fields[scene-item]
         required: false
         schema:
-          example: created,suppliedId,visible,transform,materialOverride,boundingBox,metadata
+          example: created,suppliedId,visible,transform,worldTransform,materialOverride,boundingBox,metadata
           type: string
         style: form
       - description: Comma-separated list of relationships to include in response.
@@ -6493,14 +6493,14 @@ components:
       style: simple
     SceneItemFields:
       description: Comma-separated list of fields to return in response. An empty
-        value returns no fields. `boundingBox` and `metadata` are only returned if
-        explicitly requested.
+        value returns no fields. `boundingBox`, `worldTransform` and `metadata` are
+        only returned if explicitly requested.
       explode: true
       in: query
       name: fields[scene-item]
       required: false
       schema:
-        example: created,suppliedId,visible,transform,materialOverride,boundingBox,metadata
+        example: created,suppliedId,visible,transform,worldTransform,materialOverride,boundingBox,metadata
         type: string
       style: form
     SceneItemOverrideId:
