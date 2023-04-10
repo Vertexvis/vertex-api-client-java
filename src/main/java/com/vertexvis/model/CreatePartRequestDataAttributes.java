@@ -53,6 +53,10 @@ public class CreatePartRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
 
+  public static final String SERIALIZED_NAME_REVISION_NAME = "revisionName";
+  @SerializedName(SERIALIZED_NAME_REVISION_NAME)
+  private String revisionName;
+
   public static final String SERIALIZED_NAME_SUPPLIED_ID_KEY = "suppliedIdKey";
   @SerializedName(SERIALIZED_NAME_SUPPLIED_ID_KEY)
   private String suppliedIdKey;
@@ -191,6 +195,29 @@ public class CreatePartRequestDataAttributes {
   }
 
 
+  public CreatePartRequestDataAttributes revisionName(String revisionName) {
+    
+    this.revisionName = revisionName;
+    return this;
+  }
+
+   /**
+   * Optional name to be used for the part revision.
+   * @return revisionName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "1/2in. Flat Washer - A", value = "Optional name to be used for the part revision.")
+
+  public String getRevisionName() {
+    return revisionName;
+  }
+
+
+  public void setRevisionName(String revisionName) {
+    this.revisionName = revisionName;
+  }
+
+
   public CreatePartRequestDataAttributes suppliedIdKey(String suppliedIdKey) {
     
     this.suppliedIdKey = suppliedIdKey;
@@ -274,6 +301,7 @@ public class CreatePartRequestDataAttributes {
         Objects.equals(this.indexMetadata, createPartRequestDataAttributes.indexMetadata) &&
         Objects.equals(this.metadata, createPartRequestDataAttributes.metadata) &&
         Objects.equals(this.name, createPartRequestDataAttributes.name) &&
+        Objects.equals(this.revisionName, createPartRequestDataAttributes.revisionName) &&
         Objects.equals(this.suppliedIdKey, createPartRequestDataAttributes.suppliedIdKey) &&
         Objects.equals(this.suppliedRevisionIdKey, createPartRequestDataAttributes.suppliedRevisionIdKey) &&
         Objects.equals(this.suppliedInstanceIdKey, createPartRequestDataAttributes.suppliedInstanceIdKey);
@@ -281,7 +309,7 @@ public class CreatePartRequestDataAttributes {
 
   @Override
   public int hashCode() {
-    return Objects.hash(suppliedId, suppliedRevisionId, indexMetadata, metadata, name, suppliedIdKey, suppliedRevisionIdKey, suppliedInstanceIdKey);
+    return Objects.hash(suppliedId, suppliedRevisionId, indexMetadata, metadata, name, revisionName, suppliedIdKey, suppliedRevisionIdKey, suppliedInstanceIdKey);
   }
 
   @Override
@@ -293,6 +321,7 @@ public class CreatePartRequestDataAttributes {
     sb.append("    indexMetadata: ").append(toIndentedString(indexMetadata)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    revisionName: ").append(toIndentedString(revisionName)).append("\n");
     sb.append("    suppliedIdKey: ").append(toIndentedString(suppliedIdKey)).append("\n");
     sb.append("    suppliedRevisionIdKey: ").append(toIndentedString(suppliedRevisionIdKey)).append("\n");
     sb.append("    suppliedInstanceIdKey: ").append(toIndentedString(suppliedInstanceIdKey)).append("\n");
