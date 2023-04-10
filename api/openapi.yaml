@@ -9550,6 +9550,11 @@ components:
           example: 1/2in. Flat Washer
           maxLength: 255
           type: string
+        revisionName:
+          description: Optional name to be used for the part revision.
+          example: 1/2in. Flat Washer - A
+          maxLength: 255
+          type: string
         suppliedIdKey:
           description: Metadata key used to extract an ID used for correlation.
           example: ProductNumber
@@ -10327,6 +10332,11 @@ components:
             - $ref: '#/components/schemas/MetadataNullType'
           type: object
         suppliedId:
+          example: some-string
+          maxLength: 1024
+          minLength: 1
+          type: string
+        name:
           example: some-string
           maxLength: 1024
           minLength: 1

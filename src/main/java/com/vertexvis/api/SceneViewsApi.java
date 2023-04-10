@@ -664,7 +664,7 @@ public class SceneViewsApi {
      * Build call for getViewSceneItem
      * @param id The &#x60;scene-view&#x60; ID. (required)
      * @param itemId The &#x60;scene-item&#x60; ID. (required)
-     * @param fieldsSceneItem Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;boundingBox&#x60; and &#x60;metadata&#x60; are only returned if explicitly requested. (optional)
+     * @param fieldsSceneItem Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;boundingBox&#x60;, &#x60;worldTransform&#x60; and &#x60;metadata&#x60; are only returned if explicitly requested. (optional)
      * @param include Comma-separated list of relationships to include in response. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -758,7 +758,7 @@ public class SceneViewsApi {
      * Get a &#x60;scene-item&#x60; within a view by ID.
      * @param id The &#x60;scene-view&#x60; ID. (required)
      * @param itemId The &#x60;scene-item&#x60; ID. (required)
-     * @param fieldsSceneItem Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;boundingBox&#x60; and &#x60;metadata&#x60; are only returned if explicitly requested. (optional)
+     * @param fieldsSceneItem Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;boundingBox&#x60;, &#x60;worldTransform&#x60; and &#x60;metadata&#x60; are only returned if explicitly requested. (optional)
      * @param include Comma-separated list of relationships to include in response. (optional)
      * @return SceneViewItem
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -781,7 +781,7 @@ public class SceneViewsApi {
      * Get a &#x60;scene-item&#x60; within a view by ID.
      * @param id The &#x60;scene-view&#x60; ID. (required)
      * @param itemId The &#x60;scene-item&#x60; ID. (required)
-     * @param fieldsSceneItem Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;boundingBox&#x60; and &#x60;metadata&#x60; are only returned if explicitly requested. (optional)
+     * @param fieldsSceneItem Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;boundingBox&#x60;, &#x60;worldTransform&#x60; and &#x60;metadata&#x60; are only returned if explicitly requested. (optional)
      * @param include Comma-separated list of relationships to include in response. (optional)
      * @return ApiResponse&lt;SceneViewItem&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -805,7 +805,7 @@ public class SceneViewsApi {
      * Get a &#x60;scene-item&#x60; within a view by ID.
      * @param id The &#x60;scene-view&#x60; ID. (required)
      * @param itemId The &#x60;scene-item&#x60; ID. (required)
-     * @param fieldsSceneItem Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;boundingBox&#x60; and &#x60;metadata&#x60; are only returned if explicitly requested. (optional)
+     * @param fieldsSceneItem Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;boundingBox&#x60;, &#x60;worldTransform&#x60; and &#x60;metadata&#x60; are only returned if explicitly requested. (optional)
      * @param include Comma-separated list of relationships to include in response. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
