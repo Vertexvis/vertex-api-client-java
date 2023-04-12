@@ -26,6 +26,9 @@ import com.vertexvis.model.PerspectiveCamera;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -52,6 +55,10 @@ public class CreateSceneRequestDataAttributes {
   public static final String SERIALIZED_NAME_WORLD_ORIENTATION = "worldOrientation";
   @SerializedName(SERIALIZED_NAME_WORLD_ORIENTATION)
   private Orientation worldOrientation;
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  private Map<String, String> metadata = null;
 
   public CreateSceneRequestDataAttributes() { 
   }
@@ -171,6 +178,37 @@ public class CreateSceneRequestDataAttributes {
   }
 
 
+  public CreateSceneRequestDataAttributes metadata(Map<String, String> metadata) {
+    
+    this.metadata = metadata;
+    return this;
+  }
+
+  public CreateSceneRequestDataAttributes putMetadataItem(String key, String metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+   /**
+   * Get metadata
+   * @return metadata
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Map<String, String> getMetadata() {
+    return metadata;
+  }
+
+
+  public void setMetadata(Map<String, String> metadata) {
+    this.metadata = metadata;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -184,7 +222,8 @@ public class CreateSceneRequestDataAttributes {
         Objects.equals(this.suppliedId, createSceneRequestDataAttributes.suppliedId) &&
         Objects.equals(this.name, createSceneRequestDataAttributes.name) &&
         Objects.equals(this.treeEnabled, createSceneRequestDataAttributes.treeEnabled) &&
-        Objects.equals(this.worldOrientation, createSceneRequestDataAttributes.worldOrientation);
+        Objects.equals(this.worldOrientation, createSceneRequestDataAttributes.worldOrientation) &&
+        Objects.equals(this.metadata, createSceneRequestDataAttributes.metadata);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -193,7 +232,7 @@ public class CreateSceneRequestDataAttributes {
 
   @Override
   public int hashCode() {
-    return Objects.hash(camera, suppliedId, name, treeEnabled, worldOrientation);
+    return Objects.hash(camera, suppliedId, name, treeEnabled, worldOrientation, metadata);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -212,6 +251,7 @@ public class CreateSceneRequestDataAttributes {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    treeEnabled: ").append(toIndentedString(treeEnabled)).append("\n");
     sb.append("    worldOrientation: ").append(toIndentedString(worldOrientation)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
   }
