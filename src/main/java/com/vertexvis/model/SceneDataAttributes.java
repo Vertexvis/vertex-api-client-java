@@ -27,6 +27,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -69,6 +72,10 @@ public class SceneDataAttributes {
   public static final String SERIALIZED_NAME_SCENE_ITEM_COUNT = "sceneItemCount";
   @SerializedName(SERIALIZED_NAME_SCENE_ITEM_COUNT)
   private Integer sceneItemCount;
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  private Map<String, String> metadata = null;
 
   public SceneDataAttributes() { 
   }
@@ -280,6 +287,37 @@ public class SceneDataAttributes {
   }
 
 
+  public SceneDataAttributes metadata(Map<String, String> metadata) {
+    
+    this.metadata = metadata;
+    return this;
+  }
+
+  public SceneDataAttributes putMetadataItem(String key, String metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+   /**
+   * Get metadata
+   * @return metadata
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Map<String, String> getMetadata() {
+    return metadata;
+  }
+
+
+  public void setMetadata(Map<String, String> metadata) {
+    this.metadata = metadata;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -297,7 +335,8 @@ public class SceneDataAttributes {
         Objects.equals(this.treeEnabled, sceneDataAttributes.treeEnabled) &&
         Objects.equals(this.modified, sceneDataAttributes.modified) &&
         Objects.equals(this.worldOrientation, sceneDataAttributes.worldOrientation) &&
-        Objects.equals(this.sceneItemCount, sceneDataAttributes.sceneItemCount);
+        Objects.equals(this.sceneItemCount, sceneDataAttributes.sceneItemCount) &&
+        Objects.equals(this.metadata, sceneDataAttributes.metadata);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -306,7 +345,7 @@ public class SceneDataAttributes {
 
   @Override
   public int hashCode() {
-    return Objects.hash(camera, state, created, suppliedId, name, treeEnabled, modified, worldOrientation, sceneItemCount);
+    return Objects.hash(camera, state, created, suppliedId, name, treeEnabled, modified, worldOrientation, sceneItemCount, metadata);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -329,6 +368,7 @@ public class SceneDataAttributes {
     sb.append("    modified: ").append(toIndentedString(modified)).append("\n");
     sb.append("    worldOrientation: ").append(toIndentedString(worldOrientation)).append("\n");
     sb.append("    sceneItemCount: ").append(toIndentedString(sceneItemCount)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
   }

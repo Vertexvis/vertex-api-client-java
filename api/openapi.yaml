@@ -4295,6 +4295,17 @@ paths:
           maxLength: 1024
           type: string
         style: form
+      - description: Comma-separated list of fields to return in response. An empty
+          value returns no fields. `sceneItemCount` and `metadata` are only returned
+          if explicitly requested.
+        explode: true
+        in: query
+        name: fields[scene]
+        required: false
+        schema:
+          example: camera,state,created,suppliedId,name,treeEnabled,modified,up,sceneItemCount,metadata
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -4459,14 +4470,14 @@ paths:
           $ref: '#/components/schemas/Uuid'
         style: simple
       - description: Comma-separated list of fields to return in response. An empty
-          value returns no fields. `sceneItemCount` is only returned if explicitly
-          requested.
+          value returns no fields. `sceneItemCount` and `metadata` are only returned
+          if explicitly requested.
         explode: true
         in: query
         name: fields[scene]
         required: false
         schema:
-          example: camera,state,created,suppliedId,name,treeEnabled,modified,up,sceneItemCount
+          example: camera,state,created,suppliedId,name,treeEnabled,modified,up,sceneItemCount,metadata
           type: string
         style: form
       responses:
@@ -6462,13 +6473,14 @@ components:
       style: simple
     SceneFields:
       description: Comma-separated list of fields to return in response. An empty
-        value returns no fields. `sceneItemCount` is only returned if explicitly requested.
+        value returns no fields. `sceneItemCount` and `metadata` are only returned
+        if explicitly requested.
       explode: true
       in: query
       name: fields[scene]
       required: false
       schema:
-        example: camera,state,created,suppliedId,name,treeEnabled,modified,up,sceneItemCount
+        example: camera,state,created,suppliedId,name,treeEnabled,modified,up,sceneItemCount,metadata
         type: string
       style: form
     SceneViewStateFields:
@@ -9828,6 +9840,12 @@ components:
           type: boolean
         worldOrientation:
           $ref: '#/components/schemas/Orientation'
+        metadata:
+          additionalProperties:
+            maxLength: 256
+            minLength: 0
+            type: string
+          type: object
       type: object
     CreateSceneRequest_data_relationships:
       properties:
@@ -9882,6 +9900,12 @@ components:
           type: boolean
         worldOrientation:
           $ref: '#/components/schemas/Orientation'
+        metadata:
+          additionalProperties:
+            maxLength: 256
+            minLength: 0
+            type: string
+          type: object
       type: object
     UpdateSceneRequest_data:
       properties:
@@ -10615,6 +10639,10 @@ components:
             to be explicitly requested)
           example: 100
           type: integer
+        metadata:
+          additionalProperties:
+            type: string
+          type: object
       type: object
     SceneRelationship_data:
       properties:
