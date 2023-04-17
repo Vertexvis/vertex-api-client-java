@@ -653,6 +653,7 @@ public class ScenesApi {
      * @param filterName Comma-separated list of names to filter on. (optional)
      * @param filterSuppliedId Comma-separated list of supplied IDs to filter on. (optional)
      * @param fieldsScene Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;sceneItemCount&#x60; and &#x60;metadata&#x60; are only returned if explicitly requested. (optional)
+     * @param filterMetadata Filter scenes that contain all the given metadata key-value pairs. Should be specified in query parameter map notation: &#x60;filter[metadata][key1]&#x3D;value1&amp;filter[metadata][key]&#x3D;value2&#x60;.  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -664,7 +665,7 @@ public class ScenesApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getScenesCall(String pageCursor, Integer pageSize, String filterName, String filterSuppliedId, String fieldsScene, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getScenesCall(String pageCursor, Integer pageSize, String filterName, String filterSuppliedId, String fieldsScene, Map<String, String> filterMetadata, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
         // Operation Servers
@@ -710,6 +711,10 @@ public class ScenesApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("fields[scene]", fieldsScene));
         }
 
+        if (filterMetadata != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("filter[metadata]", filterMetadata));
+        }
+
         final String[] localVarAccepts = {
             "application/vnd.api+json"
         };
@@ -731,10 +736,10 @@ public class ScenesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getScenesValidateBeforeCall(String pageCursor, Integer pageSize, String filterName, String filterSuppliedId, String fieldsScene, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getScenesValidateBeforeCall(String pageCursor, Integer pageSize, String filterName, String filterSuppliedId, String fieldsScene, Map<String, String> filterMetadata, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = getScenesCall(pageCursor, pageSize, filterName, filterSuppliedId, fieldsScene, _callback);
+        okhttp3.Call localVarCall = getScenesCall(pageCursor, pageSize, filterName, filterSuppliedId, fieldsScene, filterMetadata, _callback);
         return localVarCall;
 
     }
@@ -747,6 +752,7 @@ public class ScenesApi {
      * @param filterName Comma-separated list of names to filter on. (optional)
      * @param filterSuppliedId Comma-separated list of supplied IDs to filter on. (optional)
      * @param fieldsScene Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;sceneItemCount&#x60; and &#x60;metadata&#x60; are only returned if explicitly requested. (optional)
+     * @param filterMetadata Filter scenes that contain all the given metadata key-value pairs. Should be specified in query parameter map notation: &#x60;filter[metadata][key1]&#x3D;value1&amp;filter[metadata][key]&#x3D;value2&#x60;.  (optional)
      * @return SceneList
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -757,8 +763,8 @@ public class ScenesApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public SceneList getScenes(String pageCursor, Integer pageSize, String filterName, String filterSuppliedId, String fieldsScene) throws ApiException {
-        ApiResponse<SceneList> localVarResp = getScenesWithHttpInfo(pageCursor, pageSize, filterName, filterSuppliedId, fieldsScene);
+    public SceneList getScenes(String pageCursor, Integer pageSize, String filterName, String filterSuppliedId, String fieldsScene, Map<String, String> filterMetadata) throws ApiException {
+        ApiResponse<SceneList> localVarResp = getScenesWithHttpInfo(pageCursor, pageSize, filterName, filterSuppliedId, fieldsScene, filterMetadata);
         return localVarResp.getData();
     }
 
@@ -770,6 +776,7 @@ public class ScenesApi {
      * @param filterName Comma-separated list of names to filter on. (optional)
      * @param filterSuppliedId Comma-separated list of supplied IDs to filter on. (optional)
      * @param fieldsScene Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;sceneItemCount&#x60; and &#x60;metadata&#x60; are only returned if explicitly requested. (optional)
+     * @param filterMetadata Filter scenes that contain all the given metadata key-value pairs. Should be specified in query parameter map notation: &#x60;filter[metadata][key1]&#x3D;value1&amp;filter[metadata][key]&#x3D;value2&#x60;.  (optional)
      * @return ApiResponse&lt;SceneList&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -780,8 +787,8 @@ public class ScenesApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SceneList> getScenesWithHttpInfo(String pageCursor, Integer pageSize, String filterName, String filterSuppliedId, String fieldsScene) throws ApiException {
-        okhttp3.Call localVarCall = getScenesValidateBeforeCall(pageCursor, pageSize, filterName, filterSuppliedId, fieldsScene, null);
+    public ApiResponse<SceneList> getScenesWithHttpInfo(String pageCursor, Integer pageSize, String filterName, String filterSuppliedId, String fieldsScene, Map<String, String> filterMetadata) throws ApiException {
+        okhttp3.Call localVarCall = getScenesValidateBeforeCall(pageCursor, pageSize, filterName, filterSuppliedId, fieldsScene, filterMetadata, null);
         Type localVarReturnType = new TypeToken<SceneList>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -794,6 +801,7 @@ public class ScenesApi {
      * @param filterName Comma-separated list of names to filter on. (optional)
      * @param filterSuppliedId Comma-separated list of supplied IDs to filter on. (optional)
      * @param fieldsScene Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;sceneItemCount&#x60; and &#x60;metadata&#x60; are only returned if explicitly requested. (optional)
+     * @param filterMetadata Filter scenes that contain all the given metadata key-value pairs. Should be specified in query parameter map notation: &#x60;filter[metadata][key1]&#x3D;value1&amp;filter[metadata][key]&#x3D;value2&#x60;.  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -805,9 +813,9 @@ public class ScenesApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getScenesAsync(String pageCursor, Integer pageSize, String filterName, String filterSuppliedId, String fieldsScene, final ApiCallback<SceneList> _callback) throws ApiException {
+    public okhttp3.Call getScenesAsync(String pageCursor, Integer pageSize, String filterName, String filterSuppliedId, String fieldsScene, Map<String, String> filterMetadata, final ApiCallback<SceneList> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getScenesValidateBeforeCall(pageCursor, pageSize, filterName, filterSuppliedId, fieldsScene, _callback);
+        okhttp3.Call localVarCall = getScenesValidateBeforeCall(pageCursor, pageSize, filterName, filterSuppliedId, fieldsScene, filterMetadata, _callback);
         Type localVarReturnType = new TypeToken<SceneList>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
