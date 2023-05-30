@@ -5,12 +5,7 @@ import com.vertexvis.ApiClient;
 import com.vertexvis.ApiException;
 import com.vertexvis.api.FilesApi;
 import com.vertexvis.example.cmdline.CommandLineOptions;
-import com.vertexvis.model.CreateFileRequest;
-import com.vertexvis.model.CreateFileRequestData;
-import com.vertexvis.model.CreateFileRequestDataAttributes;
-import com.vertexvis.model.FileMetadata;
-import com.vertexvis.model.Part;
-import com.vertexvis.model.PartDataRelationshipsPartRevisions;
+import com.vertexvis.model.*;
 import picocli.CommandLine;
 
 import java.io.File;
@@ -22,7 +17,6 @@ import java.util.concurrent.CompletableFuture;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static com.vertexvis.example.CallbackUtil.execute;
 
@@ -54,12 +48,12 @@ public class CreateAssemblyFromRevisionsExample extends CommandLineOptions {
                 .map(CreateAssemblyFromRevisionsExample::buildCreateFileReq)
                 .map(req -> createAndUploadFile(files, req)
                         .thenCompose(partId -> pc.createPartFromFileAsync(partId, req)))
-                .collect(Collectors.toList());
+                .toList();
 
         CompletableFuture.allOf(futureParts.toArray(new CompletableFuture[0])).join();
         List<Part> newParts = futureParts.stream()
                 .map(CompletableFuture::join)
-                .collect(Collectors.toList());
+                .toList();
         newParts.forEach(p -> logger.info("Created part: " + p.getData().getId() + " with name " +
                 p.getData().getAttributes().getName()));
 
