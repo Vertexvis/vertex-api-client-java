@@ -20,8 +20,8 @@ import java.util.stream.Collectors;
 
 import static com.vertexvis.example.CallbackUtil.execute;
 
-public class CreateAssemblyFromRevisionsExample extends CommandLineOptions {
-    private static final Logger logger = Logger.getLogger(CreateAssemblyFromRevisionsExample.class.getName());
+public class CreatePartRevisionsWithMetadataExample extends CommandLineOptions {
+    private static final Logger logger = Logger.getLogger(CreatePartRevisionsWithMetadataExample.class.getName());
 
     @Override
     public void run() {
@@ -43,11 +43,11 @@ public class CreateAssemblyFromRevisionsExample extends CommandLineOptions {
         FilesApi files = new FilesApi(client);
         SceneCreator sc = new SceneCreator(client);
 
-
+        var partMetadata = MetadataUtil.createCustomMetadata(getMetadataCount());
         List<CompletableFuture<Part>> futureParts = getPartFiles().stream()
-                .map(CreateAssemblyFromRevisionsExample::buildCreateFileReq)
+                .map(CreatePartRevisionsWithMetadataExample::buildCreateFileReq)
                 .map(req -> createAndUploadFile(files, req)
-                        .thenCompose(partId -> pc.createPartFromFileAsync(partId, req)))
+                        .thenCompose(partId -> pc.createPartFromFileAsync(partId, req, partMetadata)))
                 .toList();
 
         CompletableFuture.allOf(futureParts.toArray(new CompletableFuture[0])).join();
@@ -62,7 +62,7 @@ public class CreateAssemblyFromRevisionsExample extends CommandLineOptions {
                     .map(part -> part.getData().getRelationships().getPartRevisions())
                     .flatMap(Collection::stream)
                     .map(PartDataRelationshipsPartRevisions::getId)
-                    .peek(uuid -> logger.info(uuid.toString()))
+                    .peek(uuid -> logger.info("Part Revision Id: " + uuid))
                     .collect(Collectors.collectingAndThen(Collectors.toList(), (l) -> pc.createAssemblyFromRevisions(l, getAssemblyName())))
                     .handle((part, ex) -> {
                         if (ex != null) {
@@ -81,6 +81,7 @@ public class CreateAssemblyFromRevisionsExample extends CommandLineOptions {
             var scene = sc.createSceneFromPart(assembly);
             logger.info("Created scene: " + scene.getData().getId() + " with name " +
                     scene.getData().getAttributes().getName());
+            logger.info("Each Part Revision has: " + getMetadataCount() + " custom metadata items");
         } catch (ApiException e) {
             logger.log(Level.SEVERE, "Error Code [" + e.getCode() + "], Response body " + e.getResponseBody(), e);
         } catch (InterruptedException e) {
@@ -92,7 +93,7 @@ public class CreateAssemblyFromRevisionsExample extends CommandLineOptions {
 
     public static void main(String[] args) {
 
-        var exitCode = new CommandLine(new CreateAssemblyFromRevisionsExample()).execute(args);
+        var exitCode = new CommandLine(new CreatePartRevisionsWithMetadataExample()).execute(args);
         System.exit(exitCode);
     }
 
@@ -122,6 +123,5 @@ public class CreateAssemblyFromRevisionsExample extends CommandLineOptions {
     private static boolean isNullOrEmpty(String s) {
         return s == null || s.trim().length() == 0;
     }
-
 
 }

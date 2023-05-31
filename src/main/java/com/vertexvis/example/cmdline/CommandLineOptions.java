@@ -38,6 +38,10 @@ public abstract class CommandLineOptions implements Runnable {
         return spec;
     }
 
+    public int getMetadataCount() {
+        return metadataCount;
+    }
+
     @CommandLine.Parameters(arity = "1..*", description = "Specify CAD files separated by '${sys:path.separator}'" +
             " to create part revisions from.",
             split = "${sys:path.separator}")
@@ -55,4 +59,10 @@ public abstract class CommandLineOptions implements Runnable {
 
     @CommandLine.Option(names = {"-v", "--verbose"}, description = "Turn on debug logging")
     private boolean verboseDebugLogging;
+
+    // parameter for number of metadata to create per part
+    @CommandLine.Option(names = {"-m", "--metadata"}, description = "Number of metadata to create")
+    private int metadataCount = 0;
+
+
 }

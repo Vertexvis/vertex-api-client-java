@@ -9,6 +9,7 @@ import com.vertexvis.model.*;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
@@ -26,15 +27,23 @@ class PartCreator {
     }
 
     public Part createPartFromFile(FileMetadata metadata) throws InterruptedException {
-        Part qp = parts.createPart(getCreatePartRequest(metadata.getData().getId(), metadata.getData().getAttributes().getName()));
+        return createPartFromFile(metadata, Collections.emptyMap());
+    }
+
+    public Part createPartFromFile(FileMetadata metadata, Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> partMetadata) throws InterruptedException {
+        Part qp = parts.createPart(getCreatePartRequest(metadata.getData().getId(), metadata.getData().getAttributes().getName(), partMetadata));
         UUID partId =
                 JobPoller.pollUntilJobDone("part", () -> tiApi.getQueuedTranslation(qp.getData().getId()));
         return parts.getPart(partId, null);
     }
 
     public CompletableFuture<Part> createPartFromFileAsync(UUID id, CreateFileRequest req) {
+        return createPartFromFileAsync(id, req, Collections.emptyMap());
+    }
+
+    public CompletableFuture<Part> createPartFromFileAsync(UUID id, CreateFileRequest req, Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> metadata) {
         CompletableFuture<Part> p =
-                execute(cb -> parts.createPartAsync(getCreatePartRequest(id, req.getData().getAttributes().getName()), cb));
+                execute(cb -> parts.createPartAsync(getCreatePartRequest(id, req.getData().getAttributes().getName(), metadata), cb));
         CompletableFuture<UUID> partId = p.thenCompose(qj ->
                 JobPoller.pollUntilJobDoneAsync("part", () ->
                         execute(cb -> tiApi.getQueuedTranslationAsync(qj.getData().getId(), cb))));
@@ -51,6 +60,10 @@ class PartCreator {
     }
 
     private static CreatePartRequest getCreatePartRequest(UUID fileId, String partName) {
+        return getCreatePartRequest(fileId, partName, Collections.emptyMap());
+    }
+
+    private static CreatePartRequest getCreatePartRequest(UUID fileId, String partName, Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> metadata) {
         FileRelationship fileRelationship = new FileRelationship()
                 .data(
                         new FileRelationshipData()
@@ -64,7 +77,8 @@ class PartCreator {
                                         new CreatePartRequestDataAttributes()
                                                 .suppliedId("my-part-" + UUID.randomUUID())
                                                 .suppliedRevisionId("my-part-rev-A")
-                                                .name(partName))
+                                                .name(partName)
+                                                .metadata(metadata))
                                 .relationships(new CreatePartRequestDataRelationships()
                                         .source(new AnyOfFileRelationshipPartAssemblyRelationship(fileRelationship)
                                         )));
@@ -113,5 +127,4 @@ class PartCreator {
                 .z(z)
                 .w(w);
     }
-
 }
