@@ -47,6 +47,10 @@ public class CreateSceneItemOverrideRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_SELECTED)
   private ColorMaterial selected;
 
+  public static final String SERIALIZED_NAME_PHANTOM = "phantom";
+  @SerializedName(SERIALIZED_NAME_PHANTOM)
+  private Boolean phantom;
+
   public CreateSceneItemOverrideRequestDataAttributes() { 
   }
 
@@ -142,6 +146,29 @@ public class CreateSceneItemOverrideRequestDataAttributes {
   }
 
 
+  public CreateSceneItemOverrideRequestDataAttributes phantom(Boolean phantom) {
+    
+    this.phantom = phantom;
+    return this;
+  }
+
+   /**
+   * Phantom state of the item.
+   * @return phantom
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Phantom state of the item.")
+
+  public Boolean getPhantom() {
+    return phantom;
+  }
+
+
+  public void setPhantom(Boolean phantom) {
+    this.phantom = phantom;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -154,12 +181,13 @@ public class CreateSceneItemOverrideRequestDataAttributes {
     return Objects.equals(this.visible, createSceneItemOverrideRequestDataAttributes.visible) &&
         Objects.equals(this.transform, createSceneItemOverrideRequestDataAttributes.transform) &&
         Objects.equals(this.material, createSceneItemOverrideRequestDataAttributes.material) &&
-        Objects.equals(this.selected, createSceneItemOverrideRequestDataAttributes.selected);
+        Objects.equals(this.selected, createSceneItemOverrideRequestDataAttributes.selected) &&
+        Objects.equals(this.phantom, createSceneItemOverrideRequestDataAttributes.phantom);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(visible, transform, material, selected);
+    return Objects.hash(visible, transform, material, selected, phantom);
   }
 
   @Override
@@ -170,6 +198,7 @@ public class CreateSceneItemOverrideRequestDataAttributes {
     sb.append("    transform: ").append(toIndentedString(transform)).append("\n");
     sb.append("    material: ").append(toIndentedString(material)).append("\n");
     sb.append("    selected: ").append(toIndentedString(selected)).append("\n");
+    sb.append("    phantom: ").append(toIndentedString(phantom)).append("\n");
     sb.append("}");
     return sb.toString();
   }

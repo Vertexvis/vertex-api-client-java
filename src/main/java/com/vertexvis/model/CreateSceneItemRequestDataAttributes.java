@@ -44,6 +44,10 @@ public class CreateSceneItemRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
 
+  public static final String SERIALIZED_NAME_ORDINAL = "ordinal";
+  @SerializedName(SERIALIZED_NAME_ORDINAL)
+  private Integer ordinal;
+
   public static final String SERIALIZED_NAME_PARENT = "parent";
   @SerializedName(SERIALIZED_NAME_PARENT)
   private String parent;
@@ -67,6 +71,10 @@ public class CreateSceneItemRequestDataAttributes {
   public static final String SERIALIZED_NAME_VISIBLE = "visible";
   @SerializedName(SERIALIZED_NAME_VISIBLE)
   private Boolean visible;
+
+  public static final String SERIALIZED_NAME_PHANTOM = "phantom";
+  @SerializedName(SERIALIZED_NAME_PHANTOM)
+  private Boolean phantom;
 
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
@@ -121,6 +129,29 @@ public class CreateSceneItemRequestDataAttributes {
   }
 
 
+  public CreateSceneItemRequestDataAttributes ordinal(Integer ordinal) {
+    
+    this.ordinal = ordinal;
+    return this;
+  }
+
+   /**
+   * A 0-based index used for defining a consistent ordering amongst sibling scene items.
+   * @return ordinal
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "A 0-based index used for defining a consistent ordering amongst sibling scene items.")
+
+  public Integer getOrdinal() {
+    return ordinal;
+  }
+
+
+  public void setOrdinal(Integer ordinal) {
+    this.ordinal = ordinal;
+  }
+
+
   public CreateSceneItemRequestDataAttributes parent(String parent) {
     
     this.parent = parent;
@@ -128,11 +159,11 @@ public class CreateSceneItemRequestDataAttributes {
   }
 
    /**
-   * ID provided for correlation. For example, an existing ID from a PLM system.
+   * Optional ability to specify a parent scene item by scene item supplied ID. For example, an  existing ID from a PLM system. This approach is an alternative to providing a specific scene  item ID with the relationship parent property. 
    * @return parent
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "PN12345", value = "ID provided for correlation. For example, an existing ID from a PLM system.")
+  @ApiModelProperty(example = "PN12345", value = "Optional ability to specify a parent scene item by scene item supplied ID. For example, an  existing ID from a PLM system. This approach is an alternative to providing a specific scene  item ID with the relationship parent property. ")
 
   public String getParent() {
     return parent;
@@ -259,6 +290,29 @@ public class CreateSceneItemRequestDataAttributes {
   }
 
 
+  public CreateSceneItemRequestDataAttributes phantom(Boolean phantom) {
+    
+    this.phantom = phantom;
+    return this;
+  }
+
+   /**
+   * Phantom state of the item.
+   * @return phantom
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Phantom state of the item.")
+
+  public Boolean getPhantom() {
+    return phantom;
+  }
+
+
+  public void setPhantom(Boolean phantom) {
+    this.phantom = phantom;
+  }
+
+
   public CreateSceneItemRequestDataAttributes metadata(Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> metadata) {
     
     this.metadata = metadata;
@@ -301,18 +355,20 @@ public class CreateSceneItemRequestDataAttributes {
     CreateSceneItemRequestDataAttributes createSceneItemRequestDataAttributes = (CreateSceneItemRequestDataAttributes) o;
     return Objects.equals(this.materialOverride, createSceneItemRequestDataAttributes.materialOverride) &&
         Objects.equals(this.name, createSceneItemRequestDataAttributes.name) &&
+        Objects.equals(this.ordinal, createSceneItemRequestDataAttributes.ordinal) &&
         Objects.equals(this.parent, createSceneItemRequestDataAttributes.parent) &&
         Objects.equals(this.partInstanceSuppliedIdsAsSuppliedIds, createSceneItemRequestDataAttributes.partInstanceSuppliedIdsAsSuppliedIds) &&
         Objects.equals(this.source, createSceneItemRequestDataAttributes.source) &&
         Objects.equals(this.suppliedId, createSceneItemRequestDataAttributes.suppliedId) &&
         Objects.equals(this.transform, createSceneItemRequestDataAttributes.transform) &&
         Objects.equals(this.visible, createSceneItemRequestDataAttributes.visible) &&
+        Objects.equals(this.phantom, createSceneItemRequestDataAttributes.phantom) &&
         Objects.equals(this.metadata, createSceneItemRequestDataAttributes.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(materialOverride, name, parent, partInstanceSuppliedIdsAsSuppliedIds, source, suppliedId, transform, visible, metadata);
+    return Objects.hash(materialOverride, name, ordinal, parent, partInstanceSuppliedIdsAsSuppliedIds, source, suppliedId, transform, visible, phantom, metadata);
   }
 
   @Override
@@ -321,12 +377,14 @@ public class CreateSceneItemRequestDataAttributes {
     sb.append("class CreateSceneItemRequestDataAttributes {\n");
     sb.append("    materialOverride: ").append(toIndentedString(materialOverride)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    ordinal: ").append(toIndentedString(ordinal)).append("\n");
     sb.append("    parent: ").append(toIndentedString(parent)).append("\n");
     sb.append("    partInstanceSuppliedIdsAsSuppliedIds: ").append(toIndentedString(partInstanceSuppliedIdsAsSuppliedIds)).append("\n");
     sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("    suppliedId: ").append(toIndentedString(suppliedId)).append("\n");
     sb.append("    transform: ").append(toIndentedString(transform)).append("\n");
     sb.append("    visible: ").append(toIndentedString(visible)).append("\n");
+    sb.append("    phantom: ").append(toIndentedString(phantom)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
