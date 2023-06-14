@@ -48,6 +48,10 @@ public class UpdateSceneItemOverrideRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_SELECTED)
   private ColorMaterialNullable selected;
 
+  public static final String SERIALIZED_NAME_PHANTOM = "phantom";
+  @SerializedName(SERIALIZED_NAME_PHANTOM)
+  private Boolean phantom;
+
   public UpdateSceneItemOverrideRequestDataAttributes() { 
   }
 
@@ -143,6 +147,29 @@ public class UpdateSceneItemOverrideRequestDataAttributes {
   }
 
 
+  public UpdateSceneItemOverrideRequestDataAttributes phantom(Boolean phantom) {
+    
+    this.phantom = phantom;
+    return this;
+  }
+
+   /**
+   * Get phantom
+   * @return phantom
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Boolean getPhantom() {
+    return phantom;
+  }
+
+
+  public void setPhantom(Boolean phantom) {
+    this.phantom = phantom;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -155,7 +182,8 @@ public class UpdateSceneItemOverrideRequestDataAttributes {
     return Objects.equals(this.visible, updateSceneItemOverrideRequestDataAttributes.visible) &&
         Objects.equals(this.transform, updateSceneItemOverrideRequestDataAttributes.transform) &&
         Objects.equals(this.material, updateSceneItemOverrideRequestDataAttributes.material) &&
-        Objects.equals(this.selected, updateSceneItemOverrideRequestDataAttributes.selected);
+        Objects.equals(this.selected, updateSceneItemOverrideRequestDataAttributes.selected) &&
+        Objects.equals(this.phantom, updateSceneItemOverrideRequestDataAttributes.phantom);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -164,7 +192,7 @@ public class UpdateSceneItemOverrideRequestDataAttributes {
 
   @Override
   public int hashCode() {
-    return Objects.hash(visible, transform, material, selected);
+    return Objects.hash(visible, transform, material, selected, phantom);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -182,6 +210,7 @@ public class UpdateSceneItemOverrideRequestDataAttributes {
     sb.append("    transform: ").append(toIndentedString(transform)).append("\n");
     sb.append("    material: ").append(toIndentedString(material)).append("\n");
     sb.append("    selected: ").append(toIndentedString(selected)).append("\n");
+    sb.append("    phantom: ").append(toIndentedString(phantom)).append("\n");
     sb.append("}");
     return sb.toString();
   }

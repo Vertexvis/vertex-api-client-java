@@ -59,6 +59,10 @@ public class UpdateSceneItemRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_METADATA)
   private Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> metadata = null;
 
+  public static final String SERIALIZED_NAME_PHANTOM = "phantom";
+  @SerializedName(SERIALIZED_NAME_PHANTOM)
+  private Boolean phantom;
+
   public UpdateSceneItemRequestDataAttributes() { 
   }
 
@@ -208,6 +212,29 @@ public class UpdateSceneItemRequestDataAttributes {
   }
 
 
+  public UpdateSceneItemRequestDataAttributes phantom(Boolean phantom) {
+    
+    this.phantom = phantom;
+    return this;
+  }
+
+   /**
+   * Phantom state of the item.
+   * @return phantom
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Phantom state of the item.")
+
+  public Boolean getPhantom() {
+    return phantom;
+  }
+
+
+  public void setPhantom(Boolean phantom) {
+    this.phantom = phantom;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -222,12 +249,13 @@ public class UpdateSceneItemRequestDataAttributes {
         Objects.equals(this.transform, updateSceneItemRequestDataAttributes.transform) &&
         Objects.equals(this.name, updateSceneItemRequestDataAttributes.name) &&
         Objects.equals(this.suppliedId, updateSceneItemRequestDataAttributes.suppliedId) &&
-        Objects.equals(this.metadata, updateSceneItemRequestDataAttributes.metadata);
+        Objects.equals(this.metadata, updateSceneItemRequestDataAttributes.metadata) &&
+        Objects.equals(this.phantom, updateSceneItemRequestDataAttributes.phantom);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(visible, materialOverride, transform, name, suppliedId, metadata);
+    return Objects.hash(visible, materialOverride, transform, name, suppliedId, metadata, phantom);
   }
 
   @Override
@@ -240,6 +268,7 @@ public class UpdateSceneItemRequestDataAttributes {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    suppliedId: ").append(toIndentedString(suppliedId)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    phantom: ").append(toIndentedString(phantom)).append("\n");
     sb.append("}");
     return sb.toString();
   }

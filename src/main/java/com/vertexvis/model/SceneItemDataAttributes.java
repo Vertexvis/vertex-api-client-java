@@ -57,6 +57,10 @@ public class SceneItemDataAttributes {
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
 
+  public static final String SERIALIZED_NAME_PHANTOM = "phantom";
+  @SerializedName(SERIALIZED_NAME_PHANTOM)
+  private Boolean phantom;
+
   public static final String SERIALIZED_NAME_SUPPLIED_ID = "suppliedId";
   @SerializedName(SERIALIZED_NAME_SUPPLIED_ID)
   private String suppliedId;
@@ -199,6 +203,29 @@ public class SceneItemDataAttributes {
   }
 
 
+  public SceneItemDataAttributes phantom(Boolean phantom) {
+    
+    this.phantom = phantom;
+    return this;
+  }
+
+   /**
+   * Get phantom
+   * @return phantom
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Boolean getPhantom() {
+    return phantom;
+  }
+
+
+  public void setPhantom(Boolean phantom) {
+    this.phantom = phantom;
+  }
+
+
   public SceneItemDataAttributes suppliedId(String suppliedId) {
     
     this.suppliedId = suppliedId;
@@ -305,6 +332,7 @@ public class SceneItemDataAttributes {
         Objects.equals(this.materialOverride, sceneItemDataAttributes.materialOverride) &&
         Objects.equals(this.metadata, sceneItemDataAttributes.metadata) &&
         Objects.equals(this.name, sceneItemDataAttributes.name) &&
+        Objects.equals(this.phantom, sceneItemDataAttributes.phantom) &&
         Objects.equals(this.suppliedId, sceneItemDataAttributes.suppliedId) &&
         Objects.equals(this.transform, sceneItemDataAttributes.transform) &&
         Objects.equals(this.visible, sceneItemDataAttributes.visible) &&
@@ -313,7 +341,7 @@ public class SceneItemDataAttributes {
 
   @Override
   public int hashCode() {
-    return Objects.hash(boundingBox, created, materialOverride, metadata, name, suppliedId, transform, visible, worldTransform);
+    return Objects.hash(boundingBox, created, materialOverride, metadata, name, phantom, suppliedId, transform, visible, worldTransform);
   }
 
   @Override
@@ -325,6 +353,7 @@ public class SceneItemDataAttributes {
     sb.append("    materialOverride: ").append(toIndentedString(materialOverride)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    phantom: ").append(toIndentedString(phantom)).append("\n");
     sb.append("    suppliedId: ").append(toIndentedString(suppliedId)).append("\n");
     sb.append("    transform: ").append(toIndentedString(transform)).append("\n");
     sb.append("    visible: ").append(toIndentedString(visible)).append("\n");

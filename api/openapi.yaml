@@ -9668,6 +9668,9 @@ components:
           $ref: '#/components/schemas/ColorMaterialNullable'
         selected:
           $ref: '#/components/schemas/ColorMaterialNullable'
+        phantom:
+          nullable: true
+          type: boolean
       type: object
     UpdateSceneItemOverrideRequest_data:
       properties:
@@ -9701,6 +9704,9 @@ components:
           $ref: '#/components/schemas/ColorMaterial'
         selected:
           $ref: '#/components/schemas/ColorMaterial'
+        phantom:
+          description: Phantom state of the item.
+          type: boolean
       type: object
     CreateSceneItemOverrideRequest_data_relationships:
       properties:
@@ -9757,6 +9763,9 @@ components:
           description: |
             Additional metadata for the scene-item. This metadata will take precedence over any metadata that belongs to the part file.
           type: object
+        phantom:
+          description: Phantom state of the item.
+          type: boolean
       type: object
     UpdateSceneItemRequest_data_relationships:
       properties:
@@ -10340,6 +10349,8 @@ components:
           maxLength: 1024
           minLength: 1
           type: string
+        phantom:
+          type: boolean
         suppliedId:
           example: some-string
           maxLength: 1024
@@ -10487,6 +10498,8 @@ components:
           $ref: '#/components/schemas/ColorMaterial'
         selected:
           $ref: '#/components/schemas/ColorMaterial'
+        phantom:
+          type: boolean
       required:
       - created
       type: object
@@ -10528,9 +10541,13 @@ components:
           maxLength: 1024
           minLength: 1
           type: string
+        ordinal:
+          description: A 0-based index used for defining a consistent ordering amongst
+            sibling scene items.
+          type: integer
         parent:
-          description: ID provided for correlation. For example, an existing ID from
-            a PLM system.
+          description: |
+            Optional ability to specify a parent scene item by scene item supplied ID. For example, an  existing ID from a PLM system. This approach is an alternative to providing a specific scene  item ID with the relationship parent property.
           example: PN12345
           maxLength: 1024
           type: string
@@ -10552,6 +10569,9 @@ components:
         visible:
           description: Item visibility.
           example: true
+          type: boolean
+        phantom:
+          description: Phantom state of the item.
           type: boolean
         metadata:
           additionalProperties:

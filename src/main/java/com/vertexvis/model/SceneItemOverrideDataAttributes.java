@@ -52,6 +52,10 @@ public class SceneItemOverrideDataAttributes {
   @SerializedName(SERIALIZED_NAME_SELECTED)
   private ColorMaterial selected;
 
+  public static final String SERIALIZED_NAME_PHANTOM = "phantom";
+  @SerializedName(SERIALIZED_NAME_PHANTOM)
+  private Boolean phantom;
+
   public SceneItemOverrideDataAttributes() { 
   }
 
@@ -170,6 +174,29 @@ public class SceneItemOverrideDataAttributes {
   }
 
 
+  public SceneItemOverrideDataAttributes phantom(Boolean phantom) {
+    
+    this.phantom = phantom;
+    return this;
+  }
+
+   /**
+   * Get phantom
+   * @return phantom
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Boolean getPhantom() {
+    return phantom;
+  }
+
+
+  public void setPhantom(Boolean phantom) {
+    this.phantom = phantom;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -183,12 +210,13 @@ public class SceneItemOverrideDataAttributes {
         Objects.equals(this.visible, sceneItemOverrideDataAttributes.visible) &&
         Objects.equals(this.transform, sceneItemOverrideDataAttributes.transform) &&
         Objects.equals(this.material, sceneItemOverrideDataAttributes.material) &&
-        Objects.equals(this.selected, sceneItemOverrideDataAttributes.selected);
+        Objects.equals(this.selected, sceneItemOverrideDataAttributes.selected) &&
+        Objects.equals(this.phantom, sceneItemOverrideDataAttributes.phantom);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(created, visible, transform, material, selected);
+    return Objects.hash(created, visible, transform, material, selected, phantom);
   }
 
   @Override
@@ -200,6 +228,7 @@ public class SceneItemOverrideDataAttributes {
     sb.append("    transform: ").append(toIndentedString(transform)).append("\n");
     sb.append("    material: ").append(toIndentedString(material)).append("\n");
     sb.append("    selected: ").append(toIndentedString(selected)).append("\n");
+    sb.append("    phantom: ").append(toIndentedString(phantom)).append("\n");
     sb.append("}");
     return sb.toString();
   }
