@@ -63,6 +63,10 @@ public class UpdateSceneItemRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_PHANTOM)
   private Boolean phantom;
 
+  public static final String SERIALIZED_NAME_END_ITEM = "endItem";
+  @SerializedName(SERIALIZED_NAME_END_ITEM)
+  private Boolean endItem;
+
   public UpdateSceneItemRequestDataAttributes() { 
   }
 
@@ -235,6 +239,29 @@ public class UpdateSceneItemRequestDataAttributes {
   }
 
 
+  public UpdateSceneItemRequestDataAttributes endItem(Boolean endItem) {
+    
+    this.endItem = endItem;
+    return this;
+  }
+
+   /**
+   * Whether this item is an end item.
+   * @return endItem
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Whether this item is an end item.")
+
+  public Boolean getEndItem() {
+    return endItem;
+  }
+
+
+  public void setEndItem(Boolean endItem) {
+    this.endItem = endItem;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -250,12 +277,13 @@ public class UpdateSceneItemRequestDataAttributes {
         Objects.equals(this.name, updateSceneItemRequestDataAttributes.name) &&
         Objects.equals(this.suppliedId, updateSceneItemRequestDataAttributes.suppliedId) &&
         Objects.equals(this.metadata, updateSceneItemRequestDataAttributes.metadata) &&
-        Objects.equals(this.phantom, updateSceneItemRequestDataAttributes.phantom);
+        Objects.equals(this.phantom, updateSceneItemRequestDataAttributes.phantom) &&
+        Objects.equals(this.endItem, updateSceneItemRequestDataAttributes.endItem);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(visible, materialOverride, transform, name, suppliedId, metadata, phantom);
+    return Objects.hash(visible, materialOverride, transform, name, suppliedId, metadata, phantom, endItem);
   }
 
   @Override
@@ -269,6 +297,7 @@ public class UpdateSceneItemRequestDataAttributes {
     sb.append("    suppliedId: ").append(toIndentedString(suppliedId)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    phantom: ").append(toIndentedString(phantom)).append("\n");
+    sb.append("    endItem: ").append(toIndentedString(endItem)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -45,11 +45,15 @@ public class CreateSceneItemOverrideRequestDataAttributes {
 
   public static final String SERIALIZED_NAME_SELECTED = "selected";
   @SerializedName(SERIALIZED_NAME_SELECTED)
-  private ColorMaterial selected;
+  private Boolean selected;
 
   public static final String SERIALIZED_NAME_PHANTOM = "phantom";
   @SerializedName(SERIALIZED_NAME_PHANTOM)
   private Boolean phantom;
+
+  public static final String SERIALIZED_NAME_END_ITEM = "endItem";
+  @SerializedName(SERIALIZED_NAME_END_ITEM)
+  private Boolean endItem;
 
   public CreateSceneItemOverrideRequestDataAttributes() { 
   }
@@ -123,7 +127,7 @@ public class CreateSceneItemOverrideRequestDataAttributes {
   }
 
 
-  public CreateSceneItemOverrideRequestDataAttributes selected(ColorMaterial selected) {
+  public CreateSceneItemOverrideRequestDataAttributes selected(Boolean selected) {
     
     this.selected = selected;
     return this;
@@ -136,12 +140,12 @@ public class CreateSceneItemOverrideRequestDataAttributes {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public ColorMaterial getSelected() {
+  public Boolean getSelected() {
     return selected;
   }
 
 
-  public void setSelected(ColorMaterial selected) {
+  public void setSelected(Boolean selected) {
     this.selected = selected;
   }
 
@@ -169,6 +173,29 @@ public class CreateSceneItemOverrideRequestDataAttributes {
   }
 
 
+  public CreateSceneItemOverrideRequestDataAttributes endItem(Boolean endItem) {
+    
+    this.endItem = endItem;
+    return this;
+  }
+
+   /**
+   * Whether this item is an end item.
+   * @return endItem
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Whether this item is an end item.")
+
+  public Boolean getEndItem() {
+    return endItem;
+  }
+
+
+  public void setEndItem(Boolean endItem) {
+    this.endItem = endItem;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -182,12 +209,13 @@ public class CreateSceneItemOverrideRequestDataAttributes {
         Objects.equals(this.transform, createSceneItemOverrideRequestDataAttributes.transform) &&
         Objects.equals(this.material, createSceneItemOverrideRequestDataAttributes.material) &&
         Objects.equals(this.selected, createSceneItemOverrideRequestDataAttributes.selected) &&
-        Objects.equals(this.phantom, createSceneItemOverrideRequestDataAttributes.phantom);
+        Objects.equals(this.phantom, createSceneItemOverrideRequestDataAttributes.phantom) &&
+        Objects.equals(this.endItem, createSceneItemOverrideRequestDataAttributes.endItem);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(visible, transform, material, selected, phantom);
+    return Objects.hash(visible, transform, material, selected, phantom, endItem);
   }
 
   @Override
@@ -199,6 +227,7 @@ public class CreateSceneItemOverrideRequestDataAttributes {
     sb.append("    material: ").append(toIndentedString(material)).append("\n");
     sb.append("    selected: ").append(toIndentedString(selected)).append("\n");
     sb.append("    phantom: ").append(toIndentedString(phantom)).append("\n");
+    sb.append("    endItem: ").append(toIndentedString(endItem)).append("\n");
     sb.append("}");
     return sb.toString();
   }
