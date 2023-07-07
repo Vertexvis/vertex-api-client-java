@@ -45,6 +45,10 @@ public class SceneItemDataAttributes {
   @SerializedName(SERIALIZED_NAME_CREATED)
   private OffsetDateTime created;
 
+  public static final String SERIALIZED_NAME_END_ITEM = "endItem";
+  @SerializedName(SERIALIZED_NAME_END_ITEM)
+  private Boolean endItem;
+
   public static final String SERIALIZED_NAME_MATERIAL_OVERRIDE = "materialOverride";
   @SerializedName(SERIALIZED_NAME_MATERIAL_OVERRIDE)
   private ColorMaterial materialOverride;
@@ -123,6 +127,29 @@ public class SceneItemDataAttributes {
 
   public void setCreated(OffsetDateTime created) {
     this.created = created;
+  }
+
+
+  public SceneItemDataAttributes endItem(Boolean endItem) {
+    
+    this.endItem = endItem;
+    return this;
+  }
+
+   /**
+   * Get endItem
+   * @return endItem
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Boolean getEndItem() {
+    return endItem;
+  }
+
+
+  public void setEndItem(Boolean endItem) {
+    this.endItem = endItem;
   }
 
 
@@ -329,6 +356,7 @@ public class SceneItemDataAttributes {
     SceneItemDataAttributes sceneItemDataAttributes = (SceneItemDataAttributes) o;
     return Objects.equals(this.boundingBox, sceneItemDataAttributes.boundingBox) &&
         Objects.equals(this.created, sceneItemDataAttributes.created) &&
+        Objects.equals(this.endItem, sceneItemDataAttributes.endItem) &&
         Objects.equals(this.materialOverride, sceneItemDataAttributes.materialOverride) &&
         Objects.equals(this.metadata, sceneItemDataAttributes.metadata) &&
         Objects.equals(this.name, sceneItemDataAttributes.name) &&
@@ -341,7 +369,7 @@ public class SceneItemDataAttributes {
 
   @Override
   public int hashCode() {
-    return Objects.hash(boundingBox, created, materialOverride, metadata, name, phantom, suppliedId, transform, visible, worldTransform);
+    return Objects.hash(boundingBox, created, endItem, materialOverride, metadata, name, phantom, suppliedId, transform, visible, worldTransform);
   }
 
   @Override
@@ -350,6 +378,7 @@ public class SceneItemDataAttributes {
     sb.append("class SceneItemDataAttributes {\n");
     sb.append("    boundingBox: ").append(toIndentedString(boundingBox)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
+    sb.append("    endItem: ").append(toIndentedString(endItem)).append("\n");
     sb.append("    materialOverride: ").append(toIndentedString(materialOverride)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");

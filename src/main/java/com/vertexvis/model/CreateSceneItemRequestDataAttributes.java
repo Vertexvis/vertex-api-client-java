@@ -76,6 +76,10 @@ public class CreateSceneItemRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_PHANTOM)
   private Boolean phantom;
 
+  public static final String SERIALIZED_NAME_END_ITEM = "endItem";
+  @SerializedName(SERIALIZED_NAME_END_ITEM)
+  private Boolean endItem;
+
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
   private Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> metadata = null;
@@ -313,6 +317,29 @@ public class CreateSceneItemRequestDataAttributes {
   }
 
 
+  public CreateSceneItemRequestDataAttributes endItem(Boolean endItem) {
+    
+    this.endItem = endItem;
+    return this;
+  }
+
+   /**
+   * Whether this item is an end item.
+   * @return endItem
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Whether this item is an end item.")
+
+  public Boolean getEndItem() {
+    return endItem;
+  }
+
+
+  public void setEndItem(Boolean endItem) {
+    this.endItem = endItem;
+  }
+
+
   public CreateSceneItemRequestDataAttributes metadata(Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> metadata) {
     
     this.metadata = metadata;
@@ -363,12 +390,13 @@ public class CreateSceneItemRequestDataAttributes {
         Objects.equals(this.transform, createSceneItemRequestDataAttributes.transform) &&
         Objects.equals(this.visible, createSceneItemRequestDataAttributes.visible) &&
         Objects.equals(this.phantom, createSceneItemRequestDataAttributes.phantom) &&
+        Objects.equals(this.endItem, createSceneItemRequestDataAttributes.endItem) &&
         Objects.equals(this.metadata, createSceneItemRequestDataAttributes.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(materialOverride, name, ordinal, parent, partInstanceSuppliedIdsAsSuppliedIds, source, suppliedId, transform, visible, phantom, metadata);
+    return Objects.hash(materialOverride, name, ordinal, parent, partInstanceSuppliedIdsAsSuppliedIds, source, suppliedId, transform, visible, phantom, endItem, metadata);
   }
 
   @Override
@@ -385,6 +413,7 @@ public class CreateSceneItemRequestDataAttributes {
     sb.append("    transform: ").append(toIndentedString(transform)).append("\n");
     sb.append("    visible: ").append(toIndentedString(visible)).append("\n");
     sb.append("    phantom: ").append(toIndentedString(phantom)).append("\n");
+    sb.append("    endItem: ").append(toIndentedString(endItem)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
