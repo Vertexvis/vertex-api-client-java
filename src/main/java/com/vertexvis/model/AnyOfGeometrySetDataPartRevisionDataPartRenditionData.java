@@ -1,16 +1,20 @@
 package com.vertexvis.model;
 
-public class AnyOfGeometrySetDataPartRevisionData {
+public class AnyOfGeometrySetDataPartRevisionDataPartRenditionData {
     private Object value = null;
 
-    public AnyOfGeometrySetDataPartRevisionData() {
+    public AnyOfGeometrySetDataPartRevisionDataPartRenditionData() {
     }
 
-    public AnyOfGeometrySetDataPartRevisionData(GeometrySetData value) {
+    public AnyOfGeometrySetDataPartRevisionDataPartRenditionData(GeometrySetData value) {
         this.value = value;
     }
 
-    public AnyOfGeometrySetDataPartRevisionData(PartRevisionData value) {
+    public AnyOfGeometrySetDataPartRevisionDataPartRenditionData(PartRevisionData value) {
+        this.value = value;
+    }
+
+    public AnyOfGeometrySetDataPartRevisionDataPartRenditionData(PartRenditionData value) {
         this.value = value;
     }
 
@@ -32,5 +36,9 @@ public class AnyOfGeometrySetDataPartRevisionData {
 
     public PartRevisionData getPartRevisionData() {
         return isPartRevisionData() ? (PartRevisionData) value : null;
+    }
+
+    public PartRenditionData getPartRenditionData() {
+        return isPartRevisionData() ? (PartRenditionData) value : null;
     }
 }

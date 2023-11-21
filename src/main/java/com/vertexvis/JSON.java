@@ -97,14 +97,14 @@ public class JSON {
                 .registerTypeAdapter(OffsetDateTime.class, offsetDateTimeTypeAdapter)
                 .registerTypeAdapter(LocalDate.class, localDateTypeAdapter)
                 .registerTypeAdapter(byte[].class, byteArrayAdapter).registerTypeAdapter(
-                        AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship.class,
+                        AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationshipPartRenditionRelationship.class,
                         new AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationshipTypeAdapter(
                                 () -> gson))
                 .registerTypeAdapter(AnyOfQueryByIdQueryByCollectionQueryAll.class,
                         new AnyOfQueryByIdQueryByCollectionQueryAllTypeAdapter(() -> gson))
                 .registerTypeAdapter(AnyOfCameraCameraFit.class,
                         new AnyOfCameraCameraFitTypeAdapter(() -> gson)).registerTypeAdapter(
-                        AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperation.class,
+                        AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransformOpClearTransformOpSelectOpDeselectOperationClearRenOpViewDefaultRenOpViewRenByIdOpViewRenBySuppliedIdOpViewRepByIdOpViewRepByPredefinedIdOpClearRepOp.class,
                         new AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperationTypeAdapter(
                                 () -> gson)).registerTypeAdapter(
                         AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType.class,

@@ -10,14 +10,14 @@ import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
-public class AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationshipTypeAdapterTest {
+public class AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationshipPartRenditionRelationshipTypeAdapterTest {
 
   @Test
   void serializesGeometrySetRelationships() {
     UUID id = UUID.randomUUID();
 
-    AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship rel =
-        new AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship(
+    AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationshipPartRenditionRelationship rel =
+        new AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationshipPartRenditionRelationship(
             new GeometrySetRelationship()
                 .data(new GeometrySetRelationshipData().id(id)
                     .type(GeometrySetRelationshipData.TypeEnum.GEOMETRY_SET)));
@@ -55,8 +55,8 @@ public class AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationsh
   void serializesPartRevisionRelationships() {
     UUID id = UUID.randomUUID();
 
-    AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship rel =
-        new AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship(
+    AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationshipPartRenditionRelationship rel =
+        new AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationshipPartRenditionRelationship(
             new PartRevisionRelationship()
                 .data(new PartDataRelationshipsPartRevisions().id(id)
                     .type(PartDataRelationshipsPartRevisions.TypeEnum.PART_REVISION)));
@@ -94,8 +94,8 @@ public class AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationsh
   void serializesSceneRelationships() {
     UUID id = UUID.randomUUID();
 
-    AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship rel =
-        new AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship(
+    AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationshipPartRenditionRelationship rel =
+        new AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationshipPartRenditionRelationship(
             new SceneRelationship()
                 .data(
                     new SceneRelationshipData().id(id).type(SceneRelationshipData.TypeEnum.SCENE)));
