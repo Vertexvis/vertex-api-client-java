@@ -1,6 +1,6 @@
 /*
  * Vertex Platform API
- * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples,   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
+ * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples:   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
  *
  * The version of the OpenAPI document: 1.0
  * Contact: support@vertexvis.com
@@ -20,21 +20,22 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.vertexvis.model.ColorMaterial;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * SelectOperation
+ * ChangeMaterialOp
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class SelectOperation {
+public class ChangeMaterialOp {
   /**
    * Resource object type.
    */
   @JsonAdapter(TypeEnum.Adapter.class)
   public enum TypeEnum {
-    SELECT("select");
+    CHANGE_MATERIAL("change-material");
 
     private String value;
 
@@ -78,10 +79,14 @@ public class SelectOperation {
   @SerializedName(SERIALIZED_NAME_TYPE)
   private TypeEnum type;
 
-  public SelectOperation() { 
+  public static final String SERIALIZED_NAME_MATERIAL = "material";
+  @SerializedName(SERIALIZED_NAME_MATERIAL)
+  private ColorMaterial material;
+
+  public ChangeMaterialOp() { 
   }
 
-  public SelectOperation type(TypeEnum type) {
+  public ChangeMaterialOp type(TypeEnum type) {
     
     this.type = type;
     return this;
@@ -92,7 +97,7 @@ public class SelectOperation {
    * @return type
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "select", required = true, value = "Resource object type.")
+  @ApiModelProperty(example = "change-material", required = true, value = "Resource object type.")
 
   public TypeEnum getType() {
     return type;
@@ -104,6 +109,29 @@ public class SelectOperation {
   }
 
 
+  public ChangeMaterialOp material(ColorMaterial material) {
+    
+    this.material = material;
+    return this;
+  }
+
+   /**
+   * Get material
+   * @return material
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public ColorMaterial getMaterial() {
+    return material;
+  }
+
+
+  public void setMaterial(ColorMaterial material) {
+    this.material = material;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -112,20 +140,22 @@ public class SelectOperation {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SelectOperation selectOperation = (SelectOperation) o;
-    return Objects.equals(this.type, selectOperation.type);
+    ChangeMaterialOp changeMaterialOp = (ChangeMaterialOp) o;
+    return Objects.equals(this.type, changeMaterialOp.type) &&
+        Objects.equals(this.material, changeMaterialOp.material);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type);
+    return Objects.hash(type, material);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SelectOperation {\n");
+    sb.append("class ChangeMaterialOp {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    material: ").append(toIndentedString(material)).append("\n");
     sb.append("}");
     return sb.toString();
   }

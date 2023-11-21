@@ -1,6 +1,6 @@
 /*
  * Vertex Platform API
- * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples,   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
+ * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples:   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
  *
  * The version of the OpenAPI document: 1.0
  * Contact: support@vertexvis.com
@@ -21,7 +21,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.Link;
-import com.vertexvis.model.WebhookEventDataAttributes;
+import com.vertexvis.model.SceneEventDataAttributes;
 import com.vertexvis.model.WebhookEventDataRelationships;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -32,10 +32,10 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * WebhookEventData
+ * SceneDeletedEventData
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class WebhookEventData {
+public class SceneDeletedEventData {
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
   private String type;
@@ -46,7 +46,7 @@ public class WebhookEventData {
 
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
-  private WebhookEventDataAttributes attributes;
+  private SceneEventDataAttributes attributes;
 
   public static final String SERIALIZED_NAME_RELATIONSHIPS = "relationships";
   @SerializedName(SERIALIZED_NAME_RELATIONSHIPS)
@@ -56,10 +56,10 @@ public class WebhookEventData {
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = null;
 
-  public WebhookEventData() { 
+  public SceneDeletedEventData() { 
   }
 
-  public WebhookEventData type(String type) {
+  public SceneDeletedEventData type(String type) {
     
     this.type = type;
     return this;
@@ -82,7 +82,7 @@ public class WebhookEventData {
   }
 
 
-  public WebhookEventData id(UUID id) {
+  public SceneDeletedEventData id(UUID id) {
     
     this.id = id;
     return this;
@@ -105,7 +105,7 @@ public class WebhookEventData {
   }
 
 
-  public WebhookEventData attributes(WebhookEventDataAttributes attributes) {
+  public SceneDeletedEventData attributes(SceneEventDataAttributes attributes) {
     
     this.attributes = attributes;
     return this;
@@ -118,17 +118,17 @@ public class WebhookEventData {
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public WebhookEventDataAttributes getAttributes() {
+  public SceneEventDataAttributes getAttributes() {
     return attributes;
   }
 
 
-  public void setAttributes(WebhookEventDataAttributes attributes) {
+  public void setAttributes(SceneEventDataAttributes attributes) {
     this.attributes = attributes;
   }
 
 
-  public WebhookEventData relationships(WebhookEventDataRelationships relationships) {
+  public SceneDeletedEventData relationships(WebhookEventDataRelationships relationships) {
     
     this.relationships = relationships;
     return this;
@@ -151,13 +151,13 @@ public class WebhookEventData {
   }
 
 
-  public WebhookEventData links(Map<String, Link> links) {
+  public SceneDeletedEventData links(Map<String, Link> links) {
     
     this.links = links;
     return this;
   }
 
-  public WebhookEventData putLinksItem(String key, Link linksItem) {
+  public SceneDeletedEventData putLinksItem(String key, Link linksItem) {
     if (this.links == null) {
       this.links = new HashMap<>();
     }
@@ -190,12 +190,12 @@ public class WebhookEventData {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WebhookEventData webhookEventData = (WebhookEventData) o;
-    return Objects.equals(this.type, webhookEventData.type) &&
-        Objects.equals(this.id, webhookEventData.id) &&
-        Objects.equals(this.attributes, webhookEventData.attributes) &&
-        Objects.equals(this.relationships, webhookEventData.relationships) &&
-        Objects.equals(this.links, webhookEventData.links);
+    SceneDeletedEventData sceneDeletedEventData = (SceneDeletedEventData) o;
+    return Objects.equals(this.type, sceneDeletedEventData.type) &&
+        Objects.equals(this.id, sceneDeletedEventData.id) &&
+        Objects.equals(this.attributes, sceneDeletedEventData.attributes) &&
+        Objects.equals(this.relationships, sceneDeletedEventData.relationships) &&
+        Objects.equals(this.links, sceneDeletedEventData.links);
   }
 
   @Override
@@ -206,7 +206,7 @@ public class WebhookEventData {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class WebhookEventData {\n");
+    sb.append("class SceneDeletedEventData {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");

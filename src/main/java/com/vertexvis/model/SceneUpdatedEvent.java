@@ -1,6 +1,6 @@
 /*
  * Vertex Platform API
- * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples,   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
+ * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples:   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
  *
  * The version of the OpenAPI document: 1.0
  * Contact: support@vertexvis.com
@@ -21,7 +21,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.Link;
-import com.vertexvis.model.WebhookEventData;
+import com.vertexvis.model.SceneUpdatedEventData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -30,22 +30,22 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * WebhookEvent
+ * SceneUpdatedEvent
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class WebhookEvent {
+public class SceneUpdatedEvent {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
-  private WebhookEventData data;
+  private SceneUpdatedEventData data;
 
   public static final String SERIALIZED_NAME_LINKS = "links";
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = null;
 
-  public WebhookEvent() { 
+  public SceneUpdatedEvent() { 
   }
 
-  public WebhookEvent data(WebhookEventData data) {
+  public SceneUpdatedEvent data(SceneUpdatedEventData data) {
     
     this.data = data;
     return this;
@@ -58,23 +58,23 @@ public class WebhookEvent {
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public WebhookEventData getData() {
+  public SceneUpdatedEventData getData() {
     return data;
   }
 
 
-  public void setData(WebhookEventData data) {
+  public void setData(SceneUpdatedEventData data) {
     this.data = data;
   }
 
 
-  public WebhookEvent links(Map<String, Link> links) {
+  public SceneUpdatedEvent links(Map<String, Link> links) {
     
     this.links = links;
     return this;
   }
 
-  public WebhookEvent putLinksItem(String key, Link linksItem) {
+  public SceneUpdatedEvent putLinksItem(String key, Link linksItem) {
     if (this.links == null) {
       this.links = new HashMap<>();
     }
@@ -107,9 +107,9 @@ public class WebhookEvent {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WebhookEvent webhookEvent = (WebhookEvent) o;
-    return Objects.equals(this.data, webhookEvent.data) &&
-        Objects.equals(this.links, webhookEvent.links);
+    SceneUpdatedEvent sceneUpdatedEvent = (SceneUpdatedEvent) o;
+    return Objects.equals(this.data, sceneUpdatedEvent.data) &&
+        Objects.equals(this.links, sceneUpdatedEvent.links);
   }
 
   @Override
@@ -120,7 +120,7 @@ public class WebhookEvent {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class WebhookEvent {\n");
+    sb.append("class SceneUpdatedEvent {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("    links: ").append(toIndentedString(links)).append("\n");
     sb.append("}");

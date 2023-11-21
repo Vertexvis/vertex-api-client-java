@@ -1,6 +1,6 @@
 /*
  * Vertex Platform API
- * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples,   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
+ * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples:   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
  *
  * The version of the OpenAPI document: 1.0
  * Contact: support@vertexvis.com
@@ -26,10 +26,10 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * ChangeTransformOperation
+ * ChangeTransformOp
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ChangeTransformOperation {
+public class ChangeTransformOp {
   /**
    * Resource object type.
    */
@@ -83,10 +83,10 @@ public class ChangeTransformOperation {
   @SerializedName(SERIALIZED_NAME_TRANSFORM)
   private Matrix4 transform;
 
-  public ChangeTransformOperation() { 
+  public ChangeTransformOp() { 
   }
 
-  public ChangeTransformOperation type(TypeEnum type) {
+  public ChangeTransformOp type(TypeEnum type) {
     
     this.type = type;
     return this;
@@ -109,7 +109,7 @@ public class ChangeTransformOperation {
   }
 
 
-  public ChangeTransformOperation transform(Matrix4 transform) {
+  public ChangeTransformOp transform(Matrix4 transform) {
     
     this.transform = transform;
     return this;
@@ -140,9 +140,9 @@ public class ChangeTransformOperation {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ChangeTransformOperation changeTransformOperation = (ChangeTransformOperation) o;
-    return Objects.equals(this.type, changeTransformOperation.type) &&
-        Objects.equals(this.transform, changeTransformOperation.transform);
+    ChangeTransformOp changeTransformOp = (ChangeTransformOp) o;
+    return Objects.equals(this.type, changeTransformOp.type) &&
+        Objects.equals(this.transform, changeTransformOp.transform);
   }
 
   @Override
@@ -153,7 +153,7 @@ public class ChangeTransformOperation {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ChangeTransformOperation {\n");
+    sb.append("class ChangeTransformOp {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    transform: ").append(toIndentedString(transform)).append("\n");
     sb.append("}");

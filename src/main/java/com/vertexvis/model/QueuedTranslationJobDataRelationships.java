@@ -1,6 +1,6 @@
 /*
  * Vertex Platform API
- * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples,   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
+ * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples:   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
  *
  * The version of the OpenAPI document: 1.0
  * Contact: support@vertexvis.com
@@ -21,6 +21,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.GeometrySetRelationship;
+import com.vertexvis.model.PartRenditionRelationship;
 import com.vertexvis.model.PartRevisionRelationship;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -38,6 +39,10 @@ public class QueuedTranslationJobDataRelationships {
   public static final String SERIALIZED_NAME_PART_REVISION = "partRevision";
   @SerializedName(SERIALIZED_NAME_PART_REVISION)
   private PartRevisionRelationship partRevision;
+
+  public static final String SERIALIZED_NAME_PART_RENDITION = "partRendition";
+  @SerializedName(SERIALIZED_NAME_PART_RENDITION)
+  private PartRenditionRelationship partRendition;
 
   public QueuedTranslationJobDataRelationships() { 
   }
@@ -88,6 +93,29 @@ public class QueuedTranslationJobDataRelationships {
   }
 
 
+  public QueuedTranslationJobDataRelationships partRendition(PartRenditionRelationship partRendition) {
+    
+    this.partRendition = partRendition;
+    return this;
+  }
+
+   /**
+   * Get partRendition
+   * @return partRendition
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public PartRenditionRelationship getPartRendition() {
+    return partRendition;
+  }
+
+
+  public void setPartRendition(PartRenditionRelationship partRendition) {
+    this.partRendition = partRendition;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -98,12 +126,13 @@ public class QueuedTranslationJobDataRelationships {
     }
     QueuedTranslationJobDataRelationships queuedTranslationJobDataRelationships = (QueuedTranslationJobDataRelationships) o;
     return Objects.equals(this.geometrySet, queuedTranslationJobDataRelationships.geometrySet) &&
-        Objects.equals(this.partRevision, queuedTranslationJobDataRelationships.partRevision);
+        Objects.equals(this.partRevision, queuedTranslationJobDataRelationships.partRevision) &&
+        Objects.equals(this.partRendition, queuedTranslationJobDataRelationships.partRendition);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(geometrySet, partRevision);
+    return Objects.hash(geometrySet, partRevision, partRendition);
   }
 
   @Override
@@ -112,6 +141,7 @@ public class QueuedTranslationJobDataRelationships {
     sb.append("class QueuedTranslationJobDataRelationships {\n");
     sb.append("    geometrySet: ").append(toIndentedString(geometrySet)).append("\n");
     sb.append("    partRevision: ").append(toIndentedString(partRevision)).append("\n");
+    sb.append("    partRendition: ").append(toIndentedString(partRendition)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -1,6 +1,6 @@
 /*
  * Vertex Platform API
- * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples,   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
+ * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples:   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
  *
  * The version of the OpenAPI document: 1.0
  * Contact: support@vertexvis.com
@@ -25,16 +25,16 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * ClearMaterialOperation
+ * ClearTransformOp
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ClearMaterialOperation {
+public class ClearTransformOp {
   /**
    * Resource object type.
    */
   @JsonAdapter(TypeEnum.Adapter.class)
   public enum TypeEnum {
-    CLEAR_MATERIAL("clear-material");
+    CLEAR_TRANSFORM("clear-transform");
 
     private String value;
 
@@ -78,10 +78,10 @@ public class ClearMaterialOperation {
   @SerializedName(SERIALIZED_NAME_TYPE)
   private TypeEnum type;
 
-  public ClearMaterialOperation() { 
+  public ClearTransformOp() { 
   }
 
-  public ClearMaterialOperation type(TypeEnum type) {
+  public ClearTransformOp type(TypeEnum type) {
     
     this.type = type;
     return this;
@@ -92,7 +92,7 @@ public class ClearMaterialOperation {
    * @return type
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "clear-material", required = true, value = "Resource object type.")
+  @ApiModelProperty(example = "clear-transform", required = true, value = "Resource object type.")
 
   public TypeEnum getType() {
     return type;
@@ -112,8 +112,8 @@ public class ClearMaterialOperation {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ClearMaterialOperation clearMaterialOperation = (ClearMaterialOperation) o;
-    return Objects.equals(this.type, clearMaterialOperation.type);
+    ClearTransformOp clearTransformOp = (ClearTransformOp) o;
+    return Objects.equals(this.type, clearTransformOp.type);
   }
 
   @Override
@@ -124,7 +124,7 @@ public class ClearMaterialOperation {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ClearMaterialOperation {\n");
+    sb.append("class ClearTransformOp {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();

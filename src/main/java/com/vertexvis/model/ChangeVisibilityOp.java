@@ -1,6 +1,6 @@
 /*
  * Vertex Platform API
- * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples,   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
+ * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples:   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
  *
  * The version of the OpenAPI document: 1.0
  * Contact: support@vertexvis.com
@@ -25,16 +25,16 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * ClearTransformOperation
+ * ChangeVisibilityOp
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ClearTransformOperation {
+public class ChangeVisibilityOp {
   /**
    * Resource object type.
    */
   @JsonAdapter(TypeEnum.Adapter.class)
   public enum TypeEnum {
-    CLEAR_TRANSFORM("clear-transform");
+    CHANGE_VISIBILITY("change-visibility");
 
     private String value;
 
@@ -78,10 +78,14 @@ public class ClearTransformOperation {
   @SerializedName(SERIALIZED_NAME_TYPE)
   private TypeEnum type;
 
-  public ClearTransformOperation() { 
+  public static final String SERIALIZED_NAME_VISIBLE = "visible";
+  @SerializedName(SERIALIZED_NAME_VISIBLE)
+  private Boolean visible;
+
+  public ChangeVisibilityOp() { 
   }
 
-  public ClearTransformOperation type(TypeEnum type) {
+  public ChangeVisibilityOp type(TypeEnum type) {
     
     this.type = type;
     return this;
@@ -92,7 +96,7 @@ public class ClearTransformOperation {
    * @return type
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "clear-transform", required = true, value = "Resource object type.")
+  @ApiModelProperty(example = "change-visibility", required = true, value = "Resource object type.")
 
   public TypeEnum getType() {
     return type;
@@ -104,6 +108,29 @@ public class ClearTransformOperation {
   }
 
 
+  public ChangeVisibilityOp visible(Boolean visible) {
+    
+    this.visible = visible;
+    return this;
+  }
+
+   /**
+   * Item visibility.
+   * @return visible
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "true", required = true, value = "Item visibility.")
+
+  public Boolean getVisible() {
+    return visible;
+  }
+
+
+  public void setVisible(Boolean visible) {
+    this.visible = visible;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -112,20 +139,22 @@ public class ClearTransformOperation {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ClearTransformOperation clearTransformOperation = (ClearTransformOperation) o;
-    return Objects.equals(this.type, clearTransformOperation.type);
+    ChangeVisibilityOp changeVisibilityOp = (ChangeVisibilityOp) o;
+    return Objects.equals(this.type, changeVisibilityOp.type) &&
+        Objects.equals(this.visible, changeVisibilityOp.visible);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type);
+    return Objects.hash(type, visible);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ClearTransformOperation {\n");
+    sb.append("class ChangeVisibilityOp {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    visible: ").append(toIndentedString(visible)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -1,6 +1,6 @@
 /*
  * Vertex Platform API
- * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples,   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
+ * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples:   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
  *
  * The version of the OpenAPI document: 1.0
  * Contact: support@vertexvis.com
@@ -25,16 +25,16 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * ChangeVisibilityOperation
+ * ClearMaterialOp
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ChangeVisibilityOperation {
+public class ClearMaterialOp {
   /**
    * Resource object type.
    */
   @JsonAdapter(TypeEnum.Adapter.class)
   public enum TypeEnum {
-    CHANGE_VISIBILITY("change-visibility");
+    CLEAR_MATERIAL("clear-material");
 
     private String value;
 
@@ -78,14 +78,10 @@ public class ChangeVisibilityOperation {
   @SerializedName(SERIALIZED_NAME_TYPE)
   private TypeEnum type;
 
-  public static final String SERIALIZED_NAME_VISIBLE = "visible";
-  @SerializedName(SERIALIZED_NAME_VISIBLE)
-  private Boolean visible;
-
-  public ChangeVisibilityOperation() { 
+  public ClearMaterialOp() { 
   }
 
-  public ChangeVisibilityOperation type(TypeEnum type) {
+  public ClearMaterialOp type(TypeEnum type) {
     
     this.type = type;
     return this;
@@ -96,7 +92,7 @@ public class ChangeVisibilityOperation {
    * @return type
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "change-visibility", required = true, value = "Resource object type.")
+  @ApiModelProperty(example = "clear-material", required = true, value = "Resource object type.")
 
   public TypeEnum getType() {
     return type;
@@ -108,29 +104,6 @@ public class ChangeVisibilityOperation {
   }
 
 
-  public ChangeVisibilityOperation visible(Boolean visible) {
-    
-    this.visible = visible;
-    return this;
-  }
-
-   /**
-   * Item visibility.
-   * @return visible
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "true", required = true, value = "Item visibility.")
-
-  public Boolean getVisible() {
-    return visible;
-  }
-
-
-  public void setVisible(Boolean visible) {
-    this.visible = visible;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -139,22 +112,20 @@ public class ChangeVisibilityOperation {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ChangeVisibilityOperation changeVisibilityOperation = (ChangeVisibilityOperation) o;
-    return Objects.equals(this.type, changeVisibilityOperation.type) &&
-        Objects.equals(this.visible, changeVisibilityOperation.visible);
+    ClearMaterialOp clearMaterialOp = (ClearMaterialOp) o;
+    return Objects.equals(this.type, clearMaterialOp.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, visible);
+    return Objects.hash(type);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ChangeVisibilityOperation {\n");
+    sb.append("class ClearMaterialOp {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    visible: ").append(toIndentedString(visible)).append("\n");
     sb.append("}");
     return sb.toString();
   }

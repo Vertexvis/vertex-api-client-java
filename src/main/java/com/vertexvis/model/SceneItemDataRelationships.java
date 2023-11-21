@@ -1,6 +1,6 @@
 /*
  * Vertex Platform API
- * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples,   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
+ * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples:   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
  *
  * The version of the OpenAPI document: 1.0
  * Contact: support@vertexvis.com
@@ -20,6 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.vertexvis.model.PartRenditionRelationship;
 import com.vertexvis.model.SceneItemRelationship;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -33,16 +34,20 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class SceneItemDataRelationships {
   public static final String SERIALIZED_NAME_SOURCE = "source";
   @SerializedName(SERIALIZED_NAME_SOURCE)
-  private AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship source;
+  private AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationshipPartRenditionRelationship source;
 
   public static final String SERIALIZED_NAME_PARENT = "parent";
   @SerializedName(SERIALIZED_NAME_PARENT)
   private SceneItemRelationship parent;
 
+  public static final String SERIALIZED_NAME_PART_RENDITION = "partRendition";
+  @SerializedName(SERIALIZED_NAME_PART_RENDITION)
+  private PartRenditionRelationship partRendition;
+
   public SceneItemDataRelationships() { 
   }
 
-  public SceneItemDataRelationships source(AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship source) {
+  public SceneItemDataRelationships source(AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationshipPartRenditionRelationship source) {
     
     this.source = source;
     return this;
@@ -55,12 +60,12 @@ public class SceneItemDataRelationships {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship getSource() {
+  public AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationshipPartRenditionRelationship getSource() {
     return source;
   }
 
 
-  public void setSource(AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship source) {
+  public void setSource(AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationshipPartRenditionRelationship source) {
     this.source = source;
   }
 
@@ -88,6 +93,29 @@ public class SceneItemDataRelationships {
   }
 
 
+  public SceneItemDataRelationships partRendition(PartRenditionRelationship partRendition) {
+    
+    this.partRendition = partRendition;
+    return this;
+  }
+
+   /**
+   * Get partRendition
+   * @return partRendition
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public PartRenditionRelationship getPartRendition() {
+    return partRendition;
+  }
+
+
+  public void setPartRendition(PartRenditionRelationship partRendition) {
+    this.partRendition = partRendition;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -98,7 +126,8 @@ public class SceneItemDataRelationships {
     }
     SceneItemDataRelationships sceneItemDataRelationships = (SceneItemDataRelationships) o;
     return Objects.equals(this.source, sceneItemDataRelationships.source) &&
-        Objects.equals(this.parent, sceneItemDataRelationships.parent);
+        Objects.equals(this.parent, sceneItemDataRelationships.parent) &&
+        Objects.equals(this.partRendition, sceneItemDataRelationships.partRendition);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -107,7 +136,7 @@ public class SceneItemDataRelationships {
 
   @Override
   public int hashCode() {
-    return Objects.hash(source, parent);
+    return Objects.hash(source, parent, partRendition);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -123,6 +152,7 @@ public class SceneItemDataRelationships {
     sb.append("class SceneItemDataRelationships {\n");
     sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("    parent: ").append(toIndentedString(parent)).append("\n");
+    sb.append("    partRendition: ").append(toIndentedString(partRendition)).append("\n");
     sb.append("}");
     return sb.toString();
   }
