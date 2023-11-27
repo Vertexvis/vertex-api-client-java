@@ -224,6 +224,7 @@ src/main/java/com/vertexvis/model/QueuedSceneItemCompletedEvent.java
 src/main/java/com/vertexvis/model/QueuedSceneItemCompletedEventData.java
 src/main/java/com/vertexvis/model/QueuedSceneItemCompletedEventDataAttributes.java
 src/main/java/com/vertexvis/model/QueuedTranslationCompletedEvent.java
+src/main/java/com/vertexvis/model/QueuedTranslationCompletedEventData.java
 src/main/java/com/vertexvis/model/QueuedTranslationJob.java
 src/main/java/com/vertexvis/model/QueuedTranslationJobData.java
 src/main/java/com/vertexvis/model/QueuedTranslationJobDataAttributes.java

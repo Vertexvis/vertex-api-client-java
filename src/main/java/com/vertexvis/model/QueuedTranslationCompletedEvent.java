@@ -21,7 +21,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.Link;
-import com.vertexvis.model.QueuedSceneItemCompletedEventData;
+import com.vertexvis.model.QueuedTranslationCompletedEventData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -36,7 +36,7 @@ import java.util.Map;
 public class QueuedTranslationCompletedEvent {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
-  private QueuedSceneItemCompletedEventData data;
+  private QueuedTranslationCompletedEventData data;
 
   public static final String SERIALIZED_NAME_LINKS = "links";
   @SerializedName(SERIALIZED_NAME_LINKS)
@@ -45,7 +45,7 @@ public class QueuedTranslationCompletedEvent {
   public QueuedTranslationCompletedEvent() { 
   }
 
-  public QueuedTranslationCompletedEvent data(QueuedSceneItemCompletedEventData data) {
+  public QueuedTranslationCompletedEvent data(QueuedTranslationCompletedEventData data) {
     
     this.data = data;
     return this;
@@ -58,12 +58,12 @@ public class QueuedTranslationCompletedEvent {
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public QueuedSceneItemCompletedEventData getData() {
+  public QueuedTranslationCompletedEventData getData() {
     return data;
   }
 
 
-  public void setData(QueuedSceneItemCompletedEventData data) {
+  public void setData(QueuedTranslationCompletedEventData data) {
     this.data = data;
   }
 
