@@ -1,6 +1,6 @@
 /*
  * Vertex Platform API
- * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples,   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
+ * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples:   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
  *
  * The version of the OpenAPI document: 1.0
  * Contact: support@vertexvis.com
@@ -26,10 +26,10 @@ import java.io.IOException;
 import java.time.OffsetDateTime;
 
 /**
- * WebhookEventDataAttributes
+ * QueuedSceneItemCompletedEventDataAttributes
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class WebhookEventDataAttributes {
+public class QueuedSceneItemCompletedEventDataAttributes {
   public static final String SERIALIZED_NAME_CREATED = "created";
   @SerializedName(SERIALIZED_NAME_CREATED)
   private OffsetDateTime created;
@@ -38,10 +38,10 @@ public class WebhookEventDataAttributes {
   @SerializedName(SERIALIZED_NAME_TOPIC)
   private String topic;
 
-  public WebhookEventDataAttributes() { 
+  public QueuedSceneItemCompletedEventDataAttributes() { 
   }
 
-  public WebhookEventDataAttributes created(OffsetDateTime created) {
+  public QueuedSceneItemCompletedEventDataAttributes created(OffsetDateTime created) {
     
     this.created = created;
     return this;
@@ -64,7 +64,7 @@ public class WebhookEventDataAttributes {
   }
 
 
-  public WebhookEventDataAttributes topic(String topic) {
+  public QueuedSceneItemCompletedEventDataAttributes topic(String topic) {
     
     this.topic = topic;
     return this;
@@ -95,9 +95,9 @@ public class WebhookEventDataAttributes {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WebhookEventDataAttributes webhookEventDataAttributes = (WebhookEventDataAttributes) o;
-    return Objects.equals(this.created, webhookEventDataAttributes.created) &&
-        Objects.equals(this.topic, webhookEventDataAttributes.topic);
+    QueuedSceneItemCompletedEventDataAttributes queuedSceneItemCompletedEventDataAttributes = (QueuedSceneItemCompletedEventDataAttributes) o;
+    return Objects.equals(this.created, queuedSceneItemCompletedEventDataAttributes.created) &&
+        Objects.equals(this.topic, queuedSceneItemCompletedEventDataAttributes.topic);
   }
 
   @Override
@@ -108,7 +108,7 @@ public class WebhookEventDataAttributes {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class WebhookEventDataAttributes {\n");
+    sb.append("class QueuedSceneItemCompletedEventDataAttributes {\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    topic: ").append(toIndentedString(topic)).append("\n");
     sb.append("}");

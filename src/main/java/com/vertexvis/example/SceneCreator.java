@@ -10,10 +10,8 @@ import com.vertexvis.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 class SceneCreator {
     private final ScenesApi scenes;
@@ -69,7 +67,7 @@ class SceneCreator {
                                                 .relationships(
                                                         new CreateSceneItemRequestDataRelationships()
                                                                 .source(
-                                                                        new AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship(
+                                                                        new AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationshipPartRenditionRelationship(
                                                                                 new PartRevisionRelationship()
                                                                                         .data(
                                                                                                 new PartDataRelationshipsPartRevisions()

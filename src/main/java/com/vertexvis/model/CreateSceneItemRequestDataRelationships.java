@@ -1,6 +1,6 @@
 /*
  * Vertex Platform API
- * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples,   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
+ * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples:   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
  *
  * The version of the OpenAPI document: 1.0
  * Contact: support@vertexvis.com
@@ -37,7 +37,7 @@ public class CreateSceneItemRequestDataRelationships {
 
   public static final String SERIALIZED_NAME_SOURCE = "source";
   @SerializedName(SERIALIZED_NAME_SOURCE)
-  private AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship source;
+  private AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationshipPartRenditionRelationship source;
 
   public static final String SERIALIZED_NAME_REFERENCE_TREE = "referenceTree";
   @SerializedName(SERIALIZED_NAME_REFERENCE_TREE)
@@ -69,25 +69,25 @@ public class CreateSceneItemRequestDataRelationships {
   }
 
 
-  public CreateSceneItemRequestDataRelationships source(AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship source) {
+  public CreateSceneItemRequestDataRelationships source(AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationshipPartRenditionRelationship source) {
     
     this.source = source;
     return this;
   }
 
    /**
-   * Relationship to a &#x60;geometry-set&#x60;, &#x60;part-revision&#x60;, or &#x60;scene&#x60;.
+   * Relationship to a &#x60;geometry-set&#x60;, &#x60;part-revision&#x60;, &#x60;part-rendition&#x60;, or &#x60;scene&#x60;.
    * @return source
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Relationship to a `geometry-set`, `part-revision`, or `scene`.")
+  @ApiModelProperty(value = "Relationship to a `geometry-set`, `part-revision`, `part-rendition`, or `scene`.")
 
-  public AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship getSource() {
+  public AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationshipPartRenditionRelationship getSource() {
     return source;
   }
 
 
-  public void setSource(AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship source) {
+  public void setSource(AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationshipPartRenditionRelationship source) {
     this.source = source;
   }
 

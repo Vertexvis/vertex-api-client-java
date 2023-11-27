@@ -1,6 +1,6 @@
 /*
  * Vertex Platform API
- * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples,   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
+ * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples:   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
  *
  * The version of the OpenAPI document: 1.0
  * Contact: support@vertexvis.com
@@ -652,7 +652,7 @@ public class ScenesApi {
      * @param pageSize The number of items to return. (optional)
      * @param filterName Comma-separated list of names to filter on. (optional)
      * @param filterSuppliedId Comma-separated list of supplied IDs to filter on. (optional)
-     * @param fieldsScene Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;sceneItemCount&#x60; and &#x60;metadata&#x60; are only returned if explicitly requested. (optional)
+     * @param fieldsScene Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;metadata&#x60; is only returned if explicitly requested. (optional)
      * @param filterMetadata Filter scenes that contain all the given metadata key-value pairs. Should be specified in query parameter map notation: &#x60;filter[metadata][key1]&#x3D;value1&amp;filter[metadata][key]&#x3D;value2&#x60;.  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -751,7 +751,7 @@ public class ScenesApi {
      * @param pageSize The number of items to return. (optional)
      * @param filterName Comma-separated list of names to filter on. (optional)
      * @param filterSuppliedId Comma-separated list of supplied IDs to filter on. (optional)
-     * @param fieldsScene Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;sceneItemCount&#x60; and &#x60;metadata&#x60; are only returned if explicitly requested. (optional)
+     * @param fieldsScene Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;metadata&#x60; is only returned if explicitly requested. (optional)
      * @param filterMetadata Filter scenes that contain all the given metadata key-value pairs. Should be specified in query parameter map notation: &#x60;filter[metadata][key1]&#x3D;value1&amp;filter[metadata][key]&#x3D;value2&#x60;.  (optional)
      * @return SceneList
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -775,7 +775,7 @@ public class ScenesApi {
      * @param pageSize The number of items to return. (optional)
      * @param filterName Comma-separated list of names to filter on. (optional)
      * @param filterSuppliedId Comma-separated list of supplied IDs to filter on. (optional)
-     * @param fieldsScene Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;sceneItemCount&#x60; and &#x60;metadata&#x60; are only returned if explicitly requested. (optional)
+     * @param fieldsScene Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;metadata&#x60; is only returned if explicitly requested. (optional)
      * @param filterMetadata Filter scenes that contain all the given metadata key-value pairs. Should be specified in query parameter map notation: &#x60;filter[metadata][key1]&#x3D;value1&amp;filter[metadata][key]&#x3D;value2&#x60;.  (optional)
      * @return ApiResponse&lt;SceneList&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -800,7 +800,7 @@ public class ScenesApi {
      * @param pageSize The number of items to return. (optional)
      * @param filterName Comma-separated list of names to filter on. (optional)
      * @param filterSuppliedId Comma-separated list of supplied IDs to filter on. (optional)
-     * @param fieldsScene Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;sceneItemCount&#x60; and &#x60;metadata&#x60; are only returned if explicitly requested. (optional)
+     * @param fieldsScene Comma-separated list of fields to return in response. An empty value returns no fields. &#x60;metadata&#x60; is only returned if explicitly requested. (optional)
      * @param filterMetadata Filter scenes that contain all the given metadata key-value pairs. Should be specified in query parameter map notation: &#x60;filter[metadata][key1]&#x3D;value1&amp;filter[metadata][key]&#x3D;value2&#x60;.  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call

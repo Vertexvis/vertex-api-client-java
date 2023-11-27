@@ -1,6 +1,6 @@
 /*
  * Vertex Platform API
- * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples,   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
+ * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples:   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
  *
  * The version of the OpenAPI document: 1.0
  * Contact: support@vertexvis.com
@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.AnyOfGeometrySetDataPartRevisionData;
+import com.vertexvis.model.AnyOfGeometrySetDataPartRevisionDataPartRenditionData;
 import com.vertexvis.model.Link;
 import com.vertexvis.model.QueuedTranslationJobData;
 import io.swagger.annotations.ApiModel;
@@ -42,7 +42,7 @@ public class QueuedTranslationJob {
 
   public static final String SERIALIZED_NAME_INCLUDED = "included";
   @SerializedName(SERIALIZED_NAME_INCLUDED)
-  private List<AnyOfGeometrySetDataPartRevisionData> included = null;
+  private List<AnyOfGeometrySetDataPartRevisionDataPartRenditionData> included = null;
 
   public static final String SERIALIZED_NAME_LINKS = "links";
   @SerializedName(SERIALIZED_NAME_LINKS)
@@ -74,13 +74,13 @@ public class QueuedTranslationJob {
   }
 
 
-  public QueuedTranslationJob included(List<AnyOfGeometrySetDataPartRevisionData> included) {
+  public QueuedTranslationJob included(List<AnyOfGeometrySetDataPartRevisionDataPartRenditionData> included) {
     
     this.included = included;
     return this;
   }
 
-  public QueuedTranslationJob addIncludedItem(AnyOfGeometrySetDataPartRevisionData includedItem) {
+  public QueuedTranslationJob addIncludedItem(AnyOfGeometrySetDataPartRevisionDataPartRenditionData includedItem) {
     if (this.included == null) {
       this.included = new ArrayList<>();
     }
@@ -95,12 +95,12 @@ public class QueuedTranslationJob {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public List<AnyOfGeometrySetDataPartRevisionData> getIncluded() {
+  public List<AnyOfGeometrySetDataPartRevisionDataPartRenditionData> getIncluded() {
     return included;
   }
 
 
-  public void setIncluded(List<AnyOfGeometrySetDataPartRevisionData> included) {
+  public void setIncluded(List<AnyOfGeometrySetDataPartRevisionDataPartRenditionData> included) {
     this.included = included;
   }
 

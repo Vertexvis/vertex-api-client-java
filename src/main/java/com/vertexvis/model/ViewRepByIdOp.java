@@ -1,6 +1,6 @@
 /*
  * Vertex Platform API
- * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples,   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
+ * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples:   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
  *
  * The version of the OpenAPI document: 1.0
  * Contact: support@vertexvis.com
@@ -20,22 +20,22 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.ColorMaterial;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.UUID;
 
 /**
- * ChangeMaterialOperation
+ * ViewRepByIdOp
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ChangeMaterialOperation {
+public class ViewRepByIdOp {
   /**
    * Resource object type.
    */
   @JsonAdapter(TypeEnum.Adapter.class)
   public enum TypeEnum {
-    CHANGE_MATERIAL("change-material");
+    VIEW_REPRESENTATION_BY_ID("view-representation-by-id");
 
     private String value;
 
@@ -79,14 +79,14 @@ public class ChangeMaterialOperation {
   @SerializedName(SERIALIZED_NAME_TYPE)
   private TypeEnum type;
 
-  public static final String SERIALIZED_NAME_MATERIAL = "material";
-  @SerializedName(SERIALIZED_NAME_MATERIAL)
-  private ColorMaterial material;
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private UUID id;
 
-  public ChangeMaterialOperation() { 
+  public ViewRepByIdOp() { 
   }
 
-  public ChangeMaterialOperation type(TypeEnum type) {
+  public ViewRepByIdOp type(TypeEnum type) {
     
     this.type = type;
     return this;
@@ -97,7 +97,7 @@ public class ChangeMaterialOperation {
    * @return type
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "change-material", required = true, value = "Resource object type.")
+  @ApiModelProperty(example = "view-representation-by-id", required = true, value = "Resource object type.")
 
   public TypeEnum getType() {
     return type;
@@ -109,26 +109,26 @@ public class ChangeMaterialOperation {
   }
 
 
-  public ChangeMaterialOperation material(ColorMaterial material) {
+  public ViewRepByIdOp id(UUID id) {
     
-    this.material = material;
+    this.id = id;
     return this;
   }
 
    /**
-   * Get material
-   * @return material
+   * ID of the resource.
+   * @return id
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "f79d4760-0b71-44e4-ad0b-22743fdd4ca3", required = true, value = "ID of the resource.")
 
-  public ColorMaterial getMaterial() {
-    return material;
+  public UUID getId() {
+    return id;
   }
 
 
-  public void setMaterial(ColorMaterial material) {
-    this.material = material;
+  public void setId(UUID id) {
+    this.id = id;
   }
 
 
@@ -140,22 +140,22 @@ public class ChangeMaterialOperation {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ChangeMaterialOperation changeMaterialOperation = (ChangeMaterialOperation) o;
-    return Objects.equals(this.type, changeMaterialOperation.type) &&
-        Objects.equals(this.material, changeMaterialOperation.material);
+    ViewRepByIdOp viewRepByIdOp = (ViewRepByIdOp) o;
+    return Objects.equals(this.type, viewRepByIdOp.type) &&
+        Objects.equals(this.id, viewRepByIdOp.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, material);
+    return Objects.hash(type, id);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ChangeMaterialOperation {\n");
+    sb.append("class ViewRepByIdOp {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    material: ").append(toIndentedString(material)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }

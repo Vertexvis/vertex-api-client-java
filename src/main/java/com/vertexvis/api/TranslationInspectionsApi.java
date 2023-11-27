@@ -1,6 +1,6 @@
 /*
  * Vertex Platform API
- * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples,   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
+ * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples:   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
  *
  * The version of the OpenAPI document: 1.0
  * Contact: support@vertexvis.com
@@ -372,7 +372,9 @@ public class TranslationInspectionsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call getQueuedTranslationCall(UUID id, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
@@ -420,6 +422,7 @@ public class TranslationInspectionsApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getQueuedTranslationValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
         
@@ -436,7 +439,7 @@ public class TranslationInspectionsApi {
 
     /**
      * 
-     * Get a &#x60;queued-translation&#x60;. The response is either the status if &#x60;running&#x60; or &#x60;error&#x60; or, upon completion, redirects to the created &#x60;part-revision&#x60;. Once created, create scenes via the createScene API. For details, see our [Render static scenes](https://developer.vertexvis.com/docs/guides/render-static-scenes) guide.
+     * This has been deprecated and replaced by **queued-translation-jobs/{id}** - Get a &#x60;queued-translation&#x60;. The response is either the status if &#x60;running&#x60; or &#x60;error&#x60; or, upon completion, redirects to the created &#x60;part-revision&#x60;. Once created, create scenes via the createScene API. For details, see our [Render static scenes](https://developer.vertexvis.com/docs/guides/render-static-scenes) guide.
      * @param id The &#x60;queued-translation&#x60; ID. (required)
      * @return QueuedJob
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -449,7 +452,9 @@ public class TranslationInspectionsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public QueuedJob getQueuedTranslation(UUID id) throws ApiException {
         ApiResponse<QueuedJob> localVarResp = getQueuedTranslationWithHttpInfo(id);
         return localVarResp.getData();
@@ -457,7 +462,7 @@ public class TranslationInspectionsApi {
 
     /**
      * 
-     * Get a &#x60;queued-translation&#x60;. The response is either the status if &#x60;running&#x60; or &#x60;error&#x60; or, upon completion, redirects to the created &#x60;part-revision&#x60;. Once created, create scenes via the createScene API. For details, see our [Render static scenes](https://developer.vertexvis.com/docs/guides/render-static-scenes) guide.
+     * This has been deprecated and replaced by **queued-translation-jobs/{id}** - Get a &#x60;queued-translation&#x60;. The response is either the status if &#x60;running&#x60; or &#x60;error&#x60; or, upon completion, redirects to the created &#x60;part-revision&#x60;. Once created, create scenes via the createScene API. For details, see our [Render static scenes](https://developer.vertexvis.com/docs/guides/render-static-scenes) guide.
      * @param id The &#x60;queued-translation&#x60; ID. (required)
      * @return ApiResponse&lt;QueuedJob&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -470,7 +475,9 @@ public class TranslationInspectionsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<QueuedJob> getQueuedTranslationWithHttpInfo(UUID id) throws ApiException {
         okhttp3.Call localVarCall = getQueuedTranslationValidateBeforeCall(id, null);
         Type localVarReturnType = new TypeToken<QueuedJob>(){}.getType();
@@ -479,7 +486,7 @@ public class TranslationInspectionsApi {
 
     /**
      *  (asynchronously)
-     * Get a &#x60;queued-translation&#x60;. The response is either the status if &#x60;running&#x60; or &#x60;error&#x60; or, upon completion, redirects to the created &#x60;part-revision&#x60;. Once created, create scenes via the createScene API. For details, see our [Render static scenes](https://developer.vertexvis.com/docs/guides/render-static-scenes) guide.
+     * This has been deprecated and replaced by **queued-translation-jobs/{id}** - Get a &#x60;queued-translation&#x60;. The response is either the status if &#x60;running&#x60; or &#x60;error&#x60; or, upon completion, redirects to the created &#x60;part-revision&#x60;. Once created, create scenes via the createScene API. For details, see our [Render static scenes](https://developer.vertexvis.com/docs/guides/render-static-scenes) guide.
      * @param id The &#x60;queued-translation&#x60; ID. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -493,7 +500,9 @@ public class TranslationInspectionsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call getQueuedTranslationAsync(UUID id, final ApiCallback<QueuedJob> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getQueuedTranslationValidateBeforeCall(id, _callback);
@@ -646,7 +655,7 @@ public class TranslationInspectionsApi {
         return localVarCall;
     }
     /**
-     * Build call for getQueuedTranslations
+     * Build call for getQueuedTranslationJobs
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
      * @param filterStatus Status to filter on. (optional)
@@ -662,6 +671,163 @@ public class TranslationInspectionsApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
+    public okhttp3.Call getQueuedTranslationJobsCall(String pageCursor, Integer pageSize, String filterStatus, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/queued-translation-jobs";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (pageCursor != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[cursor]", pageCursor));
+        }
+
+        if (pageSize != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[size]", pageSize));
+        }
+
+        if (filterStatus != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("filter[status]", filterStatus));
+        }
+
+        final String[] localVarAccepts = {
+            "application/vnd.api+json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "OAuth2" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getQueuedTranslationJobsValidateBeforeCall(String pageCursor, Integer pageSize, String filterStatus, final ApiCallback _callback) throws ApiException {
+        
+
+        okhttp3.Call localVarCall = getQueuedTranslationJobsCall(pageCursor, pageSize, filterStatus, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * 
+     * Get all current translation jobs in progress.
+     * @param pageCursor The cursor for the next page of items. (optional)
+     * @param pageSize The number of items to return. (optional)
+     * @param filterStatus Status to filter on. (optional)
+     * @return QueuedJobList
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
+     </table>
+     */
+    public QueuedJobList getQueuedTranslationJobs(String pageCursor, Integer pageSize, String filterStatus) throws ApiException {
+        ApiResponse<QueuedJobList> localVarResp = getQueuedTranslationJobsWithHttpInfo(pageCursor, pageSize, filterStatus);
+        return localVarResp.getData();
+    }
+
+    /**
+     * 
+     * Get all current translation jobs in progress.
+     * @param pageCursor The cursor for the next page of items. (optional)
+     * @param pageSize The number of items to return. (optional)
+     * @param filterStatus Status to filter on. (optional)
+     * @return ApiResponse&lt;QueuedJobList&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<QueuedJobList> getQueuedTranslationJobsWithHttpInfo(String pageCursor, Integer pageSize, String filterStatus) throws ApiException {
+        okhttp3.Call localVarCall = getQueuedTranslationJobsValidateBeforeCall(pageCursor, pageSize, filterStatus, null);
+        Type localVarReturnType = new TypeToken<QueuedJobList>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * Get all current translation jobs in progress.
+     * @param pageCursor The cursor for the next page of items. (optional)
+     * @param pageSize The number of items to return. (optional)
+     * @param filterStatus Status to filter on. (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getQueuedTranslationJobsAsync(String pageCursor, Integer pageSize, String filterStatus, final ApiCallback<QueuedJobList> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getQueuedTranslationJobsValidateBeforeCall(pageCursor, pageSize, filterStatus, _callback);
+        Type localVarReturnType = new TypeToken<QueuedJobList>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for getQueuedTranslations
+     * @param pageCursor The cursor for the next page of items. (optional)
+     * @param pageSize The number of items to return. (optional)
+     * @param filterStatus Status to filter on. (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 301 </td><td> Moved Permanently </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
+     </table>
+     * @deprecated
+     */
+    @Deprecated
     public okhttp3.Call getQueuedTranslationsCall(String pageCursor, Integer pageSize, String filterStatus, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
@@ -720,6 +886,7 @@ public class TranslationInspectionsApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getQueuedTranslationsValidateBeforeCall(String pageCursor, Integer pageSize, String filterStatus, final ApiCallback _callback) throws ApiException {
         
@@ -731,7 +898,7 @@ public class TranslationInspectionsApi {
 
     /**
      * 
-     * Get &#x60;queued-translation&#x60;s.
+     * This has been deprecated and replaced by **queued-translation-jobs** - Get &#x60;queued-translation&#x60;s.
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
      * @param filterStatus Status to filter on. (optional)
@@ -741,11 +908,14 @@ public class TranslationInspectionsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 301 </td><td> Moved Permanently </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public QueuedJobList getQueuedTranslations(String pageCursor, Integer pageSize, String filterStatus) throws ApiException {
         ApiResponse<QueuedJobList> localVarResp = getQueuedTranslationsWithHttpInfo(pageCursor, pageSize, filterStatus);
         return localVarResp.getData();
@@ -753,7 +923,7 @@ public class TranslationInspectionsApi {
 
     /**
      * 
-     * Get &#x60;queued-translation&#x60;s.
+     * This has been deprecated and replaced by **queued-translation-jobs** - Get &#x60;queued-translation&#x60;s.
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
      * @param filterStatus Status to filter on. (optional)
@@ -763,11 +933,14 @@ public class TranslationInspectionsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 301 </td><td> Moved Permanently </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<QueuedJobList> getQueuedTranslationsWithHttpInfo(String pageCursor, Integer pageSize, String filterStatus) throws ApiException {
         okhttp3.Call localVarCall = getQueuedTranslationsValidateBeforeCall(pageCursor, pageSize, filterStatus, null);
         Type localVarReturnType = new TypeToken<QueuedJobList>(){}.getType();
@@ -776,7 +949,7 @@ public class TranslationInspectionsApi {
 
     /**
      *  (asynchronously)
-     * Get &#x60;queued-translation&#x60;s.
+     * This has been deprecated and replaced by **queued-translation-jobs** - Get &#x60;queued-translation&#x60;s.
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
      * @param filterStatus Status to filter on. (optional)
@@ -787,11 +960,14 @@ public class TranslationInspectionsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 301 </td><td> Moved Permanently </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call getQueuedTranslationsAsync(String pageCursor, Integer pageSize, String filterStatus, final ApiCallback<QueuedJobList> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getQueuedTranslationsValidateBeforeCall(pageCursor, pageSize, filterStatus, _callback);
