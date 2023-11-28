@@ -15,14 +15,14 @@ main() {
                 AnyOfPerspectiveCameraOrthographicCameraCameraFit.java \
                 AnyOfCreateSceneItemRequestData.java \
                 AnyOfRelationshipDataApiError.java \
-                AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperation.java \
-                AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationship.java \
-                AnyOfGeometrySetDataPartRevisionData.java \
+                AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransformOpClearTransformOpSelectOpDeselectOperationClearRenOpViewDefaultRenOpViewRenByIdOpViewRenBySuppliedIdOpViewRepByIdOpViewRepByPredefinedIdOpClearRepOp.java \
+                AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationshipPartRenditionRelationship.java \
                 AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType.java \
+                AnyOfGeometrySetDataPartRevisionDataPartRenditionData.java \
+                AnyOfGeometrySetRelationshipPartRevisionRelationship.java \
                 AnyOfQueryByIdQueryByCollectionQueryAll.java \
                 OneOfHitResultDataSceneItemDataPartRevisionData.java \
                 OneOfSceneViewRelationshipSceneViewStateRelationship.java \
-                AnyOfGeometrySetRelationshipPartRevisionRelationship.java \
                 AnyOfFileRelationshipPartAssemblyRelationship.java )
   mv "src/test" . || true
   for f in "${root[@]}"; do mv "src/main/java/com/vertexvis/$f" . || true; done
