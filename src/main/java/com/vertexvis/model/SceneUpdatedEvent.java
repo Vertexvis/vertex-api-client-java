@@ -20,11 +20,10 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.Link;
-import com.vertexvis.model.SceneUpdatedEventData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,68 +33,95 @@ import java.util.Map;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SceneUpdatedEvent {
-  public static final String SERIALIZED_NAME_DATA = "data";
-  @SerializedName(SERIALIZED_NAME_DATA)
-  private SceneUpdatedEventData data;
+  public static final String SERIALIZED_NAME_CREATED = "created";
+  @SerializedName(SERIALIZED_NAME_CREATED)
+  private OffsetDateTime created;
 
-  public static final String SERIALIZED_NAME_LINKS = "links";
-  @SerializedName(SERIALIZED_NAME_LINKS)
-  private Map<String, Link> links = null;
+  public static final String SERIALIZED_NAME_TOPIC = "topic";
+  @SerializedName(SERIALIZED_NAME_TOPIC)
+  private String topic;
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  private Map<String, String> metadata = null;
 
   public SceneUpdatedEvent() { 
   }
 
-  public SceneUpdatedEvent data(SceneUpdatedEventData data) {
+  public SceneUpdatedEvent created(OffsetDateTime created) {
     
-    this.data = data;
+    this.created = created;
     return this;
   }
 
    /**
-   * Get data
-   * @return data
+   * Get created
+   * @return created
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "2020-01-01T12:00Z", required = true, value = "")
 
-  public SceneUpdatedEventData getData() {
-    return data;
+  public OffsetDateTime getCreated() {
+    return created;
   }
 
 
-  public void setData(SceneUpdatedEventData data) {
-    this.data = data;
+  public void setCreated(OffsetDateTime created) {
+    this.created = created;
   }
 
 
-  public SceneUpdatedEvent links(Map<String, Link> links) {
+  public SceneUpdatedEvent topic(String topic) {
     
-    this.links = links;
-    return this;
-  }
-
-  public SceneUpdatedEvent putLinksItem(String key, Link linksItem) {
-    if (this.links == null) {
-      this.links = new HashMap<>();
-    }
-    this.links.put(key, linksItem);
+    this.topic = topic;
     return this;
   }
 
    /**
-   * Get links
-   * @return links
+   * Get topic
+   * @return topic
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "some-string", required = true, value = "")
 
-  public Map<String, Link> getLinks() {
-    return links;
+  public String getTopic() {
+    return topic;
   }
 
 
-  public void setLinks(Map<String, Link> links) {
-    this.links = links;
+  public void setTopic(String topic) {
+    this.topic = topic;
+  }
+
+
+  public SceneUpdatedEvent metadata(Map<String, String> metadata) {
+    
+    this.metadata = metadata;
+    return this;
+  }
+
+  public SceneUpdatedEvent putMetadataItem(String key, String metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+   /**
+   * User supplied key-value pairs for a scene. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters. 
+   * @return metadata
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "User supplied key-value pairs for a scene. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters. ")
+
+  public Map<String, String> getMetadata() {
+    return metadata;
+  }
+
+
+  public void setMetadata(Map<String, String> metadata) {
+    this.metadata = metadata;
   }
 
 
@@ -108,21 +134,23 @@ public class SceneUpdatedEvent {
       return false;
     }
     SceneUpdatedEvent sceneUpdatedEvent = (SceneUpdatedEvent) o;
-    return Objects.equals(this.data, sceneUpdatedEvent.data) &&
-        Objects.equals(this.links, sceneUpdatedEvent.links);
+    return Objects.equals(this.created, sceneUpdatedEvent.created) &&
+        Objects.equals(this.topic, sceneUpdatedEvent.topic) &&
+        Objects.equals(this.metadata, sceneUpdatedEvent.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, links);
+    return Objects.hash(created, topic, metadata);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SceneUpdatedEvent {\n");
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
-    sb.append("    links: ").append(toIndentedString(links)).append("\n");
+    sb.append("    created: ").append(toIndentedString(created)).append("\n");
+    sb.append("    topic: ").append(toIndentedString(topic)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
   }

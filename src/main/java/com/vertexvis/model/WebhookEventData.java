@@ -21,7 +21,11 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.Link;
-import com.vertexvis.model.SceneEventDataAttributes;
+import com.vertexvis.model.QueuedSceneItemCompletedEvent;
+import com.vertexvis.model.QueuedTranslationCompletedEvent;
+import com.vertexvis.model.SceneCreatedEvent;
+import com.vertexvis.model.SceneDeletedEvent;
+import com.vertexvis.model.SceneUpdatedEvent;
 import com.vertexvis.model.WebhookEventDataRelationships;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -32,10 +36,10 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * SceneDeletedEventData
+ * WebhookEventData
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class SceneDeletedEventData {
+public class WebhookEventData {
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
   private String type;
@@ -46,7 +50,7 @@ public class SceneDeletedEventData {
 
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
-  private SceneEventDataAttributes attributes;
+  private OneOfQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent attributes;
 
   public static final String SERIALIZED_NAME_RELATIONSHIPS = "relationships";
   @SerializedName(SERIALIZED_NAME_RELATIONSHIPS)
@@ -56,10 +60,10 @@ public class SceneDeletedEventData {
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = null;
 
-  public SceneDeletedEventData() { 
+  public WebhookEventData() { 
   }
 
-  public SceneDeletedEventData type(String type) {
+  public WebhookEventData type(String type) {
     
     this.type = type;
     return this;
@@ -82,7 +86,7 @@ public class SceneDeletedEventData {
   }
 
 
-  public SceneDeletedEventData id(UUID id) {
+  public WebhookEventData id(UUID id) {
     
     this.id = id;
     return this;
@@ -105,7 +109,7 @@ public class SceneDeletedEventData {
   }
 
 
-  public SceneDeletedEventData attributes(SceneEventDataAttributes attributes) {
+  public WebhookEventData attributes(OneOfQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent attributes) {
     
     this.attributes = attributes;
     return this;
@@ -115,20 +119,20 @@ public class SceneDeletedEventData {
    * Get attributes
    * @return attributes
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @ApiModelProperty(required = true, value = "")
 
-  public SceneEventDataAttributes getAttributes() {
+  public OneOfQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent getAttributes() {
     return attributes;
   }
 
 
-  public void setAttributes(SceneEventDataAttributes attributes) {
+  public void setAttributes(OneOfQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent attributes) {
     this.attributes = attributes;
   }
 
 
-  public SceneDeletedEventData relationships(WebhookEventDataRelationships relationships) {
+  public WebhookEventData relationships(WebhookEventDataRelationships relationships) {
     
     this.relationships = relationships;
     return this;
@@ -151,13 +155,13 @@ public class SceneDeletedEventData {
   }
 
 
-  public SceneDeletedEventData links(Map<String, Link> links) {
+  public WebhookEventData links(Map<String, Link> links) {
     
     this.links = links;
     return this;
   }
 
-  public SceneDeletedEventData putLinksItem(String key, Link linksItem) {
+  public WebhookEventData putLinksItem(String key, Link linksItem) {
     if (this.links == null) {
       this.links = new HashMap<>();
     }
@@ -190,12 +194,12 @@ public class SceneDeletedEventData {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SceneDeletedEventData sceneDeletedEventData = (SceneDeletedEventData) o;
-    return Objects.equals(this.type, sceneDeletedEventData.type) &&
-        Objects.equals(this.id, sceneDeletedEventData.id) &&
-        Objects.equals(this.attributes, sceneDeletedEventData.attributes) &&
-        Objects.equals(this.relationships, sceneDeletedEventData.relationships) &&
-        Objects.equals(this.links, sceneDeletedEventData.links);
+    WebhookEventData webhookEventData = (WebhookEventData) o;
+    return Objects.equals(this.type, webhookEventData.type) &&
+        Objects.equals(this.id, webhookEventData.id) &&
+        Objects.equals(this.attributes, webhookEventData.attributes) &&
+        Objects.equals(this.relationships, webhookEventData.relationships) &&
+        Objects.equals(this.links, webhookEventData.links);
   }
 
   @Override
@@ -206,7 +210,7 @@ public class SceneDeletedEventData {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SceneDeletedEventData {\n");
+    sb.append("class WebhookEventData {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");

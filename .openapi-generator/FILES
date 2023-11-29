@@ -221,10 +221,7 @@ src/main/java/com/vertexvis/model/QueuedJobData.java
 src/main/java/com/vertexvis/model/QueuedJobDataAttributes.java
 src/main/java/com/vertexvis/model/QueuedJobList.java
 src/main/java/com/vertexvis/model/QueuedSceneItemCompletedEvent.java
-src/main/java/com/vertexvis/model/QueuedSceneItemCompletedEventData.java
-src/main/java/com/vertexvis/model/QueuedSceneItemCompletedEventDataAttributes.java
 src/main/java/com/vertexvis/model/QueuedTranslationCompletedEvent.java
-src/main/java/com/vertexvis/model/QueuedTranslationCompletedEventData.java
 src/main/java/com/vertexvis/model/QueuedTranslationJob.java
 src/main/java/com/vertexvis/model/QueuedTranslationJobData.java
 src/main/java/com/vertexvis/model/QueuedTranslationJobDataAttributes.java
@@ -240,12 +237,9 @@ src/main/java/com/vertexvis/model/SceneAlterationData.java
 src/main/java/com/vertexvis/model/SceneAlterationDataRelationships.java
 src/main/java/com/vertexvis/model/SceneAlterationList.java
 src/main/java/com/vertexvis/model/SceneCreatedEvent.java
-src/main/java/com/vertexvis/model/SceneCreatedEventData.java
 src/main/java/com/vertexvis/model/SceneData.java
 src/main/java/com/vertexvis/model/SceneDataAttributes.java
 src/main/java/com/vertexvis/model/SceneDeletedEvent.java
-src/main/java/com/vertexvis/model/SceneDeletedEventData.java
-src/main/java/com/vertexvis/model/SceneEventDataAttributes.java
 src/main/java/com/vertexvis/model/SceneItem.java
 src/main/java/com/vertexvis/model/SceneItemData.java
 src/main/java/com/vertexvis/model/SceneItemDataAttributes.java
@@ -263,7 +257,6 @@ src/main/java/com/vertexvis/model/SceneOperation.java
 src/main/java/com/vertexvis/model/SceneRelationship.java
 src/main/java/com/vertexvis/model/SceneRelationshipData.java
 src/main/java/com/vertexvis/model/SceneUpdatedEvent.java
-src/main/java/com/vertexvis/model/SceneUpdatedEventData.java
 src/main/java/com/vertexvis/model/SceneView.java
 src/main/java/com/vertexvis/model/SceneViewData.java
 src/main/java/com/vertexvis/model/SceneViewDataAttributes.java
@@ -321,6 +314,8 @@ src/main/java/com/vertexvis/model/ViewRenByIdOp.java
 src/main/java/com/vertexvis/model/ViewRenBySuppliedIdOp.java
 src/main/java/com/vertexvis/model/ViewRepByIdOp.java
 src/main/java/com/vertexvis/model/ViewRepByPredefinedIdOp.java
+src/main/java/com/vertexvis/model/WebhookEvent.java
+src/main/java/com/vertexvis/model/WebhookEventData.java
 src/main/java/com/vertexvis/model/WebhookEventDataRelationships.java
 src/main/java/com/vertexvis/model/WebhookEventDataRelationshipsOwner.java
 src/main/java/com/vertexvis/model/WebhookEventDataRelationshipsOwnerData.java
