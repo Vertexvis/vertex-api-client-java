@@ -20,82 +20,70 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.Link;
-import com.vertexvis.model.QueuedSceneItemCompletedEventData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.OffsetDateTime;
 
 /**
  * QueuedSceneItemCompletedEvent
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class QueuedSceneItemCompletedEvent {
-  public static final String SERIALIZED_NAME_DATA = "data";
-  @SerializedName(SERIALIZED_NAME_DATA)
-  private QueuedSceneItemCompletedEventData data;
+  public static final String SERIALIZED_NAME_CREATED = "created";
+  @SerializedName(SERIALIZED_NAME_CREATED)
+  private OffsetDateTime created;
 
-  public static final String SERIALIZED_NAME_LINKS = "links";
-  @SerializedName(SERIALIZED_NAME_LINKS)
-  private Map<String, Link> links = null;
+  public static final String SERIALIZED_NAME_TOPIC = "topic";
+  @SerializedName(SERIALIZED_NAME_TOPIC)
+  private String topic;
 
   public QueuedSceneItemCompletedEvent() { 
   }
 
-  public QueuedSceneItemCompletedEvent data(QueuedSceneItemCompletedEventData data) {
+  public QueuedSceneItemCompletedEvent created(OffsetDateTime created) {
     
-    this.data = data;
+    this.created = created;
     return this;
   }
 
    /**
-   * Get data
-   * @return data
+   * Get created
+   * @return created
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "2020-01-01T12:00Z", required = true, value = "")
 
-  public QueuedSceneItemCompletedEventData getData() {
-    return data;
+  public OffsetDateTime getCreated() {
+    return created;
   }
 
 
-  public void setData(QueuedSceneItemCompletedEventData data) {
-    this.data = data;
+  public void setCreated(OffsetDateTime created) {
+    this.created = created;
   }
 
 
-  public QueuedSceneItemCompletedEvent links(Map<String, Link> links) {
+  public QueuedSceneItemCompletedEvent topic(String topic) {
     
-    this.links = links;
-    return this;
-  }
-
-  public QueuedSceneItemCompletedEvent putLinksItem(String key, Link linksItem) {
-    if (this.links == null) {
-      this.links = new HashMap<>();
-    }
-    this.links.put(key, linksItem);
+    this.topic = topic;
     return this;
   }
 
    /**
-   * Get links
-   * @return links
+   * Get topic
+   * @return topic
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "some-string", required = true, value = "")
 
-  public Map<String, Link> getLinks() {
-    return links;
+  public String getTopic() {
+    return topic;
   }
 
 
-  public void setLinks(Map<String, Link> links) {
-    this.links = links;
+  public void setTopic(String topic) {
+    this.topic = topic;
   }
 
 
@@ -108,21 +96,21 @@ public class QueuedSceneItemCompletedEvent {
       return false;
     }
     QueuedSceneItemCompletedEvent queuedSceneItemCompletedEvent = (QueuedSceneItemCompletedEvent) o;
-    return Objects.equals(this.data, queuedSceneItemCompletedEvent.data) &&
-        Objects.equals(this.links, queuedSceneItemCompletedEvent.links);
+    return Objects.equals(this.created, queuedSceneItemCompletedEvent.created) &&
+        Objects.equals(this.topic, queuedSceneItemCompletedEvent.topic);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, links);
+    return Objects.hash(created, topic);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class QueuedSceneItemCompletedEvent {\n");
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
-    sb.append("    links: ").append(toIndentedString(links)).append("\n");
+    sb.append("    created: ").append(toIndentedString(created)).append("\n");
+    sb.append("    topic: ").append(toIndentedString(topic)).append("\n");
     sb.append("}");
     return sb.toString();
   }

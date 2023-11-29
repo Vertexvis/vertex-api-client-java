@@ -20,70 +20,82 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.vertexvis.model.Link;
+import com.vertexvis.model.WebhookEventData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.time.OffsetDateTime;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
- * QueuedSceneItemCompletedEventDataAttributes
+ * WebhookEvent
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class QueuedSceneItemCompletedEventDataAttributes {
-  public static final String SERIALIZED_NAME_CREATED = "created";
-  @SerializedName(SERIALIZED_NAME_CREATED)
-  private OffsetDateTime created;
+public class WebhookEvent {
+  public static final String SERIALIZED_NAME_DATA = "data";
+  @SerializedName(SERIALIZED_NAME_DATA)
+  private WebhookEventData data;
 
-  public static final String SERIALIZED_NAME_TOPIC = "topic";
-  @SerializedName(SERIALIZED_NAME_TOPIC)
-  private String topic;
+  public static final String SERIALIZED_NAME_LINKS = "links";
+  @SerializedName(SERIALIZED_NAME_LINKS)
+  private Map<String, Link> links = null;
 
-  public QueuedSceneItemCompletedEventDataAttributes() { 
+  public WebhookEvent() { 
   }
 
-  public QueuedSceneItemCompletedEventDataAttributes created(OffsetDateTime created) {
+  public WebhookEvent data(WebhookEventData data) {
     
-    this.created = created;
+    this.data = data;
     return this;
   }
 
    /**
-   * Get created
-   * @return created
+   * Get data
+   * @return data
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2020-01-01T12:00Z", required = true, value = "")
+  @ApiModelProperty(required = true, value = "")
 
-  public OffsetDateTime getCreated() {
-    return created;
+  public WebhookEventData getData() {
+    return data;
   }
 
 
-  public void setCreated(OffsetDateTime created) {
-    this.created = created;
+  public void setData(WebhookEventData data) {
+    this.data = data;
   }
 
 
-  public QueuedSceneItemCompletedEventDataAttributes topic(String topic) {
+  public WebhookEvent links(Map<String, Link> links) {
     
-    this.topic = topic;
+    this.links = links;
+    return this;
+  }
+
+  public WebhookEvent putLinksItem(String key, Link linksItem) {
+    if (this.links == null) {
+      this.links = new HashMap<>();
+    }
+    this.links.put(key, linksItem);
     return this;
   }
 
    /**
-   * Get topic
-   * @return topic
+   * Get links
+   * @return links
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "some-string", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
-  public String getTopic() {
-    return topic;
+  public Map<String, Link> getLinks() {
+    return links;
   }
 
 
-  public void setTopic(String topic) {
-    this.topic = topic;
+  public void setLinks(Map<String, Link> links) {
+    this.links = links;
   }
 
 
@@ -95,22 +107,22 @@ public class QueuedSceneItemCompletedEventDataAttributes {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    QueuedSceneItemCompletedEventDataAttributes queuedSceneItemCompletedEventDataAttributes = (QueuedSceneItemCompletedEventDataAttributes) o;
-    return Objects.equals(this.created, queuedSceneItemCompletedEventDataAttributes.created) &&
-        Objects.equals(this.topic, queuedSceneItemCompletedEventDataAttributes.topic);
+    WebhookEvent webhookEvent = (WebhookEvent) o;
+    return Objects.equals(this.data, webhookEvent.data) &&
+        Objects.equals(this.links, webhookEvent.links);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(created, topic);
+    return Objects.hash(data, links);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class QueuedSceneItemCompletedEventDataAttributes {\n");
-    sb.append("    created: ").append(toIndentedString(created)).append("\n");
-    sb.append("    topic: ").append(toIndentedString(topic)).append("\n");
+    sb.append("class WebhookEvent {\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    links: ").append(toIndentedString(links)).append("\n");
     sb.append("}");
     return sb.toString();
   }

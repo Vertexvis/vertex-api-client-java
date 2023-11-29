@@ -6243,7 +6243,7 @@ paths:
                 content:
                   application/json:
                     schema:
-                      $ref: '#/components/schemas/QueuedSceneItemCompletedEvent'
+                      $ref: '#/components/schemas/WebhookEvent'
               responses:
                 "200":
                   description: OK
@@ -6256,7 +6256,7 @@ paths:
                 content:
                   application/json:
                     schema:
-                      $ref: '#/components/schemas/QueuedTranslationCompletedEvent'
+                      $ref: '#/components/schemas/WebhookEvent'
               responses:
                 "200":
                   description: OK
@@ -6269,7 +6269,7 @@ paths:
                 content:
                   application/json:
                     schema:
-                      $ref: '#/components/schemas/SceneCreatedEvent'
+                      $ref: '#/components/schemas/WebhookEvent'
               responses:
                 "200":
                   description: OK
@@ -6282,7 +6282,7 @@ paths:
                 content:
                   application/json:
                     schema:
-                      $ref: '#/components/schemas/SceneDeletedEvent'
+                      $ref: '#/components/schemas/WebhookEvent'
               responses:
                 "200":
                   description: OK
@@ -6295,7 +6295,7 @@ paths:
                 content:
                   application/json:
                     schema:
-                      $ref: '#/components/schemas/SceneUpdatedEvent'
+                      $ref: '#/components/schemas/WebhookEvent'
               responses:
                 "200":
                   description: OK
@@ -7984,7 +7984,7 @@ components:
       required:
       - data
       type: object
-    QueuedSceneItemCompletedEvent:
+    WebhookEvent:
       additionalProperties: false
       example:
         data:
@@ -8001,9 +8001,7 @@ components:
                 type: queued-scene-item
               links:
                 related: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-          attributes:
-            created: 2020-01-01T12:00:00Z
-            topic: some-string
+          attributes: ""
           links:
             key:
               href: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
@@ -8014,165 +8012,7 @@ components:
             href: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
       properties:
         data:
-          $ref: '#/components/schemas/QueuedSceneItemCompletedEventData'
-        links:
-          additionalProperties:
-            $ref: '#/components/schemas/Link'
-          type: object
-      required:
-      - data
-      type: object
-    QueuedTranslationCompletedEvent:
-      additionalProperties: false
-      example:
-        data:
-          relationships:
-            owner:
-              data:
-                id: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-                type: account
-              links:
-                related: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-            resource:
-              data:
-                id: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-                type: queued-scene-item
-              links:
-                related: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-          attributes:
-            created: 2020-01-01T12:00:00Z
-            topic: some-string
-          links:
-            key:
-              href: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-          id: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-          type: webhook-event
-        links:
-          key:
-            href: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-      properties:
-        data:
-          $ref: '#/components/schemas/QueuedTranslationCompletedEventData'
-        links:
-          additionalProperties:
-            $ref: '#/components/schemas/Link'
-          type: object
-      required:
-      - data
-      type: object
-    SceneCreatedEvent:
-      additionalProperties: false
-      example:
-        data:
-          relationships:
-            owner:
-              data:
-                id: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-                type: account
-              links:
-                related: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-            resource:
-              data:
-                id: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-                type: queued-scene-item
-              links:
-                related: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-          attributes:
-            metadata:
-              key: metadata
-            created: 2020-01-01T12:00:00Z
-            topic: some-string
-          links:
-            key:
-              href: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-          id: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-          type: webhook-event
-        links:
-          key:
-            href: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-      properties:
-        data:
-          $ref: '#/components/schemas/SceneCreatedEventData'
-        links:
-          additionalProperties:
-            $ref: '#/components/schemas/Link'
-          type: object
-      required:
-      - data
-      type: object
-    SceneDeletedEvent:
-      additionalProperties: false
-      example:
-        data:
-          relationships:
-            owner:
-              data:
-                id: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-                type: account
-              links:
-                related: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-            resource:
-              data:
-                id: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-                type: queued-scene-item
-              links:
-                related: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-          attributes:
-            metadata:
-              key: metadata
-            created: 2020-01-01T12:00:00Z
-            topic: some-string
-          links:
-            key:
-              href: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-          id: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-          type: webhook-event
-        links:
-          key:
-            href: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-      properties:
-        data:
-          $ref: '#/components/schemas/SceneDeletedEventData'
-        links:
-          additionalProperties:
-            $ref: '#/components/schemas/Link'
-          type: object
-      required:
-      - data
-      type: object
-    SceneUpdatedEvent:
-      additionalProperties: false
-      example:
-        data:
-          relationships:
-            owner:
-              data:
-                id: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-                type: account
-              links:
-                related: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-            resource:
-              data:
-                id: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-                type: queued-scene-item
-              links:
-                related: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-          attributes:
-            metadata:
-              key: metadata
-            created: 2020-01-01T12:00:00Z
-            topic: some-string
-          links:
-            key:
-              href: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-          id: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-          type: webhook-event
-        links:
-          key:
-            href: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-      properties:
-        data:
-          $ref: '#/components/schemas/SceneUpdatedEventData'
+          $ref: '#/components/schemas/WebhookEventData'
         links:
           additionalProperties:
             $ref: '#/components/schemas/Link'
@@ -9245,7 +9085,7 @@ components:
       - relationships
       - type
       type: object
-    QueuedSceneItemCompletedEventData:
+    WebhookEventData:
       additionalProperties: false
       example:
         relationships:
@@ -9261,9 +9101,7 @@ components:
               type: queued-scene-item
             links:
               related: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-        attributes:
-          created: 2020-01-01T12:00:00Z
-          topic: some-string
+        attributes: ""
         links:
           key:
             href: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
@@ -9280,201 +9118,20 @@ components:
           maxLength: 36
           type: string
         attributes:
-          $ref: '#/components/schemas/QueuedSceneItemCompletedEventData_attributes'
-        relationships:
-          $ref: '#/components/schemas/WebhookEventDataRelationships'
-        links:
-          additionalProperties:
-            $ref: '#/components/schemas/Link'
-          type: object
-      required:
-      - attributes
-      - id
-      - type
-      type: object
-    QueuedTranslationCompletedEventData:
-      additionalProperties: false
-      example:
-        relationships:
-          owner:
-            data:
-              id: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-              type: account
-            links:
-              related: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-          resource:
-            data:
-              id: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-              type: queued-scene-item
-            links:
-              related: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-        attributes:
-          created: 2020-01-01T12:00:00Z
-          topic: some-string
-        links:
-          key:
-            href: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-        id: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-        type: webhook-event
-      properties:
-        type:
-          example: webhook-event
-          type: string
-        id:
-          description: ID of the resource.
-          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-          format: uuid
-          maxLength: 36
-          type: string
-        attributes:
-          $ref: '#/components/schemas/QueuedSceneItemCompletedEventData_attributes'
-        relationships:
-          $ref: '#/components/schemas/WebhookEventDataRelationships'
-        links:
-          additionalProperties:
-            $ref: '#/components/schemas/Link'
-          type: object
-      required:
-      - attributes
-      - id
-      - type
-      type: object
-    SceneCreatedEventData:
-      additionalProperties: false
-      example:
-        relationships:
-          owner:
-            data:
-              id: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-              type: account
-            links:
-              related: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-          resource:
-            data:
-              id: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-              type: queued-scene-item
-            links:
-              related: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-        attributes:
-          metadata:
-            key: metadata
-          created: 2020-01-01T12:00:00Z
-          topic: some-string
-        links:
-          key:
-            href: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-        id: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-        type: webhook-event
-      properties:
-        type:
-          example: webhook-event
-          type: string
-        id:
-          description: ID of the resource.
-          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-          format: uuid
-          maxLength: 36
-          type: string
-        attributes:
-          $ref: '#/components/schemas/SceneEventDataAttributes'
-        relationships:
-          $ref: '#/components/schemas/WebhookEventDataRelationships'
-        links:
-          additionalProperties:
-            $ref: '#/components/schemas/Link'
-          type: object
-      required:
-      - attributes
-      - id
-      - type
-      type: object
-    SceneDeletedEventData:
-      additionalProperties: false
-      example:
-        relationships:
-          owner:
-            data:
-              id: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-              type: account
-            links:
-              related: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-          resource:
-            data:
-              id: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-              type: queued-scene-item
-            links:
-              related: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-        attributes:
-          metadata:
-            key: metadata
-          created: 2020-01-01T12:00:00Z
-          topic: some-string
-        links:
-          key:
-            href: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-        id: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-        type: webhook-event
-      properties:
-        type:
-          example: webhook-event
-          type: string
-        id:
-          description: ID of the resource.
-          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-          format: uuid
-          maxLength: 36
-          type: string
-        attributes:
-          $ref: '#/components/schemas/SceneEventDataAttributes'
-        relationships:
-          $ref: '#/components/schemas/WebhookEventDataRelationships'
-        links:
-          additionalProperties:
-            $ref: '#/components/schemas/Link'
-          type: object
-      required:
-      - attributes
-      - id
-      - type
-      type: object
-    SceneUpdatedEventData:
-      additionalProperties: false
-      example:
-        relationships:
-          owner:
-            data:
-              id: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-              type: account
-            links:
-              related: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-          resource:
-            data:
-              id: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-              type: queued-scene-item
-            links:
-              related: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-        attributes:
-          metadata:
-            key: metadata
-          created: 2020-01-01T12:00:00Z
-          topic: some-string
-        links:
-          key:
-            href: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-        id: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-        type: webhook-event
-      properties:
-        type:
-          example: webhook-event
-          type: string
-        id:
-          description: ID of the resource.
-          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-          format: uuid
-          maxLength: 36
-          type: string
-        attributes:
-          $ref: '#/components/schemas/SceneEventDataAttributes'
+          discriminator:
+            mapping:
+              queued-scene-item.completed: '#/components/schemas/QueuedSceneItemCompletedEvent'
+              queued-translation.completed: '#/components/schemas/QueuedTranslationCompletedEvent'
+              scene.created: '#/components/schemas/SceneCreatedEvent'
+              scene.deleted: '#/components/schemas/SceneDeletedEvent'
+              scene.updated: '#/components/schemas/SceneUpdatedEvent'
+            propertyName: topic
+          oneOf:
+          - $ref: '#/components/schemas/QueuedSceneItemCompletedEvent'
+          - $ref: '#/components/schemas/QueuedTranslationCompletedEvent'
+          - $ref: '#/components/schemas/SceneCreatedEvent'
+          - $ref: '#/components/schemas/SceneDeletedEvent'
+          - $ref: '#/components/schemas/SceneUpdatedEvent'
         relationships:
           $ref: '#/components/schemas/WebhookEventDataRelationships'
         links:
@@ -10014,6 +9671,110 @@ components:
       - id
       - type
       type: object
+    QueuedSceneItemCompletedEvent:
+      additionalProperties: false
+      properties:
+        created:
+          example: 2020-01-01T12:00:00Z
+          format: date-time
+          type: string
+        topic:
+          example: some-string
+          maxLength: 1024
+          minLength: 1
+          type: string
+      required:
+      - created
+      - topic
+      type: object
+    QueuedTranslationCompletedEvent:
+      additionalProperties: false
+      properties:
+        created:
+          example: 2020-01-01T12:00:00Z
+          format: date-time
+          type: string
+        topic:
+          example: some-string
+          maxLength: 1024
+          minLength: 1
+          type: string
+      required:
+      - created
+      - topic
+      type: object
+    SceneCreatedEvent:
+      additionalProperties: false
+      properties:
+        created:
+          example: 2020-01-01T12:00:00Z
+          format: date-time
+          type: string
+        topic:
+          example: some-string
+          maxLength: 1024
+          minLength: 1
+          type: string
+        metadata:
+          additionalProperties:
+            maxLength: 256
+            minLength: 0
+            type: string
+          description: |
+            User supplied key-value pairs for a scene. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters.
+          type: object
+      required:
+      - created
+      - topic
+      type: object
+    SceneDeletedEvent:
+      additionalProperties: false
+      properties:
+        created:
+          example: 2020-01-01T12:00:00Z
+          format: date-time
+          type: string
+        topic:
+          example: some-string
+          maxLength: 1024
+          minLength: 1
+          type: string
+        metadata:
+          additionalProperties:
+            maxLength: 256
+            minLength: 0
+            type: string
+          description: |
+            User supplied key-value pairs for a scene. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters.
+          type: object
+      required:
+      - created
+      - topic
+      type: object
+    SceneUpdatedEvent:
+      additionalProperties: false
+      properties:
+        created:
+          example: 2020-01-01T12:00:00Z
+          format: date-time
+          type: string
+        topic:
+          example: some-string
+          maxLength: 1024
+          minLength: 1
+          type: string
+        metadata:
+          additionalProperties:
+            maxLength: 256
+            minLength: 0
+            type: string
+          description: |
+            User supplied key-value pairs for a scene. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters.
+          type: object
+      required:
+      - created
+      - topic
+      type: object
     WebhookEventDataRelationships:
       additionalProperties: false
       example:
@@ -10037,35 +9798,6 @@ components:
       required:
       - owner
       - resource
-      type: object
-    SceneEventDataAttributes:
-      additionalProperties: false
-      example:
-        metadata:
-          key: metadata
-        created: 2020-01-01T12:00:00Z
-        topic: some-string
-      properties:
-        created:
-          example: 2020-01-01T12:00:00Z
-          format: date-time
-          type: string
-        topic:
-          example: some-string
-          maxLength: 1024
-          minLength: 1
-          type: string
-        metadata:
-          additionalProperties:
-            maxLength: 256
-            minLength: 0
-            type: string
-          description: |
-            User supplied key-value pairs for a scene. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters.
-          type: object
-      required:
-      - created
-      - topic
       type: object
     Color:
       description: Color value from 0 to 255.
@@ -11917,24 +11649,6 @@ components:
       - status
       - topics
       - url
-      type: object
-    QueuedSceneItemCompletedEventData_attributes:
-      example:
-        created: 2020-01-01T12:00:00Z
-        topic: some-string
-      properties:
-        created:
-          example: 2020-01-01T12:00:00Z
-          format: date-time
-          type: string
-        topic:
-          example: some-string
-          maxLength: 1024
-          minLength: 1
-          type: string
-      required:
-      - created
-      - topic
       type: object
     PartRenditionRelationship_data:
       properties:
