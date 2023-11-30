@@ -21,6 +21,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.Link;
+import com.vertexvis.model.QueuedExportCompletedEvent;
 import com.vertexvis.model.QueuedSceneItemCompletedEvent;
 import com.vertexvis.model.QueuedTranslationCompletedEvent;
 import com.vertexvis.model.SceneCreatedEvent;
@@ -50,7 +51,7 @@ public class WebhookEventData {
 
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
-  private OneOfQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent attributes;
+  private OneOfQueuedExportCompletedEventQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent attributes;
 
   public static final String SERIALIZED_NAME_RELATIONSHIPS = "relationships";
   @SerializedName(SERIALIZED_NAME_RELATIONSHIPS)
@@ -109,7 +110,7 @@ public class WebhookEventData {
   }
 
 
-  public WebhookEventData attributes(OneOfQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent attributes) {
+  public WebhookEventData attributes(OneOfQueuedExportCompletedEventQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent attributes) {
     
     this.attributes = attributes;
     return this;
@@ -122,12 +123,12 @@ public class WebhookEventData {
   @javax.annotation.Nullable
   @ApiModelProperty(required = true, value = "")
 
-  public OneOfQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent getAttributes() {
+  public OneOfQueuedExportCompletedEventQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent getAttributes() {
     return attributes;
   }
 
 
-  public void setAttributes(OneOfQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent attributes) {
+  public void setAttributes(OneOfQueuedExportCompletedEventQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent attributes) {
     this.attributes = attributes;
   }
 

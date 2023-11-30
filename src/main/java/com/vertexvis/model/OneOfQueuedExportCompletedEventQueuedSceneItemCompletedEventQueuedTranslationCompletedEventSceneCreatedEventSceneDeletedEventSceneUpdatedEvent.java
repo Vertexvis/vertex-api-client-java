@@ -2,34 +2,42 @@ package com.vertexvis.model;
 
 import javax.annotation.Nullable;
 
-public class OneOfQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent {
+public class OneOfQueuedExportCompletedEventQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent {
+    private QueuedExportCompletedEvent queuedExportCompletedEvent;
     private QueuedSceneItemCompletedEvent queuedSceneItemCompletedEvent;
     private QueuedTranslationCompletedEvent queuedTranslationCompletedEvent;
     private SceneCreatedEvent sceneCreatedEvent;
     private SceneDeletedEvent sceneDeletedEvent;
     private SceneUpdatedEvent sceneUpdatedEvent;
 
-    public OneOfQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent(QueuedSceneItemCompletedEvent event) {
+    public OneOfQueuedExportCompletedEventQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent(QueuedExportCompletedEvent event) {
+        this.queuedExportCompletedEvent = event;
+    }
+
+    public OneOfQueuedExportCompletedEventQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent(QueuedSceneItemCompletedEvent event) {
         this.queuedSceneItemCompletedEvent = event;
     }
 
-    public OneOfQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent(QueuedTranslationCompletedEvent event) {
+    public OneOfQueuedExportCompletedEventQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent(QueuedTranslationCompletedEvent event) {
         this.queuedTranslationCompletedEvent = event;
     }
 
-    public OneOfQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent(SceneCreatedEvent event) {
+    public OneOfQueuedExportCompletedEventQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent(SceneCreatedEvent event) {
         this.sceneCreatedEvent = event;
     }
 
-    public OneOfQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent(SceneDeletedEvent event) {
+    public OneOfQueuedExportCompletedEventQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent(SceneDeletedEvent event) {
         this.sceneDeletedEvent = event;
     }
 
-    public OneOfQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent(SceneUpdatedEvent event) {
+    public OneOfQueuedExportCompletedEventQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent(SceneUpdatedEvent event) {
         this.sceneUpdatedEvent = event;
     }
 
     public Object getData() {
+        if (this.queuedExportCompletedEvent != null) {
+            return this.queuedExportCompletedEvent;
+        }
         if (this.queuedSceneItemCompletedEvent != null) {
             return this.queuedSceneItemCompletedEvent;
         }
@@ -46,6 +54,11 @@ public class OneOfQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSc
             return this.sceneUpdatedEvent;
         }
         return null;
+    }
+
+    @Nullable
+    public QueuedExportCompletedEvent getQueuedExportCompletedEvent() {
+        return queuedExportCompletedEvent;
     }
 
     @Nullable
