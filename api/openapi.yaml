@@ -6235,6 +6235,19 @@ paths:
       x-accepts: application/vnd.api+json
     post:
       callbacks:
+        queued-export.completed:
+          '{$request.body#/data/attributes/url}':
+            post:
+              operationId: queued_export_completed_Post
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/WebhookEvent'
+              responses:
+                "200":
+                  description: OK
+              x-callback-request: true
         queued-scene-item.completed:
           '{$request.body#/data/attributes/url}':
             post:
@@ -9120,6 +9133,7 @@ components:
         attributes:
           discriminator:
             mapping:
+              queued-export.completed: '#/components/schemas/QueuedExportCompletedEvent'
               queued-scene-item.completed: '#/components/schemas/QueuedSceneItemCompletedEvent'
               queued-translation.completed: '#/components/schemas/QueuedTranslationCompletedEvent'
               scene.created: '#/components/schemas/SceneCreatedEvent'
@@ -9127,6 +9141,7 @@ components:
               scene.updated: '#/components/schemas/SceneUpdatedEvent'
             propertyName: topic
           oneOf:
+          - $ref: '#/components/schemas/QueuedExportCompletedEvent'
           - $ref: '#/components/schemas/QueuedSceneItemCompletedEvent'
           - $ref: '#/components/schemas/QueuedTranslationCompletedEvent'
           - $ref: '#/components/schemas/SceneCreatedEvent'
@@ -9670,6 +9685,22 @@ components:
       required:
       - id
       - type
+      type: object
+    QueuedExportCompletedEvent:
+      additionalProperties: false
+      properties:
+        created:
+          example: 2020-01-01T12:00:00Z
+          format: date-time
+          type: string
+        topic:
+          example: some-string
+          maxLength: 1024
+          minLength: 1
+          type: string
+      required:
+      - created
+      - topic
       type: object
     QueuedSceneItemCompletedEvent:
       additionalProperties: false
