@@ -34,6 +34,13 @@ public class OneOfQueuedExportCompletedEventQueuedSceneItemCompletedEventQueuedT
         this.sceneUpdatedEvent = event;
     }
 
+    public boolean equals(Object other) {
+        if (other instanceof OneOfQueuedExportCompletedEventQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent) {
+            return getData().equals(((OneOfQueuedExportCompletedEventQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent) other).getData());
+        }
+        return false;
+    }
+
     public Object getData() {
         if (this.queuedExportCompletedEvent != null) {
             return this.queuedExportCompletedEvent;
@@ -48,7 +55,7 @@ public class OneOfQueuedExportCompletedEventQueuedSceneItemCompletedEventQueuedT
             return this.sceneCreatedEvent;
         }
         if (this.sceneDeletedEvent != null) {
-            return this.sceneUpdatedEvent;
+            return this.sceneDeletedEvent;
         }
         if (this.sceneUpdatedEvent != null) {
             return this.sceneUpdatedEvent;

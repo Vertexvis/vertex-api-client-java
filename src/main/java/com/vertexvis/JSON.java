@@ -129,6 +129,9 @@ public class JSON {
                                 () -> gson))
                 .registerTypeAdapter(AnyOfFileRelationshipPartAssemblyRelationship.class,
                         new AnyOfFileRelationshipPartAssemblyRelationshipTypeAdapter(() -> gson))
+                .registerTypeAdapter(
+                        OneOfQueuedExportCompletedEventQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent.class,
+                        new OneOfQueuedExportCompletedEventQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEventTypeAdaptor(() -> gson))
                 .create();
     }
 
