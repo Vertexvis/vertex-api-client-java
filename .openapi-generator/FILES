@@ -322,6 +322,8 @@ src/main/java/com/vertexvis/model/WebhookEventDataRelationshipsOwner.java
 src/main/java/com/vertexvis/model/WebhookEventDataRelationshipsOwnerData.java
 src/main/java/com/vertexvis/model/WebhookEventDataRelationshipsResource.java
 src/main/java/com/vertexvis/model/WebhookEventDataRelationshipsResourceData.java
+src/main/java/com/vertexvis/model/WebhookSceneEventIncludedAttributes.java
+src/main/java/com/vertexvis/model/WebhookSceneEventIncludedData.java
 src/main/java/com/vertexvis/model/WebhookSubscription.java
 src/main/java/com/vertexvis/model/WebhookSubscriptionData.java
 src/main/java/com/vertexvis/model/WebhookSubscriptionDataAttributes.java

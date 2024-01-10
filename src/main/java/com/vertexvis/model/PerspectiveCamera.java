@@ -24,6 +24,7 @@ import com.vertexvis.model.Vector3;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.math.BigDecimal;
 
 /**
  * A camera type that mimics the way the human eye sees.
@@ -49,7 +50,7 @@ public class PerspectiveCamera {
 
   public static final String SERIALIZED_NAME_FOV_Y = "fovY";
   @SerializedName(SERIALIZED_NAME_FOV_Y)
-  private Float fovY;
+  private BigDecimal fovY;
 
   public PerspectiveCamera() { 
   }
@@ -146,7 +147,7 @@ public class PerspectiveCamera {
   }
 
 
-  public PerspectiveCamera fovY(Float fovY) {
+  public PerspectiveCamera fovY(BigDecimal fovY) {
     
     this.fovY = fovY;
     return this;
@@ -161,12 +162,12 @@ public class PerspectiveCamera {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "A numerical floating-point value representing the field of view")
 
-  public Float getFovY() {
+  public BigDecimal getFovY() {
     return fovY;
   }
 
 
-  public void setFovY(Float fovY) {
+  public void setFovY(BigDecimal fovY) {
     this.fovY = fovY;
   }
 

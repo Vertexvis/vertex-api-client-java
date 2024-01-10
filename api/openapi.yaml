@@ -8023,15 +8023,24 @@ components:
         links:
           key:
             href: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
+        included:
+        - ""
+        - ""
       properties:
         data:
           $ref: '#/components/schemas/WebhookEventData'
+        included:
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/WebhookSceneEventIncludedData'
+          type: array
         links:
           additionalProperties:
             $ref: '#/components/schemas/Link'
           type: object
       required:
       - data
+      - included
       type: object
     UpdateWebhookSubscriptionRequest:
       additionalProperties: false
@@ -8071,7 +8080,6 @@ components:
         fovY:
           description: A numerical floating-point value representing the field of
             view
-          format: float
           maximum: 179
           minimum: 1
           type: number
@@ -9158,6 +9166,29 @@ components:
       - id
       - type
       type: object
+    WebhookSceneEventIncludedData:
+      properties:
+        type:
+          example: scene
+          type: string
+        id:
+          description: ID of the resource.
+          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
+          format: uuid
+          maxLength: 36
+          type: string
+        attributes:
+          $ref: '#/components/schemas/WebhookSceneEventIncludedAttributes'
+        links:
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+          type: object
+      required:
+      - attributes
+      - id
+      - links
+      - type
+      type: object
     Link:
       additionalProperties: false
       example:
@@ -9829,6 +9860,17 @@ components:
       required:
       - owner
       - resource
+      type: object
+    WebhookSceneEventIncludedAttributes:
+      properties:
+        metadata:
+          additionalProperties:
+            maxLength: 256
+            minLength: 0
+            type: string
+          description: |
+            User supplied key-value pairs for a scene. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters.
+          type: object
       type: object
     Color:
       description: Color value from 0 to 255.
