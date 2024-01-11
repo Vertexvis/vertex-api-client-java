@@ -2,10 +2,10 @@ package com.vertexvis.model;
 
 import javax.annotation.Nullable;
 
-public class AnyOfWebhookEventSceneIncludedData {
+public class OneOfWebhookEventSceneIncludedData {
 
     private WebhookEventSceneIncludedData sceneIncludedData;
-    public AnyOfWebhookEventSceneIncludedData(WebhookEventSceneIncludedData data) {
+    public OneOfWebhookEventSceneIncludedData(WebhookEventSceneIncludedData data) {
         this.sceneIncludedData = data;
     }
 

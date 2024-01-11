@@ -8031,7 +8031,11 @@ components:
           $ref: '#/components/schemas/WebhookEventData'
         included:
           items:
-            anyOf:
+            discriminator:
+              mapping:
+                scene: '#/components/schemas/WebhookEventSceneIncludedData'
+              propertyName: type
+            oneOf:
             - $ref: '#/components/schemas/WebhookEventSceneIncludedData'
           type: array
         links:
