@@ -8014,7 +8014,9 @@ components:
                 type: queued-scene-item
               links:
                 related: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-          attributes: ""
+          attributes:
+            created: 2020-01-01T12:00:00Z
+            topic: some-string
           links:
             key:
               href: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
@@ -9126,7 +9128,9 @@ components:
               type: queued-scene-item
             links:
               related: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
-        attributes: ""
+        attributes:
+          created: 2020-01-01T12:00:00Z
+          topic: some-string
         links:
           key:
             href: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
@@ -9143,22 +9147,7 @@ components:
           maxLength: 36
           type: string
         attributes:
-          discriminator:
-            mapping:
-              queued-export.completed: '#/components/schemas/QueuedExportCompletedEvent'
-              queued-scene-item.completed: '#/components/schemas/QueuedSceneItemCompletedEvent'
-              queued-translation.completed: '#/components/schemas/QueuedTranslationCompletedEvent'
-              scene.created: '#/components/schemas/SceneCreatedEvent'
-              scene.deleted: '#/components/schemas/SceneDeletedEvent'
-              scene.updated: '#/components/schemas/SceneUpdatedEvent'
-            propertyName: topic
-          oneOf:
-          - $ref: '#/components/schemas/QueuedExportCompletedEvent'
-          - $ref: '#/components/schemas/QueuedSceneItemCompletedEvent'
-          - $ref: '#/components/schemas/QueuedTranslationCompletedEvent'
-          - $ref: '#/components/schemas/SceneCreatedEvent'
-          - $ref: '#/components/schemas/SceneDeletedEvent'
-          - $ref: '#/components/schemas/SceneUpdatedEvent'
+          $ref: '#/components/schemas/WebhookEventDataAttributes'
         relationships:
           $ref: '#/components/schemas/WebhookEventDataRelationships'
         links:
@@ -9721,8 +9710,11 @@ components:
       - id
       - type
       type: object
-    QueuedExportCompletedEvent:
+    WebhookEventDataAttributes:
       additionalProperties: false
+      example:
+        created: 2020-01-01T12:00:00Z
+        topic: some-string
       properties:
         created:
           example: 2020-01-01T12:00:00Z
@@ -9733,110 +9725,6 @@ components:
           maxLength: 1024
           minLength: 1
           type: string
-      required:
-      - created
-      - topic
-      type: object
-    QueuedSceneItemCompletedEvent:
-      additionalProperties: false
-      properties:
-        created:
-          example: 2020-01-01T12:00:00Z
-          format: date-time
-          type: string
-        topic:
-          example: some-string
-          maxLength: 1024
-          minLength: 1
-          type: string
-      required:
-      - created
-      - topic
-      type: object
-    QueuedTranslationCompletedEvent:
-      additionalProperties: false
-      properties:
-        created:
-          example: 2020-01-01T12:00:00Z
-          format: date-time
-          type: string
-        topic:
-          example: some-string
-          maxLength: 1024
-          minLength: 1
-          type: string
-      required:
-      - created
-      - topic
-      type: object
-    SceneCreatedEvent:
-      additionalProperties: false
-      properties:
-        created:
-          example: 2020-01-01T12:00:00Z
-          format: date-time
-          type: string
-        topic:
-          example: some-string
-          maxLength: 1024
-          minLength: 1
-          type: string
-        metadata:
-          additionalProperties:
-            maxLength: 256
-            minLength: 0
-            type: string
-          description: |
-            User supplied key-value pairs for a scene. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters.
-          type: object
-      required:
-      - created
-      - topic
-      type: object
-    SceneDeletedEvent:
-      additionalProperties: false
-      properties:
-        created:
-          example: 2020-01-01T12:00:00Z
-          format: date-time
-          type: string
-        topic:
-          example: some-string
-          maxLength: 1024
-          minLength: 1
-          type: string
-        metadata:
-          additionalProperties:
-            maxLength: 256
-            minLength: 0
-            type: string
-          description: |
-            User supplied key-value pairs for a scene. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters.
-          type: object
-      required:
-      - created
-      - topic
-      type: object
-    SceneUpdatedEvent:
-      additionalProperties: false
-      properties:
-        created:
-          example: 2020-01-01T12:00:00Z
-          format: date-time
-          type: string
-        topic:
-          example: some-string
-          maxLength: 1024
-          minLength: 1
-          type: string
-        metadata:
-          additionalProperties:
-            maxLength: 256
-            minLength: 0
-            type: string
-          description: |
-            User supplied key-value pairs for a scene. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters.
-          type: object
       required:
       - created
       - topic

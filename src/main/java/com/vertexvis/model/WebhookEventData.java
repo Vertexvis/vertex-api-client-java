@@ -21,12 +21,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.Link;
-import com.vertexvis.model.QueuedExportCompletedEvent;
-import com.vertexvis.model.QueuedSceneItemCompletedEvent;
-import com.vertexvis.model.QueuedTranslationCompletedEvent;
-import com.vertexvis.model.SceneCreatedEvent;
-import com.vertexvis.model.SceneDeletedEvent;
-import com.vertexvis.model.SceneUpdatedEvent;
+import com.vertexvis.model.WebhookEventDataAttributes;
 import com.vertexvis.model.WebhookEventDataRelationships;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -51,7 +46,7 @@ public class WebhookEventData {
 
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
-  private OneOfQueuedExportCompletedEventQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent attributes;
+  private WebhookEventDataAttributes attributes;
 
   public static final String SERIALIZED_NAME_RELATIONSHIPS = "relationships";
   @SerializedName(SERIALIZED_NAME_RELATIONSHIPS)
@@ -110,7 +105,7 @@ public class WebhookEventData {
   }
 
 
-  public WebhookEventData attributes(OneOfQueuedExportCompletedEventQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent attributes) {
+  public WebhookEventData attributes(WebhookEventDataAttributes attributes) {
     
     this.attributes = attributes;
     return this;
@@ -120,15 +115,15 @@ public class WebhookEventData {
    * Get attributes
    * @return attributes
   **/
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public OneOfQueuedExportCompletedEventQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent getAttributes() {
+  public WebhookEventDataAttributes getAttributes() {
     return attributes;
   }
 
 
-  public void setAttributes(OneOfQueuedExportCompletedEventQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent attributes) {
+  public void setAttributes(WebhookEventDataAttributes attributes) {
     this.attributes = attributes;
   }
 
