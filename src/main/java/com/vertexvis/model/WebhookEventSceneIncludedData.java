@@ -21,7 +21,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.Link;
-import com.vertexvis.model.WebhookSceneEventIncludedAttributes;
+import com.vertexvis.model.WebhookEventSceneIncludedAttributes;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -31,10 +31,10 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * WebhookSceneEventIncludedData
+ * WebhookEventSceneIncludedData
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class WebhookSceneEventIncludedData {
+public class WebhookEventSceneIncludedData {
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
   private String type;
@@ -45,16 +45,16 @@ public class WebhookSceneEventIncludedData {
 
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
-  private WebhookSceneEventIncludedAttributes attributes;
+  private WebhookEventSceneIncludedAttributes attributes;
 
   public static final String SERIALIZED_NAME_LINKS = "links";
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = new HashMap<>();
 
-  public WebhookSceneEventIncludedData() { 
+  public WebhookEventSceneIncludedData() { 
   }
 
-  public WebhookSceneEventIncludedData type(String type) {
+  public WebhookEventSceneIncludedData type(String type) {
     
     this.type = type;
     return this;
@@ -77,7 +77,7 @@ public class WebhookSceneEventIncludedData {
   }
 
 
-  public WebhookSceneEventIncludedData id(UUID id) {
+  public WebhookEventSceneIncludedData id(UUID id) {
     
     this.id = id;
     return this;
@@ -100,7 +100,7 @@ public class WebhookSceneEventIncludedData {
   }
 
 
-  public WebhookSceneEventIncludedData attributes(WebhookSceneEventIncludedAttributes attributes) {
+  public WebhookEventSceneIncludedData attributes(WebhookEventSceneIncludedAttributes attributes) {
     
     this.attributes = attributes;
     return this;
@@ -113,23 +113,23 @@ public class WebhookSceneEventIncludedData {
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public WebhookSceneEventIncludedAttributes getAttributes() {
+  public WebhookEventSceneIncludedAttributes getAttributes() {
     return attributes;
   }
 
 
-  public void setAttributes(WebhookSceneEventIncludedAttributes attributes) {
+  public void setAttributes(WebhookEventSceneIncludedAttributes attributes) {
     this.attributes = attributes;
   }
 
 
-  public WebhookSceneEventIncludedData links(Map<String, Link> links) {
+  public WebhookEventSceneIncludedData links(Map<String, Link> links) {
     
     this.links = links;
     return this;
   }
 
-  public WebhookSceneEventIncludedData putLinksItem(String key, Link linksItem) {
+  public WebhookEventSceneIncludedData putLinksItem(String key, Link linksItem) {
     this.links.put(key, linksItem);
     return this;
   }
@@ -159,11 +159,11 @@ public class WebhookSceneEventIncludedData {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WebhookSceneEventIncludedData webhookSceneEventIncludedData = (WebhookSceneEventIncludedData) o;
-    return Objects.equals(this.type, webhookSceneEventIncludedData.type) &&
-        Objects.equals(this.id, webhookSceneEventIncludedData.id) &&
-        Objects.equals(this.attributes, webhookSceneEventIncludedData.attributes) &&
-        Objects.equals(this.links, webhookSceneEventIncludedData.links);
+    WebhookEventSceneIncludedData webhookEventSceneIncludedData = (WebhookEventSceneIncludedData) o;
+    return Objects.equals(this.type, webhookEventSceneIncludedData.type) &&
+        Objects.equals(this.id, webhookEventSceneIncludedData.id) &&
+        Objects.equals(this.attributes, webhookEventSceneIncludedData.attributes) &&
+        Objects.equals(this.links, webhookEventSceneIncludedData.links);
   }
 
   @Override
@@ -174,7 +174,7 @@ public class WebhookSceneEventIncludedData {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class WebhookSceneEventIncludedData {\n");
+    sb.append("class WebhookEventSceneIncludedData {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");

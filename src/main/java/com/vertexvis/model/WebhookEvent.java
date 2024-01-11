@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.AnyOfWebhookSceneEventIncludedData;
+import com.vertexvis.model.AnyOfWebhookEventSceneIncludedData;
 import com.vertexvis.model.Link;
 import com.vertexvis.model.WebhookEventData;
 import io.swagger.annotations.ApiModel;
@@ -42,7 +42,7 @@ public class WebhookEvent {
 
   public static final String SERIALIZED_NAME_INCLUDED = "included";
   @SerializedName(SERIALIZED_NAME_INCLUDED)
-  private List<AnyOfWebhookSceneEventIncludedData> included = new ArrayList<>();
+  private List<AnyOfWebhookEventSceneIncludedData> included = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_LINKS = "links";
   @SerializedName(SERIALIZED_NAME_LINKS)
@@ -74,13 +74,13 @@ public class WebhookEvent {
   }
 
 
-  public WebhookEvent included(List<AnyOfWebhookSceneEventIncludedData> included) {
+  public WebhookEvent included(List<AnyOfWebhookEventSceneIncludedData> included) {
     
     this.included = included;
     return this;
   }
 
-  public WebhookEvent addIncludedItem(AnyOfWebhookSceneEventIncludedData includedItem) {
+  public WebhookEvent addIncludedItem(AnyOfWebhookEventSceneIncludedData includedItem) {
     this.included.add(includedItem);
     return this;
   }
@@ -92,12 +92,12 @@ public class WebhookEvent {
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public List<AnyOfWebhookSceneEventIncludedData> getIncluded() {
+  public List<AnyOfWebhookEventSceneIncludedData> getIncluded() {
     return included;
   }
 
 
-  public void setIncluded(List<AnyOfWebhookSceneEventIncludedData> included) {
+  public void setIncluded(List<AnyOfWebhookEventSceneIncludedData> included) {
     this.included = included;
   }
 

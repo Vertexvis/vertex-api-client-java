@@ -28,24 +28,24 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * WebhookSceneEventIncludedAttributes
+ * WebhookEventSceneIncludedAttributes
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class WebhookSceneEventIncludedAttributes {
+public class WebhookEventSceneIncludedAttributes {
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
   private Map<String, String> metadata = null;
 
-  public WebhookSceneEventIncludedAttributes() { 
+  public WebhookEventSceneIncludedAttributes() { 
   }
 
-  public WebhookSceneEventIncludedAttributes metadata(Map<String, String> metadata) {
+  public WebhookEventSceneIncludedAttributes metadata(Map<String, String> metadata) {
     
     this.metadata = metadata;
     return this;
   }
 
-  public WebhookSceneEventIncludedAttributes putMetadataItem(String key, String metadataItem) {
+  public WebhookEventSceneIncludedAttributes putMetadataItem(String key, String metadataItem) {
     if (this.metadata == null) {
       this.metadata = new HashMap<>();
     }
@@ -78,8 +78,8 @@ public class WebhookSceneEventIncludedAttributes {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WebhookSceneEventIncludedAttributes webhookSceneEventIncludedAttributes = (WebhookSceneEventIncludedAttributes) o;
-    return Objects.equals(this.metadata, webhookSceneEventIncludedAttributes.metadata);
+    WebhookEventSceneIncludedAttributes webhookEventSceneIncludedAttributes = (WebhookEventSceneIncludedAttributes) o;
+    return Objects.equals(this.metadata, webhookEventSceneIncludedAttributes.metadata);
   }
 
   @Override
@@ -90,7 +90,7 @@ public class WebhookSceneEventIncludedAttributes {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class WebhookSceneEventIncludedAttributes {\n");
+    sb.append("class WebhookEventSceneIncludedAttributes {\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();

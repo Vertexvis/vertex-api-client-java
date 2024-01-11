@@ -8032,7 +8032,7 @@ components:
         included:
           items:
             anyOf:
-            - $ref: '#/components/schemas/WebhookSceneEventIncludedData'
+            - $ref: '#/components/schemas/WebhookEventSceneIncludedData'
           type: array
         links:
           additionalProperties:
@@ -9166,7 +9166,7 @@ components:
       - id
       - type
       type: object
-    WebhookSceneEventIncludedData:
+    WebhookEventSceneIncludedData:
       properties:
         type:
           example: scene
@@ -9178,7 +9178,7 @@ components:
           maxLength: 36
           type: string
         attributes:
-          $ref: '#/components/schemas/WebhookSceneEventIncludedAttributes'
+          $ref: '#/components/schemas/WebhookEventSceneIncludedAttributes'
         links:
           additionalProperties:
             $ref: '#/components/schemas/Link'
@@ -9861,7 +9861,7 @@ components:
       - owner
       - resource
       type: object
-    WebhookSceneEventIncludedAttributes:
+    WebhookEventSceneIncludedAttributes:
       properties:
         metadata:
           additionalProperties:
