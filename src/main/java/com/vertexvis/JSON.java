@@ -129,6 +129,16 @@ public class JSON {
                                 () -> gson))
                 .registerTypeAdapter(AnyOfFileRelationshipPartAssemblyRelationship.class,
                         new AnyOfFileRelationshipPartAssemblyRelationshipTypeAdapter(() -> gson))
+<<<<<<< HEAD
+=======
+                .registerTypeAdapter(
+                        OneOfQueuedExportCompletedEventQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent.class,
+                        new OneOfQueuedExportCompletedEventQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEventTypeAdaptor(() -> gson))
+                .registerTypeAdapter(
+                        OneOfWebhookEventSceneIncludedData.class,
+                        new OneOfWebhookEventSceneIncludedDataTypeAdapter(() -> gson)
+                )
+>>>>>>> 171b973dff59755f1a657f4a0af3538f91bc18c2
                 .create();
     }
 
