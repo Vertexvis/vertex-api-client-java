@@ -132,10 +132,6 @@ public class JSON {
                 .registerTypeAdapter(
                         OneOfQueuedExportCompletedEventQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEvent.class,
                         new OneOfQueuedExportCompletedEventQueuedSceneItemCompletedEventQueuedTranslationCompletedEventSceneCreatedEventSceneDeletedEventSceneUpdatedEventTypeAdaptor(() -> gson))
-                .registerTypeAdapter(
-                        OneOfWebhookEventSceneIncludedData.class,
-                        new OneOfWebhookEventSceneIncludedDataTypeAdapter(() -> gson)
-                )
                 .create();
     }
 
