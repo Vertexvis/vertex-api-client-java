@@ -24,15 +24,12 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
- * SceneUpdatedEvent
+ * WebhookEventDataAttributes
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class SceneUpdatedEvent {
+public class WebhookEventDataAttributes {
   public static final String SERIALIZED_NAME_CREATED = "created";
   @SerializedName(SERIALIZED_NAME_CREATED)
   private OffsetDateTime created;
@@ -41,14 +38,10 @@ public class SceneUpdatedEvent {
   @SerializedName(SERIALIZED_NAME_TOPIC)
   private String topic;
 
-  public static final String SERIALIZED_NAME_METADATA = "metadata";
-  @SerializedName(SERIALIZED_NAME_METADATA)
-  private Map<String, String> metadata = null;
-
-  public SceneUpdatedEvent() { 
+  public WebhookEventDataAttributes() { 
   }
 
-  public SceneUpdatedEvent created(OffsetDateTime created) {
+  public WebhookEventDataAttributes created(OffsetDateTime created) {
     
     this.created = created;
     return this;
@@ -71,7 +64,7 @@ public class SceneUpdatedEvent {
   }
 
 
-  public SceneUpdatedEvent topic(String topic) {
+  public WebhookEventDataAttributes topic(String topic) {
     
     this.topic = topic;
     return this;
@@ -94,37 +87,6 @@ public class SceneUpdatedEvent {
   }
 
 
-  public SceneUpdatedEvent metadata(Map<String, String> metadata) {
-    
-    this.metadata = metadata;
-    return this;
-  }
-
-  public SceneUpdatedEvent putMetadataItem(String key, String metadataItem) {
-    if (this.metadata == null) {
-      this.metadata = new HashMap<>();
-    }
-    this.metadata.put(key, metadataItem);
-    return this;
-  }
-
-   /**
-   * User supplied key-value pairs for a scene. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters. 
-   * @return metadata
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "User supplied key-value pairs for a scene. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters. ")
-
-  public Map<String, String> getMetadata() {
-    return metadata;
-  }
-
-
-  public void setMetadata(Map<String, String> metadata) {
-    this.metadata = metadata;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -133,24 +95,22 @@ public class SceneUpdatedEvent {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SceneUpdatedEvent sceneUpdatedEvent = (SceneUpdatedEvent) o;
-    return Objects.equals(this.created, sceneUpdatedEvent.created) &&
-        Objects.equals(this.topic, sceneUpdatedEvent.topic) &&
-        Objects.equals(this.metadata, sceneUpdatedEvent.metadata);
+    WebhookEventDataAttributes webhookEventDataAttributes = (WebhookEventDataAttributes) o;
+    return Objects.equals(this.created, webhookEventDataAttributes.created) &&
+        Objects.equals(this.topic, webhookEventDataAttributes.topic);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(created, topic, metadata);
+    return Objects.hash(created, topic);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SceneUpdatedEvent {\n");
+    sb.append("class WebhookEventDataAttributes {\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    topic: ").append(toIndentedString(topic)).append("\n");
-    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
   }
