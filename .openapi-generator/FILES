@@ -120,6 +120,7 @@ src/main/java/com/vertexvis/model/CreateSceneRequest.java
 src/main/java/com/vertexvis/model/CreateSceneRequestData.java
 src/main/java/com/vertexvis/model/CreateSceneRequestDataAttributes.java
 src/main/java/com/vertexvis/model/CreateSceneRequestDataRelationships.java
+src/main/java/com/vertexvis/model/CreateSceneSyncRequest.java
 src/main/java/com/vertexvis/model/CreateSceneViewRequest.java
 src/main/java/com/vertexvis/model/CreateSceneViewRequestData.java
 src/main/java/com/vertexvis/model/CreateSceneViewRequestDataAttributes.java
@@ -281,6 +282,8 @@ src/main/java/com/vertexvis/model/UpdateAccountRequestData.java
 src/main/java/com/vertexvis/model/UpdateAccountRequestDataAttributes.java
 src/main/java/com/vertexvis/model/UpdateApplicationRequest.java
 src/main/java/com/vertexvis/model/UpdateApplicationRequestData.java
+src/main/java/com/vertexvis/model/UpdateApplicationRequestDataAttributes.java
+src/main/java/com/vertexvis/model/UpdateItemToDefaultRenditionOperation.java
 src/main/java/com/vertexvis/model/UpdatePartRevisionRequest.java
 src/main/java/com/vertexvis/model/UpdatePartRevisionRequestData.java
 src/main/java/com/vertexvis/model/UpdatePartRevisionRequestDataAttributes.java
