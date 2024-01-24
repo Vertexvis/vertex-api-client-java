@@ -20,70 +20,52 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.UpdateApplicationRequestDataAttributes;
+import com.vertexvis.model.OneOfUpdateItemToDefaultRenditionOperation;
+import com.vertexvis.model.UpdateItemToDefaultRenditionOperation;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * UpdateApplicationRequestData
+ * An operation to perform on a Scene.
  */
+@ApiModel(description = "An operation to perform on a Scene.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class UpdateApplicationRequestData {
-  public static final String SERIALIZED_NAME_TYPE = "type";
-  @SerializedName(SERIALIZED_NAME_TYPE)
-  private String type;
+public class CreateSceneSyncRequest {
+  public static final String SERIALIZED_NAME_OPERATIONS = "operations";
+  @SerializedName(SERIALIZED_NAME_OPERATIONS)
+  private List<OneOfUpdateItemToDefaultRenditionOperation> operations = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
-  @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
-  private UpdateApplicationRequestDataAttributes attributes;
-
-  public UpdateApplicationRequestData() { 
+  public CreateSceneSyncRequest() { 
   }
 
-  public UpdateApplicationRequestData type(String type) {
+  public CreateSceneSyncRequest operations(List<OneOfUpdateItemToDefaultRenditionOperation> operations) {
     
-    this.type = type;
+    this.operations = operations;
+    return this;
+  }
+
+  public CreateSceneSyncRequest addOperationsItem(OneOfUpdateItemToDefaultRenditionOperation operationsItem) {
+    this.operations.add(operationsItem);
     return this;
   }
 
    /**
-   * Resource object type.
-   * @return type
+   * List of operations to perform on &#x60;scene-items&#x60; in the scene.
+   * @return operations
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "application", required = true, value = "Resource object type.")
+  @ApiModelProperty(required = true, value = "List of operations to perform on `scene-items` in the scene.")
 
-  public String getType() {
-    return type;
+  public List<OneOfUpdateItemToDefaultRenditionOperation> getOperations() {
+    return operations;
   }
 
 
-  public void setType(String type) {
-    this.type = type;
-  }
-
-
-  public UpdateApplicationRequestData attributes(UpdateApplicationRequestDataAttributes attributes) {
-    
-    this.attributes = attributes;
-    return this;
-  }
-
-   /**
-   * Get attributes
-   * @return attributes
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public UpdateApplicationRequestDataAttributes getAttributes() {
-    return attributes;
-  }
-
-
-  public void setAttributes(UpdateApplicationRequestDataAttributes attributes) {
-    this.attributes = attributes;
+  public void setOperations(List<OneOfUpdateItemToDefaultRenditionOperation> operations) {
+    this.operations = operations;
   }
 
 
@@ -95,22 +77,20 @@ public class UpdateApplicationRequestData {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UpdateApplicationRequestData updateApplicationRequestData = (UpdateApplicationRequestData) o;
-    return Objects.equals(this.type, updateApplicationRequestData.type) &&
-        Objects.equals(this.attributes, updateApplicationRequestData.attributes);
+    CreateSceneSyncRequest createSceneSyncRequest = (CreateSceneSyncRequest) o;
+    return Objects.equals(this.operations, createSceneSyncRequest.operations);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, attributes);
+    return Objects.hash(operations);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UpdateApplicationRequestData {\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
+    sb.append("class CreateSceneSyncRequest {\n");
+    sb.append("    operations: ").append(toIndentedString(operations)).append("\n");
     sb.append("}");
     return sb.toString();
   }

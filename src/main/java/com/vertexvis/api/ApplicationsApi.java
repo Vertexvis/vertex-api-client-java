@@ -497,6 +497,7 @@ public class ApplicationsApi {
      * Build call for getApplications
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
+     * @param filterClientId Comma-separated list of client IDs to filter on. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -508,7 +509,7 @@ public class ApplicationsApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getApplicationsCall(String pageCursor, Integer pageSize, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getApplicationsCall(String pageCursor, Integer pageSize, String filterClientId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
         // Operation Servers
@@ -542,6 +543,10 @@ public class ApplicationsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[size]", pageSize));
         }
 
+        if (filterClientId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("filter[clientId]", filterClientId));
+        }
+
         final String[] localVarAccepts = {
             "application/vnd.api+json"
         };
@@ -563,10 +568,10 @@ public class ApplicationsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getApplicationsValidateBeforeCall(String pageCursor, Integer pageSize, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getApplicationsValidateBeforeCall(String pageCursor, Integer pageSize, String filterClientId, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = getApplicationsCall(pageCursor, pageSize, _callback);
+        okhttp3.Call localVarCall = getApplicationsCall(pageCursor, pageSize, filterClientId, _callback);
         return localVarCall;
 
     }
@@ -576,6 +581,7 @@ public class ApplicationsApi {
      * Get &#x60;applications&#x60;.
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
+     * @param filterClientId Comma-separated list of client IDs to filter on. (optional)
      * @return ApplicationList
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -586,8 +592,8 @@ public class ApplicationsApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public ApplicationList getApplications(String pageCursor, Integer pageSize) throws ApiException {
-        ApiResponse<ApplicationList> localVarResp = getApplicationsWithHttpInfo(pageCursor, pageSize);
+    public ApplicationList getApplications(String pageCursor, Integer pageSize, String filterClientId) throws ApiException {
+        ApiResponse<ApplicationList> localVarResp = getApplicationsWithHttpInfo(pageCursor, pageSize, filterClientId);
         return localVarResp.getData();
     }
 
@@ -596,6 +602,7 @@ public class ApplicationsApi {
      * Get &#x60;applications&#x60;.
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
+     * @param filterClientId Comma-separated list of client IDs to filter on. (optional)
      * @return ApiResponse&lt;ApplicationList&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -606,8 +613,8 @@ public class ApplicationsApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ApplicationList> getApplicationsWithHttpInfo(String pageCursor, Integer pageSize) throws ApiException {
-        okhttp3.Call localVarCall = getApplicationsValidateBeforeCall(pageCursor, pageSize, null);
+    public ApiResponse<ApplicationList> getApplicationsWithHttpInfo(String pageCursor, Integer pageSize, String filterClientId) throws ApiException {
+        okhttp3.Call localVarCall = getApplicationsValidateBeforeCall(pageCursor, pageSize, filterClientId, null);
         Type localVarReturnType = new TypeToken<ApplicationList>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -617,6 +624,7 @@ public class ApplicationsApi {
      * Get &#x60;applications&#x60;.
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
+     * @param filterClientId Comma-separated list of client IDs to filter on. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -628,9 +636,9 @@ public class ApplicationsApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getApplicationsAsync(String pageCursor, Integer pageSize, final ApiCallback<ApplicationList> _callback) throws ApiException {
+    public okhttp3.Call getApplicationsAsync(String pageCursor, Integer pageSize, String filterClientId, final ApiCallback<ApplicationList> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getApplicationsValidateBeforeCall(pageCursor, pageSize, _callback);
+        okhttp3.Call localVarCall = getApplicationsValidateBeforeCall(pageCursor, pageSize, filterClientId, _callback);
         Type localVarReturnType = new TypeToken<ApplicationList>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

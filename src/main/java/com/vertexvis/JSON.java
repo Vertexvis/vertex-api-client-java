@@ -133,6 +133,10 @@ public class JSON {
                     OneOfWebhookEventSceneIncludedData.class,
                     new OneOfWebhookEventSceneIncludedDataTypeAdapter(() -> gson)
                 )
+                .registerTypeAdapter(
+                    OneOfUpdateItemToDefaultRenditionOperation.class,
+                    new OneOfUpdateItemToDefaultRenditionOperationTypeAdapter(() -> gson)
+                )
                 .create();
     }
 

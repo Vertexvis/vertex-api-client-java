@@ -20,70 +20,79 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.UpdateApplicationRequestDataAttributes;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * UpdateApplicationRequestData
+ * UpdateApplicationRequestDataAttributes
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class UpdateApplicationRequestData {
-  public static final String SERIALIZED_NAME_TYPE = "type";
-  @SerializedName(SERIALIZED_NAME_TYPE)
-  private String type;
+public class UpdateApplicationRequestDataAttributes {
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
 
-  public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
-  @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
-  private UpdateApplicationRequestDataAttributes attributes;
+  public static final String SERIALIZED_NAME_REDIRECT_URIS = "redirect_uris";
+  @SerializedName(SERIALIZED_NAME_REDIRECT_URIS)
+  private List<String> redirectUris = null;
 
-  public UpdateApplicationRequestData() { 
+  public UpdateApplicationRequestDataAttributes() { 
   }
 
-  public UpdateApplicationRequestData type(String type) {
+  public UpdateApplicationRequestDataAttributes name(String name) {
     
-    this.type = type;
+    this.name = name;
     return this;
   }
 
    /**
-   * Resource object type.
-   * @return type
+   * Get name
+   * @return name
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "application", required = true, value = "Resource object type.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "some-string", value = "")
 
-  public String getType() {
-    return type;
+  public String getName() {
+    return name;
   }
 
 
-  public void setType(String type) {
-    this.type = type;
+  public void setName(String name) {
+    this.name = name;
   }
 
 
-  public UpdateApplicationRequestData attributes(UpdateApplicationRequestDataAttributes attributes) {
+  public UpdateApplicationRequestDataAttributes redirectUris(List<String> redirectUris) {
     
-    this.attributes = attributes;
+    this.redirectUris = redirectUris;
+    return this;
+  }
+
+  public UpdateApplicationRequestDataAttributes addRedirectUrisItem(String redirectUrisItem) {
+    if (this.redirectUris == null) {
+      this.redirectUris = new ArrayList<>();
+    }
+    this.redirectUris.add(redirectUrisItem);
     return this;
   }
 
    /**
-   * Get attributes
-   * @return attributes
+   * Get redirectUris
+   * @return redirectUris
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
-  public UpdateApplicationRequestDataAttributes getAttributes() {
-    return attributes;
+  public List<String> getRedirectUris() {
+    return redirectUris;
   }
 
 
-  public void setAttributes(UpdateApplicationRequestDataAttributes attributes) {
-    this.attributes = attributes;
+  public void setRedirectUris(List<String> redirectUris) {
+    this.redirectUris = redirectUris;
   }
 
 
@@ -95,22 +104,22 @@ public class UpdateApplicationRequestData {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UpdateApplicationRequestData updateApplicationRequestData = (UpdateApplicationRequestData) o;
-    return Objects.equals(this.type, updateApplicationRequestData.type) &&
-        Objects.equals(this.attributes, updateApplicationRequestData.attributes);
+    UpdateApplicationRequestDataAttributes updateApplicationRequestDataAttributes = (UpdateApplicationRequestDataAttributes) o;
+    return Objects.equals(this.name, updateApplicationRequestDataAttributes.name) &&
+        Objects.equals(this.redirectUris, updateApplicationRequestDataAttributes.redirectUris);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, attributes);
+    return Objects.hash(name, redirectUris);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UpdateApplicationRequestData {\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
+    sb.append("class UpdateApplicationRequestDataAttributes {\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    redirectUris: ").append(toIndentedString(redirectUris)).append("\n");
     sb.append("}");
     return sb.toString();
   }

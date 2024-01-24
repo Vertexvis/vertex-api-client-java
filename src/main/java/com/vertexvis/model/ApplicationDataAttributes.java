@@ -48,6 +48,10 @@ public class ApplicationDataAttributes {
   @SerializedName(SERIALIZED_NAME_SCOPES)
   private List<String> scopes = new ArrayList<>();
 
+  public static final String SERIALIZED_NAME_REDIRECT_URIS = "redirectUris";
+  @SerializedName(SERIALIZED_NAME_REDIRECT_URIS)
+  private List<String> redirectUris = new ArrayList<>();
+
   public ApplicationDataAttributes() { 
   }
 
@@ -148,6 +152,34 @@ public class ApplicationDataAttributes {
   }
 
 
+  public ApplicationDataAttributes redirectUris(List<String> redirectUris) {
+    
+    this.redirectUris = redirectUris;
+    return this;
+  }
+
+  public ApplicationDataAttributes addRedirectUrisItem(String redirectUrisItem) {
+    this.redirectUris.add(redirectUrisItem);
+    return this;
+  }
+
+   /**
+   * Get redirectUris
+   * @return redirectUris
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public List<String> getRedirectUris() {
+    return redirectUris;
+  }
+
+
+  public void setRedirectUris(List<String> redirectUris) {
+    this.redirectUris = redirectUris;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -160,12 +192,13 @@ public class ApplicationDataAttributes {
     return Objects.equals(this.name, applicationDataAttributes.name) &&
         Objects.equals(this.clientId, applicationDataAttributes.clientId) &&
         Objects.equals(this.created, applicationDataAttributes.created) &&
-        Objects.equals(this.scopes, applicationDataAttributes.scopes);
+        Objects.equals(this.scopes, applicationDataAttributes.scopes) &&
+        Objects.equals(this.redirectUris, applicationDataAttributes.redirectUris);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, clientId, created, scopes);
+    return Objects.hash(name, clientId, created, scopes, redirectUris);
   }
 
   @Override
@@ -176,6 +209,7 @@ public class ApplicationDataAttributes {
     sb.append("    clientId: ").append(toIndentedString(clientId)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    scopes: ").append(toIndentedString(scopes)).append("\n");
+    sb.append("    redirectUris: ").append(toIndentedString(redirectUris)).append("\n");
     sb.append("}");
     return sb.toString();
   }

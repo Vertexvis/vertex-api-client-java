@@ -412,6 +412,16 @@ paths:
           minimum: 1
           type: integer
         style: form
+      - description: Comma-separated list of client IDs to filter on.
+        explode: true
+        in: query
+        name: filter[clientId]
+        required: false
+        schema:
+          example: ?filter[clientId]=some-id-1&filter[clientId]=some-id-2
+          maxLength: 1024
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -4940,6 +4950,52 @@ paths:
       tags:
       - scenes
       x-accepts: application/vnd.api+json,image/jpeg,image/png
+  /scenes/{id}/scene-item-updates:
+    post:
+      description: Create a scene item update job.
+      operationId: createSceneSyncJob
+      parameters:
+      - description: The `scene` ID.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          $ref: '#/components/schemas/Uuid'
+        style: simple
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/CreateSceneSyncRequest'
+        required: true
+      responses:
+        "202":
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/QueuedJob'
+          description: Accepted
+          headers:
+            content-location:
+              $ref: '#/components/headers/ContentLocation'
+        "404":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "404"
+                  code: NotFound
+                  title: The requested resource was not found.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Not Found
+      security:
+      - OAuth2: []
+      tags:
+      - scenes
+      x-contentType: application/vnd.api+json
+      x-accepts: application/vnd.api+json
   /queued-scenes/{id}:
     get:
       description: Get a `queued-scene`.
@@ -6988,6 +7044,17 @@ components:
         maxLength: 1024
         type: string
       style: form
+    ClientIdFilter:
+      description: Comma-separated list of client IDs to filter on.
+      explode: true
+      in: query
+      name: filter[clientId]
+      required: false
+      schema:
+        example: ?filter[clientId]=some-id-1&filter[clientId]=some-id-2
+        maxLength: 1024
+        type: string
+      style: form
     ParentIdFilter:
       description: Parent ID to filter on.
       explode: true
@@ -7809,6 +7876,21 @@ components:
           $ref: '#/components/schemas/UpdateSceneRequest_data'
       required:
       - data
+      type: object
+    CreateSceneSyncRequest:
+      additionalProperties: false
+      description: An operation to perform on a Scene.
+      properties:
+        operations:
+          description: List of operations to perform on `scene-items` in the scene.
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/UpdateItemToDefaultRenditionOperation'
+          maxItems: 1024
+          minItems: 1
+          type: array
+      required:
+      - operations
       type: object
     SceneViewStateList:
       additionalProperties: false
@@ -8956,6 +9038,26 @@ components:
       required:
       - data
       type: object
+    UpdateItemToDefaultRenditionOperation:
+      additionalProperties: false
+      description: An operation that updates items with the specified revision to
+        the default rendition.
+      properties:
+        type:
+          enum:
+          - update-to-default-rendition
+          example: update-to-default-rendition
+          type: string
+        revisionId:
+          description: ID of the resource.
+          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
+          format: uuid
+          maxLength: 36
+          type: string
+      required:
+      - revisionId
+      - type
+      type: object
     SceneViewStateData:
       additionalProperties: false
       properties:
@@ -9960,6 +10062,18 @@ components:
       - id
       - type
       type: object
+    UpdateApplicationRequest_data_attributes:
+      properties:
+        name:
+          example: some-string
+          maxLength: 1024
+          minLength: 1
+          type: string
+        redirect_uris:
+          items:
+            $ref: '#/components/schemas/NonEmptyString'
+          type: array
+      type: object
     UpdateApplicationRequest_data:
       properties:
         type:
@@ -9968,7 +10082,7 @@ components:
           maxLength: 32
           type: string
         attributes:
-          $ref: '#/components/schemas/CreateAccountRequest_data_attributes'
+          $ref: '#/components/schemas/UpdateApplicationRequest_data_attributes'
       required:
       - attributes
       - type
@@ -10934,10 +11048,15 @@ components:
           items:
             $ref: '#/components/schemas/NonEmptyString'
           type: array
+        redirectUris:
+          items:
+            $ref: '#/components/schemas/NonEmptyString'
+          type: array
       required:
       - clientId
       - created
       - name
+      - redirectUris
       - scopes
       type: object
     BatchOperation_ref:

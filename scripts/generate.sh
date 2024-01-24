@@ -23,6 +23,7 @@ main() {
                 AnyOfQueryByIdQueryByCollectionQueryAll.java \
                 OneOfHitResultDataSceneItemDataPartRevisionData.java \
                 OneOfWebhookEventSceneIncludedData.java \
+                OneOfUpdateItemToDefaultRenditionOperation.java \
                 OneOfSceneViewRelationshipSceneViewStateRelationship.java \
                 AnyOfFileRelationshipPartAssemblyRelationship.java )
   mv "src/test" . || true
