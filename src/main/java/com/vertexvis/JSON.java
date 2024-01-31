@@ -130,8 +130,8 @@ public class JSON {
                 .registerTypeAdapter(AnyOfFileRelationshipPartAssemblyRelationship.class,
                         new AnyOfFileRelationshipPartAssemblyRelationshipTypeAdapter(() -> gson))
                 .registerTypeAdapter(
-                    OneOfWebhookEventSceneIncludedData.class,
-                    new OneOfWebhookEventSceneIncludedDataTypeAdapter(() -> gson)
+                    OneOfWebhookEventSceneIncludedDataWebhookEventPartRevisionIncludedData.class,
+                    new OneOfWebhookEventSceneIncludedDataWebhookEventPartRevisionIncludedDataTypeAdapter(() -> gson)
                 )
                 .registerTypeAdapter(
                     OneOfUpdateItemToDefaultRenditionOperation.class,

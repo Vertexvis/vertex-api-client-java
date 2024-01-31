@@ -22,7 +22,7 @@ main() {
                 AnyOfGeometrySetRelationshipPartRevisionRelationship.java \
                 AnyOfQueryByIdQueryByCollectionQueryAll.java \
                 OneOfHitResultDataSceneItemDataPartRevisionData.java \
-                OneOfWebhookEventSceneIncludedData.java \
+                OneOfWebhookEventSceneIncludedDataWebhookEventPartRevisionIncludedData.java \
                 OneOfUpdateItemToDefaultRenditionOperation.java \
                 OneOfSceneViewRelationshipSceneViewStateRelationship.java \
                 AnyOfFileRelationshipPartAssemblyRelationship.java )

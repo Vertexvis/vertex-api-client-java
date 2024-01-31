@@ -39,6 +39,7 @@ tags:
 - name: scene-alterations
 - name: scene-item-overrides
 - name: scene-items
+- name: scene-synchronizations
 - name: scene-views
 - name: scenes
 - name: scene-view-states
@@ -4950,52 +4951,6 @@ paths:
       tags:
       - scenes
       x-accepts: application/vnd.api+json,image/jpeg,image/png
-  /scenes/{id}/scene-item-updates:
-    post:
-      description: Create a scene item update job.
-      operationId: createSceneSyncJob
-      parameters:
-      - description: The `scene` ID.
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          $ref: '#/components/schemas/Uuid'
-        style: simple
-      requestBody:
-        content:
-          application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/CreateSceneSyncRequest'
-        required: true
-      responses:
-        "202":
-          content:
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/QueuedJob'
-          description: Accepted
-          headers:
-            content-location:
-              $ref: '#/components/headers/ContentLocation'
-        "404":
-          content:
-            application/vnd.api+json:
-              example:
-                errors:
-                - status: "404"
-                  code: NotFound
-                  title: The requested resource was not found.
-              schema:
-                $ref: '#/components/schemas/Failure'
-          description: Not Found
-      security:
-      - OAuth2: []
-      tags:
-      - scenes
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
   /queued-scenes/{id}:
     get:
       description: Get a `queued-scene`.
@@ -5501,6 +5456,261 @@ paths:
       tags:
       - stream-keys
       x-contentType: application/vnd.api+json
+      x-accepts: application/vnd.api+json
+  /scenes/{id}/scene-syncs:
+    post:
+      description: Create a scene item update job.
+      operationId: createSceneSync
+      parameters:
+      - description: The `scene` ID.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          $ref: '#/components/schemas/Uuid'
+        style: simple
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/CreateSceneSyncRequest'
+        required: true
+      responses:
+        "202":
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/QueuedJob'
+          description: Accepted
+          headers:
+            content-location:
+              $ref: '#/components/headers/ContentLocation'
+        "404":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "404"
+                  code: NotFound
+                  title: The requested resource was not found.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Not Found
+      security:
+      - OAuth2: []
+      tags:
+      - scene-synchronizations
+      x-contentType: application/vnd.api+json
+      x-accepts: application/vnd.api+json
+  /queued-scene-syncs/{id}:
+    get:
+      description: Get a `queued-scene-sync-job`.
+      operationId: getQueuedSceneSync
+      parameters:
+      - description: The `queued-scene-sync` ID.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          $ref: '#/components/schemas/Uuid'
+        style: simple
+      responses:
+        "200":
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/QueuedJob'
+          description: OK
+        "401":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "401"
+                  code: Unauthorized
+                  title: Invalid or missing credentials.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unauthorized
+        "404":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "404"
+                  code: NotFound
+                  title: The requested resource was not found.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Not Found
+        "415":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "415"
+                  code: UnsupportedMediaType
+                  title: The provided media type is not supported. Update the Content-Type
+                    header to application/vnd.api+json and try again.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unsupported Media Type
+      security:
+      - OAuth2: []
+      tags:
+      - scene-synchronizations
+      x-accepts: application/vnd.api+json
+  /scene-syncs/{id}:
+    get:
+      description: Get a `scene-sync`.
+      operationId: getSceneSync
+      parameters:
+      - description: The `scene-sync` ID.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          $ref: '#/components/schemas/Uuid'
+        style: simple
+      responses:
+        "200":
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/SceneSync'
+          description: OK
+        "401":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "401"
+                  code: Unauthorized
+                  title: Invalid or missing credentials.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unauthorized
+        "404":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "404"
+                  code: NotFound
+                  title: The requested resource was not found.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Not Found
+        "415":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "415"
+                  code: UnsupportedMediaType
+                  title: The provided media type is not supported. Update the Content-Type
+                    header to application/vnd.api+json and try again.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unsupported Media Type
+      security:
+      - OAuth2: []
+      tags:
+      - scene-synchronizations
+      x-accepts: application/vnd.api+json
+  /scene-syncs/{id}/item-results:
+    get:
+      description: Get the results of a scene synchronization.
+      operationId: getSceneSyncItemResults
+      parameters:
+      - description: The `scene-sync` ID.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          $ref: '#/components/schemas/Uuid'
+        style: simple
+      - description: The cursor for the next page of items.
+        explode: true
+        in: query
+        name: page[cursor]
+        required: false
+        schema:
+          example: cHJkMDVFR2RLag==
+          type: string
+        style: form
+      - description: The number of items to return.
+        explode: true
+        in: query
+        name: page[size]
+        required: false
+        schema:
+          example: 10
+          format: int32
+          maximum: 200
+          minimum: 1
+          type: integer
+        style: form
+      - description: List of scene item IDs to filter on.
+        explode: true
+        in: query
+        name: filter[sceneItemId]
+        required: false
+        schema:
+          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
+          format: uuid
+          maxLength: 36
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/SceneSyncItemResultsList'
+          description: OK
+        "401":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "401"
+                  code: Unauthorized
+                  title: Invalid or missing credentials.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unauthorized
+        "404":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "404"
+                  code: NotFound
+                  title: The requested resource was not found.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Not Found
+        "415":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "415"
+                  code: UnsupportedMediaType
+                  title: The provided media type is not supported. Update the Content-Type
+                    header to application/vnd.api+json and try again.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unsupported Media Type
+      security:
+      - OAuth2: []
+      tags:
+      - scene-synchronizations
       x-accepts: application/vnd.api+json
   /stream-keys:
     get:
@@ -6934,6 +7144,15 @@ components:
         example: filter[metadata][key1]=test
         type: object
       style: form
+    QueuedSceneSyncId:
+      description: The `queued-scene-sync` ID.
+      explode: false
+      in: path
+      name: id
+      required: true
+      schema:
+        $ref: '#/components/schemas/Uuid'
+      style: simple
     RevisionIdFilter:
       description: A revision ID to filter on.
       explode: true
@@ -6977,6 +7196,15 @@ components:
       style: form
     SceneItemOverrideId:
       description: The `scene-item-override` ID.
+      explode: false
+      in: path
+      name: id
+      required: true
+      schema:
+        $ref: '#/components/schemas/Uuid'
+      style: simple
+    SceneSyncId:
+      description: The `scene-sync` ID.
       explode: false
       in: path
       name: id
@@ -7031,6 +7259,18 @@ components:
       schema:
         example: running
         maxLength: 1024
+        type: string
+      style: form
+    SceneItemIdFilter:
+      description: List of scene item IDs to filter on.
+      explode: true
+      in: query
+      name: filter[sceneItemId]
+      required: false
+      schema:
+        example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
+        format: uuid
+        maxLength: 36
         type: string
       style: form
     SuppliedIdFilter:
@@ -7877,21 +8117,6 @@ components:
       required:
       - data
       type: object
-    CreateSceneSyncRequest:
-      additionalProperties: false
-      description: An operation to perform on a Scene.
-      properties:
-        operations:
-          description: List of operations to perform on `scene-items` in the scene.
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/UpdateItemToDefaultRenditionOperation'
-          maxItems: 1024
-          minItems: 1
-          type: array
-      required:
-      - operations
-      type: object
     SceneViewStateList:
       additionalProperties: false
       properties:
@@ -7954,6 +8179,53 @@ components:
           type: object
       required:
       - data
+      type: object
+    CreateSceneSyncRequest:
+      additionalProperties: false
+      description: An operation to perform on a Scene.
+      properties:
+        operations:
+          description: List of operations to perform on `scene-items` in the scene.
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/UpdateItemToDefaultRenditionOperation'
+          maxItems: 1024
+          minItems: 1
+          type: array
+      required:
+      - operations
+      type: object
+    SceneSync:
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/SceneSyncData'
+        links:
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+          type: object
+      required:
+      - data
+      type: object
+    SceneSyncItemResultsList:
+      additionalProperties: false
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/SceneSyncItemResultData'
+          type: array
+        links:
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+          type: object
+        included:
+          items:
+            $ref: '#/components/schemas/SceneItemData'
+          type: array
+      required:
+      - data
+      - included
+      - links
       type: object
     StreamKeyList:
       additionalProperties: false
@@ -8118,9 +8390,11 @@ components:
             discriminator:
               mapping:
                 scene: '#/components/schemas/WebhookEventSceneIncludedData'
+                part-revision: '#/components/schemas/WebhookEventPartRevisionIncludedData'
               propertyName: type
             oneOf:
             - $ref: '#/components/schemas/WebhookEventSceneIncludedData'
+            - $ref: '#/components/schemas/WebhookEventPartRevisionIncludedData'
           type: array
         links:
           additionalProperties:
@@ -9038,26 +9312,6 @@ components:
       required:
       - data
       type: object
-    UpdateItemToDefaultRenditionOperation:
-      additionalProperties: false
-      description: An operation that updates items with the specified revision to
-        the default rendition.
-      properties:
-        type:
-          enum:
-          - update-to-default-rendition
-          example: update-to-default-rendition
-          type: string
-        revisionId:
-          description: ID of the resource.
-          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-          format: uuid
-          maxLength: 36
-          type: string
-      required:
-      - revisionId
-      - type
-      type: object
     SceneViewStateData:
       additionalProperties: false
       properties:
@@ -9110,6 +9364,77 @@ components:
           additionalProperties:
             $ref: '#/components/schemas/Link'
           type: object
+      required:
+      - attributes
+      - id
+      - relationships
+      - type
+      type: object
+    UpdateItemToDefaultRenditionOperation:
+      additionalProperties: false
+      description: An operation that updates items with the specified revision to
+        the default rendition.
+      properties:
+        type:
+          enum:
+          - update-to-default-rendition
+          example: update-to-default-rendition
+          type: string
+        revisionId:
+          description: ID of the resource.
+          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
+          format: uuid
+          maxLength: 36
+          type: string
+      required:
+      - revisionId
+      - type
+      type: object
+    SceneSyncData:
+      additionalProperties: false
+      properties:
+        type:
+          example: some-string
+          maxLength: 1024
+          minLength: 1
+          type: string
+        id:
+          description: ID of the resource.
+          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
+          format: uuid
+          maxLength: 36
+          type: string
+        attributes:
+          $ref: '#/components/schemas/SceneSyncData_attributes'
+        links:
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+          type: object
+      required:
+      - attributes
+      - id
+      - type
+      type: object
+    SceneSyncItemResultData:
+      additionalProperties: false
+      properties:
+        type:
+          example: scene-sync-item-result
+          type: string
+        id:
+          description: ID of the resource.
+          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
+          format: uuid
+          maxLength: 36
+          type: string
+        attributes:
+          $ref: '#/components/schemas/SceneSyncItemResultData_attributes'
+        links:
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+          type: object
+        relationships:
+          $ref: '#/components/schemas/SceneSyncItemResultData_relationships'
       required:
       - attributes
       - id
@@ -9274,6 +9599,29 @@ components:
           type: string
         attributes:
           $ref: '#/components/schemas/WebhookEventSceneIncludedAttributes'
+        links:
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+          type: object
+      required:
+      - attributes
+      - id
+      - links
+      - type
+      type: object
+    WebhookEventPartRevisionIncludedData:
+      properties:
+        type:
+          example: part-revision
+          type: string
+        id:
+          description: ID of the resource.
+          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
+          format: uuid
+          maxLength: 36
+          type: string
+        attributes:
+          $ref: '#/components/schemas/WebhookEventPartRevisionIncludedAttributes'
         links:
           additionalProperties:
             $ref: '#/components/schemas/Link'
@@ -9865,6 +10213,28 @@ components:
           description: |
             User supplied key-value pairs for a scene. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters.
           type: object
+      type: object
+    WebhookEventPartRevisionIncludedAttributes:
+      properties:
+        created:
+          example: 2020-01-01T12:00:00Z
+          format: date-time
+          type: string
+        suppliedId:
+          example: some-string
+          maxLength: 1024
+          minLength: 1
+          type: string
+        name:
+          example: some-string
+          maxLength: 1024
+          minLength: 1
+          type: string
+        partName:
+          example: some-string
+          maxLength: 1024
+          minLength: 1
+          type: string
       type: object
     Color:
       description: Color value from 0 to 255.
@@ -11660,6 +12030,44 @@ components:
       required:
       - created
       - expiry
+      type: object
+    SceneSyncData_attributes:
+      properties:
+        created:
+          example: 2020-01-01T12:00:00Z
+          format: date-time
+          type: string
+        completedAt:
+          example: 2020-01-01T12:00:00Z
+          format: date-time
+          type: string
+        status:
+          example: completed
+          type: string
+      required:
+      - completedAt
+      - created
+      - status
+      type: object
+    SceneSyncItemResultData_attributes:
+      properties:
+        status:
+          example: running
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
+      required:
+      - status
+      type: object
+    SceneSyncItemResultData_relationships:
+      properties:
+        scene:
+          $ref: '#/components/schemas/SceneRelationship'
+        sceneItem:
+          $ref: '#/components/schemas/SceneItemRelationship'
+      required:
+      - scene
+      - sceneItem
       type: object
     QueuedTranslationJobData_attributes:
       properties:

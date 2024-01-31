@@ -31,6 +31,7 @@ src/main/java/com/vertexvis/api/PartsApi.java
 src/main/java/com/vertexvis/api/SceneAlterationsApi.java
 src/main/java/com/vertexvis/api/SceneItemOverridesApi.java
 src/main/java/com/vertexvis/api/SceneItemsApi.java
+src/main/java/com/vertexvis/api/SceneSynchronizationsApi.java
 src/main/java/com/vertexvis/api/SceneViewStatesApi.java
 src/main/java/com/vertexvis/api/SceneViewsApi.java
 src/main/java/com/vertexvis/api/ScenesApi.java
@@ -253,6 +254,13 @@ src/main/java/com/vertexvis/model/SceneList.java
 src/main/java/com/vertexvis/model/SceneOperation.java
 src/main/java/com/vertexvis/model/SceneRelationship.java
 src/main/java/com/vertexvis/model/SceneRelationshipData.java
+src/main/java/com/vertexvis/model/SceneSync.java
+src/main/java/com/vertexvis/model/SceneSyncData.java
+src/main/java/com/vertexvis/model/SceneSyncDataAttributes.java
+src/main/java/com/vertexvis/model/SceneSyncItemResultData.java
+src/main/java/com/vertexvis/model/SceneSyncItemResultDataAttributes.java
+src/main/java/com/vertexvis/model/SceneSyncItemResultDataRelationships.java
+src/main/java/com/vertexvis/model/SceneSyncItemResultsList.java
 src/main/java/com/vertexvis/model/SceneView.java
 src/main/java/com/vertexvis/model/SceneViewData.java
 src/main/java/com/vertexvis/model/SceneViewDataAttributes.java
@@ -320,6 +328,8 @@ src/main/java/com/vertexvis/model/WebhookEventDataRelationshipsOwner.java
 src/main/java/com/vertexvis/model/WebhookEventDataRelationshipsOwnerData.java
 src/main/java/com/vertexvis/model/WebhookEventDataRelationshipsResource.java
 src/main/java/com/vertexvis/model/WebhookEventDataRelationshipsResourceData.java
+src/main/java/com/vertexvis/model/WebhookEventPartRevisionIncludedAttributes.java
+src/main/java/com/vertexvis/model/WebhookEventPartRevisionIncludedData.java
 src/main/java/com/vertexvis/model/WebhookEventSceneIncludedAttributes.java
 src/main/java/com/vertexvis/model/WebhookEventSceneIncludedData.java
 src/main/java/com/vertexvis/model/WebhookSubscription.java

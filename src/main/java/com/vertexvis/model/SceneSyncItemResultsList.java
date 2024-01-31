@@ -21,10 +21,8 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.Link;
-import com.vertexvis.model.OneOfWebhookEventSceneIncludedDataWebhookEventPartRevisionIncludedData;
-import com.vertexvis.model.WebhookEventData;
-import com.vertexvis.model.WebhookEventPartRevisionIncludedData;
-import com.vertexvis.model.WebhookEventSceneIncludedData;
+import com.vertexvis.model.SceneItemData;
+import com.vertexvis.model.SceneSyncItemResultData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -34,28 +32,33 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * WebhookEvent
+ * SceneSyncItemResultsList
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class WebhookEvent {
+public class SceneSyncItemResultsList {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
-  private WebhookEventData data;
-
-  public static final String SERIALIZED_NAME_INCLUDED = "included";
-  @SerializedName(SERIALIZED_NAME_INCLUDED)
-  private List<OneOfWebhookEventSceneIncludedDataWebhookEventPartRevisionIncludedData> included = new ArrayList<>();
+  private List<SceneSyncItemResultData> data = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_LINKS = "links";
   @SerializedName(SERIALIZED_NAME_LINKS)
-  private Map<String, Link> links = null;
+  private Map<String, Link> links = new HashMap<>();
 
-  public WebhookEvent() { 
+  public static final String SERIALIZED_NAME_INCLUDED = "included";
+  @SerializedName(SERIALIZED_NAME_INCLUDED)
+  private List<SceneItemData> included = new ArrayList<>();
+
+  public SceneSyncItemResultsList() { 
   }
 
-  public WebhookEvent data(WebhookEventData data) {
+  public SceneSyncItemResultsList data(List<SceneSyncItemResultData> data) {
     
     this.data = data;
+    return this;
+  }
+
+  public SceneSyncItemResultsList addDataItem(SceneSyncItemResultData dataItem) {
+    this.data.add(dataItem);
     return this;
   }
 
@@ -66,54 +69,23 @@ public class WebhookEvent {
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public WebhookEventData getData() {
+  public List<SceneSyncItemResultData> getData() {
     return data;
   }
 
 
-  public void setData(WebhookEventData data) {
+  public void setData(List<SceneSyncItemResultData> data) {
     this.data = data;
   }
 
 
-  public WebhookEvent included(List<OneOfWebhookEventSceneIncludedDataWebhookEventPartRevisionIncludedData> included) {
-    
-    this.included = included;
-    return this;
-  }
-
-  public WebhookEvent addIncludedItem(OneOfWebhookEventSceneIncludedDataWebhookEventPartRevisionIncludedData includedItem) {
-    this.included.add(includedItem);
-    return this;
-  }
-
-   /**
-   * Get included
-   * @return included
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public List<OneOfWebhookEventSceneIncludedDataWebhookEventPartRevisionIncludedData> getIncluded() {
-    return included;
-  }
-
-
-  public void setIncluded(List<OneOfWebhookEventSceneIncludedDataWebhookEventPartRevisionIncludedData> included) {
-    this.included = included;
-  }
-
-
-  public WebhookEvent links(Map<String, Link> links) {
+  public SceneSyncItemResultsList links(Map<String, Link> links) {
     
     this.links = links;
     return this;
   }
 
-  public WebhookEvent putLinksItem(String key, Link linksItem) {
-    if (this.links == null) {
-      this.links = new HashMap<>();
-    }
+  public SceneSyncItemResultsList putLinksItem(String key, Link linksItem) {
     this.links.put(key, linksItem);
     return this;
   }
@@ -122,8 +94,8 @@ public class WebhookEvent {
    * Get links
    * @return links
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
 
   public Map<String, Link> getLinks() {
     return links;
@@ -135,6 +107,34 @@ public class WebhookEvent {
   }
 
 
+  public SceneSyncItemResultsList included(List<SceneItemData> included) {
+    
+    this.included = included;
+    return this;
+  }
+
+  public SceneSyncItemResultsList addIncludedItem(SceneItemData includedItem) {
+    this.included.add(includedItem);
+    return this;
+  }
+
+   /**
+   * Get included
+   * @return included
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public List<SceneItemData> getIncluded() {
+    return included;
+  }
+
+
+  public void setIncluded(List<SceneItemData> included) {
+    this.included = included;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -143,24 +143,24 @@ public class WebhookEvent {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WebhookEvent webhookEvent = (WebhookEvent) o;
-    return Objects.equals(this.data, webhookEvent.data) &&
-        Objects.equals(this.included, webhookEvent.included) &&
-        Objects.equals(this.links, webhookEvent.links);
+    SceneSyncItemResultsList sceneSyncItemResultsList = (SceneSyncItemResultsList) o;
+    return Objects.equals(this.data, sceneSyncItemResultsList.data) &&
+        Objects.equals(this.links, sceneSyncItemResultsList.links) &&
+        Objects.equals(this.included, sceneSyncItemResultsList.included);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, included, links);
+    return Objects.hash(data, links, included);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class WebhookEvent {\n");
+    sb.append("class SceneSyncItemResultsList {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
-    sb.append("    included: ").append(toIndentedString(included)).append("\n");
     sb.append("    links: ").append(toIndentedString(links)).append("\n");
+    sb.append("    included: ").append(toIndentedString(included)).append("\n");
     sb.append("}");
     return sb.toString();
   }
