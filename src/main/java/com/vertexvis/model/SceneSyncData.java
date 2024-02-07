@@ -21,96 +21,115 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.Link;
-import com.vertexvis.model.OneOfWebhookEventSceneIncludedDataWebhookEventPartRevisionIncludedData;
-import com.vertexvis.model.WebhookEventData;
-import com.vertexvis.model.WebhookEventPartRevisionIncludedData;
-import com.vertexvis.model.WebhookEventSceneIncludedData;
+import com.vertexvis.model.SceneSyncDataAttributes;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
- * WebhookEvent
+ * SceneSyncData
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class WebhookEvent {
-  public static final String SERIALIZED_NAME_DATA = "data";
-  @SerializedName(SERIALIZED_NAME_DATA)
-  private WebhookEventData data;
+public class SceneSyncData {
+  public static final String SERIALIZED_NAME_TYPE = "type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
+  private String type;
 
-  public static final String SERIALIZED_NAME_INCLUDED = "included";
-  @SerializedName(SERIALIZED_NAME_INCLUDED)
-  private List<OneOfWebhookEventSceneIncludedDataWebhookEventPartRevisionIncludedData> included = new ArrayList<>();
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private UUID id;
+
+  public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
+  @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
+  private SceneSyncDataAttributes attributes;
 
   public static final String SERIALIZED_NAME_LINKS = "links";
   @SerializedName(SERIALIZED_NAME_LINKS)
   private Map<String, Link> links = null;
 
-  public WebhookEvent() { 
+  public SceneSyncData() { 
   }
 
-  public WebhookEvent data(WebhookEventData data) {
+  public SceneSyncData type(String type) {
     
-    this.data = data;
+    this.type = type;
     return this;
   }
 
    /**
-   * Get data
-   * @return data
+   * Get type
+   * @return type
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "some-string", required = true, value = "")
 
-  public WebhookEventData getData() {
-    return data;
+  public String getType() {
+    return type;
   }
 
 
-  public void setData(WebhookEventData data) {
-    this.data = data;
+  public void setType(String type) {
+    this.type = type;
   }
 
 
-  public WebhookEvent included(List<OneOfWebhookEventSceneIncludedDataWebhookEventPartRevisionIncludedData> included) {
+  public SceneSyncData id(UUID id) {
     
-    this.included = included;
-    return this;
-  }
-
-  public WebhookEvent addIncludedItem(OneOfWebhookEventSceneIncludedDataWebhookEventPartRevisionIncludedData includedItem) {
-    this.included.add(includedItem);
+    this.id = id;
     return this;
   }
 
    /**
-   * Get included
-   * @return included
+   * ID of the resource.
+   * @return id
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "f79d4760-0b71-44e4-ad0b-22743fdd4ca3", required = true, value = "ID of the resource.")
+
+  public UUID getId() {
+    return id;
+  }
+
+
+  public void setId(UUID id) {
+    this.id = id;
+  }
+
+
+  public SceneSyncData attributes(SceneSyncDataAttributes attributes) {
+    
+    this.attributes = attributes;
+    return this;
+  }
+
+   /**
+   * Get attributes
+   * @return attributes
   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public List<OneOfWebhookEventSceneIncludedDataWebhookEventPartRevisionIncludedData> getIncluded() {
-    return included;
+  public SceneSyncDataAttributes getAttributes() {
+    return attributes;
   }
 
 
-  public void setIncluded(List<OneOfWebhookEventSceneIncludedDataWebhookEventPartRevisionIncludedData> included) {
-    this.included = included;
+  public void setAttributes(SceneSyncDataAttributes attributes) {
+    this.attributes = attributes;
   }
 
 
-  public WebhookEvent links(Map<String, Link> links) {
+  public SceneSyncData links(Map<String, Link> links) {
     
     this.links = links;
     return this;
   }
 
-  public WebhookEvent putLinksItem(String key, Link linksItem) {
+  public SceneSyncData putLinksItem(String key, Link linksItem) {
     if (this.links == null) {
       this.links = new HashMap<>();
     }
@@ -143,23 +162,25 @@ public class WebhookEvent {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WebhookEvent webhookEvent = (WebhookEvent) o;
-    return Objects.equals(this.data, webhookEvent.data) &&
-        Objects.equals(this.included, webhookEvent.included) &&
-        Objects.equals(this.links, webhookEvent.links);
+    SceneSyncData sceneSyncData = (SceneSyncData) o;
+    return Objects.equals(this.type, sceneSyncData.type) &&
+        Objects.equals(this.id, sceneSyncData.id) &&
+        Objects.equals(this.attributes, sceneSyncData.attributes) &&
+        Objects.equals(this.links, sceneSyncData.links);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, included, links);
+    return Objects.hash(type, id, attributes, links);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class WebhookEvent {\n");
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
-    sb.append("    included: ").append(toIndentedString(included)).append("\n");
+    sb.append("class SceneSyncData {\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("    links: ").append(toIndentedString(links)).append("\n");
     sb.append("}");
     return sb.toString();
