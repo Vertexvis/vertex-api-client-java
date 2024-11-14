@@ -31,8 +31,8 @@ jobs:
           ./gradlew \
             -P signingKey=${{ secrets.ORG_GRADLE_PROJECT_signingKey }} \
             -P signingPassword=${{ secrets.ORG_GRADLE_PROJECT_signingPassword }} \
-            -P sonatypeUsername=${{ secrets.SONATYPE_USERNAME }} \
-            -P sonatypePassword=${{ secrets.SONATYPE_PASSWORD }} \
+            -P ossrhUsername=${{ secrets.OSSRH_USERNAME }} \
+            -P ossrhPassword=${{ secrets.OSSRH_PASSWORD }} \
             publishToSonatype \
             closeAndReleaseSonatypeStagingRepository
           ./scripts/publish.sh
