@@ -104,10 +104,9 @@ public class RetryingOAuth extends OAuth implements Interceptor {
               updateTokenAndRetryOnAuthorizationFailure
       ) {
         try {
-          if (updateAccessToken(requestAccessToken)) {
-            response.body().close();
-            return retryingIntercept(chain, false);
-          }
+          updateAccessToken(requestAccessToken);
+          response.body().close();
+          return retryingIntercept(chain, false);
         } catch (Exception e) {
           response.body().close();
           throw e;
@@ -119,24 +118,21 @@ public class RetryingOAuth extends OAuth implements Interceptor {
     }
   }
 
-  /*
-   * Returns true if the access token has been updated
-   */
-  public synchronized boolean updateAccessToken(String requestAccessToken) throws IOException {
+  private synchronized void updateAccessToken(String requestAccessToken) throws IOException {
+    // if we don't have a token at all, we go get one
+    // if we are here and requestAccessToken is not equal to getAccessToken(), that means
+    // some other thread has already updated the token and we can just continue on to retry with the new token.
     if (getAccessToken() == null || getAccessToken().equals(requestAccessToken)) {
       try {
         OAuthJSONAccessTokenResponse accessTokenResponse =
             oAuthClient.accessToken(tokenRequestBuilder.buildBodyMessage());
         if (accessTokenResponse != null && accessTokenResponse.getAccessToken() != null) {
           setAccessToken(accessTokenResponse.getAccessToken());
-          return !getAccessToken().equals(requestAccessToken);
         }
       } catch (OAuthSystemException | OAuthProblemException e) {
         throw new IOException(e);
       }
     }
-
-    return false;
   }
 
   public TokenRequestBuilder getTokenRequestBuilder() {
