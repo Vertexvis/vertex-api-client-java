@@ -137,6 +137,10 @@ public class JSON {
                     OneOfUpdateItemToDefaultRenditionOperation.class,
                     new OneOfUpdateItemToDefaultRenditionOperationTypeAdapter(() -> gson)
                 )
+                .registerTypeAdapter(
+                    AnyOfGeometrySetDataPartRevisionDataPartRenditionData.class,
+                    new AnyOfGeometrySetDataPartRevisionDataPartRenditionDataTypeAdapter(() -> gson)
+                )
                 .create();
     }
 
