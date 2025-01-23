@@ -1,13 +1,6 @@
 /*
  * Vertex Platform API
- * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which
- * together allow easily integrating 3D product data into your business application.  See our
- * [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get
- *  started.  Notes about the Postman collection and API Reference code samples,   - They include
- *  all required and optional body parameters for completeness. Remove any optional parameters as
- *  desired.   - They use auto-generated IDs and other values that may share the same value for
- * ease of documentation only. In actual requests and responses, the IDs should uniquely identify
- *  their corresponding resource.
+ * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples:   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
  *
  * The version of the OpenAPI document: 1.0
  * Contact: support@vertexvis.com
@@ -22,15 +15,17 @@ package com.vertexvis;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapter;
 import com.google.gson.internal.bind.util.ISO8601Utils;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.*;
-import com.vertexvis.model.serialization.*;
+import com.google.gson.JsonElement;
 import io.gsonfire.GsonFireBuilder;
+import io.gsonfire.TypeSelector;
+
+import com.vertexvis.model.*;
+import okio.ByteString;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -42,106 +37,77 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Map;
-
-import okio.ByteString;
+import java.util.HashMap;
 
 public class JSON {
     private Gson gson;
     private boolean isLenientOnJson = false;
-    private final DateTypeAdapter dateTypeAdapter = new DateTypeAdapter();
-    private final SqlDateTypeAdapter sqlDateTypeAdapter = new SqlDateTypeAdapter();
-    private final OffsetDateTimeTypeAdapter offsetDateTimeTypeAdapter =
-            new OffsetDateTimeTypeAdapter();
-    private final LocalDateTypeAdapter localDateTypeAdapter = new LocalDateTypeAdapter();
-    private final ByteArrayAdapter byteArrayAdapter = new ByteArrayAdapter();
+    private DateTypeAdapter dateTypeAdapter = new DateTypeAdapter();
+    private SqlDateTypeAdapter sqlDateTypeAdapter = new SqlDateTypeAdapter();
+    private OffsetDateTimeTypeAdapter offsetDateTimeTypeAdapter = new OffsetDateTimeTypeAdapter();
+    private LocalDateTypeAdapter localDateTypeAdapter = new LocalDateTypeAdapter();
+    private ByteArrayAdapter byteArrayAdapter = new ByteArrayAdapter();
 
     @SuppressWarnings("unchecked")
     public static GsonBuilder createGson() {
-        GsonFireBuilder fireBuilder = new GsonFireBuilder();
+        GsonFireBuilder fireBuilder = new GsonFireBuilder()
+                .registerTypeSelector(CADExportConfig.class, new TypeSelector<CADExportConfig>() {
+                    @Override
+                    public Class<? extends CADExportConfig> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("CADExportConfig", CADExportConfig.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "format"));
+                    }
+          })
+                .registerTypeSelector(ExportConfig.class, new TypeSelector<ExportConfig>() {
+                    @Override
+                    public Class<? extends ExportConfig> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("CADExportConfig", CADExportConfig.class);
+                        classByDiscriminatorValue.put("ExportConfig", ExportConfig.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "format"));
+                    }
+          })
+        ;
         GsonBuilder builder = fireBuilder.createGsonBuilder();
         return builder;
     }
 
-    private static String getDiscriminatorValue(JsonElement readElement,
-                                                String discriminatorField) {
+    private static String getDiscriminatorValue(JsonElement readElement, String discriminatorField) {
         JsonElement element = readElement.getAsJsonObject().get(discriminatorField);
         if (null == element) {
-            throw new IllegalArgumentException(
-                    "missing discriminator field: <" + discriminatorField + ">");
+            throw new IllegalArgumentException("missing discriminator field: <" + discriminatorField + ">");
         }
         return element.getAsString();
     }
 
     /**
-     * Returns the Java class that implements the OpenAPI schema for the specified discriminator
-     * value.
+     * Returns the Java class that implements the OpenAPI schema for the specified discriminator value.
      *
      * @param classByDiscriminatorValue The map of discriminator values to Java classes.
-     * @param discriminatorValue        The value of the OpenAPI discriminator in the input data.
+     * @param discriminatorValue The value of the OpenAPI discriminator in the input data.
      * @return The Java class that implements the OpenAPI schema
      */
-    private static Class getClassByDiscriminator(Map classByDiscriminatorValue,
-                                                 String discriminatorValue) {
+    private static Class getClassByDiscriminator(Map classByDiscriminatorValue, String discriminatorValue) {
         Class clazz = (Class) classByDiscriminatorValue.get(discriminatorValue);
         if (null == clazz) {
-            throw new IllegalArgumentException(
-                    "cannot determine model class of name: <" + discriminatorValue + ">");
+            throw new IllegalArgumentException("cannot determine model class of name: <" + discriminatorValue + ">");
         }
         return clazz;
     }
 
     public JSON() {
-        gson = createGson().registerTypeAdapter(Date.class, dateTypeAdapter)
-                .registerTypeAdapter(java.sql.Date.class, sqlDateTypeAdapter)
-                .registerTypeAdapter(OffsetDateTime.class, offsetDateTimeTypeAdapter)
-                .registerTypeAdapter(LocalDate.class, localDateTypeAdapter)
-                .registerTypeAdapter(byte[].class, byteArrayAdapter).registerTypeAdapter(
-                        AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationshipPartRenditionRelationship.class,
-                        new AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationshipTypeAdapter(
-                                () -> gson))
-                .registerTypeAdapter(AnyOfQueryByIdQueryByCollectionQueryAll.class,
-                        new AnyOfQueryByIdQueryByCollectionQueryAllTypeAdapter(() -> gson))
-                .registerTypeAdapter(AnyOfCameraCameraFit.class,
-                        new AnyOfCameraCameraFitTypeAdapter(() -> gson)).registerTypeAdapter(
-                        AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransformOpClearTransformOpSelectOpDeselectOperationClearRenOpViewDefaultRenOpViewRenByIdOpViewRenBySuppliedIdOpViewRepByIdOpViewRepByPredefinedIdOpClearRepOp.class,
-                        new AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperationTypeAdapter(
-                                () -> gson)).registerTypeAdapter(
-                        AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType.class,
-                        new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullTypeAdapter(
-                                () -> gson))
-                .registerTypeAdapter(OneOfHitResultDataSceneItemDataPartRevisionData.class,
-                        new OneOfHitResultDataSceneItemDataPartRevisionDataTypeAdapter(() -> gson))
-                .registerTypeAdapter(AnyOfGeometrySetRelationshipPartRevisionRelationship.class,
-                        new AnyOfGeometrySetRelationshipPartRevisionRelationshipTypeAdapter(
-                                () -> gson))
-                .registerTypeAdapter(OneOfSceneViewRelationshipSceneViewStateRelationship.class,
-                        new OneOfSceneViewRelationshipSceneViewStateRelationshipTypeAdapter(
-                                () -> gson))
-                .registerTypeAdapter(AnyOfRelationshipDataApiError.class,
-                        new AnyOfRelationshipDataApiErrorAdapter(() -> gson))
-                .registerTypeAdapter(AnyOfCreateSceneItemRequestData.class,
-                        new AnyOfCreateSceneItemRequestDataAdapter(() -> gson))
-                .registerTypeAdapter(OneOfPerspectiveCameraOrthographicCamera.class,
-                        new OneOfPerspectiveCameraOrthographicCameraTypeAdapter(() -> gson))
-                .registerTypeAdapter(AnyOfPerspectiveCameraOrthographicCameraCameraFit.class,
-                        new AnyOfPerspectiveCameraOrthographicCameraCameraFitTypeAdapter(
-                                () -> gson))
-                .registerTypeAdapter(AnyOfFileRelationshipPartAssemblyRelationship.class,
-                        new AnyOfFileRelationshipPartAssemblyRelationshipTypeAdapter(() -> gson))
-                .registerTypeAdapter(
-                    OneOfWebhookEventSceneIncludedDataWebhookEventPartRevisionIncludedData.class,
-                    new OneOfWebhookEventSceneIncludedDataWebhookEventPartRevisionIncludedDataTypeAdapter(() -> gson)
-                )
-                .registerTypeAdapter(
-                    OneOfUpdateItemToDefaultRenditionOperation.class,
-                    new OneOfUpdateItemToDefaultRenditionOperationTypeAdapter(() -> gson)
-                )
-                .registerTypeAdapter(
-                    AnyOfGeometrySetDataPartRevisionDataPartRenditionData.class,
-                    new AnyOfGeometrySetDataPartRevisionDataPartRenditionDataTypeAdapter(() -> gson)
-                )
-                .create();
+        gson = createGson()
+            .registerTypeAdapter(Date.class, dateTypeAdapter)
+            .registerTypeAdapter(java.sql.Date.class, sqlDateTypeAdapter)
+            .registerTypeAdapter(OffsetDateTime.class, offsetDateTimeTypeAdapter)
+            .registerTypeAdapter(LocalDate.class, localDateTypeAdapter)
+            .registerTypeAdapter(byte[].class, byteArrayAdapter)
+            .create();
     }
 
     /**
@@ -164,6 +130,13 @@ public class JSON {
         return this;
     }
 
+    /**
+     * Configure the parser to be liberal in what it accepts.
+     *
+     * @param lenientOnJson Set it to true to ignore some syntax errors
+     * @return JSON
+     * @see <a href="https://www.javadoc.io/doc/com.google.code.gson/gson/2.8.5/com/google/gson/stream/JsonReader.html">https://www.javadoc.io/doc/com.google.code.gson/gson/2.8.5/com/google/gson/stream/JsonReader.html</a>
+     */
     public JSON setLenientOnJson(boolean lenientOnJson) {
         isLenientOnJson = lenientOnJson;
         return this;
@@ -192,21 +165,18 @@ public class JSON {
         try {
             if (isLenientOnJson) {
                 JsonReader jsonReader = new JsonReader(new StringReader(body));
-                // see https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/stream/JsonReader.html#setLenient(boolean)
+                // see https://www.javadoc.io/doc/com.google.code.gson/gson/2.8.5/com/google/gson/stream/JsonReader.html
                 jsonReader.setLenient(true);
                 return gson.fromJson(jsonReader, returnType);
-            }
-            else {
+            } else {
                 return gson.fromJson(body, returnType);
             }
-        }
-        catch (JsonParseException e) {
+        } catch (JsonParseException e) {
             // Fallback processing when failed to parse JSON form response body:
             // return the response body string directly for the String return type;
             if (returnType.equals(String.class)) {
                 return (T) body;
-            }
-            else {
+            } else {
                 throw (e);
             }
         }
@@ -221,8 +191,7 @@ public class JSON {
         public void write(JsonWriter out, byte[] value) throws IOException {
             if (value == null) {
                 out.nullValue();
-            }
-            else {
+            } else {
                 out.value(ByteString.of(value).base64());
             }
         }
@@ -264,8 +233,7 @@ public class JSON {
         public void write(JsonWriter out, OffsetDateTime date) throws IOException {
             if (date == null) {
                 out.nullValue();
-            }
-            else {
+            } else {
                 out.value(formatter.format(date));
             }
         }
@@ -279,7 +247,7 @@ public class JSON {
                 default:
                     String date = in.nextString();
                     if (date.endsWith("+0000")) {
-                        date = date.substring(0, date.length() - 5) + "Z";
+                        date = date.substring(0, date.length()-5) + "Z";
                     }
                     return OffsetDateTime.parse(date, formatter);
             }
@@ -309,8 +277,7 @@ public class JSON {
         public void write(JsonWriter out, LocalDate date) throws IOException {
             if (date == null) {
                 out.nullValue();
-            }
-            else {
+            } else {
                 out.value(formatter.format(date));
             }
         }
@@ -347,8 +314,7 @@ public class JSON {
 
         private DateFormat dateFormat;
 
-        public SqlDateTypeAdapter() {
-        }
+        public SqlDateTypeAdapter() {}
 
         public SqlDateTypeAdapter(DateFormat dateFormat) {
             this.dateFormat = dateFormat;
@@ -362,13 +328,11 @@ public class JSON {
         public void write(JsonWriter out, java.sql.Date date) throws IOException {
             if (date == null) {
                 out.nullValue();
-            }
-            else {
+            } else {
                 String value;
                 if (dateFormat != null) {
                     value = dateFormat.format(date);
-                }
-                else {
+                } else {
                     value = date.toString();
                 }
                 out.value(value);
@@ -387,10 +351,8 @@ public class JSON {
                         if (dateFormat != null) {
                             return new java.sql.Date(dateFormat.parse(date).getTime());
                         }
-                        return new java.sql.Date(
-                                ISO8601Utils.parse(date, new ParsePosition(0)).getTime());
-                    }
-                    catch (ParseException e) {
+                        return new java.sql.Date(ISO8601Utils.parse(date, new ParsePosition(0)).getTime());
+                    } catch (ParseException e) {
                         throw new JsonParseException(e);
                     }
             }
@@ -405,8 +367,7 @@ public class JSON {
 
         private DateFormat dateFormat;
 
-        public DateTypeAdapter() {
-        }
+        public DateTypeAdapter() {}
 
         public DateTypeAdapter(DateFormat dateFormat) {
             this.dateFormat = dateFormat;
@@ -420,13 +381,11 @@ public class JSON {
         public void write(JsonWriter out, Date date) throws IOException {
             if (date == null) {
                 out.nullValue();
-            }
-            else {
+            } else {
                 String value;
                 if (dateFormat != null) {
                     value = dateFormat.format(date);
-                }
-                else {
+                } else {
                     value = ISO8601Utils.format(date, true);
                 }
                 out.value(value);
@@ -447,13 +406,11 @@ public class JSON {
                                 return dateFormat.parse(date);
                             }
                             return ISO8601Utils.parse(date, new ParsePosition(0));
-                        }
-                        catch (ParseException e) {
+                        } catch (ParseException e) {
                             throw new JsonParseException(e);
                         }
                 }
-            }
-            catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 throw new JsonParseException(e);
             }
         }
