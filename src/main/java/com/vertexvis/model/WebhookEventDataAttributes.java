@@ -24,6 +24,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * WebhookEventDataAttributes
@@ -37,6 +39,10 @@ public class WebhookEventDataAttributes {
   public static final String SERIALIZED_NAME_TOPIC = "topic";
   @SerializedName(SERIALIZED_NAME_TOPIC)
   private String topic;
+
+  public static final String SERIALIZED_NAME_CHANGED = "changed";
+  @SerializedName(SERIALIZED_NAME_CHANGED)
+  private List<String> changed = null;
 
   public WebhookEventDataAttributes() { 
   }
@@ -87,6 +93,37 @@ public class WebhookEventDataAttributes {
   }
 
 
+  public WebhookEventDataAttributes changed(List<String> changed) {
+    
+    this.changed = changed;
+    return this;
+  }
+
+  public WebhookEventDataAttributes addChangedItem(String changedItem) {
+    if (this.changed == null) {
+      this.changed = new ArrayList<>();
+    }
+    this.changed.add(changedItem);
+    return this;
+  }
+
+   /**
+   * Get changed
+   * @return changed
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public List<String> getChanged() {
+    return changed;
+  }
+
+
+  public void setChanged(List<String> changed) {
+    this.changed = changed;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -97,12 +134,13 @@ public class WebhookEventDataAttributes {
     }
     WebhookEventDataAttributes webhookEventDataAttributes = (WebhookEventDataAttributes) o;
     return Objects.equals(this.created, webhookEventDataAttributes.created) &&
-        Objects.equals(this.topic, webhookEventDataAttributes.topic);
+        Objects.equals(this.topic, webhookEventDataAttributes.topic) &&
+        Objects.equals(this.changed, webhookEventDataAttributes.changed);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(created, topic);
+    return Objects.hash(created, topic, changed);
   }
 
   @Override
@@ -111,6 +149,7 @@ public class WebhookEventDataAttributes {
     sb.append("class WebhookEventDataAttributes {\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    topic: ").append(toIndentedString(topic)).append("\n");
+    sb.append("    changed: ").append(toIndentedString(changed)).append("\n");
     sb.append("}");
     return sb.toString();
   }

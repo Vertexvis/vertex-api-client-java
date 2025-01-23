@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class OAuthOkHttpClient implements HttpClient {
-    private final OkHttpClient client;
+    private OkHttpClient client;
 
     public OAuthOkHttpClient() {
         this.client = new OkHttpClient();

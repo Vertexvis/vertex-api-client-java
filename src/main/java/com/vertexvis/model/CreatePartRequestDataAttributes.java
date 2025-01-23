@@ -41,6 +41,10 @@ public class CreatePartRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_SUPPLIED_REVISION_ID)
   private String suppliedRevisionId;
 
+  public static final String SERIALIZED_NAME_SUPPLIED_ITERATION_ID = "suppliedIterationId";
+  @SerializedName(SERIALIZED_NAME_SUPPLIED_ITERATION_ID)
+  private String suppliedIterationId;
+
   public static final String SERIALIZED_NAME_INDEX_METADATA = "indexMetadata";
   @SerializedName(SERIALIZED_NAME_INDEX_METADATA)
   private Boolean indexMetadata;
@@ -115,6 +119,29 @@ public class CreatePartRequestDataAttributes {
 
   public void setSuppliedRevisionId(String suppliedRevisionId) {
     this.suppliedRevisionId = suppliedRevisionId;
+  }
+
+
+  public CreatePartRequestDataAttributes suppliedIterationId(String suppliedIterationId) {
+    
+    this.suppliedIterationId = suppliedIterationId;
+    return this;
+  }
+
+   /**
+   * ID provided for correlation of the revision. This is an optional ID to be able to create a version of a revision. For example, if and existing revision in a PLM system is modified, the suppliedIterationId can be used to allow creating a new part revision having an already existing suppliedId and suppliedRevisionId. This can be used when modification to an existing revision is made in the PLM system before the revision is released. 
+   * @return suppliedIterationId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "Ver1", value = "ID provided for correlation of the revision. This is an optional ID to be able to create a version of a revision. For example, if and existing revision in a PLM system is modified, the suppliedIterationId can be used to allow creating a new part revision having an already existing suppliedId and suppliedRevisionId. This can be used when modification to an existing revision is made in the PLM system before the revision is released. ")
+
+  public String getSuppliedIterationId() {
+    return suppliedIterationId;
+  }
+
+
+  public void setSuppliedIterationId(String suppliedIterationId) {
+    this.suppliedIterationId = suppliedIterationId;
   }
 
 
@@ -298,6 +325,7 @@ public class CreatePartRequestDataAttributes {
     CreatePartRequestDataAttributes createPartRequestDataAttributes = (CreatePartRequestDataAttributes) o;
     return Objects.equals(this.suppliedId, createPartRequestDataAttributes.suppliedId) &&
         Objects.equals(this.suppliedRevisionId, createPartRequestDataAttributes.suppliedRevisionId) &&
+        Objects.equals(this.suppliedIterationId, createPartRequestDataAttributes.suppliedIterationId) &&
         Objects.equals(this.indexMetadata, createPartRequestDataAttributes.indexMetadata) &&
         Objects.equals(this.metadata, createPartRequestDataAttributes.metadata) &&
         Objects.equals(this.name, createPartRequestDataAttributes.name) &&
@@ -309,7 +337,7 @@ public class CreatePartRequestDataAttributes {
 
   @Override
   public int hashCode() {
-    return Objects.hash(suppliedId, suppliedRevisionId, indexMetadata, metadata, name, revisionName, suppliedIdKey, suppliedRevisionIdKey, suppliedInstanceIdKey);
+    return Objects.hash(suppliedId, suppliedRevisionId, suppliedIterationId, indexMetadata, metadata, name, revisionName, suppliedIdKey, suppliedRevisionIdKey, suppliedInstanceIdKey);
   }
 
   @Override
@@ -318,6 +346,7 @@ public class CreatePartRequestDataAttributes {
     sb.append("class CreatePartRequestDataAttributes {\n");
     sb.append("    suppliedId: ").append(toIndentedString(suppliedId)).append("\n");
     sb.append("    suppliedRevisionId: ").append(toIndentedString(suppliedRevisionId)).append("\n");
+    sb.append("    suppliedIterationId: ").append(toIndentedString(suppliedIterationId)).append("\n");
     sb.append("    indexMetadata: ").append(toIndentedString(indexMetadata)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");

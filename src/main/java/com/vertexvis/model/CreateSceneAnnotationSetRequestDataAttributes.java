@@ -20,44 +20,69 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.UpdateItemToDefaultRenditionOperation;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * An operation to perform on a Scene.
+ * CreateSceneAnnotationSetRequestDataAttributes
  */
-@ApiModel(description = "An operation to perform on a Scene.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneSyncRequest {
-  public static final String SERIALIZED_NAME_OPERATION = "operation";
-  @SerializedName(SERIALIZED_NAME_OPERATION)
-  private OneOfUpdateItemToDefaultRenditionOperation operation;
+public class CreateSceneAnnotationSetRequestDataAttributes {
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
 
-  public CreateSceneSyncRequest() { 
+  public static final String SERIALIZED_NAME_SUPPLIED_ID = "suppliedId";
+  @SerializedName(SERIALIZED_NAME_SUPPLIED_ID)
+  private String suppliedId;
+
+  public CreateSceneAnnotationSetRequestDataAttributes() { 
   }
 
-  public CreateSceneSyncRequest operation(OneOfUpdateItemToDefaultRenditionOperation operation) {
+  public CreateSceneAnnotationSetRequestDataAttributes name(String name) {
     
-    this.operation = operation;
+    this.name = name;
     return this;
   }
 
    /**
-   * Get operation
-   * @return operation
+   * Get name
+   * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "some-string", value = "")
 
-  public OneOfUpdateItemToDefaultRenditionOperation getOperation() {
-    return operation;
+  public String getName() {
+    return name;
   }
 
 
-  public void setOperation(OneOfUpdateItemToDefaultRenditionOperation operation) {
-    this.operation = operation;
+  public void setName(String name) {
+    this.name = name;
+  }
+
+
+  public CreateSceneAnnotationSetRequestDataAttributes suppliedId(String suppliedId) {
+    
+    this.suppliedId = suppliedId;
+    return this;
+  }
+
+   /**
+   * A customer provided ID used for correlation.
+   * @return suppliedId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "PN12345", value = "A customer provided ID used for correlation.")
+
+  public String getSuppliedId() {
+    return suppliedId;
+  }
+
+
+  public void setSuppliedId(String suppliedId) {
+    this.suppliedId = suppliedId;
   }
 
 
@@ -69,20 +94,22 @@ public class CreateSceneSyncRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneSyncRequest createSceneSyncRequest = (CreateSceneSyncRequest) o;
-    return Objects.equals(this.operation, createSceneSyncRequest.operation);
+    CreateSceneAnnotationSetRequestDataAttributes createSceneAnnotationSetRequestDataAttributes = (CreateSceneAnnotationSetRequestDataAttributes) o;
+    return Objects.equals(this.name, createSceneAnnotationSetRequestDataAttributes.name) &&
+        Objects.equals(this.suppliedId, createSceneAnnotationSetRequestDataAttributes.suppliedId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(operation);
+    return Objects.hash(name, suppliedId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneSyncRequest {\n");
-    sb.append("    operation: ").append(toIndentedString(operation)).append("\n");
+    sb.append("class CreateSceneAnnotationSetRequestDataAttributes {\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    suppliedId: ").append(toIndentedString(suppliedId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

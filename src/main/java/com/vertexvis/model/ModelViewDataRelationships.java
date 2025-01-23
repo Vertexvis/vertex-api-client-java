@@ -20,44 +20,43 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.UpdateItemToDefaultRenditionOperation;
+import com.vertexvis.model.PartRevisionRelationship;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * An operation to perform on a Scene.
+ * ModelViewDataRelationships
  */
-@ApiModel(description = "An operation to perform on a Scene.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneSyncRequest {
-  public static final String SERIALIZED_NAME_OPERATION = "operation";
-  @SerializedName(SERIALIZED_NAME_OPERATION)
-  private OneOfUpdateItemToDefaultRenditionOperation operation;
+public class ModelViewDataRelationships {
+  public static final String SERIALIZED_NAME_PART_REVISION = "partRevision";
+  @SerializedName(SERIALIZED_NAME_PART_REVISION)
+  private PartRevisionRelationship partRevision;
 
-  public CreateSceneSyncRequest() { 
+  public ModelViewDataRelationships() { 
   }
 
-  public CreateSceneSyncRequest operation(OneOfUpdateItemToDefaultRenditionOperation operation) {
+  public ModelViewDataRelationships partRevision(PartRevisionRelationship partRevision) {
     
-    this.operation = operation;
+    this.partRevision = partRevision;
     return this;
   }
 
    /**
-   * Get operation
-   * @return operation
+   * Get partRevision
+   * @return partRevision
   **/
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public OneOfUpdateItemToDefaultRenditionOperation getOperation() {
-    return operation;
+  public PartRevisionRelationship getPartRevision() {
+    return partRevision;
   }
 
 
-  public void setOperation(OneOfUpdateItemToDefaultRenditionOperation operation) {
-    this.operation = operation;
+  public void setPartRevision(PartRevisionRelationship partRevision) {
+    this.partRevision = partRevision;
   }
 
 
@@ -69,20 +68,20 @@ public class CreateSceneSyncRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneSyncRequest createSceneSyncRequest = (CreateSceneSyncRequest) o;
-    return Objects.equals(this.operation, createSceneSyncRequest.operation);
+    ModelViewDataRelationships modelViewDataRelationships = (ModelViewDataRelationships) o;
+    return Objects.equals(this.partRevision, modelViewDataRelationships.partRevision);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(operation);
+    return Objects.hash(partRevision);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneSyncRequest {\n");
-    sb.append("    operation: ").append(toIndentedString(operation)).append("\n");
+    sb.append("class ModelViewDataRelationships {\n");
+    sb.append("    partRevision: ").append(toIndentedString(partRevision)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -20,19 +20,18 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.UpdatePartRevisionRequestDataAttributes;
-import com.vertexvis.model.UpdatePartRevisionRequestDataRelationships;
+import com.vertexvis.model.PartRevisionInstanceDataAttributes;
+import com.vertexvis.model.PartRevisionInstanceDataRelationships;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.UUID;
 
 /**
- * Modify existing part revisions using this endpoint. When specifying a &#x60;relationship&#x60;, the generated output from that relationship will be used to replace any relationship that is present on the revision prior to the update. For example, sending a file relationship that has geometry will replace the existing geometry on the revision with the new geometry in the given file. 
+ * PartRevisionInstanceData
  */
-@ApiModel(description = "Modify existing part revisions using this endpoint. When specifying a `relationship`, the generated output from that relationship will be used to replace any relationship that is present on the revision prior to the update. For example, sending a file relationship that has geometry will replace the existing geometry on the revision with the new geometry in the given file. ")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class UpdatePartRevisionRequestData {
+public class PartRevisionInstanceData {
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
   private String type;
@@ -43,27 +42,27 @@ public class UpdatePartRevisionRequestData {
 
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
-  private UpdatePartRevisionRequestDataAttributes attributes;
+  private PartRevisionInstanceDataAttributes attributes;
 
   public static final String SERIALIZED_NAME_RELATIONSHIPS = "relationships";
   @SerializedName(SERIALIZED_NAME_RELATIONSHIPS)
-  private UpdatePartRevisionRequestDataRelationships relationships;
+  private PartRevisionInstanceDataRelationships relationships;
 
-  public UpdatePartRevisionRequestData() { 
+  public PartRevisionInstanceData() { 
   }
 
-  public UpdatePartRevisionRequestData type(String type) {
+  public PartRevisionInstanceData type(String type) {
     
     this.type = type;
     return this;
   }
 
    /**
-   * Resource object type.
+   * Get type
    * @return type
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "part-revision", required = true, value = "Resource object type.")
+  @ApiModelProperty(example = "part-revision-instance", required = true, value = "")
 
   public String getType() {
     return type;
@@ -75,7 +74,7 @@ public class UpdatePartRevisionRequestData {
   }
 
 
-  public UpdatePartRevisionRequestData id(UUID id) {
+  public PartRevisionInstanceData id(UUID id) {
     
     this.id = id;
     return this;
@@ -98,7 +97,7 @@ public class UpdatePartRevisionRequestData {
   }
 
 
-  public UpdatePartRevisionRequestData attributes(UpdatePartRevisionRequestDataAttributes attributes) {
+  public PartRevisionInstanceData attributes(PartRevisionInstanceDataAttributes attributes) {
     
     this.attributes = attributes;
     return this;
@@ -111,17 +110,17 @@ public class UpdatePartRevisionRequestData {
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public UpdatePartRevisionRequestDataAttributes getAttributes() {
+  public PartRevisionInstanceDataAttributes getAttributes() {
     return attributes;
   }
 
 
-  public void setAttributes(UpdatePartRevisionRequestDataAttributes attributes) {
+  public void setAttributes(PartRevisionInstanceDataAttributes attributes) {
     this.attributes = attributes;
   }
 
 
-  public UpdatePartRevisionRequestData relationships(UpdatePartRevisionRequestDataRelationships relationships) {
+  public PartRevisionInstanceData relationships(PartRevisionInstanceDataRelationships relationships) {
     
     this.relationships = relationships;
     return this;
@@ -131,15 +130,15 @@ public class UpdatePartRevisionRequestData {
    * Get relationships
    * @return relationships
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
 
-  public UpdatePartRevisionRequestDataRelationships getRelationships() {
+  public PartRevisionInstanceDataRelationships getRelationships() {
     return relationships;
   }
 
 
-  public void setRelationships(UpdatePartRevisionRequestDataRelationships relationships) {
+  public void setRelationships(PartRevisionInstanceDataRelationships relationships) {
     this.relationships = relationships;
   }
 
@@ -152,11 +151,11 @@ public class UpdatePartRevisionRequestData {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UpdatePartRevisionRequestData updatePartRevisionRequestData = (UpdatePartRevisionRequestData) o;
-    return Objects.equals(this.type, updatePartRevisionRequestData.type) &&
-        Objects.equals(this.id, updatePartRevisionRequestData.id) &&
-        Objects.equals(this.attributes, updatePartRevisionRequestData.attributes) &&
-        Objects.equals(this.relationships, updatePartRevisionRequestData.relationships);
+    PartRevisionInstanceData partRevisionInstanceData = (PartRevisionInstanceData) o;
+    return Objects.equals(this.type, partRevisionInstanceData.type) &&
+        Objects.equals(this.id, partRevisionInstanceData.id) &&
+        Objects.equals(this.attributes, partRevisionInstanceData.attributes) &&
+        Objects.equals(this.relationships, partRevisionInstanceData.relationships);
   }
 
   @Override
@@ -167,7 +166,7 @@ public class UpdatePartRevisionRequestData {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UpdatePartRevisionRequestData {\n");
+    sb.append("class PartRevisionInstanceData {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");

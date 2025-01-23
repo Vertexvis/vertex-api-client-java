@@ -20,44 +20,71 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.UpdateItemToDefaultRenditionOperation;
+import com.vertexvis.model.Matrix4;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * An operation to perform on a Scene.
+ * PartRevisionInstanceDataAttributes
  */
-@ApiModel(description = "An operation to perform on a Scene.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneSyncRequest {
-  public static final String SERIALIZED_NAME_OPERATION = "operation";
-  @SerializedName(SERIALIZED_NAME_OPERATION)
-  private OneOfUpdateItemToDefaultRenditionOperation operation;
+public class PartRevisionInstanceDataAttributes {
+  public static final String SERIALIZED_NAME_ORDINAL = "ordinal";
+  @SerializedName(SERIALIZED_NAME_ORDINAL)
+  private Integer ordinal;
 
-  public CreateSceneSyncRequest() { 
+  public static final String SERIALIZED_NAME_TRANSFORM = "transform";
+  @SerializedName(SERIALIZED_NAME_TRANSFORM)
+  private Matrix4 transform;
+
+  public PartRevisionInstanceDataAttributes() { 
   }
 
-  public CreateSceneSyncRequest operation(OneOfUpdateItemToDefaultRenditionOperation operation) {
+  public PartRevisionInstanceDataAttributes ordinal(Integer ordinal) {
     
-    this.operation = operation;
+    this.ordinal = ordinal;
     return this;
   }
 
    /**
-   * Get operation
-   * @return operation
+   * A 0-based index used for defining a consistent ordering for children of an assembly
+   * minimum: 0
+   * @return ordinal
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(value = "A 0-based index used for defining a consistent ordering for children of an assembly")
 
-  public OneOfUpdateItemToDefaultRenditionOperation getOperation() {
-    return operation;
+  public Integer getOrdinal() {
+    return ordinal;
   }
 
 
-  public void setOperation(OneOfUpdateItemToDefaultRenditionOperation operation) {
-    this.operation = operation;
+  public void setOrdinal(Integer ordinal) {
+    this.ordinal = ordinal;
+  }
+
+
+  public PartRevisionInstanceDataAttributes transform(Matrix4 transform) {
+    
+    this.transform = transform;
+    return this;
+  }
+
+   /**
+   * Get transform
+   * @return transform
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Matrix4 getTransform() {
+    return transform;
+  }
+
+
+  public void setTransform(Matrix4 transform) {
+    this.transform = transform;
   }
 
 
@@ -69,20 +96,22 @@ public class CreateSceneSyncRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneSyncRequest createSceneSyncRequest = (CreateSceneSyncRequest) o;
-    return Objects.equals(this.operation, createSceneSyncRequest.operation);
+    PartRevisionInstanceDataAttributes partRevisionInstanceDataAttributes = (PartRevisionInstanceDataAttributes) o;
+    return Objects.equals(this.ordinal, partRevisionInstanceDataAttributes.ordinal) &&
+        Objects.equals(this.transform, partRevisionInstanceDataAttributes.transform);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(operation);
+    return Objects.hash(ordinal, transform);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneSyncRequest {\n");
-    sb.append("    operation: ").append(toIndentedString(operation)).append("\n");
+    sb.append("class PartRevisionInstanceDataAttributes {\n");
+    sb.append("    ordinal: ").append(toIndentedString(ordinal)).append("\n");
+    sb.append("    transform: ").append(toIndentedString(transform)).append("\n");
     sb.append("}");
     return sb.toString();
   }

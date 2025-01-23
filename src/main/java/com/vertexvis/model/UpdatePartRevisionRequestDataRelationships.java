@@ -20,44 +20,71 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.UpdateItemToDefaultRenditionOperation;
+import com.vertexvis.model.FileRelationship;
+import com.vertexvis.model.PartRenditionRelationship;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * An operation to perform on a Scene.
+ * UpdatePartRevisionRequestDataRelationships
  */
-@ApiModel(description = "An operation to perform on a Scene.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneSyncRequest {
-  public static final String SERIALIZED_NAME_OPERATION = "operation";
-  @SerializedName(SERIALIZED_NAME_OPERATION)
-  private OneOfUpdateItemToDefaultRenditionOperation operation;
+public class UpdatePartRevisionRequestDataRelationships {
+  public static final String SERIALIZED_NAME_SOURCE = "source";
+  @SerializedName(SERIALIZED_NAME_SOURCE)
+  private FileRelationship source;
 
-  public CreateSceneSyncRequest() { 
+  public static final String SERIALIZED_NAME_DEFAULT_PART_RENDITION = "defaultPartRendition";
+  @SerializedName(SERIALIZED_NAME_DEFAULT_PART_RENDITION)
+  private PartRenditionRelationship defaultPartRendition;
+
+  public UpdatePartRevisionRequestDataRelationships() { 
   }
 
-  public CreateSceneSyncRequest operation(OneOfUpdateItemToDefaultRenditionOperation operation) {
+  public UpdatePartRevisionRequestDataRelationships source(FileRelationship source) {
     
-    this.operation = operation;
+    this.source = source;
     return this;
   }
 
    /**
-   * Get operation
-   * @return operation
+   * Get source
+   * @return source
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(value = "")
 
-  public OneOfUpdateItemToDefaultRenditionOperation getOperation() {
-    return operation;
+  public FileRelationship getSource() {
+    return source;
   }
 
 
-  public void setOperation(OneOfUpdateItemToDefaultRenditionOperation operation) {
-    this.operation = operation;
+  public void setSource(FileRelationship source) {
+    this.source = source;
+  }
+
+
+  public UpdatePartRevisionRequestDataRelationships defaultPartRendition(PartRenditionRelationship defaultPartRendition) {
+    
+    this.defaultPartRendition = defaultPartRendition;
+    return this;
+  }
+
+   /**
+   * Get defaultPartRendition
+   * @return defaultPartRendition
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public PartRenditionRelationship getDefaultPartRendition() {
+    return defaultPartRendition;
+  }
+
+
+  public void setDefaultPartRendition(PartRenditionRelationship defaultPartRendition) {
+    this.defaultPartRendition = defaultPartRendition;
   }
 
 
@@ -69,20 +96,22 @@ public class CreateSceneSyncRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneSyncRequest createSceneSyncRequest = (CreateSceneSyncRequest) o;
-    return Objects.equals(this.operation, createSceneSyncRequest.operation);
+    UpdatePartRevisionRequestDataRelationships updatePartRevisionRequestDataRelationships = (UpdatePartRevisionRequestDataRelationships) o;
+    return Objects.equals(this.source, updatePartRevisionRequestDataRelationships.source) &&
+        Objects.equals(this.defaultPartRendition, updatePartRevisionRequestDataRelationships.defaultPartRendition);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(operation);
+    return Objects.hash(source, defaultPartRendition);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneSyncRequest {\n");
-    sb.append("    operation: ").append(toIndentedString(operation)).append("\n");
+    sb.append("class UpdatePartRevisionRequestDataRelationships {\n");
+    sb.append("    source: ").append(toIndentedString(source)).append("\n");
+    sb.append("    defaultPartRendition: ").append(toIndentedString(defaultPartRendition)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -20,44 +20,44 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.UpdateItemToDefaultRenditionOperation;
+import com.vertexvis.model.PartInstanceRelationshipData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * An operation to perform on a Scene.
+ * Relationship to a &#x60;part-instance&#x60;.
  */
-@ApiModel(description = "An operation to perform on a Scene.")
+@ApiModel(description = "Relationship to a `part-instance`.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneSyncRequest {
-  public static final String SERIALIZED_NAME_OPERATION = "operation";
-  @SerializedName(SERIALIZED_NAME_OPERATION)
-  private OneOfUpdateItemToDefaultRenditionOperation operation;
+public class PartInstanceRelationship {
+  public static final String SERIALIZED_NAME_DATA = "data";
+  @SerializedName(SERIALIZED_NAME_DATA)
+  private PartInstanceRelationshipData data;
 
-  public CreateSceneSyncRequest() { 
+  public PartInstanceRelationship() { 
   }
 
-  public CreateSceneSyncRequest operation(OneOfUpdateItemToDefaultRenditionOperation operation) {
+  public PartInstanceRelationship data(PartInstanceRelationshipData data) {
     
-    this.operation = operation;
+    this.data = data;
     return this;
   }
 
    /**
-   * Get operation
-   * @return operation
+   * Get data
+   * @return data
   **/
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public OneOfUpdateItemToDefaultRenditionOperation getOperation() {
-    return operation;
+  public PartInstanceRelationshipData getData() {
+    return data;
   }
 
 
-  public void setOperation(OneOfUpdateItemToDefaultRenditionOperation operation) {
-    this.operation = operation;
+  public void setData(PartInstanceRelationshipData data) {
+    this.data = data;
   }
 
 
@@ -69,20 +69,20 @@ public class CreateSceneSyncRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneSyncRequest createSceneSyncRequest = (CreateSceneSyncRequest) o;
-    return Objects.equals(this.operation, createSceneSyncRequest.operation);
+    PartInstanceRelationship partInstanceRelationship = (PartInstanceRelationship) o;
+    return Objects.equals(this.data, partInstanceRelationship.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(operation);
+    return Objects.hash(data);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneSyncRequest {\n");
-    sb.append("    operation: ").append(toIndentedString(operation)).append("\n");
+    sb.append("class PartInstanceRelationship {\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -27,13 +27,14 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import com.vertexvis.model.CreateFileRequest;
+import com.vertexvis.model.CreateSceneAnnotationRequest;
+import com.vertexvis.model.CreateSceneAnnotationSetRequest;
 import com.vertexvis.model.Failure;
-import java.io.File;
-import com.vertexvis.model.FileList;
-import com.vertexvis.model.FileMetadata;
+import com.vertexvis.model.SceneAnnotation;
+import com.vertexvis.model.SceneAnnotationSet;
+import com.vertexvis.model.SceneAnnotationSetList;
 import java.util.UUID;
-import com.vertexvis.model.UpdateFileRequest;
+import com.vertexvis.model.UpdateSceneAnnotationRequest;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -41,16 +42,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FilesApi {
+public class SceneAnnotationsApi {
     private ApiClient localVarApiClient;
     private int localHostIndex;
     private String localCustomBaseUrl;
 
-    public FilesApi() {
+    public SceneAnnotationsApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public FilesApi(ApiClient apiClient) {
+    public SceneAnnotationsApi(ApiClient apiClient) {
         this.localVarApiClient = apiClient;
     }
 
@@ -79,8 +80,9 @@ public class FilesApi {
     }
 
     /**
-     * Build call for createFile
-     * @param createFileRequest  (required)
+     * Build call for createSceneAnnotation
+     * @param id The &#x60;scene-annotation-set&#x60; ID. (required)
+     * @param createSceneAnnotationRequest  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -88,12 +90,10 @@ public class FilesApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createFileCall(CreateFileRequest createFileRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call createSceneAnnotationCall(UUID id, CreateSceneAnnotationRequest createSceneAnnotationRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
         // Operation Servers
@@ -108,10 +108,11 @@ public class FilesApi {
             basePath = null;
         }
 
-        Object localVarPostBody = createFileRequest;
+        Object localVarPostBody = createSceneAnnotationRequest;
 
         // create path and map variables
-        String localVarPath = "/files";
+        String localVarPath = "/scene-annotation-sets/{id}/scene-annotations"
+            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -140,64 +141,68 @@ public class FilesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call createFileValidateBeforeCall(CreateFileRequest createFileRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call createSceneAnnotationValidateBeforeCall(UUID id, CreateSceneAnnotationRequest createSceneAnnotationRequest, final ApiCallback _callback) throws ApiException {
         
-        // verify the required parameter 'createFileRequest' is set
-        if (createFileRequest == null) {
-            throw new ApiException("Missing the required parameter 'createFileRequest' when calling createFile(Async)");
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling createSceneAnnotation(Async)");
+        }
+        
+        // verify the required parameter 'createSceneAnnotationRequest' is set
+        if (createSceneAnnotationRequest == null) {
+            throw new ApiException("Missing the required parameter 'createSceneAnnotationRequest' when calling createSceneAnnotation(Async)");
         }
         
 
-        okhttp3.Call localVarCall = createFileCall(createFileRequest, _callback);
+        okhttp3.Call localVarCall = createSceneAnnotationCall(id, createSceneAnnotationRequest, _callback);
         return localVarCall;
 
     }
 
     /**
      * 
-     * Create a &#x60;file&#x60;. Once created, upload file content via the uploadFile API. For details including supported file formats, see our [Import data](https://developer.vertexvis.com/docs/guides/import-data-with-api) guide.
-     * @param createFileRequest  (required)
-     * @return FileMetadata
+     * Create an annotation belonging to an annotation set. **Preview:** This is a preview API and is subject to change. 
+     * @param id The &#x60;scene-annotation-set&#x60; ID. (required)
+     * @param createSceneAnnotationRequest  (required)
+     * @return SceneAnnotation
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public FileMetadata createFile(CreateFileRequest createFileRequest) throws ApiException {
-        ApiResponse<FileMetadata> localVarResp = createFileWithHttpInfo(createFileRequest);
+    public SceneAnnotation createSceneAnnotation(UUID id, CreateSceneAnnotationRequest createSceneAnnotationRequest) throws ApiException {
+        ApiResponse<SceneAnnotation> localVarResp = createSceneAnnotationWithHttpInfo(id, createSceneAnnotationRequest);
         return localVarResp.getData();
     }
 
     /**
      * 
-     * Create a &#x60;file&#x60;. Once created, upload file content via the uploadFile API. For details including supported file formats, see our [Import data](https://developer.vertexvis.com/docs/guides/import-data-with-api) guide.
-     * @param createFileRequest  (required)
-     * @return ApiResponse&lt;FileMetadata&gt;
+     * Create an annotation belonging to an annotation set. **Preview:** This is a preview API and is subject to change. 
+     * @param id The &#x60;scene-annotation-set&#x60; ID. (required)
+     * @param createSceneAnnotationRequest  (required)
+     * @return ApiResponse&lt;SceneAnnotation&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<FileMetadata> createFileWithHttpInfo(CreateFileRequest createFileRequest) throws ApiException {
-        okhttp3.Call localVarCall = createFileValidateBeforeCall(createFileRequest, null);
-        Type localVarReturnType = new TypeToken<FileMetadata>(){}.getType();
+    public ApiResponse<SceneAnnotation> createSceneAnnotationWithHttpInfo(UUID id, CreateSceneAnnotationRequest createSceneAnnotationRequest) throws ApiException {
+        okhttp3.Call localVarCall = createSceneAnnotationValidateBeforeCall(id, createSceneAnnotationRequest, null);
+        Type localVarReturnType = new TypeToken<SceneAnnotation>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      *  (asynchronously)
-     * Create a &#x60;file&#x60;. Once created, upload file content via the uploadFile API. For details including supported file formats, see our [Import data](https://developer.vertexvis.com/docs/guides/import-data-with-api) guide.
-     * @param createFileRequest  (required)
+     * Create an annotation belonging to an annotation set. **Preview:** This is a preview API and is subject to change. 
+     * @param id The &#x60;scene-annotation-set&#x60; ID. (required)
+     * @param createSceneAnnotationRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -205,34 +210,173 @@ public class FilesApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createFileAsync(CreateFileRequest createFileRequest, final ApiCallback<FileMetadata> _callback) throws ApiException {
+    public okhttp3.Call createSceneAnnotationAsync(UUID id, CreateSceneAnnotationRequest createSceneAnnotationRequest, final ApiCallback<SceneAnnotation> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = createFileValidateBeforeCall(createFileRequest, _callback);
-        Type localVarReturnType = new TypeToken<FileMetadata>(){}.getType();
+        okhttp3.Call localVarCall = createSceneAnnotationValidateBeforeCall(id, createSceneAnnotationRequest, _callback);
+        Type localVarReturnType = new TypeToken<SceneAnnotation>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for deleteFile
-     * @param id The &#x60;file&#x60; ID. (required)
+     * Build call for createSceneAnnotationSet
+     * @param id The &#x60;scene&#x60; ID. (required)
+     * @param createSceneAnnotationSetRequest  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call createSceneAnnotationSetCall(UUID id, CreateSceneAnnotationSetRequest createSceneAnnotationSetRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = createSceneAnnotationSetRequest;
+
+        // create path and map variables
+        String localVarPath = "/scenes/{id}/scene-annotation-sets"
+            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/vnd.api+json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/vnd.api+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "OAuth2" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call createSceneAnnotationSetValidateBeforeCall(UUID id, CreateSceneAnnotationSetRequest createSceneAnnotationSetRequest, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling createSceneAnnotationSet(Async)");
+        }
+        
+        // verify the required parameter 'createSceneAnnotationSetRequest' is set
+        if (createSceneAnnotationSetRequest == null) {
+            throw new ApiException("Missing the required parameter 'createSceneAnnotationSetRequest' when calling createSceneAnnotationSet(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = createSceneAnnotationSetCall(id, createSceneAnnotationSetRequest, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * 
+     * Create an annotation set that is associated with a scene. **Preview:** This is a preview API and is subject to change. 
+     * @param id The &#x60;scene&#x60; ID. (required)
+     * @param createSceneAnnotationSetRequest  (required)
+     * @return SceneAnnotationSet
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public SceneAnnotationSet createSceneAnnotationSet(UUID id, CreateSceneAnnotationSetRequest createSceneAnnotationSetRequest) throws ApiException {
+        ApiResponse<SceneAnnotationSet> localVarResp = createSceneAnnotationSetWithHttpInfo(id, createSceneAnnotationSetRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * 
+     * Create an annotation set that is associated with a scene. **Preview:** This is a preview API and is subject to change. 
+     * @param id The &#x60;scene&#x60; ID. (required)
+     * @param createSceneAnnotationSetRequest  (required)
+     * @return ApiResponse&lt;SceneAnnotationSet&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<SceneAnnotationSet> createSceneAnnotationSetWithHttpInfo(UUID id, CreateSceneAnnotationSetRequest createSceneAnnotationSetRequest) throws ApiException {
+        okhttp3.Call localVarCall = createSceneAnnotationSetValidateBeforeCall(id, createSceneAnnotationSetRequest, null);
+        Type localVarReturnType = new TypeToken<SceneAnnotationSet>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * Create an annotation set that is associated with a scene. **Preview:** This is a preview API and is subject to change. 
+     * @param id The &#x60;scene&#x60; ID. (required)
+     * @param createSceneAnnotationSetRequest  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call createSceneAnnotationSetAsync(UUID id, CreateSceneAnnotationSetRequest createSceneAnnotationSetRequest, final ApiCallback<SceneAnnotationSet> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = createSceneAnnotationSetValidateBeforeCall(id, createSceneAnnotationSetRequest, _callback);
+        Type localVarReturnType = new TypeToken<SceneAnnotationSet>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for deleteSceneAnnotation
+     * @param id The &#x60;scene-annotation&#x60; ID. (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteFileCall(UUID id, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call deleteSceneAnnotationCall(UUID id, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
         // Operation Servers
@@ -250,7 +394,7 @@ public class FilesApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/files/{id}"
+        String localVarPath = "/scene-annotations/{id}"
             .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -280,227 +424,85 @@ public class FilesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call deleteFileValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call deleteSceneAnnotationValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling deleteFile(Async)");
+            throw new ApiException("Missing the required parameter 'id' when calling deleteSceneAnnotation(Async)");
         }
         
 
-        okhttp3.Call localVarCall = deleteFileCall(id, _callback);
+        okhttp3.Call localVarCall = deleteSceneAnnotationCall(id, _callback);
         return localVarCall;
 
     }
 
     /**
      * 
-     * Delete a &#x60;file&#x60;.
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @return FileMetadata
+     * Delete a scene annotation. **Preview:** This is a preview API and is subject to change. 
+     * @param id The &#x60;scene-annotation&#x60; ID. (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public FileMetadata deleteFile(UUID id) throws ApiException {
-        ApiResponse<FileMetadata> localVarResp = deleteFileWithHttpInfo(id);
-        return localVarResp.getData();
+    public void deleteSceneAnnotation(UUID id) throws ApiException {
+        deleteSceneAnnotationWithHttpInfo(id);
     }
 
     /**
      * 
-     * Delete a &#x60;file&#x60;.
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @return ApiResponse&lt;FileMetadata&gt;
+     * Delete a scene annotation. **Preview:** This is a preview API and is subject to change. 
+     * @param id The &#x60;scene-annotation&#x60; ID. (required)
+     * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<FileMetadata> deleteFileWithHttpInfo(UUID id) throws ApiException {
-        okhttp3.Call localVarCall = deleteFileValidateBeforeCall(id, null);
-        Type localVarReturnType = new TypeToken<FileMetadata>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    public ApiResponse<Void> deleteSceneAnnotationWithHttpInfo(UUID id) throws ApiException {
+        okhttp3.Call localVarCall = deleteSceneAnnotationValidateBeforeCall(id, null);
+        return localVarApiClient.execute(localVarCall);
     }
 
     /**
      *  (asynchronously)
-     * Delete a &#x60;file&#x60;.
-     * @param id The &#x60;file&#x60; ID. (required)
+     * Delete a scene annotation. **Preview:** This is a preview API and is subject to change. 
+     * @param id The &#x60;scene-annotation&#x60; ID. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteFileAsync(UUID id, final ApiCallback<FileMetadata> _callback) throws ApiException {
+    public okhttp3.Call deleteSceneAnnotationAsync(UUID id, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = deleteFileValidateBeforeCall(id, _callback);
-        Type localVarReturnType = new TypeToken<FileMetadata>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        okhttp3.Call localVarCall = deleteSceneAnnotationValidateBeforeCall(id, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
     /**
-     * Build call for getFile
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getFileCall(UUID id, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/files/{id}"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/vnd.api+json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] { "OAuth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call getFileValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling getFile(Async)");
-        }
-        
-
-        okhttp3.Call localVarCall = getFileCall(id, _callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * 
-     * Get a &#x60;file&#x60; by ID.
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @return FileMetadata
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
-     </table>
-     */
-    public FileMetadata getFile(UUID id) throws ApiException {
-        ApiResponse<FileMetadata> localVarResp = getFileWithHttpInfo(id);
-        return localVarResp.getData();
-    }
-
-    /**
-     * 
-     * Get a &#x60;file&#x60; by ID.
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @return ApiResponse&lt;FileMetadata&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<FileMetadata> getFileWithHttpInfo(UUID id) throws ApiException {
-        okhttp3.Call localVarCall = getFileValidateBeforeCall(id, null);
-        Type localVarReturnType = new TypeToken<FileMetadata>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     *  (asynchronously)
-     * Get a &#x60;file&#x60; by ID.
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getFileAsync(UUID id, final ApiCallback<FileMetadata> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = getFileValidateBeforeCall(id, _callback);
-        Type localVarReturnType = new TypeToken<FileMetadata>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for getFiles
+     * Build call for getSceneAnnotationSets
+     * @param id The &#x60;scene&#x60; ID. (required)
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
+     * @param filterId Comma-separated list of IDs to filter on. (optional)
      * @param filterSuppliedId Comma-separated list of supplied IDs to filter on. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -510,10 +512,11 @@ public class FilesApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getFilesCall(String pageCursor, Integer pageSize, String filterSuppliedId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getSceneAnnotationSetsCall(UUID id, String pageCursor, Integer pageSize, String filterId, String filterSuppliedId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
         // Operation Servers
@@ -531,7 +534,8 @@ public class FilesApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/files";
+        String localVarPath = "/scenes/{id}/scene-annotation-sets"
+            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -545,6 +549,10 @@ public class FilesApi {
 
         if (pageSize != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[size]", pageSize));
+        }
+
+        if (filterId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("filter[id]", filterId));
         }
 
         if (filterSuppliedId != null) {
@@ -572,62 +580,75 @@ public class FilesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getFilesValidateBeforeCall(String pageCursor, Integer pageSize, String filterSuppliedId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getSceneAnnotationSetsValidateBeforeCall(UUID id, String pageCursor, Integer pageSize, String filterId, String filterSuppliedId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling getSceneAnnotationSets(Async)");
+        }
         
 
-        okhttp3.Call localVarCall = getFilesCall(pageCursor, pageSize, filterSuppliedId, _callback);
+        okhttp3.Call localVarCall = getSceneAnnotationSetsCall(id, pageCursor, pageSize, filterId, filterSuppliedId, _callback);
         return localVarCall;
 
     }
 
     /**
      * 
-     * Get &#x60;files&#x60;.
+     * Get &#x60;scene-annotation-sets&#x60; for a &#x60;scene&#x60;.
+     * @param id The &#x60;scene&#x60; ID. (required)
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
+     * @param filterId Comma-separated list of IDs to filter on. (optional)
      * @param filterSuppliedId Comma-separated list of supplied IDs to filter on. (optional)
-     * @return FileList
+     * @return SceneAnnotationSetList
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public FileList getFiles(String pageCursor, Integer pageSize, String filterSuppliedId) throws ApiException {
-        ApiResponse<FileList> localVarResp = getFilesWithHttpInfo(pageCursor, pageSize, filterSuppliedId);
+    public SceneAnnotationSetList getSceneAnnotationSets(UUID id, String pageCursor, Integer pageSize, String filterId, String filterSuppliedId) throws ApiException {
+        ApiResponse<SceneAnnotationSetList> localVarResp = getSceneAnnotationSetsWithHttpInfo(id, pageCursor, pageSize, filterId, filterSuppliedId);
         return localVarResp.getData();
     }
 
     /**
      * 
-     * Get &#x60;files&#x60;.
+     * Get &#x60;scene-annotation-sets&#x60; for a &#x60;scene&#x60;.
+     * @param id The &#x60;scene&#x60; ID. (required)
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
+     * @param filterId Comma-separated list of IDs to filter on. (optional)
      * @param filterSuppliedId Comma-separated list of supplied IDs to filter on. (optional)
-     * @return ApiResponse&lt;FileList&gt;
+     * @return ApiResponse&lt;SceneAnnotationSetList&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<FileList> getFilesWithHttpInfo(String pageCursor, Integer pageSize, String filterSuppliedId) throws ApiException {
-        okhttp3.Call localVarCall = getFilesValidateBeforeCall(pageCursor, pageSize, filterSuppliedId, null);
-        Type localVarReturnType = new TypeToken<FileList>(){}.getType();
+    public ApiResponse<SceneAnnotationSetList> getSceneAnnotationSetsWithHttpInfo(UUID id, String pageCursor, Integer pageSize, String filterId, String filterSuppliedId) throws ApiException {
+        okhttp3.Call localVarCall = getSceneAnnotationSetsValidateBeforeCall(id, pageCursor, pageSize, filterId, filterSuppliedId, null);
+        Type localVarReturnType = new TypeToken<SceneAnnotationSetList>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      *  (asynchronously)
-     * Get &#x60;files&#x60;.
+     * Get &#x60;scene-annotation-sets&#x60; for a &#x60;scene&#x60;.
+     * @param id The &#x60;scene&#x60; ID. (required)
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
+     * @param filterId Comma-separated list of IDs to filter on. (optional)
      * @param filterSuppliedId Comma-separated list of supplied IDs to filter on. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -637,20 +658,21 @@ public class FilesApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getFilesAsync(String pageCursor, Integer pageSize, String filterSuppliedId, final ApiCallback<FileList> _callback) throws ApiException {
+    public okhttp3.Call getSceneAnnotationSetsAsync(UUID id, String pageCursor, Integer pageSize, String filterId, String filterSuppliedId, final ApiCallback<SceneAnnotationSetList> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getFilesValidateBeforeCall(pageCursor, pageSize, filterSuppliedId, _callback);
-        Type localVarReturnType = new TypeToken<FileList>(){}.getType();
+        okhttp3.Call localVarCall = getSceneAnnotationSetsValidateBeforeCall(id, pageCursor, pageSize, filterId, filterSuppliedId, _callback);
+        Type localVarReturnType = new TypeToken<SceneAnnotationSetList>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for updateFile
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @param updateFileRequest  (required)
+     * Build call for updateSceneAnnotation
+     * @param id The &#x60;scene-annotation&#x60; ID. (required)
+     * @param updateSceneAnnotationRequest  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -658,13 +680,10 @@ public class FilesApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateFileCall(UUID id, UpdateFileRequest updateFileRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateSceneAnnotationCall(UUID id, UpdateSceneAnnotationRequest updateSceneAnnotationRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
         // Operation Servers
@@ -679,10 +698,10 @@ public class FilesApi {
             basePath = null;
         }
 
-        Object localVarPostBody = updateFileRequest;
+        Object localVarPostBody = updateSceneAnnotationRequest;
 
         // create path and map variables
-        String localVarPath = "/files/{id}"
+        String localVarPath = "/scene-annotations/{id}"
             .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -712,74 +731,68 @@ public class FilesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateFileValidateBeforeCall(UUID id, UpdateFileRequest updateFileRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateSceneAnnotationValidateBeforeCall(UUID id, UpdateSceneAnnotationRequest updateSceneAnnotationRequest, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling updateFile(Async)");
+            throw new ApiException("Missing the required parameter 'id' when calling updateSceneAnnotation(Async)");
         }
         
-        // verify the required parameter 'updateFileRequest' is set
-        if (updateFileRequest == null) {
-            throw new ApiException("Missing the required parameter 'updateFileRequest' when calling updateFile(Async)");
+        // verify the required parameter 'updateSceneAnnotationRequest' is set
+        if (updateSceneAnnotationRequest == null) {
+            throw new ApiException("Missing the required parameter 'updateSceneAnnotationRequest' when calling updateSceneAnnotation(Async)");
         }
         
 
-        okhttp3.Call localVarCall = updateFileCall(id, updateFileRequest, _callback);
+        okhttp3.Call localVarCall = updateSceneAnnotationCall(id, updateSceneAnnotationRequest, _callback);
         return localVarCall;
 
     }
 
     /**
      * 
-     * Update a &#x60;file&#x60;.
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @param updateFileRequest  (required)
-     * @return FileMetadata
+     * Update the attributes of an annotation. **Preview:** This is a preview API and is subject to change. 
+     * @param id The &#x60;scene-annotation&#x60; ID. (required)
+     * @param updateSceneAnnotationRequest  (required)
+     * @return SceneAnnotation
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public FileMetadata updateFile(UUID id, UpdateFileRequest updateFileRequest) throws ApiException {
-        ApiResponse<FileMetadata> localVarResp = updateFileWithHttpInfo(id, updateFileRequest);
+    public SceneAnnotation updateSceneAnnotation(UUID id, UpdateSceneAnnotationRequest updateSceneAnnotationRequest) throws ApiException {
+        ApiResponse<SceneAnnotation> localVarResp = updateSceneAnnotationWithHttpInfo(id, updateSceneAnnotationRequest);
         return localVarResp.getData();
     }
 
     /**
      * 
-     * Update a &#x60;file&#x60;.
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @param updateFileRequest  (required)
-     * @return ApiResponse&lt;FileMetadata&gt;
+     * Update the attributes of an annotation. **Preview:** This is a preview API and is subject to change. 
+     * @param id The &#x60;scene-annotation&#x60; ID. (required)
+     * @param updateSceneAnnotationRequest  (required)
+     * @return ApiResponse&lt;SceneAnnotation&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<FileMetadata> updateFileWithHttpInfo(UUID id, UpdateFileRequest updateFileRequest) throws ApiException {
-        okhttp3.Call localVarCall = updateFileValidateBeforeCall(id, updateFileRequest, null);
-        Type localVarReturnType = new TypeToken<FileMetadata>(){}.getType();
+    public ApiResponse<SceneAnnotation> updateSceneAnnotationWithHttpInfo(UUID id, UpdateSceneAnnotationRequest updateSceneAnnotationRequest) throws ApiException {
+        okhttp3.Call localVarCall = updateSceneAnnotationValidateBeforeCall(id, updateSceneAnnotationRequest, null);
+        Type localVarReturnType = new TypeToken<SceneAnnotation>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      *  (asynchronously)
-     * Update a &#x60;file&#x60;.
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @param updateFileRequest  (required)
+     * Update the attributes of an annotation. **Preview:** This is a preview API and is subject to change. 
+     * @param id The &#x60;scene-annotation&#x60; ID. (required)
+     * @param updateSceneAnnotationRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -787,166 +800,14 @@ public class FilesApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateFileAsync(UUID id, UpdateFileRequest updateFileRequest, final ApiCallback<FileMetadata> _callback) throws ApiException {
+    public okhttp3.Call updateSceneAnnotationAsync(UUID id, UpdateSceneAnnotationRequest updateSceneAnnotationRequest, final ApiCallback<SceneAnnotation> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateFileValidateBeforeCall(id, updateFileRequest, _callback);
-        Type localVarReturnType = new TypeToken<FileMetadata>(){}.getType();
+        okhttp3.Call localVarCall = updateSceneAnnotationValidateBeforeCall(id, updateSceneAnnotationRequest, _callback);
+        Type localVarReturnType = new TypeToken<SceneAnnotation>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for uploadFile
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @param body  (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call uploadFileCall(UUID id, File body, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = body;
-
-        // create path and map variables
-        String localVarPath = "/files/{id}"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/vnd.api+json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/octet-stream"
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] { "OAuth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call uploadFileValidateBeforeCall(UUID id, File body, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling uploadFile(Async)");
-        }
-        
-        // verify the required parameter 'body' is set
-        if (body == null) {
-            throw new ApiException("Missing the required parameter 'body' when calling uploadFile(Async)");
-        }
-        
-
-        okhttp3.Call localVarCall = uploadFileCall(id, body, _callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * 
-     * Upload a &#x60;file&#x60;. Once uploaded, create either parts or geometry sets via the createPart or createGeometrySet APIs.
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @param body  (required)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
-     </table>
-     */
-    public void uploadFile(UUID id, File body) throws ApiException {
-        uploadFileWithHttpInfo(id, body);
-    }
-
-    /**
-     * 
-     * Upload a &#x60;file&#x60;. Once uploaded, create either parts or geometry sets via the createPart or createGeometrySet APIs.
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @param body  (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Void> uploadFileWithHttpInfo(UUID id, File body) throws ApiException {
-        okhttp3.Call localVarCall = uploadFileValidateBeforeCall(id, body, null);
-        return localVarApiClient.execute(localVarCall);
-    }
-
-    /**
-     *  (asynchronously)
-     * Upload a &#x60;file&#x60;. Once uploaded, create either parts or geometry sets via the createPart or createGeometrySet APIs.
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @param body  (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call uploadFileAsync(UUID id, File body, final ApiCallback<Void> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = uploadFileValidateBeforeCall(id, body, _callback);
-        localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
 }

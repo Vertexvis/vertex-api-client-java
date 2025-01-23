@@ -20,44 +20,70 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.UpdateItemToDefaultRenditionOperation;
+import com.vertexvis.model.UpdateSceneAnnotationRequestDataAttributes;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * An operation to perform on a Scene.
+ * UpdateSceneAnnotationRequestData
  */
-@ApiModel(description = "An operation to perform on a Scene.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneSyncRequest {
-  public static final String SERIALIZED_NAME_OPERATION = "operation";
-  @SerializedName(SERIALIZED_NAME_OPERATION)
-  private OneOfUpdateItemToDefaultRenditionOperation operation;
+public class UpdateSceneAnnotationRequestData {
+  public static final String SERIALIZED_NAME_TYPE = "type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
+  private String type;
 
-  public CreateSceneSyncRequest() { 
+  public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
+  @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
+  private UpdateSceneAnnotationRequestDataAttributes attributes;
+
+  public UpdateSceneAnnotationRequestData() { 
   }
 
-  public CreateSceneSyncRequest operation(OneOfUpdateItemToDefaultRenditionOperation operation) {
+  public UpdateSceneAnnotationRequestData type(String type) {
     
-    this.operation = operation;
+    this.type = type;
     return this;
   }
 
    /**
-   * Get operation
-   * @return operation
+   * Resource object type.
+   * @return type
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "scene-annotation", required = true, value = "Resource object type.")
 
-  public OneOfUpdateItemToDefaultRenditionOperation getOperation() {
-    return operation;
+  public String getType() {
+    return type;
   }
 
 
-  public void setOperation(OneOfUpdateItemToDefaultRenditionOperation operation) {
-    this.operation = operation;
+  public void setType(String type) {
+    this.type = type;
+  }
+
+
+  public UpdateSceneAnnotationRequestData attributes(UpdateSceneAnnotationRequestDataAttributes attributes) {
+    
+    this.attributes = attributes;
+    return this;
+  }
+
+   /**
+   * Get attributes
+   * @return attributes
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public UpdateSceneAnnotationRequestDataAttributes getAttributes() {
+    return attributes;
+  }
+
+
+  public void setAttributes(UpdateSceneAnnotationRequestDataAttributes attributes) {
+    this.attributes = attributes;
   }
 
 
@@ -69,20 +95,22 @@ public class CreateSceneSyncRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneSyncRequest createSceneSyncRequest = (CreateSceneSyncRequest) o;
-    return Objects.equals(this.operation, createSceneSyncRequest.operation);
+    UpdateSceneAnnotationRequestData updateSceneAnnotationRequestData = (UpdateSceneAnnotationRequestData) o;
+    return Objects.equals(this.type, updateSceneAnnotationRequestData.type) &&
+        Objects.equals(this.attributes, updateSceneAnnotationRequestData.attributes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(operation);
+    return Objects.hash(type, attributes);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneSyncRequest {\n");
-    sb.append("    operation: ").append(toIndentedString(operation)).append("\n");
+    sb.append("class UpdateSceneAnnotationRequestData {\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("}");
     return sb.toString();
   }

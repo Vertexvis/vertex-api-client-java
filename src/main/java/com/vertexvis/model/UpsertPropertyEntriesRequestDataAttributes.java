@@ -20,44 +20,51 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.UpdateItemToDefaultRenditionOperation;
+import com.vertexvis.model.AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
- * An operation to perform on a Scene.
+ * UpsertPropertyEntriesRequestDataAttributes
  */
-@ApiModel(description = "An operation to perform on a Scene.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneSyncRequest {
-  public static final String SERIALIZED_NAME_OPERATION = "operation";
-  @SerializedName(SERIALIZED_NAME_OPERATION)
-  private OneOfUpdateItemToDefaultRenditionOperation operation;
+public class UpsertPropertyEntriesRequestDataAttributes {
+  public static final String SERIALIZED_NAME_ENTRIES = "entries";
+  @SerializedName(SERIALIZED_NAME_ENTRIES)
+  private Map<String, AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject> entries = new HashMap<>();
 
-  public CreateSceneSyncRequest() { 
+  public UpsertPropertyEntriesRequestDataAttributes() { 
   }
 
-  public CreateSceneSyncRequest operation(OneOfUpdateItemToDefaultRenditionOperation operation) {
+  public UpsertPropertyEntriesRequestDataAttributes entries(Map<String, AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject> entries) {
     
-    this.operation = operation;
+    this.entries = entries;
+    return this;
+  }
+
+  public UpsertPropertyEntriesRequestDataAttributes putEntriesItem(String key, AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject entriesItem) {
+    this.entries.put(key, entriesItem);
     return this;
   }
 
    /**
-   * Get operation
-   * @return operation
+   * Property entries for a provided resource or property set. 
+   * @return entries
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Property entries for a provided resource or property set. ")
 
-  public OneOfUpdateItemToDefaultRenditionOperation getOperation() {
-    return operation;
+  public Map<String, AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject> getEntries() {
+    return entries;
   }
 
 
-  public void setOperation(OneOfUpdateItemToDefaultRenditionOperation operation) {
-    this.operation = operation;
+  public void setEntries(Map<String, AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject> entries) {
+    this.entries = entries;
   }
 
 
@@ -69,20 +76,20 @@ public class CreateSceneSyncRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneSyncRequest createSceneSyncRequest = (CreateSceneSyncRequest) o;
-    return Objects.equals(this.operation, createSceneSyncRequest.operation);
+    UpsertPropertyEntriesRequestDataAttributes upsertPropertyEntriesRequestDataAttributes = (UpsertPropertyEntriesRequestDataAttributes) o;
+    return Objects.equals(this.entries, upsertPropertyEntriesRequestDataAttributes.entries);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(operation);
+    return Objects.hash(entries);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneSyncRequest {\n");
-    sb.append("    operation: ").append(toIndentedString(operation)).append("\n");
+    sb.append("class UpsertPropertyEntriesRequestDataAttributes {\n");
+    sb.append("    entries: ").append(toIndentedString(entries)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -20,44 +20,42 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.UpdateItemToDefaultRenditionOperation;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * An operation to perform on a Scene.
+ * UpsertPropertyEntriesRequestDataRelationships
  */
-@ApiModel(description = "An operation to perform on a Scene.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneSyncRequest {
-  public static final String SERIALIZED_NAME_OPERATION = "operation";
-  @SerializedName(SERIALIZED_NAME_OPERATION)
-  private OneOfUpdateItemToDefaultRenditionOperation operation;
+public class UpsertPropertyEntriesRequestDataRelationships {
+  public static final String SERIALIZED_NAME_PROPERTY_SET = "propertySet";
+  @SerializedName(SERIALIZED_NAME_PROPERTY_SET)
+  private AnyOfPropertySetRelationshipPartRevisionRelationshipSceneItemRelationshipPartInstanceRelationship propertySet;
 
-  public CreateSceneSyncRequest() { 
+  public UpsertPropertyEntriesRequestDataRelationships() { 
   }
 
-  public CreateSceneSyncRequest operation(OneOfUpdateItemToDefaultRenditionOperation operation) {
+  public UpsertPropertyEntriesRequestDataRelationships propertySet(AnyOfPropertySetRelationshipPartRevisionRelationshipSceneItemRelationshipPartInstanceRelationship propertySet) {
     
-    this.operation = operation;
+    this.propertySet = propertySet;
     return this;
   }
 
    /**
-   * Get operation
-   * @return operation
+   * Relationship to the property set by &#x60;property-set&#x60;, &#x60;part-revision&#x60;, &#x60;part-instance&#x60; or &#x60;scene-item&#x60;.
+   * @return propertySet
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Relationship to the property set by `property-set`, `part-revision`, `part-instance` or `scene-item`.")
 
-  public OneOfUpdateItemToDefaultRenditionOperation getOperation() {
-    return operation;
+  public AnyOfPropertySetRelationshipPartRevisionRelationshipSceneItemRelationshipPartInstanceRelationship getPropertySet() {
+    return propertySet;
   }
 
 
-  public void setOperation(OneOfUpdateItemToDefaultRenditionOperation operation) {
-    this.operation = operation;
+  public void setPropertySet(AnyOfPropertySetRelationshipPartRevisionRelationshipSceneItemRelationshipPartInstanceRelationship propertySet) {
+    this.propertySet = propertySet;
   }
 
 
@@ -69,20 +67,20 @@ public class CreateSceneSyncRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneSyncRequest createSceneSyncRequest = (CreateSceneSyncRequest) o;
-    return Objects.equals(this.operation, createSceneSyncRequest.operation);
+    UpsertPropertyEntriesRequestDataRelationships upsertPropertyEntriesRequestDataRelationships = (UpsertPropertyEntriesRequestDataRelationships) o;
+    return Objects.equals(this.propertySet, upsertPropertyEntriesRequestDataRelationships.propertySet);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(operation);
+    return Objects.hash(propertySet);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneSyncRequest {\n");
-    sb.append("    operation: ").append(toIndentedString(operation)).append("\n");
+    sb.append("class UpsertPropertyEntriesRequestDataRelationships {\n");
+    sb.append("    propertySet: ").append(toIndentedString(propertySet)).append("\n");
     sb.append("}");
     return sb.toString();
   }

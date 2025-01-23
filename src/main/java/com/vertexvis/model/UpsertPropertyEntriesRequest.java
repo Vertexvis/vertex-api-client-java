@@ -20,44 +20,43 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.UpdateItemToDefaultRenditionOperation;
+import com.vertexvis.model.UpsertPropertyEntriesRequestData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * An operation to perform on a Scene.
+ * UpsertPropertyEntriesRequest
  */
-@ApiModel(description = "An operation to perform on a Scene.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneSyncRequest {
-  public static final String SERIALIZED_NAME_OPERATION = "operation";
-  @SerializedName(SERIALIZED_NAME_OPERATION)
-  private OneOfUpdateItemToDefaultRenditionOperation operation;
+public class UpsertPropertyEntriesRequest {
+  public static final String SERIALIZED_NAME_DATA = "data";
+  @SerializedName(SERIALIZED_NAME_DATA)
+  private UpsertPropertyEntriesRequestData data;
 
-  public CreateSceneSyncRequest() { 
+  public UpsertPropertyEntriesRequest() { 
   }
 
-  public CreateSceneSyncRequest operation(OneOfUpdateItemToDefaultRenditionOperation operation) {
+  public UpsertPropertyEntriesRequest data(UpsertPropertyEntriesRequestData data) {
     
-    this.operation = operation;
+    this.data = data;
     return this;
   }
 
    /**
-   * Get operation
-   * @return operation
+   * Get data
+   * @return data
   **/
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public OneOfUpdateItemToDefaultRenditionOperation getOperation() {
-    return operation;
+  public UpsertPropertyEntriesRequestData getData() {
+    return data;
   }
 
 
-  public void setOperation(OneOfUpdateItemToDefaultRenditionOperation operation) {
-    this.operation = operation;
+  public void setData(UpsertPropertyEntriesRequestData data) {
+    this.data = data;
   }
 
 
@@ -69,20 +68,20 @@ public class CreateSceneSyncRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneSyncRequest createSceneSyncRequest = (CreateSceneSyncRequest) o;
-    return Objects.equals(this.operation, createSceneSyncRequest.operation);
+    UpsertPropertyEntriesRequest upsertPropertyEntriesRequest = (UpsertPropertyEntriesRequest) o;
+    return Objects.equals(this.data, upsertPropertyEntriesRequest.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(operation);
+    return Objects.hash(data);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneSyncRequest {\n");
-    sb.append("    operation: ").append(toIndentedString(operation)).append("\n");
+    sb.append("class UpsertPropertyEntriesRequest {\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");
     return sb.toString();
   }

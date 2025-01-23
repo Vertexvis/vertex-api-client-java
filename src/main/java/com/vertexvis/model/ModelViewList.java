@@ -20,44 +20,85 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.UpdateItemToDefaultRenditionOperation;
+import com.vertexvis.model.Link;
+import com.vertexvis.model.ModelViewData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
- * An operation to perform on a Scene.
+ * ModelViewList
  */
-@ApiModel(description = "An operation to perform on a Scene.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneSyncRequest {
-  public static final String SERIALIZED_NAME_OPERATION = "operation";
-  @SerializedName(SERIALIZED_NAME_OPERATION)
-  private OneOfUpdateItemToDefaultRenditionOperation operation;
+public class ModelViewList {
+  public static final String SERIALIZED_NAME_DATA = "data";
+  @SerializedName(SERIALIZED_NAME_DATA)
+  private List<ModelViewData> data = new ArrayList<>();
 
-  public CreateSceneSyncRequest() { 
+  public static final String SERIALIZED_NAME_LINKS = "links";
+  @SerializedName(SERIALIZED_NAME_LINKS)
+  private Map<String, Link> links = new HashMap<>();
+
+  public ModelViewList() { 
   }
 
-  public CreateSceneSyncRequest operation(OneOfUpdateItemToDefaultRenditionOperation operation) {
+  public ModelViewList data(List<ModelViewData> data) {
     
-    this.operation = operation;
+    this.data = data;
+    return this;
+  }
+
+  public ModelViewList addDataItem(ModelViewData dataItem) {
+    this.data.add(dataItem);
     return this;
   }
 
    /**
-   * Get operation
-   * @return operation
+   * Get data
+   * @return data
   **/
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public OneOfUpdateItemToDefaultRenditionOperation getOperation() {
-    return operation;
+  public List<ModelViewData> getData() {
+    return data;
   }
 
 
-  public void setOperation(OneOfUpdateItemToDefaultRenditionOperation operation) {
-    this.operation = operation;
+  public void setData(List<ModelViewData> data) {
+    this.data = data;
+  }
+
+
+  public ModelViewList links(Map<String, Link> links) {
+    
+    this.links = links;
+    return this;
+  }
+
+  public ModelViewList putLinksItem(String key, Link linksItem) {
+    this.links.put(key, linksItem);
+    return this;
+  }
+
+   /**
+   * Get links
+   * @return links
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public Map<String, Link> getLinks() {
+    return links;
+  }
+
+
+  public void setLinks(Map<String, Link> links) {
+    this.links = links;
   }
 
 
@@ -69,20 +110,22 @@ public class CreateSceneSyncRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneSyncRequest createSceneSyncRequest = (CreateSceneSyncRequest) o;
-    return Objects.equals(this.operation, createSceneSyncRequest.operation);
+    ModelViewList modelViewList = (ModelViewList) o;
+    return Objects.equals(this.data, modelViewList.data) &&
+        Objects.equals(this.links, modelViewList.links);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(operation);
+    return Objects.hash(data, links);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneSyncRequest {\n");
-    sb.append("    operation: ").append(toIndentedString(operation)).append("\n");
+    sb.append("class ModelViewList {\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    links: ").append(toIndentedString(links)).append("\n");
     sb.append("}");
     return sb.toString();
   }

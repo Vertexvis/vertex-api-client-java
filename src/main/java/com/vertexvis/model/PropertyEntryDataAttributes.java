@@ -20,44 +20,70 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.UpdateItemToDefaultRenditionOperation;
+import com.vertexvis.model.PropertyKeyType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * An operation to perform on a Scene.
+ * PropertyEntryDataAttributes
  */
-@ApiModel(description = "An operation to perform on a Scene.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneSyncRequest {
-  public static final String SERIALIZED_NAME_OPERATION = "operation";
-  @SerializedName(SERIALIZED_NAME_OPERATION)
-  private OneOfUpdateItemToDefaultRenditionOperation operation;
+public class PropertyEntryDataAttributes {
+  public static final String SERIALIZED_NAME_VALUE = "value";
+  @SerializedName(SERIALIZED_NAME_VALUE)
+  private AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType value;
 
-  public CreateSceneSyncRequest() { 
+  public static final String SERIALIZED_NAME_KEY = "key";
+  @SerializedName(SERIALIZED_NAME_KEY)
+  private PropertyKeyType key;
+
+  public PropertyEntryDataAttributes() { 
   }
 
-  public CreateSceneSyncRequest operation(OneOfUpdateItemToDefaultRenditionOperation operation) {
+  public PropertyEntryDataAttributes value(AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType value) {
     
-    this.operation = operation;
+    this.value = value;
     return this;
   }
 
    /**
-   * Get operation
-   * @return operation
+   * Get value
+   * @return value
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(required = true, value = "")
 
-  public OneOfUpdateItemToDefaultRenditionOperation getOperation() {
-    return operation;
+  public AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType getValue() {
+    return value;
   }
 
 
-  public void setOperation(OneOfUpdateItemToDefaultRenditionOperation operation) {
-    this.operation = operation;
+  public void setValue(AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType value) {
+    this.value = value;
+  }
+
+
+  public PropertyEntryDataAttributes key(PropertyKeyType key) {
+    
+    this.key = key;
+    return this;
+  }
+
+   /**
+   * Get key
+   * @return key
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public PropertyKeyType getKey() {
+    return key;
+  }
+
+
+  public void setKey(PropertyKeyType key) {
+    this.key = key;
   }
 
 
@@ -69,20 +95,22 @@ public class CreateSceneSyncRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneSyncRequest createSceneSyncRequest = (CreateSceneSyncRequest) o;
-    return Objects.equals(this.operation, createSceneSyncRequest.operation);
+    PropertyEntryDataAttributes propertyEntryDataAttributes = (PropertyEntryDataAttributes) o;
+    return Objects.equals(this.value, propertyEntryDataAttributes.value) &&
+        Objects.equals(this.key, propertyEntryDataAttributes.key);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(operation);
+    return Objects.hash(value, key);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneSyncRequest {\n");
-    sb.append("    operation: ").append(toIndentedString(operation)).append("\n");
+    sb.append("class PropertyEntryDataAttributes {\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("}");
     return sb.toString();
   }

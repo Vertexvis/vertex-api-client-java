@@ -20,39 +20,33 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.UpdatePartRevisionRequestDataAttributes;
-import com.vertexvis.model.UpdatePartRevisionRequestDataRelationships;
+import com.vertexvis.model.UpsertPropertyEntriesRequestDataAttributes;
+import com.vertexvis.model.UpsertPropertyEntriesRequestDataRelationships;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.UUID;
 
 /**
- * Modify existing part revisions using this endpoint. When specifying a &#x60;relationship&#x60;, the generated output from that relationship will be used to replace any relationship that is present on the revision prior to the update. For example, sending a file relationship that has geometry will replace the existing geometry on the revision with the new geometry in the given file. 
+ * UpsertPropertyEntriesRequestData
  */
-@ApiModel(description = "Modify existing part revisions using this endpoint. When specifying a `relationship`, the generated output from that relationship will be used to replace any relationship that is present on the revision prior to the update. For example, sending a file relationship that has geometry will replace the existing geometry on the revision with the new geometry in the given file. ")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class UpdatePartRevisionRequestData {
+public class UpsertPropertyEntriesRequestData {
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
   private String type;
 
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private UUID id;
-
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
-  private UpdatePartRevisionRequestDataAttributes attributes;
+  private UpsertPropertyEntriesRequestDataAttributes attributes;
 
   public static final String SERIALIZED_NAME_RELATIONSHIPS = "relationships";
   @SerializedName(SERIALIZED_NAME_RELATIONSHIPS)
-  private UpdatePartRevisionRequestDataRelationships relationships;
+  private UpsertPropertyEntriesRequestDataRelationships relationships;
 
-  public UpdatePartRevisionRequestData() { 
+  public UpsertPropertyEntriesRequestData() { 
   }
 
-  public UpdatePartRevisionRequestData type(String type) {
+  public UpsertPropertyEntriesRequestData type(String type) {
     
     this.type = type;
     return this;
@@ -63,7 +57,7 @@ public class UpdatePartRevisionRequestData {
    * @return type
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "part-revision", required = true, value = "Resource object type.")
+  @ApiModelProperty(example = "property-entries", required = true, value = "Resource object type.")
 
   public String getType() {
     return type;
@@ -75,30 +69,7 @@ public class UpdatePartRevisionRequestData {
   }
 
 
-  public UpdatePartRevisionRequestData id(UUID id) {
-    
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * ID of the resource.
-   * @return id
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "f79d4760-0b71-44e4-ad0b-22743fdd4ca3", required = true, value = "ID of the resource.")
-
-  public UUID getId() {
-    return id;
-  }
-
-
-  public void setId(UUID id) {
-    this.id = id;
-  }
-
-
-  public UpdatePartRevisionRequestData attributes(UpdatePartRevisionRequestDataAttributes attributes) {
+  public UpsertPropertyEntriesRequestData attributes(UpsertPropertyEntriesRequestDataAttributes attributes) {
     
     this.attributes = attributes;
     return this;
@@ -111,17 +82,17 @@ public class UpdatePartRevisionRequestData {
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public UpdatePartRevisionRequestDataAttributes getAttributes() {
+  public UpsertPropertyEntriesRequestDataAttributes getAttributes() {
     return attributes;
   }
 
 
-  public void setAttributes(UpdatePartRevisionRequestDataAttributes attributes) {
+  public void setAttributes(UpsertPropertyEntriesRequestDataAttributes attributes) {
     this.attributes = attributes;
   }
 
 
-  public UpdatePartRevisionRequestData relationships(UpdatePartRevisionRequestDataRelationships relationships) {
+  public UpsertPropertyEntriesRequestData relationships(UpsertPropertyEntriesRequestDataRelationships relationships) {
     
     this.relationships = relationships;
     return this;
@@ -131,15 +102,15 @@ public class UpdatePartRevisionRequestData {
    * Get relationships
    * @return relationships
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
 
-  public UpdatePartRevisionRequestDataRelationships getRelationships() {
+  public UpsertPropertyEntriesRequestDataRelationships getRelationships() {
     return relationships;
   }
 
 
-  public void setRelationships(UpdatePartRevisionRequestDataRelationships relationships) {
+  public void setRelationships(UpsertPropertyEntriesRequestDataRelationships relationships) {
     this.relationships = relationships;
   }
 
@@ -152,24 +123,22 @@ public class UpdatePartRevisionRequestData {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UpdatePartRevisionRequestData updatePartRevisionRequestData = (UpdatePartRevisionRequestData) o;
-    return Objects.equals(this.type, updatePartRevisionRequestData.type) &&
-        Objects.equals(this.id, updatePartRevisionRequestData.id) &&
-        Objects.equals(this.attributes, updatePartRevisionRequestData.attributes) &&
-        Objects.equals(this.relationships, updatePartRevisionRequestData.relationships);
+    UpsertPropertyEntriesRequestData upsertPropertyEntriesRequestData = (UpsertPropertyEntriesRequestData) o;
+    return Objects.equals(this.type, upsertPropertyEntriesRequestData.type) &&
+        Objects.equals(this.attributes, upsertPropertyEntriesRequestData.attributes) &&
+        Objects.equals(this.relationships, upsertPropertyEntriesRequestData.relationships);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, attributes, relationships);
+    return Objects.hash(type, attributes, relationships);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UpdatePartRevisionRequestData {\n");
+    sb.append("class UpsertPropertyEntriesRequestData {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("    relationships: ").append(toIndentedString(relationships)).append("\n");
     sb.append("}");

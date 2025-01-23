@@ -20,44 +20,44 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.UpdateItemToDefaultRenditionOperation;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
- * An operation to perform on a Scene.
+ * UpdateFileRequestDataAttributes
  */
-@ApiModel(description = "An operation to perform on a Scene.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneSyncRequest {
-  public static final String SERIALIZED_NAME_OPERATION = "operation";
-  @SerializedName(SERIALIZED_NAME_OPERATION)
-  private OneOfUpdateItemToDefaultRenditionOperation operation;
+public class UpdateFileRequestDataAttributes {
+  public static final String SERIALIZED_NAME_EXPIRY = "expiry";
+  @SerializedName(SERIALIZED_NAME_EXPIRY)
+  private Integer expiry;
 
-  public CreateSceneSyncRequest() { 
+  public UpdateFileRequestDataAttributes() { 
   }
 
-  public CreateSceneSyncRequest operation(OneOfUpdateItemToDefaultRenditionOperation operation) {
+  public UpdateFileRequestDataAttributes expiry(Integer expiry) {
     
-    this.operation = operation;
+    this.expiry = expiry;
     return this;
   }
 
    /**
-   * Get operation
-   * @return operation
+   * Number of seconds before the file is deleted.
+   * minimum: 1
+   * @return expiry
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "600", value = "Number of seconds before the file is deleted.")
 
-  public OneOfUpdateItemToDefaultRenditionOperation getOperation() {
-    return operation;
+  public Integer getExpiry() {
+    return expiry;
   }
 
 
-  public void setOperation(OneOfUpdateItemToDefaultRenditionOperation operation) {
-    this.operation = operation;
+  public void setExpiry(Integer expiry) {
+    this.expiry = expiry;
   }
 
 
@@ -69,20 +69,31 @@ public class CreateSceneSyncRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneSyncRequest createSceneSyncRequest = (CreateSceneSyncRequest) o;
-    return Objects.equals(this.operation, createSceneSyncRequest.operation);
+    UpdateFileRequestDataAttributes updateFileRequestDataAttributes = (UpdateFileRequestDataAttributes) o;
+    return Objects.equals(this.expiry, updateFileRequestDataAttributes.expiry);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(operation);
+    return Objects.hash(expiry);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneSyncRequest {\n");
-    sb.append("    operation: ").append(toIndentedString(operation)).append("\n");
+    sb.append("class UpdateFileRequestDataAttributes {\n");
+    sb.append("    expiry: ").append(toIndentedString(expiry)).append("\n");
     sb.append("}");
     return sb.toString();
   }
