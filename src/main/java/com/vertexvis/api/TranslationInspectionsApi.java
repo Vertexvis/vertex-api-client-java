@@ -29,6 +29,7 @@ import java.io.IOException;
 
 import com.vertexvis.model.CreateTranslationInspectionRequest;
 import com.vertexvis.model.Failure;
+import com.vertexvis.model.FilterExpression;
 import com.vertexvis.model.QueuedJob;
 import com.vertexvis.model.QueuedJobList;
 import com.vertexvis.model.QueuedTranslationJob;
@@ -658,7 +659,9 @@ public class TranslationInspectionsApi {
      * Build call for getQueuedTranslationJobs
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
+     * @param sort A sort to apply to the collection. A \&quot;minus\&quot; prefixed before the field name is used to specify descending sort order. (optional)
      * @param filterStatus Status to filter on. (optional)
+     * @param filterCompletedAt The completion date and time to filter on. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -671,7 +674,7 @@ public class TranslationInspectionsApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getQueuedTranslationJobsCall(String pageCursor, Integer pageSize, String filterStatus, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getQueuedTranslationJobsCall(String pageCursor, Integer pageSize, String sort, String filterStatus, FilterExpression filterCompletedAt, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
         // Operation Servers
@@ -705,8 +708,16 @@ public class TranslationInspectionsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[size]", pageSize));
         }
 
+        if (sort != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("sort", sort));
+        }
+
         if (filterStatus != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("filter[status]", filterStatus));
+        }
+
+        if (filterCompletedAt != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("filter[completedAt]", filterCompletedAt));
         }
 
         final String[] localVarAccepts = {
@@ -730,10 +741,10 @@ public class TranslationInspectionsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getQueuedTranslationJobsValidateBeforeCall(String pageCursor, Integer pageSize, String filterStatus, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getQueuedTranslationJobsValidateBeforeCall(String pageCursor, Integer pageSize, String sort, String filterStatus, FilterExpression filterCompletedAt, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = getQueuedTranslationJobsCall(pageCursor, pageSize, filterStatus, _callback);
+        okhttp3.Call localVarCall = getQueuedTranslationJobsCall(pageCursor, pageSize, sort, filterStatus, filterCompletedAt, _callback);
         return localVarCall;
 
     }
@@ -743,7 +754,9 @@ public class TranslationInspectionsApi {
      * Get all current translation jobs in progress.
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
+     * @param sort A sort to apply to the collection. A \&quot;minus\&quot; prefixed before the field name is used to specify descending sort order. (optional)
      * @param filterStatus Status to filter on. (optional)
+     * @param filterCompletedAt The completion date and time to filter on. (optional)
      * @return QueuedJobList
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -755,8 +768,8 @@ public class TranslationInspectionsApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public QueuedJobList getQueuedTranslationJobs(String pageCursor, Integer pageSize, String filterStatus) throws ApiException {
-        ApiResponse<QueuedJobList> localVarResp = getQueuedTranslationJobsWithHttpInfo(pageCursor, pageSize, filterStatus);
+    public QueuedJobList getQueuedTranslationJobs(String pageCursor, Integer pageSize, String sort, String filterStatus, FilterExpression filterCompletedAt) throws ApiException {
+        ApiResponse<QueuedJobList> localVarResp = getQueuedTranslationJobsWithHttpInfo(pageCursor, pageSize, sort, filterStatus, filterCompletedAt);
         return localVarResp.getData();
     }
 
@@ -765,7 +778,9 @@ public class TranslationInspectionsApi {
      * Get all current translation jobs in progress.
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
+     * @param sort A sort to apply to the collection. A \&quot;minus\&quot; prefixed before the field name is used to specify descending sort order. (optional)
      * @param filterStatus Status to filter on. (optional)
+     * @param filterCompletedAt The completion date and time to filter on. (optional)
      * @return ApiResponse&lt;QueuedJobList&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -777,8 +792,8 @@ public class TranslationInspectionsApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<QueuedJobList> getQueuedTranslationJobsWithHttpInfo(String pageCursor, Integer pageSize, String filterStatus) throws ApiException {
-        okhttp3.Call localVarCall = getQueuedTranslationJobsValidateBeforeCall(pageCursor, pageSize, filterStatus, null);
+    public ApiResponse<QueuedJobList> getQueuedTranslationJobsWithHttpInfo(String pageCursor, Integer pageSize, String sort, String filterStatus, FilterExpression filterCompletedAt) throws ApiException {
+        okhttp3.Call localVarCall = getQueuedTranslationJobsValidateBeforeCall(pageCursor, pageSize, sort, filterStatus, filterCompletedAt, null);
         Type localVarReturnType = new TypeToken<QueuedJobList>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -788,7 +803,9 @@ public class TranslationInspectionsApi {
      * Get all current translation jobs in progress.
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
+     * @param sort A sort to apply to the collection. A \&quot;minus\&quot; prefixed before the field name is used to specify descending sort order. (optional)
      * @param filterStatus Status to filter on. (optional)
+     * @param filterCompletedAt The completion date and time to filter on. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -801,9 +818,9 @@ public class TranslationInspectionsApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getQueuedTranslationJobsAsync(String pageCursor, Integer pageSize, String filterStatus, final ApiCallback<QueuedJobList> _callback) throws ApiException {
+    public okhttp3.Call getQueuedTranslationJobsAsync(String pageCursor, Integer pageSize, String sort, String filterStatus, FilterExpression filterCompletedAt, final ApiCallback<QueuedJobList> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getQueuedTranslationJobsValidateBeforeCall(pageCursor, pageSize, filterStatus, _callback);
+        okhttp3.Call localVarCall = getQueuedTranslationJobsValidateBeforeCall(pageCursor, pageSize, sort, filterStatus, filterCompletedAt, _callback);
         Type localVarReturnType = new TypeToken<QueuedJobList>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

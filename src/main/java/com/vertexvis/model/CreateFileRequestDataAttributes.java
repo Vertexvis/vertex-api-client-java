@@ -41,6 +41,10 @@ public class CreateFileRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_ROOT_FILE_NAME)
   private String rootFileName;
 
+  public static final String SERIALIZED_NAME_EXPIRY = "expiry";
+  @SerializedName(SERIALIZED_NAME_EXPIRY)
+  private Integer expiry;
+
   public CreateFileRequestDataAttributes() { 
   }
 
@@ -113,6 +117,30 @@ public class CreateFileRequestDataAttributes {
   }
 
 
+  public CreateFileRequestDataAttributes expiry(Integer expiry) {
+    
+    this.expiry = expiry;
+    return this;
+  }
+
+   /**
+   * Number of seconds before the file is deleted.
+   * minimum: 1
+   * @return expiry
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "600", value = "Number of seconds before the file is deleted.")
+
+  public Integer getExpiry() {
+    return expiry;
+  }
+
+
+  public void setExpiry(Integer expiry) {
+    this.expiry = expiry;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -124,12 +152,13 @@ public class CreateFileRequestDataAttributes {
     CreateFileRequestDataAttributes createFileRequestDataAttributes = (CreateFileRequestDataAttributes) o;
     return Objects.equals(this.name, createFileRequestDataAttributes.name) &&
         Objects.equals(this.suppliedId, createFileRequestDataAttributes.suppliedId) &&
-        Objects.equals(this.rootFileName, createFileRequestDataAttributes.rootFileName);
+        Objects.equals(this.rootFileName, createFileRequestDataAttributes.rootFileName) &&
+        Objects.equals(this.expiry, createFileRequestDataAttributes.expiry);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, suppliedId, rootFileName);
+    return Objects.hash(name, suppliedId, rootFileName, expiry);
   }
 
   @Override
@@ -139,6 +168,7 @@ public class CreateFileRequestDataAttributes {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    suppliedId: ").append(toIndentedString(suppliedId)).append("\n");
     sb.append("    rootFileName: ").append(toIndentedString(rootFileName)).append("\n");
+    sb.append("    expiry: ").append(toIndentedString(expiry)).append("\n");
     sb.append("}");
     return sb.toString();
   }

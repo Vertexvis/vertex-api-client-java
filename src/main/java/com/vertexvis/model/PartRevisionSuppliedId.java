@@ -37,6 +37,10 @@ public class PartRevisionSuppliedId {
   @SerializedName(SERIALIZED_NAME_SUPPLIED_REVISION_ID)
   private String suppliedRevisionId;
 
+  public static final String SERIALIZED_NAME_SUPPLIED_ITERATION_ID = "suppliedIterationId";
+  @SerializedName(SERIALIZED_NAME_SUPPLIED_ITERATION_ID)
+  private String suppliedIterationId;
+
   public PartRevisionSuppliedId() { 
   }
 
@@ -86,6 +90,29 @@ public class PartRevisionSuppliedId {
   }
 
 
+  public PartRevisionSuppliedId suppliedIterationId(String suppliedIterationId) {
+    
+    this.suppliedIterationId = suppliedIterationId;
+    return this;
+  }
+
+   /**
+   * Optional iteration ID for the revision. For example, a generated version id from a PLM system to a specific revision. Used when a existing revision is modified.
+   * @return suppliedIterationId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Optional iteration ID for the revision. For example, a generated version id from a PLM system to a specific revision. Used when a existing revision is modified.")
+
+  public String getSuppliedIterationId() {
+    return suppliedIterationId;
+  }
+
+
+  public void setSuppliedIterationId(String suppliedIterationId) {
+    this.suppliedIterationId = suppliedIterationId;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -96,12 +123,13 @@ public class PartRevisionSuppliedId {
     }
     PartRevisionSuppliedId partRevisionSuppliedId = (PartRevisionSuppliedId) o;
     return Objects.equals(this.suppliedPartId, partRevisionSuppliedId.suppliedPartId) &&
-        Objects.equals(this.suppliedRevisionId, partRevisionSuppliedId.suppliedRevisionId);
+        Objects.equals(this.suppliedRevisionId, partRevisionSuppliedId.suppliedRevisionId) &&
+        Objects.equals(this.suppliedIterationId, partRevisionSuppliedId.suppliedIterationId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(suppliedPartId, suppliedRevisionId);
+    return Objects.hash(suppliedPartId, suppliedRevisionId, suppliedIterationId);
   }
 
   @Override
@@ -110,6 +138,7 @@ public class PartRevisionSuppliedId {
     sb.append("class PartRevisionSuppliedId {\n");
     sb.append("    suppliedPartId: ").append(toIndentedString(suppliedPartId)).append("\n");
     sb.append("    suppliedRevisionId: ").append(toIndentedString(suppliedRevisionId)).append("\n");
+    sb.append("    suppliedIterationId: ").append(toIndentedString(suppliedIterationId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

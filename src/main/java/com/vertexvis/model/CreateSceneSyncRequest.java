@@ -20,13 +20,10 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.OneOfUpdateItemToDefaultRenditionOperation;
 import com.vertexvis.model.UpdateItemToDefaultRenditionOperation;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * An operation to perform on a Scene.
@@ -34,38 +31,33 @@ import java.util.List;
 @ApiModel(description = "An operation to perform on a Scene.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CreateSceneSyncRequest {
-  public static final String SERIALIZED_NAME_OPERATIONS = "operations";
-  @SerializedName(SERIALIZED_NAME_OPERATIONS)
-  private List<OneOfUpdateItemToDefaultRenditionOperation> operations = new ArrayList<>();
+  public static final String SERIALIZED_NAME_OPERATION = "operation";
+  @SerializedName(SERIALIZED_NAME_OPERATION)
+  private OneOfUpdateItemToDefaultRenditionOperation operation;
 
   public CreateSceneSyncRequest() { 
   }
 
-  public CreateSceneSyncRequest operations(List<OneOfUpdateItemToDefaultRenditionOperation> operations) {
+  public CreateSceneSyncRequest operation(OneOfUpdateItemToDefaultRenditionOperation operation) {
     
-    this.operations = operations;
-    return this;
-  }
-
-  public CreateSceneSyncRequest addOperationsItem(OneOfUpdateItemToDefaultRenditionOperation operationsItem) {
-    this.operations.add(operationsItem);
+    this.operation = operation;
     return this;
   }
 
    /**
-   * List of operations to perform on &#x60;scene-items&#x60; in the scene.
-   * @return operations
+   * Get operation
+   * @return operation
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "List of operations to perform on `scene-items` in the scene.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(required = true, value = "")
 
-  public List<OneOfUpdateItemToDefaultRenditionOperation> getOperations() {
-    return operations;
+  public OneOfUpdateItemToDefaultRenditionOperation getOperation() {
+    return operation;
   }
 
 
-  public void setOperations(List<OneOfUpdateItemToDefaultRenditionOperation> operations) {
-    this.operations = operations;
+  public void setOperation(OneOfUpdateItemToDefaultRenditionOperation operation) {
+    this.operation = operation;
   }
 
 
@@ -78,19 +70,19 @@ public class CreateSceneSyncRequest {
       return false;
     }
     CreateSceneSyncRequest createSceneSyncRequest = (CreateSceneSyncRequest) o;
-    return Objects.equals(this.operations, createSceneSyncRequest.operations);
+    return Objects.equals(this.operation, createSceneSyncRequest.operation);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(operations);
+    return Objects.hash(operation);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateSceneSyncRequest {\n");
-    sb.append("    operations: ").append(toIndentedString(operations)).append("\n");
+    sb.append("    operation: ").append(toIndentedString(operation)).append("\n");
     sb.append("}");
     return sb.toString();
   }
