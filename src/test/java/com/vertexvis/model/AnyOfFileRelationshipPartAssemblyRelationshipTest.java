@@ -26,8 +26,8 @@ public class AnyOfFileRelationshipPartAssemblyRelationshipTest {
     @Test
     void serializesAnyOfFileRelationshipPartAssemblyRelationships() {
         UUID id = UUID.randomUUID();
-        AnyOfFileRelationshipPartAssemblyRelationship rel =
-                new AnyOfFileRelationshipPartAssemblyRelationship(
+        CreatePartRequestDataRelationshipsSource rel =
+                new CreatePartRequestDataRelationshipsSource(
                         new PartAssemblyRelationship()
                                 .data(new PartAssemblyRelationshipData()
                                         .metadata(Collections.emptyMap())

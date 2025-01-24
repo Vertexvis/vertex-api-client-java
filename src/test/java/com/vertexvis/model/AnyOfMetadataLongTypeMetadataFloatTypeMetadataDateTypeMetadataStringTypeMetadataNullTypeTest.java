@@ -14,7 +14,7 @@ class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMe
     @Test
     void serializeMetadataFloatType() {
         var md =
-                new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType(
+                new UpdatePartRevisionRequestDataAttributesMetadataValue(
                         new MetadataFloatType().type("float").value(123.456f));
 
         String expected = "{\"type\":\"float\",\"value\":123.456}";
@@ -28,10 +28,10 @@ class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMe
         var out = deserializeAnyOf(json);
 
         assertTrue(
-                out instanceof AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType);
+                out instanceof UpdatePartRevisionRequestDataAttributesMetadataValue);
         var anyOf =
-                (AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType) out;
-        assertTrue(anyOf.isMetadataFloatType());
+                (UpdatePartRevisionRequestDataAttributesMetadataValue) out;
+        assertTrue(anyOf.getActualInstance() instanceof MetadataFloatType);
         assertEquals(123.456f, Objects.requireNonNull(anyOf.getMetadataFloatType()).getValue());
         assertEquals("float",
                 Objects.requireNonNull(anyOf.getMetadataFloatType()).getType());
@@ -40,7 +40,7 @@ class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMe
     @Test
     void serializeMetadataLongType() {
         var md =
-                new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType(
+                new UpdatePartRevisionRequestDataAttributesMetadataValue(
                         new MetadataLongType().type("long").value(1234567890L));
 
         String expected = "{\"type\":\"long\",\"value\":1234567890}";
@@ -54,10 +54,10 @@ class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMe
         var out = deserializeAnyOf(json);
 
         assertTrue(
-                out instanceof AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType);
+                out instanceof UpdatePartRevisionRequestDataAttributesMetadataValue);
         var anyOf =
-                (AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType) out;
-        assertTrue(anyOf.isMetadataLongType());
+                (UpdatePartRevisionRequestDataAttributesMetadataValue) out;
+        assertTrue(anyOf.getActualInstance() instanceof MetadataLongType);
         assertEquals(1234567890, Objects.requireNonNull(anyOf.getMetadataLongType()).getValue());
         assertEquals("long",
                 Objects.requireNonNull(anyOf.getMetadataLongType()).getType());
@@ -67,7 +67,7 @@ class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMe
     void serializeMetadataDateType() {
         var expectedDate = OffsetDateTime.of(2023, 1, 2, 3, 4, 5, 6, ZoneOffset.ofHours(7));
         var md =
-                new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType(
+                new UpdatePartRevisionRequestDataAttributesMetadataValue(
                         new MetadataDateType().type("date").value(expectedDate));
 
         String expected = "{\"type\":\"date\",\"value\":\"2023-01-02T03:04:05.000000006+07:00\"}";
@@ -82,10 +82,10 @@ class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMe
         var out = deserializeAnyOf(json);
 
         assertTrue(
-                out instanceof AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType);
+                out instanceof UpdatePartRevisionRequestDataAttributesMetadataValue);
         var anyOf =
-                (AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType) out;
-        assertTrue(anyOf.isMetadataDateType());
+                (UpdatePartRevisionRequestDataAttributesMetadataValue) out;
+        assertTrue(anyOf.getActualInstance() instanceof MetadataDateType);
         assertEquals(expectedDate, Objects.requireNonNull(anyOf.getMetadataDateType()).getValue());
         assertEquals("date",
                 Objects.requireNonNull(anyOf.getMetadataDateType()).getType());
@@ -94,7 +94,7 @@ class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMe
     @Test
     void serializeMetadataStringType() {
         var md =
-                new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType(
+                new UpdatePartRevisionRequestDataAttributesMetadataValue(
                         new MetadataStringType().type("string").value("Hello world"));
 
         String expected = "{\"type\":\"string\",\"value\":\"Hello world\"}";
@@ -108,10 +108,10 @@ class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMe
         var out = deserializeAnyOf(json);
 
         assertTrue(
-                out instanceof AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType);
+                out instanceof UpdatePartRevisionRequestDataAttributesMetadataValue);
         var anyOf =
-                (AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType) out;
-        assertTrue(anyOf.isMetadataStringType());
+                (UpdatePartRevisionRequestDataAttributesMetadataValue) out;
+        assertTrue(anyOf.getActualInstance() instanceof MetadataStringType);
         assertEquals("Hello world",
                 Objects.requireNonNull(anyOf.getMetadataStringType()).getValue());
         assertEquals("string",
@@ -121,7 +121,7 @@ class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMe
     @Test
     void serializeMetadataNullType() {
         var md =
-                new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType(
+                new UpdatePartRevisionRequestDataAttributesMetadataValue(
                         new MetadataNullType().type("null"));
 
         String expected = "{\"type\":\"null\"}";
@@ -135,10 +135,10 @@ class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMe
         var out = deserializeAnyOf(json);
 
         assertTrue(
-                out instanceof AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType);
+                out instanceof UpdatePartRevisionRequestDataAttributesMetadataValue);
         var anyOf =
-                (AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType) out;
-        assertTrue(anyOf.isMetadataNullType());
+                (UpdatePartRevisionRequestDataAttributesMetadataValue) out;
+        assertTrue(anyOf.getActualInstance() instanceof MetadataNullType);
     }
 
     @Test
@@ -154,7 +154,7 @@ class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMe
     @Test
     void serializeUpdateSceneItemRequestDataAttributes() {
         var md =
-                new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType(
+                new UpdatePartRevisionRequestDataAttributesMetadataValue(
                         new MetadataStringType().type("string").value("Hello world"));
         var map = new UpdateSceneItemRequestDataAttributes().putMetadataItem("key", md);
         String observed = new JSON().serialize(map);
@@ -165,6 +165,6 @@ class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMe
 
     private static Object deserializeAnyOf(String json) {
         return new JSON().deserialize(json,
-                AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType.class);
+                UpdatePartRevisionRequestDataAttributesMetadataValue.class);
     }
 }

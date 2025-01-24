@@ -53,7 +53,7 @@ public class OneOfPerspectiveCameraOrthographicCameraTest {
             );
 
         perspectiveCamera.setType("perspective");
-        OneOfPerspectiveCameraOrthographicCamera oneOfPerspectiveCameraOrthographicCamera = new OneOfPerspectiveCameraOrthographicCamera(perspectiveCamera);
+        CreateSceneViewRequestDataAttributesCamera oneOfPerspectiveCameraOrthographicCamera = new CreateSceneViewRequestDataAttributesCamera(perspectiveCamera);
 
         String expected =
             "{\"camera\":{\"type\":\"perspective\",\"position\":{\"x\":3,\"y\":3,\"z\":3},\"lookAt\":{\"x\":1,\"y\":1,\"z\":1},\"up\":{\"x\":2,\"y\":2,\"z\":2}}}";

@@ -17,9 +17,9 @@ public class AnyOfRelationshipDataApiErrorAdapterTest {
   @Test
   void serializesRelationshipData() {
     UUID id = UUID.randomUUID();
-    List<AnyOfRelationshipDataApiError> list = new ArrayList<>();
-    list.add(new AnyOfRelationshipDataApiError(new RelationshipData().id(id).type("my-type")));
-    Batch batch = new Batch().vertexvisBatchColonResults(list);
+    List<BatchVertexvisBatchResultsInner> list = new ArrayList<>();
+    list.add(new BatchVertexvisBatchResultsInner(new RelationshipData().id(id).type("my-type")));
+    Batch batch = new Batch().vertexvisBatchResults(list);
 
     String exp = "{\"vertexvis/batch:results\":[{\"id\":\"" + id + "\",\"type\":\"my-type\"}]}";
 
@@ -32,19 +32,19 @@ public class AnyOfRelationshipDataApiErrorAdapterTest {
     String in = "{\"vertexvis/batch:results\":[{\"id\":\"" + id + "\",\"type\":\"my-type\"}]}";
 
     Batch act = new JSON().deserialize(in, TypeToken.get(Batch.class).getType());
-    AnyOfRelationshipDataApiError exp =
-        new AnyOfRelationshipDataApiError(new RelationshipData().id(id).type("my-type"));
+    BatchVertexvisBatchResultsInner exp =
+        new BatchVertexvisBatchResultsInner(new RelationshipData().id(id).type("my-type"));
 
-    assertEquals(exp.getObj(), act.getVertexvisBatchColonResults().get(0).getObj());
+    assertEquals(exp.getActualInstance(), act.getVertexvisBatchResults().get(0).getActualInstance());
   }
 
   @Test
   void serializesApiError() {
     UUID id = UUID.randomUUID();
-    List<AnyOfRelationshipDataApiError> list = new ArrayList<>();
-    list.add(new AnyOfRelationshipDataApiError(
+    List<BatchVertexvisBatchResultsInner> list = new ArrayList<>();
+    list.add(new BatchVertexvisBatchResultsInner(
         new ApiError().id(id.toString()).status("my-status").code("500")));
-    Batch batch = new Batch().vertexvisBatchColonResults(list);
+    Batch batch = new Batch().vertexvisBatchResults(list);
 
     String exp = "{\"vertexvis/batch:results\":[{\"id\":\"" + id +
         "\",\"status\":\"my-status\",\"code\":\"500\"}]}";
@@ -59,11 +59,11 @@ public class AnyOfRelationshipDataApiErrorAdapterTest {
         "\",\"status\":\"my-status\",\"code\":\"500\"}]}";
 
     Batch act = new JSON().deserialize(in, TypeToken.get(Batch.class).getType());
-    AnyOfRelationshipDataApiError exp =
-        new AnyOfRelationshipDataApiError(
+    BatchVertexvisBatchResultsInner exp =
+        new BatchVertexvisBatchResultsInner(
             new ApiError().id(id.toString()).status("my-status").code("500"));
 
-    assertEquals(exp.getObj(), act.getVertexvisBatchColonResults().get(0).getObj());
+    assertEquals(exp.getActualInstance(), act.getVertexvisBatchResults().get(0).getActualInstance());
   }
 
   @Test
@@ -73,11 +73,10 @@ public class AnyOfRelationshipDataApiErrorAdapterTest {
         "\",\"status\":\"my-status\",\"code\":\"500\",\"source\":{\"pointer\":\"/data/id\"}}]}";
 
     Batch act = new JSON().deserialize(in, TypeToken.get(Batch.class).getType());
-    AnyOfRelationshipDataApiError exp =
-        new AnyOfRelationshipDataApiError(
+    BatchVertexvisBatchResultsInner exp =
+        new BatchVertexvisBatchResultsInner(
             new ApiError().id(id.toString()).status("my-status").code("500")
                 .source(new ApiErrorSource().pointer("/data/id")));
 
-    assertEquals(exp.getObj(), act.getVertexvisBatchColonResults().get(0).getObj());
-  }
+    assertEquals(exp.getActualInstance(), act.getVertexvisBatchResults().get(0).getActualInstance());  }
 }

@@ -14,8 +14,8 @@ public class OneOfSceneViewRelationshipSceneViewStateRelationshipTest {
   @Test
   void serializesSceneViewRelationship() {
     UUID id = UUID.randomUUID();
-    OneOfSceneViewRelationshipSceneViewStateRelationship rel =
-        new OneOfSceneViewRelationshipSceneViewStateRelationship(new SceneViewRelationship()
+    CreateSceneViewStateRequestDataRelationshipsSource rel =
+        new CreateSceneViewStateRequestDataRelationshipsSource(new SceneViewRelationship()
             .data(
                 new SceneViewRelationshipData().type(SceneViewRelationshipData.TypeEnum.SCENE_VIEW)
                     .id(id)));
@@ -41,15 +41,15 @@ public class OneOfSceneViewRelationshipSceneViewStateRelationshipTest {
             .data(new SceneViewRelationshipData().id(id)
                 .type(SceneViewRelationshipData.TypeEnum.SCENE_VIEW));
 
-    assertEquals(result.getSource().getRel(), expected);
-    assertEquals(result.getSource().getSceneViewRel(), expected);
+    assertEquals(result.getSource().getActualInstance(), expected);
+    assertEquals(result.getSource().getSceneViewRelationship(), expected);
   }
 
   @Test
   void serializesSceneViewStateRelationship() {
     UUID id = UUID.randomUUID();
-    OneOfSceneViewRelationshipSceneViewStateRelationship rel =
-        new OneOfSceneViewRelationshipSceneViewStateRelationship(
+    CreateSceneViewStateRequestDataRelationshipsSource rel =
+        new CreateSceneViewStateRequestDataRelationshipsSource(
             new SceneViewStateRelationship()
                 .data(
                     new SceneViewStateRelationshipData()
@@ -78,7 +78,7 @@ public class OneOfSceneViewRelationshipSceneViewStateRelationshipTest {
             .data(new SceneViewStateRelationshipData().id(id)
                 .type(SceneViewStateRelationshipData.TypeEnum.SCENE_VIEW_STATE));
 
-    assertEquals(result.getSource().getRel(), expected);
-    assertEquals(result.getSource().getSceneViewStateRel(), expected);
+    assertEquals(result.getSource().getActualInstance(), expected);
+    assertEquals(result.getSource().getSceneViewStateRelationship(), expected);
   }
 }

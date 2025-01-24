@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 public class AnyOfCameraCameraFitTest {
   @Test
   void serializesCamera() {
-    AnyOfCameraCameraFit c =
-        new AnyOfCameraCameraFit(new OneOfPerspectiveCameraOrthographicCamera(
+    UpdateSceneViewRequestDataAttributesCamera c =
+        new UpdateSceneViewRequestDataAttributesCamera(new UpdateSceneViewRequestDataAttributesCamera(
           new PerspectiveCamera().lookAt(
             new Vector3().x(new BigDecimal(2)).y(new BigDecimal(4)).z(new BigDecimal(6)))
         ));
@@ -26,8 +26,8 @@ public class AnyOfCameraCameraFitTest {
 
   @Test
   void serializesCameraFit() {
-    AnyOfCameraCameraFit c =
-        new AnyOfCameraCameraFit(new CameraFit().type(FIT_VISIBLE_SCENE_ITEMS));
+    UpdateSceneViewRequestDataAttributesCamera c =
+        new UpdateSceneViewRequestDataAttributesCamera(new CameraFit().type(FIT_VISIBLE_SCENE_ITEMS));
 
     String expected = "{\"type\":\"fit-visible-scene-items\"}";
 
