@@ -13,7 +13,7 @@ public class AnyOfCreateSceneItemRequestDataTest {
         new CreateSceneItemRequestData().type("my-type")
             .attributes(new CreateSceneItemRequestDataAttributes().name("my-name"));
 
-    String exp = "{\"type\":\"my-type\",\"attributes\":{\"name\":\"my-name\"}}";
+    String exp = "{\"type\":\"my-type\",\"attributes\":{\"name\":\"my-name\",\"metadata\":{},\"experimentalSourceMetadataKeys\":[]}}";
 
     assertEquals(exp, new JSON().serialize(c));
   }

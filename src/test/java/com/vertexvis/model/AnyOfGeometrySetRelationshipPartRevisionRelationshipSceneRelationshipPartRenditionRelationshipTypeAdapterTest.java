@@ -36,7 +36,8 @@ public class AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationsh
     UUID id = UUID.randomUUID();
 
     String input =
-        "{\"relationships\":{\"source\":{\"data\":{\"type\":\"geometry-set\",\"id\":\"" + id +
+        "{\"attributes\":{},\"type\":\"scene-item\"," +
+        "\"relationships\":{\"source\":{\"data\":{\"type\":\"geometry-set\",\"id\":\"" + id +
             "\"}}}}";
 
     CreateSceneItemRequestData result =
@@ -75,8 +76,9 @@ public class AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationsh
     UUID id = UUID.randomUUID();
 
     String input =
-        "{\"relationships\":{\"source\":{\"data\":{\"type\":\"part-revision\",\"id\":\"" + id +
-            "\"}}}}";
+        "{\"attributes\":{\"metadata\":{},\"experimentalSourceMetadataKeys\":[]},\"type\":\"scene-item\"," +
+        "\"relationships\":{\"source\":{\"data\":{\"type\":\"part-revision\",\"id\":\"" + id +
+        "\"}}}}";
 
     CreateSceneItemRequestData result =
         new JSON().deserialize(input, TypeToken.get(CreateSceneItemRequestData.class).getType());
@@ -113,7 +115,8 @@ public class AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationsh
     UUID id = UUID.randomUUID();
 
     String input =
-        "{\"relationships\":{\"source\":{\"data\":{\"type\":\"scene\",\"id\":\"" + id + "\"}}}}";
+        "{\"attributes\":{},\"type\":\"scene-item\"," +
+        "\"relationships\":{\"source\":{\"data\":{\"type\":\"scene\",\"id\":\"" + id + "\"}}}}";
 
     CreateSceneItemRequestData result =
         new JSON().deserialize(input, TypeToken.get(CreateSceneItemRequestData.class).getType());
