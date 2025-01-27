@@ -5,7 +5,13 @@ scripts_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 source "$scripts_dir/version-lib.sh"
 
 main() {
+  local models=(MetadataDateType.java \
+                MetadataFloatType.java \
+                MetadataLongType.java \
+                MetadataNullType.java \
+                MetadataStringType.java )
   mv "src/test" . || true
+  for f in "${models[@]}"; do mv "src/main/java/com/vertexvis/model/$f" . || true; done
 
   rm -rf api gradle src
 
@@ -16,6 +22,7 @@ main() {
     --output /local
 
   mv ./test ./src
+  for f in "${models[@]}"; do mv "$f" ./src/main/java/com/vertexvis/model; done
 
   local version
   version=$(_get_version)
