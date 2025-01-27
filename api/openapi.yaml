@@ -32,11 +32,15 @@ tags:
 - name: files
 - name: geometry-sets
 - name: hits
+- name: model-views
 - name: oauth2
 - name: part-renditions
 - name: part-revisions
 - name: parts
+- name: pmi
+- name: property-entries
 - name: scene-alterations
+- name: scene-annotations
 - name: scene-item-overrides
 - name: scene-items
 - name: scene-synchronizations
@@ -74,7 +78,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -107,8 +111,9 @@ paths:
         - accounts.write
       tags:
       - accounts
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /accounts/{id}:
     delete:
       description: Delete an `account`.
@@ -165,7 +170,8 @@ paths:
         - accounts.write
       tags:
       - accounts
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     get:
       description: Get an `account`.
       operationId: getAccount
@@ -225,7 +231,8 @@ paths:
         - accounts.read
       tags:
       - accounts
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     patch:
       description: Update an `account`.
       operationId: updateAccount
@@ -258,7 +265,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -302,8 +309,9 @@ paths:
         - accounts.write
       tags:
       - accounts
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /accounts/{id}/applications:
     post:
       description: Create an `application` for an `account`.
@@ -340,7 +348,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -385,8 +393,9 @@ paths:
       tags:
       - accounts
       x-scala-package: accounts
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /applications:
     get:
       description: Get `applications`.
@@ -395,7 +404,7 @@ paths:
       - description: The cursor for the next page of items.
         explode: true
         in: query
-        name: page[cursor]
+        name: "page[cursor]"
         required: false
         schema:
           example: cHJkMDVFR2RLag==
@@ -404,7 +413,7 @@ paths:
       - description: The number of items to return.
         explode: true
         in: query
-        name: page[size]
+        name: "page[size]"
         required: false
         schema:
           example: 10
@@ -416,10 +425,10 @@ paths:
       - description: Comma-separated list of client IDs to filter on.
         explode: true
         in: query
-        name: filter[clientId]
+        name: "filter[clientId]"
         required: false
         schema:
-          example: ?filter[clientId]=some-id-1&filter[clientId]=some-id-2
+          example: "?filter[clientId]=some-id-1&filter[clientId]=some-id-2"
           maxLength: 1024
           type: string
         style: form
@@ -457,7 +466,8 @@ paths:
       - OAuth2: []
       tags:
       - applications
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     post:
       description: Create an OAuth2 `application`.
       operationId: createApplication
@@ -484,7 +494,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -515,8 +525,9 @@ paths:
       - OAuth2: []
       tags:
       - applications
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /applications/{id}:
     delete:
       description: Delete an `application`.
@@ -571,7 +582,8 @@ paths:
       - OAuth2: []
       tags:
       - applications
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     get:
       description: Get an `application`.
       operationId: getApplication
@@ -629,7 +641,8 @@ paths:
       - OAuth2: []
       tags:
       - applications
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     patch:
       description: Update an `application`.
       operationId: updateApplication
@@ -662,7 +675,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -704,12 +717,13 @@ paths:
       - OAuth2: []
       tags:
       - applications
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /batches:
     post:
-      description: Create a `batch`. This API is asynchronous, returning the location
-        of a `queued-batch`. Check the status via the getQueuedBatch API.
+      description: "Create a `batch`. This API is asynchronous, returning the location\
+        \ of a `queued-batch`. Check the status via the getQueuedBatch API."
       operationId: createBatch
       requestBody:
         content:
@@ -734,7 +748,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -765,8 +779,9 @@ paths:
       - OAuth2: []
       tags:
       - batches
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /batches/{id}:
     get:
       description: Get a `batch` by ID.
@@ -825,11 +840,12 @@ paths:
       - OAuth2: []
       tags:
       - batches
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /queued-batches/{id}:
     get:
-      description: Get a `queued-batch`. The response is either the status if `running`
-        or `error` or, upon completion, redirects to the created `batch`.
+      description: "Get a `queued-batch`. The response is either the status if `running`\
+        \ or `error` or, upon completion, redirects to the created `batch`."
       operationId: getQueuedBatch
       parameters:
       - description: The `queued-batch` ID.
@@ -887,7 +903,8 @@ paths:
       - OAuth2: []
       tags:
       - batches
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /files:
     get:
       description: Get `files`.
@@ -896,7 +913,7 @@ paths:
       - description: The cursor for the next page of items.
         explode: true
         in: query
-        name: page[cursor]
+        name: "page[cursor]"
         required: false
         schema:
           example: cHJkMDVFR2RLag==
@@ -905,7 +922,7 @@ paths:
       - description: The number of items to return.
         explode: true
         in: query
-        name: page[size]
+        name: "page[size]"
         required: false
         schema:
           example: 10
@@ -917,10 +934,10 @@ paths:
       - description: Comma-separated list of supplied IDs to filter on.
         explode: true
         in: query
-        name: filter[suppliedId]
+        name: "filter[suppliedId]"
         required: false
         schema:
-          example: some-id-1,some-id-2
+          example: "some-id-1,some-id-2"
           maxLength: 1024
           type: string
         style: form
@@ -958,11 +975,12 @@ paths:
       - OAuth2: []
       tags:
       - files
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     post:
-      description: Create a `file`. Once created, upload file content via the uploadFile
-        API. For details including supported file formats, see our [Import data](https://developer.vertexvis.com/docs/guides/import-data-with-api)
-        guide.
+      description: "Create a `file`. Once created, upload file content via the uploadFile\
+        \ API. For details including supported file formats, see our [Import data](https://developer.vertexvis.com/docs/guides/import-data-with-api)\
+        \ guide."
       operationId: createFile
       requestBody:
         content:
@@ -987,7 +1005,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -1018,8 +1036,9 @@ paths:
       - OAuth2: []
       tags:
       - files
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /files/{id}:
     delete:
       description: Delete a `file`.
@@ -1078,7 +1097,8 @@ paths:
       - OAuth2: []
       tags:
       - files
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     get:
       description: Get a `file` by ID.
       operationId: getFile
@@ -1136,11 +1156,11 @@ paths:
       - OAuth2: []
       tags:
       - files
-      x-accepts: application/vnd.api+json
-    post:
-      description: Upload a `file`. Once uploaded, create either parts or geometry
-        sets via the createPart or createGeometrySet APIs.
-      operationId: uploadFile
+      x-accepts:
+      - application/vnd.api+json
+    patch:
+      description: Update a `file`.
+      operationId: updateFile
       parameters:
       - description: The `file` ID.
         explode: false
@@ -1152,14 +1172,17 @@ paths:
         style: simple
       requestBody:
         content:
-          application/octet-stream:
+          application/vnd.api+json:
             schema:
-              format: binary
-              type: string
+              $ref: '#/components/schemas/UpdateFileRequest'
         required: true
       responses:
-        "204":
-          description: No Content
+        "200":
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+          description: OK
         "400":
           content:
             application/vnd.api+json:
@@ -1167,7 +1190,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -1209,8 +1232,84 @@ paths:
       - OAuth2: []
       tags:
       - files
-      x-contentType: application/octet-stream
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
+    post:
+      description: "Upload a `file`. Once uploaded, create either parts or geometry\
+        \ sets via the createPart or createGeometrySet APIs."
+      operationId: uploadFile
+      parameters:
+      - description: The `file` ID.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          $ref: '#/components/schemas/Uuid'
+        style: simple
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              format: binary
+              type: string
+        required: true
+      responses:
+        "204":
+          description: No Content
+        "400":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "400"
+                  code: BadRequest
+                  title: "Invalid, missing, or out-of-range request parameters."
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Bad Request
+        "401":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "401"
+                  code: Unauthorized
+                  title: Invalid or missing credentials.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unauthorized
+        "404":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "404"
+                  code: NotFound
+                  title: The requested resource was not found.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Not Found
+        "415":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "415"
+                  code: UnsupportedMediaType
+                  title: The provided media type is not supported. Update the Content-Type
+                    header to application/vnd.api+json and try again.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unsupported Media Type
+      security:
+      - OAuth2: []
+      tags:
+      - files
+      x-content-type: application/octet-stream
+      x-accepts:
+      - application/vnd.api+json
   /geometry-sets:
     get:
       description: Get `geometry-sets`.
@@ -1219,7 +1318,7 @@ paths:
       - description: The cursor for the next page of items.
         explode: true
         in: query
-        name: page[cursor]
+        name: "page[cursor]"
         required: false
         schema:
           example: cHJkMDVFR2RLag==
@@ -1228,7 +1327,7 @@ paths:
       - description: The number of items to return.
         explode: true
         in: query
-        name: page[size]
+        name: "page[size]"
         required: false
         schema:
           example: 10
@@ -1271,11 +1370,12 @@ paths:
       - OAuth2: []
       tags:
       - geometry-sets
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     post:
-      description: Create a `geometry-set`. Once created, create scenes via the createScene
-        API. For details, see our [Import data](https://developer.vertexvis.com/docs/guides/import-data-with-api)
-        guide.
+      description: "Create a `geometry-set`. Once created, create scenes via the createScene\
+        \ API. For details, see our [Import data](https://developer.vertexvis.com/docs/guides/import-data-with-api)\
+        \ guide."
       operationId: createGeometrySet
       requestBody:
         content:
@@ -1300,7 +1400,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -1331,8 +1431,9 @@ paths:
       - OAuth2: []
       tags:
       - geometry-sets
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /geometry-sets/{id}:
     get:
       description: Get a `geometry-set` by ID.
@@ -1391,7 +1492,8 @@ paths:
       - OAuth2: []
       tags:
       - geometry-sets
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /scene-views/{id}/hits:
     post:
       description: Create a `hit` for a `scene-view`.
@@ -1415,15 +1517,15 @@ paths:
         schema:
           $ref: '#/components/schemas/Uuid'
         style: simple
-      - description: Comma-separated list of fields to return in response. An empty
-          value returns no fields. Due to its potential size, metadata is only returned
-          if explicitly requested.
+      - description: "Comma-separated list of fields to return in response. An empty\
+          \ value returns no fields. Due to its potential size, metadata is only returned\
+          \ if explicitly requested."
         explode: true
         in: query
-        name: fields[part-revision]
+        name: "fields[part-revision]"
         required: false
         schema:
-          example: created,suppliedId,metadata
+          example: "created,suppliedId,metadata"
           maxLength: 32
           type: string
         style: form
@@ -1450,7 +1552,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -1492,8 +1594,9 @@ paths:
       - OAuth2: []
       tags:
       - hits
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /scenes/{id}/hits:
     post:
       description: Create a `hit` for a `scene`.
@@ -1517,15 +1620,15 @@ paths:
         schema:
           $ref: '#/components/schemas/Uuid'
         style: simple
-      - description: Comma-separated list of fields to return in response. An empty
-          value returns no fields. Due to its potential size, metadata is only returned
-          if explicitly requested.
+      - description: "Comma-separated list of fields to return in response. An empty\
+          \ value returns no fields. Due to its potential size, metadata is only returned\
+          \ if explicitly requested."
         explode: true
         in: query
-        name: fields[part-revision]
+        name: "fields[part-revision]"
         required: false
         schema:
-          example: created,suppliedId,metadata
+          example: "created,suppliedId,metadata"
           maxLength: 32
           type: string
         style: form
@@ -1552,7 +1655,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -1594,12 +1697,13 @@ paths:
       - OAuth2: []
       tags:
       - hits
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /oauth2/token:
     post:
-      description: Create an OAuth2 access token. For details, see our [Authentication](https://developer.vertexvis.com/docs/guides/authentication)
-        guide.
+      description: "Create an OAuth2 access token. For details, see our [Authentication](https://developer.vertexvis.com/docs/guides/authentication)\
+        \ guide."
       operationId: createToken
       requestBody:
         content:
@@ -1624,8 +1728,9 @@ paths:
       - basicAuth: []
       tags:
       - oauth2
-      x-contentType: application/x-www-form-urlencoded
-      x-accepts: application/vnd.api+json
+      x-content-type: application/x-www-form-urlencoded
+      x-accepts:
+      - application/vnd.api+json
   /oauth2/revoke:
     post:
       description: Revoke an OAuth2 access token.
@@ -1643,8 +1748,9 @@ paths:
       - basicAuth: []
       tags:
       - oauth2
-      x-contentType: application/vnd.api+json
-      x-accepts: application/json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/json
   /oauth2/auth/requests/login/accept:
     post:
       description: Accept Login Challenge with subject & login challenge
@@ -1678,7 +1784,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -1698,8 +1804,9 @@ paths:
         - admin-login
       tags:
       - oauth2
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /oauth2/auth/requests/consent/accept:
     post:
       description: Accept Consent Challenge to login.
@@ -1733,7 +1840,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -1753,8 +1860,9 @@ paths:
         - admin-login
       tags:
       - oauth2
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /part-renditions:
     get:
       description: Get `part-renditions` with an optional filter.
@@ -1763,7 +1871,7 @@ paths:
       - description: The cursor for the next page of items.
         explode: true
         in: query
-        name: page[cursor]
+        name: "page[cursor]"
         required: false
         schema:
           example: cHJkMDVFR2RLag==
@@ -1772,7 +1880,7 @@ paths:
       - description: The number of items to return.
         explode: true
         in: query
-        name: page[size]
+        name: "page[size]"
         required: false
         schema:
           example: 10
@@ -1784,17 +1892,17 @@ paths:
       - description: Comma-separated list of supplied IDs to filter on.
         explode: true
         in: query
-        name: filter[suppliedId]
+        name: "filter[suppliedId]"
         required: false
         schema:
-          example: some-id-1,some-id-2
+          example: "some-id-1,some-id-2"
           maxLength: 1024
           type: string
         style: form
       - description: A revision ID to filter on.
         explode: true
         in: query
-        name: filter[revisionId]
+        name: "filter[revisionId]"
         required: false
         schema:
           $ref: '#/components/schemas/Uuid'
@@ -1833,7 +1941,8 @@ paths:
       - OAuth2: []
       tags:
       - part-renditions
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /part-renditions/{id}:
     get:
       description: Get a `part-rendition` by ID.
@@ -1892,7 +2001,8 @@ paths:
       - OAuth2: []
       tags:
       - part-renditions
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /part-revisions/{id}:
     delete:
       description: Delete a `part-revision`.
@@ -1954,7 +2064,8 @@ paths:
       - OAuth2: []
       tags:
       - part-revisions
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     get:
       description: Get a `part-revision` by ID.
       operationId: getPartRevision
@@ -1967,15 +2078,15 @@ paths:
         schema:
           $ref: '#/components/schemas/Uuid'
         style: simple
-      - description: Comma-separated list of fields to return in response. An empty
-          value returns no fields. Due to its potential size, metadata is only returned
-          if explicitly requested.
+      - description: "Comma-separated list of fields to return in response. An empty\
+          \ value returns no fields. Due to its potential size, metadata is only returned\
+          \ if explicitly requested."
         explode: true
         in: query
-        name: fields[part-revision]
+        name: "fields[part-revision]"
         required: false
         schema:
-          example: created,suppliedId,metadata
+          example: "created,suppliedId,metadata"
           maxLength: 32
           type: string
         style: form
@@ -2025,7 +2136,8 @@ paths:
       tags:
       - part-revisions
       x-scala-package: translations
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     patch:
       description: "Update a `part-revision`. When given a `file` relationship as\
         \ a payload, this will invoke a translation job, similar to the POST /parts\
@@ -2081,7 +2193,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -2123,8 +2235,9 @@ paths:
       - OAuth2: []
       tags:
       - part-revisions
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /part-revisions/{id}/part-renditions:
     post:
       operationId: createPartRendition
@@ -2166,7 +2279,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -2208,8 +2321,9 @@ paths:
       - OAuth2: []
       tags:
       - part-renditions
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /part-revisions/{id}/image:
     get:
       description: Get a rendered image of a `part-revision`.
@@ -2250,7 +2364,7 @@ paths:
       - description: The `camera` position vector.
         explode: true
         in: query
-        name: camera[position]
+        name: "camera[position]"
         required: false
         schema:
           $ref: '#/components/schemas/Vector3'
@@ -2258,7 +2372,7 @@ paths:
       - description: The `camera` up vector.
         explode: true
         in: query
-        name: camera[up]
+        name: "camera[up]"
         required: false
         schema:
           $ref: '#/components/schemas/Vector3'
@@ -2266,7 +2380,7 @@ paths:
       - description: The `camera` lookAt vector.
         explode: true
         in: query
-        name: camera[lookAt]
+        name: "camera[lookAt]"
         required: false
         schema:
           $ref: '#/components/schemas/Vector3'
@@ -2274,7 +2388,7 @@ paths:
       - description: The perspective camera position.
         explode: true
         in: query
-        name: camera[perspective][position]
+        name: "camera[perspective][position]"
         required: false
         schema:
           $ref: '#/components/schemas/Vector3'
@@ -2282,7 +2396,7 @@ paths:
       - description: The perspective camera look at position.
         explode: true
         in: query
-        name: camera[perspective][lookAt]
+        name: "camera[perspective][lookAt]"
         required: false
         schema:
           $ref: '#/components/schemas/Vector3'
@@ -2290,7 +2404,7 @@ paths:
       - description: The perspective camera up vector.
         explode: true
         in: query
-        name: camera[perspective][up]
+        name: "camera[perspective][up]"
         required: false
         schema:
           $ref: '#/components/schemas/Vector3'
@@ -2298,7 +2412,7 @@ paths:
       - description: The orthographic camera view vector.
         explode: true
         in: query
-        name: camera[orthographic][viewVector]
+        name: "camera[orthographic][viewVector]"
         required: false
         schema:
           $ref: '#/components/schemas/Vector3'
@@ -2306,7 +2420,7 @@ paths:
       - description: The orthographic camera look at position.
         explode: true
         in: query
-        name: camera[orthographic][lookAt]
+        name: "camera[orthographic][lookAt]"
         required: false
         schema:
           $ref: '#/components/schemas/Vector3'
@@ -2314,7 +2428,7 @@ paths:
       - description: The orthographic camera up vector.
         explode: true
         in: query
-        name: camera[orthographic][up]
+        name: "camera[orthographic][up]"
         required: false
         schema:
           $ref: '#/components/schemas/Vector3'
@@ -2322,7 +2436,7 @@ paths:
       - description: The orthographic field-of-view height.
         explode: true
         in: query
-        name: camera[orthographic][fovHeight]
+        name: "camera[orthographic][fovHeight]"
         required: false
         schema:
           exclusiveMinimum: true
@@ -2390,7 +2504,107 @@ paths:
       - OAuth2: []
       tags:
       - part-revisions
-      x-accepts: application/vnd.api+json,image/jpeg,image/png
+      x-accepts:
+      - application/vnd.api+json
+      - image/jpeg
+      - image/png
+  /part-revision-instances:
+    get:
+      description: |
+        Gets a page of 'part-revision' instances. An instance is an occurence of a revision that is a child of a parent revision. The returned data will have the ordinal  used for ordering and the transform matrix for each occurrence.
+      operationId: getPartRevisionInstanceList
+      parameters:
+      - description: Parent ID to filter on.
+        explode: true
+        in: query
+        name: "filter[parent]"
+        required: false
+        schema:
+          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
+          format: uuid
+          maxLength: 36
+          type: string
+        style: form
+      - description: The cursor for the next page of items.
+        explode: true
+        in: query
+        name: "page[cursor]"
+        required: false
+        schema:
+          example: cHJkMDVFR2RLag==
+          type: string
+        style: form
+      - description: The number of items to return.
+        explode: true
+        in: query
+        name: "page[size]"
+        required: false
+        schema:
+          example: 10
+          format: int32
+          maximum: 200
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/PartRevisionInstanceList'
+          description: OK
+        "400":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "400"
+                  code: BadRequest
+                  title: "Invalid, missing, or out-of-range request parameters."
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Bad Request
+        "401":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "401"
+                  code: Unauthorized
+                  title: Invalid or missing credentials.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unauthorized
+        "404":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "404"
+                  code: NotFound
+                  title: The requested resource was not found.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Not Found
+        "415":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "415"
+                  code: UnsupportedMediaType
+                  title: The provided media type is not supported. Update the Content-Type
+                    header to application/vnd.api+json and try again.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unsupported Media Type
+      security:
+      - OAuth2: []
+      tags:
+      - part-revision-instances
+      x-scala-package: translations
+      x-accepts:
+      - application/vnd.api+json
   /parts/{id}/part-revisions:
     get:
       description: Get `part-revisions` for a `part`.
@@ -2407,7 +2621,7 @@ paths:
       - description: The cursor for the next page of items.
         explode: true
         in: query
-        name: page[cursor]
+        name: "page[cursor]"
         required: false
         schema:
           example: cHJkMDVFR2RLag==
@@ -2416,7 +2630,7 @@ paths:
       - description: The number of items to return.
         explode: true
         in: query
-        name: page[size]
+        name: "page[size]"
         required: false
         schema:
           example: 10
@@ -2428,10 +2642,10 @@ paths:
       - description: Comma-separated list of supplied IDs to filter on.
         explode: true
         in: query
-        name: filter[suppliedId]
+        name: "filter[suppliedId]"
         required: false
         schema:
-          example: some-id-1,some-id-2
+          example: "some-id-1,some-id-2"
           maxLength: 1024
           type: string
         style: form
@@ -2480,7 +2694,8 @@ paths:
       - OAuth2: []
       tags:
       - part-revisions
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /parts:
     get:
       description: Get `parts`.
@@ -2489,7 +2704,7 @@ paths:
       - description: The cursor for the next page of items.
         explode: true
         in: query
-        name: page[cursor]
+        name: "page[cursor]"
         required: false
         schema:
           example: cHJkMDVFR2RLag==
@@ -2498,7 +2713,7 @@ paths:
       - description: The number of items to return.
         explode: true
         in: query
-        name: page[size]
+        name: "page[size]"
         required: false
         schema:
           example: 10
@@ -2510,10 +2725,10 @@ paths:
       - description: Comma-separated list of supplied IDs to filter on.
         explode: true
         in: query
-        name: filter[suppliedId]
+        name: "filter[suppliedId]"
         required: false
         schema:
-          example: some-id-1,some-id-2
+          example: "some-id-1,some-id-2"
           maxLength: 1024
           type: string
         style: form
@@ -2551,7 +2766,8 @@ paths:
       - OAuth2: []
       tags:
       - parts
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     post:
       description: "Create a `part`.\n\nThis endpoint includes multiple successful\
         \ response codes: [`201`, `202`].\n\nWhen not given a relationship, this endpoint\
@@ -2598,7 +2814,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -2629,8 +2845,9 @@ paths:
       - OAuth2: []
       tags:
       - parts
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /parts/{id}:
     delete:
       description: Delete a `part`.
@@ -2692,7 +2909,8 @@ paths:
       - OAuth2: []
       tags:
       - parts
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     get:
       description: Get a `part` by ID.
       operationId: getPart
@@ -2760,7 +2978,8 @@ paths:
       - OAuth2: []
       tags:
       - parts
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /queued-part-deletions/{id}:
     get:
       description: Get a `queued-part-deletion` by ID.
@@ -2819,7 +3038,8 @@ paths:
       - OAuth2: []
       tags:
       - parts
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /queued-part-revision-deletions/{id}:
     get:
       description: Get a `queued-part-revision-deletion` by ID.
@@ -2878,7 +3098,469 @@ paths:
       - OAuth2: []
       tags:
       - part-revisions
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
+  /model-views/{id}:
+    get:
+      description: Get the details of a `model-view`.
+      operationId: getModelView
+      parameters:
+      - description: The `model-view` ID.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          $ref: '#/components/schemas/Uuid'
+        style: simple
+      responses:
+        "200":
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ModelView'
+          description: OK
+        "401":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "401"
+                  code: Unauthorized
+                  title: Invalid or missing credentials.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unauthorized
+        "404":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "404"
+                  code: NotFound
+                  title: The requested resource was not found.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Not Found
+        "415":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "415"
+                  code: UnsupportedMediaType
+                  title: The provided media type is not supported. Update the Content-Type
+                    header to application/vnd.api+json and try again.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unsupported Media Type
+      security:
+      - OAuth2: []
+      tags:
+      - model-views
+      x-accepts:
+      - application/vnd.api+json
+  /part-revisions/{id}/model-views:
+    get:
+      description: Get a paged list of `model-views` for a part revision.
+      operationId: getPartRevisionModelViews
+      parameters:
+      - description: The `part-revision` ID.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          $ref: '#/components/schemas/Uuid'
+        style: simple
+      - description: Filter model views that contain or do not contain annotations.
+        explode: true
+        in: query
+        name: "filter[hasAnnotations]"
+        required: false
+        schema:
+          example: true
+          maxLength: 1024
+          type: boolean
+        style: form
+      - description: The cursor for the next page of items.
+        explode: true
+        in: query
+        name: "page[cursor]"
+        required: false
+        schema:
+          example: cHJkMDVFR2RLag==
+          type: string
+        style: form
+      - description: The number of items to return.
+        explode: true
+        in: query
+        name: "page[size]"
+        required: false
+        schema:
+          example: 10
+          format: int32
+          maximum: 200
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ModelViewList'
+          description: OK
+        "401":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "401"
+                  code: Unauthorized
+                  title: Invalid or missing credentials.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unauthorized
+        "404":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "404"
+                  code: NotFound
+                  title: The requested resource was not found.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Not Found
+        "415":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "415"
+                  code: UnsupportedMediaType
+                  title: The provided media type is not supported. Update the Content-Type
+                    header to application/vnd.api+json and try again.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unsupported Media Type
+      security:
+      - OAuth2: []
+      tags:
+      - model-views
+      x-accepts:
+      - application/vnd.api+json
+  /scene-items/{id}/model-views:
+    get:
+      description: Get a paged list of `model-views` for a scene item.
+      operationId: getSceneItemModelViews
+      parameters:
+      - description: The `scene-item` ID.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          $ref: '#/components/schemas/Uuid'
+        style: simple
+      - description: Filter model views that contain or do not contain annotations.
+        explode: true
+        in: query
+        name: "filter[hasAnnotations]"
+        required: false
+        schema:
+          example: true
+          maxLength: 1024
+          type: boolean
+        style: form
+      - description: The cursor for the next page of items.
+        explode: true
+        in: query
+        name: "page[cursor]"
+        required: false
+        schema:
+          example: cHJkMDVFR2RLag==
+          type: string
+        style: form
+      - description: The number of items to return.
+        explode: true
+        in: query
+        name: "page[size]"
+        required: false
+        schema:
+          example: 10
+          format: int32
+          maximum: 200
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ModelViewList'
+          description: OK
+        "401":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "401"
+                  code: Unauthorized
+                  title: Invalid or missing credentials.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unauthorized
+        "404":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "404"
+                  code: NotFound
+                  title: The requested resource was not found.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Not Found
+        "415":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "415"
+                  code: UnsupportedMediaType
+                  title: The provided media type is not supported. Update the Content-Type
+                    header to application/vnd.api+json and try again.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unsupported Media Type
+      security:
+      - OAuth2: []
+      tags:
+      - model-views
+      x-accepts:
+      - application/vnd.api+json
+  /pmi-annotations:
+    get:
+      description: List `pmi-annotation`s.
+      operationId: getPmiAnnotations
+      parameters:
+      - description: Filter annotations belonging to a model view.
+        explode: true
+        in: query
+        name: "filter[modelViewId]"
+        required: false
+        schema:
+          $ref: '#/components/schemas/Uuid'
+        style: form
+      - description: The cursor for the next page of items.
+        explode: true
+        in: query
+        name: "page[cursor]"
+        required: false
+        schema:
+          example: cHJkMDVFR2RLag==
+          type: string
+        style: form
+      - description: The number of items to return.
+        explode: true
+        in: query
+        name: "page[size]"
+        required: false
+        schema:
+          example: 10
+          format: int32
+          maximum: 200
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/PmiAnnotationList'
+          description: OK
+        "401":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "401"
+                  code: Unauthorized
+                  title: Invalid or missing credentials.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unauthorized
+        "404":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "404"
+                  code: NotFound
+                  title: The requested resource was not found.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Not Found
+        "415":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "415"
+                  code: UnsupportedMediaType
+                  title: The provided media type is not supported. Update the Content-Type
+                    header to application/vnd.api+json and try again.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unsupported Media Type
+      security:
+      - OAuth2: []
+      tags:
+      - pmi
+      x-accepts:
+      - application/vnd.api+json
+  /property-entries:
+    get:
+      description: |
+        Get `property-entries` by a resource ID **Preview:** This is a preview API and is subject to change.
+      operationId: getPropertyEntries
+      parameters:
+      - description: The cursor for the next page of items.
+        explode: true
+        in: query
+        name: "page[cursor]"
+        required: false
+        schema:
+          example: cHJkMDVFR2RLag==
+          type: string
+        style: form
+      - description: The number of items to return.
+        explode: true
+        in: query
+        name: "page[size]"
+        required: false
+        schema:
+          example: 10
+          format: int32
+          maximum: 200
+          minimum: 1
+          type: integer
+        style: form
+      - description: A resource ID to filter on
+        explode: true
+        in: query
+        name: "filter[resourceId]"
+        required: false
+        schema:
+          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
+          format: uuid
+          maxLength: 36
+          type: string
+        style: form
+      - description: The provided type for the resource ids
+        explode: true
+        in: query
+        name: "filter[resourceType]"
+        required: false
+        schema:
+          example: part-revision
+          maxLength: 36
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/PropertyEntryList'
+          description: OK
+        "401":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "401"
+                  code: Unauthorized
+                  title: Invalid or missing credentials.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unauthorized
+        "415":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "415"
+                  code: UnsupportedMediaType
+                  title: The provided media type is not supported. Update the Content-Type
+                    header to application/vnd.api+json and try again.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unsupported Media Type
+      security:
+      - OAuth2: []
+      tags:
+      - property-entries
+      x-accepts:
+      - application/vnd.api+json
+    patch:
+      description: |
+        Upsert property-entries for a provided resource.
+        **Preview:** This is a preview API and is subject to change.
+      operationId: upsertPropertyEntries
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/UpsertPropertyEntriesRequest'
+        required: true
+      responses:
+        "204":
+          description: No Content
+        "400":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "400"
+                  code: BadRequest
+                  title: "Invalid, missing, or out-of-range request parameters."
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Bad Request
+        "401":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "401"
+                  code: Unauthorized
+                  title: Invalid or missing credentials.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unauthorized
+        "404":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "404"
+                  code: NotFound
+                  title: The requested resource was not found.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Not Found
+      security:
+      - OAuth2: []
+      tags:
+      - property-entries
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /scene-alterations/{id}:
     get:
       description: Get a `scene-alteration` by ID.
@@ -2937,7 +3619,8 @@ paths:
       - OAuth2: []
       tags:
       - scene-alterations
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /scene-views/{id}/scene-alterations:
     get:
       description: Get `scene-alterations` for a `scene-view`.
@@ -2996,7 +3679,8 @@ paths:
       - OAuth2: []
       tags:
       - scene-alterations
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     post:
       description: Create a `scene-alteration` for a `scene-view`.
       operationId: createSceneAlteration
@@ -3032,7 +3716,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -3074,8 +3758,9 @@ paths:
       - OAuth2: []
       tags:
       - scene-alterations
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /queued-scene-alterations/{id}:
     get:
       description: Get a `queued-scene-alteration` by ID.
@@ -3136,7 +3821,8 @@ paths:
       - OAuth2: []
       tags:
       - scene-alterations
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /scene-item-overrides/{id}:
     delete:
       description: Delete a `scene-item-override`.
@@ -3191,7 +3877,8 @@ paths:
       - OAuth2: []
       tags:
       - scene-item-overrides
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     patch:
       description: Update a `scene-item-override`.
       operationId: updateSceneItemOverride
@@ -3224,7 +3911,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -3266,8 +3953,9 @@ paths:
       - OAuth2: []
       tags:
       - scene-item-overrides
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /scene-views/{id}/scene-item-overrides:
     get:
       description: Get `scene-item-overrides` for a `scene-view`.
@@ -3284,7 +3972,7 @@ paths:
       - description: The cursor for the next page of items.
         explode: true
         in: query
-        name: page[cursor]
+        name: "page[cursor]"
         required: false
         schema:
           example: cHJkMDVFR2RLag==
@@ -3293,7 +3981,7 @@ paths:
       - description: The number of items to return.
         explode: true
         in: query
-        name: page[size]
+        name: "page[size]"
         required: false
         schema:
           example: 10
@@ -3347,7 +4035,8 @@ paths:
       - OAuth2: []
       tags:
       - scene-item-overrides
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     post:
       description: Create a `scene-item-override` for a `scene-view`.
       operationId: createSceneItemOverride
@@ -3383,7 +4072,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -3425,8 +4114,9 @@ paths:
       - OAuth2: []
       tags:
       - scene-item-overrides
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /scene-items/{id}:
     delete:
       description: Delete a `scene-item`.
@@ -3481,7 +4171,8 @@ paths:
       - OAuth2: []
       tags:
       - scene-items
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     get:
       description: Get a `scene-item` by ID.
       operationId: getSceneItem
@@ -3494,15 +4185,15 @@ paths:
         schema:
           $ref: '#/components/schemas/Uuid'
         style: simple
-      - description: Comma-separated list of fields to return in response. An empty
-          value returns no fields. `boundingBox`, `worldTransform` and `metadata`
-          are only returned if explicitly requested.
+      - description: "Comma-separated list of fields to return in response. An empty\
+          \ value returns no fields. `boundingBox`, `worldTransform` and `metadata`\
+          \ are only returned if explicitly requested."
         explode: true
         in: query
-        name: fields[scene-item]
+        name: "fields[scene-item]"
         required: false
         schema:
-          example: created,suppliedId,visible,transform,worldTransform,materialOverride,boundingBox,metadata
+          example: "created,suppliedId,visible,transform,worldTransform,materialOverride,boundingBox,metadata"
           type: string
         style: form
       responses:
@@ -3550,7 +4241,8 @@ paths:
       - OAuth2: []
       tags:
       - scene-items
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     patch:
       description: Update a `scene-item`.
       operationId: updateSceneItem
@@ -3586,7 +4278,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -3628,8 +4320,9 @@ paths:
       - OAuth2: []
       tags:
       - scene-items
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /scenes/{id}/scene-items:
     get:
       description: Get `scene-items` for a `scene`.
@@ -3646,7 +4339,7 @@ paths:
       - description: The cursor for the next page of items.
         explode: true
         in: query
-        name: page[cursor]
+        name: "page[cursor]"
         required: false
         schema:
           example: cHJkMDVFR2RLag==
@@ -3655,7 +4348,7 @@ paths:
       - description: The number of items to return.
         explode: true
         in: query
-        name: page[size]
+        name: "page[size]"
         required: false
         schema:
           example: 10
@@ -3664,30 +4357,32 @@ paths:
           minimum: 1
           type: integer
         style: form
-      - description: Source ID to filter on.
+      - allowEmptyValue: true
+        description: Source ID to filter on.
         explode: true
         in: query
-        name: filter[source]
+        name: "filter[source]"
         required: false
         schema:
           example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
           maxLength: 1024
+          nullable: true
           type: string
         style: form
       - description: Comma-separated list of supplied IDs to filter on.
         explode: true
         in: query
-        name: filter[suppliedId]
+        name: "filter[suppliedId]"
         required: false
         schema:
-          example: some-id-1,some-id-2
+          example: "some-id-1,some-id-2"
           maxLength: 1024
           type: string
         style: form
       - description: Parent ID to filter on.
         explode: true
         in: query
-        name: filter[parent]
+        name: "filter[parent]"
         required: false
         schema:
           example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
@@ -3740,7 +4435,8 @@ paths:
       - OAuth2: []
       tags:
       - scene-items
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     post:
       description: |-
         Create a `scene-item` for a `scene`. Provide the source geometry either via `part-revision` or `geometry-set` UUID using `relationship.source` or by supplied IDs using `attributes.source`.
@@ -3780,7 +4476,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -3833,15 +4529,16 @@ paths:
       - OAuth2: []
       tags:
       - scene-items
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /queued-scene-items/{id}:
     get:
-      description: Get a `queued-scene-item`. The response is either the status if
-        `running` or `error` or, upon completion, redirects to the created `scene-item`.
-        Once created, commit the scene via the updateScene API. For details, see our
-        [Render static scenes](https://developer.vertexvis.com/docs/guides/render-static-scenes)
-        guide.
+      description: "Get a `queued-scene-item`. The response is either the status if\
+        \ `running` or `error` or, upon completion, redirects to the created `scene-item`.\
+        \ Once created, commit the scene via the updateScene API. For details, see\
+        \ our [Render static scenes](https://developer.vertexvis.com/docs/guides/render-static-scenes)\
+        \ guide."
       operationId: getQueuedSceneItem
       parameters:
       - description: The `queued-scene-item` ID.
@@ -3899,7 +4596,8 @@ paths:
       - OAuth2: []
       tags:
       - scene-items
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /queued-scene-item-deletions/{id}:
     get:
       description: Get a `queued-scene-item-deletion` by ID.
@@ -3958,7 +4656,8 @@ paths:
       - OAuth2: []
       tags:
       - scene-items
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /scene-views/{id}:
     delete:
       description: Delete a `scene-view`.
@@ -4013,7 +4712,8 @@ paths:
       - OAuth2: []
       tags:
       - scene-views
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     get:
       description: Get a `scene-view` by ID.
       operationId: getSceneView
@@ -4071,7 +4771,8 @@ paths:
       - OAuth2: []
       tags:
       - scene-views
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     patch:
       description: Update a `scene-view`.
       operationId: updateSceneView
@@ -4104,7 +4805,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -4146,12 +4847,13 @@ paths:
       - OAuth2: []
       tags:
       - scene-views
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /scene-views/{id}/image:
     get:
-      description: Get a rendered image of a `scene-view`. If a single pixel is returned,
-        ensure the `scene` is in the `commit` state and contains scene items.
+      description: "Get a rendered image of a `scene-view`. If a single pixel is returned,\
+        \ ensure the `scene` is in the `commit` state and contains scene items."
       operationId: renderSceneView
       parameters:
       - description: The `scene-view` ID.
@@ -4247,7 +4949,10 @@ paths:
       - OAuth2: []
       tags:
       - scene-views
-      x-accepts: application/vnd.api+json,image/jpeg,image/png
+      x-accepts:
+      - application/vnd.api+json
+      - image/jpeg
+      - image/png
   /scene-views/{id}/scene-items/{itemId}:
     get:
       description: Get a `scene-item` within a view by ID.
@@ -4269,15 +4974,15 @@ paths:
         schema:
           $ref: '#/components/schemas/Uuid'
         style: simple
-      - description: Comma-separated list of fields to return in response. An empty
-          value returns no fields. `boundingBox`, `worldTransform` and `metadata`
-          are only returned if explicitly requested.
+      - description: "Comma-separated list of fields to return in response. An empty\
+          \ value returns no fields. `boundingBox`, `worldTransform` and `metadata`\
+          \ are only returned if explicitly requested."
         explode: true
         in: query
-        name: fields[scene-item]
+        name: "fields[scene-item]"
         required: false
         schema:
-          example: created,suppliedId,visible,transform,worldTransform,materialOverride,boundingBox,metadata
+          example: "created,suppliedId,visible,transform,worldTransform,materialOverride,boundingBox,metadata"
           type: string
         style: form
       - description: Comma-separated list of relationships to include in response.
@@ -4335,7 +5040,8 @@ paths:
       - OAuth2: []
       tags:
       - scene-views
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /scenes/{id}/scene-views:
     get:
       description: Get `scene-view`s for a `scene`.
@@ -4344,7 +5050,7 @@ paths:
       - description: The cursor for the next page of items.
         explode: true
         in: query
-        name: page[cursor]
+        name: "page[cursor]"
         required: false
         schema:
           example: cHJkMDVFR2RLag==
@@ -4353,7 +5059,7 @@ paths:
       - description: The number of items to return.
         explode: true
         in: query
-        name: page[size]
+        name: "page[size]"
         required: false
         schema:
           example: 10
@@ -4404,7 +5110,8 @@ paths:
       - OAuth2: []
       tags:
       - scene-views
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     post:
       description: Create a `scene-view` of a `scene`.
       operationId: createSceneView
@@ -4440,7 +5147,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -4482,8 +5189,9 @@ paths:
       - OAuth2: []
       tags:
       - scene-views
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /scenes:
     get:
       description: Get `scenes`.
@@ -4492,7 +5200,7 @@ paths:
       - description: The cursor for the next page of items.
         explode: true
         in: query
-        name: page[cursor]
+        name: "page[cursor]"
         required: false
         schema:
           example: cHJkMDVFR2RLag==
@@ -4501,7 +5209,7 @@ paths:
       - description: The number of items to return.
         explode: true
         in: query
-        name: page[size]
+        name: "page[size]"
         required: false
         schema:
           example: 10
@@ -4513,20 +5221,20 @@ paths:
       - description: Comma-separated list of names to filter on.
         explode: true
         in: query
-        name: filter[name]
+        name: "filter[name]"
         required: false
         schema:
-          example: some-name-1,some-name-2
+          example: "some-name-1,some-name-2"
           maxLength: 1024
           type: string
         style: form
       - description: Comma-separated list of supplied IDs to filter on.
         explode: true
         in: query
-        name: filter[suppliedId]
+        name: "filter[suppliedId]"
         required: false
         schema:
-          example: some-id-1,some-id-2
+          example: "some-id-1,some-id-2"
           maxLength: 1024
           type: string
         style: form
@@ -4534,23 +5242,56 @@ paths:
           value returns no fields. `metadata` is only returned if explicitly requested.
         explode: true
         in: query
-        name: fields[scene]
+        name: "fields[scene]"
         required: false
         schema:
-          example: camera,state,created,suppliedId,name,treeEnabled,modified,up,metadata
+          example: "camera,state,created,suppliedId,name,treeEnabled,modified,up,metadata"
           type: string
         style: form
       - description: |
           Filter scenes that contain all the given metadata key-value pairs. Should be specified in query parameter map notation: `filter[metadata][key1]=value1&filter[metadata][key]=value2`.
         explode: true
         in: query
-        name: filter[metadata]
+        name: "filter[metadata]"
         required: false
         schema:
           additionalProperties:
             type: string
-          example: filter[metadata][key1]=test
+          example: "filter[metadata][key1]=test"
           type: object
+        style: form
+      - description: Comma-separated list of scene-item source part revision IDs to
+          filter on.
+        explode: true
+        in: query
+        name: "filter[sceneItems.source.partRevision]"
+        required: false
+        schema:
+          example: "?filter[sceneItems.source.partRevision]=f79d4760-0b71-44e4-ad0b-22743fdd4ca3,f79d4760-0b71-44e4-ad0b-22743fdd4ca2"
+          maxLength: 1024
+          type: string
+        style: form
+      - description: Comma-separated list of scene-item source geometry set IDs to
+          filter on.
+        explode: true
+        in: query
+        name: "filter[sceneItems.source.geometrySet]"
+        required: false
+        schema:
+          example: "?filter[sceneItems.source.geometrySet]=f79d4760-0b71-44e4-ad0b-22743fdd4ca3,f79d4760-0b71-44e4-ad0b-22743fdd4ca2"
+          maxLength: 1024
+          type: string
+        style: form
+      - description: Comma-separated list of scene-item source scene IDs to filter
+          on.
+        explode: true
+        in: query
+        name: "filter[sceneItems.source.scene]"
+        required: false
+        schema:
+          example: "?filter[sceneItems.source.scene]=f79d4760-0b71-44e4-ad0b-22743fdd4ca3,f79d4760-0b71-44e4-ad0b-22743fdd4ca2"
+          maxLength: 1024
+          type: string
         style: form
       responses:
         "200":
@@ -4586,11 +5327,12 @@ paths:
       - OAuth2: []
       tags:
       - scenes
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     post:
-      description: Create a `scene`. Once created, add scene items via the createSceneItem
-        API. For details, see our [Render static scenes](https://developer.vertexvis.com/docs/guides/render-static-scenes)
-        guide.
+      description: "Create a `scene`. Once created, add scene items via the createSceneItem\
+        \ API. For details, see our [Render static scenes](https://developer.vertexvis.com/docs/guides/render-static-scenes)\
+        \ guide."
       operationId: createScene
       requestBody:
         content:
@@ -4615,7 +5357,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -4646,8 +5388,9 @@ paths:
       - OAuth2: []
       tags:
       - scenes
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /scenes/{id}:
     delete:
       description: Delete a `scene`.
@@ -4702,7 +5445,8 @@ paths:
       - OAuth2: []
       tags:
       - scenes
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     get:
       description: Get a `scene` by ID.
       operationId: getScene
@@ -4720,10 +5464,10 @@ paths:
           if explicitly requested.
         explode: true
         in: query
-        name: fields[scene]
+        name: "fields[scene]"
         required: false
         schema:
-          example: camera,state,created,suppliedId,name,treeEnabled,modified,up,sceneItemCount,metadata
+          example: "camera,state,created,suppliedId,name,treeEnabled,modified,up,sceneItemCount,metadata"
           type: string
         style: form
       responses:
@@ -4771,12 +5515,13 @@ paths:
       - OAuth2: []
       tags:
       - scenes
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     patch:
-      description: Update a `scene` camera and/or state. Once updated, view the scene
-        via the renderScene API or with the Viewer SDK. For details, see our [Render
-        static scenes](https://developer.vertexvis.com/docs/guides/render-static-scenes)
-        guide.
+      description: "Update a `scene` camera and/or state. Once updated, view the scene\
+        \ via the renderScene API or with the Viewer SDK. For details, see our [Render\
+        \ static scenes](https://developer.vertexvis.com/docs/guides/render-static-scenes)\
+        \ guide."
       operationId: updateScene
       parameters:
       - description: The `scene` ID.
@@ -4807,7 +5552,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -4849,12 +5594,13 @@ paths:
       - OAuth2: []
       tags:
       - scenes
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /scenes/{id}/image:
     get:
-      description: Get a rendered image of a `scene`. If only a single pixel is returned,
-        ensure the `scene` is in the `commit` state and contains scene items.
+      description: "Get a rendered image of a `scene`. If only a single pixel is returned,\
+        \ ensure the `scene` is in the `commit` state and contains scene items."
       operationId: renderScene
       parameters:
       - description: The `scene` ID.
@@ -4950,7 +5696,10 @@ paths:
       - OAuth2: []
       tags:
       - scenes
-      x-accepts: application/vnd.api+json,image/jpeg,image/png
+      x-accepts:
+      - application/vnd.api+json
+      - image/jpeg
+      - image/png
   /queued-scenes/{id}:
     get:
       description: Get a `queued-scene`.
@@ -5011,7 +5760,8 @@ paths:
       - OAuth2: []
       tags:
       - scenes
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /scenes/{id}/scene-view-states:
     get:
       description: Get `scene-view-states` for a `scene`.
@@ -5028,7 +5778,7 @@ paths:
       - description: The cursor for the next page of items.
         explode: true
         in: query
-        name: page[cursor]
+        name: "page[cursor]"
         required: false
         schema:
           example: cHJkMDVFR2RLag==
@@ -5037,7 +5787,7 @@ paths:
       - description: The number of items to return.
         explode: true
         in: query
-        name: page[size]
+        name: "page[size]"
         required: false
         schema:
           example: 10
@@ -5050,7 +5800,7 @@ paths:
           value returns no fields. `thumbnails` is only returned if explicitly requested.
         explode: true
         in: query
-        name: fields[scene-view-state]
+        name: "fields[scene-view-state]"
         required: false
         schema:
           example: thumbnails
@@ -5059,19 +5809,19 @@ paths:
       - description: Comma-separated list of IDs to filter on.
         explode: true
         in: query
-        name: filter[id]
+        name: "filter[id]"
         required: false
         schema:
-          example: some-id-1,some-id-2
+          example: "some-id-1,some-id-2"
           type: string
         style: form
       - description: Comma-separated list of supplied IDs to filter on.
         explode: true
         in: query
-        name: filter[suppliedId]
+        name: "filter[suppliedId]"
         required: false
         schema:
-          example: some-id-1,some-id-2
+          example: "some-id-1,some-id-2"
           maxLength: 1024
           type: string
         style: form
@@ -5109,7 +5859,8 @@ paths:
       - OAuth2: []
       tags:
       - scene-view-states
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     post:
       description: Create a `scene-view-state` for a `scene`.
       operationId: createSceneViewState
@@ -5145,7 +5896,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -5187,8 +5938,9 @@ paths:
       - OAuth2: []
       tags:
       - scene-view-states
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /scene-view-states/{id}:
     delete:
       description: Delete a `scene-view-state`.
@@ -5243,7 +5995,8 @@ paths:
       - OAuth2: []
       tags:
       - scene-view-states
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     get:
       description: Get a `scene-view-state` by ID.
       operationId: getSceneViewState
@@ -5260,7 +6013,7 @@ paths:
           value returns no fields. `thumbnails` is only returned if explicitly requested.
         explode: true
         in: query
-        name: fields[scene-view-state]
+        name: "fields[scene-view-state]"
         required: false
         schema:
           example: thumbnails
@@ -5311,7 +6064,8 @@ paths:
       - OAuth2: []
       tags:
       - scene-view-states
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     patch:
       description: Update a `scene-view-state`.
       operationId: updateSceneViewState
@@ -5344,7 +6098,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -5386,8 +6140,9 @@ paths:
       - OAuth2: []
       tags:
       - scene-view-states
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /scenes/{id}/stream-keys:
     post:
       description: Create a `stream-key` for a `scene`.
@@ -5455,8 +6210,309 @@ paths:
       - OAuth2: []
       tags:
       - stream-keys
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
+  /scenes/{id}/scene-annotation-sets:
+    get:
+      description: Get `scene-annotation-sets` for a `scene`.
+      operationId: getSceneAnnotationSets
+      parameters:
+      - description: The `scene` ID.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          $ref: '#/components/schemas/Uuid'
+        style: simple
+      - description: The cursor for the next page of items.
+        explode: true
+        in: query
+        name: "page[cursor]"
+        required: false
+        schema:
+          example: cHJkMDVFR2RLag==
+          type: string
+        style: form
+      - description: The number of items to return.
+        explode: true
+        in: query
+        name: "page[size]"
+        required: false
+        schema:
+          example: 10
+          format: int32
+          maximum: 200
+          minimum: 1
+          type: integer
+        style: form
+      - description: Comma-separated list of IDs to filter on.
+        explode: true
+        in: query
+        name: "filter[id]"
+        required: false
+        schema:
+          example: "some-id-1,some-id-2"
+          type: string
+        style: form
+      - description: Comma-separated list of supplied IDs to filter on.
+        explode: true
+        in: query
+        name: "filter[suppliedId]"
+        required: false
+        schema:
+          example: "some-id-1,some-id-2"
+          maxLength: 1024
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/SceneAnnotationSetList'
+          description: OK
+        "401":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "401"
+                  code: Unauthorized
+                  title: Invalid or missing credentials.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unauthorized
+        "404":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "404"
+                  code: NotFound
+                  title: The requested resource was not found.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Not Found
+        "415":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "415"
+                  code: UnsupportedMediaType
+                  title: The provided media type is not supported. Update the Content-Type
+                    header to application/vnd.api+json and try again.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unsupported Media Type
+      security:
+      - OAuth2: []
+      tags:
+      - scene-annotations
+      x-accepts:
+      - application/vnd.api+json
+    post:
+      description: |
+        Create an annotation set that is associated with a scene.
+        **Preview:** This is a preview API and is subject to change.
+      operationId: createSceneAnnotationSet
+      parameters:
+      - description: The `scene` ID.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          $ref: '#/components/schemas/Uuid'
+        style: simple
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/CreateSceneAnnotationSetRequest'
+        required: true
+      responses:
+        "201":
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/SceneAnnotationSet'
+          description: Created
+          headers:
+            location:
+              $ref: '#/components/headers/Location'
+        "404":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "404"
+                  code: NotFound
+                  title: The requested resource was not found.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Not Found
+      security:
+      - OAuth2: []
+      tags:
+      - scene-annotations
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
+  /scene-annotation-sets/{id}/scene-annotations:
+    post:
+      description: |
+        Create an annotation belonging to an annotation set.
+        **Preview:** This is a preview API and is subject to change.
+      operationId: createSceneAnnotation
+      parameters:
+      - description: The `scene-annotation-set` ID.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          $ref: '#/components/schemas/Uuid'
+        style: simple
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/CreateSceneAnnotationRequest'
+        required: true
+      responses:
+        "201":
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/SceneAnnotation'
+          description: Created
+          headers:
+            location:
+              $ref: '#/components/headers/Location'
+        "404":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "404"
+                  code: NotFound
+                  title: The requested resource was not found.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Not Found
+      security:
+      - OAuth2: []
+      tags:
+      - scene-annotations
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
+  /scene-annotations/{id}:
+    delete:
+      description: |
+        Delete a scene annotation.
+        **Preview:** This is a preview API and is subject to change.
+      operationId: deleteSceneAnnotation
+      parameters:
+      - description: The `scene-annotation` ID.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          $ref: '#/components/schemas/Uuid'
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "401":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "401"
+                  code: Unauthorized
+                  title: Invalid or missing credentials.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unauthorized
+        "404":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "404"
+                  code: NotFound
+                  title: The requested resource was not found.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Not Found
+        "415":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "415"
+                  code: UnsupportedMediaType
+                  title: The provided media type is not supported. Update the Content-Type
+                    header to application/vnd.api+json and try again.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Unsupported Media Type
+      security:
+      - OAuth2: []
+      tags:
+      - scene-annotations
+      x-accepts:
+      - application/vnd.api+json
+    patch:
+      description: |
+        Update the attributes of an annotation.
+        **Preview:** This is a preview API and is subject to change.
+      operationId: updateSceneAnnotation
+      parameters:
+      - description: The `scene-annotation` ID.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          $ref: '#/components/schemas/Uuid'
+        style: simple
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/UpdateSceneAnnotationRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/SceneAnnotation'
+          description: OK
+        "404":
+          content:
+            application/vnd.api+json:
+              example:
+                errors:
+                - status: "404"
+                  code: NotFound
+                  title: The requested resource was not found.
+              schema:
+                $ref: '#/components/schemas/Failure'
+          description: Not Found
+      security:
+      - OAuth2: []
+      tags:
+      - scene-annotations
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /scenes/{id}/scene-syncs:
     post:
       description: Create a scene item update job.
@@ -5501,8 +6557,9 @@ paths:
       - OAuth2: []
       tags:
       - scene-synchronizations
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /queued-scene-syncs/{id}:
     get:
       description: Get a `queued-scene-sync-job`.
@@ -5561,7 +6618,8 @@ paths:
       - OAuth2: []
       tags:
       - scene-synchronizations
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /scene-syncs/{id}:
     get:
       description: Get a `scene-sync`.
@@ -5620,7 +6678,8 @@ paths:
       - OAuth2: []
       tags:
       - scene-synchronizations
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /scene-syncs/{id}/item-results:
     get:
       description: Get the results of a scene synchronization.
@@ -5637,7 +6696,7 @@ paths:
       - description: The cursor for the next page of items.
         explode: true
         in: query
-        name: page[cursor]
+        name: "page[cursor]"
         required: false
         schema:
           example: cHJkMDVFR2RLag==
@@ -5646,7 +6705,7 @@ paths:
       - description: The number of items to return.
         explode: true
         in: query
-        name: page[size]
+        name: "page[size]"
         required: false
         schema:
           example: 10
@@ -5658,7 +6717,7 @@ paths:
       - description: List of scene item IDs to filter on.
         explode: true
         in: query
-        name: filter[sceneItemId]
+        name: "filter[sceneItemId]"
         required: false
         schema:
           example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
@@ -5711,7 +6770,8 @@ paths:
       - OAuth2: []
       tags:
       - scene-synchronizations
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /stream-keys:
     get:
       description: Get `stream-key`s.
@@ -5720,7 +6780,7 @@ paths:
       - description: The cursor for the next page of items.
         explode: true
         in: query
-        name: page[cursor]
+        name: "page[cursor]"
         required: false
         schema:
           example: cHJkMDVFR2RLag==
@@ -5729,7 +6789,7 @@ paths:
       - description: The number of items to return.
         explode: true
         in: query
-        name: page[size]
+        name: "page[size]"
         required: false
         schema:
           example: 10
@@ -5741,7 +6801,7 @@ paths:
       - description: Stream key to filter on.
         explode: true
         in: query
-        name: filter[key]
+        name: "filter[key]"
         required: false
         schema:
           example: i3MFRDOmg1pxD36dGCTONRwOujkgV8m9LQ
@@ -5781,7 +6841,8 @@ paths:
       - OAuth2: []
       tags:
       - stream-keys
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /stream-keys/{id}:
     delete:
       description: Delete a `stream-key`.
@@ -5836,7 +6897,8 @@ paths:
       - OAuth2: []
       tags:
       - stream-keys
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /translation-inspections:
     post:
       description: Create a `translation-inspection`.
@@ -5864,7 +6926,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -5895,8 +6957,9 @@ paths:
       - OAuth2: []
       tags:
       - translation-inspections
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /translation-inspections/{id}:
     get:
       description: Get a `translation-inspection` by ID.
@@ -5955,7 +7018,8 @@ paths:
       - OAuth2: []
       tags:
       - translation-inspections
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /queued-translation-jobs:
     get:
       description: Get all current translation jobs in progress.
@@ -5964,7 +7028,7 @@ paths:
       - description: The cursor for the next page of items.
         explode: true
         in: query
-        name: page[cursor]
+        name: "page[cursor]"
         required: false
         schema:
           example: cHJkMDVFR2RLag==
@@ -5973,7 +7037,7 @@ paths:
       - description: The number of items to return.
         explode: true
         in: query
-        name: page[size]
+        name: "page[size]"
         required: false
         schema:
           example: 10
@@ -5982,15 +7046,33 @@ paths:
           minimum: 1
           type: integer
         style: form
+      - description: A sort to apply to the collection. A "minus" prefixed before
+          the field name is used to specify descending sort order.
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          example: "-age,name"
+          type: string
+        style: form
       - description: Status to filter on.
         explode: true
         in: query
-        name: filter[status]
+        name: "filter[status]"
         required: false
         schema:
-          example: running
+          example: "running,complete"
           maxLength: 1024
           type: string
+        style: form
+      - description: The completion date and time to filter on.
+        explode: true
+        in: query
+        name: "filter[completedAt]"
+        required: false
+        schema:
+          $ref: '#/components/schemas/FilterExpression'
         style: form
       responses:
         "200":
@@ -6037,14 +7119,15 @@ paths:
       - OAuth2: []
       tags:
       - translation-inspections
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /queued-translation-jobs/{id}:
     get:
-      description: Get a `queued-translation-job`. The response is either the status
-        if `running` or `error` or, upon completion, the `part-revision` that was
-        created. Once created, create scenes via the createScene API. For details,
-        see our [Render static scenes](https://developer.vertexvis.com/docs/guides/render-static-scenes)
-        guide.
+      description: "Get a `queued-translation-job`. The response is either the status\
+        \ if `running` or `error` or, upon completion, the `part-revision` that was\
+        \ created. Once created, create scenes via the createScene API. For details,\
+        \ see our [Render static scenes](https://developer.vertexvis.com/docs/guides/render-static-scenes)\
+        \ guide."
       operationId: getQueuedTranslationJob
       parameters:
       - description: The `queued-translation` ID.
@@ -6102,7 +7185,8 @@ paths:
       - OAuth2: []
       tags:
       - translation-inspections
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /queued-translations:
     get:
       deprecated: true
@@ -6113,7 +7197,7 @@ paths:
       - description: The cursor for the next page of items.
         explode: true
         in: query
-        name: page[cursor]
+        name: "page[cursor]"
         required: false
         schema:
           example: cHJkMDVFR2RLag==
@@ -6122,7 +7206,7 @@ paths:
       - description: The number of items to return.
         explode: true
         in: query
-        name: page[size]
+        name: "page[size]"
         required: false
         schema:
           example: 10
@@ -6134,10 +7218,10 @@ paths:
       - description: Status to filter on.
         explode: true
         in: query
-        name: filter[status]
+        name: "filter[status]"
         required: false
         schema:
-          example: running
+          example: "running,complete"
           maxLength: 1024
           type: string
         style: form
@@ -6188,16 +7272,17 @@ paths:
       - OAuth2: []
       tags:
       - translation-inspections
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /queued-translations/{id}:
     get:
       deprecated: true
-      description: This has been deprecated and replaced by **queued-translation-jobs/{id}**
-        - Get a `queued-translation`. The response is either the status if `running`
-        or `error` or, upon completion, redirects to the created `part-revision`.
-        Once created, create scenes via the createScene API. For details, see our
-        [Render static scenes](https://developer.vertexvis.com/docs/guides/render-static-scenes)
-        guide.
+      description: "This has been deprecated and replaced by **queued-translation-jobs/{id}**\
+        \ - Get a `queued-translation`. The response is either the status if `running`\
+        \ or `error` or, upon completion, redirects to the created `part-revision`.\
+        \ Once created, create scenes via the createScene API. For details, see our\
+        \ [Render static scenes](https://developer.vertexvis.com/docs/guides/render-static-scenes)\
+        \ guide."
       operationId: getQueuedTranslation
       parameters:
       - description: The `queued-translation` ID.
@@ -6255,11 +7340,12 @@ paths:
       - OAuth2: []
       tags:
       - translation-inspections
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /exports:
     post:
-      description: Create an `export`. This API is asynchronous, returning the location
-        of a `queued-export`. Check the status via the getQueuedExport API.
+      description: "Create an `export`. This API is asynchronous, returning the location\
+        \ of a `queued-export`. Check the status via the getQueuedExport API."
       operationId: createExport
       requestBody:
         content:
@@ -6284,7 +7370,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -6315,8 +7401,9 @@ paths:
       - OAuth2: []
       tags:
       - exports
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /exports/{id}:
     get:
       description: Get an `export` by ID.
@@ -6375,11 +7462,12 @@ paths:
       - OAuth2: []
       tags:
       - exports
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /queued-exports/{id}:
     get:
-      description: Get a `queued-export`. The response is either the status if `running`
-        or `error` or, upon completion, redirects to the created `export`.
+      description: "Get a `queued-export`. The response is either the status if `running`\
+        \ or `error` or, upon completion, redirects to the created `export`."
       operationId: getQueuedExport
       parameters:
       - description: The `queued-export` ID.
@@ -6437,7 +7525,8 @@ paths:
       - OAuth2: []
       tags:
       - exports
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /webhook-subscriptions:
     get:
       description: Get `webhook-subscription`s.
@@ -6446,7 +7535,7 @@ paths:
       - description: The cursor for the next page of items.
         explode: true
         in: query
-        name: page[cursor]
+        name: "page[cursor]"
         required: false
         schema:
           example: cHJkMDVFR2RLag==
@@ -6455,7 +7544,7 @@ paths:
       - description: The number of items to return.
         explode: true
         in: query
-        name: page[size]
+        name: "page[size]"
         required: false
         schema:
           example: 10
@@ -6498,7 +7587,8 @@ paths:
       - OAuth2: []
       tags:
       - webhook-subscriptions
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     post:
       callbacks:
         queued-export.completed:
@@ -6624,8 +7714,9 @@ paths:
       - OAuth2: []
       tags:
       - webhook-subscriptions
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
   /webhook-subscriptions/{id}:
     delete:
       description: Delete a `webhook-subscription`.
@@ -6680,7 +7771,8 @@ paths:
       - OAuth2: []
       tags:
       - webhook-subscriptions
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     get:
       description: Get a `webhook-subscription`.
       operationId: getWebhookSubscription
@@ -6738,7 +7830,8 @@ paths:
       - OAuth2: []
       tags:
       - webhook-subscriptions
-      x-accepts: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
     patch:
       description: Update a `webhook-subscription`.
       operationId: updateWebhookSubscription
@@ -6771,7 +7864,7 @@ paths:
                 errors:
                 - status: "400"
                   code: BadRequest
-                  title: Invalid, missing, or out-of-range request parameters.
+                  title: "Invalid, missing, or out-of-range request parameters."
               schema:
                 $ref: '#/components/schemas/Failure'
           description: Bad Request
@@ -6813,8 +7906,9 @@ paths:
       - OAuth2: []
       tags:
       - webhook-subscriptions
-      x-contentType: application/vnd.api+json
-      x-accepts: application/vnd.api+json
+      x-content-type: application/vnd.api+json
+      x-accepts:
+      - application/vnd.api+json
 components:
   headers:
     Location:
@@ -6854,7 +7948,7 @@ components:
       description: A perspective camera that mimics the way the human eye sees.
       explode: true
       in: query
-      name: camera[perspective]
+      name: "camera[perspective]"
       required: false
       schema:
         $ref: '#/components/schemas/PerspectiveCamera'
@@ -6863,7 +7957,7 @@ components:
       description: The perspective camera position.
       explode: true
       in: query
-      name: camera[perspective][position]
+      name: "camera[perspective][position]"
       required: false
       schema:
         $ref: '#/components/schemas/Vector3'
@@ -6872,7 +7966,7 @@ components:
       description: The perspective camera look at position.
       explode: true
       in: query
-      name: camera[perspective][lookAt]
+      name: "camera[perspective][lookAt]"
       required: false
       schema:
         $ref: '#/components/schemas/Vector3'
@@ -6881,7 +7975,7 @@ components:
       description: The perspective camera up vector.
       explode: true
       in: query
-      name: camera[perspective][up]
+      name: "camera[perspective][up]"
       required: false
       schema:
         $ref: '#/components/schemas/Vector3'
@@ -6890,7 +7984,7 @@ components:
       description: The orthographic camera view vector.
       explode: true
       in: query
-      name: camera[orthographic][viewVector]
+      name: "camera[orthographic][viewVector]"
       required: false
       schema:
         $ref: '#/components/schemas/Vector3'
@@ -6899,7 +7993,7 @@ components:
       description: The orthographic camera look at position.
       explode: true
       in: query
-      name: camera[orthographic][lookAt]
+      name: "camera[orthographic][lookAt]"
       required: false
       schema:
         $ref: '#/components/schemas/Vector3'
@@ -6908,7 +8002,7 @@ components:
       description: The orthographic camera up vector.
       explode: true
       in: query
-      name: camera[orthographic][up]
+      name: "camera[orthographic][up]"
       required: false
       schema:
         $ref: '#/components/schemas/Vector3'
@@ -6917,7 +8011,7 @@ components:
       description: The orthographic field-of-view height.
       explode: true
       in: query
-      name: camera[orthographic][fovHeight]
+      name: "camera[orthographic][fovHeight]"
       required: false
       schema:
         exclusiveMinimum: true
@@ -6928,7 +8022,7 @@ components:
       description: The `camera` up vector.
       explode: true
       in: query
-      name: camera[up]
+      name: "camera[up]"
       required: false
       schema:
         $ref: '#/components/schemas/Vector3'
@@ -6937,7 +8031,7 @@ components:
       description: The `camera` position vector.
       explode: true
       in: query
-      name: camera[position]
+      name: "camera[position]"
       required: false
       schema:
         $ref: '#/components/schemas/Vector3'
@@ -6946,11 +8040,20 @@ components:
       description: The `camera` lookAt vector.
       explode: true
       in: query
-      name: camera[lookAt]
+      name: "camera[lookAt]"
       required: false
       schema:
         $ref: '#/components/schemas/Vector3'
       style: deepObject
+    CompletedAtFilter:
+      description: The completion date and time to filter on.
+      explode: true
+      in: query
+      name: "filter[completedAt]"
+      required: false
+      schema:
+        $ref: '#/components/schemas/FilterExpression'
+      style: form
     ExportId:
       description: The `export` ID.
       explode: false
@@ -6969,6 +8072,17 @@ components:
       schema:
         $ref: '#/components/schemas/Uuid'
       style: simple
+    HasAnnotationsFilter:
+      description: Filter model views that contain or do not contain annotations.
+      explode: true
+      in: query
+      name: "filter[hasAnnotations]"
+      required: false
+      schema:
+        example: true
+        maxLength: 1024
+        type: boolean
+      style: form
     Height:
       description: The height of the image to render.
       explode: true
@@ -6986,10 +8100,10 @@ components:
       description: Comma-separated list of IDs to filter on.
       explode: true
       in: query
-      name: filter[id]
+      name: "filter[id]"
       required: false
       schema:
-        example: some-id-1,some-id-2
+        example: "some-id-1,some-id-2"
         type: string
       style: form
     IncludeSource:
@@ -7025,14 +8139,23 @@ components:
         maxLength: 32
         type: string
       style: form
+    ModelViewIdFilter:
+      description: Filter annotations belonging to a model view.
+      explode: true
+      in: query
+      name: "filter[modelViewId]"
+      required: false
+      schema:
+        $ref: '#/components/schemas/Uuid'
+      style: form
     NameFilter:
       description: Comma-separated list of names to filter on.
       explode: true
       in: query
-      name: filter[name]
+      name: "filter[name]"
       required: false
       schema:
-        example: some-name-1,some-name-2
+        example: "some-name-1,some-name-2"
         maxLength: 1024
         type: string
       style: form
@@ -7040,7 +8163,7 @@ components:
       description: The cursor for the next page of items.
       explode: true
       in: query
-      name: page[cursor]
+      name: "page[cursor]"
       required: false
       schema:
         example: cHJkMDVFR2RLag==
@@ -7050,7 +8173,7 @@ components:
       description: The number of items to return.
       explode: true
       in: query
-      name: page[size]
+      name: "page[size]"
       required: false
       schema:
         example: 10
@@ -7069,15 +8192,15 @@ components:
         $ref: '#/components/schemas/Uuid'
       style: simple
     PartRevisionFields:
-      description: Comma-separated list of fields to return in response. An empty
-        value returns no fields. Due to its potential size, metadata is only returned
-        if explicitly requested.
+      description: "Comma-separated list of fields to return in response. An empty\
+        \ value returns no fields. Due to its potential size, metadata is only returned\
+        \ if explicitly requested."
       explode: true
       in: query
-      name: fields[part-revision]
+      name: "fields[part-revision]"
       required: false
       schema:
-        example: created,suppliedId,metadata
+        example: "created,suppliedId,metadata"
         maxLength: 32
         type: string
       style: form
@@ -7108,16 +8231,34 @@ components:
       schema:
         $ref: '#/components/schemas/Uuid'
       style: simple
+    SceneAnnotationSetId:
+      description: The `scene-annotation-set` ID.
+      explode: false
+      in: path
+      name: id
+      required: true
+      schema:
+        $ref: '#/components/schemas/Uuid'
+      style: simple
+    SceneAnnotationId:
+      description: The `scene-annotation` ID.
+      explode: false
+      in: path
+      name: id
+      required: true
+      schema:
+        $ref: '#/components/schemas/Uuid'
+      style: simple
     SceneFields:
       description: Comma-separated list of fields to return in response. An empty
         value returns no fields. `sceneItemCount` and `metadata` are only returned
         if explicitly requested.
       explode: true
       in: query
-      name: fields[scene]
+      name: "fields[scene]"
       required: false
       schema:
-        example: camera,state,created,suppliedId,name,treeEnabled,modified,up,sceneItemCount,metadata
+        example: "camera,state,created,suppliedId,name,treeEnabled,modified,up,sceneItemCount,metadata"
         type: string
       style: form
     ListScenesFields:
@@ -7125,10 +8266,10 @@ components:
         value returns no fields. `metadata` is only returned if explicitly requested.
       explode: true
       in: query
-      name: fields[scene]
+      name: "fields[scene]"
       required: false
       schema:
-        example: camera,state,created,suppliedId,name,treeEnabled,modified,up,metadata
+        example: "camera,state,created,suppliedId,name,treeEnabled,modified,up,metadata"
         type: string
       style: form
     MetadataFilter:
@@ -7136,12 +8277,12 @@ components:
         Filter scenes that contain all the given metadata key-value pairs. Should be specified in query parameter map notation: `filter[metadata][key1]=value1&filter[metadata][key]=value2`.
       explode: true
       in: query
-      name: filter[metadata]
+      name: "filter[metadata]"
       required: false
       schema:
         additionalProperties:
           type: string
-        example: filter[metadata][key1]=test
+        example: "filter[metadata][key1]=test"
         type: object
       style: form
     QueuedSceneSyncId:
@@ -7157,7 +8298,7 @@ components:
       description: A revision ID to filter on.
       explode: true
       in: query
-      name: filter[revisionId]
+      name: "filter[revisionId]"
       required: false
       schema:
         $ref: '#/components/schemas/Uuid'
@@ -7167,7 +8308,7 @@ components:
         value returns no fields. `thumbnails` is only returned if explicitly requested.
       explode: true
       in: query
-      name: fields[scene-view-state]
+      name: "fields[scene-view-state]"
       required: false
       schema:
         example: thumbnails
@@ -7183,15 +8324,15 @@ components:
         $ref: '#/components/schemas/Uuid'
       style: simple
     SceneItemFields:
-      description: Comma-separated list of fields to return in response. An empty
-        value returns no fields. `boundingBox`, `worldTransform` and `metadata` are
-        only returned if explicitly requested.
+      description: "Comma-separated list of fields to return in response. An empty\
+        \ value returns no fields. `boundingBox`, `worldTransform` and `metadata`\
+        \ are only returned if explicitly requested."
       explode: true
       in: query
-      name: fields[scene-item]
+      name: "fields[scene-item]"
       required: false
       schema:
-        example: created,suppliedId,visible,transform,worldTransform,materialOverride,boundingBox,metadata
+        example: "created,suppliedId,visible,transform,worldTransform,materialOverride,boundingBox,metadata"
         type: string
       style: form
     SceneItemOverrideId:
@@ -7240,24 +8381,26 @@ components:
         $ref: '#/components/schemas/Uuid'
       style: simple
     SourceFilter:
+      allowEmptyValue: true
       description: Source ID to filter on.
       explode: true
       in: query
-      name: filter[source]
+      name: "filter[source]"
       required: false
       schema:
         example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
         maxLength: 1024
+        nullable: true
         type: string
       style: form
     StatusFilter:
       description: Status to filter on.
       explode: true
       in: query
-      name: filter[status]
+      name: "filter[status]"
       required: false
       schema:
-        example: running
+        example: "running,complete"
         maxLength: 1024
         type: string
       style: form
@@ -7265,7 +8408,7 @@ components:
       description: List of scene item IDs to filter on.
       explode: true
       in: query
-      name: filter[sceneItemId]
+      name: "filter[sceneItemId]"
       required: false
       schema:
         example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
@@ -7273,25 +8416,108 @@ components:
         maxLength: 36
         type: string
       style: form
+    PropertyEntriesResourceIdFilter:
+      description: A resource ID to filter on
+      explode: true
+      in: query
+      name: "filter[resourceId]"
+      required: false
+      schema:
+        example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
+        format: uuid
+        maxLength: 36
+        type: string
+      style: form
+    PropertyEntriesResourceTypeFilter:
+      description: The provided type for the resource ids
+      explode: true
+      in: query
+      name: "filter[resourceType]"
+      required: false
+      schema:
+        example: part-revision
+        maxLength: 36
+        type: string
+      style: form
+    PropertyEntriesCategoryFilter:
+      description: The key categories to filter by
+      explode: true
+      in: query
+      name: "filter[key.category]"
+      required: false
+      schema:
+        description: The key category
+        enum:
+        - vendor
+        - vertex
+        - user
+        type: string
+      style: form
     SuppliedIdFilter:
       description: Comma-separated list of supplied IDs to filter on.
       explode: true
       in: query
-      name: filter[suppliedId]
+      name: "filter[suppliedId]"
       required: false
       schema:
-        example: some-id-1,some-id-2
+        example: "some-id-1,some-id-2"
         maxLength: 1024
+        type: string
+      style: form
+    SceneItemsPartRevisionSourceFilter:
+      description: Comma-separated list of scene-item source part revision IDs to
+        filter on.
+      explode: true
+      in: query
+      name: "filter[sceneItems.source.partRevision]"
+      required: false
+      schema:
+        example: "?filter[sceneItems.source.partRevision]=f79d4760-0b71-44e4-ad0b-22743fdd4ca3,f79d4760-0b71-44e4-ad0b-22743fdd4ca2"
+        maxLength: 1024
+        type: string
+      style: form
+    SceneItemsGeometrySetSourceFilter:
+      description: Comma-separated list of scene-item source geometry set IDs to filter
+        on.
+      explode: true
+      in: query
+      name: "filter[sceneItems.source.geometrySet]"
+      required: false
+      schema:
+        example: "?filter[sceneItems.source.geometrySet]=f79d4760-0b71-44e4-ad0b-22743fdd4ca3,f79d4760-0b71-44e4-ad0b-22743fdd4ca2"
+        maxLength: 1024
+        type: string
+      style: form
+    SceneItemsSceneSourceFilter:
+      description: Comma-separated list of scene-item source scene IDs to filter on.
+      explode: true
+      in: query
+      name: "filter[sceneItems.source.scene]"
+      required: false
+      schema:
+        example: "?filter[sceneItems.source.scene]=f79d4760-0b71-44e4-ad0b-22743fdd4ca3,f79d4760-0b71-44e4-ad0b-22743fdd4ca2"
+        maxLength: 1024
+        type: string
+      style: form
+    Sort:
+      description: A sort to apply to the collection. A "minus" prefixed before the
+        field name is used to specify descending sort order.
+      explode: true
+      in: query
+      name: sort
+      required: false
+      schema:
+        example: "-age,name"
         type: string
       style: form
     ClientIdFilter:
       description: Comma-separated list of client IDs to filter on.
       explode: true
       in: query
-      name: filter[clientId]
+      name: "filter[clientId]"
       required: false
       schema:
-        example: ?filter[clientId]=some-id-1&filter[clientId]=some-id-2
+        example: "?filter[clientId]=some-id-1&filter[clientId]=some-id-2"
         maxLength: 1024
         type: string
       style: form
@@ -7299,7 +8525,7 @@ components:
       description: Parent ID to filter on.
       explode: true
       in: query
-      name: filter[parent]
+      name: "filter[parent]"
       required: false
       schema:
         example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
@@ -7311,7 +8537,7 @@ components:
       description: Stream key to filter on.
       explode: true
       in: query
-      name: filter[key]
+      name: "filter[key]"
       required: false
       schema:
         example: i3MFRDOmg1pxD36dGCTONRwOujkgV8m9LQ
@@ -7360,7 +8586,7 @@ components:
             errors:
             - status: "400"
               code: BadRequest
-              title: Invalid, missing, or out-of-range request parameters.
+              title: "Invalid, missing, or out-of-range request parameters."
           schema:
             $ref: '#/components/schemas/Failure'
       description: Bad Request
@@ -7564,9 +8790,7 @@ components:
         vertexvis/batch:results:
           description: List of operation results.
           items:
-            anyOf:
-            - $ref: '#/components/schemas/RelationshipData'
-            - $ref: '#/components/schemas/ApiError'
+            $ref: '#/components/schemas/Batch_vertexvis_batch_results_inner'
           type: array
       required:
       - vertexvis/batch:results
@@ -7603,6 +8827,14 @@ components:
           additionalProperties:
             $ref: '#/components/schemas/Link'
           type: object
+      required:
+      - data
+      type: object
+    UpdateFileRequest:
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/UpdateFileRequest_data'
       required:
       - data
       type: object
@@ -7656,10 +8888,7 @@ components:
           $ref: '#/components/schemas/Hit_data'
         included:
           items:
-            oneOf:
-            - $ref: '#/components/schemas/HitResultData'
-            - $ref: '#/components/schemas/SceneItemData'
-            - $ref: '#/components/schemas/PartRevisionData'
+            $ref: '#/components/schemas/Hit_included_inner'
           type: array
         links:
           additionalProperties:
@@ -7827,7 +9056,7 @@ components:
           description: x-axis coordinate.
           example: 1.0
           type: number
-        y:
+        "y":
           description: y-axis coordinate.
           example: 0.0
           type: number
@@ -7839,6 +9068,21 @@ components:
       - x
       - "y"
       - z
+      type: object
+    PartRevisionInstanceList:
+      additionalProperties: false
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/PartRevisionInstanceData'
+          type: array
+        links:
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+          type: object
+      required:
+      - data
+      - links
       type: object
     PartRevisionList:
       additionalProperties: false
@@ -7891,6 +9135,71 @@ components:
           additionalProperties:
             $ref: '#/components/schemas/Link'
           type: object
+      required:
+      - data
+      type: object
+    ModelView:
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/ModelViewData'
+        links:
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+          type: object
+      required:
+      - data
+      type: object
+    ModelViewList:
+      additionalProperties: false
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ModelViewData'
+          type: array
+        links:
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+          type: object
+      required:
+      - data
+      - links
+      type: object
+    PmiAnnotationList:
+      additionalProperties: false
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/PmiAnnotationData'
+          type: array
+        links:
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+          type: object
+      required:
+      - data
+      - links
+      type: object
+    PropertyEntryList:
+      additionalProperties: false
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/PropertyEntryData'
+          type: array
+        links:
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+          type: object
+      required:
+      - data
+      - links
+      type: object
+    UpsertPropertyEntriesRequest:
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/UpsertPropertyEntriesRequest_data'
       required:
       - data
       type: object
@@ -8180,20 +9489,77 @@ components:
       required:
       - data
       type: object
+    SceneAnnotationSetList:
+      additionalProperties: false
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/SceneAnnotationSetData'
+          type: array
+        links:
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+          type: object
+      required:
+      - data
+      - links
+      type: object
+    CreateSceneAnnotationSetRequest:
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/CreateSceneAnnotationSetRequest_data'
+      required:
+      - data
+      type: object
+    SceneAnnotationSet:
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/SceneAnnotationSetData'
+        links:
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+          type: object
+      required:
+      - data
+      type: object
+    CreateSceneAnnotationRequest:
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/CreateSceneAnnotationRequest_data'
+      required:
+      - data
+      type: object
+    SceneAnnotation:
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/SceneAnnotationData'
+        links:
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+          type: object
+      required:
+      - data
+      type: object
+    UpdateSceneAnnotationRequest:
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/UpdateSceneAnnotationRequest_data'
+      required:
+      - data
+      type: object
     CreateSceneSyncRequest:
       additionalProperties: false
       description: An operation to perform on a Scene.
       properties:
-        operations:
-          description: List of operations to perform on `scene-items` in the scene.
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/UpdateItemToDefaultRenditionOperation'
-          maxItems: 1024
-          minItems: 1
-          type: array
+        operation:
+          $ref: '#/components/schemas/CreateSceneSyncRequest_operation'
       required:
-      - operations
+      - operation
       type: object
     SceneSync:
       additionalProperties: false
@@ -8262,6 +9628,29 @@ components:
       required:
       - data
       type: object
+    FilterExpression:
+      additionalProperties: false
+      description: Describes how an attribute should be filtered.
+      properties:
+        eq:
+          description: A value of a filter.
+          type: string
+        neq:
+          description: A value of a filter.
+          type: string
+        gt:
+          description: A value of a filter.
+          type: string
+        gte:
+          description: A value of a filter.
+          type: string
+        lt:
+          description: A value of a filter.
+          type: string
+        lte:
+          description: A value of a filter.
+          type: string
+      type: object
     QueuedJobList:
       additionalProperties: false
       properties:
@@ -8284,10 +9673,7 @@ components:
           $ref: '#/components/schemas/QueuedTranslationJobData'
         included:
           items:
-            anyOf:
-            - $ref: '#/components/schemas/GeometrySetData'
-            - $ref: '#/components/schemas/PartRevisionData'
-            - $ref: '#/components/schemas/PartRenditionData'
+            $ref: '#/components/schemas/QueuedTranslationJob_included_inner'
           type: array
         links:
           additionalProperties:
@@ -8371,6 +9757,9 @@ components:
           attributes:
             created: 2020-01-01T12:00:00Z
             topic: some-string
+            changed:
+            - some-string
+            - some-string
           links:
             key:
               href: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
@@ -8387,14 +9776,7 @@ components:
           $ref: '#/components/schemas/WebhookEventData'
         included:
           items:
-            discriminator:
-              mapping:
-                scene: '#/components/schemas/WebhookEventSceneIncludedData'
-                part-revision: '#/components/schemas/WebhookEventPartRevisionIncludedData'
-              propertyName: type
-            oneOf:
-            - $ref: '#/components/schemas/WebhookEventSceneIncludedData'
-            - $ref: '#/components/schemas/WebhookEventPartRevisionIncludedData'
+            $ref: '#/components/schemas/WebhookEvent_included_inner'
           type: array
         links:
           additionalProperties:
@@ -8418,15 +9800,15 @@ components:
         type: perspective
         position:
           x: 0.0
-          y: 0.0
+          "y": 0.0
           z: -100.0
         lookAt:
           x: 0.0
-          y: 0.0
+          "y": 0.0
           z: 0.0
         up:
           x: 0.0
-          y: 1.0
+          "y": 1.0
           z: 0.0
         fovY: 45.0
       properties:
@@ -8483,7 +9865,7 @@ components:
           example: A validation error occurred.
           type: string
         detail:
-          example: '$.data.attributes.suppliedId: is missing but it is required'
+          example: "$.data.attributes.suppliedId: is missing but it is required"
           type: string
         source:
           $ref: '#/components/schemas/ApiError_source'
@@ -8523,9 +9905,7 @@ components:
       additionalProperties: false
       properties:
         data:
-          anyOf:
-          - $ref: '#/components/schemas/CreateSceneItemRequestData'
-          description: Operation's primary data.
+          $ref: '#/components/schemas/CreateSceneItemRequestData'
         op:
           description: Batch operation type type.
           enum:
@@ -8845,6 +10225,37 @@ components:
       required:
       - type
       type: object
+    PartRenditionRelationship:
+      additionalProperties: false
+      description: Relationship to a `part-rendition`.
+      properties:
+        data:
+          $ref: '#/components/schemas/PartRenditionRelationship_data'
+      required:
+      - data
+      type: object
+    PartRevisionInstanceData:
+      additionalProperties: false
+      properties:
+        type:
+          example: part-revision-instance
+          type: string
+        id:
+          description: ID of the resource.
+          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
+          format: uuid
+          maxLength: 36
+          type: string
+        attributes:
+          $ref: '#/components/schemas/PartRevisionInstanceData_attributes'
+        relationships:
+          $ref: '#/components/schemas/PartRevisionInstanceData_relationships'
+      required:
+      - attributes
+      - id
+      - relationships
+      - type
+      type: object
     PartData:
       additionalProperties: false
       properties:
@@ -8879,6 +10290,178 @@ components:
       required:
       - data
       type: object
+    ModelViewData:
+      additionalProperties: false
+      properties:
+        type:
+          example: model-view
+          type: string
+        id:
+          description: ID of the resource.
+          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
+          format: uuid
+          maxLength: 36
+          type: string
+        attributes:
+          $ref: '#/components/schemas/CreateAccountRequest_data_attributes'
+        relationships:
+          $ref: '#/components/schemas/ModelViewData_relationships'
+        links:
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+          type: object
+      required:
+      - attributes
+      - id
+      - relationships
+      - type
+      type: object
+    PmiAnnotationData:
+      additionalProperties: false
+      properties:
+        type:
+          example: pmi-annotation
+          type: string
+        id:
+          description: ID of the resource.
+          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
+          format: uuid
+          maxLength: 36
+          type: string
+        attributes:
+          $ref: '#/components/schemas/CreateAccountRequest_data_attributes'
+        links:
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+          type: object
+      required:
+      - attributes
+      - id
+      - type
+      type: object
+    PropertyEntryData:
+      additionalProperties: false
+      properties:
+        type:
+          example: property-entry
+          type: string
+        id:
+          example: some-string
+          maxLength: 1024
+          minLength: 1
+          type: string
+        attributes:
+          $ref: '#/components/schemas/PropertyEntryData_attributes'
+        links:
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+          type: object
+      required:
+      - attributes
+      - id
+      - relationships
+      - type
+      type: object
+    PropertyStringType:
+      properties:
+        type:
+          description: Type of property-entry value.
+          enum:
+          - string
+          maxLength: 32
+          type: string
+        value:
+          description: A string value.
+          example: Some value
+          type: string
+      required:
+      - type
+      - value
+      type: object
+    PropertyDoubleType:
+      properties:
+        type:
+          description: Type of property value.
+          enum:
+          - double
+          maxLength: 32
+          type: string
+        value:
+          format: double
+          type: number
+      required:
+      - type
+      - value
+      type: object
+    PropertyLongType:
+      properties:
+        type:
+          description: Type of property-entry value.
+          enum:
+          - long
+          maxLength: 32
+          type: string
+        value:
+          description: A numerical long value.
+          format: int64
+          type: integer
+      required:
+      - type
+      - value
+      type: object
+    PropertyDateType:
+      properties:
+        type:
+          description: Type of property value.
+          enum:
+          - date
+          maxLength: 32
+          type: string
+        value:
+          description: A date value.
+          example: 2025-02-22T10:11:12Z
+          format: date-time
+          type: string
+      required:
+      - type
+      - value
+      type: object
+    PropertySetRelationship:
+      additionalProperties: false
+      description: Relationship to a `property-set`.
+      properties:
+        data:
+          $ref: '#/components/schemas/PropertySetRelationship_data'
+      required:
+      - data
+      type: object
+    PartRevisionRelationship:
+      additionalProperties: false
+      description: Relationship to a `part-revision`.
+      properties:
+        data:
+          $ref: '#/components/schemas/PartData_relationships_partRevisions'
+      required:
+      - data
+      type: object
+    SceneItemRelationship:
+      additionalProperties: false
+      description: Relationship to a `scene-item`.
+      properties:
+        data:
+          $ref: '#/components/schemas/SceneItemRelationship_data'
+      required:
+      - data
+      type: object
+    PartInstanceRelationship:
+      additionalProperties: false
+      description: Relationship to a `part-instance`.
+      properties:
+        data:
+          $ref: '#/components/schemas/PartInstanceRelationship_data'
+      required:
+      - data
+      type: object
     SceneAlterationData:
       additionalProperties: false
       properties:
@@ -8909,31 +10492,12 @@ components:
       additionalProperties: false
       properties:
         query:
-          anyOf:
-          - $ref: '#/components/schemas/QueryById'
-          - $ref: '#/components/schemas/QueryByCollection'
-          - $ref: '#/components/schemas/QueryAll'
-          description: Query `scene-items`. Use `query-by-collection` to combine multiple
-            queries.
+          $ref: '#/components/schemas/SceneOperation_query'
         operations:
           description: List of operations to perform on `scene-items` matching the
             query.
           items:
-            anyOf:
-            - $ref: '#/components/schemas/ChangeVisibilityOp'
-            - $ref: '#/components/schemas/ChangeMaterialOp'
-            - $ref: '#/components/schemas/ClearMaterialOp'
-            - $ref: '#/components/schemas/ChangeTransformOp'
-            - $ref: '#/components/schemas/ClearTransformOp'
-            - $ref: '#/components/schemas/SelectOp'
-            - $ref: '#/components/schemas/DeselectOperation'
-            - $ref: '#/components/schemas/ClearRenOp'
-            - $ref: '#/components/schemas/ViewDefaultRenOp'
-            - $ref: '#/components/schemas/ViewRenByIdOp'
-            - $ref: '#/components/schemas/ViewRenBySuppliedIdOp'
-            - $ref: '#/components/schemas/ViewRepByIdOp'
-            - $ref: '#/components/schemas/ViewRepByPredefinedIdOp'
-            - $ref: '#/components/schemas/ClearRepOp'
+            $ref: '#/components/schemas/SceneOperation_operations_inner'
           maxItems: 1024
           type: array
       required:
@@ -8942,27 +10506,27 @@ components:
       type: object
     Matrix4Nullable:
       additionalProperties: false
-      description: 4x4 affine transformation matrix, see [Matrix transformations](https://developer.vertexvis.com/docs/guides/matrix-transformations)
-        for details.
+      description: "4x4 affine transformation matrix, see [Matrix transformations](https://developer.vertexvis.com/docs/guides/matrix-transformations)\
+        \ for details."
       example:
         r0:
           x: 1.0
-          y: 0.0
+          "y": 0.0
           z: 0.0
           w: 0.0
         r1:
           x: 0.0
-          y: 1.0
+          "y": 1.0
           z: 0.0
           w: 0.0
         r2:
           x: 0.0
-          y: 0.0
+          "y": 0.0
           z: 1.0
           w: 0.0
         r3:
           x: 0.0
-          y: 0.0
+          "y": 0.0
           z: 0.0
           w: 1.0
       nullable: true
@@ -9044,27 +10608,27 @@ components:
       type: object
     Matrix4:
       additionalProperties: false
-      description: 4x4 affine transformation matrix, see [Matrix transformations](https://developer.vertexvis.com/docs/guides/matrix-transformations)
-        for details.
+      description: "4x4 affine transformation matrix, see [Matrix transformations](https://developer.vertexvis.com/docs/guides/matrix-transformations)\
+        \ for details."
       example:
         r0:
           x: 1.0
-          y: 0.0
+          "y": 0.0
           z: 0.0
           w: 0.0
         r1:
           x: 0.0
-          y: 1.0
+          "y": 1.0
           z: 0.0
           w: 0.0
         r2:
           x: 0.0
-          y: 0.0
+          "y": 0.0
           z: 1.0
           w: 0.0
         r3:
           x: 0.0
-          y: 0.0
+          "y": 0.0
           z: 0.0
           w: 1.0
       properties:
@@ -9116,15 +10680,6 @@ components:
       - opacity
       - specular
       type: object
-    SceneItemRelationship:
-      additionalProperties: false
-      description: Relationship to a `scene-item`.
-      properties:
-        data:
-          $ref: '#/components/schemas/SceneItemRelationship_data'
-      required:
-      - data
-      type: object
     MaterialOverride:
       additionalProperties: false
       description: Color material override.
@@ -9138,15 +10693,6 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/GeometrySetRelationshipData'
-      required:
-      - data
-      type: object
-    PartRevisionRelationship:
-      additionalProperties: false
-      description: Relationship to a `part-revision`.
-      properties:
-        data:
-          $ref: '#/components/schemas/PartData_relationships_partRevisions'
       required:
       - data
       type: object
@@ -9196,15 +10742,15 @@ components:
         type: orthographic
         viewVector:
           x: 0.0
-          y: 0.0
+          "y": 0.0
           z: 1.0
         lookAt:
           x: 0.0
-          y: 0.0
+          "y": 0.0
           z: 0.0
         up:
           x: 0.0
-          y: 1.0
+          "y": 1.0
           z: 0.0
         fovHeight: 1.0
       properties:
@@ -9295,13 +10841,13 @@ components:
       - front
       - up
       type: object
-    SceneMetadata:
+    UpdateSceneMetadata:
       additionalProperties:
         maxLength: 256
-        minLength: 0
+        nullable: true
         type: string
       description: |
-        User supplied key-value pairs for a scene. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters.
+        User supplied key-value pairs for a scene. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters. A null value will delete the entry in the map, all other key/value pairs provided here will be inserted or updated into the existing scene metadata.
       type: object
     SceneRelationship:
       additionalProperties: false
@@ -9368,6 +10914,111 @@ components:
       - attributes
       - id
       - relationships
+      - type
+      type: object
+    SceneAnnotationSetData:
+      additionalProperties: false
+      properties:
+        type:
+          example: scene-annotation-set
+          type: string
+        id:
+          description: ID of the resource.
+          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
+          format: uuid
+          maxLength: 36
+          type: string
+        attributes:
+          $ref: '#/components/schemas/SceneAnnotationSetData_attributes'
+        links:
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+          type: object
+      required:
+      - attributes
+      - id
+      - type
+      type: object
+    SceneAnnotationCalloutDataType:
+      description: A type that describes a callout annotation.
+      properties:
+        type:
+          description: The type of annotation.
+          example: callout
+          maxLength: 32
+          type: string
+        position:
+          $ref: '#/components/schemas/Vector3'
+        icon:
+          description: |
+            An optional icon to display for this annotation. See [documentation](https://github.com/Vertexvis/vertex-web-sdk/tree/master/packages/viewer/src/components/viewer-icon#properties) for possible values.
+          example: comment-show
+          maxLength: 64
+          type: string
+        primaryColor:
+          description: A hex color value.
+          example: '#FFFFFF'
+          maxLength: 7
+          minLength: 7
+          pattern: "^#[0-9a-fA-F]{6}$"
+          type: string
+        accentColor:
+          description: A hex color value.
+          example: '#FFFFFF'
+          maxLength: 7
+          minLength: 7
+          pattern: "^#[0-9a-fA-F]{6}$"
+          type: string
+      required:
+      - position
+      - type
+      type: object
+    SceneAnnotationCustomDataType:
+      additionalProperties: false
+      description: A type that describes a custom user provided annotation.
+      properties:
+        type:
+          description: The type of annotation.
+          example: custom
+          maxLength: 32
+          type: string
+        jsonType:
+          description: The type of annotation.
+          example: my-annotation-type
+          maxLength: 32
+          type: string
+        json:
+          description: An encoded JSON string associated with the custom annotation.
+          example: "{\"label\":\"my annotation\",\"anchor\":{\"x\":0,\"y\":0,\"z\"\
+            :0}}"
+          maxLength: 16384
+          type: string
+      required:
+      - json
+      - jsonType
+      - type
+      type: object
+    SceneAnnotationData:
+      additionalProperties: false
+      properties:
+        type:
+          example: scene-annotation
+          type: string
+        id:
+          description: ID of the resource.
+          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
+          format: uuid
+          maxLength: 36
+          type: string
+        attributes:
+          $ref: '#/components/schemas/SceneAnnotationData_attributes'
+        links:
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+          type: object
+      required:
+      - attributes
+      - id
       - type
       type: object
     UpdateItemToDefaultRenditionOperation:
@@ -9441,6 +11092,9 @@ components:
       - relationships
       - type
       type: object
+    FilterLiteral:
+      description: A value of a filter.
+      type: string
     QueuedTranslationJobData:
       additionalProperties: false
       properties:
@@ -9558,6 +11212,9 @@ components:
         attributes:
           created: 2020-01-01T12:00:00Z
           topic: some-string
+          changed:
+          - some-string
+          - some-string
         links:
           key:
             href: /some-resource/d98d621a-23da-49fe-af96-6be709abb718
@@ -9649,11 +11306,11 @@ components:
       example:
         min:
           x: 0.0
-          y: 0.0
+          "y": 0.0
           z: 0.0
         max:
           x: 100.0
-          y: 100.0
+          "y": 100.0
           z: 100.0
       properties:
         min:
@@ -9663,15 +11320,6 @@ components:
       required:
       - max
       - min
-      type: object
-    PartRenditionRelationship:
-      additionalProperties: false
-      description: Relationship to a `part-rendition`.
-      properties:
-        data:
-          $ref: '#/components/schemas/PartRenditionRelationship_data'
-      required:
-      - data
       type: object
     GeometrySetRelationshipData:
       additionalProperties: false
@@ -9738,6 +11386,24 @@ components:
           $ref: '#/components/schemas/Matrix4'
       required:
       - ordinal
+      type: object
+    PropertyKeyType:
+      properties:
+        category:
+          description: The key category
+          enum:
+          - vendor
+          - vertex
+          - user
+          type: string
+        name:
+          example: some-string
+          maxLength: 1024
+          minLength: 1
+          type: string
+      required:
+      - category
+      - name
       type: object
     QueryById:
       additionalProperties: false
@@ -9958,7 +11624,7 @@ components:
           maxLength: 64
           type: string
         id:
-          description: A predefined representation identifier, such as `entire-part`.
+          description: "A predefined representation identifier, such as `entire-part`."
           enum:
           - empty
           - entire-part
@@ -9990,7 +11656,7 @@ components:
           description: x-axis coordinate.
           example: 1.0
           type: number
-        y:
+        "y":
           description: y-axis coordinate.
           example: 0.0
           type: number
@@ -10056,13 +11722,19 @@ components:
       additionalProperties: false
       properties:
         suppliedPartId:
-          description: ID provided for correlation. For example, an existing ID from
-            a PLM system.
+          description: "ID provided for correlation. For example, an existing ID from\
+            \ a PLM system."
           maxLength: 1024
           type: string
         suppliedRevisionId:
-          description: ID provided for correlation. For example, an existing ID from
-            a PLM system.
+          description: "ID provided for correlation. For example, an existing ID from\
+            \ a PLM system."
+          maxLength: 1024
+          type: string
+        suppliedIterationId:
+          description: "Optional iteration ID for the revision. For example, a generated\
+            \ version id from a PLM system to a specific revision. Used when a existing\
+            \ revision is modified."
           maxLength: 1024
           type: string
       required:
@@ -10081,6 +11753,14 @@ components:
       required:
       - normal
       - offset
+      type: object
+    SceneMetadata:
+      additionalProperties:
+        maxLength: 256
+        minLength: 0
+        type: string
+      description: |
+        User supplied key-value pairs for a scene. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters.
       type: object
     ThumbnailData:
       additionalProperties: false
@@ -10107,6 +11787,13 @@ components:
       - color
       - width
       type: object
+    HexColor:
+      description: A hex color value.
+      example: '#FFFFFF'
+      maxLength: 7
+      minLength: 7
+      pattern: "^#[0-9a-fA-F]{6}$"
+      type: string
     ExportConfig:
       description: Describes the options for configuring a file export.
       discriminator:
@@ -10165,6 +11852,9 @@ components:
       example:
         created: 2020-01-01T12:00:00Z
         topic: some-string
+        changed:
+        - some-string
+        - some-string
       properties:
         created:
           example: 2020-01-01T12:00:00Z
@@ -10175,6 +11865,10 @@ components:
           maxLength: 1024
           minLength: 1
           type: string
+        changed:
+          items:
+            $ref: '#/components/schemas/NonEmptyString'
+          type: array
       required:
       - created
       - topic
@@ -10460,24 +12154,30 @@ components:
     CreateFileRequest_data_attributes:
       properties:
         name:
-          description: Name matching that of the file you are uploading, including
-            file extension.
+          description: "Name matching that of the file you are uploading, including\
+            \ file extension."
           example: model.zip
           maxLength: 1024
           minLength: 1
           type: string
         suppliedId:
-          description: ID provided for correlation. For example, an existing ID from
-            a PLM system.
+          description: "ID provided for correlation. For example, an existing ID from\
+            \ a PLM system."
           example: PN12345
           maxLength: 1024
           type: string
         rootFileName:
-          description: File name of the root part or assembly, including file extension.
-            Required if `name` references an archive file extension, ignored otherwise.
+          description: "File name of the root part or assembly, including file extension.\
+            \ Required if `name` references an archive file extension, ignored otherwise."
           example: root-assembly.prt.1
           maxLength: 1024
           type: string
+        expiry:
+          description: Number of seconds before the file is deleted.
+          example: 600
+          format: int32
+          minimum: 1
+          type: integer
       required:
       - name
       type: object
@@ -10490,6 +12190,29 @@ components:
           type: string
         attributes:
           $ref: '#/components/schemas/CreateFileRequest_data_attributes'
+      required:
+      - attributes
+      - type
+      type: object
+    UpdateFileRequest_data_attributes:
+      properties:
+        expiry:
+          description: Number of seconds before the file is deleted.
+          example: 600
+          format: int32
+          minimum: 1
+          nullable: true
+          type: integer
+      type: object
+    UpdateFileRequest_data:
+      properties:
+        type:
+          description: Resource object type.
+          example: file
+          maxLength: 32
+          type: string
+        attributes:
+          $ref: '#/components/schemas/UpdateFileRequest_data_attributes'
       required:
       - attributes
       - type
@@ -10642,12 +12365,7 @@ components:
       properties:
         metadata:
           additionalProperties:
-            anyOf:
-            - $ref: '#/components/schemas/MetadataLongType'
-            - $ref: '#/components/schemas/MetadataFloatType'
-            - $ref: '#/components/schemas/MetadataDateType'
-            - $ref: '#/components/schemas/MetadataStringType'
-            - $ref: '#/components/schemas/MetadataNullType'
+            $ref: '#/components/schemas/UpdatePartRevisionRequest_data_attributes_metadata_value'
           description: |
             Metadata about the `part` and/or `part-revision`. This metadata will take precedence over any metadata that belongs to the part file if `indexMetadata` is specified.
           type: object
@@ -10681,6 +12399,13 @@ components:
           maxLength: 255
           type: string
       type: object
+    UpdatePartRevisionRequest_data_relationships:
+      properties:
+        source:
+          $ref: '#/components/schemas/FileRelationship'
+        defaultPartRendition:
+          $ref: '#/components/schemas/PartRenditionRelationship'
+      type: object
     UpdatePartRevisionRequest_data:
       description: |
         Modify existing part revisions using this endpoint. When specifying a `relationship`, the generated output from that relationship will be used to replace any relationship that is present on the revision prior to the update.
@@ -10700,7 +12425,7 @@ components:
         attributes:
           $ref: '#/components/schemas/UpdatePartRevisionRequest_data_attributes'
         relationships:
-          $ref: '#/components/schemas/CreateGeometrySetRequest_data_relationships'
+          $ref: '#/components/schemas/UpdatePartRevisionRequest_data_relationships'
       required:
       - attributes
       - id
@@ -10713,8 +12438,8 @@ components:
           maxLength: 255
           type: string
         suppliedId:
-          description: ID provided for correlation. For example, an existing ID from
-            a PLM system.
+          description: "ID provided for correlation. For example, an existing ID from\
+            \ a PLM system."
           example: PN12345
           maxLength: 255
           type: string
@@ -10767,6 +12492,16 @@ components:
           example: RevA
           maxLength: 1024
           type: string
+        suppliedIterationId:
+          description: |
+            ID provided for correlation of the revision. This is an optional ID to be able to create
+            a version of a revision. For example, if and existing revision in a PLM system is modified,
+            the suppliedIterationId can be used to allow creating a new part revision having an already
+            existing suppliedId and suppliedRevisionId. This can be used when modification to an existing
+            revision is made in the PLM system before the revision is released.
+          example: Ver1
+          maxLength: 1024
+          type: string
         indexMetadata:
           description: |
             Whether or not to index metadata in the part file. To ignore metadata from the part file and add your own, pass `false` for `indexMetadata` and supply custom metadata using the `metadata` field.
@@ -10774,12 +12509,7 @@ components:
           type: boolean
         metadata:
           additionalProperties:
-            anyOf:
-            - $ref: '#/components/schemas/MetadataLongType'
-            - $ref: '#/components/schemas/MetadataFloatType'
-            - $ref: '#/components/schemas/MetadataDateType'
-            - $ref: '#/components/schemas/MetadataStringType'
-            - $ref: '#/components/schemas/MetadataNullType'
+            $ref: '#/components/schemas/UpdatePartRevisionRequest_data_attributes_metadata_value'
           description: |
             Additional metadata about the `part` and/or `part-revision`. This metadata will take precedence over any metadata that belongs to the part file if `indexMetadata` is specified.
           type: object
@@ -10812,9 +12542,7 @@ components:
     CreatePartRequest_data_relationships:
       properties:
         source:
-          anyOf:
-          - $ref: '#/components/schemas/FileRelationship'
-          - $ref: '#/components/schemas/PartAssemblyRelationship'
+          $ref: '#/components/schemas/CreatePartRequest_data_relationships_source'
       required:
       - source
       type: object
@@ -10832,6 +12560,40 @@ components:
           $ref: '#/components/schemas/CreatePartRequest_data_relationships'
       required:
       - attributes
+      - type
+      type: object
+    UpsertPropertyEntriesRequest_data_attributes:
+      properties:
+        entries:
+          additionalProperties:
+            $ref: '#/components/schemas/UpsertPropertyEntriesRequest_data_attributes_entries_value'
+          description: |
+            Property entries for a provided resource or property set.
+          type: object
+      required:
+      - entries
+      type: object
+    UpsertPropertyEntriesRequest_data_relationships:
+      properties:
+        propertySet:
+          $ref: '#/components/schemas/UpsertPropertyEntriesRequest_data_relationships_propertySet'
+      required:
+      - propertySet
+      type: object
+    UpsertPropertyEntriesRequest_data:
+      properties:
+        type:
+          description: Resource object type.
+          example: property-entries
+          maxLength: 32
+          type: string
+        attributes:
+          $ref: '#/components/schemas/UpsertPropertyEntriesRequest_data_attributes'
+        relationships:
+          $ref: '#/components/schemas/UpsertPropertyEntriesRequest_data_relationships'
+      required:
+      - attributes
+      - relationships
       - type
       type: object
     CreateSceneAlterationRequest_data_attributes:
@@ -10957,19 +12719,14 @@ components:
           minLength: 1
           type: string
         suppliedId:
-          description: ID provided for correlation. For example, an existing ID from
-            a PLM system.
+          description: "ID provided for correlation. For example, an existing ID from\
+            \ a PLM system."
           example: PN12345
           maxLength: 1024
           type: string
         metadata:
           additionalProperties:
-            anyOf:
-            - $ref: '#/components/schemas/MetadataLongType'
-            - $ref: '#/components/schemas/MetadataFloatType'
-            - $ref: '#/components/schemas/MetadataDateType'
-            - $ref: '#/components/schemas/MetadataStringType'
-            - $ref: '#/components/schemas/MetadataNullType'
+            $ref: '#/components/schemas/UpdatePartRevisionRequest_data_attributes_metadata_value'
           description: |
             Additional metadata for the scene-item. This metadata will take precedence over any metadata that belongs to the part file.
           type: object
@@ -10983,10 +12740,7 @@ components:
     UpdateSceneItemRequest_data_relationships:
       properties:
         source:
-          anyOf:
-          - $ref: '#/components/schemas/GeometrySetRelationship'
-          - $ref: '#/components/schemas/PartRevisionRelationship'
-          description: Relationship to a `geometry-set` or `part-revision`.
+          $ref: '#/components/schemas/UpdateSceneItemRequest_data_relationships_source'
       type: object
     UpdateSceneItemRequest_data:
       properties:
@@ -11006,10 +12760,7 @@ components:
     UpdateSceneViewRequest_data_attributes:
       properties:
         camera:
-          anyOf:
-          - $ref: '#/components/schemas/PerspectiveCamera'
-          - $ref: '#/components/schemas/OrthographicCamera'
-          - $ref: '#/components/schemas/CameraFit'
+          $ref: '#/components/schemas/UpdateSceneViewRequest_data_attributes_camera'
         crossSectioning:
           $ref: '#/components/schemas/CrossSectioning'
         noDefaultLights:
@@ -11033,9 +12784,7 @@ components:
     CreateSceneViewRequest_data_attributes:
       properties:
         camera:
-          oneOf:
-          - $ref: '#/components/schemas/PerspectiveCamera'
-          - $ref: '#/components/schemas/OrthographicCamera'
+          $ref: '#/components/schemas/CreateSceneViewRequest_data_attributes_camera'
         crossSectioning:
           $ref: '#/components/schemas/CrossSectioning'
         excludePrunedItems:
@@ -11066,12 +12815,10 @@ components:
     CreateSceneRequest_data_attributes:
       properties:
         camera:
-          oneOf:
-          - $ref: '#/components/schemas/PerspectiveCamera'
-          - $ref: '#/components/schemas/OrthographicCamera'
+          $ref: '#/components/schemas/CreateSceneViewRequest_data_attributes_camera'
         suppliedId:
-          description: ID provided for correlation. For example, an existing ID from
-            a PLM system.
+          description: "ID provided for correlation. For example, an existing ID from\
+            \ a PLM system."
           example: PN12345
           maxLength: 1024
           type: string
@@ -11088,10 +12835,10 @@ components:
         metadata:
           additionalProperties:
             maxLength: 256
-            minLength: 0
+            nullable: true
             type: string
           description: |
-            User supplied key-value pairs for a scene. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters.
+            User supplied key-value pairs for a scene. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters. A null value will delete the entry in the map, all other key/value pairs provided here will be inserted or updated into the existing scene metadata.
           type: object
       type: object
     CreateSceneRequest_data_relationships:
@@ -11119,10 +12866,7 @@ components:
     UpdateSceneRequest_data_attributes:
       properties:
         camera:
-          anyOf:
-          - $ref: '#/components/schemas/PerspectiveCamera'
-          - $ref: '#/components/schemas/OrthographicCamera'
-          - $ref: '#/components/schemas/CameraFit'
+          $ref: '#/components/schemas/UpdateSceneViewRequest_data_attributes_camera'
         state:
           description: State of the scene.
           enum:
@@ -11132,10 +12876,11 @@ components:
           maxLength: 32
           type: string
         suppliedId:
-          description: ID provided for correlation. For example, an existing ID from
-            a PLM system.
+          description: "ID provided for correlation. For example, an existing ID from\
+            \ a PLM system."
           example: PN12345
           maxLength: 1024
+          nullable: true
           type: string
         name:
           example: some-string
@@ -11147,6 +12892,14 @@ components:
           type: boolean
         worldOrientation:
           $ref: '#/components/schemas/Orientation'
+        metadata:
+          additionalProperties:
+            maxLength: 256
+            nullable: true
+            type: string
+          description: |
+            User supplied key-value pairs for a scene. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters. A null value will delete the entry in the map, all other key/value pairs provided here will be inserted or updated into the existing scene metadata.
+          type: object
       type: object
     UpdateSceneRequest_data:
       properties:
@@ -11169,8 +12922,8 @@ components:
           minLength: 1
           type: string
         suppliedId:
-          description: ID provided for correlation. For example, an existing ID from
-            a PLM system.
+          description: "ID provided for correlation. For example, an existing ID from\
+            \ a PLM system."
           example: PN12345
           maxLength: 1024
           type: string
@@ -11178,9 +12931,7 @@ components:
     CreateSceneViewStateRequest_data_relationships:
       properties:
         source:
-          oneOf:
-          - $ref: '#/components/schemas/SceneViewRelationship'
-          - $ref: '#/components/schemas/SceneViewStateRelationship'
+          $ref: '#/components/schemas/CreateSceneViewStateRequest_data_relationships_source'
       required:
       - source
       type: object
@@ -11240,6 +12991,81 @@ components:
       - attributes
       - type
       type: object
+    CreateSceneAnnotationSetRequest_data_attributes:
+      properties:
+        name:
+          example: some-string
+          maxLength: 1024
+          minLength: 1
+          type: string
+        suppliedId:
+          description: A customer provided ID used for correlation.
+          example: PN12345
+          maxLength: 256
+          type: string
+      type: object
+    CreateSceneAnnotationSetRequest_data:
+      properties:
+        type:
+          description: Resource object type.
+          example: scene-annotation-set
+          maxLength: 32
+          type: string
+        attributes:
+          $ref: '#/components/schemas/CreateSceneAnnotationSetRequest_data_attributes'
+      required:
+      - attributes
+      - type
+      type: object
+    CreateSceneAnnotationRequest_data_attributes:
+      properties:
+        data:
+          $ref: '#/components/schemas/CreateSceneAnnotationRequest_data_attributes_data'
+        suppliedId:
+          description: A customer provided ID used for correlation.
+          example: PN12345
+          maxLength: 256
+          type: string
+      required:
+      - data
+      type: object
+    CreateSceneAnnotationRequest_data:
+      properties:
+        type:
+          description: Resource object type.
+          example: scene-annotation
+          maxLength: 32
+          type: string
+        attributes:
+          $ref: '#/components/schemas/CreateSceneAnnotationRequest_data_attributes'
+      required:
+      - attributes
+      - type
+      type: object
+    UpdateSceneAnnotationRequest_data_attributes:
+      properties:
+        data:
+          $ref: '#/components/schemas/CreateSceneAnnotationRequest_data_attributes_data'
+        suppliedId:
+          description: A customer provided ID used for correlation.
+          example: PN12345
+          maxLength: 256
+          nullable: true
+          type: string
+      type: object
+    UpdateSceneAnnotationRequest_data:
+      properties:
+        type:
+          description: Resource object type.
+          example: scene-annotation
+          maxLength: 32
+          type: string
+        attributes:
+          $ref: '#/components/schemas/UpdateSceneAnnotationRequest_data_attributes'
+      required:
+      - attributes
+      - type
+      type: object
     CreateTranslationInspectionRequest_data:
       properties:
         type:
@@ -11287,15 +13113,7 @@ components:
     CreateExportRequest_data_attributes:
       properties:
         config:
-          description: Specifies the export format and options to configure the export.
-          discriminator:
-            mapping:
-              jt: '#/components/schemas/CADExportConfig'
-              step: '#/components/schemas/CADExportConfig'
-              x_t: '#/components/schemas/CADExportConfig'
-            propertyName: format
-          oneOf:
-          - $ref: '#/components/schemas/CADExportConfig'
+          $ref: '#/components/schemas/CreateExportRequest_data_attributes_config'
         fileName:
           description: Optional file name to use for the resulting export
           example: exportedScene
@@ -11395,7 +13213,7 @@ components:
           example: /body/data/attributes
           type: string
         parameter:
-          example: page[cursor]
+          example: "page[cursor]"
           type: string
       type: object
     ApplicationData_attributes:
@@ -11554,12 +13372,7 @@ components:
           $ref: '#/components/schemas/ColorMaterial'
         metadata:
           additionalProperties:
-            anyOf:
-            - $ref: '#/components/schemas/MetadataLongType'
-            - $ref: '#/components/schemas/MetadataFloatType'
-            - $ref: '#/components/schemas/MetadataDateType'
-            - $ref: '#/components/schemas/MetadataStringType'
-            - $ref: '#/components/schemas/MetadataNullType'
+            $ref: '#/components/schemas/UpdatePartRevisionRequest_data_attributes_metadata_value'
           type: object
         name:
           example: some-string
@@ -11584,11 +13397,7 @@ components:
     SceneItemData_relationships:
       properties:
         source:
-          anyOf:
-          - $ref: '#/components/schemas/GeometrySetRelationship'
-          - $ref: '#/components/schemas/PartRevisionRelationship'
-          - $ref: '#/components/schemas/SceneRelationship'
-          - $ref: '#/components/schemas/PartRenditionRelationship'
+          $ref: '#/components/schemas/SceneItemData_relationships_source'
         parent:
           $ref: '#/components/schemas/SceneItemRelationship'
         partRendition:
@@ -11602,14 +13411,14 @@ components:
           type: string
         metadata:
           additionalProperties:
-            anyOf:
-            - $ref: '#/components/schemas/MetadataLongType'
-            - $ref: '#/components/schemas/MetadataFloatType'
-            - $ref: '#/components/schemas/MetadataDateType'
-            - $ref: '#/components/schemas/MetadataStringType'
-            - $ref: '#/components/schemas/MetadataNullType'
+            $ref: '#/components/schemas/UpdatePartRevisionRequest_data_attributes_metadata_value'
           type: object
         suppliedId:
+          example: some-string
+          maxLength: 1024
+          minLength: 1
+          type: string
+        suppliedIterationId:
           example: some-string
           maxLength: 1024
           minLength: 1
@@ -11652,6 +13461,43 @@ components:
           $ref: '#/components/schemas/GeometrySetRelationshipData'
         partRevision:
           $ref: '#/components/schemas/PartRevisionRelationship'
+      type: object
+    PartRenditionRelationship_data:
+      properties:
+        type:
+          description: Resource object type.
+          enum:
+          - part-rendition
+          example: part-rendition
+          maxLength: 32
+          type: string
+        id:
+          description: ID of the resource.
+          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
+          format: uuid
+          maxLength: 36
+          type: string
+      required:
+      - id
+      - type
+      type: object
+    PartRevisionInstanceData_attributes:
+      properties:
+        ordinal:
+          description: A 0-based index used for defining a consistent ordering for
+            children of an assembly
+          minimum: 0
+          type: integer
+        transform:
+          $ref: '#/components/schemas/Matrix4'
+      type: object
+    PartRevisionInstanceData_relationships:
+      description: This is the relationship from the instance to the parent revision
+      properties:
+        partRevision:
+          $ref: '#/components/schemas/PartRevisionRelationship'
+      required:
+      - partRevision
       type: object
     PartData_attributes:
       properties:
@@ -11710,17 +13556,86 @@ components:
           type: array
         metadata:
           additionalProperties:
-            anyOf:
-            - $ref: '#/components/schemas/MetadataLongType'
-            - $ref: '#/components/schemas/MetadataFloatType'
-            - $ref: '#/components/schemas/MetadataDateType'
-            - $ref: '#/components/schemas/MetadataStringType'
-            - $ref: '#/components/schemas/MetadataNullType'
+            $ref: '#/components/schemas/UpdatePartRevisionRequest_data_attributes_metadata_value'
           description: |
             Additional metadata about the `part` and/or `part-revision`.
           type: object
       required:
       - children
+      type: object
+    ModelViewData_relationships:
+      properties:
+        partRevision:
+          $ref: '#/components/schemas/PartRevisionRelationship'
+      required:
+      - partRevision
+      type: object
+    PropertyEntryData_attributes:
+      properties:
+        value:
+          $ref: '#/components/schemas/PropertyEntryData_attributes_value'
+        key:
+          $ref: '#/components/schemas/PropertyKeyType'
+      required:
+      - key
+      - value
+      type: object
+    PropertySetRelationship_data:
+      properties:
+        type:
+          description: Resource object type.
+          enum:
+          - property-set
+          example: property-set
+          maxLength: 32
+          type: string
+        id:
+          description: ID of the resource.
+          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
+          format: uuid
+          maxLength: 36
+          type: string
+      required:
+      - id
+      - type
+      type: object
+    SceneItemRelationship_data:
+      properties:
+        type:
+          description: Resource object type.
+          enum:
+          - scene-item
+          example: scene-item
+          maxLength: 32
+          type: string
+        id:
+          description: ID of the resource.
+          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
+          format: uuid
+          maxLength: 36
+          type: string
+      required:
+      - id
+      - type
+      type: object
+    PartInstanceRelationship_data:
+      properties:
+        type:
+          description: Resource object type.
+          enum:
+          - part-instance
+          example: part-instance
+          maxLength: 32
+          type: string
+        id:
+          description: ID of the resource.
+          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
+          format: uuid
+          maxLength: 36
+          type: string
+      required:
+      - id
+      - type
       type: object
     SceneAlterationData_relationships:
       properties:
@@ -11761,25 +13676,6 @@ components:
       - sceneItem
       - sceneView
       type: object
-    SceneItemRelationship_data:
-      properties:
-        type:
-          description: Resource object type.
-          enum:
-          - scene-item
-          example: scene-item
-          maxLength: 32
-          type: string
-        id:
-          description: ID of the resource.
-          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-          format: uuid
-          maxLength: 36
-          type: string
-      required:
-      - id
-      - type
-      type: object
     CreateSceneItemRequestData_attributes:
       properties:
         materialOverride:
@@ -11807,8 +13703,8 @@ components:
         source:
           $ref: '#/components/schemas/PartRevisionSuppliedId'
         suppliedId:
-          description: ID provided for correlation. For example, an existing ID from
-            a PLM system.
+          description: "ID provided for correlation. For example, an existing ID from\
+            \ a PLM system."
           example: PN12345
           maxLength: 1024
           type: string
@@ -11826,37 +13722,31 @@ components:
           type: boolean
         metadata:
           additionalProperties:
-            anyOf:
-            - $ref: '#/components/schemas/MetadataLongType'
-            - $ref: '#/components/schemas/MetadataFloatType'
-            - $ref: '#/components/schemas/MetadataDateType'
-            - $ref: '#/components/schemas/MetadataStringType'
-            - $ref: '#/components/schemas/MetadataNullType'
+            $ref: '#/components/schemas/UpdatePartRevisionRequest_data_attributes_metadata_value'
           description: |
             Additional metadata for the scene-item. This metadata will take precedence over any metadata that belongs to the part file.
           type: object
+        experimentalSourceMetadataKeys:
+          description: |
+            Specifies which metadata keys should be copied from the source item. Sending null will  default to all keys. Sending an empty string will copy none of the sources' metadata.  Sending an array of ["KEY1", "KEY2] will include KEY1 and KEY2 from the source in the scene item creation. This is marked experimental since future releases are expected to prevent copying metadata entirely.
+          items:
+            type: string
+          maxItems: 500
+          type: array
       type: object
     CreateSceneItemRequestData_relationships:
       properties:
         parent:
           $ref: '#/components/schemas/SceneItemRelationship'
         source:
-          anyOf:
-          - $ref: '#/components/schemas/GeometrySetRelationship'
-          - $ref: '#/components/schemas/PartRevisionRelationship'
-          - $ref: '#/components/schemas/SceneRelationship'
-          - $ref: '#/components/schemas/PartRenditionRelationship'
-          description: Relationship to a `geometry-set`, `part-revision`, `part-rendition`,
-            or `scene`.
+          $ref: '#/components/schemas/CreateSceneItemRequestData_relationships_source'
         referenceTree:
           $ref: '#/components/schemas/SceneItemRelationship'
       type: object
     SceneViewData_attributes:
       properties:
         camera:
-          oneOf:
-          - $ref: '#/components/schemas/PerspectiveCamera'
-          - $ref: '#/components/schemas/OrthographicCamera'
+          $ref: '#/components/schemas/CreateSceneViewRequest_data_attributes_camera'
         created:
           example: 2020-01-01T12:00:00Z
           format: date-time
@@ -11902,9 +13792,7 @@ components:
     SceneData_attributes:
       properties:
         camera:
-          oneOf:
-          - $ref: '#/components/schemas/PerspectiveCamera'
-          - $ref: '#/components/schemas/OrthographicCamera'
+          $ref: '#/components/schemas/CreateSceneViewRequest_data_attributes_camera'
         state:
           example: draft
           type: string
@@ -11966,9 +13854,7 @@ components:
     SceneViewStateData_attributes:
       properties:
         camera:
-          oneOf:
-          - $ref: '#/components/schemas/PerspectiveCamera'
-          - $ref: '#/components/schemas/OrthographicCamera'
+          $ref: '#/components/schemas/CreateSceneViewRequest_data_attributes_camera'
         created:
           example: 2020-01-01T12:00:00Z
           format: date-time
@@ -12030,6 +13916,52 @@ components:
       required:
       - created
       - expiry
+      type: object
+    SceneAnnotationSetData_attributes:
+      properties:
+        createdAt:
+          example: 2020-01-01T12:00:00Z
+          format: date-time
+          type: string
+        modifiedAt:
+          example: 2020-01-01T12:00:00Z
+          format: date-time
+          type: string
+        name:
+          example: some-string
+          maxLength: 1024
+          minLength: 1
+          type: string
+        suppliedId:
+          example: some-string
+          maxLength: 1024
+          minLength: 1
+          type: string
+      required:
+      - createdAt
+      - modifiedAt
+      type: object
+    SceneAnnotationData_attributes:
+      properties:
+        createdAt:
+          example: 2020-01-01T12:00:00Z
+          format: date-time
+          type: string
+        modifiedAt:
+          example: 2020-01-01T12:00:00Z
+          format: date-time
+          type: string
+        data:
+          $ref: '#/components/schemas/CreateSceneAnnotationRequest_data_attributes_data'
+        suppliedId:
+          example: some-string
+          maxLength: 1024
+          minLength: 1
+          type: string
+      required:
+      - createdAt
+      - data
+      - modifiedAt
       type: object
     SceneSyncData_attributes:
       properties:
@@ -12141,25 +14073,6 @@ components:
       - status
       - topics
       - url
-      type: object
-    PartRenditionRelationship_data:
-      properties:
-        type:
-          description: Resource object type.
-          enum:
-          - part-rendition
-          example: part-rendition
-          maxLength: 32
-          type: string
-        id:
-          description: ID of the resource.
-          example: f79d4760-0b71-44e4-ad0b-22743fdd4ca3
-          format: uuid
-          maxLength: 36
-          type: string
-      required:
-      - id
-      - type
       type: object
     QueryById_data_attributes:
       properties:
@@ -12303,6 +14216,145 @@ components:
       required:
       - data
       type: object
+    Batch_vertexvis_batch_results_inner:
+      anyOf:
+      - $ref: '#/components/schemas/RelationshipData'
+      - $ref: '#/components/schemas/ApiError'
+    Hit_included_inner:
+      oneOf:
+      - $ref: '#/components/schemas/HitResultData'
+      - $ref: '#/components/schemas/SceneItemData'
+      - $ref: '#/components/schemas/PartRevisionData'
+    CreateSceneSyncRequest_operation:
+      discriminator:
+        mapping:
+          update-to-default-rendition: '#/components/schemas/UpdateItemToDefaultRenditionOperation'
+        propertyName: type
+      oneOf:
+      - $ref: '#/components/schemas/UpdateItemToDefaultRenditionOperation'
+    QueuedTranslationJob_included_inner:
+      anyOf:
+      - $ref: '#/components/schemas/GeometrySetData'
+      - $ref: '#/components/schemas/PartRevisionData'
+      - $ref: '#/components/schemas/PartRenditionData'
+    WebhookEvent_included_inner:
+      discriminator:
+        mapping:
+          scene: '#/components/schemas/WebhookEventSceneIncludedData'
+          part-revision: '#/components/schemas/WebhookEventPartRevisionIncludedData'
+        propertyName: type
+      oneOf:
+      - $ref: '#/components/schemas/WebhookEventSceneIncludedData'
+      - $ref: '#/components/schemas/WebhookEventPartRevisionIncludedData'
+    SceneOperation_query:
+      anyOf:
+      - $ref: '#/components/schemas/QueryById'
+      - $ref: '#/components/schemas/QueryByCollection'
+      - $ref: '#/components/schemas/QueryAll'
+      description: Query `scene-items`. Use `query-by-collection` to combine multiple
+        queries.
+    SceneOperation_operations_inner:
+      anyOf:
+      - $ref: '#/components/schemas/ChangeVisibilityOp'
+      - $ref: '#/components/schemas/ChangeMaterialOp'
+      - $ref: '#/components/schemas/ClearMaterialOp'
+      - $ref: '#/components/schemas/ChangeTransformOp'
+      - $ref: '#/components/schemas/ClearTransformOp'
+      - $ref: '#/components/schemas/SelectOp'
+      - $ref: '#/components/schemas/DeselectOperation'
+      - $ref: '#/components/schemas/ClearRenOp'
+      - $ref: '#/components/schemas/ViewDefaultRenOp'
+      - $ref: '#/components/schemas/ViewRenByIdOp'
+      - $ref: '#/components/schemas/ViewRenBySuppliedIdOp'
+      - $ref: '#/components/schemas/ViewRepByIdOp'
+      - $ref: '#/components/schemas/ViewRepByPredefinedIdOp'
+      - $ref: '#/components/schemas/ClearRepOp'
+    UpdatePartRevisionRequest_data_attributes_metadata_value:
+      anyOf:
+      - $ref: '#/components/schemas/MetadataLongType'
+      - $ref: '#/components/schemas/MetadataFloatType'
+      - $ref: '#/components/schemas/MetadataDateType'
+      - $ref: '#/components/schemas/MetadataStringType'
+      - $ref: '#/components/schemas/MetadataNullType'
+    CreatePartRequest_data_relationships_source:
+      anyOf:
+      - $ref: '#/components/schemas/FileRelationship'
+      - $ref: '#/components/schemas/PartAssemblyRelationship'
+    UpsertPropertyEntriesRequest_data_attributes_entries_value:
+      anyOf:
+      - $ref: '#/components/schemas/PropertyStringType'
+      - $ref: '#/components/schemas/PropertyDoubleType'
+      - $ref: '#/components/schemas/PropertyLongType'
+      - $ref: '#/components/schemas/PropertyDateType'
+      - nullable: true
+        type: object
+      nullable: true
+    UpsertPropertyEntriesRequest_data_relationships_propertySet:
+      anyOf:
+      - $ref: '#/components/schemas/PropertySetRelationship'
+      - $ref: '#/components/schemas/PartRevisionRelationship'
+      - $ref: '#/components/schemas/SceneItemRelationship'
+      - $ref: '#/components/schemas/PartInstanceRelationship'
+      description: "Relationship to the property set by `property-set`, `part-revision`,\
+        \ `part-instance` or `scene-item`."
+    UpdateSceneItemRequest_data_relationships_source:
+      anyOf:
+      - $ref: '#/components/schemas/GeometrySetRelationship'
+      - $ref: '#/components/schemas/PartRevisionRelationship'
+      description: Relationship to a `geometry-set` or `part-revision`.
+    UpdateSceneViewRequest_data_attributes_camera:
+      anyOf:
+      - $ref: '#/components/schemas/PerspectiveCamera'
+      - $ref: '#/components/schemas/OrthographicCamera'
+      - $ref: '#/components/schemas/CameraFit'
+    CreateSceneViewRequest_data_attributes_camera:
+      oneOf:
+      - $ref: '#/components/schemas/PerspectiveCamera'
+      - $ref: '#/components/schemas/OrthographicCamera'
+    CreateSceneViewStateRequest_data_relationships_source:
+      oneOf:
+      - $ref: '#/components/schemas/SceneViewRelationship'
+      - $ref: '#/components/schemas/SceneViewStateRelationship'
+    CreateSceneAnnotationRequest_data_attributes_data:
+      description: The data describing how to render this annotation.
+      discriminator:
+        mapping:
+          callout: '#/components/schemas/SceneAnnotationCalloutDataType'
+          custom: '#/components/schemas/SceneAnnotationCustomDataType'
+        propertyName: type
+      oneOf:
+      - $ref: '#/components/schemas/SceneAnnotationCalloutDataType'
+      - $ref: '#/components/schemas/SceneAnnotationCustomDataType'
+    CreateExportRequest_data_attributes_config:
+      description: Specifies the export format and options to configure the export.
+      discriminator:
+        mapping:
+          jt: '#/components/schemas/CADExportConfig'
+          step: '#/components/schemas/CADExportConfig'
+          x_t: '#/components/schemas/CADExportConfig'
+        propertyName: format
+      oneOf:
+      - $ref: '#/components/schemas/CADExportConfig'
+    SceneItemData_relationships_source:
+      anyOf:
+      - $ref: '#/components/schemas/GeometrySetRelationship'
+      - $ref: '#/components/schemas/PartRevisionRelationship'
+      - $ref: '#/components/schemas/SceneRelationship'
+      - $ref: '#/components/schemas/PartRenditionRelationship'
+    PropertyEntryData_attributes_value:
+      anyOf:
+      - $ref: '#/components/schemas/PropertyStringType'
+      - $ref: '#/components/schemas/PropertyDoubleType'
+      - $ref: '#/components/schemas/PropertyLongType'
+      - $ref: '#/components/schemas/PropertyDateType'
+    CreateSceneItemRequestData_relationships_source:
+      anyOf:
+      - $ref: '#/components/schemas/GeometrySetRelationship'
+      - $ref: '#/components/schemas/PartRevisionRelationship'
+      - $ref: '#/components/schemas/SceneRelationship'
+      - $ref: '#/components/schemas/PartRenditionRelationship'
+      description: "Relationship to a `geometry-set`, `part-revision`, `part-rendition`,\
+        \ or `scene`."
   securitySchemes:
     OAuth2:
       flows:

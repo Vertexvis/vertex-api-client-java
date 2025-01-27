@@ -14,170 +14,183 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * ApplicationDataAttributes
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
 public class ApplicationDataAttributes {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nonnull
   private String name;
 
   public static final String SERIALIZED_NAME_CLIENT_ID = "clientId";
   @SerializedName(SERIALIZED_NAME_CLIENT_ID)
+  @javax.annotation.Nonnull
   private String clientId;
 
   public static final String SERIALIZED_NAME_CREATED = "created";
   @SerializedName(SERIALIZED_NAME_CREATED)
+  @javax.annotation.Nonnull
   private OffsetDateTime created;
 
   public static final String SERIALIZED_NAME_SCOPES = "scopes";
   @SerializedName(SERIALIZED_NAME_SCOPES)
+  @javax.annotation.Nonnull
   private List<String> scopes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_REDIRECT_URIS = "redirectUris";
   @SerializedName(SERIALIZED_NAME_REDIRECT_URIS)
+  @javax.annotation.Nonnull
   private List<String> redirectUris = new ArrayList<>();
 
-  public ApplicationDataAttributes() { 
+  public ApplicationDataAttributes() {
   }
 
-  public ApplicationDataAttributes name(String name) {
-    
+  public ApplicationDataAttributes name(@javax.annotation.Nonnull String name) {
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * Get name
    * @return name
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "some-string", required = true, value = "")
-
   public String getName() {
     return name;
   }
 
-
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nonnull String name) {
     this.name = name;
   }
 
 
-  public ApplicationDataAttributes clientId(String clientId) {
-    
+  public ApplicationDataAttributes clientId(@javax.annotation.Nonnull String clientId) {
     this.clientId = clientId;
     return this;
   }
 
-   /**
+  /**
    * Get clientId
    * @return clientId
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "some-string", required = true, value = "")
-
   public String getClientId() {
     return clientId;
   }
 
-
-  public void setClientId(String clientId) {
+  public void setClientId(@javax.annotation.Nonnull String clientId) {
     this.clientId = clientId;
   }
 
 
-  public ApplicationDataAttributes created(OffsetDateTime created) {
-    
+  public ApplicationDataAttributes created(@javax.annotation.Nonnull OffsetDateTime created) {
     this.created = created;
     return this;
   }
 
-   /**
+  /**
    * Get created
    * @return created
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2020-01-01T12:00Z", required = true, value = "")
-
   public OffsetDateTime getCreated() {
     return created;
   }
 
-
-  public void setCreated(OffsetDateTime created) {
+  public void setCreated(@javax.annotation.Nonnull OffsetDateTime created) {
     this.created = created;
   }
 
 
-  public ApplicationDataAttributes scopes(List<String> scopes) {
-    
+  public ApplicationDataAttributes scopes(@javax.annotation.Nonnull List<String> scopes) {
     this.scopes = scopes;
     return this;
   }
 
   public ApplicationDataAttributes addScopesItem(String scopesItem) {
+    if (this.scopes == null) {
+      this.scopes = new ArrayList<>();
+    }
     this.scopes.add(scopesItem);
     return this;
   }
 
-   /**
+  /**
    * Get scopes
    * @return scopes
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
   public List<String> getScopes() {
     return scopes;
   }
 
-
-  public void setScopes(List<String> scopes) {
+  public void setScopes(@javax.annotation.Nonnull List<String> scopes) {
     this.scopes = scopes;
   }
 
 
-  public ApplicationDataAttributes redirectUris(List<String> redirectUris) {
-    
+  public ApplicationDataAttributes redirectUris(@javax.annotation.Nonnull List<String> redirectUris) {
     this.redirectUris = redirectUris;
     return this;
   }
 
   public ApplicationDataAttributes addRedirectUrisItem(String redirectUrisItem) {
+    if (this.redirectUris == null) {
+      this.redirectUris = new ArrayList<>();
+    }
     this.redirectUris.add(redirectUrisItem);
     return this;
   }
 
-   /**
+  /**
    * Get redirectUris
    * @return redirectUris
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
   public List<String> getRedirectUris() {
     return redirectUris;
   }
 
-
-  public void setRedirectUris(List<String> redirectUris) {
+  public void setRedirectUris(@javax.annotation.Nonnull List<String> redirectUris) {
     this.redirectUris = redirectUris;
   }
+
 
 
   @Override
@@ -225,5 +238,123 @@ public class ApplicationDataAttributes {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("name");
+    openapiFields.add("clientId");
+    openapiFields.add("created");
+    openapiFields.add("scopes");
+    openapiFields.add("redirectUris");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("name");
+    openapiRequiredFields.add("clientId");
+    openapiRequiredFields.add("created");
+    openapiRequiredFields.add("scopes");
+    openapiRequiredFields.add("redirectUris");
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to ApplicationDataAttributes
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!ApplicationDataAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ApplicationDataAttributes is not found in the empty JSON string", ApplicationDataAttributes.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!ApplicationDataAttributes.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ApplicationDataAttributes` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : ApplicationDataAttributes.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (!jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if (!jsonObj.get("clientId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `clientId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("clientId").toString()));
+      }
+      // ensure the required json array is present
+      if (jsonObj.get("scopes") == null) {
+        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
+      } else if (!jsonObj.get("scopes").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `scopes` to be an array in the JSON string but got `%s`", jsonObj.get("scopes").toString()));
+      }
+      // ensure the required json array is present
+      if (jsonObj.get("redirectUris") == null) {
+        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
+      } else if (!jsonObj.get("redirectUris").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `redirectUris` to be an array in the JSON string but got `%s`", jsonObj.get("redirectUris").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!ApplicationDataAttributes.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ApplicationDataAttributes' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<ApplicationDataAttributes> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ApplicationDataAttributes.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<ApplicationDataAttributes>() {
+           @Override
+           public void write(JsonWriter out, ApplicationDataAttributes value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public ApplicationDataAttributes read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+  /**
+   * Create an instance of ApplicationDataAttributes given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ApplicationDataAttributes
+   * @throws IOException if the JSON string is invalid with respect to ApplicationDataAttributes
+   */
+  public static ApplicationDataAttributes fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ApplicationDataAttributes.class);
+  }
+
+  /**
+   * Convert an instance of ApplicationDataAttributes to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

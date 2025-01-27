@@ -14,339 +14,333 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType;
 import com.vertexvis.model.ColorMaterial;
 import com.vertexvis.model.Matrix4;
 import com.vertexvis.model.PartRevisionSuppliedId;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import com.vertexvis.model.UpdatePartRevisionRequestDataAttributesMetadataValue;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.vertexvis.JSON;
+
 /**
  * CreateSceneItemRequestDataAttributes
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
 public class CreateSceneItemRequestDataAttributes {
   public static final String SERIALIZED_NAME_MATERIAL_OVERRIDE = "materialOverride";
   @SerializedName(SERIALIZED_NAME_MATERIAL_OVERRIDE)
+  @javax.annotation.Nullable
   private ColorMaterial materialOverride;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nullable
   private String name;
 
   public static final String SERIALIZED_NAME_ORDINAL = "ordinal";
   @SerializedName(SERIALIZED_NAME_ORDINAL)
+  @javax.annotation.Nullable
   private Integer ordinal;
 
   public static final String SERIALIZED_NAME_PARENT = "parent";
   @SerializedName(SERIALIZED_NAME_PARENT)
+  @javax.annotation.Nullable
   private String parent;
 
   public static final String SERIALIZED_NAME_PART_INSTANCE_SUPPLIED_IDS_AS_SUPPLIED_IDS = "partInstanceSuppliedIdsAsSuppliedIds";
   @SerializedName(SERIALIZED_NAME_PART_INSTANCE_SUPPLIED_IDS_AS_SUPPLIED_IDS)
+  @javax.annotation.Nullable
   private Boolean partInstanceSuppliedIdsAsSuppliedIds;
 
   public static final String SERIALIZED_NAME_SOURCE = "source";
   @SerializedName(SERIALIZED_NAME_SOURCE)
+  @javax.annotation.Nullable
   private PartRevisionSuppliedId source;
 
   public static final String SERIALIZED_NAME_SUPPLIED_ID = "suppliedId";
   @SerializedName(SERIALIZED_NAME_SUPPLIED_ID)
+  @javax.annotation.Nullable
   private String suppliedId;
 
   public static final String SERIALIZED_NAME_TRANSFORM = "transform";
   @SerializedName(SERIALIZED_NAME_TRANSFORM)
+  @javax.annotation.Nullable
   private Matrix4 transform;
 
   public static final String SERIALIZED_NAME_VISIBLE = "visible";
   @SerializedName(SERIALIZED_NAME_VISIBLE)
+  @javax.annotation.Nullable
   private Boolean visible;
 
   public static final String SERIALIZED_NAME_PHANTOM = "phantom";
   @SerializedName(SERIALIZED_NAME_PHANTOM)
+  @javax.annotation.Nullable
   private Boolean phantom;
 
   public static final String SERIALIZED_NAME_END_ITEM = "endItem";
   @SerializedName(SERIALIZED_NAME_END_ITEM)
+  @javax.annotation.Nullable
   private Boolean endItem;
 
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
-  private Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> metadata = null;
+  @javax.annotation.Nullable
+  private Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> metadata = new HashMap<>();
 
-  public CreateSceneItemRequestDataAttributes() { 
+  public static final String SERIALIZED_NAME_EXPERIMENTAL_SOURCE_METADATA_KEYS = "experimentalSourceMetadataKeys";
+  @SerializedName(SERIALIZED_NAME_EXPERIMENTAL_SOURCE_METADATA_KEYS)
+  @javax.annotation.Nullable
+  private List<String> experimentalSourceMetadataKeys = new ArrayList<>();
+
+  public CreateSceneItemRequestDataAttributes() {
   }
 
-  public CreateSceneItemRequestDataAttributes materialOverride(ColorMaterial materialOverride) {
-    
+  public CreateSceneItemRequestDataAttributes materialOverride(@javax.annotation.Nullable ColorMaterial materialOverride) {
     this.materialOverride = materialOverride;
     return this;
   }
 
-   /**
+  /**
    * Get materialOverride
    * @return materialOverride
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public ColorMaterial getMaterialOverride() {
     return materialOverride;
   }
 
-
-  public void setMaterialOverride(ColorMaterial materialOverride) {
+  public void setMaterialOverride(@javax.annotation.Nullable ColorMaterial materialOverride) {
     this.materialOverride = materialOverride;
   }
 
 
-  public CreateSceneItemRequestDataAttributes name(String name) {
-    
+  public CreateSceneItemRequestDataAttributes name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * Get name
    * @return name
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "some-string", value = "")
-
   public String getName() {
     return name;
   }
 
-
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
   }
 
 
-  public CreateSceneItemRequestDataAttributes ordinal(Integer ordinal) {
-    
+  public CreateSceneItemRequestDataAttributes ordinal(@javax.annotation.Nullable Integer ordinal) {
     this.ordinal = ordinal;
     return this;
   }
 
-   /**
+  /**
    * A 0-based index used for defining a consistent ordering amongst sibling scene items.
    * @return ordinal
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A 0-based index used for defining a consistent ordering amongst sibling scene items.")
-
   public Integer getOrdinal() {
     return ordinal;
   }
 
-
-  public void setOrdinal(Integer ordinal) {
+  public void setOrdinal(@javax.annotation.Nullable Integer ordinal) {
     this.ordinal = ordinal;
   }
 
 
-  public CreateSceneItemRequestDataAttributes parent(String parent) {
-    
+  public CreateSceneItemRequestDataAttributes parent(@javax.annotation.Nullable String parent) {
     this.parent = parent;
     return this;
   }
 
-   /**
+  /**
    * Optional ability to specify a parent scene item by scene item supplied ID. For example, an  existing ID from a PLM system. This approach is an alternative to providing a specific scene  item ID with the relationship parent property. 
    * @return parent
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "PN12345", value = "Optional ability to specify a parent scene item by scene item supplied ID. For example, an  existing ID from a PLM system. This approach is an alternative to providing a specific scene  item ID with the relationship parent property. ")
-
   public String getParent() {
     return parent;
   }
 
-
-  public void setParent(String parent) {
+  public void setParent(@javax.annotation.Nullable String parent) {
     this.parent = parent;
   }
 
 
-  public CreateSceneItemRequestDataAttributes partInstanceSuppliedIdsAsSuppliedIds(Boolean partInstanceSuppliedIdsAsSuppliedIds) {
-    
+  public CreateSceneItemRequestDataAttributes partInstanceSuppliedIdsAsSuppliedIds(@javax.annotation.Nullable Boolean partInstanceSuppliedIdsAsSuppliedIds) {
     this.partInstanceSuppliedIdsAsSuppliedIds = partInstanceSuppliedIdsAsSuppliedIds;
     return this;
   }
 
-   /**
+  /**
    * Whether or not to use part instance supplied IDs as scene item supplied IDs.
    * @return partInstanceSuppliedIdsAsSuppliedIds
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "false", value = "Whether or not to use part instance supplied IDs as scene item supplied IDs.")
-
   public Boolean getPartInstanceSuppliedIdsAsSuppliedIds() {
     return partInstanceSuppliedIdsAsSuppliedIds;
   }
 
-
-  public void setPartInstanceSuppliedIdsAsSuppliedIds(Boolean partInstanceSuppliedIdsAsSuppliedIds) {
+  public void setPartInstanceSuppliedIdsAsSuppliedIds(@javax.annotation.Nullable Boolean partInstanceSuppliedIdsAsSuppliedIds) {
     this.partInstanceSuppliedIdsAsSuppliedIds = partInstanceSuppliedIdsAsSuppliedIds;
   }
 
 
-  public CreateSceneItemRequestDataAttributes source(PartRevisionSuppliedId source) {
-    
+  public CreateSceneItemRequestDataAttributes source(@javax.annotation.Nullable PartRevisionSuppliedId source) {
     this.source = source;
     return this;
   }
 
-   /**
+  /**
    * Get source
    * @return source
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public PartRevisionSuppliedId getSource() {
     return source;
   }
 
-
-  public void setSource(PartRevisionSuppliedId source) {
+  public void setSource(@javax.annotation.Nullable PartRevisionSuppliedId source) {
     this.source = source;
   }
 
 
-  public CreateSceneItemRequestDataAttributes suppliedId(String suppliedId) {
-    
+  public CreateSceneItemRequestDataAttributes suppliedId(@javax.annotation.Nullable String suppliedId) {
     this.suppliedId = suppliedId;
     return this;
   }
 
-   /**
+  /**
    * ID provided for correlation. For example, an existing ID from a PLM system.
    * @return suppliedId
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "PN12345", value = "ID provided for correlation. For example, an existing ID from a PLM system.")
-
   public String getSuppliedId() {
     return suppliedId;
   }
 
-
-  public void setSuppliedId(String suppliedId) {
+  public void setSuppliedId(@javax.annotation.Nullable String suppliedId) {
     this.suppliedId = suppliedId;
   }
 
 
-  public CreateSceneItemRequestDataAttributes transform(Matrix4 transform) {
-    
+  public CreateSceneItemRequestDataAttributes transform(@javax.annotation.Nullable Matrix4 transform) {
     this.transform = transform;
     return this;
   }
 
-   /**
+  /**
    * Get transform
    * @return transform
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public Matrix4 getTransform() {
     return transform;
   }
 
-
-  public void setTransform(Matrix4 transform) {
+  public void setTransform(@javax.annotation.Nullable Matrix4 transform) {
     this.transform = transform;
   }
 
 
-  public CreateSceneItemRequestDataAttributes visible(Boolean visible) {
-    
+  public CreateSceneItemRequestDataAttributes visible(@javax.annotation.Nullable Boolean visible) {
     this.visible = visible;
     return this;
   }
 
-   /**
+  /**
    * Item visibility.
    * @return visible
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Item visibility.")
-
   public Boolean getVisible() {
     return visible;
   }
 
-
-  public void setVisible(Boolean visible) {
+  public void setVisible(@javax.annotation.Nullable Boolean visible) {
     this.visible = visible;
   }
 
 
-  public CreateSceneItemRequestDataAttributes phantom(Boolean phantom) {
-    
+  public CreateSceneItemRequestDataAttributes phantom(@javax.annotation.Nullable Boolean phantom) {
     this.phantom = phantom;
     return this;
   }
 
-   /**
+  /**
    * Phantom state of the item.
    * @return phantom
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Phantom state of the item.")
-
   public Boolean getPhantom() {
     return phantom;
   }
 
-
-  public void setPhantom(Boolean phantom) {
+  public void setPhantom(@javax.annotation.Nullable Boolean phantom) {
     this.phantom = phantom;
   }
 
 
-  public CreateSceneItemRequestDataAttributes endItem(Boolean endItem) {
-    
+  public CreateSceneItemRequestDataAttributes endItem(@javax.annotation.Nullable Boolean endItem) {
     this.endItem = endItem;
     return this;
   }
 
-   /**
+  /**
    * Whether this item is an end item.
    * @return endItem
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Whether this item is an end item.")
-
   public Boolean getEndItem() {
     return endItem;
   }
 
-
-  public void setEndItem(Boolean endItem) {
+  public void setEndItem(@javax.annotation.Nullable Boolean endItem) {
     this.endItem = endItem;
   }
 
 
-  public CreateSceneItemRequestDataAttributes metadata(Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> metadata) {
-    
+  public CreateSceneItemRequestDataAttributes metadata(@javax.annotation.Nullable Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> metadata) {
     this.metadata = metadata;
     return this;
   }
 
-  public CreateSceneItemRequestDataAttributes putMetadataItem(String key, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType metadataItem) {
+  public CreateSceneItemRequestDataAttributes putMetadataItem(String key, UpdatePartRevisionRequestDataAttributesMetadataValue metadataItem) {
     if (this.metadata == null) {
       this.metadata = new HashMap<>();
     }
@@ -354,21 +348,46 @@ public class CreateSceneItemRequestDataAttributes {
     return this;
   }
 
-   /**
+  /**
    * Additional metadata for the scene-item. This metadata will take precedence over any metadata that belongs to the part file. 
    * @return metadata
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Additional metadata for the scene-item. This metadata will take precedence over any metadata that belongs to the part file. ")
-
-  public Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> getMetadata() {
+  public Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> getMetadata() {
     return metadata;
   }
 
-
-  public void setMetadata(Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> metadata) {
+  public void setMetadata(@javax.annotation.Nullable Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> metadata) {
     this.metadata = metadata;
   }
+
+
+  public CreateSceneItemRequestDataAttributes experimentalSourceMetadataKeys(@javax.annotation.Nullable List<String> experimentalSourceMetadataKeys) {
+    this.experimentalSourceMetadataKeys = experimentalSourceMetadataKeys;
+    return this;
+  }
+
+  public CreateSceneItemRequestDataAttributes addExperimentalSourceMetadataKeysItem(String experimentalSourceMetadataKeysItem) {
+    if (this.experimentalSourceMetadataKeys == null) {
+      this.experimentalSourceMetadataKeys = new ArrayList<>();
+    }
+    this.experimentalSourceMetadataKeys.add(experimentalSourceMetadataKeysItem);
+    return this;
+  }
+
+  /**
+   * Specifies which metadata keys should be copied from the source item. Sending null will  default to all keys. Sending an empty string will copy none of the sources&#39; metadata.  Sending an array of [\&quot;KEY1\&quot;, \&quot;KEY2] will include KEY1 and KEY2 from the source in the scene item creation. This is marked experimental since future releases are expected to prevent copying metadata entirely. 
+   * @return experimentalSourceMetadataKeys
+   */
+  @javax.annotation.Nullable
+  public List<String> getExperimentalSourceMetadataKeys() {
+    return experimentalSourceMetadataKeys;
+  }
+
+  public void setExperimentalSourceMetadataKeys(@javax.annotation.Nullable List<String> experimentalSourceMetadataKeys) {
+    this.experimentalSourceMetadataKeys = experimentalSourceMetadataKeys;
+  }
+
 
 
   @Override
@@ -391,12 +410,13 @@ public class CreateSceneItemRequestDataAttributes {
         Objects.equals(this.visible, createSceneItemRequestDataAttributes.visible) &&
         Objects.equals(this.phantom, createSceneItemRequestDataAttributes.phantom) &&
         Objects.equals(this.endItem, createSceneItemRequestDataAttributes.endItem) &&
-        Objects.equals(this.metadata, createSceneItemRequestDataAttributes.metadata);
+        Objects.equals(this.metadata, createSceneItemRequestDataAttributes.metadata) &&
+        Objects.equals(this.experimentalSourceMetadataKeys, createSceneItemRequestDataAttributes.experimentalSourceMetadataKeys);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(materialOverride, name, ordinal, parent, partInstanceSuppliedIdsAsSuppliedIds, source, suppliedId, transform, visible, phantom, endItem, metadata);
+    return Objects.hash(materialOverride, name, ordinal, parent, partInstanceSuppliedIdsAsSuppliedIds, source, suppliedId, transform, visible, phantom, endItem, metadata, experimentalSourceMetadataKeys);
   }
 
   @Override
@@ -415,6 +435,7 @@ public class CreateSceneItemRequestDataAttributes {
     sb.append("    phantom: ").append(toIndentedString(phantom)).append("\n");
     sb.append("    endItem: ").append(toIndentedString(endItem)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    experimentalSourceMetadataKeys: ").append(toIndentedString(experimentalSourceMetadataKeys)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -430,5 +451,126 @@ public class CreateSceneItemRequestDataAttributes {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("materialOverride");
+    openapiFields.add("name");
+    openapiFields.add("ordinal");
+    openapiFields.add("parent");
+    openapiFields.add("partInstanceSuppliedIdsAsSuppliedIds");
+    openapiFields.add("source");
+    openapiFields.add("suppliedId");
+    openapiFields.add("transform");
+    openapiFields.add("visible");
+    openapiFields.add("phantom");
+    openapiFields.add("endItem");
+    openapiFields.add("metadata");
+    openapiFields.add("experimentalSourceMetadataKeys");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CreateSceneItemRequestDataAttributes
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!CreateSceneItemRequestDataAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in CreateSceneItemRequestDataAttributes is not found in the empty JSON string", CreateSceneItemRequestDataAttributes.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!CreateSceneItemRequestDataAttributes.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateSceneItemRequestDataAttributes` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      // validate the optional field `materialOverride`
+      if (jsonObj.get("materialOverride") != null && !jsonObj.get("materialOverride").isJsonNull()) {
+        ColorMaterial.validateJsonElement(jsonObj.get("materialOverride"));
+      }
+      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if ((jsonObj.get("parent") != null && !jsonObj.get("parent").isJsonNull()) && !jsonObj.get("parent").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `parent` to be a primitive type in the JSON string but got `%s`", jsonObj.get("parent").toString()));
+      }
+      // validate the optional field `source`
+      if (jsonObj.get("source") != null && !jsonObj.get("source").isJsonNull()) {
+        PartRevisionSuppliedId.validateJsonElement(jsonObj.get("source"));
+      }
+      if ((jsonObj.get("suppliedId") != null && !jsonObj.get("suppliedId").isJsonNull()) && !jsonObj.get("suppliedId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `suppliedId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("suppliedId").toString()));
+      }
+      // validate the optional field `transform`
+      if (jsonObj.get("transform") != null && !jsonObj.get("transform").isJsonNull()) {
+        Matrix4.validateJsonElement(jsonObj.get("transform"));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("experimentalSourceMetadataKeys") != null && !jsonObj.get("experimentalSourceMetadataKeys").isJsonNull() && !jsonObj.get("experimentalSourceMetadataKeys").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `experimentalSourceMetadataKeys` to be an array in the JSON string but got `%s`", jsonObj.get("experimentalSourceMetadataKeys").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!CreateSceneItemRequestDataAttributes.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'CreateSceneItemRequestDataAttributes' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<CreateSceneItemRequestDataAttributes> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(CreateSceneItemRequestDataAttributes.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<CreateSceneItemRequestDataAttributes>() {
+           @Override
+           public void write(JsonWriter out, CreateSceneItemRequestDataAttributes value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public CreateSceneItemRequestDataAttributes read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+  /**
+   * Create an instance of CreateSceneItemRequestDataAttributes given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CreateSceneItemRequestDataAttributes
+   * @throws IOException if the JSON string is invalid with respect to CreateSceneItemRequestDataAttributes
+   */
+  public static CreateSceneItemRequestDataAttributes fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, CreateSceneItemRequestDataAttributes.class);
+  }
+
+  /**
+   * Convert an instance of CreateSceneItemRequestDataAttributes to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

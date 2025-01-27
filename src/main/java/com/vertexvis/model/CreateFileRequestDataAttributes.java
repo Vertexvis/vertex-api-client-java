@@ -14,103 +14,141 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * CreateFileRequestDataAttributes
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
 public class CreateFileRequestDataAttributes {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nonnull
   private String name;
 
   public static final String SERIALIZED_NAME_SUPPLIED_ID = "suppliedId";
   @SerializedName(SERIALIZED_NAME_SUPPLIED_ID)
+  @javax.annotation.Nullable
   private String suppliedId;
 
   public static final String SERIALIZED_NAME_ROOT_FILE_NAME = "rootFileName";
   @SerializedName(SERIALIZED_NAME_ROOT_FILE_NAME)
+  @javax.annotation.Nullable
   private String rootFileName;
 
-  public CreateFileRequestDataAttributes() { 
+  public static final String SERIALIZED_NAME_EXPIRY = "expiry";
+  @SerializedName(SERIALIZED_NAME_EXPIRY)
+  @javax.annotation.Nullable
+  private Integer expiry;
+
+  public CreateFileRequestDataAttributes() {
   }
 
-  public CreateFileRequestDataAttributes name(String name) {
-    
+  public CreateFileRequestDataAttributes name(@javax.annotation.Nonnull String name) {
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * Name matching that of the file you are uploading, including file extension.
    * @return name
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "model.zip", required = true, value = "Name matching that of the file you are uploading, including file extension.")
-
   public String getName() {
     return name;
   }
 
-
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nonnull String name) {
     this.name = name;
   }
 
 
-  public CreateFileRequestDataAttributes suppliedId(String suppliedId) {
-    
+  public CreateFileRequestDataAttributes suppliedId(@javax.annotation.Nullable String suppliedId) {
     this.suppliedId = suppliedId;
     return this;
   }
 
-   /**
+  /**
    * ID provided for correlation. For example, an existing ID from a PLM system.
    * @return suppliedId
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "PN12345", value = "ID provided for correlation. For example, an existing ID from a PLM system.")
-
   public String getSuppliedId() {
     return suppliedId;
   }
 
-
-  public void setSuppliedId(String suppliedId) {
+  public void setSuppliedId(@javax.annotation.Nullable String suppliedId) {
     this.suppliedId = suppliedId;
   }
 
 
-  public CreateFileRequestDataAttributes rootFileName(String rootFileName) {
-    
+  public CreateFileRequestDataAttributes rootFileName(@javax.annotation.Nullable String rootFileName) {
     this.rootFileName = rootFileName;
     return this;
   }
 
-   /**
+  /**
    * File name of the root part or assembly, including file extension. Required if &#x60;name&#x60; references an archive file extension, ignored otherwise.
    * @return rootFileName
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "root-assembly.prt.1", value = "File name of the root part or assembly, including file extension. Required if `name` references an archive file extension, ignored otherwise.")
-
   public String getRootFileName() {
     return rootFileName;
   }
 
-
-  public void setRootFileName(String rootFileName) {
+  public void setRootFileName(@javax.annotation.Nullable String rootFileName) {
     this.rootFileName = rootFileName;
   }
+
+
+  public CreateFileRequestDataAttributes expiry(@javax.annotation.Nullable Integer expiry) {
+    this.expiry = expiry;
+    return this;
+  }
+
+  /**
+   * Number of seconds before the file is deleted.
+   * minimum: 1
+   * @return expiry
+   */
+  @javax.annotation.Nullable
+  public Integer getExpiry() {
+    return expiry;
+  }
+
+  public void setExpiry(@javax.annotation.Nullable Integer expiry) {
+    this.expiry = expiry;
+  }
+
 
 
   @Override
@@ -124,12 +162,13 @@ public class CreateFileRequestDataAttributes {
     CreateFileRequestDataAttributes createFileRequestDataAttributes = (CreateFileRequestDataAttributes) o;
     return Objects.equals(this.name, createFileRequestDataAttributes.name) &&
         Objects.equals(this.suppliedId, createFileRequestDataAttributes.suppliedId) &&
-        Objects.equals(this.rootFileName, createFileRequestDataAttributes.rootFileName);
+        Objects.equals(this.rootFileName, createFileRequestDataAttributes.rootFileName) &&
+        Objects.equals(this.expiry, createFileRequestDataAttributes.expiry);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, suppliedId, rootFileName);
+    return Objects.hash(name, suppliedId, rootFileName, expiry);
   }
 
   @Override
@@ -139,6 +178,7 @@ public class CreateFileRequestDataAttributes {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    suppliedId: ").append(toIndentedString(suppliedId)).append("\n");
     sb.append("    rootFileName: ").append(toIndentedString(rootFileName)).append("\n");
+    sb.append("    expiry: ").append(toIndentedString(expiry)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -154,5 +194,109 @@ public class CreateFileRequestDataAttributes {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("name");
+    openapiFields.add("suppliedId");
+    openapiFields.add("rootFileName");
+    openapiFields.add("expiry");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("name");
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CreateFileRequestDataAttributes
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!CreateFileRequestDataAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in CreateFileRequestDataAttributes is not found in the empty JSON string", CreateFileRequestDataAttributes.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!CreateFileRequestDataAttributes.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateFileRequestDataAttributes` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : CreateFileRequestDataAttributes.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (!jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if ((jsonObj.get("suppliedId") != null && !jsonObj.get("suppliedId").isJsonNull()) && !jsonObj.get("suppliedId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `suppliedId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("suppliedId").toString()));
+      }
+      if ((jsonObj.get("rootFileName") != null && !jsonObj.get("rootFileName").isJsonNull()) && !jsonObj.get("rootFileName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `rootFileName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("rootFileName").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!CreateFileRequestDataAttributes.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'CreateFileRequestDataAttributes' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<CreateFileRequestDataAttributes> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(CreateFileRequestDataAttributes.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<CreateFileRequestDataAttributes>() {
+           @Override
+           public void write(JsonWriter out, CreateFileRequestDataAttributes value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public CreateFileRequestDataAttributes read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+  /**
+   * Create an instance of CreateFileRequestDataAttributes given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CreateFileRequestDataAttributes
+   * @throws IOException if the JSON string is invalid with respect to CreateFileRequestDataAttributes
+   */
+  public static CreateFileRequestDataAttributes fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, CreateFileRequestDataAttributes.class);
+  }
+
+  /**
+   * Convert an instance of CreateFileRequestDataAttributes to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

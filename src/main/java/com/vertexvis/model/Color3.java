@@ -14,110 +14,122 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * RGB color.
  */
-@ApiModel(description = "RGB color.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
 public class Color3 {
   public static final String SERIALIZED_NAME_R = "r";
   @SerializedName(SERIALIZED_NAME_R)
+  @javax.annotation.Nonnull
   private Integer r;
 
   public static final String SERIALIZED_NAME_G = "g";
   @SerializedName(SERIALIZED_NAME_G)
+  @javax.annotation.Nonnull
   private Integer g;
 
   public static final String SERIALIZED_NAME_B = "b";
   @SerializedName(SERIALIZED_NAME_B)
+  @javax.annotation.Nonnull
   private Integer b;
 
-  public Color3() { 
+  public Color3() {
   }
 
-  public Color3 r(Integer r) {
-    
+  public Color3 r(@javax.annotation.Nonnull Integer r) {
     this.r = r;
     return this;
   }
 
-   /**
+  /**
    * Color value from 0 to 255.
    * minimum: 0
    * maximum: 255
    * @return r
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "255", required = true, value = "Color value from 0 to 255.")
-
   public Integer getR() {
     return r;
   }
 
-
-  public void setR(Integer r) {
+  public void setR(@javax.annotation.Nonnull Integer r) {
     this.r = r;
   }
 
 
-  public Color3 g(Integer g) {
-    
+  public Color3 g(@javax.annotation.Nonnull Integer g) {
     this.g = g;
     return this;
   }
 
-   /**
+  /**
    * Color value from 0 to 255.
    * minimum: 0
    * maximum: 255
    * @return g
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "255", required = true, value = "Color value from 0 to 255.")
-
   public Integer getG() {
     return g;
   }
 
-
-  public void setG(Integer g) {
+  public void setG(@javax.annotation.Nonnull Integer g) {
     this.g = g;
   }
 
 
-  public Color3 b(Integer b) {
-    
+  public Color3 b(@javax.annotation.Nonnull Integer b) {
     this.b = b;
     return this;
   }
 
-   /**
+  /**
    * Color value from 0 to 255.
    * minimum: 0
    * maximum: 255
    * @return b
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "255", required = true, value = "Color value from 0 to 255.")
-
   public Integer getB() {
     return b;
   }
 
-
-  public void setB(Integer b) {
+  public void setB(@javax.annotation.Nonnull Integer b) {
     this.b = b;
   }
+
 
 
   @Override
@@ -161,5 +173,101 @@ public class Color3 {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("r");
+    openapiFields.add("g");
+    openapiFields.add("b");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("r");
+    openapiRequiredFields.add("g");
+    openapiRequiredFields.add("b");
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to Color3
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!Color3.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in Color3 is not found in the empty JSON string", Color3.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!Color3.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Color3` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : Color3.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!Color3.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'Color3' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<Color3> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(Color3.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<Color3>() {
+           @Override
+           public void write(JsonWriter out, Color3 value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public Color3 read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+  /**
+   * Create an instance of Color3 given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of Color3
+   * @throws IOException if the JSON string is invalid with respect to Color3
+   */
+  public static Color3 fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, Color3.class);
+  }
+
+  /**
+   * Convert an instance of Color3 to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

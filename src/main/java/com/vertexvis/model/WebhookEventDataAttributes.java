@@ -14,77 +14,127 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * WebhookEventDataAttributes
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
 public class WebhookEventDataAttributes {
   public static final String SERIALIZED_NAME_CREATED = "created";
   @SerializedName(SERIALIZED_NAME_CREATED)
+  @javax.annotation.Nonnull
   private OffsetDateTime created;
 
   public static final String SERIALIZED_NAME_TOPIC = "topic";
   @SerializedName(SERIALIZED_NAME_TOPIC)
+  @javax.annotation.Nonnull
   private String topic;
 
-  public WebhookEventDataAttributes() { 
+  public static final String SERIALIZED_NAME_CHANGED = "changed";
+  @SerializedName(SERIALIZED_NAME_CHANGED)
+  @javax.annotation.Nullable
+  private List<String> changed = new ArrayList<>();
+
+  public WebhookEventDataAttributes() {
   }
 
-  public WebhookEventDataAttributes created(OffsetDateTime created) {
-    
+  public WebhookEventDataAttributes created(@javax.annotation.Nonnull OffsetDateTime created) {
     this.created = created;
     return this;
   }
 
-   /**
+  /**
    * Get created
    * @return created
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2020-01-01T12:00Z", required = true, value = "")
-
   public OffsetDateTime getCreated() {
     return created;
   }
 
-
-  public void setCreated(OffsetDateTime created) {
+  public void setCreated(@javax.annotation.Nonnull OffsetDateTime created) {
     this.created = created;
   }
 
 
-  public WebhookEventDataAttributes topic(String topic) {
-    
+  public WebhookEventDataAttributes topic(@javax.annotation.Nonnull String topic) {
     this.topic = topic;
     return this;
   }
 
-   /**
+  /**
    * Get topic
    * @return topic
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "some-string", required = true, value = "")
-
   public String getTopic() {
     return topic;
   }
 
-
-  public void setTopic(String topic) {
+  public void setTopic(@javax.annotation.Nonnull String topic) {
     this.topic = topic;
   }
+
+
+  public WebhookEventDataAttributes changed(@javax.annotation.Nullable List<String> changed) {
+    this.changed = changed;
+    return this;
+  }
+
+  public WebhookEventDataAttributes addChangedItem(String changedItem) {
+    if (this.changed == null) {
+      this.changed = new ArrayList<>();
+    }
+    this.changed.add(changedItem);
+    return this;
+  }
+
+  /**
+   * Get changed
+   * @return changed
+   */
+  @javax.annotation.Nullable
+  public List<String> getChanged() {
+    return changed;
+  }
+
+  public void setChanged(@javax.annotation.Nullable List<String> changed) {
+    this.changed = changed;
+  }
+
 
 
   @Override
@@ -97,12 +147,13 @@ public class WebhookEventDataAttributes {
     }
     WebhookEventDataAttributes webhookEventDataAttributes = (WebhookEventDataAttributes) o;
     return Objects.equals(this.created, webhookEventDataAttributes.created) &&
-        Objects.equals(this.topic, webhookEventDataAttributes.topic);
+        Objects.equals(this.topic, webhookEventDataAttributes.topic) &&
+        Objects.equals(this.changed, webhookEventDataAttributes.changed);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(created, topic);
+    return Objects.hash(created, topic, changed);
   }
 
   @Override
@@ -111,6 +162,7 @@ public class WebhookEventDataAttributes {
     sb.append("class WebhookEventDataAttributes {\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    topic: ").append(toIndentedString(topic)).append("\n");
+    sb.append("    changed: ").append(toIndentedString(changed)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -126,5 +178,107 @@ public class WebhookEventDataAttributes {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("created");
+    openapiFields.add("topic");
+    openapiFields.add("changed");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("created");
+    openapiRequiredFields.add("topic");
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to WebhookEventDataAttributes
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!WebhookEventDataAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in WebhookEventDataAttributes is not found in the empty JSON string", WebhookEventDataAttributes.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!WebhookEventDataAttributes.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `WebhookEventDataAttributes` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : WebhookEventDataAttributes.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (!jsonObj.get("topic").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `topic` to be a primitive type in the JSON string but got `%s`", jsonObj.get("topic").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("changed") != null && !jsonObj.get("changed").isJsonNull() && !jsonObj.get("changed").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `changed` to be an array in the JSON string but got `%s`", jsonObj.get("changed").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!WebhookEventDataAttributes.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'WebhookEventDataAttributes' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<WebhookEventDataAttributes> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(WebhookEventDataAttributes.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<WebhookEventDataAttributes>() {
+           @Override
+           public void write(JsonWriter out, WebhookEventDataAttributes value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public WebhookEventDataAttributes read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+  /**
+   * Create an instance of WebhookEventDataAttributes given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of WebhookEventDataAttributes
+   * @throws IOException if the JSON string is invalid with respect to WebhookEventDataAttributes
+   */
+  public static WebhookEventDataAttributes fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, WebhookEventDataAttributes.class);
+  }
+
+  /**
+   * Convert an instance of WebhookEventDataAttributes to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

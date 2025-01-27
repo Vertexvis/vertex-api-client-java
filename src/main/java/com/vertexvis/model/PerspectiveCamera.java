@@ -14,162 +14,168 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.Vector3;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * A camera type that mimics the way the human eye sees.
  */
-@ApiModel(description = "A camera type that mimics the way the human eye sees.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
 public class PerspectiveCamera {
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
+  @javax.annotation.Nullable
   private String type;
 
   public static final String SERIALIZED_NAME_POSITION = "position";
   @SerializedName(SERIALIZED_NAME_POSITION)
+  @javax.annotation.Nonnull
   private Vector3 position;
 
   public static final String SERIALIZED_NAME_LOOK_AT = "lookAt";
   @SerializedName(SERIALIZED_NAME_LOOK_AT)
+  @javax.annotation.Nonnull
   private Vector3 lookAt;
 
   public static final String SERIALIZED_NAME_UP = "up";
   @SerializedName(SERIALIZED_NAME_UP)
+  @javax.annotation.Nonnull
   private Vector3 up;
 
   public static final String SERIALIZED_NAME_FOV_Y = "fovY";
   @SerializedName(SERIALIZED_NAME_FOV_Y)
+  @javax.annotation.Nullable
   private BigDecimal fovY;
 
-  public PerspectiveCamera() { 
+  public PerspectiveCamera() {
   }
 
-  public PerspectiveCamera type(String type) {
-    
+  public PerspectiveCamera type(@javax.annotation.Nullable String type) {
     this.type = type;
     return this;
   }
 
-   /**
+  /**
    * Get type
    * @return type
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "perspective", value = "")
-
   public String getType() {
     return type;
   }
 
-
-  public void setType(String type) {
+  public void setType(@javax.annotation.Nullable String type) {
     this.type = type;
   }
 
 
-  public PerspectiveCamera position(Vector3 position) {
-    
+  public PerspectiveCamera position(@javax.annotation.Nonnull Vector3 position) {
     this.position = position;
     return this;
   }
 
-   /**
+  /**
    * Get position
    * @return position
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
   public Vector3 getPosition() {
     return position;
   }
 
-
-  public void setPosition(Vector3 position) {
+  public void setPosition(@javax.annotation.Nonnull Vector3 position) {
     this.position = position;
   }
 
 
-  public PerspectiveCamera lookAt(Vector3 lookAt) {
-    
+  public PerspectiveCamera lookAt(@javax.annotation.Nonnull Vector3 lookAt) {
     this.lookAt = lookAt;
     return this;
   }
 
-   /**
+  /**
    * Get lookAt
    * @return lookAt
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
   public Vector3 getLookAt() {
     return lookAt;
   }
 
-
-  public void setLookAt(Vector3 lookAt) {
+  public void setLookAt(@javax.annotation.Nonnull Vector3 lookAt) {
     this.lookAt = lookAt;
   }
 
 
-  public PerspectiveCamera up(Vector3 up) {
-    
+  public PerspectiveCamera up(@javax.annotation.Nonnull Vector3 up) {
     this.up = up;
     return this;
   }
 
-   /**
+  /**
    * Get up
    * @return up
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
   public Vector3 getUp() {
     return up;
   }
 
-
-  public void setUp(Vector3 up) {
+  public void setUp(@javax.annotation.Nonnull Vector3 up) {
     this.up = up;
   }
 
 
-  public PerspectiveCamera fovY(BigDecimal fovY) {
-    
+  public PerspectiveCamera fovY(@javax.annotation.Nullable BigDecimal fovY) {
     this.fovY = fovY;
     return this;
   }
 
-   /**
+  /**
    * A numerical floating-point value representing the field of view
    * minimum: 1
    * maximum: 179
    * @return fovY
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A numerical floating-point value representing the field of view")
-
   public BigDecimal getFovY() {
     return fovY;
   }
 
-
-  public void setFovY(BigDecimal fovY) {
+  public void setFovY(@javax.annotation.Nullable BigDecimal fovY) {
     this.fovY = fovY;
   }
+
 
 
   @Override
@@ -217,5 +223,112 @@ public class PerspectiveCamera {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("type");
+    openapiFields.add("position");
+    openapiFields.add("lookAt");
+    openapiFields.add("up");
+    openapiFields.add("fovY");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("position");
+    openapiRequiredFields.add("lookAt");
+    openapiRequiredFields.add("up");
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PerspectiveCamera
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!PerspectiveCamera.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in PerspectiveCamera is not found in the empty JSON string", PerspectiveCamera.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!PerspectiveCamera.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PerspectiveCamera` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : PerspectiveCamera.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) && !jsonObj.get("type").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
+      }
+      // validate the required field `position`
+      Vector3.validateJsonElement(jsonObj.get("position"));
+      // validate the required field `lookAt`
+      Vector3.validateJsonElement(jsonObj.get("lookAt"));
+      // validate the required field `up`
+      Vector3.validateJsonElement(jsonObj.get("up"));
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!PerspectiveCamera.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'PerspectiveCamera' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<PerspectiveCamera> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(PerspectiveCamera.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<PerspectiveCamera>() {
+           @Override
+           public void write(JsonWriter out, PerspectiveCamera value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public PerspectiveCamera read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+  /**
+   * Create an instance of PerspectiveCamera given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PerspectiveCamera
+   * @throws IOException if the JSON string is invalid with respect to PerspectiveCamera
+   */
+  public static PerspectiveCamera fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, PerspectiveCamera.class);
+  }
+
+  /**
+   * Convert an instance of PerspectiveCamera to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

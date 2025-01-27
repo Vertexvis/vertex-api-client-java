@@ -14,7 +14,6 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -22,70 +21,87 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.Dimensions;
 import com.vertexvis.model.Point;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * CreateHitRequestDataAttributes
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
 public class CreateHitRequestDataAttributes {
   public static final String SERIALIZED_NAME_POINT = "point";
   @SerializedName(SERIALIZED_NAME_POINT)
+  @javax.annotation.Nonnull
   private Point point;
 
   public static final String SERIALIZED_NAME_VIEWPORT = "viewport";
   @SerializedName(SERIALIZED_NAME_VIEWPORT)
+  @javax.annotation.Nonnull
   private Dimensions viewport;
 
-  public CreateHitRequestDataAttributes() { 
+  public CreateHitRequestDataAttributes() {
   }
 
-  public CreateHitRequestDataAttributes point(Point point) {
-    
+  public CreateHitRequestDataAttributes point(@javax.annotation.Nonnull Point point) {
     this.point = point;
     return this;
   }
 
-   /**
+  /**
    * Get point
    * @return point
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
   public Point getPoint() {
     return point;
   }
 
-
-  public void setPoint(Point point) {
+  public void setPoint(@javax.annotation.Nonnull Point point) {
     this.point = point;
   }
 
 
-  public CreateHitRequestDataAttributes viewport(Dimensions viewport) {
-    
+  public CreateHitRequestDataAttributes viewport(@javax.annotation.Nonnull Dimensions viewport) {
     this.viewport = viewport;
     return this;
   }
 
-   /**
+  /**
    * Get viewport
    * @return viewport
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
   public Dimensions getViewport() {
     return viewport;
   }
 
-
-  public void setViewport(Dimensions viewport) {
+  public void setViewport(@javax.annotation.Nonnull Dimensions viewport) {
     this.viewport = viewport;
   }
+
 
 
   @Override
@@ -127,5 +143,103 @@ public class CreateHitRequestDataAttributes {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("point");
+    openapiFields.add("viewport");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("point");
+    openapiRequiredFields.add("viewport");
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CreateHitRequestDataAttributes
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!CreateHitRequestDataAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in CreateHitRequestDataAttributes is not found in the empty JSON string", CreateHitRequestDataAttributes.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!CreateHitRequestDataAttributes.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateHitRequestDataAttributes` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : CreateHitRequestDataAttributes.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      // validate the required field `point`
+      Point.validateJsonElement(jsonObj.get("point"));
+      // validate the required field `viewport`
+      Dimensions.validateJsonElement(jsonObj.get("viewport"));
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!CreateHitRequestDataAttributes.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'CreateHitRequestDataAttributes' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<CreateHitRequestDataAttributes> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(CreateHitRequestDataAttributes.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<CreateHitRequestDataAttributes>() {
+           @Override
+           public void write(JsonWriter out, CreateHitRequestDataAttributes value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public CreateHitRequestDataAttributes read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+  /**
+   * Create an instance of CreateHitRequestDataAttributes given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CreateHitRequestDataAttributes
+   * @throws IOException if the JSON string is invalid with respect to CreateHitRequestDataAttributes
+   */
+  public static CreateHitRequestDataAttributes fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, CreateHitRequestDataAttributes.class);
+  }
+
+  /**
+   * Convert an instance of CreateHitRequestDataAttributes to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

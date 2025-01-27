@@ -85,7 +85,8 @@ public class HitsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -96,7 +97,6 @@ public class HitsApi {
      */
     public okhttp3.Call createSceneHitCall(UUID id, CreateHitRequest createHitRequest, String include, String fieldsPartRevision, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -113,7 +113,7 @@ public class HitsApi {
 
         // create path and map variables
         String localVarPath = "/scenes/{id}/hits"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -151,20 +151,17 @@ public class HitsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call createSceneHitValidateBeforeCall(UUID id, CreateHitRequest createHitRequest, String include, String fieldsPartRevision, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling createSceneHit(Async)");
         }
-        
+
         // verify the required parameter 'createHitRequest' is set
         if (createHitRequest == null) {
             throw new ApiException("Missing the required parameter 'createHitRequest' when calling createSceneHit(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = createSceneHitCall(id, createHitRequest, include, fieldsPartRevision, _callback);
-        return localVarCall;
+        return createSceneHitCall(id, createHitRequest, include, fieldsPartRevision, _callback);
 
     }
 
@@ -178,7 +175,8 @@ public class HitsApi {
      * @return Hit
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -202,7 +200,8 @@ public class HitsApi {
      * @return ApiResponse&lt;Hit&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -228,7 +227,8 @@ public class HitsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -254,7 +254,8 @@ public class HitsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -265,7 +266,6 @@ public class HitsApi {
      */
     public okhttp3.Call createSceneViewHitCall(UUID id, CreateHitRequest createHitRequest, String include, String fieldsPartRevision, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -282,7 +282,7 @@ public class HitsApi {
 
         // create path and map variables
         String localVarPath = "/scene-views/{id}/hits"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -320,20 +320,17 @@ public class HitsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call createSceneViewHitValidateBeforeCall(UUID id, CreateHitRequest createHitRequest, String include, String fieldsPartRevision, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling createSceneViewHit(Async)");
         }
-        
+
         // verify the required parameter 'createHitRequest' is set
         if (createHitRequest == null) {
             throw new ApiException("Missing the required parameter 'createHitRequest' when calling createSceneViewHit(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = createSceneViewHitCall(id, createHitRequest, include, fieldsPartRevision, _callback);
-        return localVarCall;
+        return createSceneViewHitCall(id, createHitRequest, include, fieldsPartRevision, _callback);
 
     }
 
@@ -347,7 +344,8 @@ public class HitsApi {
      * @return Hit
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -371,7 +369,8 @@ public class HitsApi {
      * @return ApiResponse&lt;Hit&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -397,7 +396,8 @@ public class HitsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>

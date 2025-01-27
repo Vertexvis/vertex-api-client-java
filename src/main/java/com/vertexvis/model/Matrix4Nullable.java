@@ -14,132 +14,141 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.Vector4;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * 4x4 affine transformation matrix, see [Matrix transformations](https://developer.vertexvis.com/docs/guides/matrix-transformations) for details.
  */
-@ApiModel(description = "4x4 affine transformation matrix, see [Matrix transformations](https://developer.vertexvis.com/docs/guides/matrix-transformations) for details.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
 public class Matrix4Nullable {
   public static final String SERIALIZED_NAME_R0 = "r0";
   @SerializedName(SERIALIZED_NAME_R0)
+  @javax.annotation.Nonnull
   private Vector4 r0;
 
   public static final String SERIALIZED_NAME_R1 = "r1";
   @SerializedName(SERIALIZED_NAME_R1)
+  @javax.annotation.Nonnull
   private Vector4 r1;
 
   public static final String SERIALIZED_NAME_R2 = "r2";
   @SerializedName(SERIALIZED_NAME_R2)
+  @javax.annotation.Nonnull
   private Vector4 r2;
 
   public static final String SERIALIZED_NAME_R3 = "r3";
   @SerializedName(SERIALIZED_NAME_R3)
+  @javax.annotation.Nonnull
   private Vector4 r3;
 
-  public Matrix4Nullable() { 
+  public Matrix4Nullable() {
   }
 
-  public Matrix4Nullable r0(Vector4 r0) {
-    
+  public Matrix4Nullable r0(@javax.annotation.Nonnull Vector4 r0) {
     this.r0 = r0;
     return this;
   }
 
-   /**
+  /**
    * Get r0
    * @return r0
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
   public Vector4 getR0() {
     return r0;
   }
 
-
-  public void setR0(Vector4 r0) {
+  public void setR0(@javax.annotation.Nonnull Vector4 r0) {
     this.r0 = r0;
   }
 
 
-  public Matrix4Nullable r1(Vector4 r1) {
-    
+  public Matrix4Nullable r1(@javax.annotation.Nonnull Vector4 r1) {
     this.r1 = r1;
     return this;
   }
 
-   /**
+  /**
    * Get r1
    * @return r1
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
   public Vector4 getR1() {
     return r1;
   }
 
-
-  public void setR1(Vector4 r1) {
+  public void setR1(@javax.annotation.Nonnull Vector4 r1) {
     this.r1 = r1;
   }
 
 
-  public Matrix4Nullable r2(Vector4 r2) {
-    
+  public Matrix4Nullable r2(@javax.annotation.Nonnull Vector4 r2) {
     this.r2 = r2;
     return this;
   }
 
-   /**
+  /**
    * Get r2
    * @return r2
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
   public Vector4 getR2() {
     return r2;
   }
 
-
-  public void setR2(Vector4 r2) {
+  public void setR2(@javax.annotation.Nonnull Vector4 r2) {
     this.r2 = r2;
   }
 
 
-  public Matrix4Nullable r3(Vector4 r3) {
-    
+  public Matrix4Nullable r3(@javax.annotation.Nonnull Vector4 r3) {
     this.r3 = r3;
     return this;
   }
 
-   /**
+  /**
    * Get r3
    * @return r3
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
   public Vector4 getR3() {
     return r3;
   }
 
-
-  public void setR3(Vector4 r3) {
+  public void setR3(@javax.annotation.Nonnull Vector4 r3) {
     this.r3 = r3;
   }
+
 
 
   @Override
@@ -185,5 +194,111 @@ public class Matrix4Nullable {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("r0");
+    openapiFields.add("r1");
+    openapiFields.add("r2");
+    openapiFields.add("r3");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("r0");
+    openapiRequiredFields.add("r1");
+    openapiRequiredFields.add("r2");
+    openapiRequiredFields.add("r3");
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to Matrix4Nullable
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!Matrix4Nullable.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in Matrix4Nullable is not found in the empty JSON string", Matrix4Nullable.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!Matrix4Nullable.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Matrix4Nullable` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : Matrix4Nullable.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      // validate the required field `r0`
+      Vector4.validateJsonElement(jsonObj.get("r0"));
+      // validate the required field `r1`
+      Vector4.validateJsonElement(jsonObj.get("r1"));
+      // validate the required field `r2`
+      Vector4.validateJsonElement(jsonObj.get("r2"));
+      // validate the required field `r3`
+      Vector4.validateJsonElement(jsonObj.get("r3"));
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!Matrix4Nullable.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'Matrix4Nullable' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<Matrix4Nullable> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(Matrix4Nullable.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<Matrix4Nullable>() {
+           @Override
+           public void write(JsonWriter out, Matrix4Nullable value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public Matrix4Nullable read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+  /**
+   * Create an instance of Matrix4Nullable given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of Matrix4Nullable
+   * @throws IOException if the JSON string is invalid with respect to Matrix4Nullable
+   */
+  public static Matrix4Nullable fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, Matrix4Nullable.class);
+  }
+
+  /**
+   * Convert an instance of Matrix4Nullable to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

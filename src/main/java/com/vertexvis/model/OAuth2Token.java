@@ -14,191 +14,198 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * OAuth2Token
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
 public class OAuth2Token {
   public static final String SERIALIZED_NAME_ACCESS_TOKEN = "access_token";
   @SerializedName(SERIALIZED_NAME_ACCESS_TOKEN)
+  @javax.annotation.Nonnull
   private String accessToken;
 
   public static final String SERIALIZED_NAME_TOKEN_TYPE = "token_type";
   @SerializedName(SERIALIZED_NAME_TOKEN_TYPE)
+  @javax.annotation.Nonnull
   private String tokenType;
 
   public static final String SERIALIZED_NAME_ACCOUNT_ID = "account_id";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_ID)
+  @javax.annotation.Nonnull
   private String accountId;
 
   public static final String SERIALIZED_NAME_EXPIRES_IN = "expires_in";
   @SerializedName(SERIALIZED_NAME_EXPIRES_IN)
+  @javax.annotation.Nonnull
   private Integer expiresIn;
 
   public static final String SERIALIZED_NAME_SCOPES = "scopes";
   @SerializedName(SERIALIZED_NAME_SCOPES)
+  @javax.annotation.Nonnull
   private List<String> scopes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_REFRESH_TOKEN = "refresh_token";
   @SerializedName(SERIALIZED_NAME_REFRESH_TOKEN)
+  @javax.annotation.Nullable
   private String refreshToken;
 
-  public OAuth2Token() { 
+  public OAuth2Token() {
   }
 
-  public OAuth2Token accessToken(String accessToken) {
-    
+  public OAuth2Token accessToken(@javax.annotation.Nonnull String accessToken) {
     this.accessToken = accessToken;
     return this;
   }
 
-   /**
+  /**
    * Get accessToken
    * @return accessToken
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "HnkQzHpk4iTaPfssu3zpI.PTbAxKdDIfrNcgrmsxQqg", required = true, value = "")
-
   public String getAccessToken() {
     return accessToken;
   }
 
-
-  public void setAccessToken(String accessToken) {
+  public void setAccessToken(@javax.annotation.Nonnull String accessToken) {
     this.accessToken = accessToken;
   }
 
 
-  public OAuth2Token tokenType(String tokenType) {
-    
+  public OAuth2Token tokenType(@javax.annotation.Nonnull String tokenType) {
     this.tokenType = tokenType;
     return this;
   }
 
-   /**
+  /**
    * Get tokenType
    * @return tokenType
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "bearer", required = true, value = "")
-
   public String getTokenType() {
     return tokenType;
   }
 
-
-  public void setTokenType(String tokenType) {
+  public void setTokenType(@javax.annotation.Nonnull String tokenType) {
     this.tokenType = tokenType;
   }
 
 
-  public OAuth2Token accountId(String accountId) {
-    
+  public OAuth2Token accountId(@javax.annotation.Nonnull String accountId) {
     this.accountId = accountId;
     return this;
   }
 
-   /**
+  /**
    * Get accountId
    * @return accountId
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "7b3f55e2-60f3-4bf3-82bc-f8afbce843b0", required = true, value = "")
-
   public String getAccountId() {
     return accountId;
   }
 
-
-  public void setAccountId(String accountId) {
+  public void setAccountId(@javax.annotation.Nonnull String accountId) {
     this.accountId = accountId;
   }
 
 
-  public OAuth2Token expiresIn(Integer expiresIn) {
-    
+  public OAuth2Token expiresIn(@javax.annotation.Nonnull Integer expiresIn) {
     this.expiresIn = expiresIn;
     return this;
   }
 
-   /**
+  /**
    * Get expiresIn
    * @return expiresIn
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "3600", required = true, value = "")
-
   public Integer getExpiresIn() {
     return expiresIn;
   }
 
-
-  public void setExpiresIn(Integer expiresIn) {
+  public void setExpiresIn(@javax.annotation.Nonnull Integer expiresIn) {
     this.expiresIn = expiresIn;
   }
 
 
-  public OAuth2Token scopes(List<String> scopes) {
-    
+  public OAuth2Token scopes(@javax.annotation.Nonnull List<String> scopes) {
     this.scopes = scopes;
     return this;
   }
 
   public OAuth2Token addScopesItem(String scopesItem) {
+    if (this.scopes == null) {
+      this.scopes = new ArrayList<>();
+    }
     this.scopes.add(scopesItem);
     return this;
   }
 
-   /**
+  /**
    * Get scopes
    * @return scopes
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
   public List<String> getScopes() {
     return scopes;
   }
 
-
-  public void setScopes(List<String> scopes) {
+  public void setScopes(@javax.annotation.Nonnull List<String> scopes) {
     this.scopes = scopes;
   }
 
 
-  public OAuth2Token refreshToken(String refreshToken) {
-    
+  public OAuth2Token refreshToken(@javax.annotation.Nullable String refreshToken) {
     this.refreshToken = refreshToken;
     return this;
   }
 
-   /**
+  /**
    * Get refreshToken
    * @return refreshToken
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "HnkQzHpk4iTaPfssu3zpI.PTbAxKdDIfrNcgrmsxQqg", value = "")
-
   public String getRefreshToken() {
     return refreshToken;
   }
 
-
-  public void setRefreshToken(String refreshToken) {
+  public void setRefreshToken(@javax.annotation.Nullable String refreshToken) {
     this.refreshToken = refreshToken;
   }
+
 
 
   @Override
@@ -248,5 +255,124 @@ public class OAuth2Token {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("access_token");
+    openapiFields.add("token_type");
+    openapiFields.add("account_id");
+    openapiFields.add("expires_in");
+    openapiFields.add("scopes");
+    openapiFields.add("refresh_token");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("access_token");
+    openapiRequiredFields.add("token_type");
+    openapiRequiredFields.add("account_id");
+    openapiRequiredFields.add("expires_in");
+    openapiRequiredFields.add("scopes");
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to OAuth2Token
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!OAuth2Token.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in OAuth2Token is not found in the empty JSON string", OAuth2Token.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!OAuth2Token.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `OAuth2Token` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : OAuth2Token.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (!jsonObj.get("access_token").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `access_token` to be a primitive type in the JSON string but got `%s`", jsonObj.get("access_token").toString()));
+      }
+      if (!jsonObj.get("token_type").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `token_type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("token_type").toString()));
+      }
+      if (!jsonObj.get("account_id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `account_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("account_id").toString()));
+      }
+      // ensure the required json array is present
+      if (jsonObj.get("scopes") == null) {
+        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
+      } else if (!jsonObj.get("scopes").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `scopes` to be an array in the JSON string but got `%s`", jsonObj.get("scopes").toString()));
+      }
+      if ((jsonObj.get("refresh_token") != null && !jsonObj.get("refresh_token").isJsonNull()) && !jsonObj.get("refresh_token").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `refresh_token` to be a primitive type in the JSON string but got `%s`", jsonObj.get("refresh_token").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!OAuth2Token.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'OAuth2Token' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<OAuth2Token> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(OAuth2Token.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<OAuth2Token>() {
+           @Override
+           public void write(JsonWriter out, OAuth2Token value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public OAuth2Token read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+  /**
+   * Create an instance of OAuth2Token given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of OAuth2Token
+   * @throws IOException if the JSON string is invalid with respect to OAuth2Token
+   */
+  public static OAuth2Token fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, OAuth2Token.class);
+  }
+
+  /**
+   * Convert an instance of OAuth2Token to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

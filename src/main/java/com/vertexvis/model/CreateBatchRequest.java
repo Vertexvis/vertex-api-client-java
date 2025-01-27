@@ -14,57 +14,79 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.BatchOperation;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * CreateBatchRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
 public class CreateBatchRequest {
-  public static final String SERIALIZED_NAME_VERTEXVIS_BATCH_COLON_OPERATIONS = "vertexvis/batch:operations";
-  @SerializedName(SERIALIZED_NAME_VERTEXVIS_BATCH_COLON_OPERATIONS)
-  private List<BatchOperation> vertexvisBatchColonOperations = new ArrayList<>();
-
-  public CreateBatchRequest() { 
-  }
-
-  public CreateBatchRequest vertexvisBatchColonOperations(List<BatchOperation> vertexvisBatchColonOperations) {
-    
-    this.vertexvisBatchColonOperations = vertexvisBatchColonOperations;
-    return this;
-  }
-
-  public CreateBatchRequest addVertexvisBatchColonOperationsItem(BatchOperation vertexvisBatchColonOperationsItem) {
-    this.vertexvisBatchColonOperations.add(vertexvisBatchColonOperationsItem);
-    return this;
-  }
-
-   /**
-   * List of operations to perform as a batch.
-   * @return vertexvisBatchColonOperations
-  **/
+  public static final String SERIALIZED_NAME_VERTEXVIS_BATCH_OPERATIONS = "vertexvis/batch:operations";
+  @SerializedName(SERIALIZED_NAME_VERTEXVIS_BATCH_OPERATIONS)
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "List of operations to perform as a batch.")
+  private List<BatchOperation> vertexvisBatchOperations = new ArrayList<>();
 
-  public List<BatchOperation> getVertexvisBatchColonOperations() {
-    return vertexvisBatchColonOperations;
+  public CreateBatchRequest() {
   }
 
-
-  public void setVertexvisBatchColonOperations(List<BatchOperation> vertexvisBatchColonOperations) {
-    this.vertexvisBatchColonOperations = vertexvisBatchColonOperations;
+  public CreateBatchRequest vertexvisBatchOperations(@javax.annotation.Nonnull List<BatchOperation> vertexvisBatchOperations) {
+    this.vertexvisBatchOperations = vertexvisBatchOperations;
+    return this;
   }
+
+  public CreateBatchRequest addVertexvisBatchOperationsItem(BatchOperation vertexvisBatchOperationsItem) {
+    if (this.vertexvisBatchOperations == null) {
+      this.vertexvisBatchOperations = new ArrayList<>();
+    }
+    this.vertexvisBatchOperations.add(vertexvisBatchOperationsItem);
+    return this;
+  }
+
+  /**
+   * List of operations to perform as a batch.
+   * @return vertexvisBatchOperations
+   */
+  @javax.annotation.Nonnull
+  public List<BatchOperation> getVertexvisBatchOperations() {
+    return vertexvisBatchOperations;
+  }
+
+  public void setVertexvisBatchOperations(@javax.annotation.Nonnull List<BatchOperation> vertexvisBatchOperations) {
+    this.vertexvisBatchOperations = vertexvisBatchOperations;
+  }
+
 
 
   @Override
@@ -76,19 +98,19 @@ public class CreateBatchRequest {
       return false;
     }
     CreateBatchRequest createBatchRequest = (CreateBatchRequest) o;
-    return Objects.equals(this.vertexvisBatchColonOperations, createBatchRequest.vertexvisBatchColonOperations);
+    return Objects.equals(this.vertexvisBatchOperations, createBatchRequest.vertexvisBatchOperations);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(vertexvisBatchColonOperations);
+    return Objects.hash(vertexvisBatchOperations);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateBatchRequest {\n");
-    sb.append("    vertexvisBatchColonOperations: ").append(toIndentedString(vertexvisBatchColonOperations)).append("\n");
+    sb.append("    vertexvisBatchOperations: ").append(toIndentedString(vertexvisBatchOperations)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -104,5 +126,107 @@ public class CreateBatchRequest {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("vertexvis/batch:operations");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("vertexvis/batch:operations");
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CreateBatchRequest
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!CreateBatchRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in CreateBatchRequest is not found in the empty JSON string", CreateBatchRequest.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!CreateBatchRequest.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateBatchRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : CreateBatchRequest.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      // ensure the json data is an array
+      if (!jsonObj.get("vertexvis/batch:operations").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `vertexvis/batch:operations` to be an array in the JSON string but got `%s`", jsonObj.get("vertexvis/batch:operations").toString()));
+      }
+
+      JsonArray jsonArrayvertexvisBatchOperations = jsonObj.getAsJsonArray("vertexvis/batch:operations");
+      // validate the required field `vertexvis/batch:operations` (array)
+      for (int i = 0; i < jsonArrayvertexvisBatchOperations.size(); i++) {
+        BatchOperation.validateJsonElement(jsonArrayvertexvisBatchOperations.get(i));
+      };
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!CreateBatchRequest.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'CreateBatchRequest' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<CreateBatchRequest> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(CreateBatchRequest.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<CreateBatchRequest>() {
+           @Override
+           public void write(JsonWriter out, CreateBatchRequest value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public CreateBatchRequest read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+  /**
+   * Create an instance of CreateBatchRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CreateBatchRequest
+   * @throws IOException if the JSON string is invalid with respect to CreateBatchRequest
+   */
+  public static CreateBatchRequest fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, CreateBatchRequest.class);
+  }
+
+  /**
+   * Convert an instance of CreateBatchRequest to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

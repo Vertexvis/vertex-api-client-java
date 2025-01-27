@@ -14,132 +14,141 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * 4D vector.
  */
-@ApiModel(description = "4D vector.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
 public class Vector4 {
   public static final String SERIALIZED_NAME_X = "x";
   @SerializedName(SERIALIZED_NAME_X)
+  @javax.annotation.Nonnull
   private BigDecimal x;
 
   public static final String SERIALIZED_NAME_Y = "y";
   @SerializedName(SERIALIZED_NAME_Y)
+  @javax.annotation.Nonnull
   private BigDecimal y;
 
   public static final String SERIALIZED_NAME_Z = "z";
   @SerializedName(SERIALIZED_NAME_Z)
+  @javax.annotation.Nonnull
   private BigDecimal z;
 
   public static final String SERIALIZED_NAME_W = "w";
   @SerializedName(SERIALIZED_NAME_W)
+  @javax.annotation.Nonnull
   private BigDecimal w;
 
-  public Vector4() { 
+  public Vector4() {
   }
 
-  public Vector4 x(BigDecimal x) {
-    
+  public Vector4 x(@javax.annotation.Nonnull BigDecimal x) {
     this.x = x;
     return this;
   }
 
-   /**
+  /**
    * x-axis coordinate.
    * @return x
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "1.0", required = true, value = "x-axis coordinate.")
-
   public BigDecimal getX() {
     return x;
   }
 
-
-  public void setX(BigDecimal x) {
+  public void setX(@javax.annotation.Nonnull BigDecimal x) {
     this.x = x;
   }
 
 
-  public Vector4 y(BigDecimal y) {
-    
+  public Vector4 y(@javax.annotation.Nonnull BigDecimal y) {
     this.y = y;
     return this;
   }
 
-   /**
+  /**
    * y-axis coordinate.
    * @return y
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "0.0", required = true, value = "y-axis coordinate.")
-
   public BigDecimal getY() {
     return y;
   }
 
-
-  public void setY(BigDecimal y) {
+  public void setY(@javax.annotation.Nonnull BigDecimal y) {
     this.y = y;
   }
 
 
-  public Vector4 z(BigDecimal z) {
-    
+  public Vector4 z(@javax.annotation.Nonnull BigDecimal z) {
     this.z = z;
     return this;
   }
 
-   /**
+  /**
    * z-axis coordinate.
    * @return z
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "0.0", required = true, value = "z-axis coordinate.")
-
   public BigDecimal getZ() {
     return z;
   }
 
-
-  public void setZ(BigDecimal z) {
+  public void setZ(@javax.annotation.Nonnull BigDecimal z) {
     this.z = z;
   }
 
 
-  public Vector4 w(BigDecimal w) {
-    
+  public Vector4 w(@javax.annotation.Nonnull BigDecimal w) {
     this.w = w;
     return this;
   }
 
-   /**
+  /**
    * w value.
    * @return w
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "0.0", required = true, value = "w value.")
-
   public BigDecimal getW() {
     return w;
   }
 
-
-  public void setW(BigDecimal w) {
+  public void setW(@javax.annotation.Nonnull BigDecimal w) {
     this.w = w;
   }
+
 
 
   @Override
@@ -185,5 +194,103 @@ public class Vector4 {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("x");
+    openapiFields.add("y");
+    openapiFields.add("z");
+    openapiFields.add("w");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("x");
+    openapiRequiredFields.add("y");
+    openapiRequiredFields.add("z");
+    openapiRequiredFields.add("w");
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to Vector4
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!Vector4.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in Vector4 is not found in the empty JSON string", Vector4.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!Vector4.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Vector4` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : Vector4.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!Vector4.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'Vector4' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<Vector4> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(Vector4.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<Vector4>() {
+           @Override
+           public void write(JsonWriter out, Vector4 value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public Vector4 read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+  /**
+   * Create an instance of Vector4 given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of Vector4
+   * @throws IOException if the JSON string is invalid with respect to Vector4
+   */
+  public static Vector4 fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, Vector4.class);
+  }
+
+  /**
+   * Convert an instance of Vector4 to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

@@ -14,163 +14,169 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.vertexvis.model.CreateSceneViewRequestDataAttributesCamera;
 import com.vertexvis.model.CrossSectioning;
 import com.vertexvis.model.Orientation;
-import com.vertexvis.model.OrthographicCamera;
-import com.vertexvis.model.PerspectiveCamera;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * SceneViewDataAttributes
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
 public class SceneViewDataAttributes {
   public static final String SERIALIZED_NAME_CAMERA = "camera";
   @SerializedName(SERIALIZED_NAME_CAMERA)
-  private OneOfPerspectiveCameraOrthographicCamera camera;
+  @javax.annotation.Nonnull
+  private CreateSceneViewRequestDataAttributesCamera camera;
 
   public static final String SERIALIZED_NAME_CREATED = "created";
   @SerializedName(SERIALIZED_NAME_CREATED)
+  @javax.annotation.Nonnull
   private OffsetDateTime created;
 
   public static final String SERIALIZED_NAME_CROSS_SECTIONING = "crossSectioning";
   @SerializedName(SERIALIZED_NAME_CROSS_SECTIONING)
+  @javax.annotation.Nullable
   private CrossSectioning crossSectioning;
 
   public static final String SERIALIZED_NAME_WORLD_ORIENTATION = "worldOrientation";
   @SerializedName(SERIALIZED_NAME_WORLD_ORIENTATION)
+  @javax.annotation.Nullable
   private Orientation worldOrientation;
 
   public static final String SERIALIZED_NAME_EXCLUDE_PRUNED_ITEMS = "excludePrunedItems";
   @SerializedName(SERIALIZED_NAME_EXCLUDE_PRUNED_ITEMS)
+  @javax.annotation.Nullable
   private Boolean excludePrunedItems;
 
-  public SceneViewDataAttributes() { 
+  public SceneViewDataAttributes() {
   }
 
-  public SceneViewDataAttributes camera(OneOfPerspectiveCameraOrthographicCamera camera) {
-    
+  public SceneViewDataAttributes camera(@javax.annotation.Nonnull CreateSceneViewRequestDataAttributesCamera camera) {
     this.camera = camera;
     return this;
   }
 
-   /**
+  /**
    * Get camera
    * @return camera
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(required = true, value = "")
-
-  public OneOfPerspectiveCameraOrthographicCamera getCamera() {
+   */
+  @javax.annotation.Nonnull
+  public CreateSceneViewRequestDataAttributesCamera getCamera() {
     return camera;
   }
 
-
-  public void setCamera(OneOfPerspectiveCameraOrthographicCamera camera) {
+  public void setCamera(@javax.annotation.Nonnull CreateSceneViewRequestDataAttributesCamera camera) {
     this.camera = camera;
   }
 
 
-  public SceneViewDataAttributes created(OffsetDateTime created) {
-    
+  public SceneViewDataAttributes created(@javax.annotation.Nonnull OffsetDateTime created) {
     this.created = created;
     return this;
   }
 
-   /**
+  /**
    * Get created
    * @return created
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2020-01-01T12:00Z", required = true, value = "")
-
   public OffsetDateTime getCreated() {
     return created;
   }
 
-
-  public void setCreated(OffsetDateTime created) {
+  public void setCreated(@javax.annotation.Nonnull OffsetDateTime created) {
     this.created = created;
   }
 
 
-  public SceneViewDataAttributes crossSectioning(CrossSectioning crossSectioning) {
-    
+  public SceneViewDataAttributes crossSectioning(@javax.annotation.Nullable CrossSectioning crossSectioning) {
     this.crossSectioning = crossSectioning;
     return this;
   }
 
-   /**
+  /**
    * Get crossSectioning
    * @return crossSectioning
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public CrossSectioning getCrossSectioning() {
     return crossSectioning;
   }
 
-
-  public void setCrossSectioning(CrossSectioning crossSectioning) {
+  public void setCrossSectioning(@javax.annotation.Nullable CrossSectioning crossSectioning) {
     this.crossSectioning = crossSectioning;
   }
 
 
-  public SceneViewDataAttributes worldOrientation(Orientation worldOrientation) {
-    
+  public SceneViewDataAttributes worldOrientation(@javax.annotation.Nullable Orientation worldOrientation) {
     this.worldOrientation = worldOrientation;
     return this;
   }
 
-   /**
+  /**
    * Get worldOrientation
    * @return worldOrientation
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public Orientation getWorldOrientation() {
     return worldOrientation;
   }
 
-
-  public void setWorldOrientation(Orientation worldOrientation) {
+  public void setWorldOrientation(@javax.annotation.Nullable Orientation worldOrientation) {
     this.worldOrientation = worldOrientation;
   }
 
 
-  public SceneViewDataAttributes excludePrunedItems(Boolean excludePrunedItems) {
-    
+  public SceneViewDataAttributes excludePrunedItems(@javax.annotation.Nullable Boolean excludePrunedItems) {
     this.excludePrunedItems = excludePrunedItems;
     return this;
   }
 
-   /**
+  /**
    * Whether to exclude non-visible items in the view
    * @return excludePrunedItems
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Whether to exclude non-visible items in the view")
-
   public Boolean getExcludePrunedItems() {
     return excludePrunedItems;
   }
 
-
-  public void setExcludePrunedItems(Boolean excludePrunedItems) {
+  public void setExcludePrunedItems(@javax.annotation.Nullable Boolean excludePrunedItems) {
     this.excludePrunedItems = excludePrunedItems;
   }
+
 
 
   @Override
@@ -229,5 +235,112 @@ public class SceneViewDataAttributes {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("camera");
+    openapiFields.add("created");
+    openapiFields.add("crossSectioning");
+    openapiFields.add("worldOrientation");
+    openapiFields.add("excludePrunedItems");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("camera");
+    openapiRequiredFields.add("created");
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SceneViewDataAttributes
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!SceneViewDataAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in SceneViewDataAttributes is not found in the empty JSON string", SceneViewDataAttributes.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!SceneViewDataAttributes.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SceneViewDataAttributes` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : SceneViewDataAttributes.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      // validate the required field `camera`
+      CreateSceneViewRequestDataAttributesCamera.validateJsonElement(jsonObj.get("camera"));
+      // validate the optional field `crossSectioning`
+      if (jsonObj.get("crossSectioning") != null && !jsonObj.get("crossSectioning").isJsonNull()) {
+        CrossSectioning.validateJsonElement(jsonObj.get("crossSectioning"));
+      }
+      // validate the optional field `worldOrientation`
+      if (jsonObj.get("worldOrientation") != null && !jsonObj.get("worldOrientation").isJsonNull()) {
+        Orientation.validateJsonElement(jsonObj.get("worldOrientation"));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!SceneViewDataAttributes.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'SceneViewDataAttributes' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<SceneViewDataAttributes> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(SceneViewDataAttributes.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<SceneViewDataAttributes>() {
+           @Override
+           public void write(JsonWriter out, SceneViewDataAttributes value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public SceneViewDataAttributes read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+  /**
+   * Create an instance of SceneViewDataAttributes given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SceneViewDataAttributes
+   * @throws IOException if the JSON string is invalid with respect to SceneViewDataAttributes
+   */
+  public static SceneViewDataAttributes fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, SceneViewDataAttributes.class);
+  }
+
+  /**
+   * Convert an instance of SceneViewDataAttributes to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

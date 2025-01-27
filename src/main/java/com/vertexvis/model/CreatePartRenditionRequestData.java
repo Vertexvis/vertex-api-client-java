@@ -14,7 +14,6 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -22,98 +21,111 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.CreateGeometrySetRequestDataRelationships;
 import com.vertexvis.model.CreatePartRenditionRequestDataAttributes;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * Create a new part rendition.  This endpoint includes multiple successful response codes: [&#x60;201&#x60;, &#x60;202&#x60;].  When not given a relationship, this endpoint will create a part rendition with an empty geometry and return a &#x60;201&#x60; status code.  When given a relationship to translate, this endpoint will return a &#x60;202&#x60; status code with the location of a &#x60;queued-translation&#x60;. The status of the translation can be queried via &#x60;getQueuedTranslation&#x60;. After the translation is complete, the returned value will include a &#x60;part-rendition&#x60; that references the translated geometry. 
  */
-@ApiModel(description = "Create a new part rendition.  This endpoint includes multiple successful response codes: [`201`, `202`].  When not given a relationship, this endpoint will create a part rendition with an empty geometry and return a `201` status code.  When given a relationship to translate, this endpoint will return a `202` status code with the location of a `queued-translation`. The status of the translation can be queried via `getQueuedTranslation`. After the translation is complete, the returned value will include a `part-rendition` that references the translated geometry. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
 public class CreatePartRenditionRequestData {
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
+  @javax.annotation.Nonnull
   private String type;
 
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
+  @javax.annotation.Nonnull
   private CreatePartRenditionRequestDataAttributes attributes;
 
   public static final String SERIALIZED_NAME_RELATIONSHIPS = "relationships";
   @SerializedName(SERIALIZED_NAME_RELATIONSHIPS)
+  @javax.annotation.Nullable
   private CreateGeometrySetRequestDataRelationships relationships;
 
-  public CreatePartRenditionRequestData() { 
+  public CreatePartRenditionRequestData() {
   }
 
-  public CreatePartRenditionRequestData type(String type) {
-    
+  public CreatePartRenditionRequestData type(@javax.annotation.Nonnull String type) {
     this.type = type;
     return this;
   }
 
-   /**
+  /**
    * Resource object type.
    * @return type
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "part-rendition", required = true, value = "Resource object type.")
-
   public String getType() {
     return type;
   }
 
-
-  public void setType(String type) {
+  public void setType(@javax.annotation.Nonnull String type) {
     this.type = type;
   }
 
 
-  public CreatePartRenditionRequestData attributes(CreatePartRenditionRequestDataAttributes attributes) {
-    
+  public CreatePartRenditionRequestData attributes(@javax.annotation.Nonnull CreatePartRenditionRequestDataAttributes attributes) {
     this.attributes = attributes;
     return this;
   }
 
-   /**
+  /**
    * Get attributes
    * @return attributes
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
   public CreatePartRenditionRequestDataAttributes getAttributes() {
     return attributes;
   }
 
-
-  public void setAttributes(CreatePartRenditionRequestDataAttributes attributes) {
+  public void setAttributes(@javax.annotation.Nonnull CreatePartRenditionRequestDataAttributes attributes) {
     this.attributes = attributes;
   }
 
 
-  public CreatePartRenditionRequestData relationships(CreateGeometrySetRequestDataRelationships relationships) {
-    
+  public CreatePartRenditionRequestData relationships(@javax.annotation.Nullable CreateGeometrySetRequestDataRelationships relationships) {
     this.relationships = relationships;
     return this;
   }
 
-   /**
+  /**
    * Get relationships
    * @return relationships
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public CreateGeometrySetRequestDataRelationships getRelationships() {
     return relationships;
   }
 
-
-  public void setRelationships(CreateGeometrySetRequestDataRelationships relationships) {
+  public void setRelationships(@javax.annotation.Nullable CreateGeometrySetRequestDataRelationships relationships) {
     this.relationships = relationships;
   }
+
 
 
   @Override
@@ -157,5 +169,109 @@ public class CreatePartRenditionRequestData {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("type");
+    openapiFields.add("attributes");
+    openapiFields.add("relationships");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("type");
+    openapiRequiredFields.add("attributes");
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CreatePartRenditionRequestData
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!CreatePartRenditionRequestData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in CreatePartRenditionRequestData is not found in the empty JSON string", CreatePartRenditionRequestData.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!CreatePartRenditionRequestData.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreatePartRenditionRequestData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : CreatePartRenditionRequestData.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (!jsonObj.get("type").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
+      }
+      // validate the required field `attributes`
+      CreatePartRenditionRequestDataAttributes.validateJsonElement(jsonObj.get("attributes"));
+      // validate the optional field `relationships`
+      if (jsonObj.get("relationships") != null && !jsonObj.get("relationships").isJsonNull()) {
+        CreateGeometrySetRequestDataRelationships.validateJsonElement(jsonObj.get("relationships"));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!CreatePartRenditionRequestData.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'CreatePartRenditionRequestData' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<CreatePartRenditionRequestData> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(CreatePartRenditionRequestData.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<CreatePartRenditionRequestData>() {
+           @Override
+           public void write(JsonWriter out, CreatePartRenditionRequestData value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public CreatePartRenditionRequestData read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+  /**
+   * Create an instance of CreatePartRenditionRequestData given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CreatePartRenditionRequestData
+   * @throws IOException if the JSON string is invalid with respect to CreatePartRenditionRequestData
+   */
+  public static CreatePartRenditionRequestData fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, CreatePartRenditionRequestData.class);
+  }
+
+  /**
+   * Convert an instance of CreatePartRenditionRequestData to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

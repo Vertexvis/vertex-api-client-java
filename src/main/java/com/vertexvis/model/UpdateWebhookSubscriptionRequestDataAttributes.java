@@ -14,22 +14,43 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * UpdateWebhookSubscriptionRequestDataAttributes
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
 public class UpdateWebhookSubscriptionRequestDataAttributes {
   /**
    * Status of subscription.
@@ -76,48 +97,51 @@ public class UpdateWebhookSubscriptionRequestDataAttributes {
         return StatusEnum.fromValue(value);
       }
     }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      StatusEnum.fromValue(value);
+    }
   }
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
+  @javax.annotation.Nullable
   private StatusEnum status;
 
   public static final String SERIALIZED_NAME_TOPICS = "topics";
   @SerializedName(SERIALIZED_NAME_TOPICS)
-  private List<String> topics = null;
+  @javax.annotation.Nullable
+  private List<String> topics = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)
+  @javax.annotation.Nullable
   private String url;
 
-  public UpdateWebhookSubscriptionRequestDataAttributes() { 
+  public UpdateWebhookSubscriptionRequestDataAttributes() {
   }
 
-  public UpdateWebhookSubscriptionRequestDataAttributes status(StatusEnum status) {
-    
+  public UpdateWebhookSubscriptionRequestDataAttributes status(@javax.annotation.Nullable StatusEnum status) {
     this.status = status;
     return this;
   }
 
-   /**
+  /**
    * Status of subscription.
    * @return status
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "active", value = "Status of subscription.")
-
   public StatusEnum getStatus() {
     return status;
   }
 
-
-  public void setStatus(StatusEnum status) {
+  public void setStatus(@javax.annotation.Nullable StatusEnum status) {
     this.status = status;
   }
 
 
-  public UpdateWebhookSubscriptionRequestDataAttributes topics(List<String> topics) {
-    
+  public UpdateWebhookSubscriptionRequestDataAttributes topics(@javax.annotation.Nullable List<String> topics) {
     this.topics = topics;
     return this;
   }
@@ -130,44 +154,38 @@ public class UpdateWebhookSubscriptionRequestDataAttributes {
     return this;
   }
 
-   /**
+  /**
    * Get topics
    * @return topics
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public List<String> getTopics() {
     return topics;
   }
 
-
-  public void setTopics(List<String> topics) {
+  public void setTopics(@javax.annotation.Nullable List<String> topics) {
     this.topics = topics;
   }
 
 
-  public UpdateWebhookSubscriptionRequestDataAttributes url(String url) {
-    
+  public UpdateWebhookSubscriptionRequestDataAttributes url(@javax.annotation.Nullable String url) {
     this.url = url;
     return this;
   }
 
-   /**
+  /**
    * Get url
    * @return url
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "some-string", value = "")
-
   public String getUrl() {
     return url;
   }
 
-
-  public void setUrl(String url) {
+  public void setUrl(@javax.annotation.Nullable String url) {
     this.url = url;
   }
+
 
 
   @Override
@@ -211,5 +229,105 @@ public class UpdateWebhookSubscriptionRequestDataAttributes {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("status");
+    openapiFields.add("topics");
+    openapiFields.add("url");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to UpdateWebhookSubscriptionRequestDataAttributes
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!UpdateWebhookSubscriptionRequestDataAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in UpdateWebhookSubscriptionRequestDataAttributes is not found in the empty JSON string", UpdateWebhookSubscriptionRequestDataAttributes.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!UpdateWebhookSubscriptionRequestDataAttributes.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateWebhookSubscriptionRequestDataAttributes` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) && !jsonObj.get("status").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
+      }
+      // validate the optional field `status`
+      if (jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) {
+        StatusEnum.validateJsonElement(jsonObj.get("status"));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("topics") != null && !jsonObj.get("topics").isJsonNull() && !jsonObj.get("topics").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `topics` to be an array in the JSON string but got `%s`", jsonObj.get("topics").toString()));
+      }
+      if ((jsonObj.get("url") != null && !jsonObj.get("url").isJsonNull()) && !jsonObj.get("url").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("url").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!UpdateWebhookSubscriptionRequestDataAttributes.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'UpdateWebhookSubscriptionRequestDataAttributes' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<UpdateWebhookSubscriptionRequestDataAttributes> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(UpdateWebhookSubscriptionRequestDataAttributes.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<UpdateWebhookSubscriptionRequestDataAttributes>() {
+           @Override
+           public void write(JsonWriter out, UpdateWebhookSubscriptionRequestDataAttributes value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public UpdateWebhookSubscriptionRequestDataAttributes read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+  /**
+   * Create an instance of UpdateWebhookSubscriptionRequestDataAttributes given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of UpdateWebhookSubscriptionRequestDataAttributes
+   * @throws IOException if the JSON string is invalid with respect to UpdateWebhookSubscriptionRequestDataAttributes
+   */
+  public static UpdateWebhookSubscriptionRequestDataAttributes fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, UpdateWebhookSubscriptionRequestDataAttributes.class);
+  }
+
+  /**
+   * Convert an instance of UpdateWebhookSubscriptionRequestDataAttributes to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

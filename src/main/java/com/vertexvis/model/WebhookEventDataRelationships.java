@@ -14,7 +14,6 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -22,70 +21,87 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.WebhookEventDataRelationshipsOwner;
 import com.vertexvis.model.WebhookEventDataRelationshipsResource;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * WebhookEventDataRelationships
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
 public class WebhookEventDataRelationships {
   public static final String SERIALIZED_NAME_OWNER = "owner";
   @SerializedName(SERIALIZED_NAME_OWNER)
+  @javax.annotation.Nonnull
   private WebhookEventDataRelationshipsOwner owner;
 
   public static final String SERIALIZED_NAME_RESOURCE = "resource";
   @SerializedName(SERIALIZED_NAME_RESOURCE)
+  @javax.annotation.Nonnull
   private WebhookEventDataRelationshipsResource resource;
 
-  public WebhookEventDataRelationships() { 
+  public WebhookEventDataRelationships() {
   }
 
-  public WebhookEventDataRelationships owner(WebhookEventDataRelationshipsOwner owner) {
-    
+  public WebhookEventDataRelationships owner(@javax.annotation.Nonnull WebhookEventDataRelationshipsOwner owner) {
     this.owner = owner;
     return this;
   }
 
-   /**
+  /**
    * Get owner
    * @return owner
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
   public WebhookEventDataRelationshipsOwner getOwner() {
     return owner;
   }
 
-
-  public void setOwner(WebhookEventDataRelationshipsOwner owner) {
+  public void setOwner(@javax.annotation.Nonnull WebhookEventDataRelationshipsOwner owner) {
     this.owner = owner;
   }
 
 
-  public WebhookEventDataRelationships resource(WebhookEventDataRelationshipsResource resource) {
-    
+  public WebhookEventDataRelationships resource(@javax.annotation.Nonnull WebhookEventDataRelationshipsResource resource) {
     this.resource = resource;
     return this;
   }
 
-   /**
+  /**
    * Get resource
    * @return resource
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
   public WebhookEventDataRelationshipsResource getResource() {
     return resource;
   }
 
-
-  public void setResource(WebhookEventDataRelationshipsResource resource) {
+  public void setResource(@javax.annotation.Nonnull WebhookEventDataRelationshipsResource resource) {
     this.resource = resource;
   }
+
 
 
   @Override
@@ -127,5 +143,103 @@ public class WebhookEventDataRelationships {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("owner");
+    openapiFields.add("resource");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("owner");
+    openapiRequiredFields.add("resource");
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to WebhookEventDataRelationships
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!WebhookEventDataRelationships.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in WebhookEventDataRelationships is not found in the empty JSON string", WebhookEventDataRelationships.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!WebhookEventDataRelationships.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `WebhookEventDataRelationships` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : WebhookEventDataRelationships.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      // validate the required field `owner`
+      WebhookEventDataRelationshipsOwner.validateJsonElement(jsonObj.get("owner"));
+      // validate the required field `resource`
+      WebhookEventDataRelationshipsResource.validateJsonElement(jsonObj.get("resource"));
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!WebhookEventDataRelationships.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'WebhookEventDataRelationships' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<WebhookEventDataRelationships> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(WebhookEventDataRelationships.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<WebhookEventDataRelationships>() {
+           @Override
+           public void write(JsonWriter out, WebhookEventDataRelationships value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public WebhookEventDataRelationships read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+  /**
+   * Create an instance of WebhookEventDataRelationships given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of WebhookEventDataRelationships
+   * @throws IOException if the JSON string is invalid with respect to WebhookEventDataRelationships
+   */
+  public static WebhookEventDataRelationships fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, WebhookEventDataRelationships.class);
+  }
+
+  /**
+   * Convert an instance of WebhookEventDataRelationships to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

@@ -14,172 +14,175 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.vertexvis.model.CreateSceneViewRequestDataAttributesCamera;
 import com.vertexvis.model.Orientation;
-import com.vertexvis.model.OrthographicCamera;
-import com.vertexvis.model.PerspectiveCamera;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * CreateSceneRequestDataAttributes
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
 public class CreateSceneRequestDataAttributes {
   public static final String SERIALIZED_NAME_CAMERA = "camera";
   @SerializedName(SERIALIZED_NAME_CAMERA)
-  private OneOfPerspectiveCameraOrthographicCamera camera;
+  @javax.annotation.Nullable
+  private CreateSceneViewRequestDataAttributesCamera camera;
 
   public static final String SERIALIZED_NAME_SUPPLIED_ID = "suppliedId";
   @SerializedName(SERIALIZED_NAME_SUPPLIED_ID)
+  @javax.annotation.Nullable
   private String suppliedId;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nullable
   private String name;
 
   public static final String SERIALIZED_NAME_TREE_ENABLED = "treeEnabled";
   @SerializedName(SERIALIZED_NAME_TREE_ENABLED)
+  @javax.annotation.Nullable
   private Boolean treeEnabled;
 
   public static final String SERIALIZED_NAME_WORLD_ORIENTATION = "worldOrientation";
   @SerializedName(SERIALIZED_NAME_WORLD_ORIENTATION)
+  @javax.annotation.Nullable
   private Orientation worldOrientation;
 
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
-  private Map<String, String> metadata = null;
+  @javax.annotation.Nullable
+  private Map<String, String> metadata = new HashMap<>();
 
-  public CreateSceneRequestDataAttributes() { 
+  public CreateSceneRequestDataAttributes() {
   }
 
-  public CreateSceneRequestDataAttributes camera(OneOfPerspectiveCameraOrthographicCamera camera) {
-    
+  public CreateSceneRequestDataAttributes camera(@javax.annotation.Nullable CreateSceneViewRequestDataAttributesCamera camera) {
     this.camera = camera;
     return this;
   }
 
-   /**
+  /**
    * Get camera
    * @return camera
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public OneOfPerspectiveCameraOrthographicCamera getCamera() {
+  public CreateSceneViewRequestDataAttributesCamera getCamera() {
     return camera;
   }
 
-
-  public void setCamera(OneOfPerspectiveCameraOrthographicCamera camera) {
+  public void setCamera(@javax.annotation.Nullable CreateSceneViewRequestDataAttributesCamera camera) {
     this.camera = camera;
   }
 
 
-  public CreateSceneRequestDataAttributes suppliedId(String suppliedId) {
-    
+  public CreateSceneRequestDataAttributes suppliedId(@javax.annotation.Nullable String suppliedId) {
     this.suppliedId = suppliedId;
     return this;
   }
 
-   /**
+  /**
    * ID provided for correlation. For example, an existing ID from a PLM system.
    * @return suppliedId
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "PN12345", value = "ID provided for correlation. For example, an existing ID from a PLM system.")
-
   public String getSuppliedId() {
     return suppliedId;
   }
 
-
-  public void setSuppliedId(String suppliedId) {
+  public void setSuppliedId(@javax.annotation.Nullable String suppliedId) {
     this.suppliedId = suppliedId;
   }
 
 
-  public CreateSceneRequestDataAttributes name(String name) {
-    
+  public CreateSceneRequestDataAttributes name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * Get name
    * @return name
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "some-string", value = "")
-
   public String getName() {
     return name;
   }
 
-
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
   }
 
 
-  public CreateSceneRequestDataAttributes treeEnabled(Boolean treeEnabled) {
-    
+  public CreateSceneRequestDataAttributes treeEnabled(@javax.annotation.Nullable Boolean treeEnabled) {
     this.treeEnabled = treeEnabled;
     return this;
   }
 
-   /**
+  /**
    * Get treeEnabled
    * @return treeEnabled
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "false", value = "")
-
   public Boolean getTreeEnabled() {
     return treeEnabled;
   }
 
-
-  public void setTreeEnabled(Boolean treeEnabled) {
+  public void setTreeEnabled(@javax.annotation.Nullable Boolean treeEnabled) {
     this.treeEnabled = treeEnabled;
   }
 
 
-  public CreateSceneRequestDataAttributes worldOrientation(Orientation worldOrientation) {
-    
+  public CreateSceneRequestDataAttributes worldOrientation(@javax.annotation.Nullable Orientation worldOrientation) {
     this.worldOrientation = worldOrientation;
     return this;
   }
 
-   /**
+  /**
    * Get worldOrientation
    * @return worldOrientation
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public Orientation getWorldOrientation() {
     return worldOrientation;
   }
 
-
-  public void setWorldOrientation(Orientation worldOrientation) {
+  public void setWorldOrientation(@javax.annotation.Nullable Orientation worldOrientation) {
     this.worldOrientation = worldOrientation;
   }
 
 
-  public CreateSceneRequestDataAttributes metadata(Map<String, String> metadata) {
-    
+  public CreateSceneRequestDataAttributes metadata(@javax.annotation.Nullable Map<String, String> metadata) {
     this.metadata = metadata;
     return this;
   }
@@ -192,21 +195,19 @@ public class CreateSceneRequestDataAttributes {
     return this;
   }
 
-   /**
-   * User supplied key-value pairs for a scene. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters. 
+  /**
+   * User supplied key-value pairs for a scene. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters. A null value will delete the entry in the map, all other key/value pairs provided here will be inserted or updated into the existing scene metadata. 
    * @return metadata
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "User supplied key-value pairs for a scene. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters. ")
-
   public Map<String, String> getMetadata() {
     return metadata;
   }
 
-
-  public void setMetadata(Map<String, String> metadata) {
+  public void setMetadata(@javax.annotation.Nullable Map<String, String> metadata) {
     this.metadata = metadata;
   }
+
 
 
   @Override
@@ -226,20 +227,9 @@ public class CreateSceneRequestDataAttributes {
         Objects.equals(this.metadata, createSceneRequestDataAttributes.metadata);
   }
 
-  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
-  }
-
   @Override
   public int hashCode() {
     return Objects.hash(camera, suppliedId, name, treeEnabled, worldOrientation, metadata);
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -267,5 +257,108 @@ public class CreateSceneRequestDataAttributes {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("camera");
+    openapiFields.add("suppliedId");
+    openapiFields.add("name");
+    openapiFields.add("treeEnabled");
+    openapiFields.add("worldOrientation");
+    openapiFields.add("metadata");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CreateSceneRequestDataAttributes
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!CreateSceneRequestDataAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in CreateSceneRequestDataAttributes is not found in the empty JSON string", CreateSceneRequestDataAttributes.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!CreateSceneRequestDataAttributes.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateSceneRequestDataAttributes` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      // validate the optional field `camera`
+      if (jsonObj.get("camera") != null && !jsonObj.get("camera").isJsonNull()) {
+        CreateSceneViewRequestDataAttributesCamera.validateJsonElement(jsonObj.get("camera"));
+      }
+      if ((jsonObj.get("suppliedId") != null && !jsonObj.get("suppliedId").isJsonNull()) && !jsonObj.get("suppliedId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `suppliedId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("suppliedId").toString()));
+      }
+      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      // validate the optional field `worldOrientation`
+      if (jsonObj.get("worldOrientation") != null && !jsonObj.get("worldOrientation").isJsonNull()) {
+        Orientation.validateJsonElement(jsonObj.get("worldOrientation"));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!CreateSceneRequestDataAttributes.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'CreateSceneRequestDataAttributes' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<CreateSceneRequestDataAttributes> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(CreateSceneRequestDataAttributes.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<CreateSceneRequestDataAttributes>() {
+           @Override
+           public void write(JsonWriter out, CreateSceneRequestDataAttributes value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public CreateSceneRequestDataAttributes read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+  /**
+   * Create an instance of CreateSceneRequestDataAttributes given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CreateSceneRequestDataAttributes
+   * @throws IOException if the JSON string is invalid with respect to CreateSceneRequestDataAttributes
+   */
+  public static CreateSceneRequestDataAttributes fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, CreateSceneRequestDataAttributes.class);
+  }
+
+  /**
+   * Convert an instance of CreateSceneRequestDataAttributes to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 
