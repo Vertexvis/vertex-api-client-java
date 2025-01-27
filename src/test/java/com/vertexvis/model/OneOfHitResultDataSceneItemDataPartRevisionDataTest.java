@@ -30,7 +30,7 @@ public class OneOfHitResultDataSceneItemDataPartRevisionDataTest {
         new HitIncludedInner(
             new SceneItemData().id(id).type("scene-item"));
 
-    String expected = "{\"type\":\"scene-item\",\"id\":\"" + id + "\"}";
+    String expected = "{\"type\":\"scene-item\",\"id\":\"" + id + "\",\"links\":{}}";
 
     assertEquals(expected, new JSON().serialize(d));
   }
@@ -42,7 +42,7 @@ public class OneOfHitResultDataSceneItemDataPartRevisionDataTest {
         new HitIncludedInner(
             new PartRevisionData().id(id).type("part-revision"));
 
-    String expected = "{\"type\":\"part-revision\",\"id\":\"" + id + "\"}";
+    String expected = "{\"type\":\"part-revision\",\"id\":\"" + id + "\",\"links\":{}}";
 
     assertEquals(expected, new JSON().serialize(d));
   }

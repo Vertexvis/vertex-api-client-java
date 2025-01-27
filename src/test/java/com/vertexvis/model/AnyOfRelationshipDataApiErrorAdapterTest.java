@@ -47,7 +47,7 @@ public class AnyOfRelationshipDataApiErrorAdapterTest {
     Batch batch = new Batch().vertexvisBatchResults(list);
 
     String exp = "{\"vertexvis/batch:results\":[{\"id\":\"" + id +
-        "\",\"status\":\"my-status\",\"code\":\"500\"}]}";
+        "\",\"links\":{},\"status\":\"my-status\",\"code\":\"500\",\"meta\":{}}]}";
 
     assertEquals(exp, new JSON().serialize(batch));
   }

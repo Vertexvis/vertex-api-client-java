@@ -14,10 +14,10 @@ public class AnyOfCameraCameraFitTest {
   @Test
   void serializesCamera() {
     UpdateSceneViewRequestDataAttributesCamera c =
-        new UpdateSceneViewRequestDataAttributesCamera(new UpdateSceneViewRequestDataAttributesCamera(
+        new UpdateSceneViewRequestDataAttributesCamera(
           new PerspectiveCamera().lookAt(
             new Vector3().x(new BigDecimal(2)).y(new BigDecimal(4)).z(new BigDecimal(6)))
-        ));
+        );
 
     String expected = "{\"lookAt\":{\"x\":2,\"y\":4,\"z\":6}}";
 

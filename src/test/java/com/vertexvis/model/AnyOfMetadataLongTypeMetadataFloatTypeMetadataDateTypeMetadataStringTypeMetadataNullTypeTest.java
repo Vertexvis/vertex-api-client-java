@@ -1,5 +1,6 @@
 package com.vertexvis.model;
 
+import com.google.gson.JsonSyntaxException;
 import com.vertexvis.JSON;
 import org.junit.jupiter.api.Test;
 
@@ -144,11 +145,11 @@ class AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMe
     @Test
     void deserializeFails() {
         String json = "{\"type\":\"long\",\"value\":1234.567890}";
-        assertThrows(UnsupportedOperationException.class, () -> deserializeAnyOf(json));
+        assertThrows(JsonSyntaxException.class, () -> deserializeAnyOf(json));
         String json2 = "{\"type\":\"date\",\"value\":1234.567890}";
-        assertThrows(UnsupportedOperationException.class, () -> deserializeAnyOf(json2));
+        assertThrows(JsonSyntaxException.class, () -> deserializeAnyOf(json2));
         String json3 = "{\"type\":\"null\",\"value\":1234.567890}";
-        assertThrows(UnsupportedOperationException.class, () -> deserializeAnyOf(json3));
+        assertThrows(JsonSyntaxException.class, () -> deserializeAnyOf(json3));
     }
 
     @Test
