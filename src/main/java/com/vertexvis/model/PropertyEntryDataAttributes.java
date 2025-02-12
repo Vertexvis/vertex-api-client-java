@@ -14,16 +14,9 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.PropertyKeyType;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
  * PropertyEntryDataAttributes
@@ -32,7 +25,7 @@ import java.io.IOException;
 public class PropertyEntryDataAttributes {
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)
-  private AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType value;
+  private AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject value;
 
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
@@ -41,7 +34,7 @@ public class PropertyEntryDataAttributes {
   public PropertyEntryDataAttributes() { 
   }
 
-  public PropertyEntryDataAttributes value(AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType value) {
+  public PropertyEntryDataAttributes value(AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject value) {
     
     this.value = value;
     return this;
@@ -54,12 +47,12 @@ public class PropertyEntryDataAttributes {
   @javax.annotation.Nullable
   @ApiModelProperty(required = true, value = "")
 
-  public AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType getValue() {
+  public AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject getValue() {
     return value;
   }
 
 
-  public void setValue(AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType value) {
+  public void setValue(AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject value) {
     this.value = value;
   }
 
