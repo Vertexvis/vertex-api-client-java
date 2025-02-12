@@ -20,7 +20,7 @@ public class MetadataUtil {
         NULL
     }
 
-    public static Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> createCustomMetadata(int numberOfMetadataProperties) {
+    public static Map<String, CreatePartRequestDataAttributesMetadataValue> createCustomMetadata(int numberOfMetadataProperties) {
         return IntStream.range(0, numberOfMetadataProperties).mapToObj(i -> {
             // generate key that index of the number of metadata properties
             var key = "key_0" + (i + 1) + "/" + numberOfMetadataProperties;
@@ -28,20 +28,20 @@ public class MetadataUtil {
             var metadataType = random.nextInt(MetadataType.values().length);
             var value = switch (MetadataType.values()[metadataType]) {
                 case LONG ->
-                        new UpdatePartRevisionRequestDataAttributesMetadataValue(
+                        new CreatePartRequestDataAttributesMetadataValue(
                                 new MetadataLongType().type("long").value(random.nextLong()));
 
                 case FLOAT ->
-                        new UpdatePartRevisionRequestDataAttributesMetadataValue(
+                        new CreatePartRequestDataAttributesMetadataValue(
                                 new MetadataFloatType().type("float").value(random.nextFloat()));
                 case DATE ->
-                        new UpdatePartRevisionRequestDataAttributesMetadataValue(
+                        new CreatePartRequestDataAttributesMetadataValue(
                                 new MetadataDateType().type("date").value(OffsetDateTime.now()));
                 case STRING ->
-                        new UpdatePartRevisionRequestDataAttributesMetadataValue(
+                        new CreatePartRequestDataAttributesMetadataValue(
                                 new MetadataStringType().type("string").value(UUID.randomUUID().toString()));
                 case NULL ->
-                        new UpdatePartRevisionRequestDataAttributesMetadataValue(
+                        new CreatePartRequestDataAttributesMetadataValue(
                                 new MetadataNullType().type("null"));
 
             };

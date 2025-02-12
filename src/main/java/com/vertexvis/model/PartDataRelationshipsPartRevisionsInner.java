@@ -21,6 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.UUID;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -46,24 +47,20 @@ import java.util.Set;
 import com.vertexvis.JSON;
 
 /**
- * PropertyKeyType
+ * PartDataRelationshipsPartRevisionsInner
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
-public class PropertyKeyType {
+public class PartDataRelationshipsPartRevisionsInner {
   /**
-   * The key category
+   * Resource object type.
    */
-  @JsonAdapter(CategoryEnum.Adapter.class)
-  public enum CategoryEnum {
-    VENDOR("vendor"),
-    
-    VERTEX("vertex"),
-    
-    USER("user");
+  @JsonAdapter(TypeEnum.Adapter.class)
+  public enum TypeEnum {
+    PART_REVISION("part-revision");
 
     private String value;
 
-    CategoryEnum(String value) {
+    TypeEnum(String value) {
       this.value = value;
     }
 
@@ -76,8 +73,8 @@ public class PropertyKeyType {
       return String.valueOf(value);
     }
 
-    public static CategoryEnum fromValue(String value) {
-      for (CategoryEnum b : CategoryEnum.values()) {
+    public static TypeEnum fromValue(String value) {
+      for (TypeEnum b : TypeEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -85,73 +82,73 @@ public class PropertyKeyType {
       throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
 
-    public static class Adapter extends TypeAdapter<CategoryEnum> {
+    public static class Adapter extends TypeAdapter<TypeEnum> {
       @Override
-      public void write(final JsonWriter jsonWriter, final CategoryEnum enumeration) throws IOException {
+      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
         jsonWriter.value(enumeration.getValue());
       }
 
       @Override
-      public CategoryEnum read(final JsonReader jsonReader) throws IOException {
+      public TypeEnum read(final JsonReader jsonReader) throws IOException {
         String value =  jsonReader.nextString();
-        return CategoryEnum.fromValue(value);
+        return TypeEnum.fromValue(value);
       }
     }
 
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       String value = jsonElement.getAsString();
-      CategoryEnum.fromValue(value);
+      TypeEnum.fromValue(value);
     }
   }
 
-  public static final String SERIALIZED_NAME_CATEGORY = "category";
-  @SerializedName(SERIALIZED_NAME_CATEGORY)
+  public static final String SERIALIZED_NAME_TYPE = "type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
   @javax.annotation.Nonnull
-  private CategoryEnum category;
+  private TypeEnum type;
 
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
   @javax.annotation.Nonnull
-  private String name;
+  private UUID id;
 
-  public PropertyKeyType() {
+  public PartDataRelationshipsPartRevisionsInner() {
   }
 
-  public PropertyKeyType category(@javax.annotation.Nonnull CategoryEnum category) {
-    this.category = category;
+  public PartDataRelationshipsPartRevisionsInner type(@javax.annotation.Nonnull TypeEnum type) {
+    this.type = type;
     return this;
   }
 
   /**
-   * The key category
-   * @return category
+   * Resource object type.
+   * @return type
    */
   @javax.annotation.Nonnull
-  public CategoryEnum getCategory() {
-    return category;
+  public TypeEnum getType() {
+    return type;
   }
 
-  public void setCategory(@javax.annotation.Nonnull CategoryEnum category) {
-    this.category = category;
+  public void setType(@javax.annotation.Nonnull TypeEnum type) {
+    this.type = type;
   }
 
 
-  public PropertyKeyType name(@javax.annotation.Nonnull String name) {
-    this.name = name;
+  public PartDataRelationshipsPartRevisionsInner id(@javax.annotation.Nonnull UUID id) {
+    this.id = id;
     return this;
   }
 
   /**
-   * Get name
-   * @return name
+   * ID of the resource.
+   * @return id
    */
   @javax.annotation.Nonnull
-  public String getName() {
-    return name;
+  public UUID getId() {
+    return id;
   }
 
-  public void setName(@javax.annotation.Nonnull String name) {
-    this.name = name;
+  public void setId(@javax.annotation.Nonnull UUID id) {
+    this.id = id;
   }
 
 
@@ -164,22 +161,22 @@ public class PropertyKeyType {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PropertyKeyType propertyKeyType = (PropertyKeyType) o;
-    return Objects.equals(this.category, propertyKeyType.category) &&
-        Objects.equals(this.name, propertyKeyType.name);
+    PartDataRelationshipsPartRevisionsInner partDataRelationshipsPartRevisionsInner = (PartDataRelationshipsPartRevisionsInner) o;
+    return Objects.equals(this.type, partDataRelationshipsPartRevisionsInner.type) &&
+        Objects.equals(this.id, partDataRelationshipsPartRevisionsInner.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(category, name);
+    return Objects.hash(type, id);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PropertyKeyType {\n");
-    sb.append("    category: ").append(toIndentedString(category)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("class PartDataRelationshipsPartRevisionsInner {\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -202,50 +199,50 @@ public class PropertyKeyType {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("category");
-    openapiFields.add("name");
+    openapiFields.add("type");
+    openapiFields.add("id");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("category");
-    openapiRequiredFields.add("name");
+    openapiRequiredFields.add("type");
+    openapiRequiredFields.add("id");
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to PropertyKeyType
+   * @throws IOException if the JSON Element is invalid with respect to PartDataRelationshipsPartRevisionsInner
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!PropertyKeyType.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in PropertyKeyType is not found in the empty JSON string", PropertyKeyType.openapiRequiredFields.toString()));
+        if (!PartDataRelationshipsPartRevisionsInner.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in PartDataRelationshipsPartRevisionsInner is not found in the empty JSON string", PartDataRelationshipsPartRevisionsInner.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!PropertyKeyType.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PropertyKeyType` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!PartDataRelationshipsPartRevisionsInner.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PartDataRelationshipsPartRevisionsInner` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : PropertyKeyType.openapiRequiredFields) {
+      for (String requiredField : PartDataRelationshipsPartRevisionsInner.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("category").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `category` to be a primitive type in the JSON string but got `%s`", jsonObj.get("category").toString()));
+      if (!jsonObj.get("type").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
       }
-      // validate the required field `category`
-      CategoryEnum.validateJsonElement(jsonObj.get("category"));
-      if (!jsonObj.get("name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      // validate the required field `type`
+      TypeEnum.validateJsonElement(jsonObj.get("type"));
+      if (!jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
   }
 
@@ -253,22 +250,22 @@ public class PropertyKeyType {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!PropertyKeyType.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'PropertyKeyType' and its subtypes
+       if (!PartDataRelationshipsPartRevisionsInner.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'PartDataRelationshipsPartRevisionsInner' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<PropertyKeyType> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(PropertyKeyType.class));
+       final TypeAdapter<PartDataRelationshipsPartRevisionsInner> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(PartDataRelationshipsPartRevisionsInner.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<PropertyKeyType>() {
+       return (TypeAdapter<T>) new TypeAdapter<PartDataRelationshipsPartRevisionsInner>() {
            @Override
-           public void write(JsonWriter out, PropertyKeyType value) throws IOException {
+           public void write(JsonWriter out, PartDataRelationshipsPartRevisionsInner value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public PropertyKeyType read(JsonReader in) throws IOException {
+           public PartDataRelationshipsPartRevisionsInner read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -279,18 +276,18 @@ public class PropertyKeyType {
   }
 
   /**
-   * Create an instance of PropertyKeyType given an JSON string
+   * Create an instance of PartDataRelationshipsPartRevisionsInner given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of PropertyKeyType
-   * @throws IOException if the JSON string is invalid with respect to PropertyKeyType
+   * @return An instance of PartDataRelationshipsPartRevisionsInner
+   * @throws IOException if the JSON string is invalid with respect to PartDataRelationshipsPartRevisionsInner
    */
-  public static PropertyKeyType fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, PropertyKeyType.class);
+  public static PartDataRelationshipsPartRevisionsInner fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, PartDataRelationshipsPartRevisionsInner.class);
   }
 
   /**
-   * Convert an instance of PropertyKeyType to an JSON string
+   * Convert an instance of PartDataRelationshipsPartRevisionsInner to an JSON string
    *
    * @return JSON string
    */

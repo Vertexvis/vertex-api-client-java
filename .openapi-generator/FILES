@@ -108,12 +108,14 @@ src/main/java/com/vertexvis/model/CreateGeometrySetRequestDataRelationships.java
 src/main/java/com/vertexvis/model/CreateHitRequest.java
 src/main/java/com/vertexvis/model/CreateHitRequestData.java
 src/main/java/com/vertexvis/model/CreateHitRequestDataAttributes.java
+src/main/java/com/vertexvis/model/CreatePart200Response.java
 src/main/java/com/vertexvis/model/CreatePartRenditionRequest.java
 src/main/java/com/vertexvis/model/CreatePartRenditionRequestData.java
 src/main/java/com/vertexvis/model/CreatePartRenditionRequestDataAttributes.java
 src/main/java/com/vertexvis/model/CreatePartRequest.java
 src/main/java/com/vertexvis/model/CreatePartRequestData.java
 src/main/java/com/vertexvis/model/CreatePartRequestDataAttributes.java
+src/main/java/com/vertexvis/model/CreatePartRequestDataAttributesMetadataValue.java
 src/main/java/com/vertexvis/model/CreatePartRequestDataRelationships.java
 src/main/java/com/vertexvis/model/CreatePartRequestDataRelationshipsSource.java
 src/main/java/com/vertexvis/model/CreateSceneAlterationRequest.java
@@ -187,6 +189,7 @@ src/main/java/com/vertexvis/model/GeometrySetData.java
 src/main/java/com/vertexvis/model/GeometrySetList.java
 src/main/java/com/vertexvis/model/GeometrySetRelationship.java
 src/main/java/com/vertexvis/model/GeometrySetRelationshipData.java
+src/main/java/com/vertexvis/model/GetQueuedSceneItem200Response.java
 src/main/java/com/vertexvis/model/Hit.java
 src/main/java/com/vertexvis/model/HitData.java
 src/main/java/com/vertexvis/model/HitDataAttributes.java
@@ -206,6 +209,7 @@ src/main/java/com/vertexvis/model/MetadataNullType.java
 src/main/java/com/vertexvis/model/MetadataStringType.java
 src/main/java/com/vertexvis/model/ModelView.java
 src/main/java/com/vertexvis/model/ModelViewData.java
+src/main/java/com/vertexvis/model/ModelViewDataAttributes.java
 src/main/java/com/vertexvis/model/ModelViewDataRelationships.java
 src/main/java/com/vertexvis/model/ModelViewList.java
 src/main/java/com/vertexvis/model/OAuth2BadRequest.java
@@ -218,7 +222,7 @@ src/main/java/com/vertexvis/model/PartAssemblyRelationshipData.java
 src/main/java/com/vertexvis/model/PartData.java
 src/main/java/com/vertexvis/model/PartDataAttributes.java
 src/main/java/com/vertexvis/model/PartDataRelationships.java
-src/main/java/com/vertexvis/model/PartDataRelationshipsPartRevisions.java
+src/main/java/com/vertexvis/model/PartDataRelationshipsPartRevisionsInner.java
 src/main/java/com/vertexvis/model/PartInstanceRelationship.java
 src/main/java/com/vertexvis/model/PartInstanceRelationshipData.java
 src/main/java/com/vertexvis/model/PartList.java
@@ -252,7 +256,6 @@ src/main/java/com/vertexvis/model/PropertyEntryData.java
 src/main/java/com/vertexvis/model/PropertyEntryDataAttributes.java
 src/main/java/com/vertexvis/model/PropertyEntryDataAttributesValue.java
 src/main/java/com/vertexvis/model/PropertyEntryList.java
-src/main/java/com/vertexvis/model/PropertyKeyType.java
 src/main/java/com/vertexvis/model/PropertyLongType.java
 src/main/java/com/vertexvis/model/PropertySetRelationship.java
 src/main/java/com/vertexvis/model/PropertySetRelationshipData.java

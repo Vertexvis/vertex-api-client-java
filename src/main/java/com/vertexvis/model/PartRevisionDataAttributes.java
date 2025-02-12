@@ -19,7 +19,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.UpdatePartRevisionRequestDataAttributesMetadataValue;
+import com.vertexvis.model.CreatePartRequestDataAttributesMetadataValue;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
@@ -62,7 +62,7 @@ public class PartRevisionDataAttributes {
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
   @javax.annotation.Nullable
-  private Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> metadata = new HashMap<>();
+  private Map<String, CreatePartRequestDataAttributesMetadataValue> metadata = new HashMap<>();
 
   public static final String SERIALIZED_NAME_SUPPLIED_ID = "suppliedId";
   @SerializedName(SERIALIZED_NAME_SUPPLIED_ID)
@@ -101,12 +101,12 @@ public class PartRevisionDataAttributes {
   }
 
 
-  public PartRevisionDataAttributes metadata(@javax.annotation.Nullable Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> metadata) {
+  public PartRevisionDataAttributes metadata(@javax.annotation.Nullable Map<String, CreatePartRequestDataAttributesMetadataValue> metadata) {
     this.metadata = metadata;
     return this;
   }
 
-  public PartRevisionDataAttributes putMetadataItem(String key, UpdatePartRevisionRequestDataAttributesMetadataValue metadataItem) {
+  public PartRevisionDataAttributes putMetadataItem(String key, CreatePartRequestDataAttributesMetadataValue metadataItem) {
     if (this.metadata == null) {
       this.metadata = new HashMap<>();
     }
@@ -119,11 +119,11 @@ public class PartRevisionDataAttributes {
    * @return metadata
    */
   @javax.annotation.Nullable
-  public Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> getMetadata() {
+  public Map<String, CreatePartRequestDataAttributesMetadataValue> getMetadata() {
     return metadata;
   }
 
-  public void setMetadata(@javax.annotation.Nullable Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> metadata) {
+  public void setMetadata(@javax.annotation.Nullable Map<String, CreatePartRequestDataAttributesMetadataValue> metadata) {
     this.metadata = metadata;
   }
 

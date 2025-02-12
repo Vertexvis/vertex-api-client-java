@@ -20,7 +20,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.PropertyEntryDataAttributesValue;
-import com.vertexvis.model.PropertyKeyType;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -60,7 +59,7 @@ public class PropertyEntryDataAttributes {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
   @javax.annotation.Nonnull
-  private PropertyKeyType key;
+  private String key;
 
   public PropertyEntryDataAttributes() {
   }
@@ -84,7 +83,7 @@ public class PropertyEntryDataAttributes {
   }
 
 
-  public PropertyEntryDataAttributes key(@javax.annotation.Nonnull PropertyKeyType key) {
+  public PropertyEntryDataAttributes key(@javax.annotation.Nonnull String key) {
     this.key = key;
     return this;
   }
@@ -94,11 +93,11 @@ public class PropertyEntryDataAttributes {
    * @return key
    */
   @javax.annotation.Nonnull
-  public PropertyKeyType getKey() {
+  public String getKey() {
     return key;
   }
 
-  public void setKey(@javax.annotation.Nonnull PropertyKeyType key) {
+  public void setKey(@javax.annotation.Nonnull String key) {
     this.key = key;
   }
 
@@ -189,8 +188,9 @@ public class PropertyEntryDataAttributes {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the required field `value`
       PropertyEntryDataAttributesValue.validateJsonElement(jsonObj.get("value"));
-      // validate the required field `key`
-      PropertyKeyType.validateJsonElement(jsonObj.get("key"));
+      if (!jsonObj.get("key").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `key` to be a primitive type in the JSON string but got `%s`", jsonObj.get("key").toString()));
+      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

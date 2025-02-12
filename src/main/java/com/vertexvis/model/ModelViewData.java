@@ -19,8 +19,8 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.CreateAccountRequestDataAttributes;
 import com.vertexvis.model.Link;
+import com.vertexvis.model.ModelViewDataAttributes;
 import com.vertexvis.model.ModelViewDataRelationships;
 import java.io.IOException;
 import java.util.Arrays;
@@ -69,7 +69,7 @@ public class ModelViewData {
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   @javax.annotation.Nonnull
-  private CreateAccountRequestDataAttributes attributes;
+  private ModelViewDataAttributes attributes;
 
   public static final String SERIALIZED_NAME_RELATIONSHIPS = "relationships";
   @SerializedName(SERIALIZED_NAME_RELATIONSHIPS)
@@ -122,7 +122,7 @@ public class ModelViewData {
   }
 
 
-  public ModelViewData attributes(@javax.annotation.Nonnull CreateAccountRequestDataAttributes attributes) {
+  public ModelViewData attributes(@javax.annotation.Nonnull ModelViewDataAttributes attributes) {
     this.attributes = attributes;
     return this;
   }
@@ -132,11 +132,11 @@ public class ModelViewData {
    * @return attributes
    */
   @javax.annotation.Nonnull
-  public CreateAccountRequestDataAttributes getAttributes() {
+  public ModelViewDataAttributes getAttributes() {
     return attributes;
   }
 
-  public void setAttributes(@javax.annotation.Nonnull CreateAccountRequestDataAttributes attributes) {
+  public void setAttributes(@javax.annotation.Nonnull ModelViewDataAttributes attributes) {
     this.attributes = attributes;
   }
 
@@ -289,7 +289,7 @@ public class ModelViewData {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
       // validate the required field `attributes`
-      CreateAccountRequestDataAttributes.validateJsonElement(jsonObj.get("attributes"));
+      ModelViewDataAttributes.validateJsonElement(jsonObj.get("attributes"));
       // validate the required field `relationships`
       ModelViewDataRelationships.validateJsonElement(jsonObj.get("relationships"));
   }

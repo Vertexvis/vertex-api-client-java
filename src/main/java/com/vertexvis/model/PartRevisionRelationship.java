@@ -19,7 +19,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.PartDataRelationshipsPartRevisions;
+import com.vertexvis.model.PartDataRelationshipsPartRevisionsInner;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -54,12 +54,12 @@ public class PartRevisionRelationship {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
   @javax.annotation.Nonnull
-  private PartDataRelationshipsPartRevisions data;
+  private PartDataRelationshipsPartRevisionsInner data;
 
   public PartRevisionRelationship() {
   }
 
-  public PartRevisionRelationship data(@javax.annotation.Nonnull PartDataRelationshipsPartRevisions data) {
+  public PartRevisionRelationship data(@javax.annotation.Nonnull PartDataRelationshipsPartRevisionsInner data) {
     this.data = data;
     return this;
   }
@@ -69,11 +69,11 @@ public class PartRevisionRelationship {
    * @return data
    */
   @javax.annotation.Nonnull
-  public PartDataRelationshipsPartRevisions getData() {
+  public PartDataRelationshipsPartRevisionsInner getData() {
     return data;
   }
 
-  public void setData(@javax.annotation.Nonnull PartDataRelationshipsPartRevisions data) {
+  public void setData(@javax.annotation.Nonnull PartDataRelationshipsPartRevisionsInner data) {
     this.data = data;
   }
 
@@ -159,7 +159,7 @@ public class PartRevisionRelationship {
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the required field `data`
-      PartDataRelationshipsPartRevisions.validateJsonElement(jsonObj.get("data"));
+      PartDataRelationshipsPartRevisionsInner.validateJsonElement(jsonObj.get("data"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

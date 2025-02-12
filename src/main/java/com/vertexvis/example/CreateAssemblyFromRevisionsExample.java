@@ -38,6 +38,7 @@ public class CreateAssemblyFromRevisionsExample extends CommandLineOptions {
 
         ApiClient client =
                 new ApiClient(getVertexApiUrl(), clientId, secret, new HashMap<>()).setDebugging(isVerboseDebugLogging());
+        client.setServerIndex(null);
 
         PartCreator pc = new PartCreator(client);
         FilesApi files = new FilesApi(client);
@@ -61,7 +62,7 @@ public class CreateAssemblyFromRevisionsExample extends CommandLineOptions {
             Part assembly = newParts.stream()
                     .map(part -> part.getData().getRelationships().getPartRevisions())
                     .flatMap(Collection::stream)
-                    .map(PartDataRelationshipsPartRevisions::getId)
+                    .map(PartDataRelationshipsPartRevisionsInner::getId)
                     .peek(uuid -> logger.info(uuid.toString()))
                     .collect(Collectors.collectingAndThen(Collectors.toList(), (l) -> pc.createAssemblyFromRevisions(l, getAssemblyName())))
                     .handle((part, ex) -> {

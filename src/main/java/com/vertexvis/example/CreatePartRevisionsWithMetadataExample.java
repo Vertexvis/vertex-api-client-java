@@ -61,7 +61,7 @@ public class CreatePartRevisionsWithMetadataExample extends CommandLineOptions {
             Part assembly = newParts.stream()
                     .map(part -> part.getData().getRelationships().getPartRevisions())
                     .flatMap(Collection::stream)
-                    .map(PartDataRelationshipsPartRevisions::getId)
+                    .map(PartDataRelationshipsPartRevisionsInner::getId)
                     .peek(uuid -> logger.info("Part Revision Id: " + uuid))
                     .collect(Collectors.collectingAndThen(Collectors.toList(), (l) -> pc.createAssemblyFromRevisions(l, getAssemblyName())))
                     .handle((part, ex) -> {

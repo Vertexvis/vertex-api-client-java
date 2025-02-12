@@ -30,10 +30,10 @@ class PartCreator {
         return createPartFromFile(metadata, Collections.emptyMap());
     }
 
-    public Part createPartFromFile(FileMetadata metadata, Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> partMetadata) throws InterruptedException {
-        Part qp = parts.createPart(getCreatePartRequest(metadata.getData().getId(), metadata.getData().getAttributes().getName(), partMetadata));
+    public Part createPartFromFile(FileMetadata metadata, Map<String, CreatePartRequestDataAttributesMetadataValue> partMetadata) throws InterruptedException {
+        CreatePart200Response qp = parts.createPart(getCreatePartRequest(metadata.getData().getId(), metadata.getData().getAttributes().getName(), partMetadata));
         UUID partId =
-                JobPoller.pollUntilJobDone("part", () -> tiApi.getQueuedTranslation(qp.getData().getId()));
+                JobPoller.pollUntilJobDone("part", () -> tiApi.getQueuedTranslation(qp.getQueuedTranslationJob().getData().getId()));
         return parts.getPart(partId, null);
     }
 
@@ -41,29 +41,29 @@ class PartCreator {
         return createPartFromFileAsync(id, req, Collections.emptyMap());
     }
 
-    public CompletableFuture<Part> createPartFromFileAsync(UUID id, CreateFileRequest req, Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> metadata) {
-        CompletableFuture<Part> p =
+    public CompletableFuture<Part> createPartFromFileAsync(UUID id, CreateFileRequest req, Map<String, CreatePartRequestDataAttributesMetadataValue> metadata) {
+        CompletableFuture<CreatePart200Response> p =
                 execute(cb -> parts.createPartAsync(getCreatePartRequest(id, req.getData().getAttributes().getName(), metadata), cb));
         CompletableFuture<UUID> partId = p.thenCompose(qj ->
-                JobPoller.pollUntilJobDoneAsync("part", () ->
-                        execute(cb -> tiApi.getQueuedTranslationAsync(qj.getData().getId(), cb))));
+                JobPoller.pollUntilJobDoneAsync("queued-translation-job", () ->
+                        execute(cb -> tiApi.getQueuedTranslationJobAsync(qj.getQueuedTranslationJob().getData().getId(), cb))));
 
         return partId.thenCompose(
                 pId -> execute((ApiCallback<Part> cb) -> parts.getPartAsync(pId, null, cb)));
     }
 
     public CompletableFuture<Part> createAssemblyFromRevisions(List<UUID> revisions, String name) {
-        CompletableFuture<Part> p =
+        CompletableFuture<CreatePart200Response> p =
                 execute(cb -> parts.createPartAsync(createPartAssemblyRequest(revisions, name), cb));
         return p.thenCompose(
-                pId -> execute((ApiCallback<Part> cb) -> parts.getPartAsync(pId.getData().getId(), null, cb)));
+                pId -> execute((ApiCallback<Part> cb) -> parts.getPartAsync(pId.getPart().getData().getId(), null, cb)));
     }
 
     private static CreatePartRequest getCreatePartRequest(UUID fileId, String partName) {
         return getCreatePartRequest(fileId, partName, Collections.emptyMap());
     }
 
-    private static CreatePartRequest getCreatePartRequest(UUID fileId, String partName, Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> metadata) {
+    private static CreatePartRequest getCreatePartRequest(UUID fileId, String partName, Map<String, CreatePartRequestDataAttributesMetadataValue> metadata) {
         FileRelationship fileRelationship = new FileRelationship()
                 .data(
                         new FileRelationshipData()

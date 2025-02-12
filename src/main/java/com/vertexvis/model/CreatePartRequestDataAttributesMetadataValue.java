@@ -63,15 +63,15 @@ import com.google.gson.JsonParseException;
 import com.vertexvis.JSON;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
-public class UpdatePartRevisionRequestDataAttributesMetadataValue extends AbstractOpenApiSchema {
-    private static final Logger log = Logger.getLogger(UpdatePartRevisionRequestDataAttributesMetadataValue.class.getName());
+public class CreatePartRequestDataAttributesMetadataValue extends AbstractOpenApiSchema {
+    private static final Logger log = Logger.getLogger(CreatePartRequestDataAttributesMetadataValue.class.getName());
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
         @SuppressWarnings("unchecked")
         @Override
         public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!UpdatePartRevisionRequestDataAttributesMetadataValue.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'UpdatePartRevisionRequestDataAttributesMetadataValue' and its subtypes
+            if (!CreatePartRequestDataAttributesMetadataValue.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'CreatePartRequestDataAttributesMetadataValue' and its subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
             final TypeAdapter<MetadataLongType> adapterMetadataLongType = gson.getDelegateAdapter(this, TypeToken.get(MetadataLongType.class));
@@ -80,9 +80,9 @@ public class UpdatePartRevisionRequestDataAttributesMetadataValue extends Abstra
             final TypeAdapter<MetadataStringType> adapterMetadataStringType = gson.getDelegateAdapter(this, TypeToken.get(MetadataStringType.class));
             final TypeAdapter<MetadataNullType> adapterMetadataNullType = gson.getDelegateAdapter(this, TypeToken.get(MetadataNullType.class));
 
-            return (TypeAdapter<T>) new TypeAdapter<UpdatePartRevisionRequestDataAttributesMetadataValue>() {
+            return (TypeAdapter<T>) new TypeAdapter<CreatePartRequestDataAttributesMetadataValue>() {
                 @Override
-                public void write(JsonWriter out, UpdatePartRevisionRequestDataAttributesMetadataValue value) throws IOException {
+                public void write(JsonWriter out, CreatePartRequestDataAttributesMetadataValue value) throws IOException {
                     if (value == null || value.getActualInstance() == null) {
                         elementAdapter.write(out, null);
                         return;
@@ -118,15 +118,14 @@ public class UpdatePartRevisionRequestDataAttributesMetadataValue extends Abstra
                         elementAdapter.write(out, element);
                         return;
                     }
-                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: MetadataDateType, MetadataFloatType, MetadataLongType, MetadataNullType, MetadataStringType");
+                    throw new IOException("Failed to serialize as the type doesn't match anyOf schemas: MetadataDateType, MetadataFloatType, MetadataLongType, MetadataNullType, MetadataStringType");
                 }
 
                 @Override
-                public UpdatePartRevisionRequestDataAttributesMetadataValue read(JsonReader in) throws IOException {
+                public CreatePartRequestDataAttributesMetadataValue read(JsonReader in) throws IOException {
                     Object deserialized = null;
                     JsonElement jsonElement = elementAdapter.read(in);
 
-                    int match = 0;
                     ArrayList<String> errorMessages = new ArrayList<>();
                     TypeAdapter actualAdapter = elementAdapter;
 
@@ -135,8 +134,9 @@ public class UpdatePartRevisionRequestDataAttributesMetadataValue extends Abstra
                         // validate the JSON object to see if any exception is thrown
                         MetadataLongType.validateJsonElement(jsonElement);
                         actualAdapter = adapterMetadataLongType;
-                        match++;
-                        log.log(Level.FINER, "Input data matches schema 'MetadataLongType'");
+                        CreatePartRequestDataAttributesMetadataValue ret = new CreatePartRequestDataAttributesMetadataValue();
+                        ret.setActualInstance(actualAdapter.fromJsonTree(jsonElement));
+                        return ret;
                     } catch (Exception e) {
                         // deserialization failed, continue
                         errorMessages.add(String.format("Deserialization for MetadataLongType failed with `%s`.", e.getMessage()));
@@ -147,8 +147,9 @@ public class UpdatePartRevisionRequestDataAttributesMetadataValue extends Abstra
                         // validate the JSON object to see if any exception is thrown
                         MetadataFloatType.validateJsonElement(jsonElement);
                         actualAdapter = adapterMetadataFloatType;
-                        match++;
-                        log.log(Level.FINER, "Input data matches schema 'MetadataFloatType'");
+                        CreatePartRequestDataAttributesMetadataValue ret = new CreatePartRequestDataAttributesMetadataValue();
+                        ret.setActualInstance(actualAdapter.fromJsonTree(jsonElement));
+                        return ret;
                     } catch (Exception e) {
                         // deserialization failed, continue
                         errorMessages.add(String.format("Deserialization for MetadataFloatType failed with `%s`.", e.getMessage()));
@@ -159,8 +160,9 @@ public class UpdatePartRevisionRequestDataAttributesMetadataValue extends Abstra
                         // validate the JSON object to see if any exception is thrown
                         MetadataDateType.validateJsonElement(jsonElement);
                         actualAdapter = adapterMetadataDateType;
-                        match++;
-                        log.log(Level.FINER, "Input data matches schema 'MetadataDateType'");
+                        CreatePartRequestDataAttributesMetadataValue ret = new CreatePartRequestDataAttributesMetadataValue();
+                        ret.setActualInstance(actualAdapter.fromJsonTree(jsonElement));
+                        return ret;
                     } catch (Exception e) {
                         // deserialization failed, continue
                         errorMessages.add(String.format("Deserialization for MetadataDateType failed with `%s`.", e.getMessage()));
@@ -171,8 +173,9 @@ public class UpdatePartRevisionRequestDataAttributesMetadataValue extends Abstra
                         // validate the JSON object to see if any exception is thrown
                         MetadataStringType.validateJsonElement(jsonElement);
                         actualAdapter = adapterMetadataStringType;
-                        match++;
-                        log.log(Level.FINER, "Input data matches schema 'MetadataStringType'");
+                        CreatePartRequestDataAttributesMetadataValue ret = new CreatePartRequestDataAttributesMetadataValue();
+                        ret.setActualInstance(actualAdapter.fromJsonTree(jsonElement));
+                        return ret;
                     } catch (Exception e) {
                         // deserialization failed, continue
                         errorMessages.add(String.format("Deserialization for MetadataStringType failed with `%s`.", e.getMessage()));
@@ -183,35 +186,30 @@ public class UpdatePartRevisionRequestDataAttributesMetadataValue extends Abstra
                         // validate the JSON object to see if any exception is thrown
                         MetadataNullType.validateJsonElement(jsonElement);
                         actualAdapter = adapterMetadataNullType;
-                        match++;
-                        log.log(Level.FINER, "Input data matches schema 'MetadataNullType'");
+                        CreatePartRequestDataAttributesMetadataValue ret = new CreatePartRequestDataAttributesMetadataValue();
+                        ret.setActualInstance(actualAdapter.fromJsonTree(jsonElement));
+                        return ret;
                     } catch (Exception e) {
                         // deserialization failed, continue
                         errorMessages.add(String.format("Deserialization for MetadataNullType failed with `%s`.", e.getMessage()));
                         log.log(Level.FINER, "Input data does not match schema 'MetadataNullType'", e);
                     }
 
-                    if (match == 1) {
-                        UpdatePartRevisionRequestDataAttributesMetadataValue ret = new UpdatePartRevisionRequestDataAttributesMetadataValue();
-                        ret.setActualInstance(actualAdapter.fromJsonTree(jsonElement));
-                        return ret;
-                    }
-
-                    throw new IOException(String.format("Failed deserialization for UpdatePartRevisionRequestDataAttributesMetadataValue: %d classes match result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", match, errorMessages, jsonElement.toString()));
+                    throw new IOException(String.format("Failed deserialization for CreatePartRequestDataAttributesMetadataValue: no class matches result, expected at least 1. Detailed failure message for anyOf schemas: %s. JSON: %s", errorMessages, jsonElement.toString()));
                 }
             }.nullSafe();
         }
     }
 
-    // store a list of schema names defined in oneOf
+    // store a list of schema names defined in anyOf
     public static final Map<String, Class<?>> schemas = new HashMap<String, Class<?>>();
 
-    public UpdatePartRevisionRequestDataAttributesMetadataValue() {
-        super("oneOf", Boolean.FALSE);
+    public CreatePartRequestDataAttributesMetadataValue() {
+        super("anyOf", Boolean.FALSE);
     }
 
-    public UpdatePartRevisionRequestDataAttributesMetadataValue(Object o) {
-        super("oneOf", Boolean.FALSE);
+    public CreatePartRequestDataAttributesMetadataValue(Object o) {
+        super("anyOf", Boolean.FALSE);
         setActualInstance(o);
     }
 
@@ -225,15 +223,15 @@ public class UpdatePartRevisionRequestDataAttributesMetadataValue extends Abstra
 
     @Override
     public Map<String, Class<?>> getSchemas() {
-        return UpdatePartRevisionRequestDataAttributesMetadataValue.schemas;
+        return CreatePartRequestDataAttributesMetadataValue.schemas;
     }
 
     /**
-     * Set the instance that matches the oneOf child schema, check
-     * the instance parameter is valid against the oneOf child schemas:
+     * Set the instance that matches the anyOf child schema, check
+     * the instance parameter is valid against the anyOf child schemas:
      * MetadataDateType, MetadataFloatType, MetadataLongType, MetadataNullType, MetadataStringType
      *
-     * It could be an instance of the 'oneOf' schemas.
+     * It could be an instance of the 'anyOf' schemas.
      */
     @Override
     public void setActualInstance(Object instance) {
@@ -336,16 +334,15 @@ public class UpdatePartRevisionRequestDataAttributesMetadataValue extends Abstra
      * Validates the JSON Element and throws an exception if issues found
      *
      * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to UpdatePartRevisionRequestDataAttributesMetadataValue
+     * @throws IOException if the JSON Element is invalid with respect to CreatePartRequestDataAttributesMetadataValue
      */
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        // validate oneOf schemas one by one
-        int validCount = 0;
+        // validate anyOf schemas one by one
         ArrayList<String> errorMessages = new ArrayList<>();
         // validate the json string with MetadataLongType
         try {
             MetadataLongType.validateJsonElement(jsonElement);
-            validCount++;
+            return;
         } catch (Exception e) {
             errorMessages.add(String.format("Deserialization for MetadataLongType failed with `%s`.", e.getMessage()));
             // continue to the next one
@@ -353,7 +350,7 @@ public class UpdatePartRevisionRequestDataAttributesMetadataValue extends Abstra
         // validate the json string with MetadataFloatType
         try {
             MetadataFloatType.validateJsonElement(jsonElement);
-            validCount++;
+            return;
         } catch (Exception e) {
             errorMessages.add(String.format("Deserialization for MetadataFloatType failed with `%s`.", e.getMessage()));
             // continue to the next one
@@ -361,7 +358,7 @@ public class UpdatePartRevisionRequestDataAttributesMetadataValue extends Abstra
         // validate the json string with MetadataDateType
         try {
             MetadataDateType.validateJsonElement(jsonElement);
-            validCount++;
+            return;
         } catch (Exception e) {
             errorMessages.add(String.format("Deserialization for MetadataDateType failed with `%s`.", e.getMessage()));
             // continue to the next one
@@ -369,7 +366,7 @@ public class UpdatePartRevisionRequestDataAttributesMetadataValue extends Abstra
         // validate the json string with MetadataStringType
         try {
             MetadataStringType.validateJsonElement(jsonElement);
-            validCount++;
+            return;
         } catch (Exception e) {
             errorMessages.add(String.format("Deserialization for MetadataStringType failed with `%s`.", e.getMessage()));
             // continue to the next one
@@ -377,29 +374,27 @@ public class UpdatePartRevisionRequestDataAttributesMetadataValue extends Abstra
         // validate the json string with MetadataNullType
         try {
             MetadataNullType.validateJsonElement(jsonElement);
-            validCount++;
+            return;
         } catch (Exception e) {
             errorMessages.add(String.format("Deserialization for MetadataNullType failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
-        if (validCount != 1) {
-            throw new IOException(String.format("The JSON string is invalid for UpdatePartRevisionRequestDataAttributesMetadataValue with oneOf schemas: MetadataDateType, MetadataFloatType, MetadataLongType, MetadataNullType, MetadataStringType. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
-        }
+        throw new IOException(String.format("The JSON string is invalid for CreatePartRequestDataAttributesMetadataValue with anyOf schemas: MetadataDateType, MetadataFloatType, MetadataLongType, MetadataNullType, MetadataStringType. no class match the result, expected at least 1. Detailed failure message for anyOf schemas: %s. JSON: %s", errorMessages, jsonElement.toString()));
     }
 
     /**
-     * Create an instance of UpdatePartRevisionRequestDataAttributesMetadataValue given an JSON string
+     * Create an instance of CreatePartRequestDataAttributesMetadataValue given an JSON string
      *
      * @param jsonString JSON string
-     * @return An instance of UpdatePartRevisionRequestDataAttributesMetadataValue
-     * @throws IOException if the JSON string is invalid with respect to UpdatePartRevisionRequestDataAttributesMetadataValue
+     * @return An instance of CreatePartRequestDataAttributesMetadataValue
+     * @throws IOException if the JSON string is invalid with respect to CreatePartRequestDataAttributesMetadataValue
      */
-    public static UpdatePartRevisionRequestDataAttributesMetadataValue fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, UpdatePartRevisionRequestDataAttributesMetadataValue.class);
+    public static CreatePartRequestDataAttributesMetadataValue fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, CreatePartRequestDataAttributesMetadataValue.class);
     }
 
     /**
-     * Convert an instance of UpdatePartRevisionRequestDataAttributesMetadataValue to an JSON string
+     * Convert an instance of CreatePartRequestDataAttributesMetadataValue to an JSON string
      *
      * @return JSON string
      */

@@ -29,6 +29,7 @@ import java.io.IOException;
 
 import com.vertexvis.model.CreateSceneItemRequest;
 import com.vertexvis.model.Failure;
+import com.vertexvis.model.GetQueuedSceneItem200Response;
 import com.vertexvis.model.QueuedJob;
 import com.vertexvis.model.SceneItem;
 import com.vertexvis.model.SceneItemList;
@@ -447,7 +448,7 @@ public class SceneItemsApi {
      * 
      * Get a &#x60;queued-scene-item&#x60;. The response is either the status if &#x60;running&#x60; or &#x60;error&#x60; or, upon completion, redirects to the created &#x60;scene-item&#x60;. Once created, commit the scene via the updateScene API. For details, see our [Render static scenes](https://developer.vertexvis.com/docs/guides/render-static-scenes) guide.
      * @param id The &#x60;queued-scene-item&#x60; ID. (required)
-     * @return QueuedJob
+     * @return GetQueuedSceneItem200Response
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
@@ -460,8 +461,8 @@ public class SceneItemsApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public QueuedJob getQueuedSceneItem(UUID id) throws ApiException {
-        ApiResponse<QueuedJob> localVarResp = getQueuedSceneItemWithHttpInfo(id);
+    public GetQueuedSceneItem200Response getQueuedSceneItem(UUID id) throws ApiException {
+        ApiResponse<GetQueuedSceneItem200Response> localVarResp = getQueuedSceneItemWithHttpInfo(id);
         return localVarResp.getData();
     }
 
@@ -469,7 +470,7 @@ public class SceneItemsApi {
      * 
      * Get a &#x60;queued-scene-item&#x60;. The response is either the status if &#x60;running&#x60; or &#x60;error&#x60; or, upon completion, redirects to the created &#x60;scene-item&#x60;. Once created, commit the scene via the updateScene API. For details, see our [Render static scenes](https://developer.vertexvis.com/docs/guides/render-static-scenes) guide.
      * @param id The &#x60;queued-scene-item&#x60; ID. (required)
-     * @return ApiResponse&lt;QueuedJob&gt;
+     * @return ApiResponse&lt;GetQueuedSceneItem200Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
@@ -482,9 +483,9 @@ public class SceneItemsApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<QueuedJob> getQueuedSceneItemWithHttpInfo(UUID id) throws ApiException {
+    public ApiResponse<GetQueuedSceneItem200Response> getQueuedSceneItemWithHttpInfo(UUID id) throws ApiException {
         okhttp3.Call localVarCall = getQueuedSceneItemValidateBeforeCall(id, null);
-        Type localVarReturnType = new TypeToken<QueuedJob>(){}.getType();
+        Type localVarReturnType = new TypeToken<GetQueuedSceneItem200Response>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -506,10 +507,10 @@ public class SceneItemsApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getQueuedSceneItemAsync(UUID id, final ApiCallback<QueuedJob> _callback) throws ApiException {
+    public okhttp3.Call getQueuedSceneItemAsync(UUID id, final ApiCallback<GetQueuedSceneItem200Response> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getQueuedSceneItemValidateBeforeCall(id, _callback);
-        Type localVarReturnType = new TypeToken<QueuedJob>(){}.getType();
+        Type localVarReturnType = new TypeToken<GetQueuedSceneItem200Response>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

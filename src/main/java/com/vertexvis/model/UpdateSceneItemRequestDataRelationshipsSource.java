@@ -20,7 +20,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.GeometrySetRelationship;
-import com.vertexvis.model.PartDataRelationshipsPartRevisions;
+import com.vertexvis.model.PartDataRelationshipsPartRevisionsInner;
 import com.vertexvis.model.PartRevisionRelationship;
 import java.io.IOException;
 import java.util.Arrays;

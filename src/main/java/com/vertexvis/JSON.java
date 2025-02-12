@@ -217,12 +217,14 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateHitRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateHitRequestData.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateHitRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreatePart200Response.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreatePartRenditionRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreatePartRenditionRequestData.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreatePartRenditionRequestDataAttributes.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreatePartRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreatePartRequestData.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreatePartRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreatePartRequestDataAttributesMetadataValue.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreatePartRequestDataRelationships.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreatePartRequestDataRelationshipsSource.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneAlterationRequest.CustomTypeAdapterFactory());
@@ -295,6 +297,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.GeometrySetList.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.GeometrySetRelationship.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.GeometrySetRelationshipData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.GetQueuedSceneItem200Response.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.Hit.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.HitData.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.HitDataAttributes.CustomTypeAdapterFactory());
@@ -314,6 +317,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.MetadataStringType.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ModelView.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ModelViewData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ModelViewDataAttributes.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ModelViewDataRelationships.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ModelViewList.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.OAuth2BadRequest.CustomTypeAdapterFactory());
@@ -326,7 +330,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartData.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartDataAttributes.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartDataRelationships.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartDataRelationshipsPartRevisions.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartDataRelationshipsPartRevisionsInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartInstanceRelationship.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartInstanceRelationshipData.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartList.CustomTypeAdapterFactory());
@@ -360,7 +364,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PropertyEntryDataAttributes.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PropertyEntryDataAttributesValue.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PropertyEntryList.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PropertyKeyType.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PropertyLongType.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PropertySetRelationship.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PropertySetRelationshipData.CustomTypeAdapterFactory());
