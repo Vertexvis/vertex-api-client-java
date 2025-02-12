@@ -14,190 +14,193 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.Color3;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * Color properties describing how a material looks.
  */
-@ApiModel(description = "Color properties describing how a material looks.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
 public class ColorMaterial {
   public static final String SERIALIZED_NAME_OPACITY = "opacity";
   @SerializedName(SERIALIZED_NAME_OPACITY)
+  @javax.annotation.Nonnull
   private Integer opacity;
 
   public static final String SERIALIZED_NAME_GLOSSINESS = "glossiness";
   @SerializedName(SERIALIZED_NAME_GLOSSINESS)
+  @javax.annotation.Nonnull
   private Integer glossiness;
 
   public static final String SERIALIZED_NAME_AMBIENT = "ambient";
   @SerializedName(SERIALIZED_NAME_AMBIENT)
+  @javax.annotation.Nonnull
   private Color3 ambient;
 
   public static final String SERIALIZED_NAME_DIFFUSE = "diffuse";
   @SerializedName(SERIALIZED_NAME_DIFFUSE)
+  @javax.annotation.Nonnull
   private Color3 diffuse;
 
   public static final String SERIALIZED_NAME_SPECULAR = "specular";
   @SerializedName(SERIALIZED_NAME_SPECULAR)
+  @javax.annotation.Nonnull
   private Color3 specular;
 
   public static final String SERIALIZED_NAME_EMISSIVE = "emissive";
   @SerializedName(SERIALIZED_NAME_EMISSIVE)
+  @javax.annotation.Nonnull
   private Color3 emissive;
 
-  public ColorMaterial() { 
+  public ColorMaterial() {
   }
 
-  public ColorMaterial opacity(Integer opacity) {
-    
+  public ColorMaterial opacity(@javax.annotation.Nonnull Integer opacity) {
     this.opacity = opacity;
     return this;
   }
 
-   /**
+  /**
    * An opacity value from 0 to 255.
    * minimum: 0
    * maximum: 255
    * @return opacity
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "255", required = true, value = "An opacity value from 0 to 255.")
-
   public Integer getOpacity() {
     return opacity;
   }
 
-
-  public void setOpacity(Integer opacity) {
+  public void setOpacity(@javax.annotation.Nonnull Integer opacity) {
     this.opacity = opacity;
   }
 
 
-  public ColorMaterial glossiness(Integer glossiness) {
-    
+  public ColorMaterial glossiness(@javax.annotation.Nonnull Integer glossiness) {
     this.glossiness = glossiness;
     return this;
   }
 
-   /**
+  /**
    * Glossiness from 0 to 128.
    * minimum: 0
    * maximum: 128
    * @return glossiness
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "0", required = true, value = "Glossiness from 0 to 128.")
-
   public Integer getGlossiness() {
     return glossiness;
   }
 
-
-  public void setGlossiness(Integer glossiness) {
+  public void setGlossiness(@javax.annotation.Nonnull Integer glossiness) {
     this.glossiness = glossiness;
   }
 
 
-  public ColorMaterial ambient(Color3 ambient) {
-    
+  public ColorMaterial ambient(@javax.annotation.Nonnull Color3 ambient) {
     this.ambient = ambient;
     return this;
   }
 
-   /**
+  /**
    * Get ambient
    * @return ambient
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
   public Color3 getAmbient() {
     return ambient;
   }
 
-
-  public void setAmbient(Color3 ambient) {
+  public void setAmbient(@javax.annotation.Nonnull Color3 ambient) {
     this.ambient = ambient;
   }
 
 
-  public ColorMaterial diffuse(Color3 diffuse) {
-    
+  public ColorMaterial diffuse(@javax.annotation.Nonnull Color3 diffuse) {
     this.diffuse = diffuse;
     return this;
   }
 
-   /**
+  /**
    * Get diffuse
    * @return diffuse
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
   public Color3 getDiffuse() {
     return diffuse;
   }
 
-
-  public void setDiffuse(Color3 diffuse) {
+  public void setDiffuse(@javax.annotation.Nonnull Color3 diffuse) {
     this.diffuse = diffuse;
   }
 
 
-  public ColorMaterial specular(Color3 specular) {
-    
+  public ColorMaterial specular(@javax.annotation.Nonnull Color3 specular) {
     this.specular = specular;
     return this;
   }
 
-   /**
+  /**
    * Get specular
    * @return specular
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
   public Color3 getSpecular() {
     return specular;
   }
 
-
-  public void setSpecular(Color3 specular) {
+  public void setSpecular(@javax.annotation.Nonnull Color3 specular) {
     this.specular = specular;
   }
 
 
-  public ColorMaterial emissive(Color3 emissive) {
-    
+  public ColorMaterial emissive(@javax.annotation.Nonnull Color3 emissive) {
     this.emissive = emissive;
     return this;
   }
 
-   /**
+  /**
    * Get emissive
    * @return emissive
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
   public Color3 getEmissive() {
     return emissive;
   }
 
-
-  public void setEmissive(Color3 emissive) {
+  public void setEmissive(@javax.annotation.Nonnull Color3 emissive) {
     this.emissive = emissive;
   }
+
 
 
   @Override
@@ -247,5 +250,115 @@ public class ColorMaterial {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("opacity");
+    openapiFields.add("glossiness");
+    openapiFields.add("ambient");
+    openapiFields.add("diffuse");
+    openapiFields.add("specular");
+    openapiFields.add("emissive");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("opacity");
+    openapiRequiredFields.add("glossiness");
+    openapiRequiredFields.add("ambient");
+    openapiRequiredFields.add("diffuse");
+    openapiRequiredFields.add("specular");
+    openapiRequiredFields.add("emissive");
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to ColorMaterial
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!ColorMaterial.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ColorMaterial is not found in the empty JSON string", ColorMaterial.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!ColorMaterial.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ColorMaterial` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : ColorMaterial.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      // validate the required field `ambient`
+      Color3.validateJsonElement(jsonObj.get("ambient"));
+      // validate the required field `diffuse`
+      Color3.validateJsonElement(jsonObj.get("diffuse"));
+      // validate the required field `specular`
+      Color3.validateJsonElement(jsonObj.get("specular"));
+      // validate the required field `emissive`
+      Color3.validateJsonElement(jsonObj.get("emissive"));
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!ColorMaterial.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ColorMaterial' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<ColorMaterial> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ColorMaterial.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<ColorMaterial>() {
+           @Override
+           public void write(JsonWriter out, ColorMaterial value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public ColorMaterial read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+  /**
+   * Create an instance of ColorMaterial given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ColorMaterial
+   * @throws IOException if the JSON string is invalid with respect to ColorMaterial
+   */
+  public static ColorMaterial fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ColorMaterial.class);
+  }
+
+  /**
+   * Convert an instance of ColorMaterial to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

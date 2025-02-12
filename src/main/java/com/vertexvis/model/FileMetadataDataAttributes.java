@@ -14,212 +14,213 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * FileMetadataDataAttributes
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
 public class FileMetadataDataAttributes {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nonnull
   private String name;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
+  @javax.annotation.Nonnull
   private String status;
 
   public static final String SERIALIZED_NAME_SUPPLIED_ID = "suppliedId";
   @SerializedName(SERIALIZED_NAME_SUPPLIED_ID)
+  @javax.annotation.Nullable
   private String suppliedId;
 
   public static final String SERIALIZED_NAME_ROOT_FILE_NAME = "rootFileName";
   @SerializedName(SERIALIZED_NAME_ROOT_FILE_NAME)
+  @javax.annotation.Nullable
   private String rootFileName;
 
   public static final String SERIALIZED_NAME_CREATED = "created";
   @SerializedName(SERIALIZED_NAME_CREATED)
+  @javax.annotation.Nonnull
   private OffsetDateTime created;
 
   public static final String SERIALIZED_NAME_UPLOADED = "uploaded";
   @SerializedName(SERIALIZED_NAME_UPLOADED)
+  @javax.annotation.Nullable
   private OffsetDateTime uploaded;
 
   public static final String SERIALIZED_NAME_SIZE = "size";
   @SerializedName(SERIALIZED_NAME_SIZE)
+  @javax.annotation.Nullable
   private Long size;
 
-  public FileMetadataDataAttributes() { 
+  public FileMetadataDataAttributes() {
   }
 
-  public FileMetadataDataAttributes name(String name) {
-    
+  public FileMetadataDataAttributes name(@javax.annotation.Nonnull String name) {
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * Get name
    * @return name
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "some-string", required = true, value = "")
-
   public String getName() {
     return name;
   }
 
-
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nonnull String name) {
     this.name = name;
   }
 
 
-  public FileMetadataDataAttributes status(String status) {
-    
+  public FileMetadataDataAttributes status(@javax.annotation.Nonnull String status) {
     this.status = status;
     return this;
   }
 
-   /**
+  /**
    * Get status
    * @return status
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "complete", required = true, value = "")
-
   public String getStatus() {
     return status;
   }
 
-
-  public void setStatus(String status) {
+  public void setStatus(@javax.annotation.Nonnull String status) {
     this.status = status;
   }
 
 
-  public FileMetadataDataAttributes suppliedId(String suppliedId) {
-    
+  public FileMetadataDataAttributes suppliedId(@javax.annotation.Nullable String suppliedId) {
     this.suppliedId = suppliedId;
     return this;
   }
 
-   /**
+  /**
    * Get suppliedId
    * @return suppliedId
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "some-string", value = "")
-
   public String getSuppliedId() {
     return suppliedId;
   }
 
-
-  public void setSuppliedId(String suppliedId) {
+  public void setSuppliedId(@javax.annotation.Nullable String suppliedId) {
     this.suppliedId = suppliedId;
   }
 
 
-  public FileMetadataDataAttributes rootFileName(String rootFileName) {
-    
+  public FileMetadataDataAttributes rootFileName(@javax.annotation.Nullable String rootFileName) {
     this.rootFileName = rootFileName;
     return this;
   }
 
-   /**
+  /**
    * Get rootFileName
    * @return rootFileName
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "some-string", value = "")
-
   public String getRootFileName() {
     return rootFileName;
   }
 
-
-  public void setRootFileName(String rootFileName) {
+  public void setRootFileName(@javax.annotation.Nullable String rootFileName) {
     this.rootFileName = rootFileName;
   }
 
 
-  public FileMetadataDataAttributes created(OffsetDateTime created) {
-    
+  public FileMetadataDataAttributes created(@javax.annotation.Nonnull OffsetDateTime created) {
     this.created = created;
     return this;
   }
 
-   /**
+  /**
    * Get created
    * @return created
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2020-01-01T12:00Z", required = true, value = "")
-
   public OffsetDateTime getCreated() {
     return created;
   }
 
-
-  public void setCreated(OffsetDateTime created) {
+  public void setCreated(@javax.annotation.Nonnull OffsetDateTime created) {
     this.created = created;
   }
 
 
-  public FileMetadataDataAttributes uploaded(OffsetDateTime uploaded) {
-    
+  public FileMetadataDataAttributes uploaded(@javax.annotation.Nullable OffsetDateTime uploaded) {
     this.uploaded = uploaded;
     return this;
   }
 
-   /**
+  /**
    * Get uploaded
    * @return uploaded
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2020-01-01T12:00Z", value = "")
-
   public OffsetDateTime getUploaded() {
     return uploaded;
   }
 
-
-  public void setUploaded(OffsetDateTime uploaded) {
+  public void setUploaded(@javax.annotation.Nullable OffsetDateTime uploaded) {
     this.uploaded = uploaded;
   }
 
 
-  public FileMetadataDataAttributes size(Long size) {
-    
+  public FileMetadataDataAttributes size(@javax.annotation.Nullable Long size) {
     this.size = size;
     return this;
   }
 
-   /**
+  /**
    * Get size
    * @return size
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public Long getSize() {
     return size;
   }
 
-
-  public void setSize(Long size) {
+  public void setSize(@javax.annotation.Nullable Long size) {
     this.size = size;
   }
+
 
 
   @Override
@@ -271,5 +272,117 @@ public class FileMetadataDataAttributes {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("name");
+    openapiFields.add("status");
+    openapiFields.add("suppliedId");
+    openapiFields.add("rootFileName");
+    openapiFields.add("created");
+    openapiFields.add("uploaded");
+    openapiFields.add("size");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("name");
+    openapiRequiredFields.add("status");
+    openapiRequiredFields.add("created");
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to FileMetadataDataAttributes
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!FileMetadataDataAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in FileMetadataDataAttributes is not found in the empty JSON string", FileMetadataDataAttributes.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!FileMetadataDataAttributes.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `FileMetadataDataAttributes` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : FileMetadataDataAttributes.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (!jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if (!jsonObj.get("status").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
+      }
+      if ((jsonObj.get("suppliedId") != null && !jsonObj.get("suppliedId").isJsonNull()) && !jsonObj.get("suppliedId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `suppliedId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("suppliedId").toString()));
+      }
+      if ((jsonObj.get("rootFileName") != null && !jsonObj.get("rootFileName").isJsonNull()) && !jsonObj.get("rootFileName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `rootFileName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("rootFileName").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!FileMetadataDataAttributes.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'FileMetadataDataAttributes' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<FileMetadataDataAttributes> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(FileMetadataDataAttributes.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<FileMetadataDataAttributes>() {
+           @Override
+           public void write(JsonWriter out, FileMetadataDataAttributes value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public FileMetadataDataAttributes read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+  /**
+   * Create an instance of FileMetadataDataAttributes given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of FileMetadataDataAttributes
+   * @throws IOException if the JSON string is invalid with respect to FileMetadataDataAttributes
+   */
+  public static FileMetadataDataAttributes fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, FileMetadataDataAttributes.class);
+  }
+
+  /**
+   * Convert an instance of FileMetadataDataAttributes to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

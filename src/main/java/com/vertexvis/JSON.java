@@ -1,13 +1,6 @@
 /*
  * Vertex Platform API
- * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which
- * together allow easily integrating 3D product data into your business application.  See our
- * [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get
- *  started.  Notes about the Postman collection and API Reference code samples,   - They include
- *  all required and optional body parameters for completeness. Remove any optional parameters as
- *  desired.   - They use auto-generated IDs and other values that may share the same value for
- * ease of documentation only. In actual requests and responses, the IDs should uniquely identify
- *  their corresponding resource.
+ * The Vertex distributed cloud rendering platform includes a set of APIs and SDKs, which together allow easily integrating 3D product data into your business application.  See our [Developer Guides](https://developer.vertexvis.com/docs/guides/render-your-first-scene) to get started.  Notes about the Postman collection and API Reference code samples:   - They include all required and optional body parameters for completeness. Remove any optional parameters as desired.   - They use auto-generated IDs and other values that may share the same value for ease of documentation only. In actual requests and responses, the IDs should uniquely identify their corresponding resource. 
  *
  * The version of the OpenAPI document: 1.0
  * Contact: support@vertexvis.com
@@ -22,15 +15,16 @@ package com.vertexvis;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapter;
 import com.google.gson.internal.bind.util.ISO8601Utils;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.*;
-import com.vertexvis.model.serialization.*;
+import com.google.gson.JsonElement;
 import io.gsonfire.GsonFireBuilder;
+import io.gsonfire.TypeSelector;
+
+import okio.ByteString;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -42,106 +36,493 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Map;
+import java.util.HashMap;
 
-import okio.ByteString;
-
+/*
+ * A JSON utility class
+ *
+ * NOTE: in the future, this class may be converted to static, which may break
+ *       backward-compatibility
+ */
 public class JSON {
-    private Gson gson;
-    private boolean isLenientOnJson = false;
-    private final DateTypeAdapter dateTypeAdapter = new DateTypeAdapter();
-    private final SqlDateTypeAdapter sqlDateTypeAdapter = new SqlDateTypeAdapter();
-    private final OffsetDateTimeTypeAdapter offsetDateTimeTypeAdapter =
-            new OffsetDateTimeTypeAdapter();
-    private final LocalDateTypeAdapter localDateTypeAdapter = new LocalDateTypeAdapter();
-    private final ByteArrayAdapter byteArrayAdapter = new ByteArrayAdapter();
+    private static Gson gson;
+    private static boolean isLenientOnJson = false;
+    private static DateTypeAdapter dateTypeAdapter = new DateTypeAdapter();
+    private static SqlDateTypeAdapter sqlDateTypeAdapter = new SqlDateTypeAdapter();
+    private static OffsetDateTimeTypeAdapter offsetDateTimeTypeAdapter = new OffsetDateTimeTypeAdapter();
+    private static LocalDateTypeAdapter localDateTypeAdapter = new LocalDateTypeAdapter();
+    private static ByteArrayAdapter byteArrayAdapter = new ByteArrayAdapter();
 
     @SuppressWarnings("unchecked")
     public static GsonBuilder createGson() {
-        GsonFireBuilder fireBuilder = new GsonFireBuilder();
+        GsonFireBuilder fireBuilder = new GsonFireBuilder()
+                .registerTypeSelector(com.vertexvis.model.CADExportConfig.class, new TypeSelector<com.vertexvis.model.CADExportConfig>() {
+                    @Override
+                    public Class<? extends com.vertexvis.model.CADExportConfig> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("CADExportConfig", com.vertexvis.model.CADExportConfig.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "format"));
+                    }
+          })
+                .registerTypeSelector(com.vertexvis.model.CreateExportRequestDataAttributesConfig.class, new TypeSelector<com.vertexvis.model.CreateExportRequestDataAttributesConfig>() {
+                    @Override
+                    public Class<? extends com.vertexvis.model.CreateExportRequestDataAttributesConfig> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("jt", com.vertexvis.model.CADExportConfig.class);
+                        classByDiscriminatorValue.put("step", com.vertexvis.model.CADExportConfig.class);
+                        classByDiscriminatorValue.put("x_t", com.vertexvis.model.CADExportConfig.class);
+                        classByDiscriminatorValue.put("CADExportConfig", com.vertexvis.model.CADExportConfig.class);
+                        classByDiscriminatorValue.put("CreateExportRequest_data_attributes_config", com.vertexvis.model.CreateExportRequestDataAttributesConfig.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "format"));
+                    }
+          })
+                .registerTypeSelector(com.vertexvis.model.CreateSceneAnnotationRequestDataAttributesData.class, new TypeSelector<com.vertexvis.model.CreateSceneAnnotationRequestDataAttributesData>() {
+                    @Override
+                    public Class<? extends com.vertexvis.model.CreateSceneAnnotationRequestDataAttributesData> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("callout", com.vertexvis.model.SceneAnnotationCalloutDataType.class);
+                        classByDiscriminatorValue.put("custom", com.vertexvis.model.SceneAnnotationCustomDataType.class);
+                        classByDiscriminatorValue.put("SceneAnnotationCalloutDataType", com.vertexvis.model.SceneAnnotationCalloutDataType.class);
+                        classByDiscriminatorValue.put("SceneAnnotationCustomDataType", com.vertexvis.model.SceneAnnotationCustomDataType.class);
+                        classByDiscriminatorValue.put("CreateSceneAnnotationRequest_data_attributes_data", com.vertexvis.model.CreateSceneAnnotationRequestDataAttributesData.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "type"));
+                    }
+          })
+                .registerTypeSelector(com.vertexvis.model.CreateSceneSyncRequestOperation.class, new TypeSelector<com.vertexvis.model.CreateSceneSyncRequestOperation>() {
+                    @Override
+                    public Class<? extends com.vertexvis.model.CreateSceneSyncRequestOperation> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("update-to-default-rendition", com.vertexvis.model.UpdateItemToDefaultRenditionOperation.class);
+                        classByDiscriminatorValue.put("UpdateItemToDefaultRenditionOperation", com.vertexvis.model.UpdateItemToDefaultRenditionOperation.class);
+                        classByDiscriminatorValue.put("CreateSceneSyncRequest_operation", com.vertexvis.model.CreateSceneSyncRequestOperation.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "type"));
+                    }
+          })
+                .registerTypeSelector(com.vertexvis.model.ExportConfig.class, new TypeSelector<com.vertexvis.model.ExportConfig>() {
+                    @Override
+                    public Class<? extends com.vertexvis.model.ExportConfig> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("CADExportConfig", com.vertexvis.model.CADExportConfig.class);
+                        classByDiscriminatorValue.put("ExportConfig", com.vertexvis.model.ExportConfig.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "format"));
+                    }
+          })
+                .registerTypeSelector(com.vertexvis.model.WebhookEventIncludedInner.class, new TypeSelector<com.vertexvis.model.WebhookEventIncludedInner>() {
+                    @Override
+                    public Class<? extends com.vertexvis.model.WebhookEventIncludedInner> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("part-revision", com.vertexvis.model.WebhookEventPartRevisionIncludedData.class);
+                        classByDiscriminatorValue.put("scene", com.vertexvis.model.WebhookEventSceneIncludedData.class);
+                        classByDiscriminatorValue.put("WebhookEventPartRevisionIncludedData", com.vertexvis.model.WebhookEventPartRevisionIncludedData.class);
+                        classByDiscriminatorValue.put("WebhookEventSceneIncludedData", com.vertexvis.model.WebhookEventSceneIncludedData.class);
+                        classByDiscriminatorValue.put("WebhookEvent_included_inner", com.vertexvis.model.WebhookEventIncludedInner.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "type"));
+                    }
+          })
+        ;
         GsonBuilder builder = fireBuilder.createGsonBuilder();
         return builder;
     }
 
-    private static String getDiscriminatorValue(JsonElement readElement,
-                                                String discriminatorField) {
+    private static String getDiscriminatorValue(JsonElement readElement, String discriminatorField) {
         JsonElement element = readElement.getAsJsonObject().get(discriminatorField);
         if (null == element) {
-            throw new IllegalArgumentException(
-                    "missing discriminator field: <" + discriminatorField + ">");
+            throw new IllegalArgumentException("missing discriminator field: <" + discriminatorField + ">");
         }
         return element.getAsString();
     }
 
     /**
-     * Returns the Java class that implements the OpenAPI schema for the specified discriminator
-     * value.
+     * Returns the Java class that implements the OpenAPI schema for the specified discriminator value.
      *
      * @param classByDiscriminatorValue The map of discriminator values to Java classes.
-     * @param discriminatorValue        The value of the OpenAPI discriminator in the input data.
+     * @param discriminatorValue The value of the OpenAPI discriminator in the input data.
      * @return The Java class that implements the OpenAPI schema
      */
-    private static Class getClassByDiscriminator(Map classByDiscriminatorValue,
-                                                 String discriminatorValue) {
+    private static Class getClassByDiscriminator(Map classByDiscriminatorValue, String discriminatorValue) {
         Class clazz = (Class) classByDiscriminatorValue.get(discriminatorValue);
         if (null == clazz) {
-            throw new IllegalArgumentException(
-                    "cannot determine model class of name: <" + discriminatorValue + ">");
+            throw new IllegalArgumentException("cannot determine model class of name: <" + discriminatorValue + ">");
         }
         return clazz;
     }
 
-    public JSON() {
-        gson = createGson().registerTypeAdapter(Date.class, dateTypeAdapter)
-                .registerTypeAdapter(java.sql.Date.class, sqlDateTypeAdapter)
-                .registerTypeAdapter(OffsetDateTime.class, offsetDateTimeTypeAdapter)
-                .registerTypeAdapter(LocalDate.class, localDateTypeAdapter)
-                .registerTypeAdapter(byte[].class, byteArrayAdapter).registerTypeAdapter(
-                        AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationshipPartRenditionRelationship.class,
-                        new AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationshipTypeAdapter(
-                                () -> gson))
-                .registerTypeAdapter(AnyOfQueryByIdQueryByCollectionQueryAll.class,
-                        new AnyOfQueryByIdQueryByCollectionQueryAllTypeAdapter(() -> gson))
-                .registerTypeAdapter(AnyOfCameraCameraFit.class,
-                        new AnyOfCameraCameraFitTypeAdapter(() -> gson)).registerTypeAdapter(
-                        AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransformOpClearTransformOpSelectOpDeselectOperationClearRenOpViewDefaultRenOpViewRenByIdOpViewRenBySuppliedIdOpViewRepByIdOpViewRepByPredefinedIdOpClearRepOp.class,
-                        new AnyOfChangeVisibilityOperationChangeMaterialOperationClearMaterialOperationChangeTransformOperationClearTransformOperationSelectOperationDeselectOperationTypeAdapter(
-                                () -> gson)).registerTypeAdapter(
-                        AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType.class,
-                        new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullTypeAdapter(
-                                () -> gson))
-                .registerTypeAdapter(OneOfHitResultDataSceneItemDataPartRevisionData.class,
-                        new OneOfHitResultDataSceneItemDataPartRevisionDataTypeAdapter(() -> gson))
-                .registerTypeAdapter(AnyOfGeometrySetRelationshipPartRevisionRelationship.class,
-                        new AnyOfGeometrySetRelationshipPartRevisionRelationshipTypeAdapter(
-                                () -> gson))
-                .registerTypeAdapter(OneOfSceneViewRelationshipSceneViewStateRelationship.class,
-                        new OneOfSceneViewRelationshipSceneViewStateRelationshipTypeAdapter(
-                                () -> gson))
-                .registerTypeAdapter(AnyOfRelationshipDataApiError.class,
-                        new AnyOfRelationshipDataApiErrorAdapter(() -> gson))
-                .registerTypeAdapter(AnyOfCreateSceneItemRequestData.class,
-                        new AnyOfCreateSceneItemRequestDataAdapter(() -> gson))
-                .registerTypeAdapter(OneOfPerspectiveCameraOrthographicCamera.class,
-                        new OneOfPerspectiveCameraOrthographicCameraTypeAdapter(() -> gson))
-                .registerTypeAdapter(AnyOfPerspectiveCameraOrthographicCameraCameraFit.class,
-                        new AnyOfPerspectiveCameraOrthographicCameraCameraFitTypeAdapter(
-                                () -> gson))
-                .registerTypeAdapter(AnyOfFileRelationshipPartAssemblyRelationship.class,
-                        new AnyOfFileRelationshipPartAssemblyRelationshipTypeAdapter(() -> gson))
-                .registerTypeAdapter(
-                    OneOfWebhookEventSceneIncludedDataWebhookEventPartRevisionIncludedData.class,
-                    new OneOfWebhookEventSceneIncludedDataWebhookEventPartRevisionIncludedDataTypeAdapter(() -> gson)
-                )
-                .registerTypeAdapter(
-                    OneOfUpdateItemToDefaultRenditionOperation.class,
-                    new OneOfUpdateItemToDefaultRenditionOperationTypeAdapter(() -> gson)
-                )
-                .registerTypeAdapter(
-                    AnyOfGeometrySetDataPartRevisionDataPartRenditionData.class,
-                    new AnyOfGeometrySetDataPartRevisionDataPartRenditionDataTypeAdapter(() -> gson)
-                )
-                .create();
+    static {
+        GsonBuilder gsonBuilder = createGson();
+        gsonBuilder.registerTypeAdapter(Date.class, dateTypeAdapter);
+        gsonBuilder.registerTypeAdapter(java.sql.Date.class, sqlDateTypeAdapter);
+        gsonBuilder.registerTypeAdapter(OffsetDateTime.class, offsetDateTimeTypeAdapter);
+        gsonBuilder.registerTypeAdapter(LocalDate.class, localDateTypeAdapter);
+        gsonBuilder.registerTypeAdapter(byte[].class, byteArrayAdapter);
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.Account.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.AccountData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.AccountDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.AdminConsentAcceptRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.AdminConsentAcceptRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.AdminConsentAcceptRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.AdminCreateApplicationRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.AdminCreateApplicationRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.AdminCreateApplicationRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.AdminLoginAcceptRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.AdminLoginAcceptRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.AdminLoginAcceptRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.AdminRedirectTo.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ApiError.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ApiErrorSource.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.Application.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ApplicationData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ApplicationDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ApplicationList.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.Batch.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.BatchOperation.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.BatchOperationRef.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.BatchVertexvisBatchResultsInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.BoundingBox.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CADExportConfig.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CameraFit.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ChangeMaterialOp.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ChangeTransformOp.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ChangeVisibilityOp.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ClearMaterialOp.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ClearRenOp.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ClearRepOp.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ClearTransformOp.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.Color3.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ColorMaterial.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ColorMaterialNullable.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateAccountRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateAccountRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateAccountRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateApplicationRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateBatchRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateExportRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateExportRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateExportRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateExportRequestDataAttributesConfig.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateExportRequestDataRelationships.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateFileRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateFileRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateFileRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateGeometrySetRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateGeometrySetRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateGeometrySetRequestDataRelationships.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateHitRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateHitRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateHitRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreatePart200Response.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreatePartRenditionRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreatePartRenditionRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreatePartRenditionRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreatePartRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreatePartRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreatePartRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreatePartRequestDataAttributesMetadataValue.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreatePartRequestDataRelationships.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreatePartRequestDataRelationshipsSource.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneAlterationRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneAlterationRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneAlterationRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneAnnotationRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneAnnotationRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneAnnotationRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneAnnotationRequestDataAttributesData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneAnnotationSetRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneAnnotationSetRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneAnnotationSetRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneItemOverrideRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneItemOverrideRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneItemOverrideRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneItemOverrideRequestDataRelationships.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneItemRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneItemRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneItemRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneItemRequestDataRelationships.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneItemRequestDataRelationshipsSource.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneRequestDataRelationships.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneSyncRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneSyncRequestOperation.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneViewRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneViewRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneViewRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneViewRequestDataAttributesCamera.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneViewRequestDataRelationships.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneViewStateRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneViewStateRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneViewStateRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneViewStateRequestDataRelationships.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateSceneViewStateRequestDataRelationshipsSource.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateStreamKeyRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateStreamKeyRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateStreamKeyRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateTranslationInspectionRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateTranslationInspectionRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateWebhookSubscriptionRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateWebhookSubscriptionRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreateWebhookSubscriptionRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreatedApplication.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreatedApplicationData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CreatedApplicationDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.CrossSectioning.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.DeselectOperation.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.Dimensions.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.Export.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ExportData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ExportDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ExportRelationship.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ExportRelationshipData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ExportStateRelationship.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ExportStateRelationshipData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.Failure.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.FeatureLines.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.FileList.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.FileMetadata.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.FileMetadataData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.FileMetadataDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.FileRelationship.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.FileRelationshipData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.FilterExpression.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.GeometrySet.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.GeometrySetData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.GeometrySetList.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.GeometrySetRelationship.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.GeometrySetRelationshipData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.GetQueuedSceneItem200Response.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.Hit.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.HitData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.HitDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.HitDataRelationships.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.HitIncludedInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.HitResultData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.HitResultDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.HitResultDataRelationships.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.Link.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.MaterialOverride.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.Matrix4.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.Matrix4Nullable.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.MetadataDateType.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.MetadataFloatType.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.MetadataLongType.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.MetadataNullType.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.MetadataStringType.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ModelView.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ModelViewData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ModelViewDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ModelViewDataRelationships.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ModelViewList.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.OAuth2BadRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.OAuth2Token.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.Orientation.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.OrthographicCamera.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.Part.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartAssemblyRelationship.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartAssemblyRelationshipData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartDataRelationships.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartDataRelationshipsPartRevisionsInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartInstanceRelationship.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartInstanceRelationshipData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartList.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartRelationshipData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartRendition.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartRenditionData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartRenditionDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartRenditionDataRelationships.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartRenditionList.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartRenditionRelationship.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartRenditionRelationshipData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartRevision.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartRevisionData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartRevisionDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartRevisionDataRelationships.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartRevisionInstance.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartRevisionInstanceData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartRevisionInstanceDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartRevisionInstanceDataRelationships.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartRevisionInstanceList.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartRevisionList.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartRevisionRelationship.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PartRevisionSuppliedId.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PerspectiveCamera.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PmiAnnotationData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PmiAnnotationList.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.Point.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PropertyDateType.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PropertyDoubleType.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PropertyEntryData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PropertyEntryDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PropertyEntryDataAttributesValue.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PropertyEntryList.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PropertyLongType.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PropertySetRelationship.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PropertySetRelationshipData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.PropertyStringType.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.QueryByCollection.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.QueryByCollectionData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.QueryByCollectionDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.QueryById.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.QueryByIdData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.QueryByIdDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.QueuedJob.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.QueuedJobData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.QueuedJobDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.QueuedJobList.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.QueuedTranslationJob.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.QueuedTranslationJobData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.QueuedTranslationJobDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.QueuedTranslationJobDataRelationships.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.QueuedTranslationJobIncludedInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.RelationshipData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.RelationshipLinks.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.RevokeOAuth2TokenRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.RevokeOAuth2TokenRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.RevokeOAuth2TokenRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.Scene.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneAlteration.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneAlterationData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneAlterationDataRelationships.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneAlterationList.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneAnnotation.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneAnnotationCalloutDataType.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneAnnotationCustomDataType.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneAnnotationData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneAnnotationDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneAnnotationSet.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneAnnotationSetData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneAnnotationSetDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneAnnotationSetList.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneItem.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneItemData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneItemDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneItemDataRelationships.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneItemDataRelationshipsSource.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneItemList.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneItemOverride.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneItemOverrideData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneItemOverrideDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneItemOverrideDataRelationships.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneItemOverrideList.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneItemRelationship.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneItemRelationshipData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneList.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneOperation.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneOperationOperationsInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneOperationQuery.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneRelationship.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneRelationshipData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneSync.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneSyncData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneSyncDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneSyncItemResultData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneSyncItemResultDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneSyncItemResultDataRelationships.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneSyncItemResultsList.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneView.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneViewData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneViewDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneViewDataRelationships.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneViewItem.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneViewList.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneViewRelationship.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneViewRelationshipData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneViewState.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneViewStateData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneViewStateDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneViewStateList.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneViewStateRelationship.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SceneViewStateRelationshipData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SectionPlane.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.SelectOp.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.StreamKey.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.StreamKeyData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.StreamKeyDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.StreamKeyList.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ThumbnailData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.TranslationInspectionJob.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.TranslationInspectionJobData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.TranslationInspectionJobDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateAccountRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateAccountRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateAccountRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateApplicationRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateApplicationRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateApplicationRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateFileRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateFileRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateFileRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateItemToDefaultRenditionOperation.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdatePartRevisionRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdatePartRevisionRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdatePartRevisionRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdatePartRevisionRequestDataAttributesMetadataValue.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdatePartRevisionRequestDataRelationships.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateSceneAnnotationRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateSceneAnnotationRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateSceneAnnotationRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateSceneItemOverrideRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateSceneItemOverrideRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateSceneItemOverrideRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateSceneItemRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateSceneItemRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateSceneItemRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateSceneItemRequestDataRelationships.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateSceneItemRequestDataRelationshipsSource.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateSceneRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateSceneRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateSceneRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateSceneViewRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateSceneViewRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateSceneViewRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateSceneViewRequestDataAttributesCamera.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateSceneViewStateRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateSceneViewStateRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateWebhookSubscriptionRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateWebhookSubscriptionRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpdateWebhookSubscriptionRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpsertPropertyEntriesRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpsertPropertyEntriesRequestData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpsertPropertyEntriesRequestDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpsertPropertyEntriesRequestDataAttributesEntriesValue.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpsertPropertyEntriesRequestDataRelationships.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.UpsertPropertyEntriesRequestDataRelationshipsPropertySet.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.Vector3.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.Vector4.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ViewDefaultRenOp.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ViewRenByIdOp.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ViewRenBySuppliedIdOp.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ViewRepByIdOp.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.ViewRepByPredefinedIdOp.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.WebhookEvent.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.WebhookEventData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.WebhookEventDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.WebhookEventDataRelationships.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.WebhookEventDataRelationshipsOwner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.WebhookEventDataRelationshipsOwnerData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.WebhookEventDataRelationshipsResource.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.WebhookEventDataRelationshipsResourceData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.WebhookEventIncludedInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.WebhookEventPartRevisionIncludedAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.WebhookEventPartRevisionIncludedData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.WebhookEventSceneIncludedAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.WebhookEventSceneIncludedData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.WebhookSubscription.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.WebhookSubscriptionData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.WebhookSubscriptionDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.vertexvis.model.WebhookSubscriptionList.CustomTypeAdapterFactory());
+        gson = gsonBuilder.create();
     }
 
     /**
@@ -149,7 +530,7 @@ public class JSON {
      *
      * @return Gson
      */
-    public Gson getGson() {
+    public static Gson getGson() {
         return gson;
     }
 
@@ -157,16 +538,13 @@ public class JSON {
      * Set Gson.
      *
      * @param gson Gson
-     * @return JSON
      */
-    public JSON setGson(Gson gson) {
-        this.gson = gson;
-        return this;
+    public static void setGson(Gson gson) {
+        JSON.gson = gson;
     }
 
-    public JSON setLenientOnJson(boolean lenientOnJson) {
+    public static void setLenientOnJson(boolean lenientOnJson) {
         isLenientOnJson = lenientOnJson;
-        return this;
     }
 
     /**
@@ -175,7 +553,7 @@ public class JSON {
      * @param obj Object
      * @return String representation of the JSON
      */
-    public String serialize(Object obj) {
+    public static String serialize(Object obj) {
         return gson.toJson(obj);
     }
 
@@ -188,25 +566,22 @@ public class JSON {
      * @return The deserialized Java object
      */
     @SuppressWarnings("unchecked")
-    public <T> T deserialize(String body, Type returnType) {
+    public static <T> T deserialize(String body, Type returnType) {
         try {
             if (isLenientOnJson) {
                 JsonReader jsonReader = new JsonReader(new StringReader(body));
                 // see https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/stream/JsonReader.html#setLenient(boolean)
                 jsonReader.setLenient(true);
                 return gson.fromJson(jsonReader, returnType);
-            }
-            else {
+            } else {
                 return gson.fromJson(body, returnType);
             }
-        }
-        catch (JsonParseException e) {
+        } catch (JsonParseException e) {
             // Fallback processing when failed to parse JSON form response body:
             // return the response body string directly for the String return type;
             if (returnType.equals(String.class)) {
                 return (T) body;
-            }
-            else {
+            } else {
                 throw (e);
             }
         }
@@ -215,14 +590,13 @@ public class JSON {
     /**
      * Gson TypeAdapter for Byte Array type
      */
-    public class ByteArrayAdapter extends TypeAdapter<byte[]> {
+    public static class ByteArrayAdapter extends TypeAdapter<byte[]> {
 
         @Override
         public void write(JsonWriter out, byte[] value) throws IOException {
             if (value == null) {
                 out.nullValue();
-            }
-            else {
+            } else {
                 out.value(ByteString.of(value).base64());
             }
         }
@@ -264,8 +638,7 @@ public class JSON {
         public void write(JsonWriter out, OffsetDateTime date) throws IOException {
             if (date == null) {
                 out.nullValue();
-            }
-            else {
+            } else {
                 out.value(formatter.format(date));
             }
         }
@@ -279,7 +652,7 @@ public class JSON {
                 default:
                     String date = in.nextString();
                     if (date.endsWith("+0000")) {
-                        date = date.substring(0, date.length() - 5) + "Z";
+                        date = date.substring(0, date.length()-5) + "Z";
                     }
                     return OffsetDateTime.parse(date, formatter);
             }
@@ -289,7 +662,7 @@ public class JSON {
     /**
      * Gson TypeAdapter for JSR310 LocalDate type
      */
-    public class LocalDateTypeAdapter extends TypeAdapter<LocalDate> {
+    public static class LocalDateTypeAdapter extends TypeAdapter<LocalDate> {
 
         private DateTimeFormatter formatter;
 
@@ -309,8 +682,7 @@ public class JSON {
         public void write(JsonWriter out, LocalDate date) throws IOException {
             if (date == null) {
                 out.nullValue();
-            }
-            else {
+            } else {
                 out.value(formatter.format(date));
             }
         }
@@ -328,14 +700,12 @@ public class JSON {
         }
     }
 
-    public JSON setOffsetDateTimeFormat(DateTimeFormatter dateFormat) {
+    public static void setOffsetDateTimeFormat(DateTimeFormatter dateFormat) {
         offsetDateTimeTypeAdapter.setFormat(dateFormat);
-        return this;
     }
 
-    public JSON setLocalDateFormat(DateTimeFormatter dateFormat) {
+    public static void setLocalDateFormat(DateTimeFormatter dateFormat) {
         localDateTypeAdapter.setFormat(dateFormat);
-        return this;
     }
 
     /**
@@ -347,8 +717,7 @@ public class JSON {
 
         private DateFormat dateFormat;
 
-        public SqlDateTypeAdapter() {
-        }
+        public SqlDateTypeAdapter() {}
 
         public SqlDateTypeAdapter(DateFormat dateFormat) {
             this.dateFormat = dateFormat;
@@ -362,13 +731,11 @@ public class JSON {
         public void write(JsonWriter out, java.sql.Date date) throws IOException {
             if (date == null) {
                 out.nullValue();
-            }
-            else {
+            } else {
                 String value;
                 if (dateFormat != null) {
                     value = dateFormat.format(date);
-                }
-                else {
+                } else {
                     value = date.toString();
                 }
                 out.value(value);
@@ -387,10 +754,8 @@ public class JSON {
                         if (dateFormat != null) {
                             return new java.sql.Date(dateFormat.parse(date).getTime());
                         }
-                        return new java.sql.Date(
-                                ISO8601Utils.parse(date, new ParsePosition(0)).getTime());
-                    }
-                    catch (ParseException e) {
+                        return new java.sql.Date(ISO8601Utils.parse(date, new ParsePosition(0)).getTime());
+                    } catch (ParseException e) {
                         throw new JsonParseException(e);
                     }
             }
@@ -405,8 +770,7 @@ public class JSON {
 
         private DateFormat dateFormat;
 
-        public DateTypeAdapter() {
-        }
+        public DateTypeAdapter() {}
 
         public DateTypeAdapter(DateFormat dateFormat) {
             this.dateFormat = dateFormat;
@@ -420,13 +784,11 @@ public class JSON {
         public void write(JsonWriter out, Date date) throws IOException {
             if (date == null) {
                 out.nullValue();
-            }
-            else {
+            } else {
                 String value;
                 if (dateFormat != null) {
                     value = dateFormat.format(date);
-                }
-                else {
+                } else {
                     value = ISO8601Utils.format(date, true);
                 }
                 out.value(value);
@@ -447,26 +809,21 @@ public class JSON {
                                 return dateFormat.parse(date);
                             }
                             return ISO8601Utils.parse(date, new ParsePosition(0));
-                        }
-                        catch (ParseException e) {
+                        } catch (ParseException e) {
                             throw new JsonParseException(e);
                         }
                 }
-            }
-            catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 throw new JsonParseException(e);
             }
         }
     }
 
-    public JSON setDateFormat(DateFormat dateFormat) {
+    public static void setDateFormat(DateFormat dateFormat) {
         dateTypeAdapter.setFormat(dateFormat);
-        return this;
     }
 
-    public JSON setSqlDateFormat(DateFormat dateFormat) {
+    public static void setSqlDateFormat(DateFormat dateFormat) {
         sqlDateTypeAdapter.setFormat(dateFormat);
-        return this;
     }
-
 }

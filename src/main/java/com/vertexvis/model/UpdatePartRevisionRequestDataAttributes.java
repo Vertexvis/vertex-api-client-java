@@ -14,59 +14,84 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import com.vertexvis.model.UpdatePartRevisionRequestDataAttributesMetadataValue;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * UpdatePartRevisionRequestDataAttributes
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
 public class UpdatePartRevisionRequestDataAttributes {
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
-  private Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> metadata = null;
+  @javax.annotation.Nullable
+  private Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> metadata = new HashMap<>();
 
   public static final String SERIALIZED_NAME_INDEX_METADATA = "indexMetadata";
   @SerializedName(SERIALIZED_NAME_INDEX_METADATA)
+  @javax.annotation.Nullable
   private Boolean indexMetadata;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nullable
   private String name;
 
   public static final String SERIALIZED_NAME_SUPPLIED_ID_KEY = "suppliedIdKey";
   @SerializedName(SERIALIZED_NAME_SUPPLIED_ID_KEY)
+  @javax.annotation.Nullable
   private String suppliedIdKey;
 
   public static final String SERIALIZED_NAME_SUPPLIED_REVISION_ID_KEY = "suppliedRevisionIdKey";
   @SerializedName(SERIALIZED_NAME_SUPPLIED_REVISION_ID_KEY)
+  @javax.annotation.Nullable
   private String suppliedRevisionIdKey;
 
   public static final String SERIALIZED_NAME_SUPPLIED_INSTANCE_ID_KEY = "suppliedInstanceIdKey";
   @SerializedName(SERIALIZED_NAME_SUPPLIED_INSTANCE_ID_KEY)
+  @javax.annotation.Nullable
   private String suppliedInstanceIdKey;
 
-  public UpdatePartRevisionRequestDataAttributes() { 
+  public UpdatePartRevisionRequestDataAttributes() {
   }
 
-  public UpdatePartRevisionRequestDataAttributes metadata(Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> metadata) {
-    
+  public UpdatePartRevisionRequestDataAttributes metadata(@javax.annotation.Nullable Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> metadata) {
     this.metadata = metadata;
     return this;
   }
 
-  public UpdatePartRevisionRequestDataAttributes putMetadataItem(String key, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType metadataItem) {
+  public UpdatePartRevisionRequestDataAttributes putMetadataItem(String key, UpdatePartRevisionRequestDataAttributesMetadataValue metadataItem) {
     if (this.metadata == null) {
       this.metadata = new HashMap<>();
     }
@@ -74,136 +99,114 @@ public class UpdatePartRevisionRequestDataAttributes {
     return this;
   }
 
-   /**
+  /**
    * Metadata about the &#x60;part&#x60; and/or &#x60;part-revision&#x60;. This metadata will take precedence over any metadata that belongs to the part file if &#x60;indexMetadata&#x60; is specified. 
    * @return metadata
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Metadata about the `part` and/or `part-revision`. This metadata will take precedence over any metadata that belongs to the part file if `indexMetadata` is specified. ")
-
-  public Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> getMetadata() {
+  public Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> getMetadata() {
     return metadata;
   }
 
-
-  public void setMetadata(Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> metadata) {
+  public void setMetadata(@javax.annotation.Nullable Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> metadata) {
     this.metadata = metadata;
   }
 
 
-  public UpdatePartRevisionRequestDataAttributes indexMetadata(Boolean indexMetadata) {
-    
+  public UpdatePartRevisionRequestDataAttributes indexMetadata(@javax.annotation.Nullable Boolean indexMetadata) {
     this.indexMetadata = indexMetadata;
     return this;
   }
 
-   /**
+  /**
    * Whether or not to index metadata in the part file when sending a file relationship - not used otherwise. To ignore metadata from the part file and add your own, pass &#x60;false&#x60; for &#x60;indexMetadata&#x60; and supply custom metadata using the &#x60;metadata&#x60; field. 
    * @return indexMetadata
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "false", value = "Whether or not to index metadata in the part file when sending a file relationship - not used otherwise. To ignore metadata from the part file and add your own, pass `false` for `indexMetadata` and supply custom metadata using the `metadata` field. ")
-
   public Boolean getIndexMetadata() {
     return indexMetadata;
   }
 
-
-  public void setIndexMetadata(Boolean indexMetadata) {
+  public void setIndexMetadata(@javax.annotation.Nullable Boolean indexMetadata) {
     this.indexMetadata = indexMetadata;
   }
 
 
-  public UpdatePartRevisionRequestDataAttributes name(String name) {
-    
+  public UpdatePartRevisionRequestDataAttributes name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * Name to be used for the root part. This will be used when given a file relationship - not used otherwise.
    * @return name
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "1/2in. Flat Washer", value = "Name to be used for the root part. This will be used when given a file relationship - not used otherwise.")
-
   public String getName() {
     return name;
   }
 
-
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
   }
 
 
-  public UpdatePartRevisionRequestDataAttributes suppliedIdKey(String suppliedIdKey) {
-    
+  public UpdatePartRevisionRequestDataAttributes suppliedIdKey(@javax.annotation.Nullable String suppliedIdKey) {
     this.suppliedIdKey = suppliedIdKey;
     return this;
   }
 
-   /**
+  /**
    * Metadata key used to extract an ID used for correlation. This will be used when given a file relationship - not used otherwise.
    * @return suppliedIdKey
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "ProductNumber", value = "Metadata key used to extract an ID used for correlation. This will be used when given a file relationship - not used otherwise.")
-
   public String getSuppliedIdKey() {
     return suppliedIdKey;
   }
 
-
-  public void setSuppliedIdKey(String suppliedIdKey) {
+  public void setSuppliedIdKey(@javax.annotation.Nullable String suppliedIdKey) {
     this.suppliedIdKey = suppliedIdKey;
   }
 
 
-  public UpdatePartRevisionRequestDataAttributes suppliedRevisionIdKey(String suppliedRevisionIdKey) {
-    
+  public UpdatePartRevisionRequestDataAttributes suppliedRevisionIdKey(@javax.annotation.Nullable String suppliedRevisionIdKey) {
     this.suppliedRevisionIdKey = suppliedRevisionIdKey;
     return this;
   }
 
-   /**
+  /**
    * Metadata key used to extract an ID used for correlation. This will be used when given a file relationship - not used otherwise.
    * @return suppliedRevisionIdKey
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "RevisionId", value = "Metadata key used to extract an ID used for correlation. This will be used when given a file relationship - not used otherwise.")
-
   public String getSuppliedRevisionIdKey() {
     return suppliedRevisionIdKey;
   }
 
-
-  public void setSuppliedRevisionIdKey(String suppliedRevisionIdKey) {
+  public void setSuppliedRevisionIdKey(@javax.annotation.Nullable String suppliedRevisionIdKey) {
     this.suppliedRevisionIdKey = suppliedRevisionIdKey;
   }
 
 
-  public UpdatePartRevisionRequestDataAttributes suppliedInstanceIdKey(String suppliedInstanceIdKey) {
-    
+  public UpdatePartRevisionRequestDataAttributes suppliedInstanceIdKey(@javax.annotation.Nullable String suppliedInstanceIdKey) {
     this.suppliedInstanceIdKey = suppliedInstanceIdKey;
     return this;
   }
 
-   /**
+  /**
    * Metadata key used to extract an ID used for correlation. This will be used when given a file relationship - not used otherwise.
    * @return suppliedInstanceIdKey
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "InstanceId", value = "Metadata key used to extract an ID used for correlation. This will be used when given a file relationship - not used otherwise.")
-
   public String getSuppliedInstanceIdKey() {
     return suppliedInstanceIdKey;
   }
 
-
-  public void setSuppliedInstanceIdKey(String suppliedInstanceIdKey) {
+  public void setSuppliedInstanceIdKey(@javax.annotation.Nullable String suppliedInstanceIdKey) {
     this.suppliedInstanceIdKey = suppliedInstanceIdKey;
   }
+
 
 
   @Override
@@ -253,5 +256,106 @@ public class UpdatePartRevisionRequestDataAttributes {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("metadata");
+    openapiFields.add("indexMetadata");
+    openapiFields.add("name");
+    openapiFields.add("suppliedIdKey");
+    openapiFields.add("suppliedRevisionIdKey");
+    openapiFields.add("suppliedInstanceIdKey");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to UpdatePartRevisionRequestDataAttributes
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!UpdatePartRevisionRequestDataAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in UpdatePartRevisionRequestDataAttributes is not found in the empty JSON string", UpdatePartRevisionRequestDataAttributes.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!UpdatePartRevisionRequestDataAttributes.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdatePartRevisionRequestDataAttributes` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if ((jsonObj.get("suppliedIdKey") != null && !jsonObj.get("suppliedIdKey").isJsonNull()) && !jsonObj.get("suppliedIdKey").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `suppliedIdKey` to be a primitive type in the JSON string but got `%s`", jsonObj.get("suppliedIdKey").toString()));
+      }
+      if ((jsonObj.get("suppliedRevisionIdKey") != null && !jsonObj.get("suppliedRevisionIdKey").isJsonNull()) && !jsonObj.get("suppliedRevisionIdKey").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `suppliedRevisionIdKey` to be a primitive type in the JSON string but got `%s`", jsonObj.get("suppliedRevisionIdKey").toString()));
+      }
+      if ((jsonObj.get("suppliedInstanceIdKey") != null && !jsonObj.get("suppliedInstanceIdKey").isJsonNull()) && !jsonObj.get("suppliedInstanceIdKey").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `suppliedInstanceIdKey` to be a primitive type in the JSON string but got `%s`", jsonObj.get("suppliedInstanceIdKey").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!UpdatePartRevisionRequestDataAttributes.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'UpdatePartRevisionRequestDataAttributes' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<UpdatePartRevisionRequestDataAttributes> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(UpdatePartRevisionRequestDataAttributes.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<UpdatePartRevisionRequestDataAttributes>() {
+           @Override
+           public void write(JsonWriter out, UpdatePartRevisionRequestDataAttributes value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public UpdatePartRevisionRequestDataAttributes read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+  /**
+   * Create an instance of UpdatePartRevisionRequestDataAttributes given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of UpdatePartRevisionRequestDataAttributes
+   * @throws IOException if the JSON string is invalid with respect to UpdatePartRevisionRequestDataAttributes
+   */
+  public static UpdatePartRevisionRequestDataAttributes fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, UpdatePartRevisionRequestDataAttributes.class);
+  }
+
+  /**
+   * Convert an instance of UpdatePartRevisionRequestDataAttributes to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

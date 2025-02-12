@@ -29,6 +29,7 @@ import java.io.IOException;
 
 import com.vertexvis.model.CreateTranslationInspectionRequest;
 import com.vertexvis.model.Failure;
+import com.vertexvis.model.FilterExpression;
 import com.vertexvis.model.QueuedJob;
 import com.vertexvis.model.QueuedJobList;
 import com.vertexvis.model.QueuedTranslationJob;
@@ -85,7 +86,8 @@ public class TranslationInspectionsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -95,7 +97,6 @@ public class TranslationInspectionsApi {
      */
     public okhttp3.Call createTranslationInspectionCall(CreateTranslationInspectionRequest createTranslationInspectionRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -141,15 +142,12 @@ public class TranslationInspectionsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call createTranslationInspectionValidateBeforeCall(CreateTranslationInspectionRequest createTranslationInspectionRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'createTranslationInspectionRequest' is set
         if (createTranslationInspectionRequest == null) {
             throw new ApiException("Missing the required parameter 'createTranslationInspectionRequest' when calling createTranslationInspection(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = createTranslationInspectionCall(createTranslationInspectionRequest, _callback);
-        return localVarCall;
+        return createTranslationInspectionCall(createTranslationInspectionRequest, _callback);
 
     }
 
@@ -160,7 +158,8 @@ public class TranslationInspectionsApi {
      * @return TranslationInspectionJob
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -180,7 +179,8 @@ public class TranslationInspectionsApi {
      * @return ApiResponse&lt;TranslationInspectionJob&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -202,7 +202,8 @@ public class TranslationInspectionsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -224,7 +225,8 @@ public class TranslationInspectionsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -234,7 +236,6 @@ public class TranslationInspectionsApi {
      */
     public okhttp3.Call getInspectionJobCall(UUID id, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -251,7 +252,7 @@ public class TranslationInspectionsApi {
 
         // create path and map variables
         String localVarPath = "/translation-inspections/{id}"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -268,7 +269,6 @@ public class TranslationInspectionsApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -281,15 +281,12 @@ public class TranslationInspectionsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getInspectionJobValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling getInspectionJob(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = getInspectionJobCall(id, _callback);
-        return localVarCall;
+        return getInspectionJobCall(id, _callback);
 
     }
 
@@ -300,7 +297,8 @@ public class TranslationInspectionsApi {
      * @return TranslationInspectionJob
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -320,7 +318,8 @@ public class TranslationInspectionsApi {
      * @return ApiResponse&lt;TranslationInspectionJob&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -342,7 +341,8 @@ public class TranslationInspectionsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -364,7 +364,8 @@ public class TranslationInspectionsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 301 </td><td> Moved Permanently </td><td>  -  </td></tr>
@@ -377,7 +378,6 @@ public class TranslationInspectionsApi {
     @Deprecated
     public okhttp3.Call getQueuedTranslationCall(UUID id, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -394,7 +394,7 @@ public class TranslationInspectionsApi {
 
         // create path and map variables
         String localVarPath = "/queued-translations/{id}"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -411,7 +411,6 @@ public class TranslationInspectionsApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -425,15 +424,12 @@ public class TranslationInspectionsApi {
     @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getQueuedTranslationValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling getQueuedTranslation(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = getQueuedTranslationCall(id, _callback);
-        return localVarCall;
+        return getQueuedTranslationCall(id, _callback);
 
     }
 
@@ -444,7 +440,8 @@ public class TranslationInspectionsApi {
      * @return QueuedJob
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 301 </td><td> Moved Permanently </td><td>  -  </td></tr>
@@ -467,7 +464,8 @@ public class TranslationInspectionsApi {
      * @return ApiResponse&lt;QueuedJob&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 301 </td><td> Moved Permanently </td><td>  -  </td></tr>
@@ -492,7 +490,8 @@ public class TranslationInspectionsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 301 </td><td> Moved Permanently </td><td>  -  </td></tr>
@@ -517,7 +516,8 @@ public class TranslationInspectionsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 301 </td><td> Moved Permanently </td><td>  -  </td></tr>
@@ -528,7 +528,6 @@ public class TranslationInspectionsApi {
      */
     public okhttp3.Call getQueuedTranslationJobCall(UUID id, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -545,7 +544,7 @@ public class TranslationInspectionsApi {
 
         // create path and map variables
         String localVarPath = "/queued-translation-jobs/{id}"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -562,7 +561,6 @@ public class TranslationInspectionsApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -575,15 +573,12 @@ public class TranslationInspectionsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getQueuedTranslationJobValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling getQueuedTranslationJob(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = getQueuedTranslationJobCall(id, _callback);
-        return localVarCall;
+        return getQueuedTranslationJobCall(id, _callback);
 
     }
 
@@ -594,7 +589,8 @@ public class TranslationInspectionsApi {
      * @return QueuedTranslationJob
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 301 </td><td> Moved Permanently </td><td>  -  </td></tr>
@@ -615,7 +611,8 @@ public class TranslationInspectionsApi {
      * @return ApiResponse&lt;QueuedTranslationJob&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 301 </td><td> Moved Permanently </td><td>  -  </td></tr>
@@ -638,7 +635,8 @@ public class TranslationInspectionsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 301 </td><td> Moved Permanently </td><td>  -  </td></tr>
@@ -658,12 +656,15 @@ public class TranslationInspectionsApi {
      * Build call for getQueuedTranslationJobs
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
+     * @param sort A sort to apply to the collection. A \&quot;minus\&quot; prefixed before the field name is used to specify descending sort order. (optional)
      * @param filterStatus Status to filter on. (optional)
+     * @param filterCompletedAt The completion date and time to filter on. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -671,9 +672,8 @@ public class TranslationInspectionsApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getQueuedTranslationJobsCall(String pageCursor, Integer pageSize, String filterStatus, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getQueuedTranslationJobsCall(String pageCursor, Integer pageSize, String sort, String filterStatus, FilterExpression filterCompletedAt, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -705,8 +705,16 @@ public class TranslationInspectionsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[size]", pageSize));
         }
 
+        if (sort != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("sort", sort));
+        }
+
         if (filterStatus != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("filter[status]", filterStatus));
+        }
+
+        if (filterCompletedAt != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("filter[completedAt]", filterCompletedAt));
         }
 
         final String[] localVarAccepts = {
@@ -718,7 +726,6 @@ public class TranslationInspectionsApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -730,11 +737,8 @@ public class TranslationInspectionsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getQueuedTranslationJobsValidateBeforeCall(String pageCursor, Integer pageSize, String filterStatus, final ApiCallback _callback) throws ApiException {
-        
-
-        okhttp3.Call localVarCall = getQueuedTranslationJobsCall(pageCursor, pageSize, filterStatus, _callback);
-        return localVarCall;
+    private okhttp3.Call getQueuedTranslationJobsValidateBeforeCall(String pageCursor, Integer pageSize, String sort, String filterStatus, FilterExpression filterCompletedAt, final ApiCallback _callback) throws ApiException {
+        return getQueuedTranslationJobsCall(pageCursor, pageSize, sort, filterStatus, filterCompletedAt, _callback);
 
     }
 
@@ -743,11 +747,14 @@ public class TranslationInspectionsApi {
      * Get all current translation jobs in progress.
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
+     * @param sort A sort to apply to the collection. A \&quot;minus\&quot; prefixed before the field name is used to specify descending sort order. (optional)
      * @param filterStatus Status to filter on. (optional)
+     * @param filterCompletedAt The completion date and time to filter on. (optional)
      * @return QueuedJobList
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -755,8 +762,8 @@ public class TranslationInspectionsApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public QueuedJobList getQueuedTranslationJobs(String pageCursor, Integer pageSize, String filterStatus) throws ApiException {
-        ApiResponse<QueuedJobList> localVarResp = getQueuedTranslationJobsWithHttpInfo(pageCursor, pageSize, filterStatus);
+    public QueuedJobList getQueuedTranslationJobs(String pageCursor, Integer pageSize, String sort, String filterStatus, FilterExpression filterCompletedAt) throws ApiException {
+        ApiResponse<QueuedJobList> localVarResp = getQueuedTranslationJobsWithHttpInfo(pageCursor, pageSize, sort, filterStatus, filterCompletedAt);
         return localVarResp.getData();
     }
 
@@ -765,11 +772,14 @@ public class TranslationInspectionsApi {
      * Get all current translation jobs in progress.
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
+     * @param sort A sort to apply to the collection. A \&quot;minus\&quot; prefixed before the field name is used to specify descending sort order. (optional)
      * @param filterStatus Status to filter on. (optional)
+     * @param filterCompletedAt The completion date and time to filter on. (optional)
      * @return ApiResponse&lt;QueuedJobList&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -777,8 +787,8 @@ public class TranslationInspectionsApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<QueuedJobList> getQueuedTranslationJobsWithHttpInfo(String pageCursor, Integer pageSize, String filterStatus) throws ApiException {
-        okhttp3.Call localVarCall = getQueuedTranslationJobsValidateBeforeCall(pageCursor, pageSize, filterStatus, null);
+    public ApiResponse<QueuedJobList> getQueuedTranslationJobsWithHttpInfo(String pageCursor, Integer pageSize, String sort, String filterStatus, FilterExpression filterCompletedAt) throws ApiException {
+        okhttp3.Call localVarCall = getQueuedTranslationJobsValidateBeforeCall(pageCursor, pageSize, sort, filterStatus, filterCompletedAt, null);
         Type localVarReturnType = new TypeToken<QueuedJobList>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -788,12 +798,15 @@ public class TranslationInspectionsApi {
      * Get all current translation jobs in progress.
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
+     * @param sort A sort to apply to the collection. A \&quot;minus\&quot; prefixed before the field name is used to specify descending sort order. (optional)
      * @param filterStatus Status to filter on. (optional)
+     * @param filterCompletedAt The completion date and time to filter on. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -801,9 +814,9 @@ public class TranslationInspectionsApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getQueuedTranslationJobsAsync(String pageCursor, Integer pageSize, String filterStatus, final ApiCallback<QueuedJobList> _callback) throws ApiException {
+    public okhttp3.Call getQueuedTranslationJobsAsync(String pageCursor, Integer pageSize, String sort, String filterStatus, FilterExpression filterCompletedAt, final ApiCallback<QueuedJobList> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getQueuedTranslationJobsValidateBeforeCall(pageCursor, pageSize, filterStatus, _callback);
+        okhttp3.Call localVarCall = getQueuedTranslationJobsValidateBeforeCall(pageCursor, pageSize, sort, filterStatus, filterCompletedAt, _callback);
         Type localVarReturnType = new TypeToken<QueuedJobList>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -817,7 +830,8 @@ public class TranslationInspectionsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 301 </td><td> Moved Permanently </td><td>  -  </td></tr>
@@ -830,7 +844,6 @@ public class TranslationInspectionsApi {
     @Deprecated
     public okhttp3.Call getQueuedTranslationsCall(String pageCursor, Integer pageSize, String filterStatus, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -875,7 +888,6 @@ public class TranslationInspectionsApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -889,10 +901,7 @@ public class TranslationInspectionsApi {
     @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getQueuedTranslationsValidateBeforeCall(String pageCursor, Integer pageSize, String filterStatus, final ApiCallback _callback) throws ApiException {
-        
-
-        okhttp3.Call localVarCall = getQueuedTranslationsCall(pageCursor, pageSize, filterStatus, _callback);
-        return localVarCall;
+        return getQueuedTranslationsCall(pageCursor, pageSize, filterStatus, _callback);
 
     }
 
@@ -905,7 +914,8 @@ public class TranslationInspectionsApi {
      * @return QueuedJobList
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 301 </td><td> Moved Permanently </td><td>  -  </td></tr>
@@ -930,7 +940,8 @@ public class TranslationInspectionsApi {
      * @return ApiResponse&lt;QueuedJobList&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 301 </td><td> Moved Permanently </td><td>  -  </td></tr>
@@ -957,7 +968,8 @@ public class TranslationInspectionsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 301 </td><td> Moved Permanently </td><td>  -  </td></tr>

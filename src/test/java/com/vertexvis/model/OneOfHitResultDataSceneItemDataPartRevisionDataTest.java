@@ -14,8 +14,8 @@ public class OneOfHitResultDataSceneItemDataPartRevisionDataTest {
   @Test
   void serializesHitResultData() {
     UUID id = UUID.randomUUID();
-    OneOfHitResultDataSceneItemDataPartRevisionData d =
-        new OneOfHitResultDataSceneItemDataPartRevisionData(
+    HitIncludedInner d =
+        new HitIncludedInner(
             new HitResultData().type("some-type").id(id));
 
     String expected = "{\"type\":\"some-type\",\"id\":\"" + id + "\"}";
@@ -26,11 +26,11 @@ public class OneOfHitResultDataSceneItemDataPartRevisionDataTest {
   @Test
   void serializesSceneItemData() {
     UUID id = UUID.randomUUID();
-    OneOfHitResultDataSceneItemDataPartRevisionData d =
-        new OneOfHitResultDataSceneItemDataPartRevisionData(
+    HitIncludedInner d =
+        new HitIncludedInner(
             new SceneItemData().id(id).type("scene-item"));
 
-    String expected = "{\"type\":\"scene-item\",\"id\":\"" + id + "\"}";
+    String expected = "{\"type\":\"scene-item\",\"id\":\"" + id + "\",\"links\":{}}";
 
     assertEquals(expected, new JSON().serialize(d));
   }
@@ -38,11 +38,11 @@ public class OneOfHitResultDataSceneItemDataPartRevisionDataTest {
   @Test
   void serializesPartRevisionData() {
     UUID id = UUID.randomUUID();
-    OneOfHitResultDataSceneItemDataPartRevisionData d =
-        new OneOfHitResultDataSceneItemDataPartRevisionData(
+    HitIncludedInner d =
+        new HitIncludedInner(
             new PartRevisionData().id(id).type("part-revision"));
 
-    String expected = "{\"type\":\"part-revision\",\"id\":\"" + id + "\"}";
+    String expected = "{\"type\":\"part-revision\",\"id\":\"" + id + "\",\"links\":{}}";
 
     assertEquals(expected, new JSON().serialize(d));
   }

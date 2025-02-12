@@ -84,7 +84,8 @@ public class WebhookSubscriptionsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -93,7 +94,6 @@ public class WebhookSubscriptionsApi {
      */
     public okhttp3.Call createWebhookSubscriptionCall(CreateWebhookSubscriptionRequest createWebhookSubscriptionRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -139,15 +139,12 @@ public class WebhookSubscriptionsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call createWebhookSubscriptionValidateBeforeCall(CreateWebhookSubscriptionRequest createWebhookSubscriptionRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'createWebhookSubscriptionRequest' is set
         if (createWebhookSubscriptionRequest == null) {
             throw new ApiException("Missing the required parameter 'createWebhookSubscriptionRequest' when calling createWebhookSubscription(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = createWebhookSubscriptionCall(createWebhookSubscriptionRequest, _callback);
-        return localVarCall;
+        return createWebhookSubscriptionCall(createWebhookSubscriptionRequest, _callback);
 
     }
 
@@ -158,7 +155,8 @@ public class WebhookSubscriptionsApi {
      * @return WebhookSubscription
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -177,7 +175,8 @@ public class WebhookSubscriptionsApi {
      * @return ApiResponse&lt;WebhookSubscription&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -198,7 +197,8 @@ public class WebhookSubscriptionsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -219,7 +219,8 @@ public class WebhookSubscriptionsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -229,7 +230,6 @@ public class WebhookSubscriptionsApi {
      */
     public okhttp3.Call deleteWebhookSubscriptionCall(UUID id, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -246,7 +246,7 @@ public class WebhookSubscriptionsApi {
 
         // create path and map variables
         String localVarPath = "/webhook-subscriptions/{id}"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -263,7 +263,6 @@ public class WebhookSubscriptionsApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -276,15 +275,12 @@ public class WebhookSubscriptionsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call deleteWebhookSubscriptionValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling deleteWebhookSubscription(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = deleteWebhookSubscriptionCall(id, _callback);
-        return localVarCall;
+        return deleteWebhookSubscriptionCall(id, _callback);
 
     }
 
@@ -294,7 +290,8 @@ public class WebhookSubscriptionsApi {
      * @param id The &#x60;webhook-subscription&#x60; ID. (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -313,7 +310,8 @@ public class WebhookSubscriptionsApi {
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -334,7 +332,8 @@ public class WebhookSubscriptionsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -355,7 +354,8 @@ public class WebhookSubscriptionsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -365,7 +365,6 @@ public class WebhookSubscriptionsApi {
      */
     public okhttp3.Call getWebhookSubscriptionCall(UUID id, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -382,7 +381,7 @@ public class WebhookSubscriptionsApi {
 
         // create path and map variables
         String localVarPath = "/webhook-subscriptions/{id}"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -399,7 +398,6 @@ public class WebhookSubscriptionsApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -412,15 +410,12 @@ public class WebhookSubscriptionsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getWebhookSubscriptionValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling getWebhookSubscription(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = getWebhookSubscriptionCall(id, _callback);
-        return localVarCall;
+        return getWebhookSubscriptionCall(id, _callback);
 
     }
 
@@ -431,7 +426,8 @@ public class WebhookSubscriptionsApi {
      * @return WebhookSubscription
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -451,7 +447,8 @@ public class WebhookSubscriptionsApi {
      * @return ApiResponse&lt;WebhookSubscription&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -473,7 +470,8 @@ public class WebhookSubscriptionsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -496,7 +494,8 @@ public class WebhookSubscriptionsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -505,7 +504,6 @@ public class WebhookSubscriptionsApi {
      */
     public okhttp3.Call getWebhookSubscriptionsCall(String pageCursor, Integer pageSize, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -546,7 +544,6 @@ public class WebhookSubscriptionsApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -559,10 +556,7 @@ public class WebhookSubscriptionsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getWebhookSubscriptionsValidateBeforeCall(String pageCursor, Integer pageSize, final ApiCallback _callback) throws ApiException {
-        
-
-        okhttp3.Call localVarCall = getWebhookSubscriptionsCall(pageCursor, pageSize, _callback);
-        return localVarCall;
+        return getWebhookSubscriptionsCall(pageCursor, pageSize, _callback);
 
     }
 
@@ -574,7 +568,8 @@ public class WebhookSubscriptionsApi {
      * @return WebhookSubscriptionList
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -594,7 +589,8 @@ public class WebhookSubscriptionsApi {
      * @return ApiResponse&lt;WebhookSubscriptionList&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -616,7 +612,8 @@ public class WebhookSubscriptionsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -638,7 +635,8 @@ public class WebhookSubscriptionsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -649,7 +647,6 @@ public class WebhookSubscriptionsApi {
      */
     public okhttp3.Call updateWebhookSubscriptionCall(UUID id, UpdateWebhookSubscriptionRequest updateWebhookSubscriptionRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -666,7 +663,7 @@ public class WebhookSubscriptionsApi {
 
         // create path and map variables
         String localVarPath = "/webhook-subscriptions/{id}"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -696,20 +693,17 @@ public class WebhookSubscriptionsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call updateWebhookSubscriptionValidateBeforeCall(UUID id, UpdateWebhookSubscriptionRequest updateWebhookSubscriptionRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling updateWebhookSubscription(Async)");
         }
-        
+
         // verify the required parameter 'updateWebhookSubscriptionRequest' is set
         if (updateWebhookSubscriptionRequest == null) {
             throw new ApiException("Missing the required parameter 'updateWebhookSubscriptionRequest' when calling updateWebhookSubscription(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = updateWebhookSubscriptionCall(id, updateWebhookSubscriptionRequest, _callback);
-        return localVarCall;
+        return updateWebhookSubscriptionCall(id, updateWebhookSubscriptionRequest, _callback);
 
     }
 
@@ -721,7 +715,8 @@ public class WebhookSubscriptionsApi {
      * @return WebhookSubscription
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -743,7 +738,8 @@ public class WebhookSubscriptionsApi {
      * @return ApiResponse&lt;WebhookSubscription&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -767,7 +763,8 @@ public class WebhookSubscriptionsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>

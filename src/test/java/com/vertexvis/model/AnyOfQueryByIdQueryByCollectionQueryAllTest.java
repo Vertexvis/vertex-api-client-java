@@ -15,8 +15,8 @@ public class AnyOfQueryByIdQueryByCollectionQueryAllTest {
   void serializesQueryById() {
     UUID id = UUID.randomUUID();
 
-    AnyOfQueryByIdQueryByCollectionQueryAll q =
-        new AnyOfQueryByIdQueryByCollectionQueryAll(new QueryById().data(
+    SceneOperationQuery q =
+        new SceneOperationQuery(new QueryById().data(
             new QueryByIdData().type(QueryByIdData.TypeEnum.QUERY_BY_ID).attributes(
                 new QueryByIdDataAttributes().type(QueryByIdDataAttributes.TypeEnum.ID)
                     .value(id.toString()))));
@@ -33,8 +33,8 @@ public class AnyOfQueryByIdQueryByCollectionQueryAllTest {
   void serializesQueryByCollection() {
     UUID id = UUID.randomUUID();
 
-    AnyOfQueryByIdQueryByCollectionQueryAll q =
-        new AnyOfQueryByIdQueryByCollectionQueryAll(
+    SceneOperationQuery q =
+        new SceneOperationQuery(
             new QueryByCollection()
                 .data(new QueryByCollectionData()
                     .type(QueryByCollectionData.TypeEnum.QUERY_BY_COLLECTION)
@@ -57,8 +57,8 @@ public class AnyOfQueryByIdQueryByCollectionQueryAllTest {
 
   @Test
   void serializesQueryByAll() {
-    AnyOfQueryByIdQueryByCollectionQueryAll q =
-        new AnyOfQueryByIdQueryByCollectionQueryAll(QueryAll.ALL);
+    SceneOperationQuery q =
+        new SceneOperationQuery(QueryAll.ALL);
 
     SceneOperation op = new SceneOperation().query(q);
     String expected = "{\"query\":\"all\",\"operations\":[]}";

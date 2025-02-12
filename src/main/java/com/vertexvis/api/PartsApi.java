@@ -27,6 +27,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import com.vertexvis.model.CreatePart200Response;
 import com.vertexvis.model.CreatePartRequest;
 import com.vertexvis.model.Failure;
 import com.vertexvis.model.Part;
@@ -84,10 +85,10 @@ public class PartsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Created Part </td><td>  -  </td></tr>
-        <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
+        <tr><td> 200 </td><td> Created Part </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
@@ -95,7 +96,6 @@ public class PartsApi {
      */
     public okhttp3.Call createPartCall(CreatePartRequest createPartRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -141,15 +141,12 @@ public class PartsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call createPartValidateBeforeCall(CreatePartRequest createPartRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'createPartRequest' is set
         if (createPartRequest == null) {
             throw new ApiException("Missing the required parameter 'createPartRequest' when calling createPart(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = createPartCall(createPartRequest, _callback);
-        return localVarCall;
+        return createPartCall(createPartRequest, _callback);
 
     }
 
@@ -157,20 +154,20 @@ public class PartsApi {
      * 
      * Create a &#x60;part&#x60;.  This endpoint includes multiple successful response codes: [&#x60;201&#x60;, &#x60;202&#x60;].  When not given a relationship, this endpoint will create a part with an empty part revision and return a &#x60;201&#x60;  status code of the part.  When given a relationship to translate, this endpoint will return a &#x60;202&#x60; status code with the location of a &#x60;queued-translation&#x60;. The status of the translation can be queried via &#x60;getQueuedTranslation&#x60;. After the translation is complete, a &#x60;part&#x60; and &#x60;part-revision&#x60; that references the translated geometry.  A unique suppliedId/suppliedRevisionId combination will create a new part and new part revision. For instance, sending my-part-id/my-revision-id will create a new part and new revision with those corresponding supplied ids. To create a new revision for &#x60;my-part-id&#x60;, likewise you can invoke this endpoint with a new revision id: &#x60;my-part-id/my-new-revision-id&#x60; and a new revision will be created for the existing part.  See our [Import Data](https://developer.vertexvis.com/docs/guides/import-data-with-api) guides for more information. 
      * @param createPartRequest  (required)
-     * @return Part
+     * @return CreatePart200Response
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Created Part </td><td>  -  </td></tr>
-        <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
+        <tr><td> 200 </td><td> Created Part </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public Part createPart(CreatePartRequest createPartRequest) throws ApiException {
-        ApiResponse<Part> localVarResp = createPartWithHttpInfo(createPartRequest);
+    public CreatePart200Response createPart(CreatePartRequest createPartRequest) throws ApiException {
+        ApiResponse<CreatePart200Response> localVarResp = createPartWithHttpInfo(createPartRequest);
         return localVarResp.getData();
     }
 
@@ -178,21 +175,21 @@ public class PartsApi {
      * 
      * Create a &#x60;part&#x60;.  This endpoint includes multiple successful response codes: [&#x60;201&#x60;, &#x60;202&#x60;].  When not given a relationship, this endpoint will create a part with an empty part revision and return a &#x60;201&#x60;  status code of the part.  When given a relationship to translate, this endpoint will return a &#x60;202&#x60; status code with the location of a &#x60;queued-translation&#x60;. The status of the translation can be queried via &#x60;getQueuedTranslation&#x60;. After the translation is complete, a &#x60;part&#x60; and &#x60;part-revision&#x60; that references the translated geometry.  A unique suppliedId/suppliedRevisionId combination will create a new part and new part revision. For instance, sending my-part-id/my-revision-id will create a new part and new revision with those corresponding supplied ids. To create a new revision for &#x60;my-part-id&#x60;, likewise you can invoke this endpoint with a new revision id: &#x60;my-part-id/my-new-revision-id&#x60; and a new revision will be created for the existing part.  See our [Import Data](https://developer.vertexvis.com/docs/guides/import-data-with-api) guides for more information. 
      * @param createPartRequest  (required)
-     * @return ApiResponse&lt;Part&gt;
+     * @return ApiResponse&lt;CreatePart200Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Created Part </td><td>  -  </td></tr>
-        <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
+        <tr><td> 200 </td><td> Created Part </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Part> createPartWithHttpInfo(CreatePartRequest createPartRequest) throws ApiException {
+    public ApiResponse<CreatePart200Response> createPartWithHttpInfo(CreatePartRequest createPartRequest) throws ApiException {
         okhttp3.Call localVarCall = createPartValidateBeforeCall(createPartRequest, null);
-        Type localVarReturnType = new TypeToken<Part>(){}.getType();
+        Type localVarReturnType = new TypeToken<CreatePart200Response>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -204,19 +201,19 @@ public class PartsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Created Part </td><td>  -  </td></tr>
-        <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
+        <tr><td> 200 </td><td> Created Part </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createPartAsync(CreatePartRequest createPartRequest, final ApiCallback<Part> _callback) throws ApiException {
+    public okhttp3.Call createPartAsync(CreatePartRequest createPartRequest, final ApiCallback<CreatePart200Response> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = createPartValidateBeforeCall(createPartRequest, _callback);
-        Type localVarReturnType = new TypeToken<Part>(){}.getType();
+        Type localVarReturnType = new TypeToken<CreatePart200Response>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -227,7 +224,8 @@ public class PartsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -237,7 +235,6 @@ public class PartsApi {
      */
     public okhttp3.Call deletePartCall(UUID id, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -254,7 +251,7 @@ public class PartsApi {
 
         // create path and map variables
         String localVarPath = "/parts/{id}"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -271,7 +268,6 @@ public class PartsApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -284,15 +280,12 @@ public class PartsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call deletePartValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling deletePart(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = deletePartCall(id, _callback);
-        return localVarCall;
+        return deletePartCall(id, _callback);
 
     }
 
@@ -303,7 +296,8 @@ public class PartsApi {
      * @return QueuedJob
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -323,7 +317,8 @@ public class PartsApi {
      * @return ApiResponse&lt;QueuedJob&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -345,7 +340,8 @@ public class PartsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -368,7 +364,8 @@ public class PartsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -378,7 +375,6 @@ public class PartsApi {
      */
     public okhttp3.Call getPartCall(UUID id, String include, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -395,7 +391,7 @@ public class PartsApi {
 
         // create path and map variables
         String localVarPath = "/parts/{id}"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -416,7 +412,6 @@ public class PartsApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -429,15 +424,12 @@ public class PartsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getPartValidateBeforeCall(UUID id, String include, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling getPart(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = getPartCall(id, include, _callback);
-        return localVarCall;
+        return getPartCall(id, include, _callback);
 
     }
 
@@ -449,7 +441,8 @@ public class PartsApi {
      * @return Part
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -470,7 +463,8 @@ public class PartsApi {
      * @return ApiResponse&lt;Part&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -493,7 +487,8 @@ public class PartsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -517,7 +512,8 @@ public class PartsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -526,7 +522,6 @@ public class PartsApi {
      */
     public okhttp3.Call getPartsCall(String pageCursor, Integer pageSize, String filterSuppliedId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -571,7 +566,6 @@ public class PartsApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -584,10 +578,7 @@ public class PartsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getPartsValidateBeforeCall(String pageCursor, Integer pageSize, String filterSuppliedId, final ApiCallback _callback) throws ApiException {
-        
-
-        okhttp3.Call localVarCall = getPartsCall(pageCursor, pageSize, filterSuppliedId, _callback);
-        return localVarCall;
+        return getPartsCall(pageCursor, pageSize, filterSuppliedId, _callback);
 
     }
 
@@ -600,7 +591,8 @@ public class PartsApi {
      * @return PartList
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -621,7 +613,8 @@ public class PartsApi {
      * @return ApiResponse&lt;PartList&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -644,7 +637,8 @@ public class PartsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -665,7 +659,8 @@ public class PartsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -675,7 +670,6 @@ public class PartsApi {
      */
     public okhttp3.Call getQueuedPartDeletionCall(UUID id, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -692,7 +686,7 @@ public class PartsApi {
 
         // create path and map variables
         String localVarPath = "/queued-part-deletions/{id}"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -709,7 +703,6 @@ public class PartsApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -722,15 +715,12 @@ public class PartsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getQueuedPartDeletionValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling getQueuedPartDeletion(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = getQueuedPartDeletionCall(id, _callback);
-        return localVarCall;
+        return getQueuedPartDeletionCall(id, _callback);
 
     }
 
@@ -741,7 +731,8 @@ public class PartsApi {
      * @return QueuedJob
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -761,7 +752,8 @@ public class PartsApi {
      * @return ApiResponse&lt;QueuedJob&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -783,7 +775,8 @@ public class PartsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>

@@ -85,7 +85,8 @@ public class PartRenditionsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
@@ -97,7 +98,6 @@ public class PartRenditionsApi {
      */
     public okhttp3.Call createPartRenditionCall(UUID id, CreatePartRenditionRequest createPartRenditionRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -114,7 +114,7 @@ public class PartRenditionsApi {
 
         // create path and map variables
         String localVarPath = "/part-revisions/{id}/part-renditions"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -144,20 +144,17 @@ public class PartRenditionsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call createPartRenditionValidateBeforeCall(UUID id, CreatePartRenditionRequest createPartRenditionRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling createPartRendition(Async)");
         }
-        
+
         // verify the required parameter 'createPartRenditionRequest' is set
         if (createPartRenditionRequest == null) {
             throw new ApiException("Missing the required parameter 'createPartRenditionRequest' when calling createPartRendition(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = createPartRenditionCall(id, createPartRenditionRequest, _callback);
-        return localVarCall;
+        return createPartRenditionCall(id, createPartRenditionRequest, _callback);
 
     }
 
@@ -169,7 +166,8 @@ public class PartRenditionsApi {
      * @return PartRendition
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
@@ -192,7 +190,8 @@ public class PartRenditionsApi {
      * @return ApiResponse&lt;PartRendition&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
@@ -217,7 +216,8 @@ public class PartRenditionsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
@@ -241,7 +241,8 @@ public class PartRenditionsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -251,7 +252,6 @@ public class PartRenditionsApi {
      */
     public okhttp3.Call getPartRenditionCall(UUID id, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -268,7 +268,7 @@ public class PartRenditionsApi {
 
         // create path and map variables
         String localVarPath = "/part-renditions/{id}"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -285,7 +285,6 @@ public class PartRenditionsApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -298,15 +297,12 @@ public class PartRenditionsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getPartRenditionValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling getPartRendition(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = getPartRenditionCall(id, _callback);
-        return localVarCall;
+        return getPartRenditionCall(id, _callback);
 
     }
 
@@ -317,7 +313,8 @@ public class PartRenditionsApi {
      * @return PartRendition
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -337,7 +334,8 @@ public class PartRenditionsApi {
      * @return ApiResponse&lt;PartRendition&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -359,7 +357,8 @@ public class PartRenditionsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -384,7 +383,8 @@ public class PartRenditionsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -393,7 +393,6 @@ public class PartRenditionsApi {
      */
     public okhttp3.Call getPartRenditionsCall(String pageCursor, Integer pageSize, String filterSuppliedId, UUID filterRevisionId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -442,7 +441,6 @@ public class PartRenditionsApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -455,10 +453,7 @@ public class PartRenditionsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getPartRenditionsValidateBeforeCall(String pageCursor, Integer pageSize, String filterSuppliedId, UUID filterRevisionId, final ApiCallback _callback) throws ApiException {
-        
-
-        okhttp3.Call localVarCall = getPartRenditionsCall(pageCursor, pageSize, filterSuppliedId, filterRevisionId, _callback);
-        return localVarCall;
+        return getPartRenditionsCall(pageCursor, pageSize, filterSuppliedId, filterRevisionId, _callback);
 
     }
 
@@ -472,7 +467,8 @@ public class PartRenditionsApi {
      * @return PartRenditionList
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -494,7 +490,8 @@ public class PartRenditionsApi {
      * @return ApiResponse&lt;PartRenditionList&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -518,7 +515,8 @@ public class PartRenditionsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>

@@ -14,78 +14,94 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * CreateStreamKeyRequestDataAttributes
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
 public class CreateStreamKeyRequestDataAttributes {
   public static final String SERIALIZED_NAME_EXPIRY = "expiry";
   @SerializedName(SERIALIZED_NAME_EXPIRY)
+  @javax.annotation.Nullable
   private Integer expiry;
 
   public static final String SERIALIZED_NAME_EXCLUDE_PRUNED_ITEMS = "excludePrunedItems";
   @SerializedName(SERIALIZED_NAME_EXCLUDE_PRUNED_ITEMS)
+  @javax.annotation.Nullable
   private Boolean excludePrunedItems;
 
-  public CreateStreamKeyRequestDataAttributes() { 
+  public CreateStreamKeyRequestDataAttributes() {
   }
 
-  public CreateStreamKeyRequestDataAttributes expiry(Integer expiry) {
-    
+  public CreateStreamKeyRequestDataAttributes expiry(@javax.annotation.Nullable Integer expiry) {
     this.expiry = expiry;
     return this;
   }
 
-   /**
+  /**
    * Number of seconds before the &#x60;stream-key&#x60; expires.
    * minimum: 1
    * maximum: 31557600
    * @return expiry
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "600", value = "Number of seconds before the `stream-key` expires.")
-
   public Integer getExpiry() {
     return expiry;
   }
 
-
-  public void setExpiry(Integer expiry) {
+  public void setExpiry(@javax.annotation.Nullable Integer expiry) {
     this.expiry = expiry;
   }
 
 
-  public CreateStreamKeyRequestDataAttributes excludePrunedItems(Boolean excludePrunedItems) {
-    
+  public CreateStreamKeyRequestDataAttributes excludePrunedItems(@javax.annotation.Nullable Boolean excludePrunedItems) {
     this.excludePrunedItems = excludePrunedItems;
     return this;
   }
 
-   /**
+  /**
    * Whether to exclude non-visible items in the view
    * @return excludePrunedItems
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Whether to exclude non-visible items in the view")
-
   public Boolean getExcludePrunedItems() {
     return excludePrunedItems;
   }
 
-
-  public void setExcludePrunedItems(Boolean excludePrunedItems) {
+  public void setExcludePrunedItems(@javax.annotation.Nullable Boolean excludePrunedItems) {
     this.excludePrunedItems = excludePrunedItems;
   }
+
 
 
   @Override
@@ -127,5 +143,90 @@ public class CreateStreamKeyRequestDataAttributes {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("expiry");
+    openapiFields.add("excludePrunedItems");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CreateStreamKeyRequestDataAttributes
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!CreateStreamKeyRequestDataAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in CreateStreamKeyRequestDataAttributes is not found in the empty JSON string", CreateStreamKeyRequestDataAttributes.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!CreateStreamKeyRequestDataAttributes.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateStreamKeyRequestDataAttributes` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!CreateStreamKeyRequestDataAttributes.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'CreateStreamKeyRequestDataAttributes' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<CreateStreamKeyRequestDataAttributes> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(CreateStreamKeyRequestDataAttributes.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<CreateStreamKeyRequestDataAttributes>() {
+           @Override
+           public void write(JsonWriter out, CreateStreamKeyRequestDataAttributes value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public CreateStreamKeyRequestDataAttributes read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+  /**
+   * Create an instance of CreateStreamKeyRequestDataAttributes given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CreateStreamKeyRequestDataAttributes
+   * @throws IOException if the JSON string is invalid with respect to CreateStreamKeyRequestDataAttributes
+   */
+  public static CreateStreamKeyRequestDataAttributes fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, CreateStreamKeyRequestDataAttributes.class);
+  }
+
+  /**
+   * Convert an instance of CreateStreamKeyRequestDataAttributes to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

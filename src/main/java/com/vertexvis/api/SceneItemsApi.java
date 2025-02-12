@@ -29,6 +29,7 @@ import java.io.IOException;
 
 import com.vertexvis.model.CreateSceneItemRequest;
 import com.vertexvis.model.Failure;
+import com.vertexvis.model.GetQueuedSceneItem200Response;
 import com.vertexvis.model.QueuedJob;
 import com.vertexvis.model.SceneItem;
 import com.vertexvis.model.SceneItemList;
@@ -86,7 +87,8 @@ public class SceneItemsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -98,7 +100,6 @@ public class SceneItemsApi {
      */
     public okhttp3.Call createSceneItemCall(UUID id, CreateSceneItemRequest createSceneItemRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -115,7 +116,7 @@ public class SceneItemsApi {
 
         // create path and map variables
         String localVarPath = "/scenes/{id}/scene-items"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -145,20 +146,17 @@ public class SceneItemsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call createSceneItemValidateBeforeCall(UUID id, CreateSceneItemRequest createSceneItemRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling createSceneItem(Async)");
         }
-        
+
         // verify the required parameter 'createSceneItemRequest' is set
         if (createSceneItemRequest == null) {
             throw new ApiException("Missing the required parameter 'createSceneItemRequest' when calling createSceneItem(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = createSceneItemCall(id, createSceneItemRequest, _callback);
-        return localVarCall;
+        return createSceneItemCall(id, createSceneItemRequest, _callback);
 
     }
 
@@ -170,7 +168,8 @@ public class SceneItemsApi {
      * @return QueuedJob
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -193,7 +192,8 @@ public class SceneItemsApi {
      * @return ApiResponse&lt;QueuedJob&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -218,7 +218,8 @@ public class SceneItemsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -242,7 +243,8 @@ public class SceneItemsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -252,7 +254,6 @@ public class SceneItemsApi {
      */
     public okhttp3.Call deleteSceneItemCall(UUID id, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -269,7 +270,7 @@ public class SceneItemsApi {
 
         // create path and map variables
         String localVarPath = "/scene-items/{id}"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -286,7 +287,6 @@ public class SceneItemsApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -299,15 +299,12 @@ public class SceneItemsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call deleteSceneItemValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling deleteSceneItem(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = deleteSceneItemCall(id, _callback);
-        return localVarCall;
+        return deleteSceneItemCall(id, _callback);
 
     }
 
@@ -317,7 +314,8 @@ public class SceneItemsApi {
      * @param id The &#x60;scene-item&#x60; ID. (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -336,7 +334,8 @@ public class SceneItemsApi {
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -357,7 +356,8 @@ public class SceneItemsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -378,7 +378,8 @@ public class SceneItemsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 301 </td><td> Moved Permanently </td><td>  -  </td></tr>
@@ -389,7 +390,6 @@ public class SceneItemsApi {
      */
     public okhttp3.Call getQueuedSceneItemCall(UUID id, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -406,7 +406,7 @@ public class SceneItemsApi {
 
         // create path and map variables
         String localVarPath = "/queued-scene-items/{id}"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -423,7 +423,6 @@ public class SceneItemsApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -436,15 +435,12 @@ public class SceneItemsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getQueuedSceneItemValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling getQueuedSceneItem(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = getQueuedSceneItemCall(id, _callback);
-        return localVarCall;
+        return getQueuedSceneItemCall(id, _callback);
 
     }
 
@@ -452,10 +448,11 @@ public class SceneItemsApi {
      * 
      * Get a &#x60;queued-scene-item&#x60;. The response is either the status if &#x60;running&#x60; or &#x60;error&#x60; or, upon completion, redirects to the created &#x60;scene-item&#x60;. Once created, commit the scene via the updateScene API. For details, see our [Render static scenes](https://developer.vertexvis.com/docs/guides/render-static-scenes) guide.
      * @param id The &#x60;queued-scene-item&#x60; ID. (required)
-     * @return QueuedJob
+     * @return GetQueuedSceneItem200Response
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 301 </td><td> Moved Permanently </td><td>  -  </td></tr>
@@ -464,8 +461,8 @@ public class SceneItemsApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public QueuedJob getQueuedSceneItem(UUID id) throws ApiException {
-        ApiResponse<QueuedJob> localVarResp = getQueuedSceneItemWithHttpInfo(id);
+    public GetQueuedSceneItem200Response getQueuedSceneItem(UUID id) throws ApiException {
+        ApiResponse<GetQueuedSceneItem200Response> localVarResp = getQueuedSceneItemWithHttpInfo(id);
         return localVarResp.getData();
     }
 
@@ -473,10 +470,11 @@ public class SceneItemsApi {
      * 
      * Get a &#x60;queued-scene-item&#x60;. The response is either the status if &#x60;running&#x60; or &#x60;error&#x60; or, upon completion, redirects to the created &#x60;scene-item&#x60;. Once created, commit the scene via the updateScene API. For details, see our [Render static scenes](https://developer.vertexvis.com/docs/guides/render-static-scenes) guide.
      * @param id The &#x60;queued-scene-item&#x60; ID. (required)
-     * @return ApiResponse&lt;QueuedJob&gt;
+     * @return ApiResponse&lt;GetQueuedSceneItem200Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 301 </td><td> Moved Permanently </td><td>  -  </td></tr>
@@ -485,9 +483,9 @@ public class SceneItemsApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<QueuedJob> getQueuedSceneItemWithHttpInfo(UUID id) throws ApiException {
+    public ApiResponse<GetQueuedSceneItem200Response> getQueuedSceneItemWithHttpInfo(UUID id) throws ApiException {
         okhttp3.Call localVarCall = getQueuedSceneItemValidateBeforeCall(id, null);
-        Type localVarReturnType = new TypeToken<QueuedJob>(){}.getType();
+        Type localVarReturnType = new TypeToken<GetQueuedSceneItem200Response>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -499,7 +497,8 @@ public class SceneItemsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 301 </td><td> Moved Permanently </td><td>  -  </td></tr>
@@ -508,10 +507,10 @@ public class SceneItemsApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getQueuedSceneItemAsync(UUID id, final ApiCallback<QueuedJob> _callback) throws ApiException {
+    public okhttp3.Call getQueuedSceneItemAsync(UUID id, final ApiCallback<GetQueuedSceneItem200Response> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getQueuedSceneItemValidateBeforeCall(id, _callback);
-        Type localVarReturnType = new TypeToken<QueuedJob>(){}.getType();
+        Type localVarReturnType = new TypeToken<GetQueuedSceneItem200Response>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -522,7 +521,8 @@ public class SceneItemsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -532,7 +532,6 @@ public class SceneItemsApi {
      */
     public okhttp3.Call getQueuedSceneItemDeletionCall(UUID id, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -549,7 +548,7 @@ public class SceneItemsApi {
 
         // create path and map variables
         String localVarPath = "/queued-scene-item-deletions/{id}"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -566,7 +565,6 @@ public class SceneItemsApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -579,15 +577,12 @@ public class SceneItemsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getQueuedSceneItemDeletionValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling getQueuedSceneItemDeletion(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = getQueuedSceneItemDeletionCall(id, _callback);
-        return localVarCall;
+        return getQueuedSceneItemDeletionCall(id, _callback);
 
     }
 
@@ -598,7 +593,8 @@ public class SceneItemsApi {
      * @return QueuedJob
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -618,7 +614,8 @@ public class SceneItemsApi {
      * @return ApiResponse&lt;QueuedJob&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -640,7 +637,8 @@ public class SceneItemsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -663,7 +661,8 @@ public class SceneItemsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -673,7 +672,6 @@ public class SceneItemsApi {
      */
     public okhttp3.Call getSceneItemCall(UUID id, String fieldsSceneItem, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -690,7 +688,7 @@ public class SceneItemsApi {
 
         // create path and map variables
         String localVarPath = "/scene-items/{id}"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -711,7 +709,6 @@ public class SceneItemsApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -724,15 +721,12 @@ public class SceneItemsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getSceneItemValidateBeforeCall(UUID id, String fieldsSceneItem, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling getSceneItem(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = getSceneItemCall(id, fieldsSceneItem, _callback);
-        return localVarCall;
+        return getSceneItemCall(id, fieldsSceneItem, _callback);
 
     }
 
@@ -744,7 +738,8 @@ public class SceneItemsApi {
      * @return SceneItem
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -765,7 +760,8 @@ public class SceneItemsApi {
      * @return ApiResponse&lt;SceneItem&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -788,7 +784,8 @@ public class SceneItemsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -815,7 +812,8 @@ public class SceneItemsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -825,7 +823,6 @@ public class SceneItemsApi {
      */
     public okhttp3.Call getSceneItemsCall(UUID id, String pageCursor, Integer pageSize, String filterSource, String filterSuppliedId, UUID filterParent, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -842,7 +839,7 @@ public class SceneItemsApi {
 
         // create path and map variables
         String localVarPath = "/scenes/{id}/scene-items"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -879,7 +876,6 @@ public class SceneItemsApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -892,15 +888,12 @@ public class SceneItemsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getSceneItemsValidateBeforeCall(UUID id, String pageCursor, Integer pageSize, String filterSource, String filterSuppliedId, UUID filterParent, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling getSceneItems(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = getSceneItemsCall(id, pageCursor, pageSize, filterSource, filterSuppliedId, filterParent, _callback);
-        return localVarCall;
+        return getSceneItemsCall(id, pageCursor, pageSize, filterSource, filterSuppliedId, filterParent, _callback);
 
     }
 
@@ -916,7 +909,8 @@ public class SceneItemsApi {
      * @return SceneItemList
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -941,7 +935,8 @@ public class SceneItemsApi {
      * @return ApiResponse&lt;SceneItemList&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -968,7 +963,8 @@ public class SceneItemsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -991,7 +987,8 @@ public class SceneItemsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -1002,7 +999,6 @@ public class SceneItemsApi {
      */
     public okhttp3.Call updateSceneItemCall(UUID id, UpdateSceneItemRequest updateSceneItemRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -1019,7 +1015,7 @@ public class SceneItemsApi {
 
         // create path and map variables
         String localVarPath = "/scene-items/{id}"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1049,20 +1045,17 @@ public class SceneItemsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call updateSceneItemValidateBeforeCall(UUID id, UpdateSceneItemRequest updateSceneItemRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling updateSceneItem(Async)");
         }
-        
+
         // verify the required parameter 'updateSceneItemRequest' is set
         if (updateSceneItemRequest == null) {
             throw new ApiException("Missing the required parameter 'updateSceneItemRequest' when calling updateSceneItem(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = updateSceneItemCall(id, updateSceneItemRequest, _callback);
-        return localVarCall;
+        return updateSceneItemCall(id, updateSceneItemRequest, _callback);
 
     }
 
@@ -1074,7 +1067,8 @@ public class SceneItemsApi {
      * @return QueuedJob
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -1096,7 +1090,8 @@ public class SceneItemsApi {
      * @return ApiResponse&lt;QueuedJob&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -1120,7 +1115,8 @@ public class SceneItemsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>

@@ -85,7 +85,8 @@ public class SceneItemOverridesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -96,7 +97,6 @@ public class SceneItemOverridesApi {
      */
     public okhttp3.Call createSceneItemOverrideCall(UUID id, CreateSceneItemOverrideRequest createSceneItemOverrideRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -113,7 +113,7 @@ public class SceneItemOverridesApi {
 
         // create path and map variables
         String localVarPath = "/scene-views/{id}/scene-item-overrides"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -143,20 +143,17 @@ public class SceneItemOverridesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call createSceneItemOverrideValidateBeforeCall(UUID id, CreateSceneItemOverrideRequest createSceneItemOverrideRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling createSceneItemOverride(Async)");
         }
-        
+
         // verify the required parameter 'createSceneItemOverrideRequest' is set
         if (createSceneItemOverrideRequest == null) {
             throw new ApiException("Missing the required parameter 'createSceneItemOverrideRequest' when calling createSceneItemOverride(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = createSceneItemOverrideCall(id, createSceneItemOverrideRequest, _callback);
-        return localVarCall;
+        return createSceneItemOverrideCall(id, createSceneItemOverrideRequest, _callback);
 
     }
 
@@ -168,7 +165,8 @@ public class SceneItemOverridesApi {
      * @return SceneItemOverride
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -190,7 +188,8 @@ public class SceneItemOverridesApi {
      * @return ApiResponse&lt;SceneItemOverride&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -214,7 +213,8 @@ public class SceneItemOverridesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -237,7 +237,8 @@ public class SceneItemOverridesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -247,7 +248,6 @@ public class SceneItemOverridesApi {
      */
     public okhttp3.Call deleteSceneItemOverrideCall(UUID id, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -264,7 +264,7 @@ public class SceneItemOverridesApi {
 
         // create path and map variables
         String localVarPath = "/scene-item-overrides/{id}"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -281,7 +281,6 @@ public class SceneItemOverridesApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -294,15 +293,12 @@ public class SceneItemOverridesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call deleteSceneItemOverrideValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling deleteSceneItemOverride(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = deleteSceneItemOverrideCall(id, _callback);
-        return localVarCall;
+        return deleteSceneItemOverrideCall(id, _callback);
 
     }
 
@@ -312,7 +308,8 @@ public class SceneItemOverridesApi {
      * @param id The &#x60;scene-item-override&#x60; ID. (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -331,7 +328,8 @@ public class SceneItemOverridesApi {
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -352,7 +350,8 @@ public class SceneItemOverridesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -375,7 +374,8 @@ public class SceneItemOverridesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -385,7 +385,6 @@ public class SceneItemOverridesApi {
      */
     public okhttp3.Call getSceneItemOverridesCall(UUID id, String pageCursor, Integer pageSize, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -402,7 +401,7 @@ public class SceneItemOverridesApi {
 
         // create path and map variables
         String localVarPath = "/scene-views/{id}/scene-item-overrides"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -427,7 +426,6 @@ public class SceneItemOverridesApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -440,15 +438,12 @@ public class SceneItemOverridesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getSceneItemOverridesValidateBeforeCall(UUID id, String pageCursor, Integer pageSize, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling getSceneItemOverrides(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = getSceneItemOverridesCall(id, pageCursor, pageSize, _callback);
-        return localVarCall;
+        return getSceneItemOverridesCall(id, pageCursor, pageSize, _callback);
 
     }
 
@@ -461,7 +456,8 @@ public class SceneItemOverridesApi {
      * @return SceneItemOverrideList
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -483,7 +479,8 @@ public class SceneItemOverridesApi {
      * @return ApiResponse&lt;SceneItemOverrideList&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -507,7 +504,8 @@ public class SceneItemOverridesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -530,7 +528,8 @@ public class SceneItemOverridesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -541,7 +540,6 @@ public class SceneItemOverridesApi {
      */
     public okhttp3.Call updateSceneItemOverrideCall(UUID id, UpdateSceneItemOverrideRequest updateSceneItemOverrideRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -558,7 +556,7 @@ public class SceneItemOverridesApi {
 
         // create path and map variables
         String localVarPath = "/scene-item-overrides/{id}"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -588,20 +586,17 @@ public class SceneItemOverridesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call updateSceneItemOverrideValidateBeforeCall(UUID id, UpdateSceneItemOverrideRequest updateSceneItemOverrideRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling updateSceneItemOverride(Async)");
         }
-        
+
         // verify the required parameter 'updateSceneItemOverrideRequest' is set
         if (updateSceneItemOverrideRequest == null) {
             throw new ApiException("Missing the required parameter 'updateSceneItemOverrideRequest' when calling updateSceneItemOverride(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = updateSceneItemOverrideCall(id, updateSceneItemOverrideRequest, _callback);
-        return localVarCall;
+        return updateSceneItemOverrideCall(id, updateSceneItemOverrideRequest, _callback);
 
     }
 
@@ -613,7 +608,8 @@ public class SceneItemOverridesApi {
      * @return SceneItemOverride
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -635,7 +631,8 @@ public class SceneItemOverridesApi {
      * @return ApiResponse&lt;SceneItemOverride&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -659,7 +656,8 @@ public class SceneItemOverridesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>

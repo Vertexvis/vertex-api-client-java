@@ -35,7 +35,7 @@ class SceneCreator {
                                                 new UpdateSceneRequestDataAttributes()
                                                         .state(UpdateSceneRequestDataAttributes.StateEnum.COMMIT)
                                                         .camera(
-                                                                new AnyOfPerspectiveCameraOrthographicCameraCameraFit(
+                                                                new UpdateSceneViewRequestDataAttributesCamera(
                                                                         new CameraFit().type(FIT_VISIBLE_SCENE_ITEMS))))));
     }
 
@@ -48,37 +48,36 @@ class SceneCreator {
         UUID revisionId = p.getData().getRelationships().getPartRevisions().get(0).getId();
         var name = Optional.of(p.getData().getAttributes()).map(PartDataAttributes::getName).orElse("ACube");
         Scene scene =
-                scenes.createScene(
-                        new CreateSceneRequest()
-                                .data(
-                                        new CreateSceneRequestData()
-                                                .type("scene")
-                                                .attributes(new CreateSceneRequestDataAttributes().name(name).treeEnabled(true))));
+            scenes.createScene(
+                new CreateSceneRequest()
+                    .data(
+                        new CreateSceneRequestData()
+                            .type("scene")
+                            .attributes(new CreateSceneRequestDataAttributes().name(name).treeEnabled(true))));
 
         QueuedJob job =
-                sceneItems.createSceneItem(
-                        scene.getData().getId(),
-                        new CreateSceneItemRequest()
-                                .data(
-                                        new CreateSceneItemRequestData()
-                                                .type("scene-item")
-                                                .attributes(
-                                                        new CreateSceneItemRequestDataAttributes().suppliedId("my-part"))
-                                                .relationships(
-                                                        new CreateSceneItemRequestDataRelationships()
-                                                                .source(
-                                                                        new AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationshipPartRenditionRelationship(
-                                                                                new PartRevisionRelationship()
-                                                                                        .data(
-                                                                                                new PartDataRelationshipsPartRevisions()
-                                                                                                        .type(
-                                                                                                                PartDataRelationshipsPartRevisions.TypeEnum
-                                                                                                                        .PART_REVISION)
-                                                                                                        .id(revisionId)))))));
+            sceneItems.createSceneItem(
+                scene.getData().getId(),
+                new CreateSceneItemRequest()
+                    .data(
+                        new CreateSceneItemRequestData()
+                            .type("scene-item")
+                            .attributes(
+                                new CreateSceneItemRequestDataAttributes().suppliedId("my-part"))
+                                    .relationships(
+                                        new CreateSceneItemRequestDataRelationships()
+                                            .source(
+                                                new CreateSceneItemRequestDataRelationshipsSource(
+                                                    new PartRevisionRelationship()
+                                                        .data(
+                                                            new PartDataRelationshipsPartRevisionsInner()
+                                                                .type(
+                                                                    PartDataRelationshipsPartRevisionsInner.TypeEnum
+                                                                        .PART_REVISION)
+                                                                        .id(revisionId)))))));
 
-        JobPoller.pollUntilJobDone(
-                "scene-item", () -> sceneItems.getQueuedSceneItem(job.getData().getId()));
-
+        JobPoller.pollSceneJobUntilDone(
+            "queued-scene-item", () -> sceneItems.getQueuedSceneItem(job.getData().getId()));
 
         return commitChanges ? commitSceneChanges(scene.getData().getId()) : scene;
     }

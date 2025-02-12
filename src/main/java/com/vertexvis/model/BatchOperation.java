@@ -14,25 +14,48 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.BatchOperationRef;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import com.vertexvis.model.CreateSceneItemRequestData;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * BatchOperation
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
 public class BatchOperation {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
-  private AnyOfCreateSceneItemRequestData data;
+  @javax.annotation.Nonnull
+  private CreateSceneItemRequestData data;
 
   /**
    * Batch operation type type.
@@ -77,86 +100,82 @@ public class BatchOperation {
         return OpEnum.fromValue(value);
       }
     }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      OpEnum.fromValue(value);
+    }
   }
 
   public static final String SERIALIZED_NAME_OP = "op";
   @SerializedName(SERIALIZED_NAME_OP)
+  @javax.annotation.Nonnull
   private OpEnum op;
 
   public static final String SERIALIZED_NAME_REF = "ref";
   @SerializedName(SERIALIZED_NAME_REF)
+  @javax.annotation.Nonnull
   private BatchOperationRef ref;
 
-  public BatchOperation() { 
+  public BatchOperation() {
   }
 
-  public BatchOperation data(AnyOfCreateSceneItemRequestData data) {
-    
+  public BatchOperation data(@javax.annotation.Nonnull CreateSceneItemRequestData data) {
     this.data = data;
     return this;
   }
 
-   /**
-   * Operation&#39;s primary data.
+  /**
+   * Get data
    * @return data
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(required = true, value = "Operation's primary data.")
-
-  public AnyOfCreateSceneItemRequestData getData() {
+   */
+  @javax.annotation.Nonnull
+  public CreateSceneItemRequestData getData() {
     return data;
   }
 
-
-  public void setData(AnyOfCreateSceneItemRequestData data) {
+  public void setData(@javax.annotation.Nonnull CreateSceneItemRequestData data) {
     this.data = data;
   }
 
 
-  public BatchOperation op(OpEnum op) {
-    
+  public BatchOperation op(@javax.annotation.Nonnull OpEnum op) {
     this.op = op;
     return this;
   }
 
-   /**
+  /**
    * Batch operation type type.
    * @return op
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "add", required = true, value = "Batch operation type type.")
-
   public OpEnum getOp() {
     return op;
   }
 
-
-  public void setOp(OpEnum op) {
+  public void setOp(@javax.annotation.Nonnull OpEnum op) {
     this.op = op;
   }
 
 
-  public BatchOperation ref(BatchOperationRef ref) {
-    
+  public BatchOperation ref(@javax.annotation.Nonnull BatchOperationRef ref) {
     this.ref = ref;
     return this;
   }
 
-   /**
+  /**
    * Get ref
    * @return ref
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
   public BatchOperationRef getRef() {
     return ref;
   }
 
-
-  public void setRef(BatchOperationRef ref) {
+  public void setRef(@javax.annotation.Nonnull BatchOperationRef ref) {
     this.ref = ref;
   }
+
 
 
   @Override
@@ -200,5 +219,110 @@ public class BatchOperation {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("data");
+    openapiFields.add("op");
+    openapiFields.add("ref");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("data");
+    openapiRequiredFields.add("op");
+    openapiRequiredFields.add("ref");
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to BatchOperation
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!BatchOperation.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in BatchOperation is not found in the empty JSON string", BatchOperation.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!BatchOperation.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `BatchOperation` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : BatchOperation.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      // validate the required field `data`
+      CreateSceneItemRequestData.validateJsonElement(jsonObj.get("data"));
+      if (!jsonObj.get("op").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `op` to be a primitive type in the JSON string but got `%s`", jsonObj.get("op").toString()));
+      }
+      // validate the required field `op`
+      OpEnum.validateJsonElement(jsonObj.get("op"));
+      // validate the required field `ref`
+      BatchOperationRef.validateJsonElement(jsonObj.get("ref"));
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!BatchOperation.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'BatchOperation' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<BatchOperation> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(BatchOperation.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<BatchOperation>() {
+           @Override
+           public void write(JsonWriter out, BatchOperation value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public BatchOperation read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+  /**
+   * Create an instance of BatchOperation given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of BatchOperation
+   * @throws IOException if the JSON string is invalid with respect to BatchOperation
+   */
+  public static BatchOperation fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, BatchOperation.class);
+  }
+
+  /**
+   * Convert an instance of BatchOperation to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

@@ -14,23 +14,44 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.QueryById;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * QueryByCollectionDataAttributes
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
 public class QueryByCollectionDataAttributes {
   /**
    * Resource object type.
@@ -77,68 +98,71 @@ public class QueryByCollectionDataAttributes {
         return TypeEnum.fromValue(value);
       }
     }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      TypeEnum.fromValue(value);
+    }
   }
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
+  @javax.annotation.Nonnull
   private TypeEnum type;
 
   public static final String SERIALIZED_NAME_VALUES = "values";
   @SerializedName(SERIALIZED_NAME_VALUES)
+  @javax.annotation.Nonnull
   private List<QueryById> values = new ArrayList<>();
 
-  public QueryByCollectionDataAttributes() { 
+  public QueryByCollectionDataAttributes() {
   }
 
-  public QueryByCollectionDataAttributes type(TypeEnum type) {
-    
+  public QueryByCollectionDataAttributes type(@javax.annotation.Nonnull TypeEnum type) {
     this.type = type;
     return this;
   }
 
-   /**
+  /**
    * Resource object type.
    * @return type
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "and", required = true, value = "Resource object type.")
-
   public TypeEnum getType() {
     return type;
   }
 
-
-  public void setType(TypeEnum type) {
+  public void setType(@javax.annotation.Nonnull TypeEnum type) {
     this.type = type;
   }
 
 
-  public QueryByCollectionDataAttributes values(List<QueryById> values) {
-    
+  public QueryByCollectionDataAttributes values(@javax.annotation.Nonnull List<QueryById> values) {
     this.values = values;
     return this;
   }
 
   public QueryByCollectionDataAttributes addValuesItem(QueryById valuesItem) {
+    if (this.values == null) {
+      this.values = new ArrayList<>();
+    }
     this.values.add(valuesItem);
     return this;
   }
 
-   /**
+  /**
    * Query &#x60;scene-items&#x60;.
    * @return values
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Query `scene-items`.")
-
   public List<QueryById> getValues() {
     return values;
   }
 
-
-  public void setValues(List<QueryById> values) {
+  public void setValues(@javax.annotation.Nonnull List<QueryById> values) {
     this.values = values;
   }
+
 
 
   @Override
@@ -180,5 +204,114 @@ public class QueryByCollectionDataAttributes {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("type");
+    openapiFields.add("values");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("type");
+    openapiRequiredFields.add("values");
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to QueryByCollectionDataAttributes
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!QueryByCollectionDataAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in QueryByCollectionDataAttributes is not found in the empty JSON string", QueryByCollectionDataAttributes.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!QueryByCollectionDataAttributes.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `QueryByCollectionDataAttributes` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : QueryByCollectionDataAttributes.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (!jsonObj.get("type").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
+      }
+      // validate the required field `type`
+      TypeEnum.validateJsonElement(jsonObj.get("type"));
+      // ensure the json data is an array
+      if (!jsonObj.get("values").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `values` to be an array in the JSON string but got `%s`", jsonObj.get("values").toString()));
+      }
+
+      JsonArray jsonArrayvalues = jsonObj.getAsJsonArray("values");
+      // validate the required field `values` (array)
+      for (int i = 0; i < jsonArrayvalues.size(); i++) {
+        QueryById.validateJsonElement(jsonArrayvalues.get(i));
+      };
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!QueryByCollectionDataAttributes.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'QueryByCollectionDataAttributes' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<QueryByCollectionDataAttributes> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(QueryByCollectionDataAttributes.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<QueryByCollectionDataAttributes>() {
+           @Override
+           public void write(JsonWriter out, QueryByCollectionDataAttributes value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public QueryByCollectionDataAttributes read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+  /**
+   * Create an instance of QueryByCollectionDataAttributes given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of QueryByCollectionDataAttributes
+   * @throws IOException if the JSON string is invalid with respect to QueryByCollectionDataAttributes
+   */
+  public static QueryByCollectionDataAttributes fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, QueryByCollectionDataAttributes.class);
+  }
+
+  /**
+   * Convert an instance of QueryByCollectionDataAttributes to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

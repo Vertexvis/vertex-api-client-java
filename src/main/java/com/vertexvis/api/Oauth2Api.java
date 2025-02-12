@@ -86,7 +86,8 @@ public class Oauth2Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -95,7 +96,6 @@ public class Oauth2Api {
      */
     public okhttp3.Call adminAcceptConsentCall(String challenge, AdminConsentAcceptRequest adminConsentAcceptRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -145,15 +145,12 @@ public class Oauth2Api {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call adminAcceptConsentValidateBeforeCall(String challenge, AdminConsentAcceptRequest adminConsentAcceptRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'challenge' is set
         if (challenge == null) {
             throw new ApiException("Missing the required parameter 'challenge' when calling adminAcceptConsent(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = adminAcceptConsentCall(challenge, adminConsentAcceptRequest, _callback);
-        return localVarCall;
+        return adminAcceptConsentCall(challenge, adminConsentAcceptRequest, _callback);
 
     }
 
@@ -165,7 +162,8 @@ public class Oauth2Api {
      * @return AdminRedirectTo
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -185,7 +183,8 @@ public class Oauth2Api {
      * @return ApiResponse&lt;AdminRedirectTo&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -207,7 +206,8 @@ public class Oauth2Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -229,7 +229,8 @@ public class Oauth2Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -238,7 +239,6 @@ public class Oauth2Api {
      */
     public okhttp3.Call adminAcceptLoginCall(String loginChallenge, AdminLoginAcceptRequest adminLoginAcceptRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -288,20 +288,17 @@ public class Oauth2Api {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call adminAcceptLoginValidateBeforeCall(String loginChallenge, AdminLoginAcceptRequest adminLoginAcceptRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'loginChallenge' is set
         if (loginChallenge == null) {
             throw new ApiException("Missing the required parameter 'loginChallenge' when calling adminAcceptLogin(Async)");
         }
-        
+
         // verify the required parameter 'adminLoginAcceptRequest' is set
         if (adminLoginAcceptRequest == null) {
             throw new ApiException("Missing the required parameter 'adminLoginAcceptRequest' when calling adminAcceptLogin(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = adminAcceptLoginCall(loginChallenge, adminLoginAcceptRequest, _callback);
-        return localVarCall;
+        return adminAcceptLoginCall(loginChallenge, adminLoginAcceptRequest, _callback);
 
     }
 
@@ -313,7 +310,8 @@ public class Oauth2Api {
      * @return AdminRedirectTo
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -333,7 +331,8 @@ public class Oauth2Api {
      * @return ApiResponse&lt;AdminRedirectTo&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -355,7 +354,8 @@ public class Oauth2Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
@@ -380,7 +380,8 @@ public class Oauth2Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Invalid or missing request. </td><td>  -  </td></tr>
@@ -388,7 +389,6 @@ public class Oauth2Api {
      */
     public okhttp3.Call createTokenCall(String grantType, String scope, String code, String redirectUri, String refreshToken, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -454,15 +454,12 @@ public class Oauth2Api {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call createTokenValidateBeforeCall(String grantType, String scope, String code, String redirectUri, String refreshToken, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'grantType' is set
         if (grantType == null) {
             throw new ApiException("Missing the required parameter 'grantType' when calling createToken(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = createTokenCall(grantType, scope, code, redirectUri, refreshToken, _callback);
-        return localVarCall;
+        return createTokenCall(grantType, scope, code, redirectUri, refreshToken, _callback);
 
     }
 
@@ -477,7 +474,8 @@ public class Oauth2Api {
      * @return OAuth2Token
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Invalid or missing request. </td><td>  -  </td></tr>
@@ -499,7 +497,8 @@ public class Oauth2Api {
      * @return ApiResponse&lt;OAuth2Token&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Invalid or missing request. </td><td>  -  </td></tr>
@@ -523,7 +522,8 @@ public class Oauth2Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Invalid or missing request. </td><td>  -  </td></tr>
@@ -543,14 +543,14 @@ public class Oauth2Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call revokeTokenCall(RevokeOAuth2TokenRequest revokeOAuth2TokenRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -575,7 +575,6 @@ public class Oauth2Api {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -596,15 +595,12 @@ public class Oauth2Api {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call revokeTokenValidateBeforeCall(RevokeOAuth2TokenRequest revokeOAuth2TokenRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'revokeOAuth2TokenRequest' is set
         if (revokeOAuth2TokenRequest == null) {
             throw new ApiException("Missing the required parameter 'revokeOAuth2TokenRequest' when calling revokeToken(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = revokeTokenCall(revokeOAuth2TokenRequest, _callback);
-        return localVarCall;
+        return revokeTokenCall(revokeOAuth2TokenRequest, _callback);
 
     }
 
@@ -614,7 +610,8 @@ public class Oauth2Api {
      * @param revokeOAuth2TokenRequest  (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
      </table>
@@ -630,7 +627,8 @@ public class Oauth2Api {
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
      </table>
@@ -648,7 +646,8 @@ public class Oauth2Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
      </table>

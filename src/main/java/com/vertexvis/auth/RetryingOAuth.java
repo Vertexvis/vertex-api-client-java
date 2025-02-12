@@ -48,7 +48,7 @@ public class RetryingOAuth extends OAuth implements Interceptor {
   }
 
   public void setFlow(OAuthFlow flow) {
-    if (flow == OAuthFlow.application) {
+    if (flow == OAuthFlow.APPLICATION) {
       tokenRequestBuilder.setGrantType(GrantType.CLIENT_CREDENTIALS);
     }
   }
@@ -158,7 +158,7 @@ public class RetryingOAuth extends OAuth implements Interceptor {
     @NotNull
     @Override
     public Response intercept(Chain chain) throws IOException {
-      return chain.proceed(
+        return chain.proceed(
           chain.request()
               .newBuilder().addHeader("Authorization", Credentials.basic(clientId, clientSecret))
               .build()

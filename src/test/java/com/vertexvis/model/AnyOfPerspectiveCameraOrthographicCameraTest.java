@@ -31,7 +31,7 @@ public class AnyOfPerspectiveCameraOrthographicCameraTest {
         request = request.data(data);
 
 
-        String expected = "{\"data\":{\"type\":\"scene\",\"attributes\":{\"name\":\"My name\",\"treeEnabled\":true,\"worldOrientation\":{\"up\":{\"x\":1,\"y\":0,\"z\":0},\"front\":{\"x\":2,\"y\":1,\"z\":0}}}}}";
+        String expected = "{\"data\":{\"type\":\"scene\",\"attributes\":{\"name\":\"My name\",\"treeEnabled\":true,\"worldOrientation\":{\"up\":{\"x\":1,\"y\":0,\"z\":0},\"front\":{\"x\":2,\"y\":1,\"z\":0}},\"metadata\":{}}}}";
         assertEquals(expected, new JSON().serialize(request));
     }
 
@@ -47,7 +47,7 @@ public class AnyOfPerspectiveCameraOrthographicCameraTest {
             )
         );
 
-        String expected = String.format("{\"data\":{\"type\":\"scene\",\"attributes\":{\"name\":\"%s\"}}}", name);
+        String expected = String.format("{\"data\":{\"type\":\"scene\",\"attributes\":{\"name\":\"%s\",\"metadata\":{}}}}", name);
         assertEquals(expected, new JSON().serialize(request));
     }
 }

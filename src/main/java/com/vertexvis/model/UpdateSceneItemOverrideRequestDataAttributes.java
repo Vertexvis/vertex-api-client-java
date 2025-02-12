@@ -14,7 +14,6 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -22,179 +21,184 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.ColorMaterialNullable;
 import com.vertexvis.model.Matrix4Nullable;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * UpdateSceneItemOverrideRequestDataAttributes
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
 public class UpdateSceneItemOverrideRequestDataAttributes {
   public static final String SERIALIZED_NAME_VISIBLE = "visible";
   @SerializedName(SERIALIZED_NAME_VISIBLE)
+  @javax.annotation.Nullable
   private Boolean visible;
 
   public static final String SERIALIZED_NAME_TRANSFORM = "transform";
   @SerializedName(SERIALIZED_NAME_TRANSFORM)
+  @javax.annotation.Nullable
   private Matrix4Nullable transform;
 
   public static final String SERIALIZED_NAME_MATERIAL = "material";
   @SerializedName(SERIALIZED_NAME_MATERIAL)
+  @javax.annotation.Nullable
   private ColorMaterialNullable material;
 
   public static final String SERIALIZED_NAME_SELECTED = "selected";
   @SerializedName(SERIALIZED_NAME_SELECTED)
+  @javax.annotation.Nullable
   private Boolean selected;
 
   public static final String SERIALIZED_NAME_PHANTOM = "phantom";
   @SerializedName(SERIALIZED_NAME_PHANTOM)
+  @javax.annotation.Nullable
   private Boolean phantom;
 
   public static final String SERIALIZED_NAME_END_ITEM = "endItem";
   @SerializedName(SERIALIZED_NAME_END_ITEM)
+  @javax.annotation.Nullable
   private Boolean endItem;
 
-  public UpdateSceneItemOverrideRequestDataAttributes() { 
+  public UpdateSceneItemOverrideRequestDataAttributes() {
   }
 
-  public UpdateSceneItemOverrideRequestDataAttributes visible(Boolean visible) {
-    
+  public UpdateSceneItemOverrideRequestDataAttributes visible(@javax.annotation.Nullable Boolean visible) {
     this.visible = visible;
     return this;
   }
 
-   /**
+  /**
    * Item visibility.
    * @return visible
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Item visibility.")
-
   public Boolean getVisible() {
     return visible;
   }
 
-
-  public void setVisible(Boolean visible) {
+  public void setVisible(@javax.annotation.Nullable Boolean visible) {
     this.visible = visible;
   }
 
 
-  public UpdateSceneItemOverrideRequestDataAttributes transform(Matrix4Nullable transform) {
-    
+  public UpdateSceneItemOverrideRequestDataAttributes transform(@javax.annotation.Nullable Matrix4Nullable transform) {
     this.transform = transform;
     return this;
   }
 
-   /**
+  /**
    * Get transform
    * @return transform
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public Matrix4Nullable getTransform() {
     return transform;
   }
 
-
-  public void setTransform(Matrix4Nullable transform) {
+  public void setTransform(@javax.annotation.Nullable Matrix4Nullable transform) {
     this.transform = transform;
   }
 
 
-  public UpdateSceneItemOverrideRequestDataAttributes material(ColorMaterialNullable material) {
-    
+  public UpdateSceneItemOverrideRequestDataAttributes material(@javax.annotation.Nullable ColorMaterialNullable material) {
     this.material = material;
     return this;
   }
 
-   /**
+  /**
    * Get material
    * @return material
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public ColorMaterialNullable getMaterial() {
     return material;
   }
 
-
-  public void setMaterial(ColorMaterialNullable material) {
+  public void setMaterial(@javax.annotation.Nullable ColorMaterialNullable material) {
     this.material = material;
   }
 
 
-  public UpdateSceneItemOverrideRequestDataAttributes selected(Boolean selected) {
-    
+  public UpdateSceneItemOverrideRequestDataAttributes selected(@javax.annotation.Nullable Boolean selected) {
     this.selected = selected;
     return this;
   }
 
-   /**
+  /**
    * Get selected
    * @return selected
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public Boolean getSelected() {
     return selected;
   }
 
-
-  public void setSelected(Boolean selected) {
+  public void setSelected(@javax.annotation.Nullable Boolean selected) {
     this.selected = selected;
   }
 
 
-  public UpdateSceneItemOverrideRequestDataAttributes phantom(Boolean phantom) {
-    
+  public UpdateSceneItemOverrideRequestDataAttributes phantom(@javax.annotation.Nullable Boolean phantom) {
     this.phantom = phantom;
     return this;
   }
 
-   /**
+  /**
    * Get phantom
    * @return phantom
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public Boolean getPhantom() {
     return phantom;
   }
 
-
-  public void setPhantom(Boolean phantom) {
+  public void setPhantom(@javax.annotation.Nullable Boolean phantom) {
     this.phantom = phantom;
   }
 
 
-  public UpdateSceneItemOverrideRequestDataAttributes endItem(Boolean endItem) {
-    
+  public UpdateSceneItemOverrideRequestDataAttributes endItem(@javax.annotation.Nullable Boolean endItem) {
     this.endItem = endItem;
     return this;
   }
 
-   /**
+  /**
    * Get endItem
    * @return endItem
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public Boolean getEndItem() {
     return endItem;
   }
 
-
-  public void setEndItem(Boolean endItem) {
+  public void setEndItem(@javax.annotation.Nullable Boolean endItem) {
     this.endItem = endItem;
   }
+
 
 
   @Override
@@ -255,5 +259,102 @@ public class UpdateSceneItemOverrideRequestDataAttributes {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("visible");
+    openapiFields.add("transform");
+    openapiFields.add("material");
+    openapiFields.add("selected");
+    openapiFields.add("phantom");
+    openapiFields.add("endItem");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to UpdateSceneItemOverrideRequestDataAttributes
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!UpdateSceneItemOverrideRequestDataAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in UpdateSceneItemOverrideRequestDataAttributes is not found in the empty JSON string", UpdateSceneItemOverrideRequestDataAttributes.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!UpdateSceneItemOverrideRequestDataAttributes.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateSceneItemOverrideRequestDataAttributes` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      // validate the optional field `transform`
+      if (jsonObj.get("transform") != null && !jsonObj.get("transform").isJsonNull()) {
+        Matrix4Nullable.validateJsonElement(jsonObj.get("transform"));
+      }
+      // validate the optional field `material`
+      if (jsonObj.get("material") != null && !jsonObj.get("material").isJsonNull()) {
+        ColorMaterialNullable.validateJsonElement(jsonObj.get("material"));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!UpdateSceneItemOverrideRequestDataAttributes.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'UpdateSceneItemOverrideRequestDataAttributes' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<UpdateSceneItemOverrideRequestDataAttributes> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(UpdateSceneItemOverrideRequestDataAttributes.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<UpdateSceneItemOverrideRequestDataAttributes>() {
+           @Override
+           public void write(JsonWriter out, UpdateSceneItemOverrideRequestDataAttributes value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public UpdateSceneItemOverrideRequestDataAttributes read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+  /**
+   * Create an instance of UpdateSceneItemOverrideRequestDataAttributes given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of UpdateSceneItemOverrideRequestDataAttributes
+   * @throws IOException if the JSON string is invalid with respect to UpdateSceneItemOverrideRequestDataAttributes
+   */
+  public static UpdateSceneItemOverrideRequestDataAttributes fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, UpdateSceneItemOverrideRequestDataAttributes.class);
+  }
+
+  /**
+   * Convert an instance of UpdateSceneItemOverrideRequestDataAttributes to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

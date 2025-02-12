@@ -10,10 +10,10 @@ public class AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransfo
 
   @Test
   void serializesChangeVisibilityOperation() {
-    AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransformOpClearTransformOpSelectOpDeselectOperationClearRenOpViewDefaultRenOpViewRenByIdOpViewRenBySuppliedIdOpViewRepByIdOpViewRepByPredefinedIdOpClearRepOp
+    SceneOperationOperationsInner
         op
         =
-        new AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransformOpClearTransformOpSelectOpDeselectOperationClearRenOpViewDefaultRenOpViewRenByIdOpViewRenBySuppliedIdOpViewRepByIdOpViewRepByPredefinedIdOpClearRepOp(
+        new SceneOperationOperationsInner(
             new ChangeVisibilityOp().type(
                 ChangeVisibilityOp.TypeEnum.CHANGE_VISIBILITY).visible(false));
 
@@ -24,10 +24,10 @@ public class AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransfo
 
   @Test
   void serializesChangeMaterialOperation() {
-    AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransformOpClearTransformOpSelectOpDeselectOperationClearRenOpViewDefaultRenOpViewRenByIdOpViewRenBySuppliedIdOpViewRepByIdOpViewRepByPredefinedIdOpClearRepOp
+    SceneOperationOperationsInner
         op
         =
-        new AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransformOpClearTransformOpSelectOpDeselectOperationClearRenOpViewDefaultRenOpViewRenByIdOpViewRenBySuppliedIdOpViewRepByIdOpViewRepByPredefinedIdOpClearRepOp(
+        new SceneOperationOperationsInner(
             new ChangeMaterialOp().type(ChangeMaterialOp.TypeEnum.CHANGE_MATERIAL)
                 .material(new ColorMaterial()));
 
@@ -38,10 +38,10 @@ public class AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransfo
 
   @Test
   void serializesClearMaterialOperation() {
-    AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransformOpClearTransformOpSelectOpDeselectOperationClearRenOpViewDefaultRenOpViewRenByIdOpViewRenBySuppliedIdOpViewRepByIdOpViewRepByPredefinedIdOpClearRepOp
+    SceneOperationOperationsInner
         op
         =
-        new AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransformOpClearTransformOpSelectOpDeselectOperationClearRenOpViewDefaultRenOpViewRenByIdOpViewRenBySuppliedIdOpViewRepByIdOpViewRepByPredefinedIdOpClearRepOp(
+        new SceneOperationOperationsInner(
             new ClearMaterialOp().type(ClearMaterialOp.TypeEnum.CLEAR_MATERIAL));
 
     String expected = "{\"type\":\"clear-material\"}";
@@ -51,10 +51,10 @@ public class AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransfo
 
   @Test
   void serializesChangeTransformOperation() {
-    AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransformOpClearTransformOpSelectOpDeselectOperationClearRenOpViewDefaultRenOpViewRenByIdOpViewRenBySuppliedIdOpViewRepByIdOpViewRepByPredefinedIdOpClearRepOp
+    SceneOperationOperationsInner
         op
         =
-        new AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransformOpClearTransformOpSelectOpDeselectOperationClearRenOpViewDefaultRenOpViewRenByIdOpViewRenBySuppliedIdOpViewRepByIdOpViewRepByPredefinedIdOpClearRepOp(
+        new SceneOperationOperationsInner(
             new ChangeTransformOp().type(ChangeTransformOp.TypeEnum.CHANGE_TRANSFORM)
                 .transform(new Matrix4()));
 
@@ -65,10 +65,10 @@ public class AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransfo
 
   @Test
   void serializesClearTransformOperation() {
-    AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransformOpClearTransformOpSelectOpDeselectOperationClearRenOpViewDefaultRenOpViewRenByIdOpViewRenBySuppliedIdOpViewRepByIdOpViewRepByPredefinedIdOpClearRepOp
+    SceneOperationOperationsInner
         op
         =
-        new AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransformOpClearTransformOpSelectOpDeselectOperationClearRenOpViewDefaultRenOpViewRenByIdOpViewRenBySuppliedIdOpViewRepByIdOpViewRepByPredefinedIdOpClearRepOp(
+        new SceneOperationOperationsInner(
             new ClearTransformOp().type(ClearTransformOp.TypeEnum.CLEAR_TRANSFORM));
 
     String expected = "{\"type\":\"clear-transform\"}";
@@ -78,10 +78,10 @@ public class AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransfo
 
   @Test
   void serializesSelectOperation() {
-    AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransformOpClearTransformOpSelectOpDeselectOperationClearRenOpViewDefaultRenOpViewRenByIdOpViewRenBySuppliedIdOpViewRepByIdOpViewRepByPredefinedIdOpClearRepOp
+    SceneOperationOperationsInner
         op
         =
-        new AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransformOpClearTransformOpSelectOpDeselectOperationClearRenOpViewDefaultRenOpViewRenByIdOpViewRenBySuppliedIdOpViewRepByIdOpViewRepByPredefinedIdOpClearRepOp(
+        new SceneOperationOperationsInner(
             new SelectOp().type(SelectOp.TypeEnum.SELECT));
 
     String expected = "{\"type\":\"select\"}";
@@ -91,10 +91,10 @@ public class AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransfo
 
   @Test
   void serializesDeselectOperation() {
-    AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransformOpClearTransformOpSelectOpDeselectOperationClearRenOpViewDefaultRenOpViewRenByIdOpViewRenBySuppliedIdOpViewRepByIdOpViewRepByPredefinedIdOpClearRepOp
+    SceneOperationOperationsInner
         op
         =
-        new AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransformOpClearTransformOpSelectOpDeselectOperationClearRenOpViewDefaultRenOpViewRenByIdOpViewRenBySuppliedIdOpViewRepByIdOpViewRepByPredefinedIdOpClearRepOp(
+        new SceneOperationOperationsInner(
             new DeselectOperation().type(DeselectOperation.TypeEnum.DESELECT));
 
     String expected = "{\"type\":\"deselect\"}";

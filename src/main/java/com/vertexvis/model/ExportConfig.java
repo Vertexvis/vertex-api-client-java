@@ -14,52 +14,69 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.CADExportConfig;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * Describes the options for configuring a file export.
  */
-@ApiModel(description = "Describes the options for configuring a file export.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
 public class ExportConfig {
   public static final String SERIALIZED_NAME_FORMAT = "format";
   @SerializedName(SERIALIZED_NAME_FORMAT)
+  @javax.annotation.Nonnull
   protected String format;
 
-  public ExportConfig() { 
+  public ExportConfig() {
     this.format = this.getClass().getSimpleName();
   }
 
-  public ExportConfig format(String format) {
-    
+  public ExportConfig format(@javax.annotation.Nonnull String format) {
     this.format = format;
     return this;
   }
 
-   /**
+  /**
    * Get format
    * @return format
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "jt", required = true, value = "")
-
   public String getFormat() {
     return format;
   }
 
-
-  public void setFormat(String format) {
+  public void setFormat(@javax.annotation.Nonnull String format) {
     this.format = format;
   }
+
 
 
   @Override
@@ -99,5 +116,62 @@ public class ExportConfig {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("format");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("format");
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to ExportConfig
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!ExportConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ExportConfig is not found in the empty JSON string", ExportConfig.openapiRequiredFields.toString()));
+        }
+      }
+
+      String discriminatorValue = jsonElement.getAsJsonObject().get("format").getAsString();
+      switch (discriminatorValue) {
+        case "CADExportConfig":
+          CADExportConfig.validateJsonElement(jsonElement);
+          break;
+        default:
+          throw new IllegalArgumentException(String.format("The value of the `format` field `%s` does not match any key defined in the discriminator's mapping.", discriminatorValue));
+      }
+  }
+
+
+  /**
+   * Create an instance of ExportConfig given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ExportConfig
+   * @throws IOException if the JSON string is invalid with respect to ExportConfig
+   */
+  public static ExportConfig fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ExportConfig.class);
+  }
+
+  /**
+   * Convert an instance of ExportConfig to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

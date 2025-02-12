@@ -14,8 +14,8 @@ public class AnyOfGeometrySetRelationshipPartRevisionRelationshipTest {
   @Test
   void serializesGeometrySetRelationships() {
     UUID id = UUID.randomUUID();
-    AnyOfGeometrySetRelationshipPartRevisionRelationship rel =
-        new AnyOfGeometrySetRelationshipPartRevisionRelationship(
+    UpdateSceneItemRequestDataRelationshipsSource rel =
+        new UpdateSceneItemRequestDataRelationshipsSource(
             new GeometrySetRelationship()
                 .data(new GeometrySetRelationshipData().id(id)
                     .type(GeometrySetRelationshipData.TypeEnum.GEOMETRY_SET)));
@@ -41,16 +41,16 @@ public class AnyOfGeometrySetRelationshipPartRevisionRelationshipTest {
             .data(new GeometrySetRelationshipData().id(id)
                 .type(GeometrySetRelationshipData.TypeEnum.GEOMETRY_SET));
 
-    assertEquals(result.getSource().getRel(), expected);
-    assertEquals(result.getSource().getGeometrySetRel(), expected);
+    assertEquals(result.getSource().getActualInstance(), expected);
+    assertEquals(result.getSource().getGeometrySetRelationship(), expected);
   }
 
   @Test
   void serializesPartRevisionRelationships() {
     UUID id = UUID.randomUUID();
 
-    AnyOfGeometrySetRelationshipPartRevisionRelationship rel =
-        new AnyOfGeometrySetRelationshipPartRevisionRelationship(
+    UpdateSceneItemRequestDataRelationshipsSource rel =
+        new UpdateSceneItemRequestDataRelationshipsSource(
             new PartRevisionRelationship()
                 .data(new PartDataRelationshipsPartRevisions().id(id)
                     .type(PartDataRelationshipsPartRevisions.TypeEnum.PART_REVISION)));
@@ -76,7 +76,7 @@ public class AnyOfGeometrySetRelationshipPartRevisionRelationshipTest {
             .data(new PartDataRelationshipsPartRevisions().id(id)
                 .type(PartDataRelationshipsPartRevisions.TypeEnum.PART_REVISION));
 
-    assertEquals(result.getSource().getRel(), expected);
-    assertEquals(result.getSource().getPartRevisionRel(), expected);
+    assertEquals(result.getSource().getActualInstance(), expected);
+    assertEquals(result.getSource().getPartRevisionRelationship(), expected);
   }
 }

@@ -87,7 +87,8 @@ public class PartRevisionsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -97,7 +98,6 @@ public class PartRevisionsApi {
      */
     public okhttp3.Call deletePartRevisionCall(UUID id, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -114,7 +114,7 @@ public class PartRevisionsApi {
 
         // create path and map variables
         String localVarPath = "/part-revisions/{id}"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -131,7 +131,6 @@ public class PartRevisionsApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -144,15 +143,12 @@ public class PartRevisionsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call deletePartRevisionValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling deletePartRevision(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = deletePartRevisionCall(id, _callback);
-        return localVarCall;
+        return deletePartRevisionCall(id, _callback);
 
     }
 
@@ -163,7 +159,8 @@ public class PartRevisionsApi {
      * @return QueuedJob
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -183,7 +180,8 @@ public class PartRevisionsApi {
      * @return ApiResponse&lt;QueuedJob&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -205,7 +203,8 @@ public class PartRevisionsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -228,7 +227,8 @@ public class PartRevisionsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -238,7 +238,6 @@ public class PartRevisionsApi {
      */
     public okhttp3.Call getPartRevisionCall(UUID id, String fieldsPartRevision, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -255,7 +254,7 @@ public class PartRevisionsApi {
 
         // create path and map variables
         String localVarPath = "/part-revisions/{id}"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -276,7 +275,6 @@ public class PartRevisionsApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -289,15 +287,12 @@ public class PartRevisionsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getPartRevisionValidateBeforeCall(UUID id, String fieldsPartRevision, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling getPartRevision(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = getPartRevisionCall(id, fieldsPartRevision, _callback);
-        return localVarCall;
+        return getPartRevisionCall(id, fieldsPartRevision, _callback);
 
     }
 
@@ -309,7 +304,8 @@ public class PartRevisionsApi {
      * @return PartRevision
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -330,7 +326,8 @@ public class PartRevisionsApi {
      * @return ApiResponse&lt;PartRevision&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -353,7 +350,8 @@ public class PartRevisionsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -378,7 +376,8 @@ public class PartRevisionsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -388,7 +387,6 @@ public class PartRevisionsApi {
      */
     public okhttp3.Call getPartRevisionsCall(UUID id, String pageCursor, Integer pageSize, String filterSuppliedId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -405,7 +403,7 @@ public class PartRevisionsApi {
 
         // create path and map variables
         String localVarPath = "/parts/{id}/part-revisions"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -434,7 +432,6 @@ public class PartRevisionsApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -447,15 +444,12 @@ public class PartRevisionsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getPartRevisionsValidateBeforeCall(UUID id, String pageCursor, Integer pageSize, String filterSuppliedId, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling getPartRevisions(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = getPartRevisionsCall(id, pageCursor, pageSize, filterSuppliedId, _callback);
-        return localVarCall;
+        return getPartRevisionsCall(id, pageCursor, pageSize, filterSuppliedId, _callback);
 
     }
 
@@ -469,7 +463,8 @@ public class PartRevisionsApi {
      * @return PartRevisionList
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -492,7 +487,8 @@ public class PartRevisionsApi {
      * @return ApiResponse&lt;PartRevisionList&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -517,7 +513,8 @@ public class PartRevisionsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -539,7 +536,8 @@ public class PartRevisionsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -549,7 +547,6 @@ public class PartRevisionsApi {
      */
     public okhttp3.Call getQueuedPartRevisionDeletionCall(UUID id, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -566,7 +563,7 @@ public class PartRevisionsApi {
 
         // create path and map variables
         String localVarPath = "/queued-part-revision-deletions/{id}"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -583,7 +580,6 @@ public class PartRevisionsApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -596,15 +592,12 @@ public class PartRevisionsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getQueuedPartRevisionDeletionValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling getQueuedPartRevisionDeletion(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = getQueuedPartRevisionDeletionCall(id, _callback);
-        return localVarCall;
+        return getQueuedPartRevisionDeletionCall(id, _callback);
 
     }
 
@@ -615,7 +608,8 @@ public class PartRevisionsApi {
      * @return QueuedJob
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -635,7 +629,8 @@ public class PartRevisionsApi {
      * @return ApiResponse&lt;QueuedJob&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -657,7 +652,8 @@ public class PartRevisionsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -691,7 +687,8 @@ public class PartRevisionsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -702,7 +699,6 @@ public class PartRevisionsApi {
      */
     public okhttp3.Call renderPartRevisionCall(UUID id, Integer height, Integer width, Vector3 cameraPosition, Vector3 cameraUp, Vector3 cameraLookAt, Vector3 cameraPerspectivePosition, Vector3 cameraPerspectiveLookAt, Vector3 cameraPerspectiveUp, Vector3 cameraOrthographicViewVector, Vector3 cameraOrthographicLookAt, Vector3 cameraOrthographicUp, BigDecimal cameraOrthographicFovHeight, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -719,7 +715,7 @@ public class PartRevisionsApi {
 
         // create path and map variables
         String localVarPath = "/part-revisions/{id}/image"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -776,7 +772,9 @@ public class PartRevisionsApi {
         }
 
         final String[] localVarAccepts = {
-            "image/jpeg", "image/png", "application/vnd.api+json"
+            "image/jpeg",
+            "image/png",
+            "application/vnd.api+json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -784,7 +782,6 @@ public class PartRevisionsApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -797,15 +794,12 @@ public class PartRevisionsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call renderPartRevisionValidateBeforeCall(UUID id, Integer height, Integer width, Vector3 cameraPosition, Vector3 cameraUp, Vector3 cameraLookAt, Vector3 cameraPerspectivePosition, Vector3 cameraPerspectiveLookAt, Vector3 cameraPerspectiveUp, Vector3 cameraOrthographicViewVector, Vector3 cameraOrthographicLookAt, Vector3 cameraOrthographicUp, BigDecimal cameraOrthographicFovHeight, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling renderPartRevision(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = renderPartRevisionCall(id, height, width, cameraPosition, cameraUp, cameraLookAt, cameraPerspectivePosition, cameraPerspectiveLookAt, cameraPerspectiveUp, cameraOrthographicViewVector, cameraOrthographicLookAt, cameraOrthographicUp, cameraOrthographicFovHeight, _callback);
-        return localVarCall;
+        return renderPartRevisionCall(id, height, width, cameraPosition, cameraUp, cameraLookAt, cameraPerspectivePosition, cameraPerspectiveLookAt, cameraPerspectiveUp, cameraOrthographicViewVector, cameraOrthographicLookAt, cameraOrthographicUp, cameraOrthographicFovHeight, _callback);
 
     }
 
@@ -828,7 +822,8 @@ public class PartRevisionsApi {
      * @return File
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -861,7 +856,8 @@ public class PartRevisionsApi {
      * @return ApiResponse&lt;File&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -896,7 +892,8 @@ public class PartRevisionsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
@@ -920,7 +917,8 @@ public class PartRevisionsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
@@ -932,7 +930,6 @@ public class PartRevisionsApi {
      */
     public okhttp3.Call updatePartRevisionCall(UUID id, UpdatePartRevisionRequest updatePartRevisionRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
-
         // Operation Servers
         String[] localBasePaths = new String[] {  };
 
@@ -949,7 +946,7 @@ public class PartRevisionsApi {
 
         // create path and map variables
         String localVarPath = "/part-revisions/{id}"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -979,20 +976,17 @@ public class PartRevisionsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call updatePartRevisionValidateBeforeCall(UUID id, UpdatePartRevisionRequest updatePartRevisionRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling updatePartRevision(Async)");
         }
-        
+
         // verify the required parameter 'updatePartRevisionRequest' is set
         if (updatePartRevisionRequest == null) {
             throw new ApiException("Missing the required parameter 'updatePartRevisionRequest' when calling updatePartRevision(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = updatePartRevisionCall(id, updatePartRevisionRequest, _callback);
-        return localVarCall;
+        return updatePartRevisionCall(id, updatePartRevisionRequest, _callback);
 
     }
 
@@ -1004,7 +998,8 @@ public class PartRevisionsApi {
      * @return PartRevision
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
@@ -1027,7 +1022,8 @@ public class PartRevisionsApi {
      * @return ApiResponse&lt;PartRevision&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
@@ -1052,7 +1048,8 @@ public class PartRevisionsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>

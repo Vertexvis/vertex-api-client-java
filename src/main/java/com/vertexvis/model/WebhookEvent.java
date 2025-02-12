@@ -14,98 +14,114 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.Link;
-import com.vertexvis.model.OneOfWebhookEventSceneIncludedDataWebhookEventPartRevisionIncludedData;
 import com.vertexvis.model.WebhookEventData;
-import com.vertexvis.model.WebhookEventPartRevisionIncludedData;
-import com.vertexvis.model.WebhookEventSceneIncludedData;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import com.vertexvis.model.WebhookEventIncludedInner;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.vertexvis.JSON;
+
 /**
  * WebhookEvent
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
 public class WebhookEvent {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
+  @javax.annotation.Nonnull
   private WebhookEventData data;
 
   public static final String SERIALIZED_NAME_INCLUDED = "included";
   @SerializedName(SERIALIZED_NAME_INCLUDED)
-  private List<OneOfWebhookEventSceneIncludedDataWebhookEventPartRevisionIncludedData> included = new ArrayList<>();
+  @javax.annotation.Nonnull
+  private List<WebhookEventIncludedInner> included = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_LINKS = "links";
   @SerializedName(SERIALIZED_NAME_LINKS)
-  private Map<String, Link> links = null;
+  @javax.annotation.Nullable
+  private Map<String, Link> links = new HashMap<>();
 
-  public WebhookEvent() { 
+  public WebhookEvent() {
   }
 
-  public WebhookEvent data(WebhookEventData data) {
-    
+  public WebhookEvent data(@javax.annotation.Nonnull WebhookEventData data) {
     this.data = data;
     return this;
   }
 
-   /**
+  /**
    * Get data
    * @return data
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
   public WebhookEventData getData() {
     return data;
   }
 
-
-  public void setData(WebhookEventData data) {
+  public void setData(@javax.annotation.Nonnull WebhookEventData data) {
     this.data = data;
   }
 
 
-  public WebhookEvent included(List<OneOfWebhookEventSceneIncludedDataWebhookEventPartRevisionIncludedData> included) {
-    
+  public WebhookEvent included(@javax.annotation.Nonnull List<WebhookEventIncludedInner> included) {
     this.included = included;
     return this;
   }
 
-  public WebhookEvent addIncludedItem(OneOfWebhookEventSceneIncludedDataWebhookEventPartRevisionIncludedData includedItem) {
+  public WebhookEvent addIncludedItem(WebhookEventIncludedInner includedItem) {
+    if (this.included == null) {
+      this.included = new ArrayList<>();
+    }
     this.included.add(includedItem);
     return this;
   }
 
-   /**
+  /**
    * Get included
    * @return included
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public List<OneOfWebhookEventSceneIncludedDataWebhookEventPartRevisionIncludedData> getIncluded() {
+  public List<WebhookEventIncludedInner> getIncluded() {
     return included;
   }
 
-
-  public void setIncluded(List<OneOfWebhookEventSceneIncludedDataWebhookEventPartRevisionIncludedData> included) {
+  public void setIncluded(@javax.annotation.Nonnull List<WebhookEventIncludedInner> included) {
     this.included = included;
   }
 
 
-  public WebhookEvent links(Map<String, Link> links) {
-    
+  public WebhookEvent links(@javax.annotation.Nullable Map<String, Link> links) {
     this.links = links;
     return this;
   }
@@ -118,21 +134,19 @@ public class WebhookEvent {
     return this;
   }
 
-   /**
+  /**
    * Get links
    * @return links
-  **/
+   */
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public Map<String, Link> getLinks() {
     return links;
   }
 
-
-  public void setLinks(Map<String, Link> links) {
+  public void setLinks(@javax.annotation.Nullable Map<String, Link> links) {
     this.links = links;
   }
+
 
 
   @Override
@@ -176,5 +190,112 @@ public class WebhookEvent {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("data");
+    openapiFields.add("included");
+    openapiFields.add("links");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("data");
+    openapiRequiredFields.add("included");
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to WebhookEvent
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!WebhookEvent.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in WebhookEvent is not found in the empty JSON string", WebhookEvent.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!WebhookEvent.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `WebhookEvent` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : WebhookEvent.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      // validate the required field `data`
+      WebhookEventData.validateJsonElement(jsonObj.get("data"));
+      // ensure the json data is an array
+      if (!jsonObj.get("included").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `included` to be an array in the JSON string but got `%s`", jsonObj.get("included").toString()));
+      }
+
+      JsonArray jsonArrayincluded = jsonObj.getAsJsonArray("included");
+      // validate the required field `included` (array)
+      for (int i = 0; i < jsonArrayincluded.size(); i++) {
+        WebhookEventIncludedInner.validateJsonElement(jsonArrayincluded.get(i));
+      };
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!WebhookEvent.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'WebhookEvent' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<WebhookEvent> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(WebhookEvent.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<WebhookEvent>() {
+           @Override
+           public void write(JsonWriter out, WebhookEvent value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public WebhookEvent read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+  /**
+   * Create an instance of WebhookEvent given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of WebhookEvent
+   * @throws IOException if the JSON string is invalid with respect to WebhookEvent
+   */
+  public static WebhookEvent fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, WebhookEvent.class);
+  }
+
+  /**
+   * Convert an instance of WebhookEvent to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

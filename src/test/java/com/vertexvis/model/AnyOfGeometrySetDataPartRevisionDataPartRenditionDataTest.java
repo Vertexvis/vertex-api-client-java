@@ -22,9 +22,9 @@ public class AnyOfGeometrySetDataPartRevisionDataPartRenditionDataTest
 
         assertEquals(1, d.getIncluded().size());
         var i = d.getIncluded().get(0);
-        assertFalse(i.isPartRenditionData());
-        assertTrue(i.isPartRevisionData());
-        assertFalse(i.isGeometrySetData());
+        assertFalse(i.getActualInstance() instanceof PartRenditionData);
+        assertTrue(i.getActualInstance() instanceof PartRevisionData);
+        assertFalse(i.getActualInstance() instanceof GeometrySetData);
         var r = i.getPartRevisionData().getRelationships();
         assertNotNull(r.getGeometrySet());
         assertNotNull(r.getPart());
@@ -40,9 +40,9 @@ public class AnyOfGeometrySetDataPartRevisionDataPartRenditionDataTest
 
         assertEquals(1, d.getIncluded().size());
         var i = d.getIncluded().get(0);
-        assertTrue(i.isPartRenditionData());
-        assertFalse(i.isPartRevisionData());
-        assertFalse(i.isGeometrySetData());
+        assertTrue(i.getActualInstance() instanceof PartRenditionData);
+        assertFalse(i.getActualInstance() instanceof PartRevisionData);
+        assertFalse(i.getActualInstance() instanceof GeometrySetData);
         var r = i.getPartRenditionData().getRelationships();
         assertNotNull(r.getGeometrySet());
         assertNotNull(r.getPartRevision());
@@ -57,9 +57,9 @@ public class AnyOfGeometrySetDataPartRevisionDataPartRenditionDataTest
 
         assertEquals(1, d.getIncluded().size());
         var i = d.getIncluded().get(0);
-        assertFalse(i.isPartRenditionData());
-        assertFalse(i.isPartRevisionData());
-        assertTrue(i.isGeometrySetData());
+        assertFalse(i.getActualInstance() instanceof PartRenditionData);
+        assertFalse(i.getActualInstance() instanceof PartRevisionData);
+        assertTrue(i.getActualInstance() instanceof GeometrySetData);
         var r = i.getGeometrySetData();
         assertEquals(UUID.fromString("df9a193c-d518-46b7-8a20-f4e204c51b3b"), r.getId());
     }

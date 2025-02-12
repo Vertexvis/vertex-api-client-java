@@ -14,84 +14,104 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransformOpClearTransformOpSelectOpDeselectOperationClearRenOpViewDefaultRenOpViewRenByIdOpViewRenBySuppliedIdOpViewRepByIdOpViewRepByPredefinedIdOpClearRepOp;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import com.vertexvis.model.SceneOperationOperationsInner;
+import com.vertexvis.model.SceneOperationQuery;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * SceneOperation
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
 public class SceneOperation {
   public static final String SERIALIZED_NAME_QUERY = "query";
   @SerializedName(SERIALIZED_NAME_QUERY)
-  private AnyOfQueryByIdQueryByCollectionQueryAll query;
+  @javax.annotation.Nonnull
+  private SceneOperationQuery query;
 
   public static final String SERIALIZED_NAME_OPERATIONS = "operations";
   @SerializedName(SERIALIZED_NAME_OPERATIONS)
-  private List<AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransformOpClearTransformOpSelectOpDeselectOperationClearRenOpViewDefaultRenOpViewRenByIdOpViewRenBySuppliedIdOpViewRepByIdOpViewRepByPredefinedIdOpClearRepOp> operations = new ArrayList<>();
+  @javax.annotation.Nonnull
+  private List<SceneOperationOperationsInner> operations = new ArrayList<>();
 
-  public SceneOperation() { 
+  public SceneOperation() {
   }
 
-  public SceneOperation query(AnyOfQueryByIdQueryByCollectionQueryAll query) {
-    
+  public SceneOperation query(@javax.annotation.Nonnull SceneOperationQuery query) {
     this.query = query;
     return this;
   }
 
-   /**
-   * Query &#x60;scene-items&#x60;. Use &#x60;query-by-collection&#x60; to combine multiple queries.
+  /**
+   * Get query
    * @return query
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(required = true, value = "Query `scene-items`. Use `query-by-collection` to combine multiple queries.")
-
-  public AnyOfQueryByIdQueryByCollectionQueryAll getQuery() {
+   */
+  @javax.annotation.Nonnull
+  public SceneOperationQuery getQuery() {
     return query;
   }
 
-
-  public void setQuery(AnyOfQueryByIdQueryByCollectionQueryAll query) {
+  public void setQuery(@javax.annotation.Nonnull SceneOperationQuery query) {
     this.query = query;
   }
 
 
-  public SceneOperation operations(List<AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransformOpClearTransformOpSelectOpDeselectOperationClearRenOpViewDefaultRenOpViewRenByIdOpViewRenBySuppliedIdOpViewRepByIdOpViewRepByPredefinedIdOpClearRepOp> operations) {
-    
+  public SceneOperation operations(@javax.annotation.Nonnull List<SceneOperationOperationsInner> operations) {
     this.operations = operations;
     return this;
   }
 
-  public SceneOperation addOperationsItem(AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransformOpClearTransformOpSelectOpDeselectOperationClearRenOpViewDefaultRenOpViewRenByIdOpViewRenBySuppliedIdOpViewRepByIdOpViewRepByPredefinedIdOpClearRepOp operationsItem) {
+  public SceneOperation addOperationsItem(SceneOperationOperationsInner operationsItem) {
+    if (this.operations == null) {
+      this.operations = new ArrayList<>();
+    }
     this.operations.add(operationsItem);
     return this;
   }
 
-   /**
+  /**
    * List of operations to perform on &#x60;scene-items&#x60; matching the query.
    * @return operations
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "List of operations to perform on `scene-items` matching the query.")
-
-  public List<AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransformOpClearTransformOpSelectOpDeselectOperationClearRenOpViewDefaultRenOpViewRenByIdOpViewRenBySuppliedIdOpViewRepByIdOpViewRepByPredefinedIdOpClearRepOp> getOperations() {
+  public List<SceneOperationOperationsInner> getOperations() {
     return operations;
   }
 
-
-  public void setOperations(List<AnyOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransformOpClearTransformOpSelectOpDeselectOperationClearRenOpViewDefaultRenOpViewRenByIdOpViewRenBySuppliedIdOpViewRepByIdOpViewRepByPredefinedIdOpClearRepOp> operations) {
+  public void setOperations(@javax.annotation.Nonnull List<SceneOperationOperationsInner> operations) {
     this.operations = operations;
   }
+
 
 
   @Override
@@ -133,5 +153,111 @@ public class SceneOperation {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("query");
+    openapiFields.add("operations");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("query");
+    openapiRequiredFields.add("operations");
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SceneOperation
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!SceneOperation.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in SceneOperation is not found in the empty JSON string", SceneOperation.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!SceneOperation.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SceneOperation` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : SceneOperation.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      // validate the required field `query`
+      SceneOperationQuery.validateJsonElement(jsonObj.get("query"));
+      // ensure the json data is an array
+      if (!jsonObj.get("operations").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `operations` to be an array in the JSON string but got `%s`", jsonObj.get("operations").toString()));
+      }
+
+      JsonArray jsonArrayoperations = jsonObj.getAsJsonArray("operations");
+      // validate the required field `operations` (array)
+      for (int i = 0; i < jsonArrayoperations.size(); i++) {
+        SceneOperationOperationsInner.validateJsonElement(jsonArrayoperations.get(i));
+      };
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!SceneOperation.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'SceneOperation' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<SceneOperation> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(SceneOperation.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<SceneOperation>() {
+           @Override
+           public void write(JsonWriter out, SceneOperation value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public SceneOperation read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+  /**
+   * Create an instance of SceneOperation given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SceneOperation
+   * @throws IOException if the JSON string is invalid with respect to SceneOperation
+   */
+  public static SceneOperation fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, SceneOperation.class);
+  }
+
+  /**
+   * Convert an instance of SceneOperation to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

@@ -18,16 +18,15 @@ public class AnyOfFileRelationshipPartAssemblyRelationshipTest {
         return IntStream.range(0, num)
                 .mapToObj(ordinal -> new PartRevisionInstance().
                         ordinal(ordinal)
-                        .revisionId(ids.get(ordinal))
-                        .transform(new Matrix4()))
+                        .revisionId(ids.get(ordinal)))
                 .collect(Collectors.toList());
     }
 
     @Test
     void serializesAnyOfFileRelationshipPartAssemblyRelationships() {
         UUID id = UUID.randomUUID();
-        AnyOfFileRelationshipPartAssemblyRelationship rel =
-                new AnyOfFileRelationshipPartAssemblyRelationship(
+        CreatePartRequestDataRelationshipsSource rel =
+                new CreatePartRequestDataRelationshipsSource(
                         new PartAssemblyRelationship()
                                 .data(new PartAssemblyRelationshipData()
                                         .metadata(Collections.emptyMap())
@@ -40,8 +39,8 @@ public class AnyOfFileRelationshipPartAssemblyRelationshipTest {
                 .attributes(new CreatePartRequestDataAttributes().name("test").suppliedId("testid").suppliedRevisionId("testRevisionId").metadata(Collections.emptyMap()))
                 .relationships(reqData));
 
-        String expectedData = "{\"source\":{\"data\":{\"children\":[{\"ordinal\":0,\"revisionId\":\"" + id + "\",\"transform\":{}}],\"metadata\":{}}}}";
-        String expectedRequest = "{\"data\":{\"type\":\"assembly\",\"attributes\":{\"suppliedId\":\"testid\",\"suppliedRevisionId\":\"testRevisionId\",\"metadata\":{},\"name\":\"test\"},\"relationships\":{\"source\":{\"data\":{\"children\":[{\"ordinal\":0,\"revisionId\":\"" + id + "\",\"transform\":{}}],\"metadata\":{}}}}}}";
+        String expectedData = "{\"source\":{\"data\":{\"children\":[{\"ordinal\":0,\"revisionId\":\"" + id + "\"}],\"metadata\":{}}}}";
+        String expectedRequest = "{\"data\":{\"type\":\"assembly\",\"attributes\":{\"suppliedId\":\"testid\",\"suppliedRevisionId\":\"testRevisionId\",\"metadata\":{},\"name\":\"test\"},\"relationships\":{\"source\":{\"data\":{\"children\":[{\"ordinal\":0,\"revisionId\":\"" + id + "\"}],\"metadata\":{}}}}}}";
 
         assertEquals(expectedData, new JSON().serialize(reqData));
         assertEquals(expectedRequest, new JSON().serialize(request));
@@ -51,9 +50,9 @@ public class AnyOfFileRelationshipPartAssemblyRelationshipTest {
     void deserializeAnyOfFileRelationshipPartAssemblyRelationships() {
         UUID id = UUID.randomUUID();
 
-        String relationshipsPayload = "{\"source\":{\"data\":{\"children\":[{\"ordinal\":0,\"revisionId\":\"" + id + "\",\"transform\":{}}],\"metadata\":[]}}}";
+        String relationshipsPayload = "{\"source\":{\"data\":{\"children\":[{\"ordinal\":0,\"revisionId\":\"" + id + "\"}],\"metadata\":{}}}}";
         String requestWithAssemblyRelationshipPayload = //"{\"data\":{\"type\":\"assembly\",\"attributes\":{\"suppliedId\":\"my-assembly-9cc7f76a-c719-4985-a460-04e2ec085a55\",\"suppliedRevisionId\":\"my-part-rev-9cc7f76a-c719-4985-a460-04e2ec085a55\",\"name\":\"gbiv-assemblyee3e3aef-caa1-4739-aada-d11ac0392e38\"},\"relationships\":{\"source\":{\"data\":{\"children\":[{\"ordinal\":0,\"revisionId\":\"4b2bb5e2-c8fe-4307-9f09-638dbbbf4bb7\",\"transform\":{}},{\"ordinal\":1,\"revisionId\":\"d927b4e5-54a0-4fed-8867-36811cc822c0\",\"transform\":{}},{\"ordinal\":2,\"revisionId\":\"54714ba5-6ac7-4b0b-968a-daa5e63e986f\",\"transform\":{}}],\"metadata\":{}}}}}}";
-                "{\"data\":{\"type\":\"assembly\",\"attributes\":{\"suppliedId\":\"testid\",\"suppliedRevisionId\":\"testRevisionId\",\"metadata\":{},\"name\":\"test\"},\"relationships\":{\"source\":{\"data\":{\"children\":[{\"ordinal\":0,\"revisionId\":\"" + id + "\",\"transform\":{}}],\"metadata\":{}}}}}}";
+                "{\"data\":{\"type\":\"assembly\",\"attributes\":{\"suppliedId\":\"testid\",\"suppliedRevisionId\":\"testRevisionId\",\"metadata\":{},\"name\":\"test\"},\"relationships\":{\"source\":{\"data\":{\"children\":[{\"ordinal\":0,\"revisionId\":\"" + id + "\"}],\"metadata\":{}}}}}}";
 
         CreatePartRequestDataRelationships requestDataRelationships = new JSON()
                 .deserialize(relationshipsPayload, TypeToken.get(CreatePartRequestDataRelationships.class).getType());

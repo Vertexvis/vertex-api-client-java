@@ -14,103 +14,116 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.vertexvis.JSON;
 
 /**
  * ThumbnailData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
 public class ThumbnailData {
   public static final String SERIALIZED_NAME_URI = "uri";
   @SerializedName(SERIALIZED_NAME_URI)
+  @javax.annotation.Nonnull
   private String uri;
 
   public static final String SERIALIZED_NAME_HEIGHT = "height";
   @SerializedName(SERIALIZED_NAME_HEIGHT)
+  @javax.annotation.Nonnull
   private Integer height;
 
   public static final String SERIALIZED_NAME_WIDTH = "width";
   @SerializedName(SERIALIZED_NAME_WIDTH)
+  @javax.annotation.Nonnull
   private Integer width;
 
-  public ThumbnailData() { 
+  public ThumbnailData() {
   }
 
-  public ThumbnailData uri(String uri) {
-    
+  public ThumbnailData uri(@javax.annotation.Nonnull String uri) {
     this.uri = uri;
     return this;
   }
 
-   /**
+  /**
    * Get uri
    * @return uri
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
   public String getUri() {
     return uri;
   }
 
-
-  public void setUri(String uri) {
+  public void setUri(@javax.annotation.Nonnull String uri) {
     this.uri = uri;
   }
 
 
-  public ThumbnailData height(Integer height) {
-    
+  public ThumbnailData height(@javax.annotation.Nonnull Integer height) {
     this.height = height;
     return this;
   }
 
-   /**
+  /**
    * Get height
    * @return height
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
   public Integer getHeight() {
     return height;
   }
 
-
-  public void setHeight(Integer height) {
+  public void setHeight(@javax.annotation.Nonnull Integer height) {
     this.height = height;
   }
 
 
-  public ThumbnailData width(Integer width) {
-    
+  public ThumbnailData width(@javax.annotation.Nonnull Integer width) {
     this.width = width;
     return this;
   }
 
-   /**
+  /**
    * Get width
    * @return width
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
   public Integer getWidth() {
     return width;
   }
 
-
-  public void setWidth(Integer width) {
+  public void setWidth(@javax.annotation.Nonnull Integer width) {
     this.width = width;
   }
+
 
 
   @Override
@@ -154,5 +167,104 @@ public class ThumbnailData {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("uri");
+    openapiFields.add("height");
+    openapiFields.add("width");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("uri");
+    openapiRequiredFields.add("height");
+    openapiRequiredFields.add("width");
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to ThumbnailData
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!ThumbnailData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ThumbnailData is not found in the empty JSON string", ThumbnailData.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!ThumbnailData.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ThumbnailData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : ThumbnailData.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (!jsonObj.get("uri").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `uri` to be a primitive type in the JSON string but got `%s`", jsonObj.get("uri").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!ThumbnailData.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ThumbnailData' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<ThumbnailData> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ThumbnailData.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<ThumbnailData>() {
+           @Override
+           public void write(JsonWriter out, ThumbnailData value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public ThumbnailData read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+  /**
+   * Create an instance of ThumbnailData given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ThumbnailData
+   * @throws IOException if the JSON string is invalid with respect to ThumbnailData
+   */
+  public static ThumbnailData fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ThumbnailData.class);
+  }
+
+  /**
+   * Convert an instance of ThumbnailData to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

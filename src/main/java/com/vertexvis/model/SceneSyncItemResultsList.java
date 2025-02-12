@@ -14,7 +14,6 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -23,116 +22,139 @@ import com.google.gson.stream.JsonWriter;
 import com.vertexvis.model.Link;
 import com.vertexvis.model.SceneItemData;
 import com.vertexvis.model.SceneSyncItemResultData;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.vertexvis.JSON;
+
 /**
  * SceneSyncItemResultsList
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.11.0")
 public class SceneSyncItemResultsList {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
+  @javax.annotation.Nonnull
   private List<SceneSyncItemResultData> data = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_LINKS = "links";
   @SerializedName(SERIALIZED_NAME_LINKS)
+  @javax.annotation.Nonnull
   private Map<String, Link> links = new HashMap<>();
 
   public static final String SERIALIZED_NAME_INCLUDED = "included";
   @SerializedName(SERIALIZED_NAME_INCLUDED)
+  @javax.annotation.Nonnull
   private List<SceneItemData> included = new ArrayList<>();
 
-  public SceneSyncItemResultsList() { 
+  public SceneSyncItemResultsList() {
   }
 
-  public SceneSyncItemResultsList data(List<SceneSyncItemResultData> data) {
-    
+  public SceneSyncItemResultsList data(@javax.annotation.Nonnull List<SceneSyncItemResultData> data) {
     this.data = data;
     return this;
   }
 
   public SceneSyncItemResultsList addDataItem(SceneSyncItemResultData dataItem) {
+    if (this.data == null) {
+      this.data = new ArrayList<>();
+    }
     this.data.add(dataItem);
     return this;
   }
 
-   /**
+  /**
    * Get data
    * @return data
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
   public List<SceneSyncItemResultData> getData() {
     return data;
   }
 
-
-  public void setData(List<SceneSyncItemResultData> data) {
+  public void setData(@javax.annotation.Nonnull List<SceneSyncItemResultData> data) {
     this.data = data;
   }
 
 
-  public SceneSyncItemResultsList links(Map<String, Link> links) {
-    
+  public SceneSyncItemResultsList links(@javax.annotation.Nonnull Map<String, Link> links) {
     this.links = links;
     return this;
   }
 
   public SceneSyncItemResultsList putLinksItem(String key, Link linksItem) {
+    if (this.links == null) {
+      this.links = new HashMap<>();
+    }
     this.links.put(key, linksItem);
     return this;
   }
 
-   /**
+  /**
    * Get links
    * @return links
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
   public Map<String, Link> getLinks() {
     return links;
   }
 
-
-  public void setLinks(Map<String, Link> links) {
+  public void setLinks(@javax.annotation.Nonnull Map<String, Link> links) {
     this.links = links;
   }
 
 
-  public SceneSyncItemResultsList included(List<SceneItemData> included) {
-    
+  public SceneSyncItemResultsList included(@javax.annotation.Nonnull List<SceneItemData> included) {
     this.included = included;
     return this;
   }
 
   public SceneSyncItemResultsList addIncludedItem(SceneItemData includedItem) {
+    if (this.included == null) {
+      this.included = new ArrayList<>();
+    }
     this.included.add(includedItem);
     return this;
   }
 
-   /**
+  /**
    * Get included
    * @return included
-  **/
+   */
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
   public List<SceneItemData> getIncluded() {
     return included;
   }
 
-
-  public void setIncluded(List<SceneItemData> included) {
+  public void setIncluded(@javax.annotation.Nonnull List<SceneItemData> included) {
     this.included = included;
   }
+
 
 
   @Override
@@ -176,5 +198,121 @@ public class SceneSyncItemResultsList {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("data");
+    openapiFields.add("links");
+    openapiFields.add("included");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("data");
+    openapiRequiredFields.add("links");
+    openapiRequiredFields.add("included");
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SceneSyncItemResultsList
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!SceneSyncItemResultsList.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in SceneSyncItemResultsList is not found in the empty JSON string", SceneSyncItemResultsList.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!SceneSyncItemResultsList.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SceneSyncItemResultsList` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : SceneSyncItemResultsList.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      // ensure the json data is an array
+      if (!jsonObj.get("data").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `data` to be an array in the JSON string but got `%s`", jsonObj.get("data").toString()));
+      }
+
+      JsonArray jsonArraydata = jsonObj.getAsJsonArray("data");
+      // validate the required field `data` (array)
+      for (int i = 0; i < jsonArraydata.size(); i++) {
+        SceneSyncItemResultData.validateJsonElement(jsonArraydata.get(i));
+      };
+      // ensure the json data is an array
+      if (!jsonObj.get("included").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `included` to be an array in the JSON string but got `%s`", jsonObj.get("included").toString()));
+      }
+
+      JsonArray jsonArrayincluded = jsonObj.getAsJsonArray("included");
+      // validate the required field `included` (array)
+      for (int i = 0; i < jsonArrayincluded.size(); i++) {
+        SceneItemData.validateJsonElement(jsonArrayincluded.get(i));
+      };
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!SceneSyncItemResultsList.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'SceneSyncItemResultsList' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<SceneSyncItemResultsList> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(SceneSyncItemResultsList.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<SceneSyncItemResultsList>() {
+           @Override
+           public void write(JsonWriter out, SceneSyncItemResultsList value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public SceneSyncItemResultsList read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+  /**
+   * Create an instance of SceneSyncItemResultsList given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SceneSyncItemResultsList
+   * @throws IOException if the JSON string is invalid with respect to SceneSyncItemResultsList
+   */
+  public static SceneSyncItemResultsList fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, SceneSyncItemResultsList.class);
+  }
+
+  /**
+   * Convert an instance of SceneSyncItemResultsList to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 
