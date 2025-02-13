@@ -25,7 +25,10 @@ main() {
                 OneOfWebhookEventSceneIncludedDataWebhookEventPartRevisionIncludedData.java \
                 OneOfUpdateItemToDefaultRenditionOperation.java \
                 OneOfSceneViewRelationshipSceneViewStateRelationship.java \
-                AnyOfFileRelationshipPartAssemblyRelationship.java )
+                AnyOfFileRelationshipPartAssemblyRelationship.java \
+                AnyOfPropertySetRelationshipPartRevisionRelationshipSceneItemRelationshipPartInstanceRelationship.java \
+                OneOfSceneAnnotationCalloutDataTypeSceneAnnotationCustomDataType.java \
+                AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType.java)
   mv "src/test" . || true
   for f in "${root[@]}"; do mv "src/main/java/com/vertexvis/$f" . || true; done
   for f in "${auth[@]}"; do mv "src/main/java/com/vertexvis/auth/$f" . || true; done

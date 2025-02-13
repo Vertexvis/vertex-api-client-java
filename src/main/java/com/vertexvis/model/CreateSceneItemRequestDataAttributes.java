@@ -27,6 +27,7 @@ import com.vertexvis.model.PartRevisionSuppliedId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -83,6 +84,10 @@ public class CreateSceneItemRequestDataAttributes {
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
   private Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> metadata = null;
+
+  public static final String SERIALIZED_NAME_EXPERIMENTAL_SOURCE_METADATA_KEYS = "experimentalSourceMetadataKeys";
+  @SerializedName(SERIALIZED_NAME_EXPERIMENTAL_SOURCE_METADATA_KEYS)
+  private List<String> experimentalSourceMetadataKeys = null;
 
   public CreateSceneItemRequestDataAttributes() { 
   }
@@ -371,6 +376,37 @@ public class CreateSceneItemRequestDataAttributes {
   }
 
 
+  public CreateSceneItemRequestDataAttributes experimentalSourceMetadataKeys(List<String> experimentalSourceMetadataKeys) {
+    
+    this.experimentalSourceMetadataKeys = experimentalSourceMetadataKeys;
+    return this;
+  }
+
+  public CreateSceneItemRequestDataAttributes addExperimentalSourceMetadataKeysItem(String experimentalSourceMetadataKeysItem) {
+    if (this.experimentalSourceMetadataKeys == null) {
+      this.experimentalSourceMetadataKeys = new ArrayList<>();
+    }
+    this.experimentalSourceMetadataKeys.add(experimentalSourceMetadataKeysItem);
+    return this;
+  }
+
+   /**
+   * Specifies which metadata keys should be copied from the source item. Sending null will  default to all keys. Sending an empty string will copy none of the sources&#39; metadata.  Sending an array of [\&quot;KEY1\&quot;, \&quot;KEY2] will include KEY1 and KEY2 from the source in the scene item creation. This is marked experimental since future releases are expected to prevent copying metadata entirely. 
+   * @return experimentalSourceMetadataKeys
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Specifies which metadata keys should be copied from the source item. Sending null will  default to all keys. Sending an empty string will copy none of the sources' metadata.  Sending an array of [\"KEY1\", \"KEY2] will include KEY1 and KEY2 from the source in the scene item creation. This is marked experimental since future releases are expected to prevent copying metadata entirely. ")
+
+  public List<String> getExperimentalSourceMetadataKeys() {
+    return experimentalSourceMetadataKeys;
+  }
+
+
+  public void setExperimentalSourceMetadataKeys(List<String> experimentalSourceMetadataKeys) {
+    this.experimentalSourceMetadataKeys = experimentalSourceMetadataKeys;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -391,12 +427,13 @@ public class CreateSceneItemRequestDataAttributes {
         Objects.equals(this.visible, createSceneItemRequestDataAttributes.visible) &&
         Objects.equals(this.phantom, createSceneItemRequestDataAttributes.phantom) &&
         Objects.equals(this.endItem, createSceneItemRequestDataAttributes.endItem) &&
-        Objects.equals(this.metadata, createSceneItemRequestDataAttributes.metadata);
+        Objects.equals(this.metadata, createSceneItemRequestDataAttributes.metadata) &&
+        Objects.equals(this.experimentalSourceMetadataKeys, createSceneItemRequestDataAttributes.experimentalSourceMetadataKeys);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(materialOverride, name, ordinal, parent, partInstanceSuppliedIdsAsSuppliedIds, source, suppliedId, transform, visible, phantom, endItem, metadata);
+    return Objects.hash(materialOverride, name, ordinal, parent, partInstanceSuppliedIdsAsSuppliedIds, source, suppliedId, transform, visible, phantom, endItem, metadata, experimentalSourceMetadataKeys);
   }
 
   @Override
@@ -415,6 +452,7 @@ public class CreateSceneItemRequestDataAttributes {
     sb.append("    phantom: ").append(toIndentedString(phantom)).append("\n");
     sb.append("    endItem: ").append(toIndentedString(endItem)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    experimentalSourceMetadataKeys: ").append(toIndentedString(experimentalSourceMetadataKeys)).append("\n");
     sb.append("}");
     return sb.toString();
   }

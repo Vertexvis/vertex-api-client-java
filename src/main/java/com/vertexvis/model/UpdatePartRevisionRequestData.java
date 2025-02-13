@@ -20,8 +20,8 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.CreateGeometrySetRequestDataRelationships;
 import com.vertexvis.model.UpdatePartRevisionRequestDataAttributes;
+import com.vertexvis.model.UpdatePartRevisionRequestDataRelationships;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -47,7 +47,7 @@ public class UpdatePartRevisionRequestData {
 
   public static final String SERIALIZED_NAME_RELATIONSHIPS = "relationships";
   @SerializedName(SERIALIZED_NAME_RELATIONSHIPS)
-  private CreateGeometrySetRequestDataRelationships relationships;
+  private UpdatePartRevisionRequestDataRelationships relationships;
 
   public UpdatePartRevisionRequestData() { 
   }
@@ -121,7 +121,7 @@ public class UpdatePartRevisionRequestData {
   }
 
 
-  public UpdatePartRevisionRequestData relationships(CreateGeometrySetRequestDataRelationships relationships) {
+  public UpdatePartRevisionRequestData relationships(UpdatePartRevisionRequestDataRelationships relationships) {
     
     this.relationships = relationships;
     return this;
@@ -134,12 +134,12 @@ public class UpdatePartRevisionRequestData {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public CreateGeometrySetRequestDataRelationships getRelationships() {
+  public UpdatePartRevisionRequestDataRelationships getRelationships() {
     return relationships;
   }
 
 
-  public void setRelationships(CreateGeometrySetRequestDataRelationships relationships) {
+  public void setRelationships(UpdatePartRevisionRequestDataRelationships relationships) {
     this.relationships = relationships;
   }
 

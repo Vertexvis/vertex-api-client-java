@@ -24,6 +24,9 @@ import com.vertexvis.model.Orientation;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -101,6 +104,10 @@ public class UpdateSceneRequestDataAttributes {
   public static final String SERIALIZED_NAME_WORLD_ORIENTATION = "worldOrientation";
   @SerializedName(SERIALIZED_NAME_WORLD_ORIENTATION)
   private Orientation worldOrientation;
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  private Map<String, String> metadata = null;
 
   public UpdateSceneRequestDataAttributes() { 
   }
@@ -243,6 +250,37 @@ public class UpdateSceneRequestDataAttributes {
   }
 
 
+  public UpdateSceneRequestDataAttributes metadata(Map<String, String> metadata) {
+    
+    this.metadata = metadata;
+    return this;
+  }
+
+  public UpdateSceneRequestDataAttributes putMetadataItem(String key, String metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+   /**
+   * User supplied key-value pairs for a scene. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters. A null value will delete the entry in the map, all other key/value pairs provided here will be inserted or updated into the existing scene metadata. 
+   * @return metadata
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "User supplied key-value pairs for a scene. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters. A null value will delete the entry in the map, all other key/value pairs provided here will be inserted or updated into the existing scene metadata. ")
+
+  public Map<String, String> getMetadata() {
+    return metadata;
+  }
+
+
+  public void setMetadata(Map<String, String> metadata) {
+    this.metadata = metadata;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -257,7 +295,8 @@ public class UpdateSceneRequestDataAttributes {
         Objects.equals(this.suppliedId, updateSceneRequestDataAttributes.suppliedId) &&
         Objects.equals(this.name, updateSceneRequestDataAttributes.name) &&
         Objects.equals(this.treeEnabled, updateSceneRequestDataAttributes.treeEnabled) &&
-        Objects.equals(this.worldOrientation, updateSceneRequestDataAttributes.worldOrientation);
+        Objects.equals(this.worldOrientation, updateSceneRequestDataAttributes.worldOrientation) &&
+        Objects.equals(this.metadata, updateSceneRequestDataAttributes.metadata);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -266,7 +305,7 @@ public class UpdateSceneRequestDataAttributes {
 
   @Override
   public int hashCode() {
-    return Objects.hash(camera, state, suppliedId, name, treeEnabled, worldOrientation);
+    return Objects.hash(camera, state, suppliedId, name, treeEnabled, worldOrientation, metadata);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -286,6 +325,7 @@ public class UpdateSceneRequestDataAttributes {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    treeEnabled: ").append(toIndentedString(treeEnabled)).append("\n");
     sb.append("    worldOrientation: ").append(toIndentedString(worldOrientation)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
   }

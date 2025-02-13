@@ -46,6 +46,10 @@ public class PartRevisionDataAttributes {
   @SerializedName(SERIALIZED_NAME_SUPPLIED_ID)
   private String suppliedId;
 
+  public static final String SERIALIZED_NAME_SUPPLIED_ITERATION_ID = "suppliedIterationId";
+  @SerializedName(SERIALIZED_NAME_SUPPLIED_ITERATION_ID)
+  private String suppliedIterationId;
+
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
@@ -130,6 +134,29 @@ public class PartRevisionDataAttributes {
   }
 
 
+  public PartRevisionDataAttributes suppliedIterationId(String suppliedIterationId) {
+    
+    this.suppliedIterationId = suppliedIterationId;
+    return this;
+  }
+
+   /**
+   * Get suppliedIterationId
+   * @return suppliedIterationId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "some-string", value = "")
+
+  public String getSuppliedIterationId() {
+    return suppliedIterationId;
+  }
+
+
+  public void setSuppliedIterationId(String suppliedIterationId) {
+    this.suppliedIterationId = suppliedIterationId;
+  }
+
+
   public PartRevisionDataAttributes name(String name) {
     
     this.name = name;
@@ -165,12 +192,13 @@ public class PartRevisionDataAttributes {
     return Objects.equals(this.created, partRevisionDataAttributes.created) &&
         Objects.equals(this.metadata, partRevisionDataAttributes.metadata) &&
         Objects.equals(this.suppliedId, partRevisionDataAttributes.suppliedId) &&
+        Objects.equals(this.suppliedIterationId, partRevisionDataAttributes.suppliedIterationId) &&
         Objects.equals(this.name, partRevisionDataAttributes.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(created, metadata, suppliedId, name);
+    return Objects.hash(created, metadata, suppliedId, suppliedIterationId, name);
   }
 
   @Override
@@ -180,6 +208,7 @@ public class PartRevisionDataAttributes {
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    suppliedId: ").append(toIndentedString(suppliedId)).append("\n");
+    sb.append("    suppliedIterationId: ").append(toIndentedString(suppliedIterationId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
