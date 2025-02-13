@@ -59,7 +59,7 @@ public class AnyOfPropertySetRelationshipPartRevisionRelationshipSceneItemRelati
         return this.piRel != null;
     }
 
-    public PropertySetRelationship getGeometrySetRel() {
+    public PropertySetRelationship getPropertySetRel() {
         return psRel;
     }
 

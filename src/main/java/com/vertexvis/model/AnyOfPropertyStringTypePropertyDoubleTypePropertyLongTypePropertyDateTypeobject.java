@@ -15,7 +15,7 @@ public class AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDa
         this.doubleType= doubleType;
     }
 
-    public AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject(PropertyLongType v) {
+    public AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject(PropertyLongType longType) {
         this.longType= longType;
     }
 
