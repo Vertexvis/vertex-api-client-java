@@ -8,13 +8,13 @@ import java.time.OffsetDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobjectTest {
+public class AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeTest {
 
     @Test
     void deserializePropertyStringType() {
         String input = "{\"stringType\":{\"type\":\"string\",\"value\":\"some-value\"}}";
-        AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject anyOf=
-            new JSON().deserialize(input, TypeToken.get(AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject.class).getType());
+        AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType anyOf=
+            new JSON().deserialize(input, TypeToken.get(AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType.class).getType());
 
         assertTrue(anyOf.isPropertyStringType());
         PropertyStringType property= anyOf.getPropertyStringType();
@@ -30,8 +30,8 @@ public class AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDa
         property.setType(PropertyStringType.TypeEnum.STRING);
         property.setValue("some-value");
 
-        AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject anyOf =
-                new AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject(property);
+        AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType anyOf =
+                new AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType(property);
 
         String expected = "{\"stringType\":{\"type\":\"string\",\"value\":\"some-value\"}}";
         assertEquals(expected, new JSON().serialize(anyOf));
@@ -40,8 +40,8 @@ public class AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDa
     @Test
     void deserializePropertyDoubleType() {
         String input = "{\"doubleType\":{\"type\":\"double\",\"value\":1234.5678}}";
-        AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject anyOf=
-                new JSON().deserialize(input, TypeToken.get(AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject.class).getType());
+        AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType anyOf=
+                new JSON().deserialize(input, TypeToken.get(AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType.class).getType());
 
         assertTrue(anyOf.isPropertyDoubleType());
         PropertyDoubleType property= anyOf.getPropertyDoubleType();
@@ -57,8 +57,8 @@ public class AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDa
         property.setType(PropertyDoubleType.TypeEnum.DOUBLE);
         property.setValue(1234.5678);
 
-        AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject anyOf =
-                new AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject(property);
+        AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType anyOf =
+                new AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType(property);
 
         String expected = "{\"doubleType\":{\"type\":\"double\",\"value\":1234.5678}}";
 
@@ -68,8 +68,8 @@ public class AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDa
     @Test
     void deserializePropertyLongType() {
         String input = "{\"longType\":{\"type\":\"long\",\"value\":1234}}";
-        AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject anyOf=
-                new JSON().deserialize(input, TypeToken.get(AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject.class).getType());
+        AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType anyOf=
+                new JSON().deserialize(input, TypeToken.get(AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType.class).getType());
 
         assertTrue(anyOf.isPropertyLongType());
         PropertyLongType property= anyOf.getPropertyLongType();
@@ -85,8 +85,8 @@ public class AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDa
         property.setType(PropertyLongType.TypeEnum.LONG);
         property.setValue(1234L);
 
-        AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject anyOf =
-                new AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject(property);
+        AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType anyOf =
+                new AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType(property);
 
         String expected = "{\"longType\":{\"type\":\"long\",\"value\":1234}}";
 
@@ -96,8 +96,8 @@ public class AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDa
     @Test
     void deserializePropertyDateType() {
         String input = "{\"dateType\":{\"type\":\"date\",\"value\":\"2025-02-13T11:45:10.123-05:00\"}}";
-        AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject anyOf=
-                new JSON().deserialize(input, TypeToken.get(AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject.class).getType());
+        AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType anyOf=
+                new JSON().deserialize(input, TypeToken.get(AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType.class).getType());
 
         assertTrue(anyOf.isPropertyDateType());
         PropertyDateType property= anyOf.getPropertyDateType();
@@ -114,8 +114,8 @@ public class AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDa
         String date= OffsetDateTime.now().toString();
         property.setValue(OffsetDateTime.parse("2025-02-13T11:45:10.123-05:00"));
 
-        AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject anyOf =
-                new AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject(property);
+        AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType anyOf =
+                new AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType(property);
 
         String expected = "{\"dateType\":{\"type\":\"date\",\"value\":\"2025-02-13T11:45:10.123-05:00\"}}";
 

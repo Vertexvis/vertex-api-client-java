@@ -14,9 +14,16 @@
 package com.vertexvis.model;
 
 import java.util.Objects;
-
+import java.util.Arrays;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import com.vertexvis.model.PropertyKeyType;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.io.IOException;
 
 /**
  * PropertyEntryDataAttributes
@@ -25,7 +32,7 @@ import io.swagger.annotations.ApiModelProperty;
 public class PropertyEntryDataAttributes {
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)
-  private AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject value;
+  private AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType value;
 
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
@@ -34,7 +41,7 @@ public class PropertyEntryDataAttributes {
   public PropertyEntryDataAttributes() { 
   }
 
-  public PropertyEntryDataAttributes value(AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject value) {
+  public PropertyEntryDataAttributes value(AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType value) {
     
     this.value = value;
     return this;
@@ -47,12 +54,12 @@ public class PropertyEntryDataAttributes {
   @javax.annotation.Nullable
   @ApiModelProperty(required = true, value = "")
 
-  public AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject getValue() {
+  public AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType getValue() {
     return value;
   }
 
 
-  public void setValue(AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject value) {
+  public void setValue(AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType value) {
     this.value = value;
   }
 
