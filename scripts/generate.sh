@@ -50,7 +50,7 @@ main() {
 
   local version
   version=$(_get_version)
-  sed -i "" "s|OpenAPI-Generator/1.0/java|vertex-api-client-java/$version|" src/main/java/com/vertexvis/ApiClient.java
+  sed -i "s|OpenAPI-Generator/1.0/java|vertex-api-client-java/$version|" src/main/java/com/vertexvis/ApiClient.java
 }
 
 main "$@"

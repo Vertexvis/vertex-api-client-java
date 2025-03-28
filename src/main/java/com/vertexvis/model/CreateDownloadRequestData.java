@@ -20,42 +20,70 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.vertexvis.model.CreateDownloadRequestDataAttributes;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * PropertyKeyType
+ * CreateDownloadRequestData
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class PropertyKeyType {
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
+public class CreateDownloadRequestData {
+  public static final String SERIALIZED_NAME_TYPE = "type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
+  private String type;
 
-  public PropertyKeyType() { 
+  public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
+  @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
+  private CreateDownloadRequestDataAttributes attributes;
+
+  public CreateDownloadRequestData() { 
   }
 
-  public PropertyKeyType name(String name) {
+  public CreateDownloadRequestData type(String type) {
     
-    this.name = name;
+    this.type = type;
     return this;
   }
 
    /**
-   * Get name
-   * @return name
+   * Resource object type.
+   * @return type
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "some-string", required = true, value = "")
+  @ApiModelProperty(example = "download-url", required = true, value = "Resource object type.")
 
-  public String getName() {
-    return name;
+  public String getType() {
+    return type;
   }
 
 
-  public void setName(String name) {
-    this.name = name;
+  public void setType(String type) {
+    this.type = type;
+  }
+
+
+  public CreateDownloadRequestData attributes(CreateDownloadRequestDataAttributes attributes) {
+    
+    this.attributes = attributes;
+    return this;
+  }
+
+   /**
+   * Get attributes
+   * @return attributes
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public CreateDownloadRequestDataAttributes getAttributes() {
+    return attributes;
+  }
+
+
+  public void setAttributes(CreateDownloadRequestDataAttributes attributes) {
+    this.attributes = attributes;
   }
 
 
@@ -67,20 +95,22 @@ public class PropertyKeyType {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PropertyKeyType propertyKeyType = (PropertyKeyType) o;
-    return Objects.equals(this.name, propertyKeyType.name);
+    CreateDownloadRequestData createDownloadRequestData = (CreateDownloadRequestData) o;
+    return Objects.equals(this.type, createDownloadRequestData.type) &&
+        Objects.equals(this.attributes, createDownloadRequestData.attributes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name);
+    return Objects.hash(type, attributes);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PropertyKeyType {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("class CreateDownloadRequestData {\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("}");
     return sb.toString();
   }

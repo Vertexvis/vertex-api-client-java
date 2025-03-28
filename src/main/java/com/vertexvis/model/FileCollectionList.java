@@ -20,42 +20,85 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.vertexvis.model.FileCollectionMetadataData;
+import com.vertexvis.model.Link;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
- * PropertyKeyType
+ * FileCollectionList
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class PropertyKeyType {
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
+public class FileCollectionList {
+  public static final String SERIALIZED_NAME_DATA = "data";
+  @SerializedName(SERIALIZED_NAME_DATA)
+  private List<FileCollectionMetadataData> data = new ArrayList<>();
 
-  public PropertyKeyType() { 
+  public static final String SERIALIZED_NAME_LINKS = "links";
+  @SerializedName(SERIALIZED_NAME_LINKS)
+  private Map<String, Link> links = new HashMap<>();
+
+  public FileCollectionList() { 
   }
 
-  public PropertyKeyType name(String name) {
+  public FileCollectionList data(List<FileCollectionMetadataData> data) {
     
-    this.name = name;
+    this.data = data;
+    return this;
+  }
+
+  public FileCollectionList addDataItem(FileCollectionMetadataData dataItem) {
+    this.data.add(dataItem);
     return this;
   }
 
    /**
-   * Get name
-   * @return name
+   * Get data
+   * @return data
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "some-string", required = true, value = "")
+  @ApiModelProperty(required = true, value = "")
 
-  public String getName() {
-    return name;
+  public List<FileCollectionMetadataData> getData() {
+    return data;
   }
 
 
-  public void setName(String name) {
-    this.name = name;
+  public void setData(List<FileCollectionMetadataData> data) {
+    this.data = data;
+  }
+
+
+  public FileCollectionList links(Map<String, Link> links) {
+    
+    this.links = links;
+    return this;
+  }
+
+  public FileCollectionList putLinksItem(String key, Link linksItem) {
+    this.links.put(key, linksItem);
+    return this;
+  }
+
+   /**
+   * Get links
+   * @return links
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public Map<String, Link> getLinks() {
+    return links;
+  }
+
+
+  public void setLinks(Map<String, Link> links) {
+    this.links = links;
   }
 
 
@@ -67,20 +110,22 @@ public class PropertyKeyType {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PropertyKeyType propertyKeyType = (PropertyKeyType) o;
-    return Objects.equals(this.name, propertyKeyType.name);
+    FileCollectionList fileCollectionList = (FileCollectionList) o;
+    return Objects.equals(this.data, fileCollectionList.data) &&
+        Objects.equals(this.links, fileCollectionList.links);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name);
+    return Objects.hash(data, links);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PropertyKeyType {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("class FileCollectionList {\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    links: ").append(toIndentedString(links)).append("\n");
     sb.append("}");
     return sb.toString();
   }

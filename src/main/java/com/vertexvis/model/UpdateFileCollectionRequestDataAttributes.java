@@ -25,37 +25,38 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * PropertyKeyType
+ * UpdateFileCollectionRequestDataAttributes
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class PropertyKeyType {
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
+public class UpdateFileCollectionRequestDataAttributes {
+  public static final String SERIALIZED_NAME_EXPIRY = "expiry";
+  @SerializedName(SERIALIZED_NAME_EXPIRY)
+  private Integer expiry;
 
-  public PropertyKeyType() { 
+  public UpdateFileCollectionRequestDataAttributes() { 
   }
 
-  public PropertyKeyType name(String name) {
+  public UpdateFileCollectionRequestDataAttributes expiry(Integer expiry) {
     
-    this.name = name;
+    this.expiry = expiry;
     return this;
   }
 
    /**
-   * Get name
-   * @return name
+   * Number of seconds before expiration
+   * minimum: 1
+   * @return expiry
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "some-string", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "600", value = "Number of seconds before expiration")
 
-  public String getName() {
-    return name;
+  public Integer getExpiry() {
+    return expiry;
   }
 
 
-  public void setName(String name) {
-    this.name = name;
+  public void setExpiry(Integer expiry) {
+    this.expiry = expiry;
   }
 
 
@@ -67,20 +68,20 @@ public class PropertyKeyType {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PropertyKeyType propertyKeyType = (PropertyKeyType) o;
-    return Objects.equals(this.name, propertyKeyType.name);
+    UpdateFileCollectionRequestDataAttributes updateFileCollectionRequestDataAttributes = (UpdateFileCollectionRequestDataAttributes) o;
+    return Objects.equals(this.expiry, updateFileCollectionRequestDataAttributes.expiry);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name);
+    return Objects.hash(expiry);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PropertyKeyType {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("class UpdateFileCollectionRequestDataAttributes {\n");
+    sb.append("    expiry: ").append(toIndentedString(expiry)).append("\n");
     sb.append("}");
     return sb.toString();
   }

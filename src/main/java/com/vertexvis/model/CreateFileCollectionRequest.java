@@ -20,42 +20,43 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.vertexvis.model.CreateFileCollectionRequestData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * PropertyKeyType
+ * CreateFileCollectionRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class PropertyKeyType {
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
+public class CreateFileCollectionRequest {
+  public static final String SERIALIZED_NAME_DATA = "data";
+  @SerializedName(SERIALIZED_NAME_DATA)
+  private CreateFileCollectionRequestData data;
 
-  public PropertyKeyType() { 
+  public CreateFileCollectionRequest() { 
   }
 
-  public PropertyKeyType name(String name) {
+  public CreateFileCollectionRequest data(CreateFileCollectionRequestData data) {
     
-    this.name = name;
+    this.data = data;
     return this;
   }
 
    /**
-   * Get name
-   * @return name
+   * Get data
+   * @return data
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "some-string", required = true, value = "")
+  @ApiModelProperty(required = true, value = "")
 
-  public String getName() {
-    return name;
+  public CreateFileCollectionRequestData getData() {
+    return data;
   }
 
 
-  public void setName(String name) {
-    this.name = name;
+  public void setData(CreateFileCollectionRequestData data) {
+    this.data = data;
   }
 
 
@@ -67,20 +68,20 @@ public class PropertyKeyType {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PropertyKeyType propertyKeyType = (PropertyKeyType) o;
-    return Objects.equals(this.name, propertyKeyType.name);
+    CreateFileCollectionRequest createFileCollectionRequest = (CreateFileCollectionRequest) o;
+    return Objects.equals(this.data, createFileCollectionRequest.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name);
+    return Objects.hash(data);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PropertyKeyType {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("class CreateFileCollectionRequest {\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");
     return sb.toString();
   }

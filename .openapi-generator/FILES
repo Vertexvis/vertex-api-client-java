@@ -21,6 +21,7 @@ src/main/java/com/vertexvis/api/AccountsApi.java
 src/main/java/com/vertexvis/api/ApplicationsApi.java
 src/main/java/com/vertexvis/api/BatchesApi.java
 src/main/java/com/vertexvis/api/ExportsApi.java
+src/main/java/com/vertexvis/api/FileCollectionsApi.java
 src/main/java/com/vertexvis/api/FilesApi.java
 src/main/java/com/vertexvis/api/GeometrySetsApi.java
 src/main/java/com/vertexvis/api/HitsApi.java
@@ -91,10 +92,16 @@ src/main/java/com/vertexvis/model/CreateAccountRequestData.java
 src/main/java/com/vertexvis/model/CreateAccountRequestDataAttributes.java
 src/main/java/com/vertexvis/model/CreateApplicationRequest.java
 src/main/java/com/vertexvis/model/CreateBatchRequest.java
+src/main/java/com/vertexvis/model/CreateDownloadRequest.java
+src/main/java/com/vertexvis/model/CreateDownloadRequestData.java
+src/main/java/com/vertexvis/model/CreateDownloadRequestDataAttributes.java
 src/main/java/com/vertexvis/model/CreateExportRequest.java
 src/main/java/com/vertexvis/model/CreateExportRequestData.java
 src/main/java/com/vertexvis/model/CreateExportRequestDataAttributes.java
 src/main/java/com/vertexvis/model/CreateExportRequestDataRelationships.java
+src/main/java/com/vertexvis/model/CreateFileCollectionRequest.java
+src/main/java/com/vertexvis/model/CreateFileCollectionRequestData.java
+src/main/java/com/vertexvis/model/CreateFileCollectionRequestDataAttributes.java
 src/main/java/com/vertexvis/model/CreateFileRequest.java
 src/main/java/com/vertexvis/model/CreateFileRequestData.java
 src/main/java/com/vertexvis/model/CreateFileRequestDataAttributes.java
@@ -155,6 +162,9 @@ src/main/java/com/vertexvis/model/CreatedApplicationDataAttributes.java
 src/main/java/com/vertexvis/model/CrossSectioning.java
 src/main/java/com/vertexvis/model/DeselectOperation.java
 src/main/java/com/vertexvis/model/Dimensions.java
+src/main/java/com/vertexvis/model/DownloadUrl.java
+src/main/java/com/vertexvis/model/DownloadUrlData.java
+src/main/java/com/vertexvis/model/DownloadUrlDataAttributes.java
 src/main/java/com/vertexvis/model/Export.java
 src/main/java/com/vertexvis/model/ExportConfig.java
 src/main/java/com/vertexvis/model/ExportData.java
@@ -165,6 +175,11 @@ src/main/java/com/vertexvis/model/ExportStateRelationship.java
 src/main/java/com/vertexvis/model/ExportStateRelationshipData.java
 src/main/java/com/vertexvis/model/Failure.java
 src/main/java/com/vertexvis/model/FeatureLines.java
+src/main/java/com/vertexvis/model/FileCollectionList.java
+src/main/java/com/vertexvis/model/FileCollectionMetadata.java
+src/main/java/com/vertexvis/model/FileCollectionMetadataData.java
+src/main/java/com/vertexvis/model/FileCollectionMetadataDataAttributes.java
+src/main/java/com/vertexvis/model/FileIdList.java
 src/main/java/com/vertexvis/model/FileList.java
 src/main/java/com/vertexvis/model/FileMetadata.java
 src/main/java/com/vertexvis/model/FileMetadataData.java
@@ -334,6 +349,9 @@ src/main/java/com/vertexvis/model/UpdateAccountRequestDataAttributes.java
 src/main/java/com/vertexvis/model/UpdateApplicationRequest.java
 src/main/java/com/vertexvis/model/UpdateApplicationRequestData.java
 src/main/java/com/vertexvis/model/UpdateApplicationRequestDataAttributes.java
+src/main/java/com/vertexvis/model/UpdateFileCollectionRequest.java
+src/main/java/com/vertexvis/model/UpdateFileCollectionRequestData.java
+src/main/java/com/vertexvis/model/UpdateFileCollectionRequestDataAttributes.java
 src/main/java/com/vertexvis/model/UpdateFileRequest.java
 src/main/java/com/vertexvis/model/UpdateFileRequestData.java
 src/main/java/com/vertexvis/model/UpdateFileRequestDataAttributes.java

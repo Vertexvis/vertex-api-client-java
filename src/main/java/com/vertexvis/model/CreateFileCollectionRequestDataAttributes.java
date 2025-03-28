@@ -25,18 +25,26 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * PropertyKeyType
+ * CreateFileCollectionRequestDataAttributes
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class PropertyKeyType {
+public class CreateFileCollectionRequestDataAttributes {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
 
-  public PropertyKeyType() { 
+  public static final String SERIALIZED_NAME_SUPPLIED_ID = "suppliedId";
+  @SerializedName(SERIALIZED_NAME_SUPPLIED_ID)
+  private String suppliedId;
+
+  public static final String SERIALIZED_NAME_EXPIRY = "expiry";
+  @SerializedName(SERIALIZED_NAME_EXPIRY)
+  private Integer expiry;
+
+  public CreateFileCollectionRequestDataAttributes() { 
   }
 
-  public PropertyKeyType name(String name) {
+  public CreateFileCollectionRequestDataAttributes name(String name) {
     
     this.name = name;
     return this;
@@ -46,8 +54,8 @@ public class PropertyKeyType {
    * Get name
    * @return name
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "some-string", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "some-string", value = "")
 
   public String getName() {
     return name;
@@ -59,6 +67,53 @@ public class PropertyKeyType {
   }
 
 
+  public CreateFileCollectionRequestDataAttributes suppliedId(String suppliedId) {
+    
+    this.suppliedId = suppliedId;
+    return this;
+  }
+
+   /**
+   * ID provided for correlation with external systems, e.g. a PLM system.
+   * @return suppliedId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "GRP12345", value = "ID provided for correlation with external systems, e.g. a PLM system.")
+
+  public String getSuppliedId() {
+    return suppliedId;
+  }
+
+
+  public void setSuppliedId(String suppliedId) {
+    this.suppliedId = suppliedId;
+  }
+
+
+  public CreateFileCollectionRequestDataAttributes expiry(Integer expiry) {
+    
+    this.expiry = expiry;
+    return this;
+  }
+
+   /**
+   * Number of seconds before expiration
+   * minimum: 1
+   * @return expiry
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "600", value = "Number of seconds before expiration")
+
+  public Integer getExpiry() {
+    return expiry;
+  }
+
+
+  public void setExpiry(Integer expiry) {
+    this.expiry = expiry;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -67,20 +122,24 @@ public class PropertyKeyType {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PropertyKeyType propertyKeyType = (PropertyKeyType) o;
-    return Objects.equals(this.name, propertyKeyType.name);
+    CreateFileCollectionRequestDataAttributes createFileCollectionRequestDataAttributes = (CreateFileCollectionRequestDataAttributes) o;
+    return Objects.equals(this.name, createFileCollectionRequestDataAttributes.name) &&
+        Objects.equals(this.suppliedId, createFileCollectionRequestDataAttributes.suppliedId) &&
+        Objects.equals(this.expiry, createFileCollectionRequestDataAttributes.expiry);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name);
+    return Objects.hash(name, suppliedId, expiry);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PropertyKeyType {\n");
+    sb.append("class CreateFileCollectionRequestDataAttributes {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    suppliedId: ").append(toIndentedString(suppliedId)).append("\n");
+    sb.append("    expiry: ").append(toIndentedString(expiry)).append("\n");
     sb.append("}");
     return sb.toString();
   }

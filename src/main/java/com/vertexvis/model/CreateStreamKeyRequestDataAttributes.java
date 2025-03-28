@@ -23,6 +23,7 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.UUID;
 
 /**
  * CreateStreamKeyRequestDataAttributes
@@ -36,6 +37,18 @@ public class CreateStreamKeyRequestDataAttributes {
   public static final String SERIALIZED_NAME_EXCLUDE_PRUNED_ITEMS = "excludePrunedItems";
   @SerializedName(SERIALIZED_NAME_EXCLUDE_PRUNED_ITEMS)
   private Boolean excludePrunedItems;
+
+  public static final String SERIALIZED_NAME_SCENE_VIEW_STATE_SUPPLIED_ID = "sceneViewStateSuppliedId";
+  @SerializedName(SERIALIZED_NAME_SCENE_VIEW_STATE_SUPPLIED_ID)
+  private String sceneViewStateSuppliedId;
+
+  public static final String SERIALIZED_NAME_SCENE_VIEW_STATE_ID = "sceneViewStateId";
+  @SerializedName(SERIALIZED_NAME_SCENE_VIEW_STATE_ID)
+  private UUID sceneViewStateId;
+
+  public static final String SERIALIZED_NAME_WITH_SEARCH_SESSION = "withSearchSession";
+  @SerializedName(SERIALIZED_NAME_WITH_SEARCH_SESSION)
+  private Boolean withSearchSession;
 
   public CreateStreamKeyRequestDataAttributes() { 
   }
@@ -72,11 +85,11 @@ public class CreateStreamKeyRequestDataAttributes {
   }
 
    /**
-   * Whether to exclude non-visible items in the view
+   * Whether to exclude non-visible items in the view.
    * @return excludePrunedItems
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Whether to exclude non-visible items in the view")
+  @ApiModelProperty(example = "true", value = "Whether to exclude non-visible items in the view.")
 
   public Boolean getExcludePrunedItems() {
     return excludePrunedItems;
@@ -85,6 +98,75 @@ public class CreateStreamKeyRequestDataAttributes {
 
   public void setExcludePrunedItems(Boolean excludePrunedItems) {
     this.excludePrunedItems = excludePrunedItems;
+  }
+
+
+  public CreateStreamKeyRequestDataAttributes sceneViewStateSuppliedId(String sceneViewStateSuppliedId) {
+    
+    this.sceneViewStateSuppliedId = sceneViewStateSuppliedId;
+    return this;
+  }
+
+   /**
+   * An optional supplied ID specifying the &#x60;scene-view-state&#x60; to initialize &#x60;scene-view&#x60;s created using this &#x60;stream-key&#x60; to. Mutually exclusive with &#x60;sceneViewStateId&#x60;.
+   * @return sceneViewStateSuppliedId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "some-string", value = "An optional supplied ID specifying the `scene-view-state` to initialize `scene-view`s created using this `stream-key` to. Mutually exclusive with `sceneViewStateId`.")
+
+  public String getSceneViewStateSuppliedId() {
+    return sceneViewStateSuppliedId;
+  }
+
+
+  public void setSceneViewStateSuppliedId(String sceneViewStateSuppliedId) {
+    this.sceneViewStateSuppliedId = sceneViewStateSuppliedId;
+  }
+
+
+  public CreateStreamKeyRequestDataAttributes sceneViewStateId(UUID sceneViewStateId) {
+    
+    this.sceneViewStateId = sceneViewStateId;
+    return this;
+  }
+
+   /**
+   * An optional ID specifying the &#x60;scene-view-state&#x60; to initialize &#x60;scene-view&#x60;s created using this &#x60;stream-key&#x60; to. Mutually exclusive with &#x60;sceneViewStateSuppliedId&#x60;.
+   * @return sceneViewStateId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "f79d4760-0b71-44e4-ad0b-22743fdd4ca3", value = "An optional ID specifying the `scene-view-state` to initialize `scene-view`s created using this `stream-key` to. Mutually exclusive with `sceneViewStateSuppliedId`.")
+
+  public UUID getSceneViewStateId() {
+    return sceneViewStateId;
+  }
+
+
+  public void setSceneViewStateId(UUID sceneViewStateId) {
+    this.sceneViewStateId = sceneViewStateId;
+  }
+
+
+  public CreateStreamKeyRequestDataAttributes withSearchSession(Boolean withSearchSession) {
+    
+    this.withSearchSession = withSearchSession;
+    return this;
+  }
+
+   /**
+   * Optionally enables or disables the creation of a search session for the view.
+   * @return withSearchSession
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Optionally enables or disables the creation of a search session for the view.")
+
+  public Boolean getWithSearchSession() {
+    return withSearchSession;
+  }
+
+
+  public void setWithSearchSession(Boolean withSearchSession) {
+    this.withSearchSession = withSearchSession;
   }
 
 
@@ -98,12 +180,15 @@ public class CreateStreamKeyRequestDataAttributes {
     }
     CreateStreamKeyRequestDataAttributes createStreamKeyRequestDataAttributes = (CreateStreamKeyRequestDataAttributes) o;
     return Objects.equals(this.expiry, createStreamKeyRequestDataAttributes.expiry) &&
-        Objects.equals(this.excludePrunedItems, createStreamKeyRequestDataAttributes.excludePrunedItems);
+        Objects.equals(this.excludePrunedItems, createStreamKeyRequestDataAttributes.excludePrunedItems) &&
+        Objects.equals(this.sceneViewStateSuppliedId, createStreamKeyRequestDataAttributes.sceneViewStateSuppliedId) &&
+        Objects.equals(this.sceneViewStateId, createStreamKeyRequestDataAttributes.sceneViewStateId) &&
+        Objects.equals(this.withSearchSession, createStreamKeyRequestDataAttributes.withSearchSession);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(expiry, excludePrunedItems);
+    return Objects.hash(expiry, excludePrunedItems, sceneViewStateSuppliedId, sceneViewStateId, withSearchSession);
   }
 
   @Override
@@ -112,6 +197,9 @@ public class CreateStreamKeyRequestDataAttributes {
     sb.append("class CreateStreamKeyRequestDataAttributes {\n");
     sb.append("    expiry: ").append(toIndentedString(expiry)).append("\n");
     sb.append("    excludePrunedItems: ").append(toIndentedString(excludePrunedItems)).append("\n");
+    sb.append("    sceneViewStateSuppliedId: ").append(toIndentedString(sceneViewStateSuppliedId)).append("\n");
+    sb.append("    sceneViewStateId: ").append(toIndentedString(sceneViewStateId)).append("\n");
+    sb.append("    withSearchSession: ").append(toIndentedString(withSearchSession)).append("\n");
     sb.append("}");
     return sb.toString();
   }
