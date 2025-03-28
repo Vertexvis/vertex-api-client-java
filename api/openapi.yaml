@@ -10996,6 +10996,7 @@ components:
           - $ref: '#/components/schemas/QueryById'
           - $ref: '#/components/schemas/QueryByCollection'
           - $ref: '#/components/schemas/QueryAll'
+          - $ref: '#/components/schemas/QueryByMetadata'
           description: Query `scene-items`. Use `query-by-collection` to combine multiple
             queries.
         operations:
@@ -11939,6 +11940,14 @@ components:
       example: all
       maxLength: 32
       type: string
+    QueryByMetadata:
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/QueryByMetadata_data'
+      required:
+      - data
+      type: object
     ChangeVisibilityOp:
       additionalProperties: false
       properties:
@@ -12689,6 +12698,13 @@ components:
           format: int32
           minimum: 1
           type: integer
+        metadata:
+          additionalProperties:
+            maxLength: 256
+            type: string
+          description: |
+            User supplied key-value pairs for a file. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters.
+          type: object
       required:
       - name
       type: object
@@ -12782,6 +12798,13 @@ components:
           format: int32
           minimum: 1
           type: integer
+        metadata:
+          additionalProperties:
+            maxLength: 256
+            type: string
+          description: |
+            User supplied key-value pairs for a file-collection. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters.
+          type: object
       type: object
     CreateFileCollectionRequest_data:
       properties:
@@ -14012,6 +14035,10 @@ components:
         size:
           format: int64
           type: integer
+        metadata:
+          additionalProperties:
+            type: string
+          type: object
       required:
       - created
       - name
@@ -14043,6 +14070,10 @@ components:
           example: 2020-01-01T12:00:00Z
           format: date-time
           type: string
+        metadata:
+          additionalProperties:
+            type: string
+          type: object
       required:
       - created
       type: object
@@ -14921,6 +14952,39 @@ components:
           type: string
         attributes:
           $ref: '#/components/schemas/QueryByCollection_data_attributes'
+      required:
+      - attributes
+      - type
+      type: object
+    QueryByMetadata_data_attributes:
+      properties:
+        exactMatch:
+          type: boolean
+        filter:
+          example: some-string
+          maxLength: 1024
+          minLength: 1
+          type: string
+        keys:
+          description: Query `metadata`.
+          items:
+            type: string
+          type: array
+      required:
+      - filter
+      - keys
+      type: object
+    QueryByMetadata_data:
+      properties:
+        type:
+          description: Resource object type.
+          enum:
+          - query-by-metadata
+          example: query-by-metadata
+          maxLength: 32
+          type: string
+        attributes:
+          $ref: '#/components/schemas/QueryByMetadata_data_attributes'
       required:
       - attributes
       - type

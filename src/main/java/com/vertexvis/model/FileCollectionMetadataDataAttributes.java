@@ -24,6 +24,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * FileCollectionMetadataDataAttributes
@@ -41,6 +44,10 @@ public class FileCollectionMetadataDataAttributes {
   public static final String SERIALIZED_NAME_CREATED = "created";
   @SerializedName(SERIALIZED_NAME_CREATED)
   private OffsetDateTime created;
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  private Map<String, String> metadata = null;
 
   public FileCollectionMetadataDataAttributes() { 
   }
@@ -114,6 +121,37 @@ public class FileCollectionMetadataDataAttributes {
   }
 
 
+  public FileCollectionMetadataDataAttributes metadata(Map<String, String> metadata) {
+    
+    this.metadata = metadata;
+    return this;
+  }
+
+  public FileCollectionMetadataDataAttributes putMetadataItem(String key, String metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+   /**
+   * Get metadata
+   * @return metadata
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Map<String, String> getMetadata() {
+    return metadata;
+  }
+
+
+  public void setMetadata(Map<String, String> metadata) {
+    this.metadata = metadata;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -125,12 +163,13 @@ public class FileCollectionMetadataDataAttributes {
     FileCollectionMetadataDataAttributes fileCollectionMetadataDataAttributes = (FileCollectionMetadataDataAttributes) o;
     return Objects.equals(this.name, fileCollectionMetadataDataAttributes.name) &&
         Objects.equals(this.suppliedId, fileCollectionMetadataDataAttributes.suppliedId) &&
-        Objects.equals(this.created, fileCollectionMetadataDataAttributes.created);
+        Objects.equals(this.created, fileCollectionMetadataDataAttributes.created) &&
+        Objects.equals(this.metadata, fileCollectionMetadataDataAttributes.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, suppliedId, created);
+    return Objects.hash(name, suppliedId, created, metadata);
   }
 
   @Override
@@ -140,6 +179,7 @@ public class FileCollectionMetadataDataAttributes {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    suppliedId: ").append(toIndentedString(suppliedId)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
   }

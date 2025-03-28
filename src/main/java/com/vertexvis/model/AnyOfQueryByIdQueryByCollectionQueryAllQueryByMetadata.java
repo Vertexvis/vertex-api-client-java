@@ -2,21 +2,26 @@ package com.vertexvis.model;
 
 import javax.annotation.Nullable;
 
-public class AnyOfQueryByIdQueryByCollectionQueryAll {
+public class AnyOfQueryByIdQueryByCollectionQueryAllQueryByMetadata {
   private QueryById queryById;
   private QueryByCollection queryByCollection;
   private QueryAll queryAll;
+  private QueryByMetadata queryByMetadata;
 
-  public AnyOfQueryByIdQueryByCollectionQueryAll(QueryById queryById) {
+  public AnyOfQueryByIdQueryByCollectionQueryAllQueryByMetadata(QueryById queryById) {
     this.queryById = queryById;
   }
 
-  public AnyOfQueryByIdQueryByCollectionQueryAll(QueryByCollection queryByCollection) {
+  public AnyOfQueryByIdQueryByCollectionQueryAllQueryByMetadata(QueryByCollection queryByCollection) {
     this.queryByCollection = queryByCollection;
   }
 
-  public AnyOfQueryByIdQueryByCollectionQueryAll(QueryAll queryAll) {
+  public AnyOfQueryByIdQueryByCollectionQueryAllQueryByMetadata(QueryAll queryAll) {
     this.queryAll = queryAll;
+  }
+
+  public AnyOfQueryByIdQueryByCollectionQueryAllQueryByMetadata(QueryByMetadata queryByMetadata) {
+      this.queryByMetadata = queryByMetadata;
   }
 
   public Object getQuery() {
@@ -28,6 +33,9 @@ public class AnyOfQueryByIdQueryByCollectionQueryAll {
     }
     if (queryAll != null) {
       return this.queryAll;
+    }
+    if (queryByMetadata != null) {
+      return this.queryByMetadata;
     }
 
     return null;
@@ -47,4 +55,9 @@ public class AnyOfQueryByIdQueryByCollectionQueryAll {
   public QueryAll getQueryAll() {
     return this.queryAll;
   }
+
+  @Nullable
+  public QueryByMetadata getQueryByMetadata() {
+        return this.queryByMetadata;
+    }
 }

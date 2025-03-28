@@ -34,7 +34,7 @@ import java.util.List;
 public class SceneOperation {
   public static final String SERIALIZED_NAME_QUERY = "query";
   @SerializedName(SERIALIZED_NAME_QUERY)
-  private AnyOfQueryByIdQueryByCollectionQueryAll query;
+  private AnyOfQueryByIdQueryByCollectionQueryAllQueryByMetadata query;
 
   public static final String SERIALIZED_NAME_OPERATIONS = "operations";
   @SerializedName(SERIALIZED_NAME_OPERATIONS)
@@ -43,7 +43,7 @@ public class SceneOperation {
   public SceneOperation() { 
   }
 
-  public SceneOperation query(AnyOfQueryByIdQueryByCollectionQueryAll query) {
+  public SceneOperation query(AnyOfQueryByIdQueryByCollectionQueryAllQueryByMetadata query) {
     
     this.query = query;
     return this;
@@ -56,12 +56,12 @@ public class SceneOperation {
   @javax.annotation.Nullable
   @ApiModelProperty(required = true, value = "Query `scene-items`. Use `query-by-collection` to combine multiple queries.")
 
-  public AnyOfQueryByIdQueryByCollectionQueryAll getQuery() {
+  public AnyOfQueryByIdQueryByCollectionQueryAllQueryByMetadata getQuery() {
     return query;
   }
 
 
-  public void setQuery(AnyOfQueryByIdQueryByCollectionQueryAll query) {
+  public void setQuery(AnyOfQueryByIdQueryByCollectionQueryAllQueryByMetadata query) {
     this.query = query;
   }
 

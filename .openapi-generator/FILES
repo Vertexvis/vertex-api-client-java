@@ -267,6 +267,9 @@ src/main/java/com/vertexvis/model/QueryByCollectionDataAttributes.java
 src/main/java/com/vertexvis/model/QueryById.java
 src/main/java/com/vertexvis/model/QueryByIdData.java
 src/main/java/com/vertexvis/model/QueryByIdDataAttributes.java
+src/main/java/com/vertexvis/model/QueryByMetadata.java
+src/main/java/com/vertexvis/model/QueryByMetadataData.java
+src/main/java/com/vertexvis/model/QueryByMetadataDataAttributes.java
 src/main/java/com/vertexvis/model/QueuedJob.java
 src/main/java/com/vertexvis/model/QueuedJobData.java
 src/main/java/com/vertexvis/model/QueuedJobDataAttributes.java

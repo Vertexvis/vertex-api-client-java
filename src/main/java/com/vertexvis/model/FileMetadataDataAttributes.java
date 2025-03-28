@@ -24,6 +24,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * FileMetadataDataAttributes
@@ -57,6 +60,10 @@ public class FileMetadataDataAttributes {
   public static final String SERIALIZED_NAME_SIZE = "size";
   @SerializedName(SERIALIZED_NAME_SIZE)
   private Long size;
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  private Map<String, String> metadata = null;
 
   public FileMetadataDataAttributes() { 
   }
@@ -222,6 +229,37 @@ public class FileMetadataDataAttributes {
   }
 
 
+  public FileMetadataDataAttributes metadata(Map<String, String> metadata) {
+    
+    this.metadata = metadata;
+    return this;
+  }
+
+  public FileMetadataDataAttributes putMetadataItem(String key, String metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+   /**
+   * Get metadata
+   * @return metadata
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Map<String, String> getMetadata() {
+    return metadata;
+  }
+
+
+  public void setMetadata(Map<String, String> metadata) {
+    this.metadata = metadata;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -237,12 +275,13 @@ public class FileMetadataDataAttributes {
         Objects.equals(this.rootFileName, fileMetadataDataAttributes.rootFileName) &&
         Objects.equals(this.created, fileMetadataDataAttributes.created) &&
         Objects.equals(this.uploaded, fileMetadataDataAttributes.uploaded) &&
-        Objects.equals(this.size, fileMetadataDataAttributes.size);
+        Objects.equals(this.size, fileMetadataDataAttributes.size) &&
+        Objects.equals(this.metadata, fileMetadataDataAttributes.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, status, suppliedId, rootFileName, created, uploaded, size);
+    return Objects.hash(name, status, suppliedId, rootFileName, created, uploaded, size, metadata);
   }
 
   @Override
@@ -256,6 +295,7 @@ public class FileMetadataDataAttributes {
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    uploaded: ").append(toIndentedString(uploaded)).append("\n");
     sb.append("    size: ").append(toIndentedString(size)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
   }

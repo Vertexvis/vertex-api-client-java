@@ -100,7 +100,7 @@ public class JSON {
                         AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationshipPartRenditionRelationship.class,
                         new AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationshipTypeAdapter(
                                 () -> gson))
-                .registerTypeAdapter(AnyOfQueryByIdQueryByCollectionQueryAll.class,
+                .registerTypeAdapter(AnyOfQueryByIdQueryByCollectionQueryAllQueryByMetadata.class,
                         new AnyOfQueryByIdQueryByCollectionQueryAllTypeAdapter(() -> gson))
                 .registerTypeAdapter(AnyOfCameraCameraFit.class,
                         new AnyOfCameraCameraFitTypeAdapter(() -> gson)).registerTypeAdapter(

@@ -20,7 +20,7 @@ main() {
                 AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType.java \
                 AnyOfGeometrySetDataPartRevisionDataPartRenditionData.java \
                 AnyOfGeometrySetRelationshipPartRevisionRelationship.java \
-                AnyOfQueryByIdQueryByCollectionQueryAll.java \
+                AnyOfQueryByIdQueryByCollectionQueryAllQueryByMetadata.java \
                 OneOfHitResultDataSceneItemDataPartRevisionData.java \
                 OneOfWebhookEventSceneIncludedDataWebhookEventPartRevisionIncludedData.java \
                 OneOfUpdateItemToDefaultRenditionOperation.java \
