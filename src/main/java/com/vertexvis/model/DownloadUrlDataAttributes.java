@@ -25,37 +25,37 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * PropertyKeyType
+ * DownloadUrlDataAttributes
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class PropertyKeyType {
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
+public class DownloadUrlDataAttributes {
+  public static final String SERIALIZED_NAME_DOWNLOAD_URL = "downloadUrl";
+  @SerializedName(SERIALIZED_NAME_DOWNLOAD_URL)
+  private String downloadUrl;
 
-  public PropertyKeyType() { 
+  public DownloadUrlDataAttributes() { 
   }
 
-  public PropertyKeyType name(String name) {
+  public DownloadUrlDataAttributes downloadUrl(String downloadUrl) {
     
-    this.name = name;
+    this.downloadUrl = downloadUrl;
     return this;
   }
 
    /**
-   * Get name
-   * @return name
+   * Get downloadUrl
+   * @return downloadUrl
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "some-string", required = true, value = "")
+  @ApiModelProperty(example = "https://example.com/path/to/file.zip", required = true, value = "")
 
-  public String getName() {
-    return name;
+  public String getDownloadUrl() {
+    return downloadUrl;
   }
 
 
-  public void setName(String name) {
-    this.name = name;
+  public void setDownloadUrl(String downloadUrl) {
+    this.downloadUrl = downloadUrl;
   }
 
 
@@ -67,20 +67,20 @@ public class PropertyKeyType {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PropertyKeyType propertyKeyType = (PropertyKeyType) o;
-    return Objects.equals(this.name, propertyKeyType.name);
+    DownloadUrlDataAttributes downloadUrlDataAttributes = (DownloadUrlDataAttributes) o;
+    return Objects.equals(this.downloadUrl, downloadUrlDataAttributes.downloadUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name);
+    return Objects.hash(downloadUrl);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PropertyKeyType {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("class DownloadUrlDataAttributes {\n");
+    sb.append("    downloadUrl: ").append(toIndentedString(downloadUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }

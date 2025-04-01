@@ -24,6 +24,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.UUID;
 
 /**
  * StreamKeyDataAttributes
@@ -45,6 +46,14 @@ public class StreamKeyDataAttributes {
   public static final String SERIALIZED_NAME_EXCLUDE_PRUNED_ITEMS = "excludePrunedItems";
   @SerializedName(SERIALIZED_NAME_EXCLUDE_PRUNED_ITEMS)
   private Boolean excludePrunedItems;
+
+  public static final String SERIALIZED_NAME_SCENE_VIEW_STATE_SUPPLIED_ID = "sceneViewStateSuppliedId";
+  @SerializedName(SERIALIZED_NAME_SCENE_VIEW_STATE_SUPPLIED_ID)
+  private String sceneViewStateSuppliedId;
+
+  public static final String SERIALIZED_NAME_SCENE_VIEW_STATE_ID = "sceneViewStateId";
+  @SerializedName(SERIALIZED_NAME_SCENE_VIEW_STATE_ID)
+  private UUID sceneViewStateId;
 
   public StreamKeyDataAttributes() { 
   }
@@ -141,6 +150,52 @@ public class StreamKeyDataAttributes {
   }
 
 
+  public StreamKeyDataAttributes sceneViewStateSuppliedId(String sceneViewStateSuppliedId) {
+    
+    this.sceneViewStateSuppliedId = sceneViewStateSuppliedId;
+    return this;
+  }
+
+   /**
+   * Get sceneViewStateSuppliedId
+   * @return sceneViewStateSuppliedId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "some-string", value = "")
+
+  public String getSceneViewStateSuppliedId() {
+    return sceneViewStateSuppliedId;
+  }
+
+
+  public void setSceneViewStateSuppliedId(String sceneViewStateSuppliedId) {
+    this.sceneViewStateSuppliedId = sceneViewStateSuppliedId;
+  }
+
+
+  public StreamKeyDataAttributes sceneViewStateId(UUID sceneViewStateId) {
+    
+    this.sceneViewStateId = sceneViewStateId;
+    return this;
+  }
+
+   /**
+   * ID of the resource.
+   * @return sceneViewStateId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "f79d4760-0b71-44e4-ad0b-22743fdd4ca3", value = "ID of the resource.")
+
+  public UUID getSceneViewStateId() {
+    return sceneViewStateId;
+  }
+
+
+  public void setSceneViewStateId(UUID sceneViewStateId) {
+    this.sceneViewStateId = sceneViewStateId;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -153,12 +208,14 @@ public class StreamKeyDataAttributes {
     return Objects.equals(this.key, streamKeyDataAttributes.key) &&
         Objects.equals(this.expiry, streamKeyDataAttributes.expiry) &&
         Objects.equals(this.created, streamKeyDataAttributes.created) &&
-        Objects.equals(this.excludePrunedItems, streamKeyDataAttributes.excludePrunedItems);
+        Objects.equals(this.excludePrunedItems, streamKeyDataAttributes.excludePrunedItems) &&
+        Objects.equals(this.sceneViewStateSuppliedId, streamKeyDataAttributes.sceneViewStateSuppliedId) &&
+        Objects.equals(this.sceneViewStateId, streamKeyDataAttributes.sceneViewStateId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(key, expiry, created, excludePrunedItems);
+    return Objects.hash(key, expiry, created, excludePrunedItems, sceneViewStateSuppliedId, sceneViewStateId);
   }
 
   @Override
@@ -169,6 +226,8 @@ public class StreamKeyDataAttributes {
     sb.append("    expiry: ").append(toIndentedString(expiry)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    excludePrunedItems: ").append(toIndentedString(excludePrunedItems)).append("\n");
+    sb.append("    sceneViewStateSuppliedId: ").append(toIndentedString(sceneViewStateSuppliedId)).append("\n");
+    sb.append("    sceneViewStateId: ").append(toIndentedString(sceneViewStateId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

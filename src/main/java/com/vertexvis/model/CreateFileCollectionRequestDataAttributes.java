@@ -28,10 +28,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * CreateFileRequestDataAttributes
+ * CreateFileCollectionRequestDataAttributes
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateFileRequestDataAttributes {
+public class CreateFileCollectionRequestDataAttributes {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
@@ -39,10 +39,6 @@ public class CreateFileRequestDataAttributes {
   public static final String SERIALIZED_NAME_SUPPLIED_ID = "suppliedId";
   @SerializedName(SERIALIZED_NAME_SUPPLIED_ID)
   private String suppliedId;
-
-  public static final String SERIALIZED_NAME_ROOT_FILE_NAME = "rootFileName";
-  @SerializedName(SERIALIZED_NAME_ROOT_FILE_NAME)
-  private String rootFileName;
 
   public static final String SERIALIZED_NAME_EXPIRY = "expiry";
   @SerializedName(SERIALIZED_NAME_EXPIRY)
@@ -52,21 +48,21 @@ public class CreateFileRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_METADATA)
   private Map<String, String> metadata = null;
 
-  public CreateFileRequestDataAttributes() { 
+  public CreateFileCollectionRequestDataAttributes() { 
   }
 
-  public CreateFileRequestDataAttributes name(String name) {
+  public CreateFileCollectionRequestDataAttributes name(String name) {
     
     this.name = name;
     return this;
   }
 
    /**
-   * Name matching that of the file you are uploading, including file extension.
+   * Get name
    * @return name
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "model.zip", required = true, value = "Name matching that of the file you are uploading, including file extension.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "some-string", value = "")
 
   public String getName() {
     return name;
@@ -78,18 +74,18 @@ public class CreateFileRequestDataAttributes {
   }
 
 
-  public CreateFileRequestDataAttributes suppliedId(String suppliedId) {
+  public CreateFileCollectionRequestDataAttributes suppliedId(String suppliedId) {
     
     this.suppliedId = suppliedId;
     return this;
   }
 
    /**
-   * ID provided for correlation. For example, an existing ID from a PLM system.
+   * ID provided for correlation with external systems, e.g. a PLM system.
    * @return suppliedId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "PN12345", value = "ID provided for correlation. For example, an existing ID from a PLM system.")
+  @ApiModelProperty(example = "GRP12345", value = "ID provided for correlation with external systems, e.g. a PLM system.")
 
   public String getSuppliedId() {
     return suppliedId;
@@ -101,42 +97,19 @@ public class CreateFileRequestDataAttributes {
   }
 
 
-  public CreateFileRequestDataAttributes rootFileName(String rootFileName) {
-    
-    this.rootFileName = rootFileName;
-    return this;
-  }
-
-   /**
-   * File name of the root part or assembly, including file extension. Required if &#x60;name&#x60; references an archive file extension, ignored otherwise.
-   * @return rootFileName
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "root-assembly.prt.1", value = "File name of the root part or assembly, including file extension. Required if `name` references an archive file extension, ignored otherwise.")
-
-  public String getRootFileName() {
-    return rootFileName;
-  }
-
-
-  public void setRootFileName(String rootFileName) {
-    this.rootFileName = rootFileName;
-  }
-
-
-  public CreateFileRequestDataAttributes expiry(Integer expiry) {
+  public CreateFileCollectionRequestDataAttributes expiry(Integer expiry) {
     
     this.expiry = expiry;
     return this;
   }
 
    /**
-   * Number of seconds before the file is deleted.
+   * Number of seconds before expiration
    * minimum: 1
    * @return expiry
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "600", value = "Number of seconds before the file is deleted.")
+  @ApiModelProperty(example = "600", value = "Number of seconds before expiration")
 
   public Integer getExpiry() {
     return expiry;
@@ -148,13 +121,13 @@ public class CreateFileRequestDataAttributes {
   }
 
 
-  public CreateFileRequestDataAttributes metadata(Map<String, String> metadata) {
+  public CreateFileCollectionRequestDataAttributes metadata(Map<String, String> metadata) {
     
     this.metadata = metadata;
     return this;
   }
 
-  public CreateFileRequestDataAttributes putMetadataItem(String key, String metadataItem) {
+  public CreateFileCollectionRequestDataAttributes putMetadataItem(String key, String metadataItem) {
     if (this.metadata == null) {
       this.metadata = new HashMap<>();
     }
@@ -163,11 +136,11 @@ public class CreateFileRequestDataAttributes {
   }
 
    /**
-   * User supplied key-value pairs for a file. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters. 
+   * User supplied key-value pairs for a file-collection. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters. 
    * @return metadata
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "User supplied key-value pairs for a file. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters. ")
+  @ApiModelProperty(value = "User supplied key-value pairs for a file-collection. You can supply up to 50 entries, with key names limited to 64 characters and values limited to 256 characters. ")
 
   public Map<String, String> getMetadata() {
     return metadata;
@@ -187,26 +160,24 @@ public class CreateFileRequestDataAttributes {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateFileRequestDataAttributes createFileRequestDataAttributes = (CreateFileRequestDataAttributes) o;
-    return Objects.equals(this.name, createFileRequestDataAttributes.name) &&
-        Objects.equals(this.suppliedId, createFileRequestDataAttributes.suppliedId) &&
-        Objects.equals(this.rootFileName, createFileRequestDataAttributes.rootFileName) &&
-        Objects.equals(this.expiry, createFileRequestDataAttributes.expiry) &&
-        Objects.equals(this.metadata, createFileRequestDataAttributes.metadata);
+    CreateFileCollectionRequestDataAttributes createFileCollectionRequestDataAttributes = (CreateFileCollectionRequestDataAttributes) o;
+    return Objects.equals(this.name, createFileCollectionRequestDataAttributes.name) &&
+        Objects.equals(this.suppliedId, createFileCollectionRequestDataAttributes.suppliedId) &&
+        Objects.equals(this.expiry, createFileCollectionRequestDataAttributes.expiry) &&
+        Objects.equals(this.metadata, createFileCollectionRequestDataAttributes.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, suppliedId, rootFileName, expiry, metadata);
+    return Objects.hash(name, suppliedId, expiry, metadata);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateFileRequestDataAttributes {\n");
+    sb.append("class CreateFileCollectionRequestDataAttributes {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    suppliedId: ").append(toIndentedString(suppliedId)).append("\n");
-    sb.append("    rootFileName: ").append(toIndentedString(rootFileName)).append("\n");
     sb.append("    expiry: ").append(toIndentedString(expiry)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");

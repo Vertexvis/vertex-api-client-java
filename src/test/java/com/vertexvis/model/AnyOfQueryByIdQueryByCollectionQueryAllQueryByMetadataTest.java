@@ -5,18 +5,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.vertexvis.JSON;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
-public class AnyOfQueryByIdQueryByCollectionQueryAllTest {
+public class AnyOfQueryByIdQueryByCollectionQueryAllQueryByMetadataTest {
 
   @Test
   void serializesQueryById() {
     UUID id = UUID.randomUUID();
 
-    AnyOfQueryByIdQueryByCollectionQueryAll q =
-        new AnyOfQueryByIdQueryByCollectionQueryAll(new QueryById().data(
+    AnyOfQueryByIdQueryByCollectionQueryAllQueryByMetadata q =
+        new AnyOfQueryByIdQueryByCollectionQueryAllQueryByMetadata(new QueryById().data(
             new QueryByIdData().type(QueryByIdData.TypeEnum.QUERY_BY_ID).attributes(
                 new QueryByIdDataAttributes().type(QueryByIdDataAttributes.TypeEnum.ID)
                     .value(id.toString()))));
@@ -33,8 +34,8 @@ public class AnyOfQueryByIdQueryByCollectionQueryAllTest {
   void serializesQueryByCollection() {
     UUID id = UUID.randomUUID();
 
-    AnyOfQueryByIdQueryByCollectionQueryAll q =
-        new AnyOfQueryByIdQueryByCollectionQueryAll(
+    AnyOfQueryByIdQueryByCollectionQueryAllQueryByMetadata q =
+        new AnyOfQueryByIdQueryByCollectionQueryAllQueryByMetadata(
             new QueryByCollection()
                 .data(new QueryByCollectionData()
                     .type(QueryByCollectionData.TypeEnum.QUERY_BY_COLLECTION)
@@ -57,14 +58,34 @@ public class AnyOfQueryByIdQueryByCollectionQueryAllTest {
 
   @Test
   void serializesQueryByAll() {
-    AnyOfQueryByIdQueryByCollectionQueryAll q =
-        new AnyOfQueryByIdQueryByCollectionQueryAll(QueryAll.ALL);
+    AnyOfQueryByIdQueryByCollectionQueryAllQueryByMetadata q =
+        new AnyOfQueryByIdQueryByCollectionQueryAllQueryByMetadata(QueryAll.ALL);
 
     SceneOperation op = new SceneOperation().query(q);
     String expected = "{\"query\":\"all\",\"operations\":[]}";
 
     assertEquals(expected, new JSON().serialize(op));
   }
+
+    @Test
+    void serializesQueryByMetadata() {
+        AnyOfQueryByIdQueryByCollectionQueryAllQueryByMetadata q =
+                new AnyOfQueryByIdQueryByCollectionQueryAllQueryByMetadata(new QueryByMetadata()
+                        .data(new QueryByMetadataData()
+                                .type(QueryByMetadataData.TypeEnum.QUERY_BY_METADATA)
+                                .attributes(new QueryByMetadataDataAttributes()
+                                        .exactMatch(true)
+                                        .keys(List.of("key1"))
+                                        .filter("filter1")
+                                )
+                        )
+                );
+
+        SceneOperation op = new SceneOperation().query(q);
+        String expected = "{\"query\":{\"data\":{\"type\":\"query-by-metadata\",\"attributes\":{\"exactMatch\":true,\"filter\":\"filter1\",\"keys\":[\"key1\"]}}},\"operations\":[]}";
+
+        assertEquals(expected, new JSON().serialize(op));
+    }
 }
 
 

@@ -29,46 +29,30 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * FileMetadataDataAttributes
+ * FileCollectionMetadataDataAttributes
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class FileMetadataDataAttributes {
+public class FileCollectionMetadataDataAttributes {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
-
-  public static final String SERIALIZED_NAME_STATUS = "status";
-  @SerializedName(SERIALIZED_NAME_STATUS)
-  private String status;
 
   public static final String SERIALIZED_NAME_SUPPLIED_ID = "suppliedId";
   @SerializedName(SERIALIZED_NAME_SUPPLIED_ID)
   private String suppliedId;
 
-  public static final String SERIALIZED_NAME_ROOT_FILE_NAME = "rootFileName";
-  @SerializedName(SERIALIZED_NAME_ROOT_FILE_NAME)
-  private String rootFileName;
-
   public static final String SERIALIZED_NAME_CREATED = "created";
   @SerializedName(SERIALIZED_NAME_CREATED)
   private OffsetDateTime created;
-
-  public static final String SERIALIZED_NAME_UPLOADED = "uploaded";
-  @SerializedName(SERIALIZED_NAME_UPLOADED)
-  private OffsetDateTime uploaded;
-
-  public static final String SERIALIZED_NAME_SIZE = "size";
-  @SerializedName(SERIALIZED_NAME_SIZE)
-  private Long size;
 
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
   private Map<String, String> metadata = null;
 
-  public FileMetadataDataAttributes() { 
+  public FileCollectionMetadataDataAttributes() { 
   }
 
-  public FileMetadataDataAttributes name(String name) {
+  public FileCollectionMetadataDataAttributes name(String name) {
     
     this.name = name;
     return this;
@@ -78,8 +62,8 @@ public class FileMetadataDataAttributes {
    * Get name
    * @return name
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "some-string", required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "some-string", value = "")
 
   public String getName() {
     return name;
@@ -91,41 +75,18 @@ public class FileMetadataDataAttributes {
   }
 
 
-  public FileMetadataDataAttributes status(String status) {
-    
-    this.status = status;
-    return this;
-  }
-
-   /**
-   * Get status
-   * @return status
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "complete", required = true, value = "")
-
-  public String getStatus() {
-    return status;
-  }
-
-
-  public void setStatus(String status) {
-    this.status = status;
-  }
-
-
-  public FileMetadataDataAttributes suppliedId(String suppliedId) {
+  public FileCollectionMetadataDataAttributes suppliedId(String suppliedId) {
     
     this.suppliedId = suppliedId;
     return this;
   }
 
    /**
-   * Get suppliedId
+   * ID provided for correlation with external systems, e.g. a PLM system.
    * @return suppliedId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "some-string", value = "")
+  @ApiModelProperty(example = "GRP12345", value = "ID provided for correlation with external systems, e.g. a PLM system.")
 
   public String getSuppliedId() {
     return suppliedId;
@@ -137,30 +98,7 @@ public class FileMetadataDataAttributes {
   }
 
 
-  public FileMetadataDataAttributes rootFileName(String rootFileName) {
-    
-    this.rootFileName = rootFileName;
-    return this;
-  }
-
-   /**
-   * Get rootFileName
-   * @return rootFileName
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "some-string", value = "")
-
-  public String getRootFileName() {
-    return rootFileName;
-  }
-
-
-  public void setRootFileName(String rootFileName) {
-    this.rootFileName = rootFileName;
-  }
-
-
-  public FileMetadataDataAttributes created(OffsetDateTime created) {
+  public FileCollectionMetadataDataAttributes created(OffsetDateTime created) {
     
     this.created = created;
     return this;
@@ -183,59 +121,13 @@ public class FileMetadataDataAttributes {
   }
 
 
-  public FileMetadataDataAttributes uploaded(OffsetDateTime uploaded) {
-    
-    this.uploaded = uploaded;
-    return this;
-  }
-
-   /**
-   * Get uploaded
-   * @return uploaded
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "2020-01-01T12:00Z", value = "")
-
-  public OffsetDateTime getUploaded() {
-    return uploaded;
-  }
-
-
-  public void setUploaded(OffsetDateTime uploaded) {
-    this.uploaded = uploaded;
-  }
-
-
-  public FileMetadataDataAttributes size(Long size) {
-    
-    this.size = size;
-    return this;
-  }
-
-   /**
-   * Get size
-   * @return size
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public Long getSize() {
-    return size;
-  }
-
-
-  public void setSize(Long size) {
-    this.size = size;
-  }
-
-
-  public FileMetadataDataAttributes metadata(Map<String, String> metadata) {
+  public FileCollectionMetadataDataAttributes metadata(Map<String, String> metadata) {
     
     this.metadata = metadata;
     return this;
   }
 
-  public FileMetadataDataAttributes putMetadataItem(String key, String metadataItem) {
+  public FileCollectionMetadataDataAttributes putMetadataItem(String key, String metadataItem) {
     if (this.metadata == null) {
       this.metadata = new HashMap<>();
     }
@@ -268,33 +160,25 @@ public class FileMetadataDataAttributes {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    FileMetadataDataAttributes fileMetadataDataAttributes = (FileMetadataDataAttributes) o;
-    return Objects.equals(this.name, fileMetadataDataAttributes.name) &&
-        Objects.equals(this.status, fileMetadataDataAttributes.status) &&
-        Objects.equals(this.suppliedId, fileMetadataDataAttributes.suppliedId) &&
-        Objects.equals(this.rootFileName, fileMetadataDataAttributes.rootFileName) &&
-        Objects.equals(this.created, fileMetadataDataAttributes.created) &&
-        Objects.equals(this.uploaded, fileMetadataDataAttributes.uploaded) &&
-        Objects.equals(this.size, fileMetadataDataAttributes.size) &&
-        Objects.equals(this.metadata, fileMetadataDataAttributes.metadata);
+    FileCollectionMetadataDataAttributes fileCollectionMetadataDataAttributes = (FileCollectionMetadataDataAttributes) o;
+    return Objects.equals(this.name, fileCollectionMetadataDataAttributes.name) &&
+        Objects.equals(this.suppliedId, fileCollectionMetadataDataAttributes.suppliedId) &&
+        Objects.equals(this.created, fileCollectionMetadataDataAttributes.created) &&
+        Objects.equals(this.metadata, fileCollectionMetadataDataAttributes.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, status, suppliedId, rootFileName, created, uploaded, size, metadata);
+    return Objects.hash(name, suppliedId, created, metadata);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class FileMetadataDataAttributes {\n");
+    sb.append("class FileCollectionMetadataDataAttributes {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    suppliedId: ").append(toIndentedString(suppliedId)).append("\n");
-    sb.append("    rootFileName: ").append(toIndentedString(rootFileName)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
-    sb.append("    uploaded: ").append(toIndentedString(uploaded)).append("\n");
-    sb.append("    size: ").append(toIndentedString(size)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();

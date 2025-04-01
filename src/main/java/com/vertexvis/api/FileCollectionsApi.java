@@ -27,15 +27,14 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import com.vertexvis.model.CreateDownloadRequest;
-import com.vertexvis.model.CreateFileRequest;
-import com.vertexvis.model.DownloadUrl;
+import com.vertexvis.model.CreateFileCollectionRequest;
 import com.vertexvis.model.Failure;
-import java.io.File;
+import com.vertexvis.model.FileCollectionList;
+import com.vertexvis.model.FileCollectionMetadata;
+import com.vertexvis.model.FileIdList;
 import com.vertexvis.model.FileList;
-import com.vertexvis.model.FileMetadata;
 import java.util.UUID;
-import com.vertexvis.model.UpdateFileRequest;
+import com.vertexvis.model.UpdateFileCollectionRequest;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -43,16 +42,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FilesApi {
+public class FileCollectionsApi {
     private ApiClient localVarApiClient;
     private int localHostIndex;
     private String localCustomBaseUrl;
 
-    public FilesApi() {
+    public FileCollectionsApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public FilesApi(ApiClient apiClient) {
+    public FileCollectionsApi(ApiClient apiClient) {
         this.localVarApiClient = apiClient;
     }
 
@@ -81,22 +80,22 @@ public class FilesApi {
     }
 
     /**
-     * Build call for createDownloadUrl
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @param createDownloadRequest  (required)
+     * Build call for addFileCollectionFiles
+     * @param id The &#x60;file-collection&#x60; ID. (required)
+     * @param fileIdList  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createDownloadUrlCall(UUID id, CreateDownloadRequest createDownloadRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call addFileCollectionFilesCall(UUID id, FileIdList fileIdList, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
         // Operation Servers
@@ -111,10 +110,10 @@ public class FilesApi {
             basePath = null;
         }
 
-        Object localVarPostBody = createDownloadRequest;
+        Object localVarPostBody = fileIdList;
 
         // create path and map variables
-        String localVarPath = "/files/{id}/download-url"
+        String localVarPath = "/file-collections/{id}/files"
             .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -144,94 +143,94 @@ public class FilesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call createDownloadUrlValidateBeforeCall(UUID id, CreateDownloadRequest createDownloadRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call addFileCollectionFilesValidateBeforeCall(UUID id, FileIdList fileIdList, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling createDownloadUrl(Async)");
+            throw new ApiException("Missing the required parameter 'id' when calling addFileCollectionFiles(Async)");
         }
         
-        // verify the required parameter 'createDownloadRequest' is set
-        if (createDownloadRequest == null) {
-            throw new ApiException("Missing the required parameter 'createDownloadRequest' when calling createDownloadUrl(Async)");
+        // verify the required parameter 'fileIdList' is set
+        if (fileIdList == null) {
+            throw new ApiException("Missing the required parameter 'fileIdList' when calling addFileCollectionFiles(Async)");
         }
         
 
-        okhttp3.Call localVarCall = createDownloadUrlCall(id, createDownloadRequest, _callback);
+        okhttp3.Call localVarCall = addFileCollectionFilesCall(id, fileIdList, _callback);
         return localVarCall;
 
     }
 
     /**
      * 
-     * Create a download uri for a &#x60;file&#x60; by ID.
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @param createDownloadRequest  (required)
-     * @return DownloadUrl
+     * Add files to a &#x60;file-collection&#x60;.
+     * @param id The &#x60;file-collection&#x60; ID. (required)
+     * @param fileIdList  (required)
+     * @return FileCollectionMetadata
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public DownloadUrl createDownloadUrl(UUID id, CreateDownloadRequest createDownloadRequest) throws ApiException {
-        ApiResponse<DownloadUrl> localVarResp = createDownloadUrlWithHttpInfo(id, createDownloadRequest);
+    public FileCollectionMetadata addFileCollectionFiles(UUID id, FileIdList fileIdList) throws ApiException {
+        ApiResponse<FileCollectionMetadata> localVarResp = addFileCollectionFilesWithHttpInfo(id, fileIdList);
         return localVarResp.getData();
     }
 
     /**
      * 
-     * Create a download uri for a &#x60;file&#x60; by ID.
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @param createDownloadRequest  (required)
-     * @return ApiResponse&lt;DownloadUrl&gt;
+     * Add files to a &#x60;file-collection&#x60;.
+     * @param id The &#x60;file-collection&#x60; ID. (required)
+     * @param fileIdList  (required)
+     * @return ApiResponse&lt;FileCollectionMetadata&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<DownloadUrl> createDownloadUrlWithHttpInfo(UUID id, CreateDownloadRequest createDownloadRequest) throws ApiException {
-        okhttp3.Call localVarCall = createDownloadUrlValidateBeforeCall(id, createDownloadRequest, null);
-        Type localVarReturnType = new TypeToken<DownloadUrl>(){}.getType();
+    public ApiResponse<FileCollectionMetadata> addFileCollectionFilesWithHttpInfo(UUID id, FileIdList fileIdList) throws ApiException {
+        okhttp3.Call localVarCall = addFileCollectionFilesValidateBeforeCall(id, fileIdList, null);
+        Type localVarReturnType = new TypeToken<FileCollectionMetadata>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      *  (asynchronously)
-     * Create a download uri for a &#x60;file&#x60; by ID.
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @param createDownloadRequest  (required)
+     * Add files to a &#x60;file-collection&#x60;.
+     * @param id The &#x60;file-collection&#x60; ID. (required)
+     * @param fileIdList  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Created </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createDownloadUrlAsync(UUID id, CreateDownloadRequest createDownloadRequest, final ApiCallback<DownloadUrl> _callback) throws ApiException {
+    public okhttp3.Call addFileCollectionFilesAsync(UUID id, FileIdList fileIdList, final ApiCallback<FileCollectionMetadata> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = createDownloadUrlValidateBeforeCall(id, createDownloadRequest, _callback);
-        Type localVarReturnType = new TypeToken<DownloadUrl>(){}.getType();
+        okhttp3.Call localVarCall = addFileCollectionFilesValidateBeforeCall(id, fileIdList, _callback);
+        Type localVarReturnType = new TypeToken<FileCollectionMetadata>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for createFile
-     * @param createFileRequest  (required)
+     * Build call for createFileCollection
+     * @param createFileCollectionRequest  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -241,10 +240,9 @@ public class FilesApi {
         <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createFileCall(CreateFileRequest createFileRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call createFileCollectionCall(CreateFileCollectionRequest createFileCollectionRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
         // Operation Servers
@@ -259,10 +257,10 @@ public class FilesApi {
             basePath = null;
         }
 
-        Object localVarPostBody = createFileRequest;
+        Object localVarPostBody = createFileCollectionRequest;
 
         // create path and map variables
-        String localVarPath = "/files";
+        String localVarPath = "/file-collections";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -291,24 +289,24 @@ public class FilesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call createFileValidateBeforeCall(CreateFileRequest createFileRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call createFileCollectionValidateBeforeCall(CreateFileCollectionRequest createFileCollectionRequest, final ApiCallback _callback) throws ApiException {
         
-        // verify the required parameter 'createFileRequest' is set
-        if (createFileRequest == null) {
-            throw new ApiException("Missing the required parameter 'createFileRequest' when calling createFile(Async)");
+        // verify the required parameter 'createFileCollectionRequest' is set
+        if (createFileCollectionRequest == null) {
+            throw new ApiException("Missing the required parameter 'createFileCollectionRequest' when calling createFileCollection(Async)");
         }
         
 
-        okhttp3.Call localVarCall = createFileCall(createFileRequest, _callback);
+        okhttp3.Call localVarCall = createFileCollectionCall(createFileCollectionRequest, _callback);
         return localVarCall;
 
     }
 
     /**
      * 
-     * Create a &#x60;file&#x60;. Once created, upload file content via the uploadFile API. For details including supported file formats, see our [Import data](https://developer.vertexvis.com/docs/guides/import-data-with-api) guide.
-     * @param createFileRequest  (required)
-     * @return FileMetadata
+     * Create a &#x60;file-collection&#x60;.
+     * @param createFileCollectionRequest  (required)
+     * @return FileCollectionMetadata
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -316,19 +314,18 @@ public class FilesApi {
         <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public FileMetadata createFile(CreateFileRequest createFileRequest) throws ApiException {
-        ApiResponse<FileMetadata> localVarResp = createFileWithHttpInfo(createFileRequest);
+    public FileCollectionMetadata createFileCollection(CreateFileCollectionRequest createFileCollectionRequest) throws ApiException {
+        ApiResponse<FileCollectionMetadata> localVarResp = createFileCollectionWithHttpInfo(createFileCollectionRequest);
         return localVarResp.getData();
     }
 
     /**
      * 
-     * Create a &#x60;file&#x60;. Once created, upload file content via the uploadFile API. For details including supported file formats, see our [Import data](https://developer.vertexvis.com/docs/guides/import-data-with-api) guide.
-     * @param createFileRequest  (required)
-     * @return ApiResponse&lt;FileMetadata&gt;
+     * Create a &#x60;file-collection&#x60;.
+     * @param createFileCollectionRequest  (required)
+     * @return ApiResponse&lt;FileCollectionMetadata&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -336,19 +333,18 @@ public class FilesApi {
         <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<FileMetadata> createFileWithHttpInfo(CreateFileRequest createFileRequest) throws ApiException {
-        okhttp3.Call localVarCall = createFileValidateBeforeCall(createFileRequest, null);
-        Type localVarReturnType = new TypeToken<FileMetadata>(){}.getType();
+    public ApiResponse<FileCollectionMetadata> createFileCollectionWithHttpInfo(CreateFileCollectionRequest createFileCollectionRequest) throws ApiException {
+        okhttp3.Call localVarCall = createFileCollectionValidateBeforeCall(createFileCollectionRequest, null);
+        Type localVarReturnType = new TypeToken<FileCollectionMetadata>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      *  (asynchronously)
-     * Create a &#x60;file&#x60;. Once created, upload file content via the uploadFile API. For details including supported file formats, see our [Import data](https://developer.vertexvis.com/docs/guides/import-data-with-api) guide.
-     * @param createFileRequest  (required)
+     * Create a &#x60;file-collection&#x60;.
+     * @param createFileCollectionRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -358,32 +354,30 @@ public class FilesApi {
         <tr><td> 201 </td><td> Created </td><td>  * location -  <br>  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createFileAsync(CreateFileRequest createFileRequest, final ApiCallback<FileMetadata> _callback) throws ApiException {
+    public okhttp3.Call createFileCollectionAsync(CreateFileCollectionRequest createFileCollectionRequest, final ApiCallback<FileCollectionMetadata> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = createFileValidateBeforeCall(createFileRequest, _callback);
-        Type localVarReturnType = new TypeToken<FileMetadata>(){}.getType();
+        okhttp3.Call localVarCall = createFileCollectionValidateBeforeCall(createFileCollectionRequest, _callback);
+        Type localVarReturnType = new TypeToken<FileCollectionMetadata>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for deleteFile
-     * @param id The &#x60;file&#x60; ID. (required)
+     * Build call for deleteFileCollection
+     * @param id The &#x60;file-collection&#x60; ID. (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteFileCall(UUID id, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call deleteFileCollectionCall(UUID id, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
         // Operation Servers
@@ -401,7 +395,7 @@ public class FilesApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/files/{id}"
+        String localVarPath = "/file-collections/{id}"
             .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -431,86 +425,79 @@ public class FilesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call deleteFileValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call deleteFileCollectionValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling deleteFile(Async)");
+            throw new ApiException("Missing the required parameter 'id' when calling deleteFileCollection(Async)");
         }
         
 
-        okhttp3.Call localVarCall = deleteFileCall(id, _callback);
+        okhttp3.Call localVarCall = deleteFileCollectionCall(id, _callback);
         return localVarCall;
 
     }
 
     /**
      * 
-     * Delete a &#x60;file&#x60;.
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @return FileMetadata
+     * Delete a &#x60;file-collection&#x60;.
+     * @param id The &#x60;file-collection&#x60; ID. (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public FileMetadata deleteFile(UUID id) throws ApiException {
-        ApiResponse<FileMetadata> localVarResp = deleteFileWithHttpInfo(id);
-        return localVarResp.getData();
+    public void deleteFileCollection(UUID id) throws ApiException {
+        deleteFileCollectionWithHttpInfo(id);
     }
 
     /**
      * 
-     * Delete a &#x60;file&#x60;.
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @return ApiResponse&lt;FileMetadata&gt;
+     * Delete a &#x60;file-collection&#x60;.
+     * @param id The &#x60;file-collection&#x60; ID. (required)
+     * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<FileMetadata> deleteFileWithHttpInfo(UUID id) throws ApiException {
-        okhttp3.Call localVarCall = deleteFileValidateBeforeCall(id, null);
-        Type localVarReturnType = new TypeToken<FileMetadata>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    public ApiResponse<Void> deleteFileCollectionWithHttpInfo(UUID id) throws ApiException {
+        okhttp3.Call localVarCall = deleteFileCollectionValidateBeforeCall(id, null);
+        return localVarApiClient.execute(localVarCall);
     }
 
     /**
      *  (asynchronously)
-     * Delete a &#x60;file&#x60;.
-     * @param id The &#x60;file&#x60; ID. (required)
+     * Delete a &#x60;file-collection&#x60;.
+     * @param id The &#x60;file-collection&#x60; ID. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteFileAsync(UUID id, final ApiCallback<FileMetadata> _callback) throws ApiException {
+    public okhttp3.Call deleteFileCollectionAsync(UUID id, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = deleteFileValidateBeforeCall(id, _callback);
-        Type localVarReturnType = new TypeToken<FileMetadata>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        okhttp3.Call localVarCall = deleteFileCollectionValidateBeforeCall(id, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
     /**
-     * Build call for getFile
-     * @param id The &#x60;file&#x60; ID. (required)
+     * Build call for getFileCollection
+     * @param id The &#x60;file-collection&#x60; ID. (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -520,10 +507,9 @@ public class FilesApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getFileCall(UUID id, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getFileCollectionCall(UUID id, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
         // Operation Servers
@@ -541,7 +527,7 @@ public class FilesApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/files/{id}"
+        String localVarPath = "/file-collections/{id}"
             .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -571,24 +557,24 @@ public class FilesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getFileValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getFileCollectionValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling getFile(Async)");
+            throw new ApiException("Missing the required parameter 'id' when calling getFileCollection(Async)");
         }
         
 
-        okhttp3.Call localVarCall = getFileCall(id, _callback);
+        okhttp3.Call localVarCall = getFileCollectionCall(id, _callback);
         return localVarCall;
 
     }
 
     /**
      * 
-     * Get a &#x60;file&#x60; by ID.
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @return FileMetadata
+     * Get a &#x60;file-collection&#x60; by ID.
+     * @param id The &#x60;file-collection&#x60; ID. (required)
+     * @return FileCollectionMetadata
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -596,19 +582,18 @@ public class FilesApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public FileMetadata getFile(UUID id) throws ApiException {
-        ApiResponse<FileMetadata> localVarResp = getFileWithHttpInfo(id);
+    public FileCollectionMetadata getFileCollection(UUID id) throws ApiException {
+        ApiResponse<FileCollectionMetadata> localVarResp = getFileCollectionWithHttpInfo(id);
         return localVarResp.getData();
     }
 
     /**
      * 
-     * Get a &#x60;file&#x60; by ID.
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @return ApiResponse&lt;FileMetadata&gt;
+     * Get a &#x60;file-collection&#x60; by ID.
+     * @param id The &#x60;file-collection&#x60; ID. (required)
+     * @return ApiResponse&lt;FileCollectionMetadata&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -616,19 +601,18 @@ public class FilesApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<FileMetadata> getFileWithHttpInfo(UUID id) throws ApiException {
-        okhttp3.Call localVarCall = getFileValidateBeforeCall(id, null);
-        Type localVarReturnType = new TypeToken<FileMetadata>(){}.getType();
+    public ApiResponse<FileCollectionMetadata> getFileCollectionWithHttpInfo(UUID id) throws ApiException {
+        okhttp3.Call localVarCall = getFileCollectionValidateBeforeCall(id, null);
+        Type localVarReturnType = new TypeToken<FileCollectionMetadata>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      *  (asynchronously)
-     * Get a &#x60;file&#x60; by ID.
-     * @param id The &#x60;file&#x60; ID. (required)
+     * Get a &#x60;file-collection&#x60; by ID.
+     * @param id The &#x60;file-collection&#x60; ID. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -638,21 +622,20 @@ public class FilesApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getFileAsync(UUID id, final ApiCallback<FileMetadata> _callback) throws ApiException {
+    public okhttp3.Call getFileCollectionAsync(UUID id, final ApiCallback<FileCollectionMetadata> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getFileValidateBeforeCall(id, _callback);
-        Type localVarReturnType = new TypeToken<FileMetadata>(){}.getType();
+        okhttp3.Call localVarCall = getFileCollectionValidateBeforeCall(id, _callback);
+        Type localVarReturnType = new TypeToken<FileCollectionMetadata>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for getFiles
+     * Build call for listFileCollectionFiles
+     * @param id The &#x60;file-collection&#x60; ID. (required)
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
-     * @param filterSuppliedId Comma-separated list of supplied IDs to filter on. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -661,10 +644,10 @@ public class FilesApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getFilesCall(String pageCursor, Integer pageSize, String filterSuppliedId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listFileCollectionFilesCall(UUID id, String pageCursor, Integer pageSize, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
         // Operation Servers
@@ -682,7 +665,158 @@ public class FilesApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/files";
+        String localVarPath = "/file-collections/{id}/files"
+            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (pageCursor != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[cursor]", pageCursor));
+        }
+
+        if (pageSize != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[size]", pageSize));
+        }
+
+        final String[] localVarAccepts = {
+            "application/vnd.api+json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "OAuth2" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call listFileCollectionFilesValidateBeforeCall(UUID id, String pageCursor, Integer pageSize, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling listFileCollectionFiles(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = listFileCollectionFilesCall(id, pageCursor, pageSize, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * 
+     * List the files in a &#x60;file-collection&#x60;.
+     * @param id The &#x60;file-collection&#x60; ID. (required)
+     * @param pageCursor The cursor for the next page of items. (optional)
+     * @param pageSize The number of items to return. (optional)
+     * @return FileList
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public FileList listFileCollectionFiles(UUID id, String pageCursor, Integer pageSize) throws ApiException {
+        ApiResponse<FileList> localVarResp = listFileCollectionFilesWithHttpInfo(id, pageCursor, pageSize);
+        return localVarResp.getData();
+    }
+
+    /**
+     * 
+     * List the files in a &#x60;file-collection&#x60;.
+     * @param id The &#x60;file-collection&#x60; ID. (required)
+     * @param pageCursor The cursor for the next page of items. (optional)
+     * @param pageSize The number of items to return. (optional)
+     * @return ApiResponse&lt;FileList&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<FileList> listFileCollectionFilesWithHttpInfo(UUID id, String pageCursor, Integer pageSize) throws ApiException {
+        okhttp3.Call localVarCall = listFileCollectionFilesValidateBeforeCall(id, pageCursor, pageSize, null);
+        Type localVarReturnType = new TypeToken<FileList>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * List the files in a &#x60;file-collection&#x60;.
+     * @param id The &#x60;file-collection&#x60; ID. (required)
+     * @param pageCursor The cursor for the next page of items. (optional)
+     * @param pageSize The number of items to return. (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call listFileCollectionFilesAsync(UUID id, String pageCursor, Integer pageSize, final ApiCallback<FileList> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = listFileCollectionFilesValidateBeforeCall(id, pageCursor, pageSize, _callback);
+        Type localVarReturnType = new TypeToken<FileList>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for listFileCollections
+     * @param pageCursor The cursor for the next page of items. (optional)
+     * @param pageSize The number of items to return. (optional)
+     * @param filterSuppliedId Comma-separated list of supplied IDs to filter on. (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call listFileCollectionsCall(String pageCursor, Integer pageSize, String filterSuppliedId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/file-collections";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -723,60 +857,58 @@ public class FilesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getFilesValidateBeforeCall(String pageCursor, Integer pageSize, String filterSuppliedId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listFileCollectionsValidateBeforeCall(String pageCursor, Integer pageSize, String filterSuppliedId, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = getFilesCall(pageCursor, pageSize, filterSuppliedId, _callback);
+        okhttp3.Call localVarCall = listFileCollectionsCall(pageCursor, pageSize, filterSuppliedId, _callback);
         return localVarCall;
 
     }
 
     /**
      * 
-     * Get &#x60;files&#x60;.
+     * List &#x60;file-collection&#x60;s by supplied ID.
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
      * @param filterSuppliedId Comma-separated list of supplied IDs to filter on. (optional)
-     * @return FileList
+     * @return FileCollectionList
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public FileList getFiles(String pageCursor, Integer pageSize, String filterSuppliedId) throws ApiException {
-        ApiResponse<FileList> localVarResp = getFilesWithHttpInfo(pageCursor, pageSize, filterSuppliedId);
+    public FileCollectionList listFileCollections(String pageCursor, Integer pageSize, String filterSuppliedId) throws ApiException {
+        ApiResponse<FileCollectionList> localVarResp = listFileCollectionsWithHttpInfo(pageCursor, pageSize, filterSuppliedId);
         return localVarResp.getData();
     }
 
     /**
      * 
-     * Get &#x60;files&#x60;.
+     * List &#x60;file-collection&#x60;s by supplied ID.
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
      * @param filterSuppliedId Comma-separated list of supplied IDs to filter on. (optional)
-     * @return ApiResponse&lt;FileList&gt;
+     * @return ApiResponse&lt;FileCollectionList&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<FileList> getFilesWithHttpInfo(String pageCursor, Integer pageSize, String filterSuppliedId) throws ApiException {
-        okhttp3.Call localVarCall = getFilesValidateBeforeCall(pageCursor, pageSize, filterSuppliedId, null);
-        Type localVarReturnType = new TypeToken<FileList>(){}.getType();
+    public ApiResponse<FileCollectionList> listFileCollectionsWithHttpInfo(String pageCursor, Integer pageSize, String filterSuppliedId) throws ApiException {
+        okhttp3.Call localVarCall = listFileCollectionsValidateBeforeCall(pageCursor, pageSize, filterSuppliedId, null);
+        Type localVarReturnType = new TypeToken<FileCollectionList>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      *  (asynchronously)
-     * Get &#x60;files&#x60;.
+     * List &#x60;file-collection&#x60;s by supplied ID.
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
      * @param filterSuppliedId Comma-separated list of supplied IDs to filter on. (optional)
@@ -788,34 +920,32 @@ public class FilesApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getFilesAsync(String pageCursor, Integer pageSize, String filterSuppliedId, final ApiCallback<FileList> _callback) throws ApiException {
+    public okhttp3.Call listFileCollectionsAsync(String pageCursor, Integer pageSize, String filterSuppliedId, final ApiCallback<FileCollectionList> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getFilesValidateBeforeCall(pageCursor, pageSize, filterSuppliedId, _callback);
-        Type localVarReturnType = new TypeToken<FileList>(){}.getType();
+        okhttp3.Call localVarCall = listFileCollectionsValidateBeforeCall(pageCursor, pageSize, filterSuppliedId, _callback);
+        Type localVarReturnType = new TypeToken<FileCollectionList>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for updateFile
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @param updateFileRequest  (required)
+     * Build call for updateFileCollection
+     * @param id The &#x60;file-collection&#x60; ID. (required)
+     * @param updateFileCollectionRequest  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateFileCall(UUID id, UpdateFileRequest updateFileRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateFileCollectionCall(UUID id, UpdateFileCollectionRequest updateFileCollectionRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
         // Operation Servers
@@ -830,10 +960,10 @@ public class FilesApi {
             basePath = null;
         }
 
-        Object localVarPostBody = updateFileRequest;
+        Object localVarPostBody = updateFileCollectionRequest;
 
         // create path and map variables
-        String localVarPath = "/files/{id}"
+        String localVarPath = "/file-collections/{id}"
             .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -863,182 +993,29 @@ public class FilesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateFileValidateBeforeCall(UUID id, UpdateFileRequest updateFileRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateFileCollectionValidateBeforeCall(UUID id, UpdateFileCollectionRequest updateFileCollectionRequest, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling updateFile(Async)");
+            throw new ApiException("Missing the required parameter 'id' when calling updateFileCollection(Async)");
         }
         
-        // verify the required parameter 'updateFileRequest' is set
-        if (updateFileRequest == null) {
-            throw new ApiException("Missing the required parameter 'updateFileRequest' when calling updateFile(Async)");
+        // verify the required parameter 'updateFileCollectionRequest' is set
+        if (updateFileCollectionRequest == null) {
+            throw new ApiException("Missing the required parameter 'updateFileCollectionRequest' when calling updateFileCollection(Async)");
         }
         
 
-        okhttp3.Call localVarCall = updateFileCall(id, updateFileRequest, _callback);
+        okhttp3.Call localVarCall = updateFileCollectionCall(id, updateFileCollectionRequest, _callback);
         return localVarCall;
 
     }
 
     /**
      * 
-     * Update a &#x60;file&#x60;.
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @param updateFileRequest  (required)
-     * @return FileMetadata
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
-     </table>
-     */
-    public FileMetadata updateFile(UUID id, UpdateFileRequest updateFileRequest) throws ApiException {
-        ApiResponse<FileMetadata> localVarResp = updateFileWithHttpInfo(id, updateFileRequest);
-        return localVarResp.getData();
-    }
-
-    /**
-     * 
-     * Update a &#x60;file&#x60;.
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @param updateFileRequest  (required)
-     * @return ApiResponse&lt;FileMetadata&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<FileMetadata> updateFileWithHttpInfo(UUID id, UpdateFileRequest updateFileRequest) throws ApiException {
-        okhttp3.Call localVarCall = updateFileValidateBeforeCall(id, updateFileRequest, null);
-        Type localVarReturnType = new TypeToken<FileMetadata>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     *  (asynchronously)
-     * Update a &#x60;file&#x60;.
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @param updateFileRequest  (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call updateFileAsync(UUID id, UpdateFileRequest updateFileRequest, final ApiCallback<FileMetadata> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = updateFileValidateBeforeCall(id, updateFileRequest, _callback);
-        Type localVarReturnType = new TypeToken<FileMetadata>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for uploadFile
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @param body  (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call uploadFileCall(UUID id, File body, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = body;
-
-        // create path and map variables
-        String localVarPath = "/files/{id}"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/vnd.api+json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/octet-stream"
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] { "OAuth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call uploadFileValidateBeforeCall(UUID id, File body, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling uploadFile(Async)");
-        }
-        
-        // verify the required parameter 'body' is set
-        if (body == null) {
-            throw new ApiException("Missing the required parameter 'body' when calling uploadFile(Async)");
-        }
-        
-
-        okhttp3.Call localVarCall = uploadFileCall(id, body, _callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * 
-     * Upload a &#x60;file&#x60;. Once uploaded, create either parts or geometry sets via the createPart or createGeometrySet APIs.
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @param body  (required)
+     * Update a &#x60;file-collection&#x60;.
+     * @param id The &#x60;file-collection&#x60; ID. (required)
+     * @param updateFileCollectionRequest  (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -1047,18 +1024,17 @@ public class FilesApi {
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public void uploadFile(UUID id, File body) throws ApiException {
-        uploadFileWithHttpInfo(id, body);
+    public void updateFileCollection(UUID id, UpdateFileCollectionRequest updateFileCollectionRequest) throws ApiException {
+        updateFileCollectionWithHttpInfo(id, updateFileCollectionRequest);
     }
 
     /**
      * 
-     * Upload a &#x60;file&#x60;. Once uploaded, create either parts or geometry sets via the createPart or createGeometrySet APIs.
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @param body  (required)
+     * Update a &#x60;file-collection&#x60;.
+     * @param id The &#x60;file-collection&#x60; ID. (required)
+     * @param updateFileCollectionRequest  (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1068,19 +1044,18 @@ public class FilesApi {
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Void> uploadFileWithHttpInfo(UUID id, File body) throws ApiException {
-        okhttp3.Call localVarCall = uploadFileValidateBeforeCall(id, body, null);
+    public ApiResponse<Void> updateFileCollectionWithHttpInfo(UUID id, UpdateFileCollectionRequest updateFileCollectionRequest) throws ApiException {
+        okhttp3.Call localVarCall = updateFileCollectionValidateBeforeCall(id, updateFileCollectionRequest, null);
         return localVarApiClient.execute(localVarCall);
     }
 
     /**
      *  (asynchronously)
-     * Upload a &#x60;file&#x60;. Once uploaded, create either parts or geometry sets via the createPart or createGeometrySet APIs.
-     * @param id The &#x60;file&#x60; ID. (required)
-     * @param body  (required)
+     * Update a &#x60;file-collection&#x60;.
+     * @param id The &#x60;file-collection&#x60; ID. (required)
+     * @param updateFileCollectionRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1091,12 +1066,11 @@ public class FilesApi {
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call uploadFileAsync(UUID id, File body, final ApiCallback<Void> _callback) throws ApiException {
+    public okhttp3.Call updateFileCollectionAsync(UUID id, UpdateFileCollectionRequest updateFileCollectionRequest, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = uploadFileValidateBeforeCall(id, body, _callback);
+        okhttp3.Call localVarCall = updateFileCollectionValidateBeforeCall(id, updateFileCollectionRequest, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
