@@ -105,6 +105,10 @@ public class UpdateSceneRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_WORLD_ORIENTATION)
   private Orientation worldOrientation;
 
+  public static final String SERIALIZED_NAME_EXPIRY = "expiry";
+  @SerializedName(SERIALIZED_NAME_EXPIRY)
+  private Integer expiry;
+
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
   private Map<String, String> metadata = null;
@@ -250,6 +254,30 @@ public class UpdateSceneRequestDataAttributes {
   }
 
 
+  public UpdateSceneRequestDataAttributes expiry(Integer expiry) {
+    
+    this.expiry = expiry;
+    return this;
+  }
+
+   /**
+   * Number of seconds before expiration
+   * minimum: 1
+   * @return expiry
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "600", value = "Number of seconds before expiration")
+
+  public Integer getExpiry() {
+    return expiry;
+  }
+
+
+  public void setExpiry(Integer expiry) {
+    this.expiry = expiry;
+  }
+
+
   public UpdateSceneRequestDataAttributes metadata(Map<String, String> metadata) {
     
     this.metadata = metadata;
@@ -296,6 +324,7 @@ public class UpdateSceneRequestDataAttributes {
         Objects.equals(this.name, updateSceneRequestDataAttributes.name) &&
         Objects.equals(this.treeEnabled, updateSceneRequestDataAttributes.treeEnabled) &&
         Objects.equals(this.worldOrientation, updateSceneRequestDataAttributes.worldOrientation) &&
+        Objects.equals(this.expiry, updateSceneRequestDataAttributes.expiry) &&
         Objects.equals(this.metadata, updateSceneRequestDataAttributes.metadata);
   }
 
@@ -305,7 +334,7 @@ public class UpdateSceneRequestDataAttributes {
 
   @Override
   public int hashCode() {
-    return Objects.hash(camera, state, suppliedId, name, treeEnabled, worldOrientation, metadata);
+    return Objects.hash(camera, state, suppliedId, name, treeEnabled, worldOrientation, expiry, metadata);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -325,6 +354,7 @@ public class UpdateSceneRequestDataAttributes {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    treeEnabled: ").append(toIndentedString(treeEnabled)).append("\n");
     sb.append("    worldOrientation: ").append(toIndentedString(worldOrientation)).append("\n");
+    sb.append("    expiry: ").append(toIndentedString(expiry)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -57,6 +57,59 @@ public class CreateSceneItemRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_PART_INSTANCE_SUPPLIED_IDS_AS_SUPPLIED_IDS)
   private Boolean partInstanceSuppliedIdsAsSuppliedIds;
 
+  /**
+   * Optional rule to guide the part-revision resolution algorithm in cases where required qualifiers are not explicitly specified by the query.  In the case of assembly parts, the resolution rule also applies recursively to the resolution of the child parts. &#39;as-specified&#39; (the default) directs the resolution algorithm to use only the ids specified in this query.  An incomplete specification will result in an error.  &#39;latest-iteration&#39; directs the resolution algorithm to select, within the scope of the specified part-revision, the iteration possessing the newest creation timestamp.  Any iteration identifiers specified by this query are ignored.  Failure to specify a part-revision will result in an error.  &#39;latest-revision&#39; directs the resolution algorithm to select the part-revision possessing the newest creation timestamp.  &#39;latest-revision&#39; implies &#39;latest-iteration&#39; resolution logic. 
+   */
+  @JsonAdapter(ResolutionRuleEnum.Adapter.class)
+  public enum ResolutionRuleEnum {
+    AS_SPECIFIED("as-specified"),
+    
+    LATEST_ITERATION("latest-iteration"),
+    
+    LATEST_REVISION("latest-revision");
+
+    private String value;
+
+    ResolutionRuleEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ResolutionRuleEnum fromValue(String value) {
+      for (ResolutionRuleEnum b : ResolutionRuleEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<ResolutionRuleEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ResolutionRuleEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ResolutionRuleEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return ResolutionRuleEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_RESOLUTION_RULE = "resolutionRule";
+  @SerializedName(SERIALIZED_NAME_RESOLUTION_RULE)
+  private ResolutionRuleEnum resolutionRule;
+
   public static final String SERIALIZED_NAME_SOURCE = "source";
   @SerializedName(SERIALIZED_NAME_SOURCE)
   private PartRevisionSuppliedId source;
@@ -168,11 +221,11 @@ public class CreateSceneItemRequestDataAttributes {
   }
 
    /**
-   * Optional ability to specify a parent scene item by scene item supplied ID. For example, an  existing ID from a PLM system. This approach is an alternative to providing a specific scene  item ID with the relationship parent property. 
+   * Optional ability to specify a parent scene item by scene item supplied ID. For example, an existing ID from a PLM system. This approach is an alternative to providing a specific scene item ID with the relationship parent property. 
    * @return parent
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "PN12345", value = "Optional ability to specify a parent scene item by scene item supplied ID. For example, an  existing ID from a PLM system. This approach is an alternative to providing a specific scene  item ID with the relationship parent property. ")
+  @ApiModelProperty(example = "PN12345", value = "Optional ability to specify a parent scene item by scene item supplied ID. For example, an existing ID from a PLM system. This approach is an alternative to providing a specific scene item ID with the relationship parent property. ")
 
   public String getParent() {
     return parent;
@@ -204,6 +257,29 @@ public class CreateSceneItemRequestDataAttributes {
 
   public void setPartInstanceSuppliedIdsAsSuppliedIds(Boolean partInstanceSuppliedIdsAsSuppliedIds) {
     this.partInstanceSuppliedIdsAsSuppliedIds = partInstanceSuppliedIdsAsSuppliedIds;
+  }
+
+
+  public CreateSceneItemRequestDataAttributes resolutionRule(ResolutionRuleEnum resolutionRule) {
+    
+    this.resolutionRule = resolutionRule;
+    return this;
+  }
+
+   /**
+   * Optional rule to guide the part-revision resolution algorithm in cases where required qualifiers are not explicitly specified by the query.  In the case of assembly parts, the resolution rule also applies recursively to the resolution of the child parts. &#39;as-specified&#39; (the default) directs the resolution algorithm to use only the ids specified in this query.  An incomplete specification will result in an error.  &#39;latest-iteration&#39; directs the resolution algorithm to select, within the scope of the specified part-revision, the iteration possessing the newest creation timestamp.  Any iteration identifiers specified by this query are ignored.  Failure to specify a part-revision will result in an error.  &#39;latest-revision&#39; directs the resolution algorithm to select the part-revision possessing the newest creation timestamp.  &#39;latest-revision&#39; implies &#39;latest-iteration&#39; resolution logic. 
+   * @return resolutionRule
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Optional rule to guide the part-revision resolution algorithm in cases where required qualifiers are not explicitly specified by the query.  In the case of assembly parts, the resolution rule also applies recursively to the resolution of the child parts. 'as-specified' (the default) directs the resolution algorithm to use only the ids specified in this query.  An incomplete specification will result in an error.  'latest-iteration' directs the resolution algorithm to select, within the scope of the specified part-revision, the iteration possessing the newest creation timestamp.  Any iteration identifiers specified by this query are ignored.  Failure to specify a part-revision will result in an error.  'latest-revision' directs the resolution algorithm to select the part-revision possessing the newest creation timestamp.  'latest-revision' implies 'latest-iteration' resolution logic. ")
+
+  public ResolutionRuleEnum getResolutionRule() {
+    return resolutionRule;
+  }
+
+
+  public void setResolutionRule(ResolutionRuleEnum resolutionRule) {
+    this.resolutionRule = resolutionRule;
   }
 
 
@@ -391,11 +467,11 @@ public class CreateSceneItemRequestDataAttributes {
   }
 
    /**
-   * Specifies which metadata keys should be copied from the source item. Sending null will  default to all keys. Sending an empty string will copy none of the sources&#39; metadata.  Sending an array of [\&quot;KEY1\&quot;, \&quot;KEY2] will include KEY1 and KEY2 from the source in the scene item creation. This is marked experimental since future releases are expected to prevent copying metadata entirely. 
+   * Specifies which metadata keys should be copied from the source item. Sending null will default to all keys. Sending an empty string will copy none of the sources&#39; metadata. Sending an array of [\&quot;KEY1\&quot;, \&quot;KEY2] will include KEY1 and KEY2 from the source in the scene item creation. This is marked experimental since future releases are expected to prevent copying metadata entirely. 
    * @return experimentalSourceMetadataKeys
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Specifies which metadata keys should be copied from the source item. Sending null will  default to all keys. Sending an empty string will copy none of the sources' metadata.  Sending an array of [\"KEY1\", \"KEY2] will include KEY1 and KEY2 from the source in the scene item creation. This is marked experimental since future releases are expected to prevent copying metadata entirely. ")
+  @ApiModelProperty(value = "Specifies which metadata keys should be copied from the source item. Sending null will default to all keys. Sending an empty string will copy none of the sources' metadata. Sending an array of [\"KEY1\", \"KEY2] will include KEY1 and KEY2 from the source in the scene item creation. This is marked experimental since future releases are expected to prevent copying metadata entirely. ")
 
   public List<String> getExperimentalSourceMetadataKeys() {
     return experimentalSourceMetadataKeys;
@@ -421,6 +497,7 @@ public class CreateSceneItemRequestDataAttributes {
         Objects.equals(this.ordinal, createSceneItemRequestDataAttributes.ordinal) &&
         Objects.equals(this.parent, createSceneItemRequestDataAttributes.parent) &&
         Objects.equals(this.partInstanceSuppliedIdsAsSuppliedIds, createSceneItemRequestDataAttributes.partInstanceSuppliedIdsAsSuppliedIds) &&
+        Objects.equals(this.resolutionRule, createSceneItemRequestDataAttributes.resolutionRule) &&
         Objects.equals(this.source, createSceneItemRequestDataAttributes.source) &&
         Objects.equals(this.suppliedId, createSceneItemRequestDataAttributes.suppliedId) &&
         Objects.equals(this.transform, createSceneItemRequestDataAttributes.transform) &&
@@ -433,7 +510,7 @@ public class CreateSceneItemRequestDataAttributes {
 
   @Override
   public int hashCode() {
-    return Objects.hash(materialOverride, name, ordinal, parent, partInstanceSuppliedIdsAsSuppliedIds, source, suppliedId, transform, visible, phantom, endItem, metadata, experimentalSourceMetadataKeys);
+    return Objects.hash(materialOverride, name, ordinal, parent, partInstanceSuppliedIdsAsSuppliedIds, resolutionRule, source, suppliedId, transform, visible, phantom, endItem, metadata, experimentalSourceMetadataKeys);
   }
 
   @Override
@@ -445,6 +522,7 @@ public class CreateSceneItemRequestDataAttributes {
     sb.append("    ordinal: ").append(toIndentedString(ordinal)).append("\n");
     sb.append("    parent: ").append(toIndentedString(parent)).append("\n");
     sb.append("    partInstanceSuppliedIdsAsSuppliedIds: ").append(toIndentedString(partInstanceSuppliedIdsAsSuppliedIds)).append("\n");
+    sb.append("    resolutionRule: ").append(toIndentedString(resolutionRule)).append("\n");
     sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("    suppliedId: ").append(toIndentedString(suppliedId)).append("\n");
     sb.append("    transform: ").append(toIndentedString(transform)).append("\n");

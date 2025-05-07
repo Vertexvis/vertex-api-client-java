@@ -165,7 +165,7 @@ public class PropertyEntriesApi {
 
     /**
      * 
-     * Get &#x60;property-entries&#x60; by a resource ID **Preview:** This is a preview API and is subject to change. 
+     * Get &#x60;property-entries&#x60; by a resource ID  **Preview:** This is a preview API and is subject to change. 
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
      * @param filterResourceId A resource ID to filter on (optional)
@@ -187,7 +187,7 @@ public class PropertyEntriesApi {
 
     /**
      * 
-     * Get &#x60;property-entries&#x60; by a resource ID **Preview:** This is a preview API and is subject to change. 
+     * Get &#x60;property-entries&#x60; by a resource ID  **Preview:** This is a preview API and is subject to change. 
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
      * @param filterResourceId A resource ID to filter on (optional)
@@ -210,7 +210,7 @@ public class PropertyEntriesApi {
 
     /**
      *  (asynchronously)
-     * Get &#x60;property-entries&#x60; by a resource ID **Preview:** This is a preview API and is subject to change. 
+     * Get &#x60;property-entries&#x60; by a resource ID  **Preview:** This is a preview API and is subject to change. 
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
      * @param filterResourceId A resource ID to filter on (optional)
