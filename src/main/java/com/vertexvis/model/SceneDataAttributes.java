@@ -73,6 +73,10 @@ public class SceneDataAttributes {
   @SerializedName(SERIALIZED_NAME_SCENE_ITEM_COUNT)
   private Integer sceneItemCount;
 
+  public static final String SERIALIZED_NAME_EXPIRES_AT = "expiresAt";
+  @SerializedName(SERIALIZED_NAME_EXPIRES_AT)
+  private OffsetDateTime expiresAt;
+
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
   private Map<String, String> metadata = null;
@@ -287,6 +291,29 @@ public class SceneDataAttributes {
   }
 
 
+  public SceneDataAttributes expiresAt(OffsetDateTime expiresAt) {
+    
+    this.expiresAt = expiresAt;
+    return this;
+  }
+
+   /**
+   * Get expiresAt
+   * @return expiresAt
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "2020-01-01T12:00Z", value = "")
+
+  public OffsetDateTime getExpiresAt() {
+    return expiresAt;
+  }
+
+
+  public void setExpiresAt(OffsetDateTime expiresAt) {
+    this.expiresAt = expiresAt;
+  }
+
+
   public SceneDataAttributes metadata(Map<String, String> metadata) {
     
     this.metadata = metadata;
@@ -336,6 +363,7 @@ public class SceneDataAttributes {
         Objects.equals(this.modified, sceneDataAttributes.modified) &&
         Objects.equals(this.worldOrientation, sceneDataAttributes.worldOrientation) &&
         Objects.equals(this.sceneItemCount, sceneDataAttributes.sceneItemCount) &&
+        Objects.equals(this.expiresAt, sceneDataAttributes.expiresAt) &&
         Objects.equals(this.metadata, sceneDataAttributes.metadata);
   }
 
@@ -345,7 +373,7 @@ public class SceneDataAttributes {
 
   @Override
   public int hashCode() {
-    return Objects.hash(camera, state, created, suppliedId, name, treeEnabled, modified, worldOrientation, sceneItemCount, metadata);
+    return Objects.hash(camera, state, created, suppliedId, name, treeEnabled, modified, worldOrientation, sceneItemCount, expiresAt, metadata);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -368,6 +396,7 @@ public class SceneDataAttributes {
     sb.append("    modified: ").append(toIndentedString(modified)).append("\n");
     sb.append("    worldOrientation: ").append(toIndentedString(worldOrientation)).append("\n");
     sb.append("    sceneItemCount: ").append(toIndentedString(sceneItemCount)).append("\n");
+    sb.append("    expiresAt: ").append(toIndentedString(expiresAt)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();

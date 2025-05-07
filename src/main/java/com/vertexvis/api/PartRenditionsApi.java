@@ -163,7 +163,7 @@ public class PartRenditionsApi {
 
     /**
      * 
-     * 
+     * Creates a part-rendition associated with a part-revision
      * @param id The &#x60;part-revision&#x60; ID. (required)
      * @param createPartRenditionRequest  (required)
      * @return PartRendition
@@ -186,7 +186,7 @@ public class PartRenditionsApi {
 
     /**
      * 
-     * 
+     * Creates a part-rendition associated with a part-revision
      * @param id The &#x60;part-revision&#x60; ID. (required)
      * @param createPartRenditionRequest  (required)
      * @return ApiResponse&lt;PartRendition&gt;
@@ -210,7 +210,7 @@ public class PartRenditionsApi {
 
     /**
      *  (asynchronously)
-     * 
+     * Creates a part-rendition associated with a part-revision
      * @param id The &#x60;part-revision&#x60; ID. (required)
      * @param createPartRenditionRequest  (required)
      * @param _callback The callback to be executed when the API call finishes

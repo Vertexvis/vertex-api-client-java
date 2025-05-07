@@ -33,10 +33,6 @@ public class CreateDownloadRequestDataAttributes {
   @SerializedName(SERIALIZED_NAME_EXPIRY)
   private Integer expiry;
 
-  public static final String SERIALIZED_NAME_MAX_AGE = "maxAge";
-  @SerializedName(SERIALIZED_NAME_MAX_AGE)
-  private Integer maxAge;
-
   public CreateDownloadRequestDataAttributes() { 
   }
 
@@ -65,31 +61,6 @@ public class CreateDownloadRequestDataAttributes {
   }
 
 
-  public CreateDownloadRequestDataAttributes maxAge(Integer maxAge) {
-    
-    this.maxAge = maxAge;
-    return this;
-  }
-
-   /**
-   * Specifies the maximum time (in seconds) a cached response of a signed-url remains fresh and can be used without revalidation. (Defaults to 1 hour, can send up to 30 days)
-   * minimum: 1
-   * maximum: 2592000
-   * @return maxAge
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "1000", value = "Specifies the maximum time (in seconds) a cached response of a signed-url remains fresh and can be used without revalidation. (Defaults to 1 hour, can send up to 30 days)")
-
-  public Integer getMaxAge() {
-    return maxAge;
-  }
-
-
-  public void setMaxAge(Integer maxAge) {
-    this.maxAge = maxAge;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -99,13 +70,12 @@ public class CreateDownloadRequestDataAttributes {
       return false;
     }
     CreateDownloadRequestDataAttributes createDownloadRequestDataAttributes = (CreateDownloadRequestDataAttributes) o;
-    return Objects.equals(this.expiry, createDownloadRequestDataAttributes.expiry) &&
-        Objects.equals(this.maxAge, createDownloadRequestDataAttributes.maxAge);
+    return Objects.equals(this.expiry, createDownloadRequestDataAttributes.expiry);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(expiry, maxAge);
+    return Objects.hash(expiry);
   }
 
   @Override
@@ -113,7 +83,6 @@ public class CreateDownloadRequestDataAttributes {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateDownloadRequestDataAttributes {\n");
     sb.append("    expiry: ").append(toIndentedString(expiry)).append("\n");
-    sb.append("    maxAge: ").append(toIndentedString(maxAge)).append("\n");
     sb.append("}");
     return sb.toString();
   }
