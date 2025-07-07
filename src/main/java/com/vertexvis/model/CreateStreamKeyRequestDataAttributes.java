@@ -154,11 +154,11 @@ public class CreateStreamKeyRequestDataAttributes {
   }
 
    /**
-   * Optionally enables or disables the creation of a search session for the view.
+   * Optionally enables or disables the creation of a search session for the view. The default creates a session for the scene-view
    * @return withSearchSession
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Optionally enables or disables the creation of a search session for the view.")
+  @ApiModelProperty(example = "true", value = "Optionally enables or disables the creation of a search session for the view. The default creates a session for the scene-view")
 
   public Boolean getWithSearchSession() {
     return withSearchSession;

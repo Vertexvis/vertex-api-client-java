@@ -436,11 +436,13 @@ public class CreateSceneItemRequestDataAttributes {
   }
 
    /**
-   * Additional metadata for the scene-item. This metadata will take precedence over any metadata that belongs to the part file. 
+   * Additional metadata for the scene-item. This metadata will take precedence over any metadata that belongs to the part file. This has been deprecated and replaced by the PATCH endpoint /property-entries. 
    * @return metadata
+   * @deprecated
   **/
+  @Deprecated
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Additional metadata for the scene-item. This metadata will take precedence over any metadata that belongs to the part file. ")
+  @ApiModelProperty(value = "Additional metadata for the scene-item. This metadata will take precedence over any metadata that belongs to the part file. This has been deprecated and replaced by the PATCH endpoint /property-entries. ")
 
   public Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> getMetadata() {
     return metadata;

@@ -20,26 +20,25 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.CreateSceneAlterationRequestData;
+import com.vertexvis.model.AccountRelationshipData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * CreateSceneAlterationRequest
- * @deprecated
+ * Relationship to an &#x60;account&#x60;.
  */
-@Deprecated
+@ApiModel(description = "Relationship to an `account`.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneAlterationRequest {
+public class AccountRelationship {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
-  private CreateSceneAlterationRequestData data;
+  private AccountRelationshipData data;
 
-  public CreateSceneAlterationRequest() { 
+  public AccountRelationship() { 
   }
 
-  public CreateSceneAlterationRequest data(CreateSceneAlterationRequestData data) {
+  public AccountRelationship data(AccountRelationshipData data) {
     
     this.data = data;
     return this;
@@ -52,12 +51,12 @@ public class CreateSceneAlterationRequest {
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public CreateSceneAlterationRequestData getData() {
+  public AccountRelationshipData getData() {
     return data;
   }
 
 
-  public void setData(CreateSceneAlterationRequestData data) {
+  public void setData(AccountRelationshipData data) {
     this.data = data;
   }
 
@@ -70,8 +69,8 @@ public class CreateSceneAlterationRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneAlterationRequest createSceneAlterationRequest = (CreateSceneAlterationRequest) o;
-    return Objects.equals(this.data, createSceneAlterationRequest.data);
+    AccountRelationship accountRelationship = (AccountRelationship) o;
+    return Objects.equals(this.data, accountRelationship.data);
   }
 
   @Override
@@ -82,7 +81,7 @@ public class CreateSceneAlterationRequest {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneAlterationRequest {\n");
+    sb.append("class AccountRelationship {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");
     return sb.toString();

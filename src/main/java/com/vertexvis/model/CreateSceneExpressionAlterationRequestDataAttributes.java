@@ -20,45 +20,50 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.CreateSceneAlterationRequestData;
+import com.vertexvis.model.SceneItemExpressionOperation;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * CreateSceneAlterationRequest
- * @deprecated
+ * CreateSceneExpressionAlterationRequestDataAttributes
  */
-@Deprecated
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneAlterationRequest {
-  public static final String SERIALIZED_NAME_DATA = "data";
-  @SerializedName(SERIALIZED_NAME_DATA)
-  private CreateSceneAlterationRequestData data;
+public class CreateSceneExpressionAlterationRequestDataAttributes {
+  public static final String SERIALIZED_NAME_OPERATIONS = "operations";
+  @SerializedName(SERIALIZED_NAME_OPERATIONS)
+  private List<SceneItemExpressionOperation> operations = new ArrayList<>();
 
-  public CreateSceneAlterationRequest() { 
+  public CreateSceneExpressionAlterationRequestDataAttributes() { 
   }
 
-  public CreateSceneAlterationRequest data(CreateSceneAlterationRequestData data) {
+  public CreateSceneExpressionAlterationRequestDataAttributes operations(List<SceneItemExpressionOperation> operations) {
     
-    this.data = data;
+    this.operations = operations;
+    return this;
+  }
+
+  public CreateSceneExpressionAlterationRequestDataAttributes addOperationsItem(SceneItemExpressionOperation operationsItem) {
+    this.operations.add(operationsItem);
     return this;
   }
 
    /**
-   * Get data
-   * @return data
+   * List of operations to apply for the alteration request
+   * @return operations
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "List of operations to apply for the alteration request")
 
-  public CreateSceneAlterationRequestData getData() {
-    return data;
+  public List<SceneItemExpressionOperation> getOperations() {
+    return operations;
   }
 
 
-  public void setData(CreateSceneAlterationRequestData data) {
-    this.data = data;
+  public void setOperations(List<SceneItemExpressionOperation> operations) {
+    this.operations = operations;
   }
 
 
@@ -70,20 +75,20 @@ public class CreateSceneAlterationRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneAlterationRequest createSceneAlterationRequest = (CreateSceneAlterationRequest) o;
-    return Objects.equals(this.data, createSceneAlterationRequest.data);
+    CreateSceneExpressionAlterationRequestDataAttributes createSceneExpressionAlterationRequestDataAttributes = (CreateSceneExpressionAlterationRequestDataAttributes) o;
+    return Objects.equals(this.operations, createSceneExpressionAlterationRequestDataAttributes.operations);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data);
+    return Objects.hash(operations);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneAlterationRequest {\n");
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("class CreateSceneExpressionAlterationRequestDataAttributes {\n");
+    sb.append("    operations: ").append(toIndentedString(operations)).append("\n");
     sb.append("}");
     return sb.toString();
   }

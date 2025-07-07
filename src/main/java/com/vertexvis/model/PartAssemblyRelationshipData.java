@@ -89,11 +89,13 @@ public class PartAssemblyRelationshipData {
   }
 
    /**
-   * Additional metadata about the &#x60;part&#x60; and/or &#x60;part-revision&#x60;. 
+   * Additional metadata about the &#x60;part&#x60; and/or &#x60;part-revision&#x60;. This has been deprecated and replaced by the PATCH endpoint /property-entries 
    * @return metadata
+   * @deprecated
   **/
+  @Deprecated
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Additional metadata about the `part` and/or `part-revision`. ")
+  @ApiModelProperty(value = "Additional metadata about the `part` and/or `part-revision`. This has been deprecated and replaced by the PATCH endpoint /property-entries ")
 
   public Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> getMetadata() {
     return metadata;

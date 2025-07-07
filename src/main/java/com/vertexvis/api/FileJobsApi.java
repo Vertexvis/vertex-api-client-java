@@ -27,10 +27,10 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import com.vertexvis.model.CreateFileJobRequest;
 import com.vertexvis.model.Failure;
-import com.vertexvis.model.PropertyEntryList;
+import com.vertexvis.model.QueuedJob;
 import java.util.UUID;
-import com.vertexvis.model.UpsertPropertyEntriesRequest;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -38,16 +38,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PropertyEntriesApi {
+public class FileJobsApi {
     private ApiClient localVarApiClient;
     private int localHostIndex;
     private String localCustomBaseUrl;
 
-    public PropertyEntriesApi() {
+    public FileJobsApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public PropertyEntriesApi(ApiClient apiClient) {
+    public FileJobsApi(ApiClient apiClient) {
         this.localVarApiClient = apiClient;
     }
 
@@ -76,11 +76,143 @@ public class PropertyEntriesApi {
     }
 
     /**
-     * Build call for getPropertyEntries
-     * @param pageCursor The cursor for the next page of items. (optional)
-     * @param pageSize The number of items to return. (optional)
-     * @param filterResourceId A resource ID to filter on (optional)
-     * @param filterResourceType The provided type for the resource ids (optional)
+     * Build call for createFileJob
+     * @param createFileJobRequest  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call createFileJobCall(CreateFileJobRequest createFileJobRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = createFileJobRequest;
+
+        // create path and map variables
+        String localVarPath = "/file-jobs";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/vnd.api+json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/vnd.api+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "OAuth2" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call createFileJobValidateBeforeCall(CreateFileJobRequest createFileJobRequest, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'createFileJobRequest' is set
+        if (createFileJobRequest == null) {
+            throw new ApiException("Missing the required parameter 'createFileJobRequest' when calling createFileJob(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = createFileJobCall(createFileJobRequest, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * 
+     * Create a &#x60;file-job&#x60;.
+     * @param createFileJobRequest  (required)
+     * @return QueuedJob
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
+     </table>
+     */
+    public QueuedJob createFileJob(CreateFileJobRequest createFileJobRequest) throws ApiException {
+        ApiResponse<QueuedJob> localVarResp = createFileJobWithHttpInfo(createFileJobRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * 
+     * Create a &#x60;file-job&#x60;.
+     * @param createFileJobRequest  (required)
+     * @return ApiResponse&lt;QueuedJob&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<QueuedJob> createFileJobWithHttpInfo(CreateFileJobRequest createFileJobRequest) throws ApiException {
+        okhttp3.Call localVarCall = createFileJobValidateBeforeCall(createFileJobRequest, null);
+        Type localVarReturnType = new TypeToken<QueuedJob>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * Create a &#x60;file-job&#x60;.
+     * @param createFileJobRequest  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call createFileJobAsync(CreateFileJobRequest createFileJobRequest, final ApiCallback<QueuedJob> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = createFileJobValidateBeforeCall(createFileJobRequest, _callback);
+        Type localVarReturnType = new TypeToken<QueuedJob>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for getFileJob
+     * @param id The ID of a file job. (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -89,10 +221,11 @@ public class PropertyEntriesApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getPropertyEntriesCall(String pageCursor, Integer pageSize, UUID filterResourceId, String filterResourceType, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getFileJobCall(UUID id, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
         // Operation Servers
@@ -110,29 +243,14 @@ public class PropertyEntriesApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/property-entries";
+        String localVarPath = "/file-jobs/{id}"
+            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (pageCursor != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[cursor]", pageCursor));
-        }
-
-        if (pageSize != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[size]", pageSize));
-        }
-
-        if (filterResourceId != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("filter[resourceId]", filterResourceId));
-        }
-
-        if (filterResourceType != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("filter[resourceType]", filterResourceType));
-        }
 
         final String[] localVarAccepts = {
             "application/vnd.api+json"
@@ -155,66 +273,64 @@ public class PropertyEntriesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getPropertyEntriesValidateBeforeCall(String pageCursor, Integer pageSize, UUID filterResourceId, String filterResourceType, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getFileJobValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling getFileJob(Async)");
+        }
         
 
-        okhttp3.Call localVarCall = getPropertyEntriesCall(pageCursor, pageSize, filterResourceId, filterResourceType, _callback);
+        okhttp3.Call localVarCall = getFileJobCall(id, _callback);
         return localVarCall;
 
     }
 
     /**
      * 
-     * Get &#x60;property-entries&#x60; by a resource ID 
-     * @param pageCursor The cursor for the next page of items. (optional)
-     * @param pageSize The number of items to return. (optional)
-     * @param filterResourceId A resource ID to filter on (optional)
-     * @param filterResourceType The provided type for the resource ids (optional)
-     * @return PropertyEntryList
+     * Get the status and result of a &#x60;file-job&#x60;.
+     * @param id The ID of a file job. (required)
+     * @return QueuedJob
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public PropertyEntryList getPropertyEntries(String pageCursor, Integer pageSize, UUID filterResourceId, String filterResourceType) throws ApiException {
-        ApiResponse<PropertyEntryList> localVarResp = getPropertyEntriesWithHttpInfo(pageCursor, pageSize, filterResourceId, filterResourceType);
+    public QueuedJob getFileJob(UUID id) throws ApiException {
+        ApiResponse<QueuedJob> localVarResp = getFileJobWithHttpInfo(id);
         return localVarResp.getData();
     }
 
     /**
      * 
-     * Get &#x60;property-entries&#x60; by a resource ID 
-     * @param pageCursor The cursor for the next page of items. (optional)
-     * @param pageSize The number of items to return. (optional)
-     * @param filterResourceId A resource ID to filter on (optional)
-     * @param filterResourceType The provided type for the resource ids (optional)
-     * @return ApiResponse&lt;PropertyEntryList&gt;
+     * Get the status and result of a &#x60;file-job&#x60;.
+     * @param id The ID of a file job. (required)
+     * @return ApiResponse&lt;QueuedJob&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PropertyEntryList> getPropertyEntriesWithHttpInfo(String pageCursor, Integer pageSize, UUID filterResourceId, String filterResourceType) throws ApiException {
-        okhttp3.Call localVarCall = getPropertyEntriesValidateBeforeCall(pageCursor, pageSize, filterResourceId, filterResourceType, null);
-        Type localVarReturnType = new TypeToken<PropertyEntryList>(){}.getType();
+    public ApiResponse<QueuedJob> getFileJobWithHttpInfo(UUID id) throws ApiException {
+        okhttp3.Call localVarCall = getFileJobValidateBeforeCall(id, null);
+        Type localVarReturnType = new TypeToken<QueuedJob>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      *  (asynchronously)
-     * Get &#x60;property-entries&#x60; by a resource ID 
-     * @param pageCursor The cursor for the next page of items. (optional)
-     * @param pageSize The number of items to return. (optional)
-     * @param filterResourceId A resource ID to filter on (optional)
-     * @param filterResourceType The provided type for the resource ids (optional)
+     * Get the status and result of a &#x60;file-job&#x60;.
+     * @param id The ID of a file job. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -223,149 +339,15 @@ public class PropertyEntriesApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getPropertyEntriesAsync(String pageCursor, Integer pageSize, UUID filterResourceId, String filterResourceType, final ApiCallback<PropertyEntryList> _callback) throws ApiException {
+    public okhttp3.Call getFileJobAsync(UUID id, final ApiCallback<QueuedJob> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getPropertyEntriesValidateBeforeCall(pageCursor, pageSize, filterResourceId, filterResourceType, _callback);
-        Type localVarReturnType = new TypeToken<PropertyEntryList>(){}.getType();
+        okhttp3.Call localVarCall = getFileJobValidateBeforeCall(id, _callback);
+        Type localVarReturnType = new TypeToken<QueuedJob>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for upsertPropertyEntries
-     * @param upsertPropertyEntriesRequest  (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call upsertPropertyEntriesCall(UpsertPropertyEntriesRequest upsertPropertyEntriesRequest, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = upsertPropertyEntriesRequest;
-
-        // create path and map variables
-        String localVarPath = "/property-entries";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/vnd.api+json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/vnd.api+json"
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] { "OAuth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call upsertPropertyEntriesValidateBeforeCall(UpsertPropertyEntriesRequest upsertPropertyEntriesRequest, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'upsertPropertyEntriesRequest' is set
-        if (upsertPropertyEntriesRequest == null) {
-            throw new ApiException("Missing the required parameter 'upsertPropertyEntriesRequest' when calling upsertPropertyEntries(Async)");
-        }
-        
-
-        okhttp3.Call localVarCall = upsertPropertyEntriesCall(upsertPropertyEntriesRequest, _callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * 
-     * Upsert property-entries for a provided resource. 
-     * @param upsertPropertyEntriesRequest  (required)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-     </table>
-     */
-    public void upsertPropertyEntries(UpsertPropertyEntriesRequest upsertPropertyEntriesRequest) throws ApiException {
-        upsertPropertyEntriesWithHttpInfo(upsertPropertyEntriesRequest);
-    }
-
-    /**
-     * 
-     * Upsert property-entries for a provided resource. 
-     * @param upsertPropertyEntriesRequest  (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Void> upsertPropertyEntriesWithHttpInfo(UpsertPropertyEntriesRequest upsertPropertyEntriesRequest) throws ApiException {
-        okhttp3.Call localVarCall = upsertPropertyEntriesValidateBeforeCall(upsertPropertyEntriesRequest, null);
-        return localVarApiClient.execute(localVarCall);
-    }
-
-    /**
-     *  (asynchronously)
-     * Upsert property-entries for a provided resource. 
-     * @param upsertPropertyEntriesRequest  (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call upsertPropertyEntriesAsync(UpsertPropertyEntriesRequest upsertPropertyEntriesRequest, final ApiCallback<Void> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = upsertPropertyEntriesValidateBeforeCall(upsertPropertyEntriesRequest, _callback);
-        localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
 }

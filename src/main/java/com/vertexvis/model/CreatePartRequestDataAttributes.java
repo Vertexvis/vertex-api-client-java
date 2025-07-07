@@ -183,11 +183,13 @@ public class CreatePartRequestDataAttributes {
   }
 
    /**
-   * Additional metadata about the &#x60;part&#x60; and/or &#x60;part-revision&#x60;. This metadata will take precedence over any metadata that belongs to the part file if &#x60;indexMetadata&#x60; is specified. 
+   * Additional metadata about the &#x60;part&#x60; and/or &#x60;part-revision&#x60;. This metadata will take precedence over any metadata that belongs to the part file if &#x60;indexMetadata&#x60; is specified. This has been deprecated and replaced by the PATCH endpoint /property-entries 
    * @return metadata
+   * @deprecated
   **/
+  @Deprecated
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Additional metadata about the `part` and/or `part-revision`. This metadata will take precedence over any metadata that belongs to the part file if `indexMetadata` is specified. ")
+  @ApiModelProperty(value = "Additional metadata about the `part` and/or `part-revision`. This metadata will take precedence over any metadata that belongs to the part file if `indexMetadata` is specified. This has been deprecated and replaced by the PATCH endpoint /property-entries ")
 
   public Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> getMetadata() {
     return metadata;

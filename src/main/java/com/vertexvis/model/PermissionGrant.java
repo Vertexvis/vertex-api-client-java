@@ -20,26 +20,32 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.CreateSceneAlterationRequestData;
+import com.vertexvis.model.Link;
+import com.vertexvis.model.PermissionGrantData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
- * CreateSceneAlterationRequest
- * @deprecated
+ * PermissionGrant
  */
-@Deprecated
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneAlterationRequest {
+public class PermissionGrant {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
-  private CreateSceneAlterationRequestData data;
+  private PermissionGrantData data;
 
-  public CreateSceneAlterationRequest() { 
+  public static final String SERIALIZED_NAME_LINKS = "links";
+  @SerializedName(SERIALIZED_NAME_LINKS)
+  private Map<String, Link> links = null;
+
+  public PermissionGrant() { 
   }
 
-  public CreateSceneAlterationRequest data(CreateSceneAlterationRequestData data) {
+  public PermissionGrant data(PermissionGrantData data) {
     
     this.data = data;
     return this;
@@ -52,13 +58,44 @@ public class CreateSceneAlterationRequest {
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public CreateSceneAlterationRequestData getData() {
+  public PermissionGrantData getData() {
     return data;
   }
 
 
-  public void setData(CreateSceneAlterationRequestData data) {
+  public void setData(PermissionGrantData data) {
     this.data = data;
+  }
+
+
+  public PermissionGrant links(Map<String, Link> links) {
+    
+    this.links = links;
+    return this;
+  }
+
+  public PermissionGrant putLinksItem(String key, Link linksItem) {
+    if (this.links == null) {
+      this.links = new HashMap<>();
+    }
+    this.links.put(key, linksItem);
+    return this;
+  }
+
+   /**
+   * Get links
+   * @return links
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Map<String, Link> getLinks() {
+    return links;
+  }
+
+
+  public void setLinks(Map<String, Link> links) {
+    this.links = links;
   }
 
 
@@ -70,20 +107,22 @@ public class CreateSceneAlterationRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneAlterationRequest createSceneAlterationRequest = (CreateSceneAlterationRequest) o;
-    return Objects.equals(this.data, createSceneAlterationRequest.data);
+    PermissionGrant permissionGrant = (PermissionGrant) o;
+    return Objects.equals(this.data, permissionGrant.data) &&
+        Objects.equals(this.links, permissionGrant.links);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data);
+    return Objects.hash(data, links);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneAlterationRequest {\n");
+    sb.append("class PermissionGrant {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    links: ").append(toIndentedString(links)).append("\n");
     sb.append("}");
     return sb.toString();
   }

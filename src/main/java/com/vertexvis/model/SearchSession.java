@@ -20,26 +20,32 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.CreateSceneAlterationRequestData;
+import com.vertexvis.model.Link;
+import com.vertexvis.model.SearchSessionData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
- * CreateSceneAlterationRequest
- * @deprecated
+ * SearchSession
  */
-@Deprecated
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneAlterationRequest {
+public class SearchSession {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
-  private CreateSceneAlterationRequestData data;
+  private SearchSessionData data;
 
-  public CreateSceneAlterationRequest() { 
+  public static final String SERIALIZED_NAME_LINKS = "links";
+  @SerializedName(SERIALIZED_NAME_LINKS)
+  private Map<String, Link> links = null;
+
+  public SearchSession() { 
   }
 
-  public CreateSceneAlterationRequest data(CreateSceneAlterationRequestData data) {
+  public SearchSession data(SearchSessionData data) {
     
     this.data = data;
     return this;
@@ -52,13 +58,44 @@ public class CreateSceneAlterationRequest {
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public CreateSceneAlterationRequestData getData() {
+  public SearchSessionData getData() {
     return data;
   }
 
 
-  public void setData(CreateSceneAlterationRequestData data) {
+  public void setData(SearchSessionData data) {
     this.data = data;
+  }
+
+
+  public SearchSession links(Map<String, Link> links) {
+    
+    this.links = links;
+    return this;
+  }
+
+  public SearchSession putLinksItem(String key, Link linksItem) {
+    if (this.links == null) {
+      this.links = new HashMap<>();
+    }
+    this.links.put(key, linksItem);
+    return this;
+  }
+
+   /**
+   * Get links
+   * @return links
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Map<String, Link> getLinks() {
+    return links;
+  }
+
+
+  public void setLinks(Map<String, Link> links) {
+    this.links = links;
   }
 
 
@@ -70,20 +107,22 @@ public class CreateSceneAlterationRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneAlterationRequest createSceneAlterationRequest = (CreateSceneAlterationRequest) o;
-    return Objects.equals(this.data, createSceneAlterationRequest.data);
+    SearchSession searchSession = (SearchSession) o;
+    return Objects.equals(this.data, searchSession.data) &&
+        Objects.equals(this.links, searchSession.links);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data);
+    return Objects.hash(data, links);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneAlterationRequest {\n");
+    sb.append("class SearchSession {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    links: ").append(toIndentedString(links)).append("\n");
     sb.append("}");
     return sb.toString();
   }

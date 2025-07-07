@@ -20,26 +20,24 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.CreateSceneAlterationRequestData;
+import com.vertexvis.model.CreateSearchSessionRequestData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * CreateSceneAlterationRequest
- * @deprecated
+ * CreateSearchSessionRequest
  */
-@Deprecated
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneAlterationRequest {
+public class CreateSearchSessionRequest {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
-  private CreateSceneAlterationRequestData data;
+  private CreateSearchSessionRequestData data;
 
-  public CreateSceneAlterationRequest() { 
+  public CreateSearchSessionRequest() { 
   }
 
-  public CreateSceneAlterationRequest data(CreateSceneAlterationRequestData data) {
+  public CreateSearchSessionRequest data(CreateSearchSessionRequestData data) {
     
     this.data = data;
     return this;
@@ -52,12 +50,12 @@ public class CreateSceneAlterationRequest {
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public CreateSceneAlterationRequestData getData() {
+  public CreateSearchSessionRequestData getData() {
     return data;
   }
 
 
-  public void setData(CreateSceneAlterationRequestData data) {
+  public void setData(CreateSearchSessionRequestData data) {
     this.data = data;
   }
 
@@ -70,8 +68,8 @@ public class CreateSceneAlterationRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneAlterationRequest createSceneAlterationRequest = (CreateSceneAlterationRequest) o;
-    return Objects.equals(this.data, createSceneAlterationRequest.data);
+    CreateSearchSessionRequest createSearchSessionRequest = (CreateSearchSessionRequest) o;
+    return Objects.equals(this.data, createSearchSessionRequest.data);
   }
 
   @Override
@@ -82,7 +80,7 @@ public class CreateSceneAlterationRequest {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneAlterationRequest {\n");
+    sb.append("class CreateSearchSessionRequest {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -20,45 +20,43 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.CreateSceneAlterationRequestData;
+import com.vertexvis.model.SceneRelationship;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * CreateSceneAlterationRequest
- * @deprecated
+ * CreateSearchSessionRequestDataRelationships
  */
-@Deprecated
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneAlterationRequest {
-  public static final String SERIALIZED_NAME_DATA = "data";
-  @SerializedName(SERIALIZED_NAME_DATA)
-  private CreateSceneAlterationRequestData data;
+public class CreateSearchSessionRequestDataRelationships {
+  public static final String SERIALIZED_NAME_SCENE = "scene";
+  @SerializedName(SERIALIZED_NAME_SCENE)
+  private SceneRelationship scene;
 
-  public CreateSceneAlterationRequest() { 
+  public CreateSearchSessionRequestDataRelationships() { 
   }
 
-  public CreateSceneAlterationRequest data(CreateSceneAlterationRequestData data) {
+  public CreateSearchSessionRequestDataRelationships scene(SceneRelationship scene) {
     
-    this.data = data;
+    this.scene = scene;
     return this;
   }
 
    /**
-   * Get data
-   * @return data
+   * Get scene
+   * @return scene
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
-  public CreateSceneAlterationRequestData getData() {
-    return data;
+  public SceneRelationship getScene() {
+    return scene;
   }
 
 
-  public void setData(CreateSceneAlterationRequestData data) {
-    this.data = data;
+  public void setScene(SceneRelationship scene) {
+    this.scene = scene;
   }
 
 
@@ -70,20 +68,20 @@ public class CreateSceneAlterationRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneAlterationRequest createSceneAlterationRequest = (CreateSceneAlterationRequest) o;
-    return Objects.equals(this.data, createSceneAlterationRequest.data);
+    CreateSearchSessionRequestDataRelationships createSearchSessionRequestDataRelationships = (CreateSearchSessionRequestDataRelationships) o;
+    return Objects.equals(this.scene, createSearchSessionRequestDataRelationships.scene);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data);
+    return Objects.hash(scene);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneAlterationRequest {\n");
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("class CreateSearchSessionRequestDataRelationships {\n");
+    sb.append("    scene: ").append(toIndentedString(scene)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -20,45 +20,43 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.CreateSceneAlterationRequestData;
+import com.vertexvis.model.FileJobArchiveOperation;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * CreateSceneAlterationRequest
- * @deprecated
+ * CreateFileJobRequestDataAttributes
  */
-@Deprecated
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneAlterationRequest {
-  public static final String SERIALIZED_NAME_DATA = "data";
-  @SerializedName(SERIALIZED_NAME_DATA)
-  private CreateSceneAlterationRequestData data;
+public class CreateFileJobRequestDataAttributes {
+  public static final String SERIALIZED_NAME_OPERATION = "operation";
+  @SerializedName(SERIALIZED_NAME_OPERATION)
+  private OneOfFileJobArchiveOperation operation;
 
-  public CreateSceneAlterationRequest() { 
+  public CreateFileJobRequestDataAttributes() { 
   }
 
-  public CreateSceneAlterationRequest data(CreateSceneAlterationRequestData data) {
+  public CreateFileJobRequestDataAttributes operation(OneOfFileJobArchiveOperation operation) {
     
-    this.data = data;
+    this.operation = operation;
     return this;
   }
 
    /**
-   * Get data
-   * @return data
+   * An object that describes the operation a file job will perform.
+   * @return operation
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(required = true, value = "An object that describes the operation a file job will perform.")
 
-  public CreateSceneAlterationRequestData getData() {
-    return data;
+  public OneOfFileJobArchiveOperation getOperation() {
+    return operation;
   }
 
 
-  public void setData(CreateSceneAlterationRequestData data) {
-    this.data = data;
+  public void setOperation(OneOfFileJobArchiveOperation operation) {
+    this.operation = operation;
   }
 
 
@@ -70,20 +68,20 @@ public class CreateSceneAlterationRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneAlterationRequest createSceneAlterationRequest = (CreateSceneAlterationRequest) o;
-    return Objects.equals(this.data, createSceneAlterationRequest.data);
+    CreateFileJobRequestDataAttributes createFileJobRequestDataAttributes = (CreateFileJobRequestDataAttributes) o;
+    return Objects.equals(this.operation, createFileJobRequestDataAttributes.operation);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data);
+    return Objects.hash(operation);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneAlterationRequest {\n");
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("class CreateFileJobRequestDataAttributes {\n");
+    sb.append("    operation: ").append(toIndentedString(operation)).append("\n");
     sb.append("}");
     return sb.toString();
   }

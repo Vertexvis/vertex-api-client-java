@@ -20,45 +20,88 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.CreateSceneAlterationRequestData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * CreateSceneAlterationRequest
- * @deprecated
+ * A subject domain encompassing all property set resources
  */
-@Deprecated
+@ApiModel(description = "A subject domain encompassing all property set resources")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneAlterationRequest {
-  public static final String SERIALIZED_NAME_DATA = "data";
-  @SerializedName(SERIALIZED_NAME_DATA)
-  private CreateSceneAlterationRequestData data;
+public class PropertySetDomainSubject {
+  /**
+   * Gets or Sets domain
+   */
+  @JsonAdapter(DomainEnum.Adapter.class)
+  public enum DomainEnum {
+    PROPERTY_SETS("property-sets");
 
-  public CreateSceneAlterationRequest() { 
+    private String value;
+
+    DomainEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static DomainEnum fromValue(String value) {
+      for (DomainEnum b : DomainEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<DomainEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final DomainEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public DomainEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return DomainEnum.fromValue(value);
+      }
+    }
   }
 
-  public CreateSceneAlterationRequest data(CreateSceneAlterationRequestData data) {
+  public static final String SERIALIZED_NAME_DOMAIN = "domain";
+  @SerializedName(SERIALIZED_NAME_DOMAIN)
+  private DomainEnum domain;
+
+  public PropertySetDomainSubject() { 
+  }
+
+  public PropertySetDomainSubject domain(DomainEnum domain) {
     
-    this.data = data;
+    this.domain = domain;
     return this;
   }
 
    /**
-   * Get data
-   * @return data
+   * Get domain
+   * @return domain
   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public CreateSceneAlterationRequestData getData() {
-    return data;
+  public DomainEnum getDomain() {
+    return domain;
   }
 
 
-  public void setData(CreateSceneAlterationRequestData data) {
-    this.data = data;
+  public void setDomain(DomainEnum domain) {
+    this.domain = domain;
   }
 
 
@@ -70,20 +113,20 @@ public class CreateSceneAlterationRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneAlterationRequest createSceneAlterationRequest = (CreateSceneAlterationRequest) o;
-    return Objects.equals(this.data, createSceneAlterationRequest.data);
+    PropertySetDomainSubject propertySetDomainSubject = (PropertySetDomainSubject) o;
+    return Objects.equals(this.domain, propertySetDomainSubject.domain);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data);
+    return Objects.hash(domain);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneAlterationRequest {\n");
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("class PropertySetDomainSubject {\n");
+    sb.append("    domain: ").append(toIndentedString(domain)).append("\n");
     sb.append("}");
     return sb.toString();
   }

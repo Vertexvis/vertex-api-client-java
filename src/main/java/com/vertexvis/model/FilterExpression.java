@@ -54,6 +54,10 @@ public class FilterExpression {
   @SerializedName(SERIALIZED_NAME_LTE)
   private String lte;
 
+  public static final String SERIALIZED_NAME_CONTAINS = "contains";
+  @SerializedName(SERIALIZED_NAME_CONTAINS)
+  private String contains;
+
   public FilterExpression() { 
   }
 
@@ -195,6 +199,29 @@ public class FilterExpression {
   }
 
 
+  public FilterExpression contains(String contains) {
+    
+    this.contains = contains;
+    return this;
+  }
+
+   /**
+   * A value of a filter.
+   * @return contains
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "A value of a filter.")
+
+  public String getContains() {
+    return contains;
+  }
+
+
+  public void setContains(String contains) {
+    this.contains = contains;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -209,12 +236,13 @@ public class FilterExpression {
         Objects.equals(this.gt, filterExpression.gt) &&
         Objects.equals(this.gte, filterExpression.gte) &&
         Objects.equals(this.lt, filterExpression.lt) &&
-        Objects.equals(this.lte, filterExpression.lte);
+        Objects.equals(this.lte, filterExpression.lte) &&
+        Objects.equals(this.contains, filterExpression.contains);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(eq, neq, gt, gte, lt, lte);
+    return Objects.hash(eq, neq, gt, gte, lt, lte, contains);
   }
 
   @Override
@@ -227,6 +255,7 @@ public class FilterExpression {
     sb.append("    gte: ").append(toIndentedString(gte)).append("\n");
     sb.append("    lt: ").append(toIndentedString(lt)).append("\n");
     sb.append("    lte: ").append(toIndentedString(lte)).append("\n");
+    sb.append("    contains: ").append(toIndentedString(contains)).append("\n");
     sb.append("}");
     return sb.toString();
   }

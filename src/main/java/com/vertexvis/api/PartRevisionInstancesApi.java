@@ -161,7 +161,7 @@ public class PartRevisionInstancesApi {
 
     /**
      * 
-     * Gets a page of &#39;part-revision&#39; instances. An instance is an occurence of a revision that is a child of a parent revision. The returned data will have the ordinal used for ordering and the transform matrix for each occurrence. 
+     * Gets a page of &#39;part-revision&#39; instances. An instance is an occurrence of a revision that is a child of a parent revision. The returned data will have the ordinal used for ordering and the transform matrix for each occurrence. 
      * @param filterParent Parent ID to filter on. (optional)
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
@@ -184,7 +184,7 @@ public class PartRevisionInstancesApi {
 
     /**
      * 
-     * Gets a page of &#39;part-revision&#39; instances. An instance is an occurence of a revision that is a child of a parent revision. The returned data will have the ordinal used for ordering and the transform matrix for each occurrence. 
+     * Gets a page of &#39;part-revision&#39; instances. An instance is an occurrence of a revision that is a child of a parent revision. The returned data will have the ordinal used for ordering and the transform matrix for each occurrence. 
      * @param filterParent Parent ID to filter on. (optional)
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
@@ -208,7 +208,7 @@ public class PartRevisionInstancesApi {
 
     /**
      *  (asynchronously)
-     * Gets a page of &#39;part-revision&#39; instances. An instance is an occurence of a revision that is a child of a parent revision. The returned data will have the ordinal used for ordering and the transform matrix for each occurrence. 
+     * Gets a page of &#39;part-revision&#39; instances. An instance is an occurrence of a revision that is a child of a parent revision. The returned data will have the ordinal used for ordering and the transform matrix for each occurrence. 
      * @param filterParent Parent ID to filter on. (optional)
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)

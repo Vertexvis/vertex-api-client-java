@@ -191,11 +191,13 @@ public class SceneItemDataAttributes {
   }
 
    /**
-   * Get metadata
+   * This has been deprecated and replaced by the GET endpoint /property-entries
    * @return metadata
+   * @deprecated
   **/
+  @Deprecated
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "This has been deprecated and replaced by the GET endpoint /property-entries")
 
   public Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> getMetadata() {
     return metadata;

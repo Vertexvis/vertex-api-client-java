@@ -20,6 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.vertexvis.model.AccountRelationship;
 import com.vertexvis.model.PartDataRelationshipsPartRevisions;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -35,6 +36,10 @@ public class PartDataRelationships {
   public static final String SERIALIZED_NAME_PART_REVISIONS = "partRevisions";
   @SerializedName(SERIALIZED_NAME_PART_REVISIONS)
   private List<PartDataRelationshipsPartRevisions> partRevisions = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_OWNER = "owner";
+  @SerializedName(SERIALIZED_NAME_OWNER)
+  private AccountRelationship owner;
 
   public PartDataRelationships() { 
   }
@@ -67,6 +72,29 @@ public class PartDataRelationships {
   }
 
 
+  public PartDataRelationships owner(AccountRelationship owner) {
+    
+    this.owner = owner;
+    return this;
+  }
+
+   /**
+   * Get owner
+   * @return owner
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public AccountRelationship getOwner() {
+    return owner;
+  }
+
+
+  public void setOwner(AccountRelationship owner) {
+    this.owner = owner;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -76,12 +104,13 @@ public class PartDataRelationships {
       return false;
     }
     PartDataRelationships partDataRelationships = (PartDataRelationships) o;
-    return Objects.equals(this.partRevisions, partDataRelationships.partRevisions);
+    return Objects.equals(this.partRevisions, partDataRelationships.partRevisions) &&
+        Objects.equals(this.owner, partDataRelationships.owner);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(partRevisions);
+    return Objects.hash(partRevisions, owner);
   }
 
   @Override
@@ -89,6 +118,7 @@ public class PartDataRelationships {
     StringBuilder sb = new StringBuilder();
     sb.append("class PartDataRelationships {\n");
     sb.append("    partRevisions: ").append(toIndentedString(partRevisions)).append("\n");
+    sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
     sb.append("}");
     return sb.toString();
   }

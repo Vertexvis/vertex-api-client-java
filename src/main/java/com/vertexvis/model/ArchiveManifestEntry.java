@@ -20,45 +20,72 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.CreateSceneAlterationRequestData;
+import com.vertexvis.model.SelectFileById;
+import com.vertexvis.model.SelectFileBySuppliedId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * CreateSceneAlterationRequest
- * @deprecated
+ * Represents a file and directory within an archive.
  */
-@Deprecated
+@ApiModel(description = "Represents a file and directory within an archive.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneAlterationRequest {
-  public static final String SERIALIZED_NAME_DATA = "data";
-  @SerializedName(SERIALIZED_NAME_DATA)
-  private CreateSceneAlterationRequestData data;
+public class ArchiveManifestEntry {
+  public static final String SERIALIZED_NAME_SELECTOR = "selector";
+  @SerializedName(SERIALIZED_NAME_SELECTOR)
+  private OneOfSelectFileByIdSelectFileBySuppliedId selector;
 
-  public CreateSceneAlterationRequest() { 
+  public static final String SERIALIZED_NAME_DIRECTORY = "directory";
+  @SerializedName(SERIALIZED_NAME_DIRECTORY)
+  private String directory;
+
+  public ArchiveManifestEntry() { 
   }
 
-  public CreateSceneAlterationRequest data(CreateSceneAlterationRequestData data) {
+  public ArchiveManifestEntry selector(OneOfSelectFileByIdSelectFileBySuppliedId selector) {
     
-    this.data = data;
+    this.selector = selector;
     return this;
   }
 
    /**
-   * Get data
-   * @return data
+   * Represents a query to select a file.
+   * @return selector
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(required = true, value = "Represents a query to select a file.")
 
-  public CreateSceneAlterationRequestData getData() {
-    return data;
+  public OneOfSelectFileByIdSelectFileBySuppliedId getSelector() {
+    return selector;
   }
 
 
-  public void setData(CreateSceneAlterationRequestData data) {
-    this.data = data;
+  public void setSelector(OneOfSelectFileByIdSelectFileBySuppliedId selector) {
+    this.selector = selector;
+  }
+
+
+  public ArchiveManifestEntry directory(String directory) {
+    
+    this.directory = directory;
+    return this;
+  }
+
+   /**
+   * The directory in the archive where the file will be placed.
+   * @return directory
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The directory in the archive where the file will be placed.")
+
+  public String getDirectory() {
+    return directory;
+  }
+
+
+  public void setDirectory(String directory) {
+    this.directory = directory;
   }
 
 
@@ -70,20 +97,22 @@ public class CreateSceneAlterationRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneAlterationRequest createSceneAlterationRequest = (CreateSceneAlterationRequest) o;
-    return Objects.equals(this.data, createSceneAlterationRequest.data);
+    ArchiveManifestEntry archiveManifestEntry = (ArchiveManifestEntry) o;
+    return Objects.equals(this.selector, archiveManifestEntry.selector) &&
+        Objects.equals(this.directory, archiveManifestEntry.directory);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data);
+    return Objects.hash(selector, directory);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneAlterationRequest {\n");
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("class ArchiveManifestEntry {\n");
+    sb.append("    selector: ").append(toIndentedString(selector)).append("\n");
+    sb.append("    directory: ").append(toIndentedString(directory)).append("\n");
     sb.append("}");
     return sb.toString();
   }

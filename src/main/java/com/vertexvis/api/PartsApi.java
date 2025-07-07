@@ -513,6 +513,7 @@ public class PartsApi {
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
      * @param filterSuppliedId Comma-separated list of supplied IDs to filter on. (optional)
+     * @param filterOwnerId Owner ID to filter on. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -524,7 +525,7 @@ public class PartsApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getPartsCall(String pageCursor, Integer pageSize, String filterSuppliedId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getPartsCall(String pageCursor, Integer pageSize, String filterSuppliedId, UUID filterOwnerId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
         // Operation Servers
@@ -562,6 +563,10 @@ public class PartsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("filter[suppliedId]", filterSuppliedId));
         }
 
+        if (filterOwnerId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("filter[ownerId]", filterOwnerId));
+        }
+
         final String[] localVarAccepts = {
             "application/vnd.api+json"
         };
@@ -583,10 +588,10 @@ public class PartsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getPartsValidateBeforeCall(String pageCursor, Integer pageSize, String filterSuppliedId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getPartsValidateBeforeCall(String pageCursor, Integer pageSize, String filterSuppliedId, UUID filterOwnerId, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = getPartsCall(pageCursor, pageSize, filterSuppliedId, _callback);
+        okhttp3.Call localVarCall = getPartsCall(pageCursor, pageSize, filterSuppliedId, filterOwnerId, _callback);
         return localVarCall;
 
     }
@@ -597,6 +602,7 @@ public class PartsApi {
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
      * @param filterSuppliedId Comma-separated list of supplied IDs to filter on. (optional)
+     * @param filterOwnerId Owner ID to filter on. (optional)
      * @return PartList
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -607,8 +613,8 @@ public class PartsApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public PartList getParts(String pageCursor, Integer pageSize, String filterSuppliedId) throws ApiException {
-        ApiResponse<PartList> localVarResp = getPartsWithHttpInfo(pageCursor, pageSize, filterSuppliedId);
+    public PartList getParts(String pageCursor, Integer pageSize, String filterSuppliedId, UUID filterOwnerId) throws ApiException {
+        ApiResponse<PartList> localVarResp = getPartsWithHttpInfo(pageCursor, pageSize, filterSuppliedId, filterOwnerId);
         return localVarResp.getData();
     }
 
@@ -618,6 +624,7 @@ public class PartsApi {
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
      * @param filterSuppliedId Comma-separated list of supplied IDs to filter on. (optional)
+     * @param filterOwnerId Owner ID to filter on. (optional)
      * @return ApiResponse&lt;PartList&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -628,8 +635,8 @@ public class PartsApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PartList> getPartsWithHttpInfo(String pageCursor, Integer pageSize, String filterSuppliedId) throws ApiException {
-        okhttp3.Call localVarCall = getPartsValidateBeforeCall(pageCursor, pageSize, filterSuppliedId, null);
+    public ApiResponse<PartList> getPartsWithHttpInfo(String pageCursor, Integer pageSize, String filterSuppliedId, UUID filterOwnerId) throws ApiException {
+        okhttp3.Call localVarCall = getPartsValidateBeforeCall(pageCursor, pageSize, filterSuppliedId, filterOwnerId, null);
         Type localVarReturnType = new TypeToken<PartList>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -640,6 +647,7 @@ public class PartsApi {
      * @param pageCursor The cursor for the next page of items. (optional)
      * @param pageSize The number of items to return. (optional)
      * @param filterSuppliedId Comma-separated list of supplied IDs to filter on. (optional)
+     * @param filterOwnerId Owner ID to filter on. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -651,9 +659,9 @@ public class PartsApi {
         <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getPartsAsync(String pageCursor, Integer pageSize, String filterSuppliedId, final ApiCallback<PartList> _callback) throws ApiException {
+    public okhttp3.Call getPartsAsync(String pageCursor, Integer pageSize, String filterSuppliedId, UUID filterOwnerId, final ApiCallback<PartList> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getPartsValidateBeforeCall(pageCursor, pageSize, filterSuppliedId, _callback);
+        okhttp3.Call localVarCall = getPartsValidateBeforeCall(pageCursor, pageSize, filterSuppliedId, filterOwnerId, _callback);
         Type localVarReturnType = new TypeToken<PartList>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

@@ -27,14 +27,10 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import com.vertexvis.model.CreateSceneAlterationRequest;
-import com.vertexvis.model.CreateSceneExpressionAlterationRequest;
+import com.vertexvis.model.CreatePermissionGrant;
 import com.vertexvis.model.Failure;
-import com.vertexvis.model.OneOfCreateSceneAlterationRequestCreateSceneExpressionAlterationRequest;
-import com.vertexvis.model.QueuedJob;
-import com.vertexvis.model.SceneAlteration;
-import com.vertexvis.model.SceneAlterationList;
-import com.vertexvis.model.UNKNOWN_BASE_TYPE;
+import com.vertexvis.model.PermissionGrant;
+import com.vertexvis.model.PermissionGrantList;
 import java.util.UUID;
 
 import java.lang.reflect.Type;
@@ -43,16 +39,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SceneAlterationsApi {
+public class PermissionGrantsApi {
     private ApiClient localVarApiClient;
     private int localHostIndex;
     private String localCustomBaseUrl;
 
-    public SceneAlterationsApi() {
+    public PermissionGrantsApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public SceneAlterationsApi(ApiClient apiClient) {
+    public PermissionGrantsApi(ApiClient apiClient) {
         this.localVarApiClient = apiClient;
     }
 
@@ -81,23 +77,21 @@ public class SceneAlterationsApi {
     }
 
     /**
-     * Build call for createSceneAlteration
-     * @param id The &#x60;scene-view&#x60; ID. (required)
-     * @param UNKNOWN_BASE_TYPE  (required)
+     * Build call for createPermissionGrant
+     * @param createPermissionGrant  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
+        <tr><td> 201 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createSceneAlterationCall(UUID id, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call createPermissionGrantCall(CreatePermissionGrant createPermissionGrant, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
         // Operation Servers
@@ -112,11 +106,10 @@ public class SceneAlterationsApi {
             basePath = null;
         }
 
-        Object localVarPostBody = UNKNOWN_BASE_TYPE;
+        Object localVarPostBody = createPermissionGrant;
 
         // create path and map variables
-        String localVarPath = "/scene-views/{id}/scene-alterations"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+        String localVarPath = "/permission-grants";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -145,97 +138,86 @@ public class SceneAlterationsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call createSceneAlterationValidateBeforeCall(UUID id, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call createPermissionGrantValidateBeforeCall(CreatePermissionGrant createPermissionGrant, final ApiCallback _callback) throws ApiException {
         
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling createSceneAlteration(Async)");
-        }
-        
-        // verify the required parameter 'UNKNOWN_BASE_TYPE' is set
-        if (UNKNOWN_BASE_TYPE == null) {
-            throw new ApiException("Missing the required parameter 'UNKNOWN_BASE_TYPE' when calling createSceneAlteration(Async)");
+        // verify the required parameter 'createPermissionGrant' is set
+        if (createPermissionGrant == null) {
+            throw new ApiException("Missing the required parameter 'createPermissionGrant' when calling createPermissionGrant(Async)");
         }
         
 
-        okhttp3.Call localVarCall = createSceneAlterationCall(id, UNKNOWN_BASE_TYPE, _callback);
+        okhttp3.Call localVarCall = createPermissionGrantCall(createPermissionGrant, _callback);
         return localVarCall;
 
     }
 
     /**
-     * 
-     * Create a &#x60;scene-alteration&#x60; for a &#x60;scene-view&#x60;.
-     * @param id The &#x60;scene-view&#x60; ID. (required)
-     * @param UNKNOWN_BASE_TYPE  (required)
-     * @return QueuedJob
+     * Create a permission grant for a grantee to a subject resource
+     * Create a permission grant for a grantee to a subject resource
+     * @param createPermissionGrant  (required)
+     * @return PermissionGrant
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
+        <tr><td> 201 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
      </table>
      */
-    public QueuedJob createSceneAlteration(UUID id, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE) throws ApiException {
-        ApiResponse<QueuedJob> localVarResp = createSceneAlterationWithHttpInfo(id, UNKNOWN_BASE_TYPE);
+    public PermissionGrant createPermissionGrant(CreatePermissionGrant createPermissionGrant) throws ApiException {
+        ApiResponse<PermissionGrant> localVarResp = createPermissionGrantWithHttpInfo(createPermissionGrant);
         return localVarResp.getData();
     }
 
     /**
-     * 
-     * Create a &#x60;scene-alteration&#x60; for a &#x60;scene-view&#x60;.
-     * @param id The &#x60;scene-view&#x60; ID. (required)
-     * @param UNKNOWN_BASE_TYPE  (required)
-     * @return ApiResponse&lt;QueuedJob&gt;
+     * Create a permission grant for a grantee to a subject resource
+     * Create a permission grant for a grantee to a subject resource
+     * @param createPermissionGrant  (required)
+     * @return ApiResponse&lt;PermissionGrant&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
+        <tr><td> 201 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<QueuedJob> createSceneAlterationWithHttpInfo(UUID id, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE) throws ApiException {
-        okhttp3.Call localVarCall = createSceneAlterationValidateBeforeCall(id, UNKNOWN_BASE_TYPE, null);
-        Type localVarReturnType = new TypeToken<QueuedJob>(){}.getType();
+    public ApiResponse<PermissionGrant> createPermissionGrantWithHttpInfo(CreatePermissionGrant createPermissionGrant) throws ApiException {
+        okhttp3.Call localVarCall = createPermissionGrantValidateBeforeCall(createPermissionGrant, null);
+        Type localVarReturnType = new TypeToken<PermissionGrant>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     *  (asynchronously)
-     * Create a &#x60;scene-alteration&#x60; for a &#x60;scene-view&#x60;.
-     * @param id The &#x60;scene-view&#x60; ID. (required)
-     * @param UNKNOWN_BASE_TYPE  (required)
+     * Create a permission grant for a grantee to a subject resource (asynchronously)
+     * Create a permission grant for a grantee to a subject resource
+     * @param createPermissionGrant  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 202 </td><td> Accepted </td><td>  * content-location -  <br>  </td></tr>
+        <tr><td> 201 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createSceneAlterationAsync(UUID id, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE, final ApiCallback<QueuedJob> _callback) throws ApiException {
+    public okhttp3.Call createPermissionGrantAsync(CreatePermissionGrant createPermissionGrant, final ApiCallback<PermissionGrant> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = createSceneAlterationValidateBeforeCall(id, UNKNOWN_BASE_TYPE, _callback);
-        Type localVarReturnType = new TypeToken<QueuedJob>(){}.getType();
+        okhttp3.Call localVarCall = createPermissionGrantValidateBeforeCall(createPermissionGrant, _callback);
+        Type localVarReturnType = new TypeToken<PermissionGrant>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for getQueuedSceneAlteration
-     * @param id The &#x60;queued-scene-alteration&#x60; ID. (required)
+     * Build call for getPermissionGrant
+     * @param id The permission grant ID. (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -243,13 +225,11 @@ public class SceneAlterationsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 301 </td><td> Moved Permanently </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getQueuedSceneAlterationCall(UUID id, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getPermissionGrantCall(UUID id, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
         // Operation Servers
@@ -267,7 +247,7 @@ public class SceneAlterationsApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/queued-scene-alterations/{id}"
+        String localVarPath = "/permission-grants/{id}"
             .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -297,66 +277,62 @@ public class SceneAlterationsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getQueuedSceneAlterationValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getPermissionGrantValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling getQueuedSceneAlteration(Async)");
+            throw new ApiException("Missing the required parameter 'id' when calling getPermissionGrant(Async)");
         }
         
 
-        okhttp3.Call localVarCall = getQueuedSceneAlterationCall(id, _callback);
+        okhttp3.Call localVarCall = getPermissionGrantCall(id, _callback);
         return localVarCall;
 
     }
 
     /**
-     * 
-     * Get a &#x60;queued-scene-alteration&#x60; by ID.
-     * @param id The &#x60;queued-scene-alteration&#x60; ID. (required)
-     * @return QueuedJob
+     * Get a permission grant by ID
+     * Get a permission grant by ID
+     * @param id The permission grant ID. (required)
+     * @return PermissionGrant
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 301 </td><td> Moved Permanently </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public QueuedJob getQueuedSceneAlteration(UUID id) throws ApiException {
-        ApiResponse<QueuedJob> localVarResp = getQueuedSceneAlterationWithHttpInfo(id);
+    public PermissionGrant getPermissionGrant(UUID id) throws ApiException {
+        ApiResponse<PermissionGrant> localVarResp = getPermissionGrantWithHttpInfo(id);
         return localVarResp.getData();
     }
 
     /**
-     * 
-     * Get a &#x60;queued-scene-alteration&#x60; by ID.
-     * @param id The &#x60;queued-scene-alteration&#x60; ID. (required)
-     * @return ApiResponse&lt;QueuedJob&gt;
+     * Get a permission grant by ID
+     * Get a permission grant by ID
+     * @param id The permission grant ID. (required)
+     * @return ApiResponse&lt;PermissionGrant&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 301 </td><td> Moved Permanently </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<QueuedJob> getQueuedSceneAlterationWithHttpInfo(UUID id) throws ApiException {
-        okhttp3.Call localVarCall = getQueuedSceneAlterationValidateBeforeCall(id, null);
-        Type localVarReturnType = new TypeToken<QueuedJob>(){}.getType();
+    public ApiResponse<PermissionGrant> getPermissionGrantWithHttpInfo(UUID id) throws ApiException {
+        okhttp3.Call localVarCall = getPermissionGrantValidateBeforeCall(id, null);
+        Type localVarReturnType = new TypeToken<PermissionGrant>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     *  (asynchronously)
-     * Get a &#x60;queued-scene-alteration&#x60; by ID.
-     * @param id The &#x60;queued-scene-alteration&#x60; ID. (required)
+     * Get a permission grant by ID (asynchronously)
+     * Get a permission grant by ID
+     * @param id The permission grant ID. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -364,22 +340,21 @@ public class SceneAlterationsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 301 </td><td> Moved Permanently </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getQueuedSceneAlterationAsync(UUID id, final ApiCallback<QueuedJob> _callback) throws ApiException {
+    public okhttp3.Call getPermissionGrantAsync(UUID id, final ApiCallback<PermissionGrant> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getQueuedSceneAlterationValidateBeforeCall(id, _callback);
-        Type localVarReturnType = new TypeToken<QueuedJob>(){}.getType();
+        okhttp3.Call localVarCall = getPermissionGrantValidateBeforeCall(id, _callback);
+        Type localVarReturnType = new TypeToken<PermissionGrant>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for getSceneAlteration
-     * @param id The &#x60;scene-alteration&#x60; ID. (required)
+     * Build call for listPermissionGrants
+     * @param pageCursor The cursor for the next page of items. (optional)
+     * @param pageSize The number of items to return. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -388,11 +363,9 @@ public class SceneAlterationsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSceneAlterationCall(UUID id, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listPermissionGrantsCall(String pageCursor, Integer pageSize, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
         // Operation Servers
@@ -410,7 +383,145 @@ public class SceneAlterationsApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/scene-alterations/{id}"
+        String localVarPath = "/permission-grants";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (pageCursor != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[cursor]", pageCursor));
+        }
+
+        if (pageSize != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page[size]", pageSize));
+        }
+
+        final String[] localVarAccepts = {
+            "application/vnd.api+json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "OAuth2" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call listPermissionGrantsValidateBeforeCall(String pageCursor, Integer pageSize, final ApiCallback _callback) throws ApiException {
+        
+
+        okhttp3.Call localVarCall = listPermissionGrantsCall(pageCursor, pageSize, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * List all permission grants
+     * List all permission grants
+     * @param pageCursor The cursor for the next page of items. (optional)
+     * @param pageSize The number of items to return. (optional)
+     * @return PermissionGrantList
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+     </table>
+     */
+    public PermissionGrantList listPermissionGrants(String pageCursor, Integer pageSize) throws ApiException {
+        ApiResponse<PermissionGrantList> localVarResp = listPermissionGrantsWithHttpInfo(pageCursor, pageSize);
+        return localVarResp.getData();
+    }
+
+    /**
+     * List all permission grants
+     * List all permission grants
+     * @param pageCursor The cursor for the next page of items. (optional)
+     * @param pageSize The number of items to return. (optional)
+     * @return ApiResponse&lt;PermissionGrantList&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<PermissionGrantList> listPermissionGrantsWithHttpInfo(String pageCursor, Integer pageSize) throws ApiException {
+        okhttp3.Call localVarCall = listPermissionGrantsValidateBeforeCall(pageCursor, pageSize, null);
+        Type localVarReturnType = new TypeToken<PermissionGrantList>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * List all permission grants (asynchronously)
+     * List all permission grants
+     * @param pageCursor The cursor for the next page of items. (optional)
+     * @param pageSize The number of items to return. (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call listPermissionGrantsAsync(String pageCursor, Integer pageSize, final ApiCallback<PermissionGrantList> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = listPermissionGrantsValidateBeforeCall(pageCursor, pageSize, _callback);
+        Type localVarReturnType = new TypeToken<PermissionGrantList>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for removePermissionGrant
+     * @param id The permission grant ID. (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call removePermissionGrantCall(UUID id, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/permission-grants/{id}"
             .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -436,225 +547,78 @@ public class SceneAlterationsApi {
         }
 
         String[] localVarAuthNames = new String[] { "OAuth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getSceneAlterationValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call removePermissionGrantValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling getSceneAlteration(Async)");
+            throw new ApiException("Missing the required parameter 'id' when calling removePermissionGrant(Async)");
         }
         
 
-        okhttp3.Call localVarCall = getSceneAlterationCall(id, _callback);
+        okhttp3.Call localVarCall = removePermissionGrantCall(id, _callback);
         return localVarCall;
 
     }
 
     /**
-     * 
-     * Get a &#x60;scene-alteration&#x60; by ID.
-     * @param id The &#x60;scene-alteration&#x60; ID. (required)
-     * @return SceneAlteration
+     * Remove a permission grant by ID
+     * Remove a permission grant by ID
+     * @param id The permission grant ID. (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public SceneAlteration getSceneAlteration(UUID id) throws ApiException {
-        ApiResponse<SceneAlteration> localVarResp = getSceneAlterationWithHttpInfo(id);
-        return localVarResp.getData();
+    public void removePermissionGrant(UUID id) throws ApiException {
+        removePermissionGrantWithHttpInfo(id);
     }
 
     /**
-     * 
-     * Get a &#x60;scene-alteration&#x60; by ID.
-     * @param id The &#x60;scene-alteration&#x60; ID. (required)
-     * @return ApiResponse&lt;SceneAlteration&gt;
+     * Remove a permission grant by ID
+     * Remove a permission grant by ID
+     * @param id The permission grant ID. (required)
+     * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SceneAlteration> getSceneAlterationWithHttpInfo(UUID id) throws ApiException {
-        okhttp3.Call localVarCall = getSceneAlterationValidateBeforeCall(id, null);
-        Type localVarReturnType = new TypeToken<SceneAlteration>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    public ApiResponse<Void> removePermissionGrantWithHttpInfo(UUID id) throws ApiException {
+        okhttp3.Call localVarCall = removePermissionGrantValidateBeforeCall(id, null);
+        return localVarApiClient.execute(localVarCall);
     }
 
     /**
-     *  (asynchronously)
-     * Get a &#x60;scene-alteration&#x60; by ID.
-     * @param id The &#x60;scene-alteration&#x60; ID. (required)
+     * Remove a permission grant by ID (asynchronously)
+     * Remove a permission grant by ID
+     * @param id The permission grant ID. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSceneAlterationAsync(UUID id, final ApiCallback<SceneAlteration> _callback) throws ApiException {
+    public okhttp3.Call removePermissionGrantAsync(UUID id, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getSceneAlterationValidateBeforeCall(id, _callback);
-        Type localVarReturnType = new TypeToken<SceneAlteration>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for getSceneAlterations
-     * @param id The &#x60;scene-view&#x60; ID. (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getSceneAlterationsCall(UUID id, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/scene-views/{id}/scene-alterations"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/vnd.api+json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] { "OAuth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call getSceneAlterationsValidateBeforeCall(UUID id, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling getSceneAlterations(Async)");
-        }
-        
-
-        okhttp3.Call localVarCall = getSceneAlterationsCall(id, _callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * 
-     * Get &#x60;scene-alterations&#x60; for a &#x60;scene-view&#x60;.
-     * @param id The &#x60;scene-view&#x60; ID. (required)
-     * @return SceneAlterationList
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
-     </table>
-     */
-    public SceneAlterationList getSceneAlterations(UUID id) throws ApiException {
-        ApiResponse<SceneAlterationList> localVarResp = getSceneAlterationsWithHttpInfo(id);
-        return localVarResp.getData();
-    }
-
-    /**
-     * 
-     * Get &#x60;scene-alterations&#x60; for a &#x60;scene-view&#x60;.
-     * @param id The &#x60;scene-view&#x60; ID. (required)
-     * @return ApiResponse&lt;SceneAlterationList&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<SceneAlterationList> getSceneAlterationsWithHttpInfo(UUID id) throws ApiException {
-        okhttp3.Call localVarCall = getSceneAlterationsValidateBeforeCall(id, null);
-        Type localVarReturnType = new TypeToken<SceneAlterationList>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     *  (asynchronously)
-     * Get &#x60;scene-alterations&#x60; for a &#x60;scene-view&#x60;.
-     * @param id The &#x60;scene-view&#x60; ID. (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 415 </td><td> Unsupported Media Type </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getSceneAlterationsAsync(UUID id, final ApiCallback<SceneAlterationList> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = getSceneAlterationsValidateBeforeCall(id, _callback);
-        Type localVarReturnType = new TypeToken<SceneAlterationList>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        okhttp3.Call localVarCall = removePermissionGrantValidateBeforeCall(id, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
 }

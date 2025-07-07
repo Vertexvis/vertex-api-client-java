@@ -20,45 +20,42 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.vertexvis.model.CreateSceneAlterationRequestData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * CreateSceneAlterationRequest
- * @deprecated
+ * CreateSearchSessionRequestDataAttributes
  */
-@Deprecated
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateSceneAlterationRequest {
-  public static final String SERIALIZED_NAME_DATA = "data";
-  @SerializedName(SERIALIZED_NAME_DATA)
-  private CreateSceneAlterationRequestData data;
+public class CreateSearchSessionRequestDataAttributes {
+  public static final String SERIALIZED_NAME_EXPIRY = "expiry";
+  @SerializedName(SERIALIZED_NAME_EXPIRY)
+  private Integer expiry;
 
-  public CreateSceneAlterationRequest() { 
+  public CreateSearchSessionRequestDataAttributes() { 
   }
 
-  public CreateSceneAlterationRequest data(CreateSceneAlterationRequestData data) {
+  public CreateSearchSessionRequestDataAttributes expiry(Integer expiry) {
     
-    this.data = data;
+    this.expiry = expiry;
     return this;
   }
 
    /**
-   * Get data
-   * @return data
+   * Number of seconds before the search session is deleted.
+   * @return expiry
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Number of seconds before the search session is deleted.")
 
-  public CreateSceneAlterationRequestData getData() {
-    return data;
+  public Integer getExpiry() {
+    return expiry;
   }
 
 
-  public void setData(CreateSceneAlterationRequestData data) {
-    this.data = data;
+  public void setExpiry(Integer expiry) {
+    this.expiry = expiry;
   }
 
 
@@ -70,20 +67,20 @@ public class CreateSceneAlterationRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSceneAlterationRequest createSceneAlterationRequest = (CreateSceneAlterationRequest) o;
-    return Objects.equals(this.data, createSceneAlterationRequest.data);
+    CreateSearchSessionRequestDataAttributes createSearchSessionRequestDataAttributes = (CreateSearchSessionRequestDataAttributes) o;
+    return Objects.equals(this.expiry, createSearchSessionRequestDataAttributes.expiry);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data);
+    return Objects.hash(expiry);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSceneAlterationRequest {\n");
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("class CreateSearchSessionRequestDataAttributes {\n");
+    sb.append("    expiry: ").append(toIndentedString(expiry)).append("\n");
     sb.append("}");
     return sb.toString();
   }
