@@ -30,7 +30,7 @@ class PartCreator {
         return createPartFromFile(metadata, Collections.emptyMap());
     }
 
-    public Part createPartFromFile(FileMetadata metadata, Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> partMetadata) throws InterruptedException {
+    public Part createPartFromFile(FileMetadata metadata, Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> partMetadata) throws InterruptedException {
         Part qp = parts.createPart(getCreatePartRequest(metadata.getData().getId(), metadata.getData().getAttributes().getName(), partMetadata));
         UUID partId =
                 JobPoller.pollUntilJobDone("part", () -> tiApi.getQueuedTranslation(qp.getData().getId()));
@@ -41,7 +41,7 @@ class PartCreator {
         return createPartFromFileAsync(id, req, Collections.emptyMap());
     }
 
-    public CompletableFuture<Part> createPartFromFileAsync(UUID id, CreateFileRequest req, Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> metadata) {
+    public CompletableFuture<Part> createPartFromFileAsync(UUID id, CreateFileRequest req, Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> metadata) {
         CompletableFuture<Part> p =
                 execute(cb -> parts.createPartAsync(getCreatePartRequest(id, req.getData().getAttributes().getName(), metadata), cb));
         CompletableFuture<UUID> partId = p.thenCompose(qj ->
@@ -63,7 +63,7 @@ class PartCreator {
         return getCreatePartRequest(fileId, partName, Collections.emptyMap());
     }
 
-    private static CreatePartRequest getCreatePartRequest(UUID fileId, String partName, Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> metadata) {
+    private static CreatePartRequest getCreatePartRequest(UUID fileId, String partName, Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> metadata) {
         FileRelationship fileRelationship = new FileRelationship()
                 .data(
                         new FileRelationshipData()
@@ -80,7 +80,7 @@ class PartCreator {
                                                 .name(partName)
                                                 .metadata(metadata))
                                 .relationships(new CreatePartRequestDataRelationships()
-                                        .source(new AnyOfFileRelationshipPartAssemblyRelationship(fileRelationship)
+                                        .source(new CreatePartRequestDataRelationshipsSource(fileRelationship)
                                         )));
     }
 
@@ -101,7 +101,7 @@ class PartCreator {
                                         .suppliedRevisionId("my-part-rev-" + uuid)
                                         .name(assemblyName))
                                 .relationships(new CreatePartRequestDataRelationships()
-                                        .source(new AnyOfFileRelationshipPartAssemblyRelationship(partAssemblyRelationship))
+                                        .source(new CreatePartRequestDataRelationshipsSource(partAssemblyRelationship))
                                 ));
     }
 

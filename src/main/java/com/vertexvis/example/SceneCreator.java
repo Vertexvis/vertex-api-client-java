@@ -35,8 +35,7 @@ class SceneCreator {
                                                 new UpdateSceneRequestDataAttributes()
                                                         .state(UpdateSceneRequestDataAttributes.StateEnum.COMMIT)
                                                         .camera(
-                                                                new AnyOfPerspectiveCameraOrthographicCameraCameraFit(
-                                                                        new CameraFit().type(FIT_VISIBLE_SCENE_ITEMS))))));
+                                                                new UpdateSceneViewRequestDataAttributesCamera(new CameraFit().type(CameraFit.TypeEnum.FIT_VISIBLE_SCENE_ITEMS))))));
     }
 
     public Scene createSceneFromPart(Part p) throws InterruptedException {
@@ -67,14 +66,13 @@ class SceneCreator {
                                                 .relationships(
                                                         new CreateSceneItemRequestDataRelationships()
                                                                 .source(
-                                                                        new AnyOfGeometrySetRelationshipPartRevisionRelationshipSceneRelationshipPartRenditionRelationship(
-                                                                                new PartRevisionRelationship()
-                                                                                        .data(
-                                                                                                new PartDataRelationshipsPartRevisions()
-                                                                                                        .type(
-                                                                                                                PartDataRelationshipsPartRevisions.TypeEnum
-                                                                                                                        .PART_REVISION)
-                                                                                                        .id(revisionId)))))));
+                                                                        new CreateSceneItemRequestDataRelationshipsSource(new PartRevisionRelationship()
+                                                                                                .data(
+                                                                                                        new PartDataRelationshipsPartRevisions()
+                                                                                                                .type(
+                                                                                                                        PartDataRelationshipsPartRevisions.TypeEnum
+                                                                                                                                .PART_REVISION)
+                                                                                                                .id(revisionId)))))));
 
         JobPoller.pollUntilJobDone(
                 "scene-item", () -> sceneItems.getQueuedSceneItem(job.getData().getId()));

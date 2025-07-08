@@ -20,7 +20,7 @@ public class MetadataUtil {
         NULL
     }
 
-    public static Map<String, AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType> createCustomMetadata(int numberOfMetadataProperties) {
+    public static Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> createCustomMetadata(int numberOfMetadataProperties) {
         return IntStream.range(0, numberOfMetadataProperties).mapToObj(i -> {
             // generate key that index of the number of metadata properties
             var key = "key_0" + (i + 1) + "/" + numberOfMetadataProperties;
@@ -28,20 +28,20 @@ public class MetadataUtil {
             var metadataType = random.nextInt(MetadataType.values().length);
             var value = switch (MetadataType.values()[metadataType]) {
                 case LONG ->
-                        new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType(
+                        new UpdatePartRevisionRequestDataAttributesMetadataValue(
                                 new MetadataLongType().type("long").value(random.nextLong()));
 
                 case FLOAT ->
-                        new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType(
+                        new UpdatePartRevisionRequestDataAttributesMetadataValue(
                                 new MetadataFloatType().type("float").value(random.nextFloat()));
                 case DATE ->
-                        new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType(
+                        new UpdatePartRevisionRequestDataAttributesMetadataValue(
                                 new MetadataDateType().type("date").value(OffsetDateTime.now()));
                 case STRING ->
-                        new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType(
+                        new UpdatePartRevisionRequestDataAttributesMetadataValue(
                                 new MetadataStringType().type("string").value(UUID.randomUUID().toString()));
                 case NULL ->
-                        new AnyOfMetadataLongTypeMetadataFloatTypeMetadataDateTypeMetadataStringTypeMetadataNullType(
+                        new UpdatePartRevisionRequestDataAttributesMetadataValue(
                                 new MetadataNullType().type("null"));
 
             };
