@@ -4,6 +4,7 @@ plugins {
     id "java-library"
     id "maven-publish"
     id "signing"
+    id "org.openapi.generator" version "7.14.0"
 }
 
 group = 'com.vertexvis'
@@ -19,6 +20,47 @@ java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(17))
     }
+}
+compileJava.dependsOn tasks.openApiGenerate
+compileTestJava.dependsOn tasks.openApiGenerate
+
+openApiGenerate {
+    verbose = false
+    generatorName = 'java'
+    generateModelTests = false
+    generateApiTests = false
+    generateModelDocumentation = false
+    remoteInputSpec = 'https://platform.vertexvis.com/spec'
+    outputDir = "${buildDir}/generated/"
+    invokerPackage = 'com.vertexvis'
+    modelPackage = 'com.vertexvis.model'
+    apiPackage = 'com.vertexvis.api'
+    configOptions = [
+        openApiNullable: "false",
+        dateLibrary: "java8",
+        hideGenerationTimestamp: "true",
+        useRuntimeException: "true"
+    ]
+} 
+
+sourceSets {
+    main {
+        java {
+            srcDirs += [
+                "${buildDir}/generated/src/main/java"
+            ]
+        }
+    }
+}
+tasks.named('sourcesJar') {
+    dependsOn tasks.openApiGenerate
+    from sourceSets.main.allJava
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+jar {
+    from sourceSets.main.allSource
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 publishing {
