@@ -10,8 +10,8 @@ import picocli.CommandLine;
 
 import java.io.File;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.logging.Level;
@@ -37,12 +37,11 @@ public class CreateAssemblyFromRevisionsExample extends CommandLineOptions {
         }
 
         ApiClient client =
-                new ApiClient(getVertexApiUrl(), clientId, secret, new HashMap<>()).setDebugging(isVerboseDebugLogging());
+                new ApiClient(getVertexApiUrl(), clientId, secret, Map.of()).setDebugging(isVerboseDebugLogging());
 
         PartCreator pc = new PartCreator(client);
         FilesApi files = new FilesApi(client);
         SceneCreator sc = new SceneCreator(client);
-
 
         List<CompletableFuture<Part>> futureParts = getPartFiles().stream()
                 .map(CreateAssemblyFromRevisionsExample::buildCreateFileReq)
