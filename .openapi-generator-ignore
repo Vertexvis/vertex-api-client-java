@@ -11,3 +11,5 @@ docs/
 
 src/main/AndroidManifest.xml
 src/test/
+**/auth/RetryingOAuth.java
+**/ApiClient.java
