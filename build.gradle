@@ -8,7 +8,7 @@ plugins {
 }
 
 group = 'com.vertexvis'
-version = '0.10.0'
+version = '0.11.0'
 
 repositories {
     mavenCentral()
@@ -21,8 +21,6 @@ java {
         languageVersion.set(JavaLanguageVersion.of(17))
     }
 }
-compileJava.dependsOn tasks.openApiGenerate
-compileTestJava.dependsOn tasks.openApiGenerate
 
 openApiGenerate {
     verbose = false
@@ -39,8 +37,9 @@ openApiGenerate {
         openApiNullable: "false",
         dateLibrary: "java8",
         hideGenerationTimestamp: "true",
-        useRuntimeException: "true"
+        useRuntimeException: "true",
     ]
+    ignoreFileOverride = "${projectDir}/.openapi-generator-ignore"
 } 
 
 sourceSets {
@@ -52,6 +51,11 @@ sourceSets {
         }
     }
 }
+
+
+compileJava.dependsOn tasks.openApiGenerate
+compileTestJava.dependsOn tasks.openApiGenerate
+
 tasks.named('sourcesJar') {
     dependsOn tasks.openApiGenerate
     from sourceSets.main.allJava
@@ -111,7 +115,12 @@ def base64Decode(prop) {
 }
 
 signing {
-    useInMemoryPgpKeys(base64Decode("signingKey"), base64Decode("signingPassword"))
+    def hasSigningKey = project.hasProperty("signingKey")
+    def hasSigningPassword = project.hasProperty("signingPassword")
+    required { hasSigningKey && hasSigningPassword && !project.version.endsWith("-SNAPSHOT") }
+    if (hasSigningKey && hasSigningPassword) {
+        useInMemoryPgpKeys(base64Decode("signingKey"), base64Decode("signingPassword"))
+    }
     sign publishing.publications.mavenJava
 }
 
@@ -120,6 +129,19 @@ javadoc {
     if(JavaVersion.current().isJava8Compatible()) {
         options.addStringOption('Xdoclint:none', '-quiet')
     }
+}
+
+tasks.withType(Sign) {
+    dependsOn tasks.withType(GenerateModuleMetadata)
+    dependsOn tasks.withType(Jar)
+}
+
+tasks.withType(PublishToMavenLocal) {
+    dependsOn tasks.withType(Sign)
+}
+
+javadoc {
+    dependsOn tasks.openApiGenerate
 }
 
 dependencies {
