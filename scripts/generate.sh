@@ -29,7 +29,13 @@ main() {
                 AnyOfPropertySetRelationshipPartRevisionRelationshipSceneItemRelationshipPartInstanceRelationship.java \
                 OneOfSceneAnnotationCalloutDataTypeSceneAnnotationCustomDataType.java \
                 AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateTypeobject.java \
-                AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType.java )
+                AnyOfPropertyStringTypePropertyDoubleTypePropertyLongTypePropertyDateType.java \
+                OneOfFileJobArchiveOperation.java \
+                OneOfSceneItemQueryOperandSceneItemAndExpressionSceneItemOrExpression.java \
+                OneOfChangeVisibilityOpChangeMaterialOpClearMaterialOpChangeTransformOpClearTransformOpSelectOpDeselectOperationClearRenOpViewDefaultRenOpViewRenByIdOpViewRenBySuppliedIdOpViewRepByIdOpViewRepByPredefinedIdOpClearRepOp.java \
+                OneOfQueryBySceneItemIdQueryBySceneItemIdsQueryByRootQueryBySceneItemMetadata.java \
+                OneOfSelectFileByIdSelectFileBySuppliedId.java \
+                OneOfCreateSceneAlterationRequestCreateSceneExpressionAlterationRequest.java )
   mv "src/test" . || true
   for f in "${root[@]}"; do mv "src/main/java/com/vertexvis/$f" . || true; done
   for f in "${auth[@]}"; do mv "src/main/java/com/vertexvis/auth/$f" . || true; done
@@ -50,7 +56,7 @@ main() {
 
   local version
   version=$(_get_version)
-  sed -i "s|OpenAPI-Generator/1.0/java|vertex-api-client-java/$version|" src/main/java/com/vertexvis/ApiClient.java
+  sed -i "" "s|OpenAPI-Generator/1.0/java|vertex-api-client-java/$version|" src/main/java/com/vertexvis/ApiClient.java
 }
 
 main "$@"
