@@ -21,9 +21,7 @@ public class OneOfFileJobArchiveOperationTypeAdapter extends TypeAdapter<OneOfFi
 
     @Override
     public void write(JsonWriter out, OneOfFileJobArchiveOperation value) throws IOException {
-        if (value.getFileJobOperation() != null) {
-            out.jsonValue(gsonSupplier.get().toJson(value.getFileJobOperation()));
-        } else if (value.getFileJobArchiveOperation() != null) {
+        if (value.getFileJobArchiveOperation() != null) {
             out.jsonValue(gsonSupplier.get().toJson(value.getFileJobArchiveOperation()));
         }
     }
@@ -44,10 +42,7 @@ public class OneOfFileJobArchiveOperationTypeAdapter extends TypeAdapter<OneOfFi
         in.endObject();
 
         if (type != null) {
-            if (type.equals("file-job")) {
-                FileJobOperation operation = gsonSupplier.get().fromJson(in, FileJobOperation.class);
-                return new OneOfFileJobArchiveOperation(operation);
-            } else if (type.equals("file-job-archive")) {
+            if (type.equals("file-job-archive")) {
                 FileJobArchiveOperation operation = gsonSupplier.get().fromJson(in, FileJobArchiveOperation.class);
                 return new OneOfFileJobArchiveOperation(operation);
             }
