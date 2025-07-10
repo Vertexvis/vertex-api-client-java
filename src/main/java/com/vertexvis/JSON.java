@@ -141,6 +141,26 @@ public class JSON {
                     AnyOfGeometrySetDataPartRevisionDataPartRenditionData.class,
                     new AnyOfGeometrySetDataPartRevisionDataPartRenditionDataTypeAdapter(() -> gson)
                 )
+                .registerTypeAdapter(
+                    OneOfCreateSceneAlterationRequestCreateSceneExpressionAlterationRequest.class,
+                    new OneOfCreateSceneAlterationRequestCreateSceneExpressionAlterationRequestTypeAdapter(() -> gson)
+                )
+                .registerTypeAdapter(
+                    OneOfSelectFileByIdSelectFileBySuppliedId.class,
+                    new OneOfSelectFileByIdSelectFileBySuppliedIdTypeAdapter(() -> gson)
+                )
+                .registerTypeAdapter(
+                    OneOfQueryBySceneItemIdQueryBySceneItemIdsQueryByRootQueryBySceneItemMetadata.class,
+                    new OneOfQueryBySceneItemIdQueryBySceneItemIdsQueryByRootQueryBySceneItemMetadataTypeAdapter(() -> gson)
+                )
+                .registerTypeAdapter(
+                    OneOfSceneItemQueryOperandSceneItemAndExpressionSceneItemOrExpression.class,
+                    new OneOfSceneItemQueryOperandSceneItemAndExpressionSceneItemOrExpressionTypeAdapter(() -> gson)
+                )
+                .registerTypeAdapter(
+                    OneOfFileJobArchiveOperation.class,
+                    new OneOfFileJobArchiveOperationTypeAdapter(() -> gson)
+                )
                 .create();
     }
 
