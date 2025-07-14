@@ -1,5 +1,5 @@
 plugins {
-    id 'java-gradle-plugin'
+    id 'java-library'
     id 'maven-publish'
     id 'signing'
 }
@@ -72,4 +72,16 @@ tasks.withType(Sign) {
 
 tasks.withType(PublishToMavenLocal) {
     dependsOn tasks.withType(Sign)
+}
+
+// Debug task to check if the service file exists
+task checkServiceFile {
+    doLast {
+        def serviceFile = file('src/main/resources/META-INF/services/org.openapitools.codegen.CodegenConfig')
+        if (serviceFile.exists()) {
+            println "Service file exists: ${serviceFile.text}"
+        } else {
+            println "Service file does not exist!"
+        }
+    }
 }

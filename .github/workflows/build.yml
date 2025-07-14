@@ -10,4 +10,15 @@ jobs:
       - uses: actions/setup-java@v4
         with: { java-version: 17, distribution: temurin }
       - name: Build and Verify
-        run: ./gradlew clean build
+        run: |
+          # Debug the OpenAPI Generator plugin
+          ./gradlew :openapi-generator-plugin:checkServiceFile
+          
+          # Build the plugin first and check its contents
+          ./gradlew :openapi-generator-plugin:build
+          
+          # List JAR contents
+          jar tf openapi-generator-plugin/build/libs/openapi-generator-plugin-*.jar | grep META-INF/services
+          
+          # Now run the full build
+          ./gradlew clean build
