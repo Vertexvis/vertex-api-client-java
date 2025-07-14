@@ -11,6 +11,8 @@ jobs:
         with: { java-version: 17, distribution: temurin }
       - name: Build and Verify
         run: |
+          # Build the plugin first and check its contents
+          ./gradlew :openapi-generator-plugin:build
 
           # Now run the full build
           ./gradlew clean build
