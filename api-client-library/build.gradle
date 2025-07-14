@@ -48,7 +48,7 @@ openApiGenerate {
         useRuntimeException: "true",
     ]
     additionalProperties = [
-        skipValidationFor: "PartDataAttributes,QueuedJobData,QueuedJob,QueuedJobDataAttributes"  // Comma-separated list of models to skip validation for
+        skipValidationFor: "Part,PartData,PartDataAttributes,QueuedJobData,QueuedJob,QueuedJobDataAttributes"  // Comma-separated list of models to skip validation for
     ]
     ignoreFileOverride = "${projectDir}/.openapi-generator-ignore"
 }
