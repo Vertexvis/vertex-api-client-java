@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+description = 'Example applications using the Vertex API Client Library'
+
+dependencies {
+    implementation project(':api-client-library')
+    implementation 'info.picocli:picocli:4.7.6'
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    implementation 'org.slf4j:slf4j-api:2.0.13'
+    runtimeOnly 'org.slf4j:slf4j-simple:2.0.13'
+    
+    testImplementation(platform('org.junit:junit-bom:5.10.3'))
+    testImplementation('org.junit.jupiter:junit-jupiter:5.10.3')
+}
+
+application {
+    mainClass = 'com.vertexvis.example.CreateAssemblyFromRevisionsExample'
+}
+
+// Create additional run tasks for different examples
+task runCreateAssemblyExample(type: JavaExec) {
+    group = 'examples'
+    description = 'Run the CreateAssemblyFromRevisionsExample'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'com.vertexvis.example.CreateAssemblyFromRevisionsExample'
+}
+
+// Create a task to list all available examples
+task listExamples {
+    group = 'examples'
+    description = 'List all available example applications'
+    doLast {
+        println "Available examples:"
+        println "  gradle :examples:runCreateAssemblyExample - Run CreateAssemblyFromRevisionsExample"
+        println "  gradle :examples:run - Run the default example (CreateAssemblyFromRevisionsExample)"
+    }
+}
