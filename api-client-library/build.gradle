@@ -1,0 +1,151 @@
+buildscript{
+    dependencies {
+        classpath files("$rootDir/openapi-generator-plugin/build/libs/openapi-generator-plugin-0.11.0.jar")
+    }
+}
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'signing'
+    id 'org.openapi.generator' version '7.14.0'
+}
+
+description = 'Vertex API Client Library for Java'
+
+dependencies {
+    implementation 'io.swagger:swagger-annotations:1.6.14'
+    implementation "com.google.code.findbugs:jsr305:3.0.2"
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.12.0'
+    implementation 'com.google.code.gson:gson:2.13.1'
+    implementation 'io.gsonfire:gson-fire:1.9.0'
+    implementation 'org.apache.oltu.oauth2:org.apache.oltu.oauth2.client:1.0.2'
+    implementation 'org.apache.commons:commons-lang3:3.15.0'
+    implementation 'javax.annotation:javax.annotation-api:1.3'
+    implementation 'org.openapitools:jackson-databind-nullable:0.2.6'
+    
+    testImplementation(platform('org.junit:junit-bom:5.10.3'))
+    testImplementation('org.junit.jupiter:junit-jupiter:5.10.3')
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")
+}
+
+openApiGenerate {
+    verbose = false
+    generatorName = 'vertex-java'  // Use our custom generator
+    generateModelTests = false
+    generateApiTests = false
+    generateModelDocumentation = false
+    remoteInputSpec = 'https://platform.vertexvis.com/spec'
+    outputDir = "${buildDir}/generated/"
+    invokerPackage = 'com.vertexvis'
+    modelPackage = 'com.vertexvis.model'
+    apiPackage = 'com.vertexvis.api'
+    templateDir = "${project(':openapi-generator-plugin').projectDir}/src/main/resources/vertex-java"
+    configOptions = [
+        openApiNullable: "false",
+        dateLibrary: "java8",
+        hideGenerationTimestamp: "true",
+        useRuntimeException: "true",
+    ]
+    additionalProperties = [
+        skipValidationFor: "PartDataAttributes,QueuedJobData,QueuedJob,QueuedJobDataAttributes"  // Comma-separated list of models to skip validation for
+    ]
+    ignoreFileOverride = "${projectDir}/.openapi-generator-ignore"
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs += [
+                "${buildDir}/generated/src/main/java"
+            ]
+        }
+    }
+}
+tasks.named("openApiGenerate").configure {
+    dependsOn(":openapi-generator-plugin:build")
+}
+
+compileJava.dependsOn tasks.openApiGenerate
+compileTestJava.dependsOn tasks.openApiGenerate
+
+// Ensure our custom generator plugin is built before we generate
+tasks.openApiGenerate.dependsOn ':openapi-generator-plugin:build'
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+tasks.named('sourcesJar') {
+    dependsOn tasks.openApiGenerate
+    from sourceSets.main.allJava
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+jar {
+    from sourceSets.main.allSource
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifactId = 'api-client-java'
+            from components.java
+            pom {
+                name = 'com.vertexvis:api-client-java'
+                description = 'The Vertex REST API client for Java.'
+                url = 'https://github.com/Vertexvis/vertex-api-client-java'
+                licenses {
+                    license {
+                        name = 'MIT'
+                        url = 'https://github.com/Vertexvis/vertex-api-client-java/blob/main/LICENSE'
+                    }
+                }
+                developers {
+                    developer {
+                        email = 'support@vertexvis.com'
+                        name = 'Vertex Developers'
+                        organizationUrl = 'https://developer.vertexvis.com/'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git@github.com:vertexvis/vertex-api-client-java.git'
+                    developerConnection = 'scm:git:git@github.com:vertexvis/vertex-api-client-java.git'
+                    url = 'https://github.com/Vertexvis/vertex-api-client-java'
+                }
+            }
+        }
+    }
+}
+
+signing {
+    def hasSigningKey = project.hasProperty("signingKey")
+    def hasSigningPassword = project.hasProperty("signingPassword")
+    required { hasSigningKey && hasSigningPassword && !project.version.endsWith("-SNAPSHOT") }
+    if (hasSigningKey && hasSigningPassword) {
+        def base64Decode = { prop ->
+            return new String(Base64.getDecoder().decode(project.findProperty(prop).toString())).trim()
+        }
+        useInMemoryPgpKeys(base64Decode("signingKey"), base64Decode("signingPassword"))
+    }
+    sign publishing.publications.maven
+}
+
+javadoc {
+    options.tags = ["http.response.details:a:Http Response Details"]
+    if(JavaVersion.current().isJava8Compatible()) {
+        options.addStringOption('Xdoclint:none', '-quiet')
+    }
+    dependsOn tasks.openApiGenerate
+}
+
+tasks.withType(Sign) {
+    dependsOn tasks.withType(GenerateModuleMetadata)
+    dependsOn tasks.withType(Jar)
+}
+
+tasks.withType(PublishToMavenLocal) {
+    dependsOn tasks.withType(Sign)
+}
