@@ -18,7 +18,11 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+
 public class CreateSceneExample {
+  private final static Logger logger =
+      org.slf4j.LoggerFactory.getLogger(CreateSceneExample.class);
   public static void main(String[] args) throws InterruptedException {
     String id = System.getenv("VERTEX_CLIENT_ID");
     String secret = System.getenv("VERTEX_CLIENT_SECRET");
@@ -53,7 +57,8 @@ public class CreateSceneExample {
               + "' to render scene: "
               + scene.getData().getId());
     } catch (RuntimeException e) {
-      e.printStackTrace();
+     logger.error("An error occurred while creating the scene: ", e);
+      throw e;
     }
   }
 
