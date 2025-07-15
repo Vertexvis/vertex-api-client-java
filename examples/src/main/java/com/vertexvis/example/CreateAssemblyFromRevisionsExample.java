@@ -38,7 +38,6 @@ public class CreateAssemblyFromRevisionsExample extends CommandLineOptions {
 
         ApiClient client = new ApiClient(getVertexApiUrl(), clientId, secret, Map.of())
                 .setDebugging(isVerboseDebugLogging())
-                .setLenientOnJson(true) // Allow for missing fields in the response
                 .setServerIndex(null);// The new client defaults to the first server in the ServerConfigurations unless set to null
 
         PartCreator pc = new PartCreator(client);

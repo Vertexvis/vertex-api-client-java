@@ -50,14 +50,6 @@ class JobPoller {
     }
   }
 
-  // public static CompletableFuture<UUID> pollUntilJobDoneAsync(String type,
-  //                                                             Supplier<CompletableFuture<PollableQueuedJob>> f) {
-  //   CompletableFuture<UUID> cf = new CompletableFuture<>();
-
-  //   startChecking(cf, type, f);
-
-  //   return cf;
-  // }
   public static CompletableFuture<List<UUID>> pollUntilJobDoneAsync(String pollForStatus, Supplier<CompletableFuture<PollableQueuedJob>> jobFetcher) {
     return jobFetcher.get()
         .thenCompose(job -> {
