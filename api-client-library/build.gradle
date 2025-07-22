@@ -89,6 +89,16 @@ jar {
 }
 
 publishing {
+    repositories {
+        maven {
+            name = 'GitHubPackages'
+            url = uri("https://maven.pkg.github.com/Vertexvis/vertex-api-client-java")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR") ?: project.findProperty("gpr.user") ?: ""
+                password = System.getenv("GITHUB_TOKEN") ?: project.findProperty("gpr.key") ?: ""
+            }
+        }
+    }
     publications {
         maven(MavenPublication) {
             artifactId = 'api-client-java'

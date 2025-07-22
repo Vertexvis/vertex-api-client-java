@@ -8,10 +8,19 @@ version = '0.11.0'
 
 allprojects {
     group = 'com.vertexvis'
-    version = '0.11.0'
+    version = project.hasProperty('isSnapshot') && project.isSnapshot.toBoolean() ? 
+        '0.11.0-SNAPSHOT' : '0.11.0'
     
     repositories {
         mavenCentral()
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/Vertexvis/vertex-api-client-java")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR") ?: project.findProperty("gpr.user") ?: ""
+                password = System.getenv("GITHUB_TOKEN") ?: project.findProperty("gpr.key") ?: ""
+            }
+        }
     }
 }
 
