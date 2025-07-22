@@ -35,8 +35,11 @@ jobs:
           # Set up parameters based on available secrets
           GRADLE_PARAMS="-PisSnapshot=true"
           if [ -n "$SIGNING_KEY" ] && [ -n "$SIGNING_PASSWORD" ]; then
-            GRADLE_PARAMS="$GRADLE_PARAMS -P signingKey=$SIGNING_KEY -P signingPassword=$SIGNING_PASSWORD -P ossrhUsername=${{ secrets.MAVEN_CENTRAL_CREDS_TOKEN_USER }} -P ossrhPassword=${{ secrets.MAVEN_CENTRAL_CREDS_TOKEN_PASS }}"
+            GRADLE_PARAMS="$GRADLE_PARAMS -P signingKey=$SIGNING_KEY -P signingPassword=$SIGNING_PASSWORD"
           fi
           
           # Publish snapshots to GitHub Packages
-          ./gradlew $GRADLE_PARAMS :openapi-generator-plugin:publish :api-client-library:publish
+          ./gradlew \
+            -P ossrhUsername=${{ secrets.MAVEN_CENTRAL_CREDS_TOKEN_USER }} \
+            -P ossrhPassword=${{ secrets.MAVEN_CENTRAL_CREDS_TOKEN_PASS }} \
+            $GRADLE_PARAMS :openapi-generator-plugin:publish :api-client-library:publish
