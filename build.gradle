@@ -48,14 +48,11 @@ subprojects {
     }
 }
 
-// Configure dependencies between projects
-project(':api-client-library').afterEvaluate {
-    // Ensure openapi-generator-plugin is built and published before api-client-library tasks
-    it.tasks.withType(AbstractCompile) {
-        it.dependsOn project(':openapi-generator-plugin').tasks.named('build')
-    }
-    
-    it.tasks.named("openApiGenerate").configure {
+// Simplified approach to handle project dependencies
+gradle.projectsEvaluated {
+    // This block runs after all projects have been evaluated
+    project(':api-client-library').tasks.named('openApiGenerate') {
+        // First, make sure the plugin is built
         dependsOn project(':openapi-generator-plugin').tasks.named('build')
     }
 }
