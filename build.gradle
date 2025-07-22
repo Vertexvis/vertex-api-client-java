@@ -3,13 +3,20 @@ plugins {
     id "io.github.gradle-nexus.publish-plugin" version "2.0.0"
 }
 
+// Define version once at the root level
+def projectVersion = '0.11.0'
+def isSnapshot = project.hasProperty('isSnapshot') && project.isSnapshot.toBoolean()
+version = isSnapshot ? "${projectVersion}-SNAPSHOT" : projectVersion
+
+// Set group at the root level
 group = 'com.vertexvis'
-version = '0.11.0'
 
 allprojects {
     group = 'com.vertexvis'
-    version = project.hasProperty('isSnapshot') && project.isSnapshot.toBoolean() ? 
-        '0.11.0-SNAPSHOT' : '0.11.0'
+    version = rootProject.version
+    
+    // Make project version accessible as a project property for buildscript blocks
+    ext.projectVersion = projectVersion
     
     repositories {
         mavenCentral()
@@ -41,10 +48,19 @@ subprojects {
     }
 }
 
+// Configure dependencies between projects
+project(':api-client-library').afterEvaluate {
+    // Ensure openapi-generator-plugin is built and published before api-client-library tasks
+    it.tasks.withType(AbstractCompile) {
+        it.dependsOn project(':openapi-generator-plugin').tasks.named('build')
+    }
+    
+    it.tasks.named("openApiGenerate").configure {
+        dependsOn project(':openapi-generator-plugin').tasks.named('build')
+    }
+}
+
 nexusPublishing {
-    repositories(
-        sonatype()
-    )
     repositories {
         sonatype {
             nexusUrl.set(uri("https://ossrh-staging-api.central.sonatype.com/service/local/"))

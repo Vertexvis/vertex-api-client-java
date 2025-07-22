@@ -1,6 +1,6 @@
 buildscript{
     dependencies {
-        classpath files("$rootDir/openapi-generator-plugin/build/libs/openapi-generator-plugin-0.11.0.jar")
+        classpath files("$rootDir/openapi-generator-plugin/build/libs/openapi-generator-plugin-${rootProject.version}.jar")
     }
 }
 plugins {
