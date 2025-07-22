@@ -22,9 +22,18 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_ACTOR: ${{ github.actor }}
+          # Optional signing environment variables for consistency with publish workflow
+          SIGNING_KEY: ${{ secrets.ORG_GRADLE_PROJECT_signingKey || '' }}
+          SIGNING_PASSWORD: ${{ secrets.ORG_GRADLE_PROJECT_signingPassword || '' }}
         run: |
           # Build the plugin first
           ./gradlew :openapi-generator-plugin:build
           
+          # Set up parameters based on available secrets
+          GRADLE_PARAMS="-PisSnapshot=true"
+          if [ -n "$SIGNING_KEY" ] && [ -n "$SIGNING_PASSWORD" ]; then
+            GRADLE_PARAMS="$GRADLE_PARAMS -P signingKey=$SIGNING_KEY -P signingPassword=$SIGNING_PASSWORD"
+          fi
+          
           # Publish snapshots to GitHub Packages
-          ./gradlew -PisSnapshot=true :openapi-generator-plugin:publish :api-client-library:publish
+          ./gradlew $GRADLE_PARAMS :openapi-generator-plugin:publish :api-client-library:publish
