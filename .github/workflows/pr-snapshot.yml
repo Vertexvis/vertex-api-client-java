@@ -29,9 +29,6 @@ jobs:
           SIGNING_KEY: ${{ secrets.ORG_GRADLE_PROJECT_signingKey || '' }}
           SIGNING_PASSWORD: ${{ secrets.ORG_GRADLE_PROJECT_signingPassword || '' }}
         run: |
-          # Build the plugin first
-          ./gradlew :openapi-generator-plugin:build
-          
           # Set up parameters based on available secrets
           GRADLE_PARAMS="-PisSnapshot=true"
           if [ -n "$SIGNING_KEY" ] && [ -n "$SIGNING_PASSWORD" ]; then
@@ -39,7 +36,7 @@ jobs:
           fi
           
           # Publish snapshots to GitHub Packages
-          ./gradlew \
+          ./gradlew -PisSnapshot=true \
             -P ossrhUsername=${{ secrets.MAVEN_CENTRAL_CREDS_TOKEN_USER }} \
             -P ossrhPassword=${{ secrets.MAVEN_CENTRAL_CREDS_TOKEN_PASS }} \
             $GRADLE_PARAMS :openapi-generator-plugin:publish :api-client-library:publish
