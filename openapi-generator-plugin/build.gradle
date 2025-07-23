@@ -6,6 +6,11 @@ plugins {
 
 description = 'Custom OpenAPI Generator Plugin for Vertex API Client'
 
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
 dependencies {
     implementation 'org.openapitools:openapi-generator:7.14.0'
     implementation 'org.openapitools:openapi-generator-gradle-plugin:7.14.0'
