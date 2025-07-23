@@ -11,8 +11,8 @@ jobs:
         with: { java-version: 17, distribution: temurin }
       - name: Build and Verify
         run: |
-          # Build the plugin first and check its contents
-          ./gradlew :openapi-generator-plugin:build
+          # Build and publish the plugin to Maven Local first
+          ./gradlew :openapi-generator-plugin:build :openapi-generator-plugin:publishToMavenLocal
 
-          # Now run the full build
+          # Now run the full build (this will use the plugin from Maven Local)
           ./gradlew clean build
