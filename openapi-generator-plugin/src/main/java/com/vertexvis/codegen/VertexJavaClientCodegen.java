@@ -15,7 +15,7 @@ import java.util.*;
 /**
  * Custom Java client codegen that supports conditional validation skipping.
  */
-public class VertexJavaClientCodegen extends JavaClientCodegen  implements CodegenConfig {
+public class VertexJavaClientCodegen extends JavaClientCodegen {
     private static final Logger LOGGER = LoggerFactory.getLogger(VertexJavaClientCodegen.class);
     
     /** Configuration option key for specifying models to skip validation for. */

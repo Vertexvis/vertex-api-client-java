@@ -19,6 +19,7 @@ allprojects {
     ext.projectVersion = projectVersion
     
     repositories {
+        mavenLocal() // Look for local artifacts first
         mavenCentral()
         maven {
             name = "GitHubPackages"
@@ -48,7 +49,7 @@ subprojects {
     }
 }
 
-// Simplified approach to handle project dependencies
+// Ensure proper build order between projects
 gradle.projectsEvaluated {
     // This block runs after all projects have been evaluated
     project(':api-client-library').tasks.named('openApiGenerate') {
@@ -56,6 +57,7 @@ gradle.projectsEvaluated {
         dependsOn project(':openapi-generator-plugin').tasks.named('build')
     }
 }
+
 
 nexusPublishing {
     repositories {
