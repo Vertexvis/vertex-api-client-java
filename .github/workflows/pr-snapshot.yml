@@ -30,10 +30,7 @@ jobs:
           SIGNING_PASSWORD: ${{ secrets.ORG_GRADLE_PROJECT_signingPassword || '' }}
         run: |
           # Build the plugin first
-          ./gradlew :openapi-generator-plugin:build
-          
-          # Publish the plugin to Maven Local so api-client-library can use it
-          ./gradlew :openapi-generator-plugin:publishToMavenLocal
+          ./gradlew -PisSnapshot=true :openapi-generator-plugin:build :openapi-generator-plugin:publishToMavenLocal
           
           # Set up parameters based on available secrets
           GRADLE_PARAMS="-PisSnapshot=true"
