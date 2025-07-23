@@ -63,10 +63,54 @@ Then, check out our [sample applications](./src/main/java/com/vertexvis/example)
 
 ## Local Development
 
-```bash
-# Version client
-./scripts/bump-version.sh [patch|minor|major]
+This project uses a multi-module Gradle structure. For detailed information about the modules and their purposes, refer to the [Multi-Module README](./MULTI_MODULE_README.md).
 
-# After bumping version, generate using latest OpenAPI spec
-./scripts/generate.sh
+### Build Order
+
+1. Build the OpenAPI Generator Plugin:
+```bash
+./gradlew :openapi-generator-plugin:build
+./gradlew :openapi-generator-plugin:publishToMavenLocal
+```
+
+2. Generate the API Client:
+```bash
+./gradlew :api-client-library:openApiGenerate
+```
+
+3. Build the API Client Library:
+```bash
+./gradlew :api-client-library:build
+```
+
+4. Run Example Applications:
+```bash
+./gradlew :examples:run
+./gradlew :examples:listExamples
+```
+
+### Building the Entire Project
+
+To build all modules:
+```bash
+./gradlew build
+```
+
+### Versioning
+
+To bump the version of all modules:
+```bash
+./scripts/bump-version.sh [patch|minor|major]
+```
+
+### Publishing
+
+To publish to Maven Local:
+```bash
+./gradlew :api-client-library:publishToMavenLocal
+```
+
+To publish to Maven Central:
+```bash
+./gradlew publish
 ```

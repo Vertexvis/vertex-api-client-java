@@ -1,8 +1,0 @@
-apiPackage: com.vertexvis.api
-artifactId: api-client-java
-dateLibrary: java8
-java8: true
-hideGenerationTimestamp: true
-invokerPackage: com.vertexvis
-modelPackage: com.vertexvis.model
-useRuntimeException: true
