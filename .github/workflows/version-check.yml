@@ -23,37 +23,53 @@ jobs:
           CURRENT_VERSION=$(grep "def projectVersion" build.gradle | sed -E "s/.*def projectVersion = ['\"]([^'\"]*)['\"].*/\1/")
           echo "Current version: $CURRENT_VERSION"
           
-          # Get the target branch version
-          git checkout origin/${{ github.base_ref }}
-          TARGET_VERSION=$(grep "def projectVersion" build.gradle | sed -E "s/.*def projectVersion = ['\"]([^'\"]*)['\"].*/\1/")
-          echo "Target branch version: $TARGET_VERSION"
-          
-          # Switch back to PR branch
-          git checkout ${{ github.head_ref }}
-          
-          # Validate that we extracted versions correctly
+          # Validate that we extracted current version correctly
           if [ -z "$CURRENT_VERSION" ]; then
             echo "❌ Failed to extract current version from build.gradle"
             exit 1
           fi
           
-          if [ -z "$TARGET_VERSION" ]; then
-            echo "❌ Failed to extract target version from build.gradle"
-            exit 1
+          # Get the latest Git tag from the target branch
+          git fetch origin ${{ github.base_ref }}
+          git checkout origin/${{ github.base_ref }}
+          
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          
+          if [ -z "$LATEST_TAG" ]; then
+            echo "No existing tags found. Assuming this is the first release."
+            LATEST_TAG="0.0.0"
           fi
+          
+          # Remove 'v' prefix if present
+          TARGET_VERSION=$(echo "$LATEST_TAG" | sed 's/^v//')
+          echo "Latest tag version: $TARGET_VERSION"
+          
+          # Switch back to PR branch
+          git checkout ${{ github.head_ref }}
+          
+          # Function to normalize version (ensure 3 parts)
+          normalize_version() {
+            local version=$1
+            IFS='.' read -ra V <<< "$version"
+            
+            # Ensure we have 3 parts
+            while [ ${#V[@]} -lt 3 ]; do V+=(0); done
+            
+            echo "${V[0]}.${V[1]}.${V[2]}"
+          }
           
           # Function to compare semantic versions
           version_compare() {
             local version1=$1
             local version2=$2
             
+            # Normalize both versions
+            version1=$(normalize_version "$version1")
+            version2=$(normalize_version "$version2")
+            
             # Split versions into arrays
             IFS='.' read -ra V1 <<< "$version1"
             IFS='.' read -ra V2 <<< "$version2"
-            
-            # Ensure we have 3 parts for each version
-            while [ ${#V1[@]} -lt 3 ]; do V1+=(0); done
-            while [ ${#V2[@]} -lt 3 ]; do V2+=(0); done
             
             # Compare major version
             if [ "${V1[0]}" -gt "${V2[0]}" ]; then
