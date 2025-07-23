@@ -80,9 +80,9 @@ tasks.withType(Sign) {
     dependsOn tasks.withType(Jar)
 }
 
-tasks.withType(PublishToMavenLocal) {
-    dependsOn tasks.withType(Sign)
-}
+// tasks.withType(PublishToMavenLocal) {
+//     dependsOn tasks.withType(Sign)
+// }
 
 // Debug task to check if the service file exists
 task checkServiceFile {
@@ -93,5 +93,18 @@ task checkServiceFile {
         } else {
             println "Service file does not exist!"
         }
+    }
+}
+
+// Debug task to check version
+task printVersion {
+    doLast {
+        println "Project version: ${project.version}"
+        println "Root project version: ${rootProject.version}"
+        println "isSnapshot property: ${project.hasProperty('isSnapshot')}"
+        if (project.hasProperty('isSnapshot')) {
+            println "isSnapshot value: ${project.isSnapshot}"
+        }
+        println "Version ends with SNAPSHOT: ${project.version.endsWith('-SNAPSHOT')}"
     }
 }

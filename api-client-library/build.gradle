@@ -1,6 +1,10 @@
 buildscript{
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
     dependencies {
-        classpath files("$rootDir/openapi-generator-plugin/build/libs/openapi-generator-plugin-${rootProject.version}.jar")
+        classpath "com.vertexvis:openapi-generator-plugin:${rootProject.version}"
     }
 }
 plugins {
@@ -156,6 +160,6 @@ tasks.withType(Sign) {
     dependsOn tasks.withType(Jar)
 }
 
-tasks.withType(PublishToMavenLocal) {
-    dependsOn tasks.withType(Sign)
-}
+// tasks.withType(PublishToMavenLocal) {
+//     dependsOn tasks.withType(Sign)
+// }
