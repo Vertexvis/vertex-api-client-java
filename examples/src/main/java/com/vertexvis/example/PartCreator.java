@@ -32,39 +32,6 @@ class PartCreator {
         this.tiApi = new TranslationInspectionsApi(client);
     }
 
-    public Part createPartFromFile(FileMetadata metadata) throws InterruptedException {
-        return createPartFromFile(metadata, Collections.emptyMap());
-    }
-
-    public Part createPartFromFile(FileMetadata metadata, Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> partMetadata) throws InterruptedException {
-        Part qp = parts.createPart(getCreatePartRequest(metadata.getData().getId(), metadata.getData().getAttributes().getName(), partMetadata));
-        UUID partId =
-                JobPoller.pollUntilJobDone("part", () -> tiApi.getQueuedTranslation(qp.getData().getId()));
-        return parts.getPart(partId, null);
-    }
-
-    public CompletableFuture<Part> createPartFromFileAsync(UUID id, CreateFileRequest req) {
-        return createPartFromFileAsync(id, req, Collections.emptyMap());
-    }
-
-    public CompletableFuture<Part> createPartFromFileAsync(UUID id, CreateFileRequest req, Map<String, UpdatePartRevisionRequestDataAttributesMetadataValue> metadata) {
-        CompletableFuture<Part> p =
-                execute(cb -> parts.createPartAsync(getCreatePartRequest(id, req.getData().getAttributes().getName(), metadata), cb));
-        CompletableFuture<UUID> partId = p.thenCompose(qj ->
-                JobPoller.pollUntilJobDoneAsync("part", () ->
-                        execute(cb -> tiApi.getQueuedTranslationAsync(qj.getData().getId(), cb))));
-
-        return partId.thenCompose(
-                pId -> execute((ApiCallback<Part> cb) -> parts.getPartAsync(pId, null, cb)));
-    }
-
-    public CompletableFuture<Part> createAssemblyFromRevisions(List<UUID> revisions, String name) {
-        CompletableFuture<Part> p =
-                execute(cb -> parts.createPartAsync(createPartAssemblyRequest(revisions, name), cb));
-        return p.thenCompose(
-                pId -> execute((ApiCallback<Part> cb) -> parts.getPartAsync(pId.getData().getId(), null, cb)));
-    }
-
     private static CreatePartRequest getCreatePartRequest(UUID fileId, String partName) {
         return getCreatePartRequest(fileId, partName, Collections.emptyMap());
     }
