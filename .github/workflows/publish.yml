@@ -38,5 +38,5 @@ jobs:
             -P ossrhUsername=${{ secrets.MAVEN_CENTRAL_CREDS_TOKEN_USER }} \
             -P ossrhPassword=${{ secrets.MAVEN_CENTRAL_CREDS_TOKEN_PASS }} \
            :api-client-library:publishToSonatype \
-           :api-client-library:closeAndReleaseSonatypeStagingRepository
+           closeAndReleaseSonatypeStagingRepository
           ./scripts/publish.sh
