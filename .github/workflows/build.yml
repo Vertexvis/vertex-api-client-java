@@ -15,4 +15,4 @@ jobs:
           ./gradlew -PisSnapshot=true :openapi-generator-plugin:build :openapi-generator-plugin:publishToMavenLocal
 
           # Now run the full build (this will use the plugin from Maven Local)
-          ./gradlew -PisSnapshot=trueclean build
+          ./gradlew -PisSnapshot=true clean build
