@@ -45,4 +45,4 @@ jobs:
           ./gradlew -PisSnapshot=true \
             -P ossrhUsername=${{ secrets.MAVEN_CENTRAL_CREDS_TOKEN_USER }} \
             -P ossrhPassword=${{ secrets.MAVEN_CENTRAL_CREDS_TOKEN_PASS }} \
-            $GRADLE_PARAMS :api-client-library:publish
+            $GRADLE_PARAMS :api-client-library:publishToSonatype
