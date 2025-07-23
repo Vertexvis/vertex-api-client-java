@@ -1,0 +1,79 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'signing'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+    withJavadocJar()
+    withSourcesJar()
+}
+
+test {
+    useJUnitPlatform()
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+publishing {
+    repositories {
+        maven {
+            name = 'GitHubPackages'
+            url = uri("https://maven.pkg.github.com/Vertexvis/vertex-api-client-java")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR") ?: project.findProperty("gpr.user") ?: ""
+                password = System.getenv("GITHUB_TOKEN") ?: project.findProperty("gpr.key") ?: ""
+            }
+        }
+    }
+    publications {
+        maven(MavenPublication) {
+            from components.java
+            pom {
+                url = 'https://github.com/Vertexvis/vertex-api-client-java'
+                licenses {
+                    license {
+                        name = 'MIT'
+                        url = 'https://github.com/Vertexvis/vertex-api-client-java/blob/main/LICENSE'
+                    }
+                }
+                developers {
+                    developer {
+                        email = 'support@vertexvis.com'
+                        name = 'Vertex Developers'
+                        organizationUrl = 'https://developer.vertexvis.com/'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git@github.com:vertexvis/vertex-api-client-java.git'
+                    developerConnection = 'scm:git:git@github.com:vertexvis/vertex-api-client-java.git'
+                    url = 'https://github.com/Vertexvis/vertex-api-client-java'
+                }
+            }
+        }
+    }
+}
+
+signing {
+    def hasSigningKey = project.hasProperty("signingKey")
+    def hasSigningPassword = project.hasProperty("signingPassword")
+    required { hasSigningKey && hasSigningPassword && !project.version.endsWith("-SNAPSHOT") }
+    if (hasSigningKey && hasSigningPassword) {
+        def base64Decode = { prop ->
+            return new String(Base64.getDecoder().decode(project.findProperty(prop).toString())).trim()
+        }
+        useInMemoryPgpKeys(base64Decode("signingKey"), base64Decode("signingPassword"))
+    }
+    sign publishing.publications.maven
+}
+
+tasks.withType(Sign) {
+    dependsOn tasks.withType(GenerateModuleMetadata)
+    dependsOn tasks.withType(Jar)
+}

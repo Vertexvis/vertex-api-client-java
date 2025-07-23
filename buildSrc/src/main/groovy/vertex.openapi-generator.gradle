@@ -1,0 +1,44 @@
+plugins {
+    id 'org.openapi.generator'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+openApiGenerate {
+    verbose = false
+    generatorName = 'vertex-java'  // Use our custom generator
+    generateModelTests = false
+    generateApiTests = false
+    generateModelDocumentation = false
+    remoteInputSpec = 'https://platform.vertexvis.com/spec'
+    outputDir = "${buildDir}/generated/"
+    invokerPackage = 'com.vertexvis'
+    modelPackage = 'com.vertexvis.model'
+    apiPackage = 'com.vertexvis.api'
+    templateDir = "${project.rootDir}/buildSrc/src/main/resources/vertex-java"
+    configOptions = [
+        openApiNullable: "false",
+        dateLibrary: "java8",
+        hideGenerationTimestamp: "true",
+        useRuntimeException: "true",
+    ]
+    additionalProperties = [
+        skipValidationFor: "Part,PartData,PartDataAttributes,QueuedJobData,QueuedJob,QueuedJobDataAttributes"  // Comma-separated list of models to skip validation for
+    ]
+    ignoreFileOverride = "${projectDir}/.openapi-generator-ignore"
+}
+
+// Ensure generated sources are included in the source sets
+sourceSets {
+    main {
+        java {
+            srcDir "${buildDir}/generated/src/main/java"
+        }
+    }
+}
+
+// Make sure compilation depends on code generation
+compileJava.dependsOn tasks.openApiGenerate
