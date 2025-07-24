@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id 'vertex.java-conventions'
 }
 
 description = 'Example applications using the Vertex API Client Library'

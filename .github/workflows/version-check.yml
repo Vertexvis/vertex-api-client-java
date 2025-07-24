@@ -1,0 +1,111 @@
+name: Version Check
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  version-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch full history to compare branches
+          
+      - uses: actions/setup-java@v4
+        with: 
+          java-version: 17
+          distribution: temurin
+          
+      - name: Check Version Increment
+        run: |
+          # Extract current version from build.gradle
+          CURRENT_VERSION=$(grep "def projectVersion" build.gradle | sed -E "s/.*def projectVersion = ['\"]([^'\"]*)['\"].*/\1/")
+          echo "Current version: $CURRENT_VERSION"
+          
+          # Validate that we extracted current version correctly
+          if [ -z "$CURRENT_VERSION" ]; then
+            echo "❌ Failed to extract current version from build.gradle"
+            exit 1
+          fi
+          
+          # Get the latest Git tag from the target branch
+          git fetch origin ${{ github.base_ref }}
+          git checkout origin/${{ github.base_ref }}
+          
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          
+          if [ -z "$LATEST_TAG" ]; then
+            echo "No existing tags found. Assuming this is the first release."
+            LATEST_TAG="0.0.0"
+          fi
+          
+          # Remove 'v' prefix if present
+          TARGET_VERSION=$(echo "$LATEST_TAG" | sed 's/^v//')
+          echo "Latest tag version: $TARGET_VERSION"
+          
+          # Switch back to PR branch
+          git checkout ${{ github.head_ref }}
+          
+          # Function to normalize version (ensure 3 parts)
+          normalize_version() {
+            local version=$1
+            IFS='.' read -ra V <<< "$version"
+            
+            # Ensure we have 3 parts
+            while [ ${#V[@]} -lt 3 ]; do V+=(0); done
+            
+            echo "${V[0]}.${V[1]}.${V[2]}"
+          }
+          
+          # Function to compare semantic versions
+          version_compare() {
+            local version1=$1
+            local version2=$2
+            
+            # Normalize both versions
+            version1=$(normalize_version "$version1")
+            version2=$(normalize_version "$version2")
+            
+            # Split versions into arrays
+            IFS='.' read -ra V1 <<< "$version1"
+            IFS='.' read -ra V2 <<< "$version2"
+            
+            # Compare major version
+            if [ "${V1[0]}" -gt "${V2[0]}" ]; then
+              return 0  # version1 > version2
+            elif [ "${V1[0]}" -lt "${V2[0]}" ]; then
+              return 1  # version1 < version2
+            fi
+            
+            # Compare minor version
+            if [ "${V1[1]}" -gt "${V2[1]}" ]; then
+              return 0
+            elif [ "${V1[1]}" -lt "${V2[1]}" ]; then
+              return 1
+            fi
+            
+            # Compare patch version
+            if [ "${V1[2]}" -gt "${V2[2]}" ]; then
+              return 0
+            elif [ "${V1[2]}" -lt "${V2[2]}" ]; then
+              return 1
+            fi
+            
+            # Versions are equal
+            return 2
+          }
+          
+          # Compare versions
+          if version_compare "$CURRENT_VERSION" "$TARGET_VERSION"; then
+            echo "✅ Version increment detected: $TARGET_VERSION → $CURRENT_VERSION"
+            exit 0
+          elif [ $? -eq 2 ]; then
+            echo "❌ Version not incremented: $CURRENT_VERSION is the same as $TARGET_VERSION"
+            echo "Please increment the version in build.gradle"
+            exit 1
+          else
+            echo "❌ Version decreased: $TARGET_VERSION → $CURRENT_VERSION"
+            echo "Version should only increase, not decrease"
+            exit 1
+          fi

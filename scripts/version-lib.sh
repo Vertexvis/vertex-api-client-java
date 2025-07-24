@@ -46,8 +46,8 @@ _die() {
 #
 # Returns version.
 _get_version() {
-  local prefix="version = "
-  grep "$prefix" build.gradle | tr -d "$prefix" | tr -d "'"
+  local prefix="def projectVersion = "
+  grep "$prefix" build.gradle | sed "s/$prefix//" | tr -d "'"
 }
 
 # Internal: Bump API client version.

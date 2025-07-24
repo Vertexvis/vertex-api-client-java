@@ -1,6 +1,8 @@
 name: build
 
-on: [pull_request]
+on:
+  push:
+    branches-ignore: [main]
 
 jobs:
   build:
@@ -11,8 +13,5 @@ jobs:
         with: { java-version: 17, distribution: temurin }
       - name: Build and Verify
         run: |
-          # Build the plugin first and check its contents
-          ./gradlew :openapi-generator-plugin:build
-
-          # Now run the full build
-          ./gradlew clean build
+          # With convention plugins, everything is self-contained
+          ./gradlew -PisSnapshot=true clean build

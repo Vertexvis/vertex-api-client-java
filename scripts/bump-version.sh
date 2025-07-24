@@ -17,8 +17,9 @@ main() {
   new=$(_bump_version "$old" "$@")
   echo "Updating version from $old to $new"
 
-  sed -i "s|version = '$old'|version = '$new'|" build.gradle
-  sed -i "s|$old|$new|" README.md
+  # Use portable sed approach that works on both macOS and Linux
+  sed "s|def projectVersion = '$old'|def projectVersion = '$new'|" build.gradle > build.gradle.tmp && mv build.gradle.tmp build.gradle
+  sed "s|$old|$new|g" README.md > README.md.tmp && mv README.md.tmp README.md
 }
 
 main "$@"

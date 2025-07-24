@@ -17,7 +17,7 @@ The client can be used with Java 1.8+ and pulled into Maven or Gradle projects.
 <dependency>
   <groupId>com.vertexvis</groupId>
   <artifactId>api-client-java</artifactId>
-  <version>0.10.0</version>
+  <version>0.11.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -25,13 +25,13 @@ The client can be used with Java 1.8+ and pulled into Maven or Gradle projects.
 ### Gradle
 
 ```groovy
-compile "com.vertexvis:api-client-java:0.10.0"
+compile "com.vertexvis:api-client-java:0.11.0"
 ```
 
 ### Sbt
 
 ```sbt
-libraryDependencies += "com.vertexvis" % "api-client-java" % "0.10.0"
+libraryDependencies += "com.vertexvis" % "api-client-java" % "0.11.0"
 ```
 
 ### Others
@@ -44,7 +44,7 @@ mvn clean package
 
 Then manually install the following JARs.
 
-- `target/api-client-java-0.10.0.jar`
+- `target/api-client-java-0.11.0.jar`
 - `target/lib/*.jar`
 
 ## Usage
@@ -63,37 +63,64 @@ Then, check out our [sample applications](./src/main/java/com/vertexvis/example)
 
 ## Local Development
 
-This project uses a multi-module Gradle structure. For detailed information about the modules and their purposes, refer to the [Multi-Module README](./MULTI_MODULE_README.md).
+This project uses a multi-module Gradle structure with convention plugins. For detailed information about the modules and their purposes, refer to the [Multi-Module README](./MULTI_MODULE_README.md).
 
-### Build Order
+### Quick Start
 
-1. Build the OpenAPI Generator Plugin:
+The project now uses convention plugins in `buildSrc/` which makes the build completely self-contained:
+
 ```bash
-./gradlew :openapi-generator-plugin:build
-./gradlew :openapi-generator-plugin:publishToMavenLocal
-```
+# Build everything (no separate plugin publishing needed)
+./gradlew build
 
-2. Generate the API Client:
-```bash
-./gradlew :api-client-library:openApiGenerate
-```
-
-3. Build the API Client Library:
-```bash
-./gradlew :api-client-library:build
-```
-
-4. Run Example Applications:
-```bash
+# Run example applications
 ./gradlew :examples:run
 ./gradlew :examples:listExamples
 ```
 
-### Building the Entire Project
+### Development Workflow
 
-To build all modules:
-```bash
-./gradlew build
+1. **Make changes** to the API client or custom generator
+2. **Build and test** with `./gradlew build`
+3. **Test locally** with `./gradlew :api-client-library:publishToMavenLocal`
+
+### Using Snapshot Versions
+
+To consume published snapshot versions in other projects, add the snapshot repository to your build configuration:
+
+#### Maven
+
+```xml
+<repositories>
+  <repository>
+    <id>central-snapshots</id>
+    <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+    <snapshots>
+      <enabled>true</enabled>
+    </snapshots>
+  </repository>
+</repositories>
+
+<dependency>
+  <groupId>com.vertexvis</groupId>
+  <artifactId>api-client-java</artifactId>
+  <version>0.11.0-SNAPSHOT</version>
+</dependency>
+```
+
+#### Gradle
+
+```groovy
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://central.sonatype.com/repository/maven-snapshots/'
+    }
+}
+
+dependencies {
+    implementation 'com.vertexvis:api-client-java:0.11.0-SNAPSHOT'
+}
 ```
 
 ### Versioning
@@ -105,12 +132,9 @@ To bump the version of all modules:
 
 ### Publishing
 
-To publish to Maven Local:
+To publish to Maven Local for testing:
 ```bash
 ./gradlew :api-client-library:publishToMavenLocal
 ```
 
-To publish to Maven Central:
-```bash
-./gradlew publish
-```
+Snapshots are automatically published to Maven Central on pushes to the `main` branch. Releases are created when a new version tag is pushed.

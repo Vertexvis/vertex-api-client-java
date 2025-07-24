@@ -87,7 +87,7 @@ public class CreatePartRevisionsWithMetadataExample extends CommandLineOptions {
         } catch (InterruptedException e) {
             logger.severe(e.getMessage());
             // Restore interrupted state...
-            Thread.currentThread().interrupt();
+            java.lang.Thread.currentThread().interrupt();
         }
     }
 

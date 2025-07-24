@@ -35,8 +35,8 @@ jobs:
           ./gradlew \
             -P signingKey=${{ secrets.ORG_GRADLE_PROJECT_signingKey }} \
             -P signingPassword=${{ secrets.ORG_GRADLE_PROJECT_signingPassword }} \
-            -P ossrhUsername=${{ secrets.OSSRH_USERNAME }} \
-            -P ossrhPassword=${{ secrets.OSSRH_PASSWORD }} \
+            -P ossrhUsername=${{ secrets.MAVEN_CENTRAL_CREDS_TOKEN_USER }} \
+            -P ossrhPassword=${{ secrets.MAVEN_CENTRAL_CREDS_TOKEN_PASS }} \
            :api-client-library:publishToSonatype \
-           :api-client-library:closeAndReleaseSonatypeStagingRepository
+           closeAndReleaseSonatypeStagingRepository
           ./scripts/publish.sh

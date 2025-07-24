@@ -1,54 +1,26 @@
-# Vertex API Client Java - Multi-Module Project
+# Vertex API Client Java - Project Architecture
 
-This project has been restructured as a multi-module Gradle project with the following modules:
+This project uses a modern Gradle multi-module structure with convention plugins for clean, maintainable builds.
 
-## Modules
+## Project Structure
 
-### 1. `openapi-generator-plugin`
-Custom Gradle plugin for generating Vertex API client code using OpenAPI Generator.
+### Core Modules
 
-**Location**: `openapi-generator-plugin/`
-
-**Purpose**: 
-- Contains custom OpenAPI code generation logic
-- Provides a reusable Gradle plugin for generating the API client
-- Includes any custom templates or generators specific to Vertex API
-
-**Build**: 
-```bash
-./gradlew :openapi-generator-plugin:build
-./gradlew :openapi-generator-plugin:publishToMavenLocal
-```
-
-### 2. `api-client-library`
+#### `api-client-library/`
 The main API client library generated from the OpenAPI specification.
-
-**Location**: `api-client-library/`
 
 **Purpose**:
 - Contains the generated API client code
-- Includes authentication utilities
-- Provides the core SDK functionality
+- Includes authentication utilities and models
+- Provides the core SDK functionality that gets published to Maven Central
 
-**Build**:
-```bash
-./gradlew :api-client-library:build
-```
-
-**Generate API Client**:
-```bash
-./gradlew :api-client-library:openApiGenerate
-```
-
-### 3. `examples`
+#### `examples/`
 Example applications demonstrating how to use the API client library.
 
-**Location**: `examples/`
-
 **Purpose**:
-- Contains example code showing API usage
+- Contains example code showing API usage patterns
 - Includes command-line utilities for common operations
-- Demonstrates best practices for using the API client
+- Demonstrates best practices for authentication and API calls
 
 **Run Examples**:
 ```bash
@@ -57,50 +29,46 @@ Example applications demonstrating how to use the API client library.
 ./gradlew :examples:listExamples
 ```
 
-## Build Order
+### Build Infrastructure
 
-The modules have dependencies on each other and should be built in this order:
+#### `buildSrc/`
+Contains the build logic and custom OpenAPI generator.
 
-1. `openapi-generator-plugin` (standalone)
-2. `api-client-library` (uses the plugin)
-3. `examples` (depends on the library)
+**Purpose**:
+- Houses convention plugins (`vertex.java-conventions`, `vertex.openapi-generator`)
+- Contains the custom `VertexJavaClientCodegen` generator
+- Provides shared build configuration across all modules
+- Eliminates circular dependencies and external plugin publishing
 
-## Building the Entire Project
+**Key Files**:
+- `src/main/java/com/vertexvis/codegen/VertexJavaClientCodegen.java` - Custom OpenAPI generator
+- `src/main/groovy/vertex.java-conventions.gradle` - Common Java build settings
+- `src/main/groovy/vertex.openapi-generator.gradle` - OpenAPI generation configuration
 
-To build all modules:
-```bash
-./gradlew build
-```
+## Architecture Benefits
 
-To clean and rebuild everything:
-```bash
-./gradlew clean build
-```
+### Convention Plugins
+- **Self-contained**: No need to publish plugins separately
+- **Consistent**: Shared configuration across all modules
+- **Maintainable**: Build logic lives with the code it serves
 
-## Publishing
-
-The library can be published to Maven repositories:
-```bash
-./gradlew :api-client-library:publishToMavenLocal
-./gradlew publish
-```
+### Simplified Dependencies
+- **No circular dependencies**: buildSrc → modules (not modules → plugins → modules)
+- **Faster builds**: No separate plugin build/publish cycle
+- **Easier development**: Make changes and build immediately
 
 ## Development Workflow
 
-1. Make changes to the OpenAPI generator plugin if needed
-2. Build and publish the plugin locally: `./gradlew :openapi-generator-plugin:publishToMavenLocal`
-3. Regenerate the API client: `./gradlew :api-client-library:openApiGenerate`
-4. Build the library: `./gradlew :api-client-library:build`
-5. Test with examples: `./gradlew :examples:run`
+The build is completely self-contained:
 
-## Migration Notes
+```bash
+# Everything needed is built automatically
+./gradlew build
 
-This project was converted from a single-module to a multi-module structure:
+# Test examples
+./gradlew :examples:run
 
-- **Original structure**: All code in `src/main/java/com/vertexvis/`
-- **New structure**: 
-  - Code generation logic → `openapi-generator-plugin/`
-  - Core API client → `api-client-library/`
-  - Examples → `examples/`
+# Publish locally for testing
+./gradlew :api-client-library:publishToMavenLocal
+```
 
-The functionality remains the same, but the code is now better organized and the generator can be reused across projects.
