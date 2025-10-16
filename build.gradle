@@ -3,7 +3,7 @@ plugins {
     id "io.github.gradle-nexus.publish-plugin"
 }
 
-def projectVersion = '0.12.0'
+def projectVersion = '0.13.0'
 def isSnapshot = project.hasProperty('isSnapshot') && project.isSnapshot.toBoolean()
 version = isSnapshot ? "${projectVersion}-SNAPSHOT" : projectVersion
 
