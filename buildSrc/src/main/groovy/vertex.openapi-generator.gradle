@@ -26,6 +26,8 @@ openApiGenerate {
         useRuntimeException: "true",
         disallowAdditionalPropertiesIfNotPresent: "false",
         failOnUnknownProperties: "false",
+        useOneOfDiscriminatorLookup: "true",
+        legacyDiscriminatorBehavior: "false",
     ]
     additionalProperties = [
         skipValidationFor: "Part,PartData,PartDataAttributes,QueuedJobData,QueuedJob,QueuedJobDataAttributes"  // Comma-separated list of models to skip validation for
