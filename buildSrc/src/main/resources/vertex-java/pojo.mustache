@@ -21,6 +21,8 @@ import java.util.Set;
 
 import {{invokerPackage}}.JSON;
 
+// This source file was generated using a Vertex modified version of the pojo.mustache template.
+
 /**
  * {{description}}{{^description}}{{classname}}{{/description}}{{#isDeprecated}}
  * @deprecated{{/isDeprecated}}
@@ -356,7 +358,6 @@ public class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{{#vendorExtens
       }
       {{^hasChildren}}
       {{^isAdditionalPropertiesTrue}}
-
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
