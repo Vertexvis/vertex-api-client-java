@@ -59,11 +59,11 @@ class PartCreator {
 
     private static CreatePartRequest createPartAssemblyRequest(List<UUID> revisionIds, String assemblyName) {
 
-        PartAssemblyRelationship partAssemblyRelationship = new PartAssemblyRelationship()
-                .data(new PartAssemblyRelationshipData()
-                        .metadata(Collections.emptyMap())
-                        .children(createPartRevisionInstances(revisionIds))
+        CreatePartRequestDataRelationships partAssemblyRelationship = new CreatePartRequestDataRelationships()
+                .instances(new PartInstancesRelationship()
+                        .data(createPartRevisionInstances(revisionIds))
                 );
+
         var uuid = UUID.randomUUID();
         return new CreatePartRequest()
                 .data(
@@ -73,23 +73,20 @@ class PartCreator {
                                         .suppliedId("my-assembly-" + uuid)
                                         .suppliedRevisionId("my-part-rev-" + uuid)
                                         .name(assemblyName))
-                                .relationships(new CreatePartRequestDataRelationships()
-                                        .source(new CreatePartRequestDataRelationshipsSource(partAssemblyRelationship))
-                                ));
+                                .relationships(partAssemblyRelationship));
     }
 
-    private static List<PartRevisionInstance> createPartRevisionInstances(List<UUID> ids) {
-        int num = ids.size();
-        return IntStream.range(0, num)
-                .mapToObj(ordinal -> new PartRevisionInstance().
-                        ordinal(ordinal)
-                        .revisionId(ids.get(ordinal))
-                        .transform(new Matrix4()
+    private static List<PartInstancesRelationshipData> createPartRevisionInstances(List<UUID> ids) {
+        return  ids.stream().map(id -> new PartInstancesRelationshipData()
+                    .type(PartInstancesRelationshipData.TypeEnum.PART_REVISION_INSTANCE)
+                        .id(id)
+                            .attributes(new PartInstancesRelationshipAttributes().transform(new Matrix4()
                                 .r0(createVector4(BigDecimal.ONE, BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ONE))
                                 .r1(createVector4(BigDecimal.ZERO, BigDecimal.ONE, BigDecimal.ZERO, BigDecimal.ONE))
                                 .r2(createVector4(BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ONE, BigDecimal.ONE))
                                 .r3(createVector4(BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ONE))
                         ))
+                )
                 .collect(Collectors.toList());
     }
 
