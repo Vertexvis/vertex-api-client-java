@@ -7,9 +7,16 @@ repositories {
     mavenCentral()
 }
 
+def rootProperties = new Properties()
+def rootPropertiesFile = file("../gradle.properties")
+if (rootPropertiesFile.exists()) {
+    rootPropertiesFile.withInputStream { rootProperties.load(it) }
+}
+def openapiGeneratorVersion = rootProperties.getProperty("openapiGeneratorVersion", "7.14.0")
+
 dependencies {
-    implementation 'org.openapitools:openapi-generator-gradle-plugin:7.14.0'
-    implementation 'org.openapitools:openapi-generator:7.14.0'
+    implementation "org.openapitools:openapi-generator-gradle-plugin:${openapiGeneratorVersion}"
+    implementation "org.openapitools:openapi-generator:${openapiGeneratorVersion}"
     implementation 'io.swagger.core.v3:swagger-models:2.2.31'
     implementation 'io.github.gradle-nexus:publish-plugin:2.0.0'
 }
