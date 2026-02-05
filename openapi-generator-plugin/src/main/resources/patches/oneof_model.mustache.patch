@@ -1,0 +1,41 @@
+--- oneof_model.mustache
++++ oneof_model.mustache
+@@ -33,6 +33,8 @@
+ 
+ import {{invokerPackage}}.JSON;
+ 
++// This source file was generated using a Vertex modified version of the oneof_model.mustache template.
++
+ {{>additionalModelTypeAnnotations}}{{>generatedAnnotation}}{{>xmlAnnotation}}
+ public class {{classname}} extends AbstractOpenApiSchema{{#vendorExtensions.x-implements}} implements {{{.}}}{{^-last}}, {{/-last}}{{/vendorExtensions.x-implements}} {
+     private static final Logger log = Logger.getLogger({{classname}}.class.getName());
+@@ -383,6 +385,29 @@
+      * @throws IOException if the JSON Element is invalid with respect to {{classname}}
+      */
+     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
++        {{#useOneOfDiscriminatorLookup}}
++        {{#discriminator}}
++        // Vertex customization -- use the same behavior as the read method.
++        JsonObject jsonObject = jsonElement != null ? jsonElement.getAsJsonObject() : null;
++
++        if (jsonObject != null) {
++          if (jsonObject.get("type") == null) {
++            log.log(Level.WARNING, "Failed to lookup discriminator value for {{classname}} as `{{{propertyBaseName}}}` was not found in the payload or the payload is empty.");
++          } else  {
++            // look up the discriminator value in the field `{{{propertyBaseName}}}`
++            switch (jsonObject.get("{{{propertyBaseName}}}").getAsString()) {
++            {{#mappedModels}}
++              case "{{{mappingName}}}":
++                {{modelName}}.validateJsonElement(jsonElement);
++                return;
++            {{/mappedModels}}
++              default:
++                log.log(Level.WARNING, String.format("Failed to lookup discriminator value `%s` for {{classname}}. Possible values:{{#mappedModels}} {{{mappingName}}}{{/mappedModels}}", jsonObject.get("{{{propertyBaseName}}}").getAsString()));
++            }
++          }
++        }
++        {{/discriminator}}
++        {{/useOneOfDiscriminatorLookup}}
+         // validate oneOf schemas one by one
+         int validCount = 0;
+         ArrayList<String> errorMessages = new ArrayList<>();

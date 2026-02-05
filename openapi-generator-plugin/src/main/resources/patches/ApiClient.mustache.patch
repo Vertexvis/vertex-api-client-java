@@ -1,0 +1,70 @@
+--- ApiClient.mustache
++++ ApiClient.mustache
+@@ -37,6 +37,8 @@
+ import java.net.URI;
+ import java.net.URLConnection;
+ import java.net.URLEncoder;
++import java.nio.charset.Charset;
++import java.nio.charset.StandardCharsets;
+ import java.nio.file.Files;
+ import java.nio.file.Paths;
+ import java.security.GeneralSecurityException;
+@@ -1922,17 +1924,48 @@
+      * @throws {{invokerPackage}}.ApiException If fail to serialize the request body object into a string
+      */
+     protected String requestBodyToString(RequestBody requestBody) throws ApiException {
+-        if (requestBody != null) {
+-            try {
+-                final Buffer buffer = new Buffer();
+-                requestBody.writeTo(buffer);
+-                return buffer.readUtf8();
+-            } catch (final IOException e) {
+-                throw new ApiException(e);
+-            }
++        // Payload is only used by some auth schemes; for large/binary uploads we must not buffer.
++        if (requestBody == null) {
++            return "";
+         }
+ 
+-        // empty http request body
+-        return "";
++        // If you *know* none of your auth implementations use payload, you can simply:
++        // return "";
++
++        // Otherwise, keep a safe, capped implementation:
++        try {
++            final MediaType contentType = requestBody.contentType();
++            final long maxBytes = 64L * 1024L; // 64KiB cap
++
++            // Do not attempt to stringify binary bodies.
++            if (contentType != null) {
++                final String type = contentType.type();
++                final String subtype = contentType.subtype();
++                final boolean textLike =
++                    "text".equalsIgnoreCase(type) ||
++                    (subtype != null && (
++                        subtype.toLowerCase().contains("json") ||
++                        subtype.toLowerCase().contains("xml") ||
++                        subtype.toLowerCase().contains("x-www-form-urlencoded")
++                    ));
++                if (!textLike) return "";
++            }
++
++            final long declaredLength = requestBody.contentLength();
++            if (declaredLength > maxBytes) {
++                return "";
++            }
++
++            final Buffer buffer = new Buffer();
++            requestBody.writeTo(buffer);
++
++            final long toRead = Math.min(buffer.size(), maxBytes);
++            final Charset charset =
++                (contentType != null && contentType.charset() != null) ? contentType.charset() : StandardCharsets.UTF_8;
++
++            return buffer.readString(toRead, charset);
++        } catch (final IOException e) {
++            throw new ApiException(e);
++        }
+     }
+ }

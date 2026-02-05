@@ -1,0 +1,89 @@
+--- pojo.mustache
++++ pojo.mustache
+@@ -21,6 +21,8 @@
+ 
+ import {{invokerPackage}}.JSON;
+ 
++// This source file was generated using a Vertex modified version of the pojo.mustache template.
++
+ /**
+  * {{description}}{{^description}}{{classname}}{{/description}}{{#isDeprecated}}
+  * @deprecated{{/isDeprecated}}
+\ No newline at end of file
+@@ -49,10 +51,12 @@
+     {{#isEnum}}
+     {{^isContainer}}
+ {{>modelInnerEnum}}
++
+     {{/isContainer}}
+     {{#isContainer}}
+     {{#mostInnerItems}}
+ {{>modelInnerEnum}}
++
+     {{/mostInnerItems}}
+     {{/isContainer}}
+     {{/isEnum}}
+\ No newline at end of file
+@@ -70,7 +74,7 @@
+   {{#vendorExtensions.x-field-extra-annotation}}
+   {{{vendorExtensions.x-field-extra-annotation}}}
+   {{/vendorExtensions.x-field-extra-annotation}}
+-  {{>nullable_var_annotations}}
++  {{>nullable_var_annotations}}{{! prevent indent}}
+   {{#isDiscriminator}}protected{{/isDiscriminator}}{{^isDiscriminator}}private{{/isDiscriminator}} {{{datatypeWithEnum}}} {{name}}{{#defaultValue}} = {{{.}}}{{/defaultValue}};
+ 
+   {{/vars}}
+\ No newline at end of file
+@@ -159,9 +163,10 @@
+ {{#deprecated}}
+   @Deprecated
+ {{/deprecated}}
+-  {{>nullable_var_annotations}}
++  {{>nullable_var_annotations}}{{! prevent indent}}
+ {{#useBeanValidation}}
+ {{>beanValidation}}
++
+ {{/useBeanValidation}}
+ {{#swagger1AnnotationLibrary}}
+   @ApiModelProperty({{#example}}example = "{{{.}}}", {{/example}}{{#required}}required = {{required}}, {{/required}}value = "{{{description}}}")
+\ No newline at end of file
+@@ -187,6 +192,7 @@
+   {{/vars}}
+ {{>libraries/okhttp-gson/additional_properties}}
+ 
++
+   @Override
+   public boolean equals(Object o) {
+   {{#useReflectionEqualsHashCode}}
+\ No newline at end of file
+@@ -352,7 +358,6 @@
+       }
+       {{^hasChildren}}
+       {{^isAdditionalPropertiesTrue}}
+-
+       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+       // check to see if the JSON string contains additional fields
+       for (Map.Entry<String, JsonElement> entry : entries) {
+\ No newline at end of file
+@@ -534,7 +539,13 @@
+            @Override
+            public {{classname}} read(JsonReader in) throws IOException {
+              JsonElement jsonElement = elementAdapter.read(in);
++{{^vendorExtensions.x-skip-validation}}
+              validateJsonElement(jsonElement);
++{{/vendorExtensions.x-skip-validation}}
++{{#vendorExtensions.x-skip-validation}}
++             // vertex:TODO: Skipping validation during deserialization of the JSON element based on configuration
++             // validateJsonElement(jsonElement);
++{{/vendorExtensions.x-skip-validation}}
+              {{#isAdditionalPropertiesTrue}}
+              JsonObject jsonObj = jsonElement.getAsJsonObject();
+              // store additional fields in the deserialized instance
+\ No newline at end of file
+@@ -588,4 +599,4 @@
+   public String toJson() {
+     return JSON.getGson().toJson(this);
+   }
+-}
++}
+\ No newline at end of file

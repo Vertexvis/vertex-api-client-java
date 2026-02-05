@@ -7,6 +7,48 @@ repositories {
     mavenCentral()
 }
 
+def vertexOpenapiGeneratorVersion = project.findProperty("openapiGeneratorVersion") ?: "7.14.0"
+def templateRootDir = "${buildDir}/openapi-templates"
+def templateDirPath = "${templateRootDir}/Java/libraries/okhttp-gson"
+def patchDirPath = "${project.rootDir}/openapi-generator-plugin/src/main/resources/patches"
+
+configurations {
+    vertexOpenapiGeneratorTemplates
+}
+
+dependencies {
+    vertexOpenapiGeneratorTemplates("org.openapitools:openapi-generator:${vertexOpenapiGeneratorVersion}") {
+        transitive = false
+    }
+}
+
+tasks.register("prepareOpenApiTemplates") {
+    outputs.dir(templateRootDir)
+    doLast {
+        def generatorJar = configurations.vertexOpenapiGeneratorTemplates.singleFile
+        copy {
+            from(zipTree(generatorJar))
+            include "Java/libraries/okhttp-gson/**"
+            into templateRootDir
+        }
+        def patchDir = file(patchDirPath)
+        if (!patchDir.exists()) {
+            throw new GradleException("Patch directory not found at ${patchDir}")
+        }
+
+        def patches = fileTree(patchDir).matching { include "*.patch" }.files.sort { it.name }
+        patches.each { patchFile ->
+            exec {
+                workingDir = file(templateDirPath)
+                commandLine "patch", "--batch", "--forward", "--reject-file=-", "-p0", "-i", patchFile.absolutePath
+            }
+        }
+
+        def relPath = project.rootDir.toPath().relativize(file(templateDirPath).toPath()).toString()
+        println "OpenAPI templates prepared at: ${relPath}"
+    }
+}
+
 openApiGenerate {
     verbose = false
     generatorName = 'vertex-java'  // Use our custom generator
@@ -18,7 +60,7 @@ openApiGenerate {
     invokerPackage = 'com.vertexvis'
     modelPackage = 'com.vertexvis.model'
     apiPackage = 'com.vertexvis.api'
-    templateDir = "${project.rootDir}/buildSrc/src/main/resources/vertex-java"
+    templateDir = templateDirPath
     configOptions = [
         openApiNullable: "false",
         dateLibrary: "java8",
@@ -46,3 +88,4 @@ sourceSets {
 
 // Make sure compilation depends on code generation
 compileJava.dependsOn tasks.openApiGenerate
+tasks.openApiGenerate.dependsOn tasks.prepareOpenApiTemplates
