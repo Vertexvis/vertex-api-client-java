@@ -3,7 +3,7 @@
 [![Version](https://img.shields.io/maven-central/v/com.vertexvis/api-client-java)](https://search.maven.org/artifact/com.vertexvis/api-client-java)
 [![MIT License](https://img.shields.io/github/license/vertexvis/vertex-api-client-java)](https://github.com/Vertexvis/vertex-api-client-java/blob/main/LICENSE)
 
-If you're ready to integrate Vertex into your application, this is the place! For more background on the Vertex platform, start with our [Developer Portal](https://developer.vertexvis.com/).
+If you're ready to integrate Vertex into your application, this is the place! For more background on the Vertex platform, start with our [Developer Portal](https://developer.vertex3d.com/).
 
 The Vertex REST API client for Java is generated using [`openapi-generator`](https://github.com/OpenAPITools/openapi-generator), so it's always up-to-date.
 
