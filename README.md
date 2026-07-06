@@ -3,7 +3,7 @@
 [![Version](https://img.shields.io/maven-central/v/com.vertexvis/api-client-java)](https://search.maven.org/artifact/com.vertexvis/api-client-java)
 [![MIT License](https://img.shields.io/github/license/vertexvis/vertex-api-client-java)](https://github.com/Vertexvis/vertex-api-client-java/blob/main/LICENSE)
 
-If you're ready to integrate Vertex into your application, this is the place! For more background on the Vertex platform, start with our [Developer Portal](https://developer.vertexvis.com/).
+If you're ready to integrate Vertex into your application, this is the place! For more background on the Vertex platform, start with our [Developer Portal](https://developer.vertex3d.com/).
 
 The Vertex REST API client for Java is generated using [`openapi-generator`](https://github.com/OpenAPITools/openapi-generator), so it's always up-to-date.
 
@@ -17,7 +17,7 @@ The client can be used with Java 1.8+ and pulled into Maven or Gradle projects.
 <dependency>
   <groupId>com.vertexvis</groupId>
   <artifactId>api-client-java</artifactId>
-  <version>0.18.0</version>
+  <version>0.18.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -25,13 +25,13 @@ The client can be used with Java 1.8+ and pulled into Maven or Gradle projects.
 ### Gradle
 
 ```groovy
-compile "com.vertexvis:api-client-java:0.18.0"
+compile "com.vertexvis:api-client-java:0.18.1"
 ```
 
 ### Sbt
 
 ```sbt
-libraryDependencies += "com.vertexvis" % "api-client-java" % "0.18.0"
+libraryDependencies += "com.vertexvis" % "api-client-java" % "0.18.1"
 ```
 
 ### Others
@@ -44,7 +44,7 @@ mvn clean package
 
 Then manually install the following JARs.
 
-- `target/api-client-java-0.18.0.jar`
+- `target/api-client-java-0.18.1.jar`
 - `target/lib/*.jar`
 
 ## Usage
@@ -104,7 +104,7 @@ To consume published snapshot versions in other projects, add the snapshot repos
 <dependency>
   <groupId>com.vertexvis</groupId>
   <artifactId>api-client-java</artifactId>
-  <version>0.18.0-SNAPSHOT</version>
+  <version>0.18.1-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -119,7 +119,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.vertexvis:api-client-java:0.18.0-SNAPSHOT'
+    implementation 'com.vertexvis:api-client-java:0.18.1-SNAPSHOT'
 }
 ```
 

@@ -45,9 +45,9 @@ publishing {
                 }
                 developers {
                     developer {
-                        email = 'support@vertexvis.com'
+                        email = 'support@vertex3d.com'
                         name = 'Vertex Developers'
-                        organizationUrl = 'https://developer.vertexvis.com/'
+                        organizationUrl = 'https://developer.vertex3d.com/'
                     }
                 }
                 scm {
