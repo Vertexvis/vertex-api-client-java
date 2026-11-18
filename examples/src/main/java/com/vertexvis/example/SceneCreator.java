@@ -66,7 +66,7 @@ class SceneCreator {
                                                 .relationships(
                                                         new CreateSceneItemRequestDataRelationships()
                                                                 .source(
-                                                                        new CreateSceneItemRequestDataRelationshipsSource(new PartRevisionRelationship()
+                                                                        new SceneItemDataRelationshipsSource(new PartRevisionRelationship()
                                                                                                 .data(
                                                                                                         new PartDataRelationshipsPartRevisions()
                                                                                                                 .type(
